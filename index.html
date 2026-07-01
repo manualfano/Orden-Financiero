@@ -1,0 +1,2894 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orden Financiero · Consultora PyME</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 39 42'%3E%3Crect x='0' y='20' width='11' height='22' rx='3' fill='%2389B1E8'/%3E%3Crect x='14' y='10' width='11' height='32' rx='3' fill='%235891DE'/%3E%3Crect x='28' y='0' width='11' height='42' rx='3' fill='%231B3A6B'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:        #1B3A6B;
+  --navy-deep:   #0d1f35;
+  --navy-mid:    #1a2d4a;
+  --accent:      #3B7DD8;
+  --accent-2:    #5b9ff0;
+  --accent-soft: rgba(59,125,216,0.12);
+  --accent-glow: rgba(59,125,216,0.25);
+  --white:       #ffffff;
+  --off-white:   #f4f7fb;
+  --gray-100:    #eef2f7;
+  --gray-300:    #c8d3e0;
+  --gray-500:    #7a8fa8;
+  --gray-700:    #3d526b;
+  --ink:         #0f1f35;
+  --green:       #1a9e6a;
+  --green-soft:  rgba(26,158,106,0.15);
+  --amber:       #d97706;
+  --amber-soft:  rgba(217,119,6,0.15);
+  --red:         #dc3545;
+  --red-soft:    rgba(220,53,69,0.15);
+  --r:           10px;
+  --r-lg:        16px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); background: var(--white); }
+
+/* ── NAV ─────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 48px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(13, 31, 53, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.3s;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo-mark {
+  width: 44px; height: 47px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.nav-logo-mark svg { width: 44px; height: 47px; }
+
+.logo-icon rect {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: growBar 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.logo-icon rect:nth-of-type(1) { animation-delay: 0s; }
+.logo-icon rect:nth-of-type(2) { animation-delay: 0.18s; }
+.logo-icon rect:nth-of-type(3) { animation-delay: 0.36s; }
+
+@keyframes growBar {
+  0%, 100% { transform: scaleY(0.82); }
+  35%      { transform: scaleY(1); }
+  65%      { transform: scaleY(1); }
+}
+
+.nav-logo-divider {
+  width: 1px; height: 38px;
+  background: rgba(255,255,255,0.2);
+  flex-shrink: 0;
+}
+
+.nav-logo-text {
+  font-size: 21px;
+  font-weight: 500;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.nav-logo-sub {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: var(--r);
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.nav-link:hover {
+  color: var(--white);
+  background: rgba(255,255,255,0.08);
+}
+
+/* ── HERO ─────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+  padding: 50px 24px;
+}
+
+.hero-video-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 20, 40, 0.72) 0%,
+    rgba(10, 20, 40, 0.60) 50%,
+    rgba(10, 20, 40, 0.85) 100%
+  );
+  z-index: 1;
+}
+
+.hero-bg-fallback {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0d1f35 0%, #1B3A6B 50%, #0d2a4a 100%);
+  z-index: 0;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-photo { display: none; }
+
+.hero-content {
+  max-width: 760px;
+  padding: 0 24px;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 24px;
+}
+
+.hero-eyebrow-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: blink 2.6s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.4; transform: scale(0.85); }
+  50%      { opacity: 1;   transform: scale(1.15); }
+}
+
+.hero-title {
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+
+.hero-title em {
+  font-style: normal;
+  color: var(--accent-2);
+}
+
+.hero-quotes {
+  position: relative;
+  height: 28px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.hero-quote {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  font-size: 15px;
+  font-style: italic;
+  color: rgba(255,255,255,0.5);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  text-align: center;
+}
+
+.hero-quote.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-subtitle {
+  font-size: clamp(15px, 2vw, 18px);
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+  font-weight: 400;
+  margin-bottom: 0;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent);
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 16px 32px;
+  border-radius: var(--r);
+  text-decoration: none;
+  transition: all 0.25s;
+  box-shadow: 0 8px 32px rgba(59,125,216,0.4);
+  letter-spacing: 0.01em;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  position: relative;
+  margin-top: 32px;
+  animation: heartbeat 2.6s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1);     box-shadow: 0 8px 32px rgba(59,125,216,0.4), 0 0 0px rgba(91,159,240,0); }
+  50%      { transform: scale(1.035); box-shadow: 0 10px 36px rgba(59,125,216,0.55), 0 0 28px 10px rgba(91,159,240,0.45); }
+}
+
+.hero-cta:hover {
+  background: #2d6cc4;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(59,125,216,0.5);
+  animation-play-state: paused;
+}
+
+.hero-cta-arrow {
+  font-size: 18px;
+  transition: transform 0.2s;
+}
+
+.hero-cta:hover .hero-cta-arrow { transform: translateX(4px); }
+
+.hero-scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,0.35);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: scroll-bounce 2s infinite;
+}
+
+.hero-scroll svg { width: 16px; height: 16px; }
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ── HERO: foto + texto (desktop) ──────────── */
+@media (min-width: 901px) {
+  .hero { text-align: left; }
+
+  .hero-inner {
+    justify-content: center;
+    align-items: center;
+    gap: clamp(48px, 5vw, 80px);
+    padding: 0 56px;
+  }
+
+  .hero-photo {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex: 0 0 30%;
+    width: 30%;
+    aspect-ratio: 2 / 3;
+    height: auto;
+  }
+
+  .hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+    display: block;
+    -webkit-mask-image: linear-gradient(to top, transparent 0, black 24%);
+            mask-image: linear-gradient(to top, transparent 0, black 24%);
+  }
+
+  .hero-content {
+    text-align: left;
+    flex: 0 0 70%;
+    width: 70%;
+    max-width: 70%;
+    padding: 0;
+  }
+
+  .hero-title { font-size: clamp(44px, 3.4vw, 60px); }
+  .hero-title em { white-space: nowrap; }
+
+  .hero-subtitle { margin-left: 0; margin-right: 0; font-size: clamp(16px, 1.3vw, 19px); }
+}
+
+/* ── MOBILE (landing) ─────────────────────── */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+
+  .hero-title { font-size: 30px; }
+
+  .hero-cta {
+    padding: 14px 22px;
+    font-size: 14.5px;
+    white-space: normal;
+    text-align: center;
+    max-width: calc(100% - 8px);
+    animation: heartbeatMobile 2.6s ease-in-out infinite;
+  }
+
+  @keyframes heartbeatMobile {
+    0%, 100% { transform: scale(1);     box-shadow: 0 6px 18px rgba(59,125,216,0.35); }
+    50%      { transform: scale(1.015); box-shadow: 0 7px 20px rgba(59,125,216,0.45), 0 0 12px 3px rgba(91,159,240,0.3); }
+  }
+}
+
+/* ══════════════════════════════════════════
+   DIAGNÓSTICO — OVERLAY
+   ══════════════════════════════════════════ */
+.diag-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: var(--off-white);
+}
+
+.diag-overlay.active { display: block; }
+
+.diag-overlay .app {
+  display: flex;
+  height: 100vh;
+  height: 100dvh;
+  width: 100%;
+}
+
+.diag-overlay.intro-mode .panel-left {
+  display: none;
+}
+
+.diag-overlay.intro-mode .panel-right {
+  max-width: 100%;
+}
+
+.intro-logo {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.diag-overlay.intro-mode .intro-logo { display: flex; }
+
+.intro-logo-mark {
+  width: 26px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.intro-logo-mark svg { width: 26px; height: 28px; }
+
+.intro-logo-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+
+.intro-logo-sub {
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── PANEL IZQUIERDO ───────────────────────── */
+.diag-overlay .panel-left {
+  width: 40%;
+  min-width: 340px;
+  max-width: 480px;
+  background: var(--navy-deep);
+  display: flex;
+  flex-direction: column;
+  padding: 36px 40px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.diag-overlay .panel-left::before {
+  content: '';
+  position: absolute;
+  top: -100px; left: -60px;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59,125,216,0.14), transparent 70%);
+  pointer-events: none;
+}
+
+.diag-overlay .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.diag-overlay .logo-mark {
+  width: 40px; height: 43px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.diag-overlay .logo-mark svg { width: 40px; height: 43px; }
+
+.diag-overlay .logo-divider {
+  width: 1px; height: 36px;
+  background: rgba(255,255,255,0.2);
+  flex-shrink: 0;
+  margin: 0 10px;
+}
+
+.diag-overlay .logo-text {
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  text-transform: none;
+  line-height: 1.2;
+}
+
+.diag-overlay .logo-sub {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.diag-overlay .chain-title {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--gray-500);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  position: relative; z-index: 1;
+}
+
+.diag-overlay .chain {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+.diag-overlay .chain-node {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 0;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.diag-overlay .chain-node:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 15px; top: 44px;
+  width: 2px;
+  height: calc(100% - 12px);
+  background: rgba(255,255,255,0.08);
+  transition: background 0.4s;
+}
+
+.diag-overlay .chain-node.state-ok:not(:last-child)::after   { background: var(--green); opacity: 0.5; }
+.diag-overlay .chain-node.state-warn:not(:last-child)::after  { background: var(--amber); opacity: 0.5; }
+.diag-overlay .chain-node.state-crit:not(:last-child)::after  { background: var(--red); opacity: 0.5; }
+
+.diag-overlay .node-dot {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  font-size: 13px;
+  color: var(--gray-500);
+  font-weight: 700;
+}
+
+.diag-overlay .chain-node.state-active {
+  position: relative;
+}
+
+.diag-overlay .chain-node.state-active::before {
+  content: '';
+  position: absolute;
+  left: -12px; right: -12px;
+  top: 4px; bottom: 4px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 10px;
+  z-index: -1;
+}
+
+.diag-overlay .chain-node.state-active .node-dot {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(59,125,216,0.15);
+  animation: pulse 2s infinite;
+}
+
+.diag-overlay .chain-node.state-ok .node-dot {
+  border-color: var(--green);
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+.diag-overlay .chain-node.state-warn .node-dot {
+  border-color: var(--amber);
+  background: var(--amber-soft);
+  color: var(--amber);
+}
+
+.diag-overlay .chain-node.state-crit .node-dot {
+  border-color: var(--red);
+  background: var(--red-soft);
+  color: var(--red);
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(59,125,216,0.15); }
+  50%       { box-shadow: 0 0 0 8px rgba(59,125,216,0.05); }
+}
+
+.diag-overlay .node-info { flex: 1; min-width: 0; }
+
+.diag-overlay .node-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+  opacity: 0.5;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.diag-overlay .chain-node.state-active .node-name,
+.diag-overlay .chain-node.state-ok .node-name,
+.diag-overlay .chain-node.state-warn .node-name,
+.diag-overlay .chain-node.state-crit .node-name { opacity: 1; }
+
+.diag-overlay .node-desc {
+  font-size: 11px;
+  color: var(--gray-500);
+  margin-top: 2px;
+  transition: all 0.3s;
+}
+
+.diag-overlay .node-score {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gray-500);
+  transition: color 0.3s;
+  white-space: nowrap;
+  padding-top: 2px;
+}
+
+.diag-overlay .chain-node.state-ok .node-score   { color: var(--green); }
+.diag-overlay .chain-node.state-warn .node-score { color: var(--amber); }
+.diag-overlay .chain-node.state-crit .node-score { color: var(--red); }
+.diag-overlay .chain-node.state-active .node-score { color: var(--accent); }
+
+.diag-overlay .chain.glow .chain-node {
+  animation: chainGlow 0.6s ease;
+  border-radius: 8px;
+}
+.diag-overlay .chain.glow .chain-node:nth-child(2) { animation-delay: 0.07s; }
+.diag-overlay .chain.glow .chain-node:nth-child(3) { animation-delay: 0.14s; }
+.diag-overlay .chain.glow .chain-node:nth-child(4) { animation-delay: 0.21s; }
+
+@keyframes chainGlow {
+  0%   { box-shadow: 0 0 0 0 rgba(59,125,216,0); background: transparent; }
+  40%  { box-shadow: 0 0 0 6px rgba(59,125,216,0.12); background: rgba(59,125,216,0.06); }
+  100% { box-shadow: 0 0 0 0 rgba(59,125,216,0); background: transparent; }
+}
+
+.diag-overlay .total-progress {
+  margin-top: auto;
+  padding-top: 32px;
+  position: relative; z-index: 1;
+}
+
+.diag-overlay .progress-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.diag-overlay .progress-label span {
+  font-size: 11px;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+
+.diag-overlay .progress-label strong {
+  font-size: 13px;
+  color: var(--white);
+  font-weight: 700;
+}
+
+.diag-overlay .progress-bar-bg {
+  height: 4px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.diag-overlay .progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #5b9ff0);
+  border-radius: 99px;
+  transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+  width: 0%;
+}
+
+/* ── PANEL DERECHO ─────────────────────────── */
+.diag-overlay .panel-right {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 40px;
+  background: var(--off-white);
+  scroll-behavior: smooth;
+  position: relative;
+}
+
+.diag-overlay .top-progress-track {
+  position: sticky;
+  top: 0;
+  left: 0;
+  align-self: stretch;
+  width: calc(100% + 80px);
+  height: 3px;
+  margin: -48px -40px 0;
+  background: rgba(15,23,42,0.06);
+  z-index: 5;
+  flex-shrink: 0;
+}
+
+.diag-overlay.intro-mode .top-progress-track { display: none; }
+.diag-overlay.show-result .top-progress-track { display: none; }
+
+.diag-overlay .top-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), #5b9ff0);
+  transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+
+.diag-overlay .screen {
+  display: none;
+  width: 100%;
+  max-width: 560px;
+  margin: auto 0;
+  animation: fadeUp 0.4s ease;
+}
+
+.diag-overlay .screen.active { display: block; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.diag-overlay .intro-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid rgba(59,125,216,0.2);
+  border-radius: 99px;
+  padding: 4px 12px;
+  margin-bottom: 20px;
+}
+
+.diag-overlay .intro-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.2;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.diag-overlay .intro-title em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.diag-overlay .intro-desc {
+  font-size: 15px;
+  color: var(--gray-700);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.diag-overlay .chain-preview {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+.diag-overlay .chain-preview-item {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--r);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.diag-overlay .chain-preview-icon {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: var(--accent-soft);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.diag-overlay .chain-preview-icon svg { width: 18px; height: 18px; }
+
+.diag-overlay .chain-preview-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.diag-overlay .chain-preview-qs {
+  font-size: 11px;
+  color: var(--gray-500);
+}
+
+/* ── INTRO: variante oscura (solo screen-intro) ──── */
+.diag-overlay.intro-mode .panel-right {
+  background: var(--navy-deep);
+  padding: 64px 64px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.diag-overlay.intro-mode #screen-intro {
+  max-width: 760px;
+  margin: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.diag-overlay.intro-mode .intro-logo {
+  position: absolute;
+  top: 24px; left: 24px;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.diag-overlay.intro-mode .intro-logo-mark {
+  width: 44px; height: 47px;
+}
+
+.diag-overlay.intro-mode .intro-logo-mark svg { width: 44px; height: 47px; }
+
+.diag-overlay.intro-mode .intro-logo-text {
+  font-size: 21px;
+}
+
+.diag-overlay.intro-mode .intro-logo-sub {
+  font-size: 11px;
+}
+
+.diag-overlay.intro-mode .intro-title {
+  color: var(--white);
+  font-size: clamp(32px, 4.2vw, 46px);
+  line-height: 1.2;
+  margin-bottom: 22px;
+}
+
+.diag-overlay.intro-mode .intro-desc {
+  color: rgba(255,255,255,0.7);
+  font-size: 19px;
+  line-height: 1.65;
+  margin-bottom: 44px;
+  max-width: 600px;
+}
+
+.diag-overlay.intro-mode .chain-preview {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 44px;
+  width: 100%;
+}
+
+.diag-overlay.intro-mode .chain-preview-item {
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 10px;
+  padding: 22px 22px;
+  gap: 16px;
+  align-items: center;
+  text-align: left;
+  height: 100%;
+}
+
+.diag-overlay.intro-mode .chain-preview-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+  font-size: 20px;
+}
+
+.diag-overlay.intro-mode .chain-preview-name {
+  color: var(--white);
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.diag-overlay.intro-mode .chain-preview-qs {
+  color: rgba(255,255,255,0.6);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.diag-overlay.intro-mode .btn-primary {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 18px 36px;
+  width: 100%;
+  justify-content: center;
+  animation: heartbeat 2.6s ease-in-out infinite;
+}
+
+.diag-overlay.intro-mode .btn-primary:hover {
+  animation-play-state: paused;
+}
+
+/* ── BOTONES (diagnóstico) ────────────────── */
+.diag-overlay .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: var(--r);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+.diag-overlay .btn-primary:hover {
+  background: #2d6cc4;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(59,125,216,0.3);
+}
+
+.diag-overlay .btn-primary:active { transform: translateY(0); }
+
+.diag-overlay .btn-secondary {
+  background: var(--white);
+  color: var(--navy);
+  border: 1.5px solid var(--gray-300);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: var(--r);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.diag-overlay .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+.diag-overlay .btn-primary.ready {
+  animation: heartbeat 1.8s ease-in-out infinite;
+  box-shadow: 0 8px 28px rgba(59,125,216,0.35);
+}
+
+.diag-overlay .btn-primary.ready:hover { animation-play-state: paused; }
+
+/* ── PREGUNTAS ─────────────────────────────── */
+.diag-overlay .q-header {
+  margin-bottom: 32px;
+}
+
+.diag-overlay .q-header.q-enter,
+.diag-overlay .q-options.q-enter {
+  animation: fadeUp 0.4s ease;
+}
+
+.diag-overlay .q-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.diag-overlay .q-breadcrumb-eslabón {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.diag-overlay .q-breadcrumb-sep { color: var(--gray-300); font-size: 11px; }
+
+.diag-overlay .q-breadcrumb-num {
+  font-size: 11px;
+  color: var(--gray-500);
+}
+
+.diag-overlay .q-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.diag-overlay .q-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.diag-overlay .q-option {
+  background: var(--white);
+  border: 1.5px solid var(--gray-100);
+  border-radius: var(--r);
+  padding: 16px 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  text-align: left;
+  font-family: inherit;
+}
+
+.diag-overlay .q-option-stagger {
+  animation: optionWipeReveal 0.65s cubic-bezier(0.65,0,0.35,1) both;
+}
+
+@keyframes optionWipeReveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+.diag-overlay .q-option:hover {
+  border-color: var(--accent);
+  background: #f8faff;
+  transform: translateX(2px);
+}
+
+.diag-overlay .q-option:focus-visible,
+.diag-overlay .btn-primary:focus-visible,
+.diag-overlay .btn-secondary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.diag-overlay .q-option.selected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: 0 0 0 3px rgba(59,125,216,0.1);
+}
+
+.diag-overlay .q-option.correct  { border-color: var(--green);  background: var(--green-soft); }
+.diag-overlay .q-option.warning  { border-color: var(--amber);  background: var(--amber-soft); }
+.diag-overlay .q-option.danger   { border-color: var(--red);    background: var(--red-soft);   }
+
+.diag-overlay .opt-letter {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--gray-100);
+  color: var(--gray-700);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.diag-overlay .q-option.selected .opt-letter { background: var(--accent); color: var(--white); }
+
+.diag-overlay .opt-text {
+  font-size: 14px;
+  color: var(--gray-700);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.diag-overlay .q-reaction {
+  display: none;
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--r);
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--gray-700);
+  line-height: 1.5;
+  margin-bottom: 20px;
+  animation: fadeUp 0.3s ease;
+}
+
+.diag-overlay .q-reaction.visible { display: block; }
+.diag-overlay .q-reaction.ok   { border-color: var(--green); background: var(--green-soft); color: var(--green); }
+.diag-overlay .q-reaction.warn { border-color: var(--amber); background: var(--amber-soft); color: var(--amber); }
+.diag-overlay .q-reaction.crit { border-color: var(--red);   background: var(--red-soft);   color: var(--red);   }
+
+/* ── LEAD CAPTURE ──────────────────────────── */
+.diag-overlay .lead-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.3;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.diag-overlay .lead-desc {
+  font-size: 14px;
+  color: var(--gray-700);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.diag-overlay .form-group {
+  margin-bottom: 16px;
+}
+
+.diag-overlay .form-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+.diag-overlay .form-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--gray-300);
+  border-radius: var(--r);
+  font-size: 14px;
+  color: var(--ink);
+  font-family: inherit;
+  background: var(--white);
+  transition: all 0.2s;
+  outline: none;
+}
+
+.diag-overlay .form-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59,125,216,0.1);
+}
+
+.diag-overlay .form-select {
+  width: 100%;
+  padding: 12px 40px 12px 14px;
+  border: 1.5px solid var(--gray-300);
+  border-radius: var(--r);
+  font-size: 14px;
+  color: var(--ink);
+  font-family: inherit;
+  background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 14px center;
+  background-size: 16px;
+  appearance: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.diag-overlay .form-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59,125,216,0.1);
+}
+
+.diag-overlay .privacy-note {
+  font-size: 11px;
+  color: var(--gray-500);
+  margin-top: 12px;
+  line-height: 1.5;
+}
+
+/* ── RESULTADO ─────────────────────────────── */
+.diag-overlay .result-header {
+  margin-bottom: 28px;
+}
+
+.diag-overlay .result-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: 14px;
+}
+
+.diag-overlay .result-eyebrow::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.diag-overlay .result-score-hero {
+  background: var(--navy);
+  border-radius: var(--r-lg);
+  padding: 30px 28px;
+  text-align: left;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.diag-overlay .result-score-hero::before {
+  content: none;
+}
+
+.diag-overlay .result-score-hero::after {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59,125,216,0.18), transparent 70%);
+}
+
+.diag-overlay .score-hero-row {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.diag-overlay .score-number {
+  font-family: 'SF Mono', 'Roboto Mono', 'Consolas', monospace;
+  font-variant-numeric: tabular-nums;
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.diag-overlay .score-max {
+  font-family: 'SF Mono', 'Roboto Mono', 'Consolas', monospace;
+  font-size: 18px;
+  color: rgba(255,255,255,0.4);
+  font-weight: 500;
+}
+
+.diag-overlay .score-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-top: 6px;
+}
+
+.diag-overlay .score-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+}
+
+.diag-overlay .score-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.diag-overlay .score-badge.strong   { background: rgba(26,158,106,0.12); color: #4ade94; border-color: rgba(26,158,106,0.3); }
+.diag-overlay .score-badge.strong::before   { background: #4ade94; }
+.diag-overlay .score-badge.moderate { background: rgba(217,119,6,0.12); color: #fbbf24; border-color: rgba(217,119,6,0.3); }
+.diag-overlay .score-badge.moderate::before { background: #fbbf24; }
+.diag-overlay .score-badge.critical { background: rgba(220,53,69,0.12); color: #f87171; border-color: rgba(220,53,69,0.3); }
+.diag-overlay .score-badge.critical::before { background: #f87171; }
+
+.diag-overlay .eslabones-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.diag-overlay .eslabón-card {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: 12px;
+  padding: 16px 14px 12px;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.diag-overlay .eslabón-card-header {
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.diag-overlay .eslabón-card-name {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.diag-overlay .eslabón-card-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px; height: 18px;
+  border-radius: 5px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 10px;
+}
+
+/* ── Gauge SVG — 180° thick donut (estilo Power BI) ── */
+.diag-overlay .gauge-svg {
+  width: 100%;
+  max-width: 156px;
+  height: auto;
+  display: block;
+  margin: 0 auto 2px;
+  overflow: visible;
+}
+.diag-overlay .gauge-track {
+  fill: none;
+  stroke: #edeff3;
+  stroke-width: 20;
+  stroke-linecap: round;
+}
+.diag-overlay .gauge-fill {
+  fill: none;
+  stroke-width: 20;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.3s cubic-bezier(0.34,1.2,0.64,1) 0.15s;
+}
+.diag-overlay .ok   .gauge-fill { stroke: #22c55e; }
+.diag-overlay .warn .gauge-fill { stroke: #f59e0b; }
+.diag-overlay .crit .gauge-fill { stroke: #ef4444; }
+.diag-overlay .gauge-target {
+  stroke: var(--navy);
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0.32;
+}
+.diag-overlay .gauge-score-num {
+  font-family: 'SF Mono', 'Roboto Mono', 'Consolas', monospace;
+  font-variant-numeric: tabular-nums;
+  font-size: 46px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  fill: var(--navy);
+  text-anchor: middle;
+}
+.diag-overlay .gauge-min-max {
+  font-size: 12px;
+  font-weight: 600;
+  fill: #aab2c0;
+}
+
+.diag-overlay .eslabón-card-status {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-top: 2px;
+}
+.diag-overlay .ok   .eslabón-card-status { color: var(--green); }
+.diag-overlay .warn .eslabón-card-status { color: var(--amber); }
+.diag-overlay .crit .eslabón-card-status { color: var(--red); }
+
+/* narrativa de resultado */
+.diag-overlay .ai-narrative {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--r-lg);
+  padding: 0;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.diag-overlay .q-countdown {
+  display: none;
+  margin-top: 16px;
+}
+
+.diag-overlay .q-countdown.visible { display: block; }
+
+.diag-overlay .q-countdown-bar {
+  height: 2px;
+  background: var(--gray-100);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.diag-overlay .q-countdown-fill {
+  height: 100%;
+  width: 100%;
+  background: var(--accent);
+  border-radius: 99px;
+  transform-origin: left;
+  animation: countdownShrink 4s linear forwards paused;
+}
+
+@keyframes countdownShrink {
+  from { transform: scaleX(1); }
+  to   { transform: scaleX(0); }
+}
+
+.diag-overlay .ai-narrative-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--gray-100);
+  background: var(--gray-50, #f8fafc);
+}
+
+.diag-overlay .ai-narrative-header svg { flex-shrink: 0; }
+
+.diag-overlay .ai-narrative-header span {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+}
+
+.diag-overlay .ai-narrative-text {
+  font-size: 14.5px;
+  color: var(--gray-700);
+  line-height: 1.75;
+  padding: 22px 24px;
+}
+
+.diag-overlay .ai-narrative-text p + p { margin-top: 14px; }
+
+/* ── CHECKPOINT ────────────────────────────── */
+.diag-overlay #screen-checkpoint {
+  display: none;
+  min-height: 70vh;
+}
+
+.diag-overlay #screen-checkpoint.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.diag-overlay .checkpoint-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  animation: fadeUp 0.4s ease;
+}
+
+.diag-overlay .checkpoint-icon {
+  font-size: 48px;
+  animation: checkBounce 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+@keyframes checkBounce {
+  0%   { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+.diag-overlay .checkpoint-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid rgba(59,125,216,0.2);
+  border-radius: 99px;
+  padding: 3px 12px;
+}
+
+.diag-overlay .checkpoint-name {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+
+.diag-overlay .checkpoint-score {
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.diag-overlay .checkpoint-frase {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-500);
+}
+
+.diag-overlay .checkpoint-score.ok   { color: var(--green); }
+.diag-overlay .checkpoint-score.warn { color: var(--amber); }
+.diag-overlay .checkpoint-score.crit { color: var(--red); }
+
+/* ── PANTALLA ANALIZANDO ───────────────────── */
+.diag-overlay #screen-analyzing {
+  display: none;
+  min-height: 70vh;
+}
+
+.diag-overlay #screen-analyzing.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.diag-overlay .analyzing-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  text-align: center;
+}
+
+.diag-overlay .analyzing-logo {
+  animation: analyzingPulse 1.4s ease-in-out infinite;
+  opacity: 0.9;
+}
+
+@keyframes analyzingPulse {
+  0%, 100% { transform: scale(1);   opacity: 0.9; }
+  50%       { transform: scale(1.08); opacity: 1;   }
+}
+
+.diag-overlay .analyzing-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 90px;
+}
+
+.diag-overlay .analyzing-line {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--gray-700);
+  letter-spacing: 0.01em;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.diag-overlay .analyzing-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.diag-overlay .analyzing-line.fading {
+  opacity: 0.25;
+}
+
+/* resultado: ancho mayor */
+.diag-overlay #screen-result {
+  max-width: 700px;
+}
+
+/* título de diagnóstico */
+.diag-overlay .report-diag-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+/* caja primer paso */
+.diag-overlay .report-primer-paso {
+  background: var(--accent-soft);
+  border: 1px solid rgba(59,125,216,0.15);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  padding: 16px 18px;
+  margin-top: 20px;
+}
+
+.diag-overlay .report-primer-paso-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.diag-overlay .report-primer-paso p {
+  font-size: 14px;
+  color: var(--navy);
+  line-height: 1.65;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* CTA reserva de llamada */
+.diag-overlay .cta-card {
+  background: linear-gradient(135deg, var(--navy) 0%, #1a3d7a 100%);
+  border-radius: var(--r-lg);
+  padding: 30px 28px;
+  text-align: center;
+  margin-bottom: 40px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.diag-overlay .cta-title {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.diag-overlay .cta-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 22px;
+  line-height: 1.5;
+}
+
+/* ── MOBILE (diagnóstico) ─────────────────── */
+@media (max-width: 768px) {
+  .diag-overlay .app { flex-direction: column; height: auto; min-height: 100vh; }
+  .diag-overlay .panel-left {
+    width: 100%; min-width: unset; max-width: unset;
+    padding: 24px 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0;
+  }
+  .diag-overlay .logo { margin-bottom: 0; flex: 1; }
+  .diag-overlay .chain-title { display: none; }
+  .diag-overlay .chain { flex-direction: row; gap: 8px; flex: 100%; margin-top: 16px; }
+  .diag-overlay .chain-node { flex-direction: column; align-items: center; text-align: center; flex: 1; padding: 8px 4px; }
+  .diag-overlay .chain-node::after { display: none; }
+  .diag-overlay .node-info { display: none; }
+  .diag-overlay .node-score { font-size: 10px; }
+  .diag-overlay .total-progress { display: none; }
+  .diag-overlay .panel-right { padding: 24px 16px; }
+  .diag-overlay .top-progress-track { width: calc(100% + 32px); margin: -24px -16px 0; }
+  .diag-overlay .intro-title { font-size: 24px; }
+  .diag-overlay .chain-preview { grid-template-columns: 1fr; }
+  .diag-overlay .eslabones-grid { grid-template-columns: 1fr; }
+
+  .diag-overlay .form-input,
+  .diag-overlay .form-select { font-size: 16px; }
+
+  .diag-overlay .btn-primary {
+    width: 100%;
+    justify-content: center;
+    padding: 15px 24px;
+  }
+
+  .diag-overlay .q-option { padding: 14px 16px; }
+}
+
+@media (max-width: 380px) {
+  .diag-overlay .q-text { font-size: 18px; }
+  .diag-overlay .score-number { font-size: 44px; }
+  .diag-overlay .result-score-hero { padding: 22px 18px; }
+  .diag-overlay .lead-title { font-size: 21px; }
+  .hero-cta { padding: 14px 24px; font-size: 15px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39 42" width="32" height="34">
+        <rect x="0"  y="20" width="11" height="22" rx="3" fill="#8D9DB5"/>
+        <rect x="14" y="10" width="11" height="32" rx="3" fill="#C6CEDA"/>
+        <rect x="28" y="0"  width="11" height="42" rx="3" fill="#FFFFFF"/>
+      </svg>
+    </div>
+    <div class="nav-logo-divider"></div>
+    <div>
+      <div class="nav-logo-text">Orden Financiero</div>
+      <div class="nav-logo-sub">Tus números en equilibrio</div>
+    </div>
+  </a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="hero">
+
+  <div class="hero-video-wrap">
+    <div class="hero-bg-fallback"></div>
+  </div>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-inner">
+    <div class="hero-photo">
+      <img src="foto-manuel-cutout.png" alt="Manuel Alfano, fundador de Orden Financiero" fetchpriority="high">
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-dot"></span>
+        Consultoría financiera para PyMEs
+      </div>
+
+      <h1 class="hero-title">
+        El primer paso para <em>ordenar tu negocio</em><br>empieza acá
+      </h1>
+
+      <div class="hero-quotes">
+        <div class="hero-quote active">"Vendo mucho pero no veo un peso."</div>
+    <div class="hero-quote">"Siempre estamos al límite."</div>
+      </div>
+
+      <p class="hero-subtitle">
+        Vendés, trabajás todo el mes y la ganancia no aparece. En 3 minutos sabés exactamente qué está fallando.
+      </p>
+
+      <button class="hero-cta" onclick="openDiagnostico(); return false;">
+        Quiero saber dónde está el problema
+        <span class="hero-cta-arrow">→</span>
+      </button>
+
+      <button onclick="previewReporte()" style="margin-top:14px; background:none; border:none; color:rgba(255,255,255,0.35); font-size:12px; cursor:pointer; text-decoration:underline; display:block;">
+        ver demo del reporte
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     DIAGNÓSTICO — OVERLAY
+     ══════════════════════════════════════════ -->
+<div class="diag-overlay intro-mode" id="diag-overlay">
+  <div class="app">
+
+    <!-- ── PANEL IZQUIERDO ── -->
+    <aside class="panel-left">
+      <div class="logo" onclick="closeDiagnostico()" style="cursor:pointer" title="Volver al inicio">
+        <div class="logo-mark">
+          <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39 42" width="28" height="30">
+            <rect x="0"  y="20" width="11" height="22" rx="3" fill="#8D9DB5"/>
+            <rect x="14" y="10" width="11" height="32" rx="3" fill="#C6CEDA"/>
+            <rect x="28" y="0"  width="11" height="42" rx="3" fill="#FFFFFF"/>
+          </svg>
+        </div>
+        <div class="logo-divider"></div>
+        <div>
+          <div class="logo-text">Orden Financiero</div>
+          <div class="logo-sub">Tus números en equilibrio</div>
+        </div>
+      </div>
+
+      <div class="chain-title">Tu negocio bajo la lupa</div>
+
+      <div class="chain" id="chain">
+        <div class="chain-node state-pending" data-eslabón="0" id="node-0">
+          <div class="node-dot">🔢</div>
+          <div class="node-info">
+            <div class="node-name">Costos y Precios</div>
+            <div class="node-desc">¿Sabés cuánto te cuesta cada cosa?</div>
+          </div>
+          <div class="node-score" id="score-0">—</div>
+        </div>
+        <div class="chain-node state-pending" data-eslabón="1" id="node-1">
+          <div class="node-dot">📊</div>
+          <div class="node-info">
+            <div class="node-name">Resultado Económico</div>
+            <div class="node-desc">¿Conocés la ganancia real de tu negocio?</div>
+          </div>
+          <div class="node-score" id="score-1">—</div>
+        </div>
+        <div class="chain-node state-pending" data-eslabón="2" id="node-2">
+          <div class="node-dot">💧</div>
+          <div class="node-info">
+            <div class="node-name">Cash Flow</div>
+            <div class="node-desc">¿Tenés plata cuando la necesitás?</div>
+          </div>
+          <div class="node-score" id="score-2">—</div>
+        </div>
+        <div class="chain-node state-pending" data-eslabón="3" id="node-3">
+          <div class="node-dot">🧠</div>
+          <div class="node-info">
+            <div class="node-name">Indicadores de Gestión</div>
+            <div class="node-desc">¿Tomás decisiones con datos?</div>
+          </div>
+          <div class="node-score" id="score-3">—</div>
+        </div>
+      </div>
+
+      <div class="total-progress">
+        <div class="progress-label">
+          <span>Progreso</span>
+          <strong id="progress-text">0 / 12</strong>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── PANEL DERECHO ── -->
+    <main class="panel-right" id="panel-right">
+      <div class="top-progress-track"><div class="top-progress-fill" id="top-progress-fill"></div></div>
+
+      <!-- SCREEN: INTRO -->
+      <div class="screen active" id="screen-intro">
+        <div class="intro-logo">
+          <div class="intro-logo-mark">
+            <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39 42" width="32" height="34">
+              <rect x="0"  y="20" width="11" height="22" rx="3" fill="#8D9DB5"/>
+              <rect x="14" y="10" width="11" height="32" rx="3" fill="#C6CEDA"/>
+              <rect x="28" y="0"  width="11" height="42" rx="3" fill="#FFFFFF"/>
+            </svg>
+          </div>
+          <div>
+            <div class="intro-logo-text">Orden Financiero</div>
+            <div class="intro-logo-sub">Tus números en equilibrio</div>
+          </div>
+        </div>
+        <h1 class="intro-title">
+          ¿Trabajás todo el mes y no sabés bien cuánto ganaste?
+        </h1>
+        <p class="intro-desc">
+          En 3 minutos sabés exactamente qué está fallando en las finanzas de tu negocio.
+        </p>
+
+        <div class="chain-preview">
+          <div class="chain-preview-item">
+            <div class="chain-preview-icon">🔢</div>
+            <div>
+              <div class="chain-preview-name">Costos y Precios Estratégicos</div>
+              <div class="chain-preview-qs">¿Sabés si tu precio te deja ganancia real?<br>¿Conocés el costo exacto de cada cosa que vendés?</div>
+            </div>
+          </div>
+          <div class="chain-preview-item">
+            <div class="chain-preview-icon">📊</div>
+            <div>
+              <div class="chain-preview-name">Resultado Económico</div>
+              <div class="chain-preview-qs">¿Sabés cuánto ganaste el mes pasado?</div>
+            </div>
+          </div>
+          <div class="chain-preview-item">
+            <div class="chain-preview-icon">💧</div>
+            <div>
+              <div class="chain-preview-name">Cash Flow</div>
+              <div class="chain-preview-qs">¿Tenés plata disponible cuando la necesitás?</div>
+            </div>
+          </div>
+          <div class="chain-preview-item">
+            <div class="chain-preview-icon">🧠</div>
+            <div>
+              <div class="chain-preview-name">Indicadores de Gestión</div>
+              <div class="chain-preview-qs">¿Decidís con tus propios números o a ojo?</div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-primary" onclick="startDiag()">
+          Ver en qué falla mi negocio
+          <span>→</span>
+        </button>
+      </div>
+
+      <!-- SCREEN: RUBRO -->
+      <div class="screen" id="screen-rubro">
+        <div class="lead-title">Antes de arrancar, contanos de tu negocio</div>
+        <p class="lead-desc">Así adaptamos el diagnóstico a tu rubro.</p>
+
+        <div class="form-group">
+          <label class="form-label">¿A qué se dedica tu negocio?</label>
+          <select class="form-select" id="rubro-select" onchange="toggleRubroButtonReady()">
+            <option value="">Seleccioná un rubro</option>
+            <option value="gastronomia">Gastronomía (restaurante, bar, cafetería, panadería)</option>
+            <option value="peluqueria">Salón de belleza / Peluquería</option>
+            <option value="salud">Salud (veterinaria, consultorio, farmacia)</option>
+            <option value="comercio">Comercio / Tienda</option>
+            <option value="servicios">Servicios profesionales</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+
+        <button class="btn-primary" id="btn-rubro-next" onclick="submitRubro()" style="margin-top:8px">
+          Empezar diagnóstico <span>→</span>
+        </button>
+      </div>
+
+      <!-- SCREEN: PREGUNTAS -->
+      <div class="screen" id="screen-question">
+        <div class="q-header">
+          <div class="q-breadcrumb">
+            <span class="q-breadcrumb-eslabón" id="q-eslabón-name">Costos y Precios</span>
+            <span class="q-breadcrumb-sep">·</span>
+            <span class="q-breadcrumb-num" id="q-num">Pregunta 1 de 12</span>
+          </div>
+          <div class="q-text" id="q-text"></div>
+        </div>
+
+        <div class="q-options" id="q-options"></div>
+        <div class="q-reaction" id="q-reaction"></div>
+
+        <div class="q-countdown" id="q-countdown">
+          <div class="q-countdown-bar"><div class="q-countdown-fill"></div></div>
+        </div>
+
+        <button class="btn-primary" id="btn-next" onclick="nextQuestion()" style="display:none">
+          Siguiente <span>→</span>
+        </button>
+      </div>
+
+      <!-- SCREEN: LEAD CAPTURE -->
+      <div class="screen" id="screen-lead">
+        <div class="lead-title">¡Casi listo! Tus resultados están listos.</div>
+        <p class="lead-desc">Dejanos tus datos para enviarte el diagnóstico completo y que puedas consultarlo cuando quieras.</p>
+
+        <div class="form-group">
+          <label class="form-label">Tu nombre</label>
+          <input class="form-input" type="text" id="lead-name" placeholder="Juan García" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">WhatsApp</label>
+          <input class="form-input" type="tel" id="lead-wa" placeholder="+54 9 11 1234-5678" />
+        </div>
+
+        <button class="btn-primary" onclick="submitLead()" style="margin-top:8px">
+          Ver mi diagnóstico completo <span>→</span>
+        </button>
+        <p class="privacy-note">🔒 Tu información es confidencial. No compartimos tus datos con terceros.</p>
+      </div>
+
+      <!-- SCREEN: RESULTADO -->
+      <!-- SCREEN: CHECKPOINT -->
+      <div class="screen" id="screen-checkpoint">
+        <div class="checkpoint-wrap">
+          <div class="checkpoint-icon" id="checkpoint-icon">🔢</div>
+          <div class="checkpoint-label">Bloque completado</div>
+          <div class="checkpoint-name" id="checkpoint-name">Costos y Precios</div>
+          <div class="checkpoint-score" id="checkpoint-score">7/9</div>
+          <div class="checkpoint-frase" id="checkpoint-frase">Esto está ordenado</div>
+        </div>
+      </div>
+
+      <!-- SCREEN: ANALIZANDO -->
+      <div class="screen" id="screen-analyzing">
+        <div class="analyzing-wrap">
+          <div class="analyzing-logo">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39 42" width="48" height="52">
+              <rect x="0"  y="20" width="11" height="22" rx="3" fill="#8D9DB5"/>
+              <rect x="14" y="10" width="11" height="32" rx="3" fill="#C6CEDA"/>
+              <rect x="28" y="0"  width="11" height="42" rx="3" fill="#FFFFFF"/>
+            </svg>
+          </div>
+          <div class="analyzing-lines">
+            <div class="analyzing-line" id="aline-1">Analizando tus respuestas...</div>
+            <div class="analyzing-line" id="aline-2">Identificando el eslabón más débil...</div>
+            <div class="analyzing-line" id="aline-3">Preparando tu diagnóstico personalizado...</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="screen" id="screen-result">
+        <div class="result-header">
+          <div class="result-eyebrow">Diagnóstico financiero</div>
+          <div class="result-score-hero">
+            <div class="score-hero-row">
+              <div>
+                <span class="score-number" id="total-score">0</span>
+                <span class="score-max">/36</span>
+                <div class="score-label">Puntaje total</div>
+              </div>
+              <div class="score-badge" id="score-badge">—</div>
+            </div>
+          </div>
+
+          <div class="eslabones-grid" id="eslabones-grid"></div>
+        </div>
+
+        <div class="ai-narrative" id="ai-narrative">
+          <div class="ai-narrative-header">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            <span>Análisis de tu negocio</span>
+          </div>
+          <div class="ai-narrative-text" id="ai-narrative-content"></div>
+        </div>
+
+        <div class="cta-card">
+          <div class="cta-title">¿Por dónde empezás?</div>
+          <p class="cta-desc">El diagnóstico muestra dónde están los baches. Lo que no puede mostrar es qué hay detrás de cada uno en tu negocio específico. En 30 minutos vamos ahí — con tus números reales, no con respuestas de encuesta.</p>
+          <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2ObyolYWVEvMKs_tLRnn44v51LuYKjodxamoeF-LVymZFv5-rlDky70uJEDAu2XCaUHjDTgARg" target="_blank" class="btn-primary" style="display:inline-flex; margin: 0 auto;">
+            Profundizar diagnóstico gratis →
+          </a>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script>
+// ── OVERLAY: HISTORY API ────────────────────────────────────────
+function openDiagnostico() {
+  document.getElementById('diag-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  history.pushState({ diag: true }, '', '#diagnostico');
+  startDiag();
+}
+
+function previewReporte() {
+  document.getElementById('diag-overlay').classList.add('active');
+  document.getElementById('diag-overlay').classList.remove('intro-mode');
+  document.body.style.overflow = 'hidden';
+  history.pushState({ diag: true }, '', '#diagnostico');
+  state.rubro = 'gastronomia';
+  state.answers = Array(12).fill(2);
+  state.currentQ = 12;
+  state.eslabónScores = [6, 8, 5, 6];
+  state.eslabónCounts = [3, 3, 3, 3];
+  state.leadData = { nombre: 'Demo', email: 'demo@demo.com', tel: '' };
+  updateChain();
+  showResult();
+}
+
+function closeDiagnostico() {
+  document.getElementById('diag-overlay').classList.remove('active');
+  document.body.style.overflow = '';
+  history.pushState({}, '', '/');
+}
+
+function closeDiagnostico() {
+  document.getElementById('diag-overlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+window.addEventListener('popstate', function (e) {
+  if (!e.state || !e.state.diag) {
+    closeDiagnostico();
+  }
+});
+
+// ── DATOS DEL DIAGNÓSTICO ──────────────────────────────────────
+const PREGUNTAS = [
+  // ESLABÓN 0: Costos y Precios
+  {
+    eslabón: 0, eslabónNombre: "Costos y Precios",
+    texto: "¿Sabés cuánto te cuesta realmente producir o dar cada servicio?",
+    opciones: [
+      { letra:"A", texto:"Sí, lo tengo calculado y lo actualizo seguido", score: 3 },
+      { letra:"B", texto:"A veces, pero no siempre lo tengo actualizado", score: 2 },
+      { letra:"C", texto:"No, lo calculo a ojo", score: 1 }
+    ],
+    reacciones: [
+      { tipo:"ok",   texto:"Bien. Con ese número claro, cada precio que ponés tiene respaldo real." },
+      { tipo:"warn", texto:"Sin un número exacto, el precio es una estimación. Y en Argentina eso se paga caro." },
+      { tipo:"crit", texto:"Es lo más común. Muchos venden mucho y después no ven la plata. El costo es el primer agujero." }
+    ]
+  },
+  {
+    eslabón: 0, eslabónNombre: "Costos y Precios",
+    texto: "¿Tu precio de venta está calculado sobre tus costos reales o lo fijás mirando a la competencia?",
+    opciones: [
+      { letra:"A", texto:"Sí, lo calculo sobre mis costos reales", score: 3 },
+      { letra:"B", texto:"A veces uno, a veces el otro", score: 2 },
+      { letra:"C", texto:"Lo fijo según lo que cobra la competencia", score: 1 }
+    ],
+    reacciones: [
+      { tipo:"ok",   texto:"El que fija precio sobre sus costos manda. El que mira a la competencia, sigue." },
+      { tipo:"warn", texto:"Mirar al mercado no está mal, pero si no conocés tu costo podés estar vendiendo y perdiendo sin saberlo." },
+      { tipo:"crit", texto:"Si tu precio lo pone la competencia, tu margen también lo pone ella. Así no se construye un negocio." }
+    ]
+  },
+  {
+    eslabón: 0, eslabónNombre: "Costos y Precios",
+    texto: "¿Actualizás tus precios cuando suben tus costos?",
+    opciones: [
+      { letra:"A", texto:"Sí, lo hago sistemáticamente", score: 3 },
+      { letra:"B", texto:"A veces, pero no siempre", score: 2 },
+      { letra:"C", texto:"No, los mantengo o los subo cuando puedo", score: 1 }
+    ],
+    reacciones: [
+      { tipo:"ok",   texto:"Clave en Argentina. El que no actualiza trabaja cada mes con un margen más chico, aunque venda igual." },
+      { tipo:"warn", texto:"Cada mes que no actualizás, el costo sube y el precio queda quieto. El margen se achica solo." },
+      { tipo:"crit", texto:"En contexto inflacionario, no actualizar precios es subsidiar a tus clientes con tu propia rentabilidad." }
+    ]
+  },
+  // ESLABÓN 1: Resultado Económico
+  {
+    eslabón: 1, eslabónNombre: "Resultado Económico",
+    texto: "¿Sabés exactamente cuánto ganó tu negocio el mes pasado?",
+    opciones: [
+      { letra:"A", texto:"Sí, lo tengo claro", score: 3 },
+      { letra:"B", texto:"A veces, pero no de manera consistente", score: 2 },
+      { letra:"C", texto:"No, no lo tengo resuelto", score: 1 }
+    ],
+    reacciones: [
+      { tipo:"ok",   texto:"Bien. Saber el resultado real es la diferencia entre gestionar y adivinar." },
+      { tipo:"warn", texto:"Si no lo sabés todos los meses, estás manejando el negocio a ciegas." },
+      { tipo:"crit", texto:"Vendés, pero no ves la plata. Sin ese número, no sabés si el negocio gana o gira en falso." }
+    ]
+  },
+  {
+    eslabón: 1, eslabónNombre: "Resultado Económico",
+    texto: "¿Separás las finanzas del negocio de tus gastos personales?",
+    opciones: [
+      { letra:"A", texto:"Sí, siempre", score: 3 },
+      { letra:"B", texto:"A veces, depende del mes", score: 2 },
+      { letra:"C", texto:"No, están mezcladas", score: 1 }
+    ],
+    reacciones: [
+      { tipo:"ok",   texto:"Perfecto. Sin esa separación es imposible saber si el negocio es rentable o te estás comiendo el capital." },
+      { tipo:"warn", texto:"Cuando se mezclan, el resultado que ves no es el del negocio. Es un número distorsionado." },
+      { tipo:"crit", texto:"Es el error más común. Y el que más distorsiona la foto real. Muchos creen que ganan cuando en realidad se están descapitalizando." }
+    ]
+  },
+  {
+    eslabón: 1, eslabónNombre: "Resultado Económico",
+    texto: "¿Tenés un cierre mensual que te muestre ventas, costos, estructura, impuestos y ganancia neta?",
+    opciones: [
+      { letra:"A", texto:"Sí, por supuesto que lo tengo", score: 3 },
+      { letra:"B", texto:"A veces, pero no de manera consistente", score: 2 },
+      { letra:"C", texto:"No, no lo tengo resuelto", score: 1 }
+    ],
+    reacciones: [
+      { tipo:"ok",   texto:"Bien. El cierre mensual es el tablero de control del negocio. Con eso podés tomar decisiones." },
+      { tipo:"warn", texto:"Un cierre que aparece cada tanto no sirve para comparar ni para decidir. Necesitás la serie completa." },
+      { tipo:"crit", texto:"Sin cierre mensual, el resultado del negocio es una sensación. No un número real." }
+    ]
+  },
+  // ESLABÓN 2: Cash Flow
+  {
+    eslabón: 2, eslabónNombre: "Cash Flow",
+    texto: "¿Llegás a fin de mes con plata disponible para pagar sueldos y proveedores sin apurarte?",
+    opciones: [
+      { letra:"A", texto:"Sí, siempre", score: 3 },
+      { letra:"B", texto:"A veces llego justo", score: 2 },
+      { letra:"C", texto:"No, siempre estoy cortito o me falta", score: 1 }
+    ],
+    reacciones: [
+      { tipo:"ok",   texto:"Bien. Tener liquidez cuando la necesitás es señal de que el flujo está ordenado." },
+      { tipo:"warn", texto:"Llegar justo todos los meses no es normal. Es una señal de que algo en el flujo está desbalanceado." },
+      { tipo:"crit", texto:"Mientras más vendés, más te atorás. Eso es un cuello de botella financiero, no un problema de ventas." }
+    ]
+  },
+  {
+    eslabón: 2, eslabónNombre: "Cash Flow",
+    texto: "¿Sabés con anticipación cuándo van a ser tus próximos gastos fuertes?",
+    opciones: [
+      { letra:"A", texto:"Sí, los tengo mapeados", score: 3 },
+      { letra:"B", texto:"Algunos sí, otros me agarran de sorpresa", score: 2 },
+      { letra:"C", texto:"No, me entero cuando llegan", score: 1 }
+    ],
+    reacciones: [
+      { tipo:"ok",   texto:"Bien. Anticipar gastos es lo que te permite no sorprenderte a fin de mes." },
+      { tipo:"warn", texto:"Si no lo sabés con anticipación, cada gasto grande te agarra desprevenido. Eso genera tensión de caja." },
+      { tipo:"crit", texto:"Sin ese mapa de gastos, el negocio reacciona en vez de planificar. Y reaccionar siempre cuesta más caro." }
+    ]
+  },
+  {
+    eslabón: 2, eslabónNombre: "Cash Flow",
+    texto: "¿Tus cobros y pagos están equilibrados o siempre pagás antes de cobrar?",
+    opciones: [
+      { letra:"A", texto:"Cobro antes o al mismo tiempo que pago", score: 3 },
+      { letra:"B", texto:"Depende del mes y del cliente", score: 2 },
+      { letra:"C", texto:"Siempre pago antes de cobrar", score: 1 }
+    ],
+    reacciones: [
+      { tipo:"ok",   texto:"Bien. Cobrar antes de pagar es la base de un flujo sano. Muchos negocios rentables quiebran por esto." },
+      { tipo:"warn", texto:"Cuando pagás antes de cobrar, financiás a tu cliente con tu propia plata. Eso tiene un costo real." },
+      { tipo:"crit", texto:"Estás esperando que entre la plata contando los días. Eso es un cuello de botella financiero puro." }
+    ]
+  },
+  // ESLABÓN 3: Indicadores de Gestión
+  {
+    eslabón: 3, eslabónNombre: "Indicadores de Gestión",
+    texto: "¿Revisás los números de tu negocio al menos una vez por mes?",
+    opciones: [
+      { letra:"A", texto:"Sí, lo hago todos los meses", score: 3 },
+      { letra:"B", texto:"A veces, cuando me acuerdo o hay un problema", score: 2 },
+      { letra:"C", texto:"No, casi nunca los reviso", score: 1 }
+    ],
+    reacciones: [
+      { tipo:"ok",   texto:"Bien. El que revisa sus números mensualmente toma mejores decisiones que el que los mira una vez por año." },
+      { tipo:"warn", texto:"Sin revisión mensual, los problemas se acumulan en silencio. Cuando los ves, ya costaron caro." },
+      { tipo:"crit", texto:"Manejás el negocio al tum tún. Sin los números arriba de la mesa, cualquier decisión es una apuesta." }
+    ]
+  },
+  {
+    eslabón: 3, eslabónNombre: "Indicadores de Gestión",
+    texto: "¿Tenés algún indicador que seguís regularmente (crecimiento de ventas, contribución marginal, punto de equilibrio)?",
+    opciones: [
+      { letra:"A", texto:"Sí, tengo uno o más que sigo de cerca", score: 3 },
+      { letra:"B", texto:"Tengo algunos pero no los sigo con regularidad", score: 2 },
+      { letra:"C", texto:"No, no tengo ninguno definido", score: 1 }
+    ],
+    reacciones: [
+      { tipo:"ok",   texto:"Bien. Tener un indicador propio es señal de que gestionás con criterio, no a ojo." },
+      { tipo:"warn", texto:"Un indicador que mirás a veces no te da tendencia. Y sin tendencia, no podés saber si mejoraste." },
+      { tipo:"crit", texto:"Sin un número que seguir, lo que tenés dando vueltas por todos lados nunca se convierte en información útil." }
+    ]
+  },
+  {
+    eslabón: 3, eslabónNombre: "Indicadores de Gestión",
+    texto: "¿Tomás decisiones de inversión o contratación con datos concretos?",
+    opciones: [
+      { letra:"A", texto:"Sí, siempre me baso en números", score: 3 },
+      { letra:"B", texto:"A veces sí, a veces me guío por intuición", score: 2 },
+      { letra:"C", texto:"No, decido a ojo", score: 1 }
+    ],
+    reacciones: [
+      { tipo:"ok",   texto:"Bien. Decidir con datos no elimina el riesgo, pero sí lo reduce a lo que vale la pena asumir." },
+      { tipo:"warn", texto:"A veces alcanza, a veces no. El problema es que cuando no alcanza, el costo de equivocarse es alto." },
+      { tipo:"crit", texto:"Decidís a ojo — eso ya lo sabemos. Este diagnóstico es el primer paso para cambiarlo." }
+    ]
+  }
+];
+
+// ── TEXTOS DE RESULTADO (eslabón débil × nivel de gravedad × rubro) ──
+const TEXTOS_RESULTADO = {
+  costos: {
+    critico: {
+      espejo: "Vendés todos los días, pero a fin de mes no entendés bien dónde se fue la plata.",
+      consecuencia: {
+        gastronomia: "Es muy probable que algunos platos de tu carta te den pérdida sin que lo sepas — cada vez que el costo de un ingrediente sube y el precio de la carta queda igual, estás regalando margen.",
+        peluqueria: "Es probable que algunos servicios te cuesten más en productos y tiempo de lo que cobrás por ellos — cada corte o color con descuento mal calculado te puede estar saliendo a pérdida.",
+        salud: "Es probable que algunas prácticas o productos no te estén dejando todo el margen que deberían — cada vez que no actualizás precios al ritmo de la inflación, perdés rentabilidad sin notarlo.",
+        comercio: "Es probable que tengas productos que vendés con un margen mínimo o negativo sin saberlo — la rotación te tapa el problema hasta que hacés el cálculo real.",
+        servicios: "Es probable que tu tarifa no esté cubriendo todas las horas que realmente le dedicás a cada cliente — el tiempo invisible (mails, gestión, seguimiento) no está en tu precio.",
+        otro: "Es probable que estés vendiendo por debajo de tu costo real sin saberlo — sin un cálculo preciso, el margen se diluye en gastos que no ves."
+      },
+      gancho: "El problema no es vender más — es saber cuáles de tus ventas realmente te conviene hacer. Eso es lo que vemos en la llamada."
+    },
+    desarrollo: {
+      espejo: "Tenés una idea de tus costos, pero no la precisión suficiente como para confiar del todo en tus precios.",
+      consecuencia: {
+        gastronomia: "Hay platos que seguramente dejan mejor margen que otros, pero sin el cálculo exacto es difícil saber cuáles empujar y cuáles revisar.",
+        peluqueria: "Algunos servicios rinden mejor que otros, pero sin un cálculo preciso es difícil saber dónde conviene poner el foco comercial.",
+        salud: "Hay prácticas más rentables que otras, pero sin un cálculo afinado es difícil priorizar dónde conviene crecer.",
+        comercio: "Hay productos que dejan mejor margen que otros, pero sin un cálculo preciso es difícil decidir qué stock priorizar.",
+        servicios: "Algunos clientes o proyectos seguramente rinden mejor que otros, pero sin medirlo es difícil saber dónde poner el foco.",
+        otro: "Seguramente hay líneas más rentables que otras dentro de tu negocio, pero sin un cálculo preciso es difícil identificarlas con seguridad."
+      },
+      gancho: "Hay un ajuste relativamente simple que puede mejorar tu margen sin vender un peso más. Te lo muestro en la llamada."
+    },
+    solido: {
+      espejo: "Tenés un manejo bastante claro de tus costos y precios — es una de las bases más sólidas de un negocio ordenado.",
+      consecuencia: {
+        gastronomia: "El siguiente nivel no es calcular mejor, es usar ese cálculo para decidir qué platos potenciar y cuáles sacar de la carta.",
+        peluqueria: "El siguiente nivel es usar esos números para decidir qué servicios o paquetes conviene impulsar más.",
+        salud: "El siguiente nivel es usar esos números para priorizar qué prácticas o especialidades conviene desarrollar.",
+        comercio: "El siguiente nivel es usar esos números para optimizar qué productos comprar más y cuáles dejar de reponer.",
+        servicios: "El siguiente nivel es usar esos números para decidir qué tipo de clientes o proyectos te conviene priorizar.",
+        otro: "El siguiente nivel es usar esa base para tomar decisiones estratégicas de crecimiento, no solo de control."
+      },
+      gancho: "Tenés la base. La pregunta es si la estás usando para crecer con foco o solo para no perder plata. Eso lo vemos en la llamada."
+    }
+  },
+  resultado: {
+    critico: {
+      espejo: "Trabajás todo el mes, vendés, pero llegás a fin de mes sin tener claro cuánto ganaste realmente.",
+      consecuencia: {
+        gastronomia: "Es probable que estés confundiendo la plata que entra en caja con la ganancia real del local — son cosas muy distintas y la diferencia se nota cuando hay que invertir o afrontar un imprevisto.",
+        peluqueria: "Es probable que estés mezclando tu sueldo con la ganancia del salón sin darte cuenta — eso hace que cualquier decisión de inversión sea más difícil de evaluar.",
+        salud: "Es probable que la facturación te dé una sensación de orden que no necesariamente coincide con la ganancia real una vez descontados todos los costos.",
+        comercio: "Es probable que confundas ventas con ganancia — un mes de mucha venta no siempre es un mes de buena rentabilidad.",
+        servicios: "Es probable que no tengas separado lo que cobrás de lo que realmente te queda después de gastos e impuestos.",
+        otro: "Es probable que la sensación de 'me está yendo bien' no esté respaldada por un número concreto de ganancia real."
+      },
+      gancho: "Sin ese número, cualquier decisión grande es una apuesta. El primer paso es tener un cierre simple y confiable. Eso es lo que armamos en la llamada."
+    },
+    desarrollo: {
+      espejo: "Tenés algo de noción de cómo te va, pero no un cierre formal que te dé el número exacto cada mes.",
+      consecuencia: {
+        gastronomia: "Capaz sentís que el mes estuvo bien o mal, pero sin el número exacto es difícil saber si esa sensación coincide con la realidad.",
+        peluqueria: "Tenés una intuición de cómo viene el mes, pero sin el cierre formal es difícil confirmar si esa intuición es certera.",
+        salud: "Tenés una idea general del resultado, pero sin el cierre exacto es difícil tomar decisiones de inversión con confianza.",
+        comercio: "Sabés más o menos cómo viene el negocio, pero sin el número preciso quedan decisiones importantes libradas a la intuición.",
+        servicios: "Tenés una percepción de cómo te está yendo, pero sin el cierre exacto es difícil saber si conviene tomar más clientes o subir tarifas.",
+        otro: "Tenés una idea aproximada, pero sin el número exacto las decisiones grandes quedan en terreno incierto."
+      },
+      gancho: "Formalizar ese cierre no lleva mucho tiempo y cambia completamente la calidad de tus decisiones. Te muestro cómo en la llamada."
+    },
+    solido: {
+      espejo: "Tenés bastante claridad sobre cuánto gana tu negocio — eso ya te pone en mejor posición que la mayoría de las PyMEs.",
+      consecuencia: {
+        gastronomia: "El siguiente paso es usar ese número para planificar inversión y crecimiento, no solo para controlar que no falte plata.",
+        peluqueria: "El siguiente paso es usar ese resultado para decidir cuándo sumar otra silla o profesional, con respaldo de números.",
+        salud: "El siguiente paso es usar ese resultado para evaluar inversión en equipamiento o nuevos servicios con criterio financiero.",
+        comercio: "El siguiente paso es usar ese resultado para planificar expansión o nuevas líneas de producto con base sólida.",
+        servicios: "El siguiente paso es usar ese resultado para definir si conviene escalar el equipo o subir tarifas.",
+        otro: "El siguiente paso es usar ese resultado como base para decisiones de crecimiento, no solo de control."
+      },
+      gancho: "Tener el número es la base. Usarlo para crecer con estrategia es el siguiente nivel. Eso lo vemos en la llamada."
+    }
+  },
+  cashflow: {
+    critico: {
+      espejo: "Hay meses en los que, aunque las cosas parecen ir bien, te cuesta llegar a fin de mes con la plata justa.",
+      consecuencia: {
+        gastronomia: "Es un patrón común en gastronomía: pagás proveedores antes de cobrar, y eso genera tensión financiera aunque el negocio sea rentable en el papel.",
+        peluqueria: "Si cobrás en el momento pero tenés gastos fijos grandes (alquiler, sueldos), cualquier mes flojo de turnos te puede complicar la caja.",
+        salud: "Entre la demora de obras sociales y los gastos fijos del consultorio, es común que haya baches de caja aunque el negocio sea rentable.",
+        comercio: "Si comprás stock por adelantado y cobrás de a poco, es común que la plata esté 'trabada' en mercadería en lugar de en tu cuenta.",
+        servicios: "Si facturás a 30 o 60 días pero tenés gastos mensuales fijos, los baches de cobro pueden generar tensión financiera real.",
+        otro: "Es un patrón frecuente: ser rentable en el papel pero no tener la plata disponible cuando hace falta."
+      },
+      gancho: "Esto no se resuelve facturando más — se resuelve ordenando los tiempos de cobro y pago. Eso es lo que vemos en la llamada."
+    },
+    desarrollo: {
+      espejo: "En general llegás a fin de mes, pero sin mucho margen ni anticipación frente a gastos grandes.",
+      consecuencia: {
+        gastronomia: "Un arreglo, un aumento de insumos, un mes con menos mesas — sin colchón, cualquiera de esas te deja sin caja para operar.",
+        peluqueria: "Un mes flojo de turnos, un gasto de equipamiento inesperado — sin colchón, te quedás en rojo antes de que te des cuenta.",
+        salud: "Una demora de obra social, un gasto imprevisto del consultorio — sin colchón, la caja queda expuesta justo cuando más la necesitás.",
+        comercio: "Un pedido grande adelantado, una temporada floja de ventas — sin reserva, te quedás sin liquidez para seguir reponiendo.",
+        servicios: "Un mes de pocos proyectos con los gastos fijos corriendo — sin colchón, empezás a poner plata propia para cubrir.",
+        otro: "Sin colchón, cualquier imprevisto — un gasto, una cobranza que no entra — te deja sin caja para seguir operando."
+      },
+      gancho: "Con una proyección simple de 60-90 días, estos baches se anticipan en vez de sufrirse. Te muestro cómo armarla en la llamada."
+    },
+    solido: {
+      espejo: "Manejás bien los tiempos de cobro y pago — eso le da bastante estabilidad a tu operación.",
+      consecuencia: {
+        gastronomia: "El siguiente nivel es usar ese colchón para negociar mejores condiciones con proveedores o invertir en momentos clave.",
+        peluqueria: "El siguiente nivel es usar esa estabilidad para planificar inversión en equipamiento o capacitación sin afectar la caja diaria.",
+        salud: "El siguiente nivel es usar esa estabilidad para evaluar inversión en equipamiento con mejor capacidad de negociación.",
+        comercio: "El siguiente nivel es usar ese margen para negociar mejores precios de compra por volumen o anticipación de pago.",
+        servicios: "El siguiente nivel es usar esa estabilidad para invertir en crecimiento del equipo sin poner en riesgo la operación diaria.",
+        otro: "El siguiente nivel es usar esa estabilidad como ventaja competitiva frente a otros negocios de tu rubro."
+      },
+      gancho: "Tener la caja ordenada te da margen de maniobra que otros no tienen. La pregunta es cómo aprovecharlo mejor. Eso lo vemos en la llamada."
+    }
+  },
+  gestion: {
+    critico: {
+      espejo: "Tomás decisiones importantes del negocio más por intuición o urgencia que por información concreta.",
+      consecuencia: {
+        gastronomia: "Decisiones como sumar un plato, abrir un turno o contratar personal probablemente se están tomando sin el respaldo de números que confirmen si conviene.",
+        peluqueria: "Decisiones como sumar una silla, un servicio nuevo o ajustar precios probablemente se toman sin un análisis de impacto real.",
+        salud: "Decisiones de inversión en equipamiento o ampliación probablemente se toman sin un análisis financiero que las respalde del todo.",
+        comercio: "Decisiones de stock, precios o apertura de nuevas líneas probablemente se toman más por intuición comercial que por datos concretos.",
+        servicios: "Decisiones de tarifas, contratación o foco comercial probablemente se toman sin el respaldo de indicadores claros.",
+        otro: "Las decisiones importantes probablemente se están tomando con menos información de la que el negocio podría tener disponible."
+      },
+      gancho: "Esto cambia completamente cuando empezás a mirar 3 o 4 números clave cada mes. Te muestro cuáles en la llamada."
+    },
+    desarrollo: {
+      espejo: "Controlás algunas cosas, pero no de manera sistemática — el seguimiento depende más de la memoria que de un proceso.",
+      consecuencia: {
+        gastronomia: "Sin un seguimiento sistemático, los problemas (mermas, baja rotación de algún plato) se detectan tarde, cuando ya impactaron en el resultado.",
+        peluqueria: "Sin un seguimiento regular, una caída en algún servicio o profesional se nota recién cuando ya afectó varios meses.",
+        salud: "Sin indicadores fijos, una baja en algún tipo de consulta o práctica puede pasar desapercibida hasta que ya es tendencia.",
+        comercio: "Sin seguimiento sistemático, productos de baja rotación o márgenes flojos se detectan tarde.",
+        servicios: "Sin seguimiento regular, una baja en la cartera de clientes o en la rentabilidad por proyecto se nota más tarde de lo ideal.",
+        otro: "Sin un proceso fijo de control, los problemas se detectan reactivamente en lugar de anticiparse."
+      },
+      gancho: "Con 3 o 4 indicadores simples revisados cada mes, esto pasa de reactivo a preventivo. Te muestro cuáles en la llamada."
+    },
+    solido: {
+      espejo: "Tenés un buen hábito de revisar números y tomar decisiones con información — eso ya te diferencia de la mayoría.",
+      consecuencia: {
+        gastronomia: "El siguiente nivel es usar esos indicadores no solo para controlar, sino para proyectar crecimiento (nuevo local, nuevo turno, nueva carta).",
+        peluqueria: "El siguiente nivel es usar esos indicadores para planificar expansión: más sillas, más profesionales, nuevos servicios.",
+        salud: "El siguiente nivel es usar esos indicadores para planificar crecimiento de cartera o nuevas especialidades.",
+        comercio: "El siguiente nivel es usar esos indicadores para planificar expansión de líneas de producto o nuevos puntos de venta.",
+        servicios: "El siguiente nivel es usar esos indicadores para planificar escalamiento del equipo o la cartera de clientes.",
+        otro: "El siguiente nivel es usar esos indicadores no solo para controlar, sino para planificar el crecimiento del negocio."
+      },
+      gancho: "Ya tenés el hábito. La pregunta es si lo estás usando para crecer o solo para no retroceder. Eso lo vemos en la llamada."
+    }
+  }
+};
+
+// ── ESTADO ────────────────────────────────────────────────────
+const state = {
+  currentQ: 0,
+  answers: [],
+  eslabónScores: [0,0,0,0],
+  eslabónCounts: [0,0,0,0],
+  leadData: {},
+  rubro: null,
+  selectedOption: null
+};
+
+// ── HELPERS ───────────────────────────────────────────────────
+function getEslabónState(score, count) {
+  if (count === 0) return 'pending';
+  const pct = score / (count * 3);
+  if (pct >= 0.8) return 'ok';
+  if (pct >= 0.5) return 'warn';
+  return 'crit';
+}
+
+function getEslabónLabel(score, count) {
+  if (count === 0) return '—';
+  const pct = score / (count * 3);
+  if (pct >= 0.8) return 'Sólido';
+  if (pct >= 0.5) return 'A mejorar';
+  return 'Crítico';
+}
+
+function getProgressMicrocopy(total) {
+  if (total === 0) return 'Arrancamos 🚀';
+  if (total === 12) return '¡Listo! 🎉';
+  if (total >= 9) return 'Últimas preguntas';
+  if (total >= 6) return 'Vamos por la mitad';
+  if (total >= 3) return 'Buen ritmo';
+  return `${total} / 12`;
+}
+
+const ESLABÓN_MICROFRASE = {
+  ok:   ['Esto está ordenado', 'Esto está ordenado', 'Esto está ordenado', 'Esto está ordenado'],
+  warn: ['Le falta una vuelta de tuerca, hay que ajustar', 'Le falta una vuelta de tuerca, hay que ajustar', 'Le falta una vuelta de tuerca, hay que ajustar', 'Le falta una vuelta de tuerca, hay que ajustar'],
+  crit: ['Acá se va la plata', 'Acá se va la plata', 'Acá se va la plata', 'Acá se va la plata']
+};
+
+function updateChain() {
+  const total = state.answers.length;
+  document.getElementById('progress-text').textContent = getProgressMicrocopy(total);
+  document.getElementById('progress-fill').style.width = `${(total/12)*100}%`;
+  const topFill = document.getElementById('top-progress-fill');
+  if (topFill) topFill.style.width = `${(total/12)*100}%`;
+
+  for (let i = 0; i < 4; i++) {
+    const node = document.getElementById(`node-${i}`);
+    const scoreEl = document.getElementById(`score-${i}`);
+    const descEl = node.querySelector('.node-desc');
+    const s = state.eslabónScores[i];
+    const c = state.eslabónCounts[i];
+
+    let st = getEslabónState(s, c);
+    const currentEslabón = PREGUNTAS[state.currentQ]?.eslabón;
+    if (st === 'pending' && i === currentEslabón) st = 'active';
+
+    node.className = `chain-node state-${st}`;
+    scoreEl.textContent = c > 0 ? `${s}/${c*3}` : '—';
+
+    if (c === 3 && descEl) {
+      const frases = ESLABÓN_MICROFRASE[st] || ESLABÓN_MICROFRASE.warn;
+      descEl.textContent = frases[i];
+      descEl.style.fontWeight = '600';
+    }
+  }
+}
+
+function showScreen(id) {
+  document.querySelectorAll('#diag-overlay .screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById('panel-right').scrollTop = 0;
+}
+
+// ── RESET (al abrir el overlay) ────────────────────────────────
+function resetDiagState() {
+  state.currentQ = 0;
+  state.answers = [];
+  state.eslabónScores = [0,0,0,0];
+  state.eslabónCounts = [0,0,0,0];
+  state.leadData = {};
+  state.rubro = null;
+  state.selectedOption = null;
+  showScreen('screen-intro');
+  updateChain();
+  document.getElementById('diag-overlay').classList.add('intro-mode');
+}
+
+// ── INICIO ────────────────────────────────────────────────────
+function startDiag() {
+  state.currentQ = 0;
+  state.answers = [];
+  state.eslabónScores = [0,0,0,0];
+  state.eslabónCounts = [0,0,0,0];
+  state.rubro = null;
+  state.selectedOption = null;
+  document.getElementById('rubro-select').value = '';
+  toggleRubroButtonReady();
+  showScreen('screen-rubro');
+  updateChain();
+  document.getElementById('diag-overlay').classList.remove('intro-mode');
+}
+
+// ── RUBRO: feedback visual al elegir ───────────────────────────
+function toggleRubroButtonReady() {
+  const has = !!document.getElementById('rubro-select').value;
+  document.getElementById('btn-rubro-next').classList.toggle('ready', has);
+}
+
+// ── RUBRO SUBMIT ──────────────────────────────────────────────
+function submitRubro() {
+  const rubro = document.getElementById('rubro-select').value;
+  if (!rubro) {
+    alert('Por favor seleccioná un rubro para continuar.');
+    return;
+  }
+  state.rubro = rubro;
+  renderQuestion();
+  showScreen('screen-question');
+  updateChain();
+  const chain = document.getElementById('chain');
+  chain.classList.remove('glow');
+  void chain.offsetWidth;
+  chain.classList.add('glow');
+}
+
+// ── RENDER PREGUNTA ───────────────────────────────────────────
+function renderQuestion() {
+  const q = PREGUNTAS[state.currentQ];
+  state.selectedOption = null;
+  if (state._autoAdvanceTimer) { clearTimeout(state._autoAdvanceTimer); state._autoAdvanceTimer = null; }
+  const cd = document.getElementById('q-countdown');
+  if (cd) { cd.classList.remove('visible'); const f = cd.querySelector('.q-countdown-fill'); if (f) { f.style.animationPlayState = 'paused'; f.style.animation = 'none'; void f.offsetWidth; f.style.animation = ''; } }
+
+  document.getElementById('q-eslabón-name').textContent = q.eslabónNombre;
+  document.getElementById('q-num').textContent = `Pregunta ${state.currentQ + 1} de 12`;
+  document.getElementById('q-text').textContent = q.texto;
+
+  const qHeader = document.querySelector('#screen-question .q-header');
+  qHeader.classList.remove('q-enter');
+  void qHeader.offsetWidth;
+  qHeader.classList.add('q-enter');
+
+  const container = document.getElementById('q-options');
+  container.classList.remove('q-enter');
+  void container.offsetWidth;
+  container.classList.add('q-enter');
+  container.innerHTML = '';
+
+  q.opciones.forEach((op, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'q-option q-option-stagger';
+    btn.style.animationDelay = `${idx * 0.3}s`;
+    btn.innerHTML = `
+      <div class="opt-letter">${op.letra}</div>
+      <div class="opt-text">${op.texto}</div>
+    `;
+    btn.onclick = () => selectOption(idx);
+    container.appendChild(btn);
+  });
+
+  const reaction = document.getElementById('q-reaction');
+  reaction.className = 'q-reaction';
+  reaction.textContent = '';
+  document.getElementById('btn-next').style.display = 'none';
+}
+
+// ── SELECCIONAR OPCIÓN ────────────────────────────────────────
+function selectOption(idx) {
+  if (state.selectedOption !== null) return;
+  state.selectedOption = idx;
+
+  const q = PREGUNTAS[state.currentQ];
+  const opts = document.querySelectorAll('#screen-question .q-option');
+  const styleMap = ['correct','warning','danger'];
+
+  opts.forEach((el, i) => {
+    if (i === idx) el.classList.add(styleMap[i]);
+    else el.style.opacity = '0.5';
+    el.style.pointerEvents = 'none';
+  });
+
+  const r = q.reacciones[idx];
+  const reaction = document.getElementById('q-reaction');
+  reaction.textContent = r.texto;
+  reaction.className = `q-reaction visible ${r.tipo}`;
+
+  const score = q.opciones[idx].score;
+  state.answers.push({ score, eslabón: q.eslabón });
+  state.eslabónScores[q.eslabón] += score;
+  state.eslabónCounts[q.eslabón]++;
+
+  updateChain();
+  document.getElementById('btn-next').style.display = 'none';
+
+  const countdown = document.getElementById('q-countdown');
+  countdown.classList.add('visible');
+  countdown.querySelector('.q-countdown-fill').style.animationDuration = '4s';
+  countdown.querySelector('.q-countdown-fill').style.animationPlayState = 'running';
+
+  state._autoAdvanceTimer = setTimeout(() => {
+    countdown.classList.remove('visible');
+    nextQuestion();
+  }, 4000);
+}
+
+// ── SIGUIENTE ─────────────────────────────────────────────────
+function nextQuestion() {
+  state.currentQ++;
+  const eslabonCompletado = state.currentQ % 3 === 0;
+  if (state.currentQ < PREGUNTAS.length) {
+    if (eslabonCompletado) {
+      showCheckpoint(Math.floor(state.currentQ / 3) - 1, false);
+    } else {
+      renderQuestion();
+      document.getElementById('panel-right').scrollTop = 0;
+    }
+  } else {
+    showCheckpoint(3, true);
+  }
+}
+
+function showCheckpoint(eslabonIdx, isLast) {
+  const nombres  = ['Costos y Precios','Resultado Económico','Cash Flow','Indicadores de Gestión'];
+  const iconos   = ['🔢','📊','💧','🧠'];
+  const s = state.eslabónScores[eslabonIdx];
+  const st = getEslabónState(s, 3);
+  const frases = ESLABÓN_MICROFRASE[st] || ESLABÓN_MICROFRASE.warn;
+
+  document.getElementById('checkpoint-icon').textContent  = iconos[eslabonIdx];
+  document.getElementById('checkpoint-name').textContent  = nombres[eslabonIdx];
+  document.getElementById('checkpoint-score').textContent = `${s}/9`;
+  document.getElementById('checkpoint-score').className   = `checkpoint-score ${st}`;
+  document.getElementById('checkpoint-frase').textContent = frases[eslabonIdx];
+
+  showScreen('screen-checkpoint');
+
+  setTimeout(() => {
+    if (isLast) {
+      showScreen('screen-lead');
+    } else {
+      renderQuestion();
+      showScreen('screen-question');
+      document.getElementById('panel-right').scrollTop = 0;
+    }
+  }, 3000);
+}
+
+// ── LEAD SUBMIT ───────────────────────────────────────────────
+const SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxvSoyeIncaf-wEBQvdwiYdBTRdd1FPqS5fLDsX5tqDrFrCd517r5UC1hEJSeV9B5MIcQ/exec';
+
+function submitLead() {
+  const name = document.getElementById('lead-name').value.trim();
+  const wa   = document.getElementById('lead-wa').value.trim();
+
+  if (!name || !wa) {
+    alert('Por favor completá todos los campos para ver tu diagnóstico.');
+    return;
+  }
+
+  state.leadData = { name, wa, rubro: state.rubro };
+  sendLeadToSheet();
+  showAnalyzing();
+}
+
+function showAnalyzing() {
+  showScreen('screen-analyzing');
+  const lines = ['aline-1','aline-2','aline-3'];
+  lines.forEach(id => document.getElementById(id).classList.remove('visible','fading'));
+
+  lines.forEach((id, i) => {
+    setTimeout(() => {
+      if (i > 0) document.getElementById(lines[i-1]).classList.add('fading');
+      document.getElementById(id).classList.add('visible');
+    }, i * 750);
+  });
+
+  setTimeout(() => { showResult(); }, 2600);
+}
+
+function sendLeadToSheet() {
+  if (!SHEET_WEBHOOK_URL || SHEET_WEBHOOK_URL.startsWith('PEGAR_ACA')) return;
+  const totalScore = state.eslabónScores.reduce((a,b) => a+b, 0);
+  const eslabonDebilIndex = state.eslabónScores.indexOf(Math.min(...state.eslabónScores));
+  const nombresEslabon = ['Costos y Precios','Resultado Económico','Cash Flow','Indicadores de Gestión'];
+
+  fetch(SHEET_WEBHOOK_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify({
+      name: state.leadData.name,
+      wa: state.leadData.wa,
+      rubro: state.leadData.rubro,
+      score: totalScore,
+      eslabonDebil: nombresEslabon[eslabonDebilIndex]
+    })
+  }).catch(() => {});
+}
+
+// ── MOSTRAR RESULTADO ─────────────────────────────────────────
+function animateScore(target) {
+  const el = document.getElementById('total-score');
+  const duration = 1400;
+  const start = performance.now();
+  function tick(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.round(eased * target);
+    el.textContent = current;
+    if (progress < 1) requestAnimationFrame(tick);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(tick);
+}
+
+function showResult() {
+  const totalScore = state.eslabónScores.reduce((a,b) => a+b, 0);
+  document.getElementById('total-score').textContent = 0;
+  setTimeout(() => animateScore(totalScore), 300);
+
+  const badge = document.getElementById('score-badge');
+  if (totalScore >= 30) {
+    badge.textContent = 'Salud Financiera Sólida';
+    badge.className = 'score-badge strong';
+  } else if (totalScore >= 20) {
+    badge.textContent = 'En desarrollo — hay brechas';
+    badge.className = 'score-badge moderate';
+  } else {
+    badge.textContent = 'Situación crítica — acción urgente';
+    badge.className = 'score-badge critical';
+  }
+
+  const nombres = ['Costos y Precios','Resultado Económico','Cash Flow','Indicadores de Gestión'];
+  const iconos  = ['🔢','📊','💧','🧠'];
+  const grid = document.getElementById('eslabones-grid');
+  grid.innerHTML = '';
+
+  for (let i = 0; i < 4; i++) {
+    const s = state.eslabónScores[i];
+    const maxS = 9;
+    const pct = (s / maxS) * 100;
+    const st = getEslabónState(s, 3);
+    const label = getEslabónLabel(s, 3);
+
+    // 180° donut grueso: centro (100,100) r=80, arco superior (sweep=1)
+    const arcLen = 251.33; // π × 80
+    const offset = (arcLen * (1 - pct / 100)).toFixed(2);
+
+    const card = document.createElement('div');
+    card.className = `eslabón-card ${st}`;
+    card.innerHTML = `
+      <div class="eslabón-card-header">
+        <div class="eslabón-card-name"><span class="eslabón-card-letter">${iconos[i]}</span> ${nombres[i]}</div>
+      </div>
+      <svg class="gauge-svg" viewBox="-4 0 208 130" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 20,100 A 80,80 0 0,1 180,100" class="gauge-track"/>
+        <path d="M 20,100 A 80,80 0 0,1 180,100" class="gauge-fill"
+              stroke-dasharray="${arcLen}"
+              style="stroke-dashoffset:${arcLen}"
+              data-offset="${offset}"/>
+        <line x1="155.8" y1="59.4" x2="173.6" y2="46.5" class="gauge-target"/>
+        <text x="100" y="92" class="gauge-score-num">${s}</text>
+        <text x="20" y="124" class="gauge-min-max" text-anchor="middle">0</text>
+        <text x="180" y="124" class="gauge-min-max" text-anchor="middle">9</text>
+      </svg>
+      <div class="eslabón-card-status">${label}</div>
+    `;
+    grid.appendChild(card);
+  }
+
+  setTimeout(() => {
+    grid.querySelectorAll('.gauge-fill').forEach(el => {
+      el.style.strokeDashoffset = el.dataset.offset;
+    });
+  }, 150);
+
+  document.getElementById('diag-overlay').classList.add('show-result');
+  showScreen('screen-result');
+  updateChain();
+  showFixedNarrative();
+}
+
+// ── NARRATIVA DE RESULTADO ──────────────────────────────────────
+const TITULO_DIAGNOSTICO = {
+  costos: {
+    critico:     'Tu precio no cubre lo que cuesta producir',
+    desarrollo:  'Los costos están, pero no están del todo controlados',
+    solido:      'Buena base de costos — el problema está en otro lado'
+  },
+  resultado: {
+    critico:     'Trabajás mucho, pero no queda ganancia real',
+    desarrollo:  'Hay resultado, pero sin precisión ni control',
+    solido:      'El resultado económico está ordenado'
+  },
+  cashflow: {
+    critico:     'La caja es el problema central de tu negocio hoy',
+    desarrollo:  'Llegás a fin de mes, pero sin margen de maniobra',
+    solido:      'El flujo de caja está bajo control'
+  },
+  gestion: {
+    critico:     'Tomás decisiones sin datos — y eso tiene costo',
+    desarrollo:  'Tenés intuición, pero faltan números concretos',
+    solido:      'Buena gestión — podés optimizar los detalles'
+  }
+};
+
+const PRIMER_PASO = {
+  costos:    "Podés estar vendiendo bien y tener productos que trabajan en contra tuya sin que lo notes. El costo real de lo que vendés no es lo que pagás por el insumo —es eso más un montón de gastos que se diluyen en el día a día—, y mientras siga siendo una estimación disfrazada de certeza, la distancia entre 'va bien' y lo que de verdad te queda es más grande de lo que parece.",
+  resultado: "Plata en caja no es ganancia: adentro de ese saldo hay costos, impuestos y estructura que todavía no descontaste, así que el negocio puede estar en rojo justo mientras vos lo sentís en verde. Cada mes que ese número real no aparece, seguís decidiendo precios, gastos y sueldos sobre una cifra que no existe.",
+  cashflow:  "Rentable y con caja no son lo mismo: podés ganar plata todos los meses y aun así vivir tapando huecos con la tarjeta o con plata que era para otra cosa. Cada parche tiene un precio que casi nunca ves de frente —intereses, descuentos por necesitar la plata ya, oportunidades que dejás pasar— y el tamaño real del hueco no se siente desde adentro hasta que ya estás corriendo de atrás.",
+  gestion:   "Cada decisión que tomás sin el número atrás es una apuesta que a veces sale bien de casualidad, no por criterio. Lo grave es que, sin datos, ni siquiera sabés cuántas veces ya salió mal ni cuánta plata quedó en el camino."
+};
+
+function getTextoResultado() {
+  const eslabonDebilIndex = state.eslabónScores.indexOf(Math.min(...state.eslabónScores));
+  const eslabonKeys = ['costos', 'resultado', 'cashflow', 'gestion'];
+  const eslabonDebil = eslabonKeys[eslabonDebilIndex];
+  const total = state.eslabónScores.reduce((a,b) => a+b, 0);
+  let nivelGravedad;
+  if (total <= 19) nivelGravedad = 'critico';
+  else if (total <= 28) nivelGravedad = 'desarrollo';
+  else nivelGravedad = 'solido';
+
+  const data = TEXTOS_RESULTADO[eslabonDebil][nivelGravedad];
+  const consecuencia = data.consecuencia[state.rubro] || data.consecuencia.otro;
+  const titulo = TITULO_DIAGNOSTICO[eslabonDebil][nivelGravedad];
+  const primerPaso = PRIMER_PASO[eslabonDebil];
+
+  return `
+    <div class="report-diag-title">${state.leadData.name ? state.leadData.name.split(' ')[0] + ', ' + titulo.charAt(0).toLowerCase() + titulo.slice(1) : titulo}</div>
+    <p>${data.espejo}</p>
+    <p>${consecuencia}</p>
+    <p>${data.gancho}</p>
+    <div class="report-primer-paso">
+      <div class="report-primer-paso-label">Acá se te escapa</div>
+      <p>${primerPaso}</p>
+    </div>
+  `;
+}
+
+function showFixedNarrative() {
+  document.getElementById('ai-narrative-content').innerHTML = getTextoResultado();
+}
+
+// ── FRASES ROTANTES EN LANDING ────────────────────────────────
+(function() {
+  const quotes = document.querySelectorAll('.hero-quote');
+  if (!quotes.length) return;
+  let current = 0;
+  setInterval(() => {
+    quotes[current].classList.remove('active');
+    current = (current + 1) % quotes.length;
+    quotes[current].classList.add('active');
+  }, 3000);
+})();
+</script>
+</body>
+</html>
