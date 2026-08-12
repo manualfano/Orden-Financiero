@@ -1679,7 +1679,7 @@ nav {
 
 /* ── MOBILE (diagnóstico) ─────────────────── */
 @media (max-width: 768px) {
-  .diag-overlay .app { flex-direction: column; height: auto; min-height: 100vh; }
+  .diag-overlay .app { flex-direction: column; height: 100vh; height: 100dvh; }
   .diag-overlay .panel-left {
     width: 100%; min-width: unset; max-width: unset;
     padding: 24px 20px;
@@ -1980,6 +1980,14 @@ nav {
         <div class="form-group">
           <label class="form-label">WhatsApp</label>
           <input class="form-input" type="tel" id="lead-wa" placeholder="+54 9 11 1234-5678" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Nombre del negocio</label>
+          <input class="form-input" type="text" id="lead-negocio" placeholder="Mi Negocio" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Instagram</label>
+          <input class="form-input" type="text" id="lead-instagram" placeholder="@minegocio" />
         </div>
 
         <button class="btn-primary" onclick="submitLead()" style="margin-top:8px">
@@ -2621,7 +2629,14 @@ function selectOption(idx) {
   reaction.className = `q-reaction visible ${r.tipo}`;
 
   const score = q.opciones[idx].score;
-  state.answers.push({ score, eslabón: q.eslabón });
+  state.answers.push({
+    score,
+    eslabón: q.eslabón,
+    eslabónNombre: q.eslabónNombre,
+    pregunta: q.texto,
+    letra: q.opciones[idx].letra,
+    respuesta: q.opciones[idx].texto
+  });
   state.eslabónScores[q.eslabón] += score;
   state.eslabónCounts[q.eslabón]++;
 
@@ -2685,15 +2700,17 @@ function showCheckpoint(eslabonIdx, isLast) {
 const SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxvSoyeIncaf-wEBQvdwiYdBTRdd1FPqS5fLDsX5tqDrFrCd517r5UC1hEJSeV9B5MIcQ/exec';
 
 function submitLead() {
-  const name = document.getElementById('lead-name').value.trim();
-  const wa   = document.getElementById('lead-wa').value.trim();
+  const name     = document.getElementById('lead-name').value.trim();
+  const wa       = document.getElementById('lead-wa').value.trim();
+  const negocio  = document.getElementById('lead-negocio').value.trim();
+  const instagram = document.getElementById('lead-instagram').value.trim();
 
-  if (!name || !wa) {
+  if (!name || !wa || !negocio) {
     alert('Por favor completá todos los campos para ver tu diagnóstico.');
     return;
   }
 
-  state.leadData = { name, wa, rubro: state.rubro };
+  state.leadData = { name, wa, negocio, instagram, rubro: state.rubro };
   sendLeadToSheet();
   showAnalyzing();
 }
@@ -2715,20 +2732,49 @@ function showAnalyzing() {
 
 function sendLeadToSheet() {
   if (!SHEET_WEBHOOK_URL || SHEET_WEBHOOK_URL.startsWith('PEGAR_ACA')) return;
-  const totalScore = state.eslabónScores.reduce((a,b) => a+b, 0);
-  const eslabonDebilIndex = state.eslabónScores.indexOf(Math.min(...state.eslabónScores));
   const nombresEslabon = ['Costos y Precios','Resultado Económico','Cash Flow','Indicadores de Gestión'];
+  const { eslabonDebilIndex, total, titulo, data, consecuencia, primerPaso } = getDiagnosticoData();
+
+  const eslabones = state.eslabónScores.map((s, i) => ({
+    nombre: nombresEslabon[i],
+    score: s,
+    estado: getEslabónLabel(s, 3)
+  }));
+
+  const respuestas = state.answers.map(a => ({
+    eslabónNombre: a.eslabónNombre,
+    pregunta: a.pregunta,
+    letra: a.letra,
+    respuesta: a.respuesta,
+    score: a.score
+  }));
+
+  const diagnosticoTexto = [
+    titulo,
+    data.espejo,
+    consecuencia,
+    data.gancho,
+    'Acá se le escapa: ' + primerPaso
+  ].join('\n\n');
 
   fetch(SHEET_WEBHOOK_URL, {
     method: 'POST',
     mode: 'no-cors',
     headers: { 'Content-Type': 'text/plain' },
     body: JSON.stringify({
-      name: state.leadData.name,
-      wa: state.leadData.wa,
+      leadId: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+      timestamp: new Date().toISOString(),
+      nombre: state.leadData.name,
+      whatsapp: state.leadData.wa,
+      negocio: state.leadData.negocio,
+      instagram: state.leadData.instagram,
       rubro: state.leadData.rubro,
-      score: totalScore,
-      eslabonDebil: nombresEslabon[eslabonDebilIndex]
+      score: total,
+      maxScore: 36,
+      eslabonDebil: nombresEslabon[eslabonDebilIndex],
+      eslabones: eslabones,
+      respuestas: respuestas,
+      diagnostico: diagnosticoTexto
     })
   }).catch(() => {});
 }
@@ -2847,7 +2893,7 @@ const PRIMER_PASO = {
   gestion:   "Cada decisión que tomás sin el número atrás es una apuesta que a veces sale bien de casualidad, no por criterio. Lo grave es que, sin datos, ni siquiera sabés cuántas veces ya salió mal ni cuánta plata quedó en el camino."
 };
 
-function getTextoResultado() {
+function getDiagnosticoData() {
   const eslabonDebilIndex = state.eslabónScores.indexOf(Math.min(...state.eslabónScores));
   const eslabonKeys = ['costos', 'resultado', 'cashflow', 'gestion'];
   const eslabonDebil = eslabonKeys[eslabonDebilIndex];
@@ -2861,6 +2907,12 @@ function getTextoResultado() {
   const consecuencia = data.consecuencia[state.rubro] || data.consecuencia.otro;
   const titulo = TITULO_DIAGNOSTICO[eslabonDebil][nivelGravedad];
   const primerPaso = PRIMER_PASO[eslabonDebil];
+
+  return { eslabonDebilIndex, eslabonDebil, total, nivelGravedad, data, consecuencia, titulo, primerPaso };
+}
+
+function getTextoResultado() {
+  const { data, consecuencia, titulo, primerPaso } = getDiagnosticoData();
 
   return `
     <div class="report-diag-title">${state.leadData.name ? state.leadData.name.split(' ')[0] + ', ' + titulo.charAt(0).toLowerCase() + titulo.slice(1) : titulo}</div>
