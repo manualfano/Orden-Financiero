@@ -1798,10 +1798,10 @@ nav {
     <div class="hero-content">
       <div class="hero-eyebrow">
         <span class="hero-eyebrow-dot"></span>
-        Consultoría financiera para PyMEs
+        <span id="hero-eyebrow-text">Consultoría financiera para PyMEs</span>
       </div>
 
-      <h1 class="hero-title">
+      <h1 class="hero-title" id="hero-title">
         El primer paso para <em>ordenar tu negocio</em><br>empieza acá
       </h1>
 
@@ -1812,19 +1812,19 @@ nav {
     <div class="hero-quote">"Es fundamental entender cuál es la rentabilidad real del negocio."</div>
       </div>
 
-      <p class="hero-subtitle">
+      <p class="hero-subtitle" id="hero-subtitle">
         Vendés, trabajás todo el mes y la ganancia no aparece. En 3 minutos sabés exactamente qué está fallando.
       </p>
 
       <button class="hero-cta" onclick="openDiagnostico(); return false;">
-        Quiero saber dónde está el problema
+        <span id="hero-cta-text">Quiero saber dónde está el problema</span>
         <span class="hero-cta-arrow">→</span>
       </button>
 
       <div class="hero-trust">
         <span class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>100% gratis</span>
         <span class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Te lleva 3 minutos</span>
-        <span class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Recibís tu diagnóstico al instante</span>
+        <span class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span id="hero-trust-3">Recibís tu diagnóstico al instante</span></span>
       </div>
     </div>
   </div>
@@ -2096,9 +2096,9 @@ nav {
         </div>
 
         <div class="cta-card">
-          <div class="cta-title">Reservá 30 minutos gratis con Manuel</div>
-          <p class="cta-desc">Revisamos juntos tus números reales (no la encuesta) y salís con los próximos pasos para cerrar la brecha que marcó este diagnóstico.</p>
-          <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2ObyolYWVEvMKs_tLRnn44v51LuYKjodxamoeF-LVymZFv5-rlDky70uJEDAu2XCaUHjDTgARg" target="_blank" class="btn-primary" style="display:inline-flex; margin: 0 auto;">
+          <div class="cta-title" id="cta-card-title">Reservá 30 minutos gratis con Manuel</div>
+          <p class="cta-desc" id="cta-card-desc">Revisamos juntos tus números reales (no la encuesta) y salís con los próximos pasos para cerrar la brecha que marcó este diagnóstico.</p>
+          <a id="cta-card-link" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2ObyolYWVEvMKs_tLRnn44v51LuYKjodxamoeF-LVymZFv5-rlDky70uJEDAu2XCaUHjDTgARg" target="_blank" class="btn-primary" style="display:inline-flex; margin: 0 auto;">
             Agendar llamada gratis (30 min) →
           </a>
         </div>
@@ -2984,6 +2984,21 @@ function showFixedNarrative() {
     current = (current + 1) % quotes.length;
     quotes[current].classList.add('active');
   }, 3000);
+})();
+
+// ── VERSIÓN PARA QUIENES YA AGENDARON (diagnostico.ordenfinanciero.com) ──
+(function() {
+  if (!location.hostname.startsWith('diagnostico.')) return;
+
+  document.getElementById('hero-eyebrow-text').textContent = 'Ya agendaste tu llamada';
+  document.getElementById('hero-title').innerHTML = 'Antes de tu llamada, <em>completá este diagnóstico</em>';
+  document.getElementById('hero-subtitle').textContent = 'Son 3 minutos y nos ayuda a llegar a la reunión con tus números reales, no con suposiciones.';
+  document.getElementById('hero-cta-text').textContent = 'Completar mi diagnóstico';
+  document.getElementById('hero-trust-3').textContent = 'Le llega a Manuel antes de la llamada';
+
+  document.getElementById('cta-card-title').textContent = 'Ya tenés tu llamada agendada';
+  document.getElementById('cta-card-desc').textContent = 'Este diagnóstico ya le llegó a Manuel — lo vamos a tener a mano en la reunión para ir directo a tus números reales.';
+  document.getElementById('cta-card-link').style.display = 'none';
 })();
 </script>
 </body>
