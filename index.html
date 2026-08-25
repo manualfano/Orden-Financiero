@@ -2818,13 +2818,13 @@ function showResult() {
 
   const badge = document.getElementById('score-badge');
   if (totalScore >= 30) {
-    badge.textContent = 'Salud Financiera Sólida';
+    badge.textContent = 'Tu negocio tiene salud financiera sólida';
     badge.className = 'score-badge strong';
   } else if (totalScore >= 20) {
-    badge.textContent = 'En desarrollo — hay brechas';
+    badge.textContent = 'Tu negocio está en desarrollo';
     badge.className = 'score-badge moderate';
   } else {
-    badge.textContent = 'Situación crítica — acción urgente';
+    badge.textContent = 'Tu negocio está en situación crítica — acción urgente';
     badge.className = 'score-badge critical';
   }
 
