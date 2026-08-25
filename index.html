@@ -2030,6 +2030,14 @@ nav {
           <input class="form-input" type="text" id="lead-negocio" placeholder="Mi Negocio" />
         </div>
         <div class="form-group">
+          <label class="form-label">¿Usás algún sistema de gestión o de punto de venta (POS)?</label>
+          <select class="form-select" id="lead-sistema">
+            <option value="">Seleccioná una opción</option>
+            <option value="Sí">Sí</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div class="form-group">
           <label class="form-label">Instagram</label>
           <input class="form-input" type="text" id="lead-instagram" placeholder="@minegocio" />
         </div>
@@ -2747,6 +2755,7 @@ function submitLead() {
   const name     = document.getElementById('lead-name').value.trim();
   const wa       = document.getElementById('lead-wa').value.trim();
   const negocio  = document.getElementById('lead-negocio').value.trim();
+  const sistema  = document.getElementById('lead-sistema').value.trim();
   const instagram = document.getElementById('lead-instagram').value.trim();
 
   if (!name || !wa || !negocio) {
@@ -2754,7 +2763,7 @@ function submitLead() {
     return;
   }
 
-  state.leadData = { name, wa, negocio, instagram, rubro: state.rubro };
+  state.leadData = { name, wa, negocio, sistema, instagram, rubro: state.rubro };
   sendLeadToSheet();
   showAnalyzing();
 }
@@ -2811,6 +2820,7 @@ function sendLeadToSheet() {
       nombre: state.leadData.name,
       whatsapp: state.leadData.wa,
       negocio: state.leadData.negocio,
+      sistema: state.leadData.sistema,
       instagram: state.leadData.instagram,
       rubro: state.leadData.rubro,
       score: total,
