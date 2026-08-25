@@ -324,6 +324,20 @@ nav {
 
 .hero-scroll svg { width: 16px; height: 16px; }
 
+.hero-credit {
+  position: absolute;
+  bottom: 20px;
+  right: 24px;
+  z-index: 2;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: rgba(255,255,255,0.3);
+}
+
+@media (max-width: 640px) {
+  .hero-credit { right: 16px; bottom: 14px; font-size: 10px; }
+}
+
 @keyframes scroll-bounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
   50% { transform: translateX(-50%) translateY(6px); }
@@ -1786,6 +1800,8 @@ nav {
       </button>
     </div>
   </div>
+
+  <div class="hero-credit">Manuel Alfano · Fundador</div>
 </section>
 
 <!-- ══════════════════════════════════════════
