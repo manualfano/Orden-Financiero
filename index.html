@@ -1237,7 +1237,10 @@ footer {
   animation: logosScroll 60s linear infinite;
 }
 
-.logos-marquee:hover .logos-track { animation-play-state: paused; }
+.logos-marquee:hover .logos-track,
+.logos-marquee.paused .logos-track { animation-play-state: paused; }
+
+.logos-marquee { cursor: pointer; }
 
 @keyframes logosScroll {
   from { transform: translateX(0); }
@@ -3335,6 +3338,13 @@ footer {
     });
   }, { threshold: 0.12 });
   els.forEach(el => io.observe(el));
+})();
+
+// ── CINTA DE CLIENTES: un toque pausa / reanuda (WCAG 2.2.2) ────
+(function() {
+  const m = document.querySelector('.logos-marquee');
+  if (!m) return;
+  m.addEventListener('click', () => m.classList.toggle('paused'));
 })();
 
 // ── OVERLAY: HISTORY API ────────────────────────────────────────
