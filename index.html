@@ -185,17 +185,20 @@ nav.scrolled {
 .nav-cta {
   font-size: 14px;
   font-weight: 600;
-  color: var(--w);
-  background: var(--blue);
+  color: var(--navy);
+  background: var(--w);
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
   text-decoration: none;
-  padding: 9px 16px;
+  padding: 9px 18px;
   border-radius: 8px;
   margin-left: 8px;
-  transition: background 0.15s;
+  transition: background 0.15s, color 0.15s;
   white-space: nowrap;
 }
 
-.nav-cta:hover { background: var(--blue-hover); }
+.nav-cta:hover { background: #EAF2FE; color: var(--blue); }
 
 @media (max-width: 860px) {
   .nav-link { display: none; }
@@ -237,7 +240,7 @@ nav.scrolled {
   min-height: 100svh;
   background: var(--navy-900);
   display: flex;
-  align-items: flex-end;
+  align-items: stretch;
   overflow: hidden;
 }
 
@@ -252,14 +255,14 @@ nav.scrolled {
   width: 100%;
   max-width: var(--container);
   margin: 0 auto;
-  padding: 140px 24px 0;
+  padding: 88px 24px 0;
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
   gap: 48px;
-  align-items: end;
+  align-items: center;
 }
 
-.hero-content { padding-bottom: 96px; }
+.hero-content { padding: 40px 0 64px; }
 
 .hero-eyebrow {
   display: inline-flex;
@@ -377,6 +380,7 @@ nav.scrolled {
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  align-self: end;
   min-height: 100%;
 }
 
@@ -394,7 +398,7 @@ nav.scrolled {
 .hero-photo img {
   position: relative;
   width: 100%;
-  max-width: 380px;
+  max-width: clamp(340px, 30vw, 460px);
   display: block;
   -webkit-mask-image: linear-gradient(to top, transparent 0, black 10%);
           mask-image: linear-gradient(to top, transparent 0, black 10%);
