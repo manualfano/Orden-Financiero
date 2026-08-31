@@ -231,7 +231,7 @@ nav {
 
 .hero-quotes {
   position: relative;
-  height: 28px;
+  height: 20px;
   margin-bottom: 20px;
   overflow: hidden;
 }
@@ -241,6 +241,7 @@ nav {
   top: 0; left: 0; right: 0;
   font-size: 15px;
   font-style: italic;
+  line-height: 1.4;
   color: rgba(255,255,255,0.5);
   opacity: 0;
   transform: translateY(8px);
@@ -410,6 +411,8 @@ nav {
 
   .hero-title { font-size: clamp(44px, 3.4vw, 60px); }
   .hero-title em { white-space: nowrap; }
+
+  .hero-quote { text-align: left; }
 
   .hero-subtitle { margin-left: 0; margin-right: 0; font-size: clamp(16px, 1.3vw, 19px); }
 }
@@ -2984,7 +2987,25 @@ function showFixedNarrative() {
 // ── FRASES ROTANTES EN LANDING ────────────────────────────────
 (function() {
   const quotes = document.querySelectorAll('.hero-quote');
-  if (!quotes.length) return;
+  const wrap = document.querySelector('.hero-quotes');
+  if (!quotes.length || !wrap) return;
+
+  function fitHeight() {
+    let max = 0;
+    quotes.forEach(q => {
+      q.style.position = 'static';
+      max = Math.max(max, q.offsetHeight);
+      q.style.position = '';
+    });
+    wrap.style.height = max + 'px';
+  }
+
+  fitHeight();
+  window.addEventListener('resize', fitHeight);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(fitHeight);
+  }
+
   let current = 0;
   setInterval(() => {
     quotes[current].classList.remove('active');
