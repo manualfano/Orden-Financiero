@@ -1523,6 +1523,8 @@ footer {
 
 .diag-overlay.active { display: block; }
 
+.diag-overlay:focus { outline: none; }
+
 .diag-overlay .app {
   display: flex;
   height: 100vh;
@@ -3065,7 +3067,7 @@ footer {
 <!-- ══════════════════════════════════════════
      DIAGNÓSTICO — OVERLAY
      ══════════════════════════════════════════ -->
-<div class="diag-overlay" id="diag-overlay" role="dialog" aria-modal="true" aria-label="Diagnóstico financiero">
+<div class="diag-overlay" id="diag-overlay" role="dialog" aria-modal="true" aria-label="Diagnóstico financiero" tabindex="-1">
   <div class="app">
 
     <!-- ── PANEL IZQUIERDO ── -->
@@ -3347,12 +3349,50 @@ footer {
   m.addEventListener('click', () => m.classList.toggle('paused'));
 })();
 
+// ── FOCUS TRAP: el Tab circula dentro del overlay abierto ──────
+let _lastFocus = null;
+
+function _diagFocusables() {
+  const ov = document.getElementById('diag-overlay');
+  return [...ov.querySelectorAll('button, a[href], input, select, [tabindex]:not([tabindex="-1"])')]
+    .filter(el => el.offsetParent !== null && !el.disabled && el.style.pointerEvents !== 'none');
+}
+
+function _trapTab(e) {
+  if (e.key !== 'Tab') return;
+  const ov = document.getElementById('diag-overlay');
+  if (!ov.classList.contains('active')) return;
+  const f = _diagFocusables();
+  if (!f.length) return;
+  const first = f[0], last = f[f.length - 1];
+  const dentro = ov.contains(document.activeElement);
+  if (e.shiftKey && (document.activeElement === first || !dentro)) {
+    e.preventDefault(); last.focus();
+  } else if (!e.shiftKey && (document.activeElement === last || !dentro)) {
+    e.preventDefault(); first.focus();
+  }
+}
+
+function _abrirTrap() {
+  _lastFocus = document.activeElement;
+  document.addEventListener('keydown', _trapTab, true);
+  const ov = document.getElementById('diag-overlay');
+  setTimeout(() => ov.focus(), 30);
+}
+
+function _cerrarTrap() {
+  document.removeEventListener('keydown', _trapTab, true);
+  if (_lastFocus && typeof _lastFocus.focus === 'function') _lastFocus.focus();
+  _lastFocus = null;
+}
+
 // ── OVERLAY: HISTORY API ────────────────────────────────────────
 function openDiagnostico() {
   document.getElementById('diag-overlay').classList.add('active');
   document.body.style.overflow = 'hidden';
   history.pushState({ diag: true }, '', '#diagnostico');
   startDiag();
+  _abrirTrap();
 }
 
 function previewReporte() {
@@ -3367,11 +3407,13 @@ function previewReporte() {
   state.leadData = { name: 'Demo' };
   updateChain();
   showResult();
+  _abrirTrap();
 }
 
 function closeDiagnostico() {
   document.getElementById('diag-overlay').classList.remove('active');
   document.body.style.overflow = '';
+  _cerrarTrap();
 }
 
 window.addEventListener('popstate', function (e) {
