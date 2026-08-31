@@ -164,10 +164,24 @@ nav.scrolled {
   gap: 16px;
 }
 
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-width: 0;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 .nav-link {
@@ -183,15 +197,7 @@ nav.scrolled {
 .nav-link:hover { color: var(--w); background: rgba(255,255,255,0.08); }
 
 /* el portal es acceso para clientes existentes, no parte del funnel:
-   separado por un divisor y con icono de salida */
-.nav-sep {
-  width: 1px;
-  height: 18px;
-  background: rgba(255,255,255,0.18);
-  margin: 0 10px;
-  flex-shrink: 0;
-}
-
+   vive en la zona derecha junto al CTA, atenuado y con icono de salida */
 .nav-link-portal {
   display: inline-flex;
   align-items: center;
@@ -220,8 +226,7 @@ nav.scrolled {
 .nav-cta:hover { background: #EAF2FE; color: var(--blue); }
 
 @media (max-width: 860px) {
-  .nav-link { display: none; }
-  .nav-sep { display: none; }
+  .nav-links { display: none; }
   .nav-link.nav-link-portal { display: inline-flex; }
 }
 
@@ -2053,17 +2058,20 @@ footer {
 <!-- ── NAV ── -->
 <nav id="site-nav">
   <div class="nav-inner">
-    <a href="#" class="brand" aria-label="Orden Financiero — inicio">
-      <span class="brand-mark" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7" stroke="#7DB1F4" stroke-width="4"/><circle cx="12" cy="12" r="7" stroke="#ffffff" stroke-width="4" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/></svg>
-      </span>
-      <span class="brand-name">ordenfinanciero<span class="dot">.</span></span>
-    </a>
-    <div class="nav-links">
-      <a href="#que-analizamos" class="nav-link">Qué analizamos</a>
-      <a href="#como-funciona" class="nav-link">Cómo funciona</a>
-      <a href="#manuel" class="nav-link">Quién está detrás</a>
-      <span class="nav-sep" aria-hidden="true"></span>
+    <div class="nav-left">
+      <a href="#" class="brand" aria-label="Orden Financiero — inicio">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7" stroke="#7DB1F4" stroke-width="4"/><circle cx="12" cy="12" r="7" stroke="#ffffff" stroke-width="4" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/></svg>
+        </span>
+        <span class="brand-name">ordenfinanciero<span class="dot">.</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#que-analizamos" class="nav-link">Qué analizamos</a>
+        <a href="#como-funciona" class="nav-link">Cómo funciona</a>
+        <a href="#manuel" class="nav-link">Quién está detrás</a>
+      </div>
+    </div>
+    <div class="nav-right">
       <a href="https://orden-financiero-portal.vercel.app/login" class="nav-link nav-link-portal" rel="noopener">
         Portal de clientes
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
