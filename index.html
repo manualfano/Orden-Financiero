@@ -294,6 +294,13 @@ nav.scrolled {
   color: #6FA7F5;
 }
 
+@media (min-width: 901px) {
+  /* la frase clave no se parte en dos renglones */
+  .hero-title em { white-space: nowrap; }
+  /* centro óptico: el bloque respira apenas arriba del centro geométrico */
+  .hero-inner { padding-bottom: 9vh; }
+}
+
 .hero-quotes {
   position: relative;
   margin-bottom: 18px;
@@ -412,8 +419,10 @@ nav.scrolled {
 .hero-photo img {
   position: relative;
   z-index: 1;
-  width: 100%;
+  width: auto;
+  height: auto;
   max-width: clamp(340px, 30vw, 460px);
+  max-height: calc(100svh - 250px);
   display: block;
   -webkit-mask-image: linear-gradient(to top, transparent 2%, black 22%);
           mask-image: linear-gradient(to top, transparent 2%, black 22%);
@@ -429,6 +438,37 @@ nav.scrolled {
   font-size: 11px;
   letter-spacing: 0.04em;
   color: rgba(255,255,255,0.38);
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: rgba(255,255,255,0.32);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.hero-scroll:hover { color: rgba(255,255,255,0.6); }
+
+.hero-scroll svg {
+  width: 15px; height: 15px;
+  animation: scrollNudge 2.4s ease-in-out infinite;
+}
+
+@keyframes scrollNudge {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(5px); }
 }
 
 @media (max-width: 900px) {
@@ -2059,6 +2099,11 @@ footer {
       <span class="hero-photo-credit">Manuel Alfano · Fundador</span>
     </div>
   </div>
+
+  <a class="hero-scroll" href="#que-analizamos" aria-label="Bajar a la sección Qué analizamos">
+    <span>Qué analizamos</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+  </a>
 </header>
 
 <main>
