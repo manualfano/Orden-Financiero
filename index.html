@@ -280,6 +280,14 @@ nav.scrolled {
   .nav-link.nav-link-portal { display: none; }
 }
 
+/* a 390px el wordmark + CTA no entran con los tamaños de desktop y el
+   boton se recortaba contra el borde (bug del baseline) */
+@media (max-width: 480px) {
+  .nav-inner { padding: 0 16px; }
+  .brand-name { font-size: 15px; }
+  .nav-cta { padding: 8px 12px; font-size: 13px; margin-left: 4px; }
+}
+
 /* ══════════════════════════════════════════
    DECORACIÓN: círculos de trazo
    (solo sobre superficies de color)
@@ -383,10 +391,16 @@ nav.scrolled {
   color: var(--w-55);
   opacity: 0;
   transform: translateY(8px);
-  transition: opacity var(--t-entrada) var(--ease-estandar), transform var(--t-entrada) var(--ease-estandar);
+  /* la saliente se va rapido y la entrante espera: sin crossfade en el
+     mismo lugar no hay texto fantasma superpuesto (bug del baseline) */
+  transition: opacity var(--t-rapido) var(--ease-estandar), transform var(--t-rapido) var(--ease-estandar);
 }
 
-.hero-quote.active { opacity: 1; transform: translateY(0); }
+.hero-quote.active {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: var(--t-rapido);
+}
 
 .hero-subtitle {
   font-size: clamp(16px, 1.3vw, 18px);
