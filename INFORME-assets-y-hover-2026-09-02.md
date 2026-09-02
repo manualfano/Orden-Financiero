@@ -123,7 +123,7 @@ Regla para la Fase 5: si un render 3D muestra números o gráficos, entra a esta
 
 **Las tres peores cosas, sin diplomacia:**
 1. **La fila de los 4 eslabones — el producto según la tesis — es la única zona muerta de la página** (2676-2731): sin link, sin hover, sin ordinal protagonista, sin color propio. El bloque que debería vender está decorando.
-2. **El hero carga un PNG de 1,9MB con `fetchpriority="high"` teniendo el WebP de 64KB huérfano en el repo** (2622) — más CLS 0,132 sin dimensiones reservadas del swap de fuente.
+2. ~~El hero carga un PNG de 1,9MB con el WebP huérfano~~ **CORRECCIÓN (02/09, Fase 3):** el hallazgo estaba mal encuadrado — el hero ya usa `<picture>` con el WebP de 64KB como `<source>`; el PNG de 1,9MB es solo el fallback para navegadores sin WebP (por eso Lighthouse midió 298KB totales). No hay swap pendiente. Queda real el **CLS 0,132** (probable swap de fuente), a raíz-causar en la Fase 7.
 3. **Bug visible en todos los anchos: las frases rotativas del hero se superponen** — la frase saliente queda como texto fantasma legible detrás de la entrante (capturas 390/768; `.hero-quote` 2594-2599). Además el botón del nav se recorta contra el borde derecho a 390px.
 
 ---
@@ -208,15 +208,22 @@ Criterio: **la mínima cantidad que sostenga el argumento** — 4 renders, uno p
 
 ---
 
-## 10-15. Pendientes de fase (se completan al ejecutar)
+## 10. Implementación por fase (log de ejecución)
 
-- **Fase 3** (migración de tokens, visualmente neutra) — tras aprobación de esta especificación.
-- **Fase 4** (estados con `--eslabon`) · **Fase 5** (assets) · **Fase 6** (mobile/a11y) · **Fase 7** (performance) · **Fase 8** (regresión + DESIGN.md).
-- Deuda ya detectada para la Fase 3, fuera del alcance de tokens: bug de ghosting de `.hero-quote`, nav-cta recortado a 390px, WebP huérfano, 5MB de PNGs muertos en el repo (borrarlos es limpieza de repo, no de página — pedir OK).
+**Decisiones del dueño, todas aprobadas el 02/09/2026:** dirección A · mapeo de color 01-marca/02-positivo/03-alerta/04-hallazgo · tabla de assets del §9 · limpieza de PNGs.
 
-## Decisiones del dueño pendientes (Anexo A)
+| Fase | Commit | Qué se tocó |
+|---|---|---|
+| 0-1 | `acd7578` | Este informe |
+| 3 — migración de tokens (neutra) | `be17620` | `:root` completo al sistema; 326+ reemplazos (hex→tokens, rgba→tripletes, 700→600, cuerpo 15px, radios 8/12, motion→3 tokens, anillos estáticos). Greps: 700=0 · hex fuera de `:root` = 5 SVG del isotipo · duraciones fuera de token = funcionales documentadas (marquee, countdown, progreso, pulse del nodo activo) |
+| 3b — bugs del baseline | `b291ce7` | Ghosting de `.hero-quote` (salida rápida + delay de entrada) · nav-cta recortado ≤480px |
+| Limpieza | `73e53bc` | −5MB de PNGs sin referenciar |
+| 4 — sistema de estados | `c6e2a11` | `.pillar` como `<a>` al diagnóstico (fallback sin JS: subdominio diagnostico.) con `--eslabon`/`--eslabon-rgb`; halo teñido + chip ordinal invertido en hover/focus/active; `t-instante`; reduced-motion solo color; reorden dirección A (hero→eslabones→cinta); marco "Lo que dicen nuestros clientes" en el hero (pedido del dueño) |
 
-1. **Dirección A o B** (§8 — recomendada A).
-2. **Mapeo de color por eslabón** (§8 — propuesto; no existe uno previo en el código).
-3. **Tabla de assets** (§9): aprobar cantidad (4), aspecto 1:1, 240×240, ≤30KB, fondo transparente — con esto generás los renders.
-4. Borrar del repo los 3 PNG + imagen ChatGPT sin referenciar (5MB) — limpieza, no afecta la página.
+**Validación post F3+F4** (mismas condiciones que el baseline): Perf **79-80** · LCP **3,4s (= baseline)** · FCP 3,4s · CLS **0,135 (≈ baseline)** · TBT 0ms. Una corrida intermedia dio 60/5,1s y se descartó por repetición (ruido de corrida local — anotado por honestidad). Verificación en browser: hover/focus/active con halo e inversión de chip, teclado con anillo `foco`, 390px apilado con afordancia táctil, consola limpia, un solo `h1`.
+
+## 11-15. Pendientes de fase
+
+- **Fase 5 (assets)** — bloqueada esperando los 4 renders del dueño (spec §9).
+- **Fase 6 (mobile/a11y formal)** · **Fase 7 (performance: raíz-causar CLS 0,135 — probable swap de fuente)** · **Fase 8 (regresión + enmiendas en DESIGN.md del portal)**.
+- Deuda conocida: el capturador del browser de trabajo falla en zonas scrolleadas (verificación hecha con el hero oculto); capturas full-page para la regresión final quedan para la Fase 8.
