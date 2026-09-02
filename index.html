@@ -64,6 +64,8 @@
   --riesgo:       #AE2E24;
   --riesgo-bg:    #FFECEB;
   --riesgo-rgb:   174 46 36;
+  --hallazgo:     #803FA5;
+  --hallazgo-rgb: 128 63 165;
   /* series de dato sobre navy (CHART.onDark del portal) */
   --dato-azul:     #8FB8F6;
   --dato-azul-rgb: 143 184 246;
@@ -376,6 +378,17 @@ nav.scrolled {
   .hero-inner { padding-bottom: 9vh; }
 }
 
+/* marco de las frases rotantes: sin el "quien lo dice" no se entienden
+   (pedido del dueño, 02/09/2026) */
+.hero-quotes-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--w-70);
+  margin-bottom: 6px;
+}
+
 .hero-quotes {
   position: relative;
   margin-bottom: 18px;
@@ -638,7 +651,15 @@ nav.scrolled {
   }
 }
 
+/* ── Sistema de estados de superficie (Enmienda 1, 02/09/2026) ──
+   Cada card-eslabon es un <a> al diagnostico. El color entra por UNA
+   custom property (--eslabon + su triplete --eslabon-rgb) declarada en el
+   HTML de cada card; borde, halo, chip ordinal e icono se derivan de ella.
+   Reposo: sin sombra (regla del sistema). Hover/focus/active: -2px y halo
+   TEÑIDO del color del eslabon — el efecto informa donde estas, no adorna. */
 .pillar {
+  --eslabon: var(--marca);
+  --eslabon-rgb: var(--marca-rgb);
   background: var(--bg);
   border: 1px solid var(--borde);
   border-radius: var(--r-lg);
@@ -646,15 +667,35 @@ nav.scrolled {
   display: flex;
   gap: 18px;
   align-items: flex-start;
-  transition: border-color var(--t-instante), transform var(--t-instante) var(--ease-estandar);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color var(--t-instante) var(--ease-estandar),
+              transform var(--t-instante) var(--ease-estandar),
+              box-shadow var(--t-instante) var(--ease-estandar);
   position: relative;
   overflow: hidden;
   z-index: 0;
 }
 
-.pillar:hover { border-color: var(--marca-border); transform: translateY(-3px); }
+.pillar:hover,
+.pillar:focus-visible,
+.pillar:active {
+  border-color: rgb(var(--eslabon-rgb) / 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px -2px rgba(41,42,46,0.08),
+              0 8px 24px -12px rgb(var(--eslabon-rgb) / 0.28);
+}
 
-/* número fantasma: el dato como decoración */
+.pillar:focus-visible { outline: 2px solid var(--foco); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pillar:hover, .pillar:focus-visible, .pillar:active {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* número fantasma: el dato como decoración, teñido del eslabón */
 .pillar::after {
   content: attr(data-num);
   position: absolute;
@@ -664,8 +705,8 @@ nav.scrolled {
   font-weight: 600;
   letter-spacing: -0.04em;
   line-height: 1;
-  color: var(--navy);
-  opacity: 0.05;
+  color: var(--eslabon);
+  opacity: 0.06;
   pointer-events: none;
   font-variant-numeric: tabular-nums;
 }
@@ -677,21 +718,48 @@ nav.scrolled {
 .pillar-icon {
   width: 44px; height: 44px;
   border-radius: 10px;
-  background: var(--marca-soft);
-  color: var(--marca);
+  background: rgb(var(--eslabon-rgb) / 0.08);
+  color: var(--eslabon);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
 
 .pillar-icon svg { width: 22px; height: 22px; }
 
+/* indicador ordinal: chip del color del eslabon; en hover/focus/active se
+   invierte (fondo entero, texto blanco) — te dice en cual estas */
 .pillar-num {
-  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 11px;
+  border-radius: 999px;
+  background: rgb(var(--eslabon-rgb) / 0.1);
+  color: var(--eslabon);
+  font-size: 12.5px;
   font-weight: 600;
-  letter-spacing: 0.12em;
-  color: var(--tinta-3);
-  text-transform: uppercase;
-  margin-bottom: 6px;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 10px;
+  transition: background var(--t-instante) var(--ease-estandar),
+              color var(--t-instante) var(--ease-estandar);
+}
+
+.pillar:hover .pillar-num,
+.pillar:focus-visible .pillar-num,
+.pillar:active .pillar-num {
+  background: var(--eslabon);
+  color: #fff;
+}
+
+/* afordancia verbal: la card nombra exactamente lo que pasa al tocarla */
+.pillar-go {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--eslabon);
 }
 
 .pillar-title {
@@ -2637,6 +2705,7 @@ footer {
         El primer paso para <em>ordenar tu negocio</em> empieza acá
       </h1>
 
+      <p class="hero-quotes-label">Lo que dicen nuestros clientes</p>
       <div class="hero-quotes" aria-hidden="true">
         <div class="hero-quote active">"Vendo mucho pero no veo un peso."</div>
         <div class="hero-quote">"Siempre estamos al límite."</div>
@@ -2676,6 +2745,71 @@ footer {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
   </a>
 </header>
+
+<!-- ── QUÉ ANALIZAMOS ── -->
+<section class="section soft" id="que-analizamos">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="section-eyebrow label-meta">El diagnóstico</p>
+      <h2 class="section-title">Cuatro eslabones que definen la salud financiera de tu negocio</h2>
+      <p class="section-sub">El diagnóstico recorre la cadena completa: dónde nace la ganancia, dónde se mide, dónde se convierte en plata y cómo se usa para decidir. El eslabón más débil es el que manda.</p>
+    </div>
+
+    <div class="pillars">
+      <!-- Cada eslabon es un <a> real: con JS abre el overlay; sin JS va a
+           la variante diagnostico.ordenfinanciero.com. Color por --eslabon
+           (mapeo aprobado 02/09/2026): 01 marca, 02 positivo, 03 alerta,
+           04 hallazgo; riesgo queda reservado al "eslabon mas debil". -->
+      <a class="pillar reveal" data-num="01" href="https://diagnostico.ordenfinanciero.com" onclick="openDiagnostico(); return false;">
+        <div class="pillar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+        </div>
+        <div>
+          <p class="pillar-num">01</p>
+          <h3 class="pillar-title">Costos y precios estratégicos</h3>
+          <p class="pillar-desc">¿Tu precio te deja ganancia real? ¿Conocés el costo exacto de cada cosa que vendés, o lo calculás a ojo?</p>
+          <span class="pillar-go">Hacer el diagnóstico <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
+
+      <a class="pillar reveal" data-num="02" href="https://diagnostico.ordenfinanciero.com" style="--eslabon:var(--positivo);--eslabon-rgb:var(--positivo-rgb)" onclick="openDiagnostico(); return false;">
+        <div class="pillar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <div>
+          <p class="pillar-num">02</p>
+          <h3 class="pillar-title">Resultado económico</h3>
+          <p class="pillar-desc">¿Sabés cuánto ganó tu negocio el mes pasado? No cuánto facturaste: cuánto quedó de verdad.</p>
+          <span class="pillar-go">Hacer el diagnóstico <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
+
+      <a class="pillar reveal" data-num="03" href="https://diagnostico.ordenfinanciero.com" style="--eslabon:var(--alerta);--eslabon-rgb:var(--alerta-rgb)" onclick="openDiagnostico(); return false;">
+        <div class="pillar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <div>
+          <p class="pillar-num">03</p>
+          <h3 class="pillar-title">Cash flow</h3>
+          <p class="pillar-desc">¿Tenés plata disponible cuando la necesitás? Un negocio rentable también puede quedarse sin caja.</p>
+          <span class="pillar-go">Hacer el diagnóstico <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
+
+      <a class="pillar reveal" data-num="04" href="https://diagnostico.ordenfinanciero.com" style="--eslabon:var(--hallazgo);--eslabon-rgb:var(--hallazgo-rgb)" onclick="openDiagnostico(); return false;">
+        <div class="pillar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <div>
+          <p class="pillar-num">04</p>
+          <h3 class="pillar-title">Indicadores de gestión</h3>
+          <p class="pillar-desc">¿Decidís con tus propios números o a ojo? Sin indicadores, cada decisión importante es una apuesta.</p>
+          <span class="pillar-go">Hacer el diagnóstico <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
 
 <main>
 
@@ -2718,62 +2852,7 @@ footer {
   </div>
 </section>
 
-<!-- ── QUÉ ANALIZAMOS ── -->
-<section class="section soft" id="que-analizamos">
-  <div class="container">
-    <div class="section-head reveal">
-      <p class="section-eyebrow label-meta">El diagnóstico</p>
-      <h2 class="section-title">Cuatro eslabones que definen la salud financiera de tu negocio</h2>
-      <p class="section-sub">El diagnóstico recorre la cadena completa: dónde nace la ganancia, dónde se mide, dónde se convierte en plata y cómo se usa para decidir. El eslabón más débil es el que manda.</p>
-    </div>
 
-    <div class="pillars">
-      <article class="pillar reveal" data-num="01">
-        <div class="pillar-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-        </div>
-        <div>
-          <p class="pillar-num">Eslabón 01</p>
-          <h3 class="pillar-title">Costos y precios estratégicos</h3>
-          <p class="pillar-desc">¿Tu precio te deja ganancia real? ¿Conocés el costo exacto de cada cosa que vendés, o lo calculás a ojo?</p>
-        </div>
-      </article>
-
-      <article class="pillar reveal" data-num="02">
-        <div class="pillar-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-        </div>
-        <div>
-          <p class="pillar-num">Eslabón 02</p>
-          <h3 class="pillar-title">Resultado económico</h3>
-          <p class="pillar-desc">¿Sabés cuánto ganó tu negocio el mes pasado? No cuánto facturaste: cuánto quedó de verdad.</p>
-        </div>
-      </article>
-
-      <article class="pillar reveal" data-num="03">
-        <div class="pillar-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
-        </div>
-        <div>
-          <p class="pillar-num">Eslabón 03</p>
-          <h3 class="pillar-title">Cash flow</h3>
-          <p class="pillar-desc">¿Tenés plata disponible cuando la necesitás? Un negocio rentable también puede quedarse sin caja.</p>
-        </div>
-      </article>
-
-      <article class="pillar reveal" data-num="04">
-        <div class="pillar-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-        </div>
-        <div>
-          <p class="pillar-num">Eslabón 04</p>
-          <h3 class="pillar-title">Indicadores de gestión</h3>
-          <p class="pillar-desc">¿Decidís con tus propios números o a ojo? Sin indicadores, cada decisión importante es una apuesta.</p>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
 
 <!-- ── CÓMO FUNCIONA ── -->
 <section class="section" id="como-funciona">
