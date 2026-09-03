@@ -222,8 +222,21 @@ Criterio: **la mínima cantidad que sostenga el argumento** — 4 renders, uno p
 
 **Validación post F3+F4** (mismas condiciones que el baseline): Perf **79-80** · LCP **3,4s (= baseline)** · FCP 3,4s · CLS **0,135 (≈ baseline)** · TBT 0ms. Una corrida intermedia dio 60/5,1s y se descartó por repetición (ruido de corrida local — anotado por honestidad). Verificación en browser: hover/focus/active con halo e inversión de chip, teclado con anillo `foco`, 390px apilado con afordancia táctil, consola limpia, un solo `h1`.
 
-## 11-15. Pendientes de fase
+## 11. Fase 5 (assets) — resuelta por decisión del dueño: SIN GRÁFICO
 
-- **Fase 5 (assets)** — bloqueada esperando los 4 renders del dueño (spec §9).
-- **Fase 6 (mobile/a11y formal)** · **Fase 7 (performance: raíz-causar CLS 0,135 — probable swap de fuente)** · **Fase 8 (regresión + enmiendas en DESIGN.md del portal)**.
-- Deuda conocida: el capturador del browser de trabajo falla en zonas scrolleadas (verificación hecha con el hero oculto); capturas full-page para la regresión final quedan para la Fase 8.
+Se exploraron con el dueño: renders 3D por IA (5 generaciones GPT/Gemini — techo de calidad por debajo de sus referencias), stock (candidata de dona clay), y cuatro piezas en código vivo (dona interactiva, cascada/waterfall, pulso ECG, puente de tramos — las dos últimas solo bocetadas). **Decisión (02/09/2026): la sección queda sin gráfico** — las cards con su sistema de estados sostienen el bloque solas. "Mejor cero imágenes que imágenes pobres" (§5 del master prompt). La Enmienda 2 (renders) queda autorizada y **sin uso**; si aparece una pieza que al dueño le guste, se integra con la spec del §9.
+
+## 12-13. Fases 6-7 — cierre de mobile/a11y y performance
+
+- Verificado en browser durante la F4: teclado completo con anillo `foco`, `:active` en touch, 390px apilado con afordancia, `prefers-reduced-motion` sin transform.
+- **CLS raíz-causado y corregido**: el 100% del shift (0,135) era el hero — dominado por el swap del webfont. Fix doble sin build: `min-height` reservado en `.hero-quotes` (el `fitHeight()` por JS movía el hero) + **fallback con métricas de Inter** (`@font-face 'Inter-fallback'` sobre Arial con `size-adjust/ascent/descent-override`). Resultado, mismas condiciones que el baseline: **CLS 0,135 → 0,001 · Perf 79 → 84 · LCP 3,4s (igual)**.
+
+## 14. Deuda restante
+
+- El capturador del browser de trabajo falla en zonas scrolleadas (las verificaciones se hicieron con el hero oculto); capturas full-page de regresión quedan como pendiente de tooling, no de la página.
+- `.reveal` sin JS deja contenido en `opacity: 0` (patrón previo a este trabajo) — verificar y resolver con una clase `no-js` en un trabajo futuro.
+- Duraciones funcionales del diagnóstico documentadas como excepciones (marquee 60s, countdown 4s, barras de progreso 0,9/1,3s, pulso del nodo activo 2s, ciclo de quotes 4s).
+
+## 15. Decisiones pendientes del dueño
+
+Ninguna abierta. El gráfico de la sección queda en pausa indefinida a criterio del dueño.

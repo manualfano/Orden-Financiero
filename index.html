@@ -99,8 +99,20 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 [id] { scroll-margin-top: 76px; }
+/* Fallback con metricas de Inter: Arial ajustada al mismo ancho/altura,
+   asi el texto NO se recorre cuando llega el webfont (el swap era el CLS
+   dominante del hero, 0,135). Valores estandar de ajuste Inter<-Arial. */
+@font-face {
+  font-family: 'Inter-fallback';
+  src: local('Arial');
+  size-adjust: 107.4%;
+  ascent-override: 90.4%;
+  descent-override: 22.5%;
+  line-gap-override: 0%;
+}
+
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Inter', 'Inter-fallback', system-ui, sans-serif;
   font-size: 15px;
   line-height: 1.7;
   color: var(--tinta);
@@ -393,6 +405,10 @@ nav.scrolled {
   position: relative;
   margin-bottom: 18px;
   overflow: hidden;
+  /* altura reservada ANTES de que el JS mida (fitHeight): sin esto, el
+     hero entero se corria al cargar y era el 100% del CLS (0,135 medido
+     en el cierre del trabajo de assets/hover). Dos lineas de frase. */
+  min-height: 46px;
 }
 
 .hero-quote {
