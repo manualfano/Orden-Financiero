@@ -22,6 +22,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Medicion: Plausible (sin cookies, sin banner, ~1 KB). Los eventos se
+     emiten desde track() en el JS; el dashboard requiere que el sitio
+     ordenfinanciero.com exista en la cuenta de Plausible (Anexo A19). -->
+<script defer data-domain="ordenfinanciero.com" src="https://plausible.io/js/script.js"></script>
+<script>window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments); };</script>
 <style>
 /* ══════════════════════════════════════════
    TOKENS
@@ -2693,7 +2698,7 @@ footer {
         <a href="#como-funciona" class="nav-link">Cómo funciona</a>
         <a href="#metodo" class="nav-link">El método</a>
         <a href="#manuel" class="nav-link">Quién está detrás</a>
-        <button class="nav-cta" onclick="openDiagnostico()">Hacer el diagnóstico</button>
+        <button class="nav-cta" onclick="openDiagnostico('nav')">Hacer el diagnóstico</button>
       </div>
       <span class="nav-sep" aria-hidden="true"></span>
       <a href="https://orden-financiero-portal.vercel.app/login" class="nav-link nav-link-portal" rel="noopener">
@@ -2734,7 +2739,7 @@ footer {
       </p>
 
       <div class="hero-cta-row">
-        <button class="btn btn-blue" onclick="openDiagnostico()">
+        <button class="btn btn-blue" onclick="openDiagnostico('hero')">
           <span id="hero-cta-text">Quiero saber dónde está el problema</span>
           <span class="arrow" aria-hidden="true">→</span>
         </button>
@@ -2776,7 +2781,7 @@ footer {
            la variante diagnostico.ordenfinanciero.com. Color por --eslabon
            (mapeo aprobado 02/09/2026): 01 marca, 02 positivo, 03 alerta,
            04 hallazgo; riesgo queda reservado al "eslabon mas debil". -->
-      <a class="pillar reveal" data-num="01" href="https://diagnostico.ordenfinanciero.com" onclick="openDiagnostico(); return false;">
+      <a class="pillar reveal" data-num="01" href="https://diagnostico.ordenfinanciero.com" onclick="openDiagnostico('pillar-01'); return false;">
         <div class="pillar-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
         </div>
@@ -2788,7 +2793,7 @@ footer {
         </div>
       </a>
 
-      <a class="pillar reveal" data-num="02" href="https://diagnostico.ordenfinanciero.com" style="--eslabon:var(--positivo);--eslabon-rgb:var(--positivo-rgb)" onclick="openDiagnostico(); return false;">
+      <a class="pillar reveal" data-num="02" href="https://diagnostico.ordenfinanciero.com" style="--eslabon:var(--positivo);--eslabon-rgb:var(--positivo-rgb)" onclick="openDiagnostico('pillar-02'); return false;">
         <div class="pillar-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
         </div>
@@ -2800,7 +2805,7 @@ footer {
         </div>
       </a>
 
-      <a class="pillar reveal" data-num="03" href="https://diagnostico.ordenfinanciero.com" style="--eslabon:var(--alerta);--eslabon-rgb:var(--alerta-rgb)" onclick="openDiagnostico(); return false;">
+      <a class="pillar reveal" data-num="03" href="https://diagnostico.ordenfinanciero.com" style="--eslabon:var(--alerta);--eslabon-rgb:var(--alerta-rgb)" onclick="openDiagnostico('pillar-03'); return false;">
         <div class="pillar-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
         </div>
@@ -2812,7 +2817,7 @@ footer {
         </div>
       </a>
 
-      <a class="pillar reveal" data-num="04" href="https://diagnostico.ordenfinanciero.com" style="--eslabon:var(--hallazgo);--eslabon-rgb:var(--hallazgo-rgb)" onclick="openDiagnostico(); return false;">
+      <a class="pillar reveal" data-num="04" href="https://diagnostico.ordenfinanciero.com" style="--eslabon:var(--hallazgo);--eslabon-rgb:var(--hallazgo-rgb)" onclick="openDiagnostico('pillar-04'); return false;">
         <div class="pillar-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
         </div>
@@ -2863,7 +2868,7 @@ footer {
     <div class="mirror-bridge reveal">
       <svg class="bridge-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="#7DB1F4" stroke-width="5"/><circle cx="12" cy="12" r="8.5" stroke="#0C66E4" stroke-width="5" stroke-dasharray="40 53.4" transform="rotate(-90 12 12)"/></svg>
       <p><strong>Ninguna de estas frases es inventada:</strong> son de dueños de negocios reales, en reuniones reales. Si alguna te sonó propia, el diagnóstico existe para ponerle un número a esa sensación.</p>
-      <button class="btn btn-blue bridge-cta" onclick="openDiagnostico()">Ponerle un número <span class="arrow" aria-hidden="true">→</span></button>
+      <button class="btn btn-blue bridge-cta" onclick="openDiagnostico('mirror')">Ponerle un número <span class="arrow" aria-hidden="true">→</span></button>
     </div>
   </div>
 </section>
@@ -3098,8 +3103,8 @@ footer {
           <span class="fact-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Sesiones 1 a 1 · máx. 3 negocios nuevos por mes</span>
         </div>
         <div class="founder-cta-row">
-          <button class="btn btn-blue" onclick="openDiagnostico()">Hacer el diagnóstico gratis <span class="arrow" aria-hidden="true">→</span></button>
-          <a class="btn btn-ghost" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2ObyolYWVEvMKs_tLRnn44v51LuYKjodxamoeF-LVymZFv5-rlDky70uJEDAu2XCaUHjDTgARg" target="_blank" rel="noopener">Agendar una llamada (30 min)</a>
+          <button class="btn btn-blue" onclick="openDiagnostico('manuel')">Hacer el diagnóstico gratis <span class="arrow" aria-hidden="true">→</span></button>
+          <a class="btn btn-ghost" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2ObyolYWVEvMKs_tLRnn44v51LuYKjodxamoeF-LVymZFv5-rlDky70uJEDAu2XCaUHjDTgARg" target="_blank" rel="noopener" onclick="track('cta_calendar_click', { desde: 'home-manuel' })">Agendar una llamada (30 min)</a>
         </div>
       </div>
     </div>
@@ -3177,7 +3182,7 @@ footer {
   <div class="cta-final-inner reveal">
     <h2 class="cta-final-title">¿Dónde se te está escapando la plata?</h2>
     <p class="cta-final-sub">En 3 minutos lo sabés. Gratis y al instante.</p>
-    <button class="btn btn-white" onclick="openDiagnostico()">Hacer el diagnóstico gratis <span class="arrow" aria-hidden="true">→</span></button>
+    <button class="btn btn-white" onclick="openDiagnostico('cta-final')">Hacer el diagnóstico gratis <span class="arrow" aria-hidden="true">→</span></button>
     <p class="cta-final-note">12 preguntas · Sin planillas · Sin compromiso</p>
   </div>
 </section>
@@ -3449,7 +3454,7 @@ footer {
           </div>
           <div class="cta-title" id="cta-card-title">Reservá 30 minutos gratis con Manuel</div>
           <p class="cta-desc" id="cta-card-desc">Revisamos juntos tus números reales (no la encuesta) y salís con los próximos pasos para cerrar la brecha que marcó este diagnóstico.</p>
-          <a id="cta-card-link" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2ObyolYWVEvMKs_tLRnn44v51LuYKjodxamoeF-LVymZFv5-rlDky70uJEDAu2XCaUHjDTgARg" target="_blank" rel="noopener" class="btn btn-white">
+          <a id="cta-card-link" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2ObyolYWVEvMKs_tLRnn44v51LuYKjodxamoeF-LVymZFv5-rlDky70uJEDAu2XCaUHjDTgARg" target="_blank" rel="noopener" class="btn btn-white" onclick="track('cta_calendar_click', { desde: location.hostname.startsWith('diagnostico.') ? 'post-agenda' : 'resultado' })">
             Agendar llamada gratis (30 min) →
           </a>
         </div>
@@ -3460,6 +3465,16 @@ footer {
 </div>
 
 <script>
+// ── MEDICION: una sola funcion; nunca datos personales en props ──
+// Eventos del embudo (ver INFORME-rediseno): diag_open, diag_rubro,
+// diag_answer, diag_result_view, diag_lead_view, diag_lead_submit,
+// diag_result_full, cta_calendar_click, diag_abandon.
+function track(evento, props) {
+  try {
+    if (typeof window.plausible === 'function') window.plausible(evento, { props: props || {} });
+  } catch (e) { /* la medicion nunca rompe la pagina */ }
+}
+
 // ── NAV: fondo al scrollear ─────────────────────────────────────
 (function() {
   const nav = document.getElementById('site-nav');
@@ -3528,13 +3543,36 @@ function _cerrarTrap() {
 }
 
 // ── OVERLAY: HISTORY API ────────────────────────────────────────
-function openDiagnostico() {
+function openDiagnostico(origen) {
   document.getElementById('diag-overlay').classList.add('active');
   document.body.style.overflow = 'hidden';
   history.pushState({ diag: true }, '', '#diagnostico');
   startDiag();
   _abrirTrap();
+  state.origen = origen || 'desconocido';
+  state.completado = false;
+  track('diag_open', { origen: state.origen });
 }
+
+// ultimo paso visible del prospecto, para diag_abandon
+function _ultimoPaso() {
+  if (state.completado) return 'resultado';
+  const activa = document.querySelector('#diag-overlay .screen.active');
+  const id = activa ? activa.id : '';
+  if (id === 'screen-rubro') return 'rubro';
+  if (id === 'screen-lead') return 'lead';
+  if (id === 'screen-result') return 'resultado';
+  return 'q' + Math.min(state.currentQ + 1, 12);
+}
+
+function _trackAbandon() {
+  const ov = document.getElementById('diag-overlay');
+  if (!ov.classList.contains('active') || state.completado || state._abandonTracked) return;
+  state._abandonTracked = true;
+  track('diag_abandon', { ultimo_paso: _ultimoPaso() });
+}
+
+window.addEventListener('pagehide', _trackAbandon);
 
 function previewReporte() {
   document.getElementById('diag-overlay').classList.add('active');
@@ -3552,6 +3590,7 @@ function previewReporte() {
 }
 
 function closeDiagnostico() {
+  _trackAbandon();
   document.getElementById('diag-overlay').classList.remove('active');
   document.body.style.overflow = '';
   _cerrarTrap();
@@ -4016,6 +4055,7 @@ function selectRubro(el) {
 
 function submitRubro() {
   if (!state.rubro) return;
+  track('diag_rubro', { rubro: state.rubro });
   renderQuestion();
   showScreen('screen-question');
   updateChain();
@@ -4093,6 +4133,7 @@ function selectOption(idx) {
   });
   state.eslabónScores[q.eslabón] += score;
   state.eslabónCounts[q.eslabón]++;
+  track('diag_answer', { q: state.currentQ + 1, letra: q.opciones[idx].letra, eslabon: q.eslabónNombre });
 
   updateChain();
 
@@ -4151,6 +4192,7 @@ function showCheckpoint(eslabonIdx, isLast) {
   setTimeout(() => {
     if (isLast) {
       showScreen('screen-lead');
+      track('diag_lead_view', {});
     } else {
       renderQuestion();
       showScreen('screen-question');
@@ -4190,6 +4232,9 @@ function submitLead() {
     rubro:     state.rubro
   };
   sendLeadToSheet();
+  // El envio actual es no-cors: no hay respuesta que leer, asi que el
+  // resultado del envio no se puede afirmar (ver A8). Se registra tal cual.
+  track('diag_lead_submit', { ok: 'no-verificado' });
   showAnalyzing();
 }
 
@@ -4337,6 +4382,12 @@ function showResult() {
   showScreen('screen-result');
   updateChain();
   showFixedNarrative();
+  state.completado = true;
+  // En el flujo actual el resultado parcial y el analisis completo son la
+  // misma pantalla; los dos eventos se separan en la Fase 2.
+  const dd = getDiagnosticoData();
+  track('diag_result_view', { score: dd.total, gravedad: dd.nivelGravedad, eslabon_debil: dd.eslabonDebil });
+  track('diag_result_full', {});
 }
 
 // ── NARRATIVA DE RESULTADO ──────────────────────────────────────
