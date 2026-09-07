@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Orden Financiero · Consultora financiera para PyMEs</title>
-<meta name="description" content="Diagnóstico financiero gratuito para tu PyME: en 3 minutos sabés dónde se te escapa la plata — costos, resultado económico, cash flow e indicadores de gestión.">
+<title>Orden Financiero · Programa de consultoría financiera con datos para gastronomía y servicios</title>
+<meta name="description" content="En 3 minutos sabés por dónde se le escapa la plata a tu negocio. Diagnóstico gratis de 12 preguntas, el paso 1 de un programa de tres meses que ordena los números de tu negocio con sus propios datos.">
 <link rel="canonical" href="https://ordenfinanciero.com/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Orden Financiero · Diagnóstico financiero gratis para tu PyME">
-<meta property="og:description" content="En 3 minutos sabés exactamente qué está fallando en las finanzas de tu negocio. Gratis y al instante.">
+<meta property="og:title" content="En 3 minutos sabés por dónde se le escapa la plata a tu negocio">
+<meta property="og:description" content="Diagnóstico financiero gratis: 12 preguntas, resultado al instante. El paso 1 de un programa de tres meses que trabaja con los datos de tu negocio.">
 <meta property="og:url" content="https://ordenfinanciero.com/">
 <meta property="og:locale" content="es_AR">
 <meta property="og:image" content="https://ordenfinanciero.com/og-image.png">
@@ -1646,6 +1646,174 @@ footer {
 .fact-chip svg { width: 13px; height: 13px; color: var(--marca); flex-shrink: 0; }
 
 /* ══════════════════════════════════════════
+   FASE 3 — EL PRODUCTO EN EL HERO, EL PROGRAMA, LOS MÓDULOS
+   ══════════════════════════════════════════ */
+
+/* El mock de resultado es la imagen principal. En desktop ocupa la columna
+   derecha del grid del hero (display: contents sobre .hero-content deja a
+   sus hijos como items del grid); en mobile va entre el subtítulo y el CTA. */
+.hero-mock {
+  display: block;
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+  color: inherit;
+  max-width: 480px;
+  width: 100%;
+}
+
+.hero-mock .mock {
+  transition: transform var(--t-instante) var(--ease-estandar), border-color var(--t-instante) var(--ease-estandar), box-shadow var(--t-instante) var(--ease-estandar);
+}
+
+.hero-mock:hover .mock,
+.hero-mock:focus-visible .mock {
+  transform: translateY(-2px);
+  border-color: var(--marca-border);
+  box-shadow: 0 2px 4px -2px rgba(41,42,46,0.08), 0 8px 24px -12px rgb(var(--marca-rgb) / 0.28);
+}
+
+.hero-mock:focus-visible { outline: 2px solid var(--w); outline-offset: 4px; border-radius: var(--r-lg); }
+
+.mock-cell-weak { border-color: var(--riesgo); }
+
+.mock-foot {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--borde);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mock-foot-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--riesgo);
+}
+
+.mock-foot-value { font-size: 13px; color: var(--tinta-2); line-height: 1.45; }
+
+@media (min-width: 901px) {
+  .hero-inner {
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    column-gap: 56px;
+    row-gap: 0;
+    align-content: center;
+    padding-top: 96px;
+  }
+  .hero-content { display: contents; }
+  .hero-content > * { grid-column: 1; }
+  .hero-mock { grid-column: 2; grid-row: 1 / span 5; align-self: center; justify-self: end; }
+  .hero-title em { white-space: normal; }
+}
+
+@media (max-width: 900px) {
+  .hero-inner { padding-top: 92px; }
+  .hero-content { padding-bottom: 56px; }
+  .hero-title { font-size: clamp(30px, 8.4vw, 38px); margin-bottom: 8px; }
+  /* en mobile la promesa (h1), el producto (mock) y el CTA entran en el
+     primer scroll; el subtitulo repite lo que dicen el mock y la linea de
+     confianza, asi que solo se muestra en desktop */
+  .hero-subtitle { display: none; }
+  .hero-mock { margin: 18px auto 24px; text-align: left; max-width: 440px; }
+  .hero-mock .mock { padding: 18px; }
+  .hero-mock .mock-score { padding: 14px 16px; margin-bottom: 12px; }
+  .hero-mock .mock-score-num { font-size: 32px; }
+  .hero-mock .mock-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .hero-mock .mock-cell { padding: 8px 4px 8px; }
+  .hero-mock .mock-gauge { max-width: 64px; }
+  .hero-mock .mock-foot-value { font-size: 12.5px; }
+}
+
+/* dolor: 4 frases = 4 eslabones */
+.mirror-grid { grid-template-columns: repeat(2, 1fr); }
+
+/* entrada */
+.pillars-after {
+  margin: 28px auto 0;
+  max-width: 640px;
+  font-size: 15px;
+  color: var(--tinta-2);
+  line-height: 1.65;
+}
+
+/* el programa: los mismos 4 eslabones */
+.pillars-row { grid-template-columns: repeat(4, 1fr); }
+
+.phase-data,
+.phase-mods {
+  font-size: 13.5px;
+  color: var(--w-70);
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+
+.phase-mods { margin: 12px 0 0; padding-top: 12px; border-top: 1px solid var(--w-border); }
+.phase-data strong, .phase-mods strong { color: var(--w); font-weight: 600; }
+.phase-mods a { color: var(--dato-azul); text-decoration: none; border-bottom: 1px solid rgba(143,184,246,0.4); }
+.phase-mods a:hover { border-bottom-color: var(--dato-azul); }
+
+@media (max-width: 960px) {
+  .pillars-row .pillar-mini:last-child { grid-column: auto; }
+}
+
+/* qué te llevás: módulos (A14 nombres provisorios; A15 mes pendiente) */
+.modulos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 0;
+}
+
+.modulo {
+  background: var(--bg);
+  border: 1px solid var(--borde);
+  border-radius: var(--r-lg);
+  padding: 18px 20px;
+}
+
+.modulo dt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.modulo dd { margin: 0; font-size: 14.5px; color: var(--tinta-2); line-height: 1.6; }
+
+.mod-mes {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--marca);
+  background: var(--marca-soft);
+  border: 1px solid var(--marca-border);
+  border-radius: 99px;
+  padding: 2px 10px;
+}
+
+.mod-mes-pendiente { color: var(--tinta-3); background: var(--lienzo-2); border-color: var(--borde); }
+
+@media (max-width: 760px) {
+  .modulos { grid-template-columns: 1fr; }
+}
+
+/* nav: un solo texto de CTA con el tiempo; entra a 390 */
+@media (max-width: 480px) {
+  .nav-cta { font-size: 12.5px; padding: 8px 10px; letter-spacing: -0.01em; }
+  .brand-name { font-size: 14px; }
+  .nav-inner { padding: 0 12px; gap: 8px; }
+}
+
+/* ══════════════════════════════════════════
    DIAGNÓSTICO — OVERLAY
    ══════════════════════════════════════════ */
 .diag-overlay {
@@ -2355,7 +2523,7 @@ footer {
 .diag-overlay .crit .eslabon-card-status { color: var(--riesgo); }
 
 /* narrativa */
-.diag-overlay .ai-narrative {
+.diag-overlay .narrative-box {
   background: var(--bg);
   border: 1px solid var(--borde);
   border-radius: var(--r-lg);
@@ -2363,7 +2531,7 @@ footer {
   overflow: hidden;
 }
 
-.diag-overlay .ai-narrative-header {
+.diag-overlay .narrative-box-header {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -2372,9 +2540,9 @@ footer {
   background: var(--lienzo);
 }
 
-.diag-overlay .ai-narrative-header svg { flex-shrink: 0; color: var(--marca); }
+.diag-overlay .narrative-box-header svg { flex-shrink: 0; color: var(--marca); }
 
-.diag-overlay .ai-narrative-header span {
+.diag-overlay .narrative-box-header span {
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -2382,14 +2550,14 @@ footer {
   color: var(--tinta-3);
 }
 
-.diag-overlay .ai-narrative-text {
+.diag-overlay .narrative-box-text {
   font-size: 14.5px;
   color: var(--tinta-2);
   line-height: 1.75;
   padding: 22px 24px;
 }
 
-.diag-overlay .ai-narrative-text p + p { margin-top: 13px; }
+.diag-overlay .narrative-box-text p + p { margin-top: 13px; }
 
 .diag-overlay .report-diag-title {
   font-size: 17px;
@@ -2720,22 +2888,16 @@ footer {
     </a>
     <div class="nav-right">
       <div class="nav-funnel">
-        <a href="#que-analizamos" class="nav-link">Qué analizamos</a>
-        <a href="#como-funciona" class="nav-link">Cómo funciona</a>
-        <a href="#metodo" class="nav-link">El método</a>
+        <a href="#que-analizamos" class="nav-link">El diagnóstico</a>
+        <a href="#metodo" class="nav-link">El programa</a>
         <a href="#manuel" class="nav-link">Quién está detrás</a>
-        <button class="nav-cta" onclick="openDiagnostico('nav')">Hacer el diagnóstico</button>
+        <button class="nav-cta" onclick="openDiagnostico('nav')">Hacer el diagnóstico · 3 min</button>
       </div>
-      <span class="nav-sep" aria-hidden="true"></span>
-      <a href="https://orden-financiero-portal.vercel.app/login" class="nav-link nav-link-portal" rel="noopener">
-        Ingresar al portal
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-      </a>
     </div>
   </div>
 </nav>
 
-<!-- ── HERO ── -->
+<!-- ── HERO: la promesa y el producto a la vista ── -->
 <header class="hero" id="hero">
   <div class="rings" aria-hidden="true">
     <div class="ring"></div><div class="ring"></div><div class="ring"></div>
@@ -2743,221 +2905,24 @@ footer {
 
   <div class="hero-inner">
     <div class="hero-content">
+      <!-- A9: descriptor unico de marca (placeholder, lo define el dueño) -->
       <p class="hero-eyebrow label-meta">
         <span class="hero-eyebrow-dot" aria-hidden="true"></span>
-        <span id="hero-eyebrow-text">Consultoría financiera para PyMEs</span>
+        <span id="hero-eyebrow-text">Programa de consultoría financiera con datos para gastronomía y servicios</span>
       </p>
 
+      <!-- A12: h1 reemplazable por el dueño; candidatos en el informe -->
       <h1 class="hero-title" id="hero-title">
-        El primer paso para <em>ordenar tu negocio</em> empieza acá
+        En 3 minutos sabés <em>por dónde se le escapa la plata</em> a tu negocio
       </h1>
 
-      <p class="hero-quotes-label">Lo que dicen nuestros clientes</p>
-      <div class="hero-quotes" aria-hidden="true">
-        <div class="hero-quote active">"Vendo mucho pero no veo un peso."</div>
-        <div class="hero-quote">"Siempre estamos al límite."</div>
-        <div class="hero-quote">"La rentabilidad no refleja el esfuerzo que hago por mi negocio."</div>
-        <div class="hero-quote">"Es fundamental entender cuál es la rentabilidad real del negocio."</div>
-      </div>
-
       <p class="hero-subtitle" id="hero-subtitle">
-        Vendés, trabajás todo el mes y la ganancia no aparece. En 3 minutos sabés exactamente qué está fallando.
+        12 preguntas sobre cómo se maneja el negocio hoy, sin planillas ni números difíciles. Al terminar ves qué eslabón está fallando y qué hacer primero. Es el paso 1 del programa.
       </p>
 
-      <div class="hero-cta-row">
-        <button class="btn btn-blue" onclick="openDiagnostico('hero')">
-          <span id="hero-cta-text">Quiero saber dónde está el problema</span>
-          <span class="arrow" aria-hidden="true">→</span>
-        </button>
-      </div>
-
-      <div class="hero-trust">
-        <span class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>100% gratis</span>
-        <span class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Te lleva 3 minutos</span>
-        <span class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span id="hero-trust-3">Recibís tu diagnóstico al instante</span></span>
-      </div>
-    </div>
-
-    <div class="hero-photo">
-      <picture>
-        <source srcset="foto-manuel-cutout.webp" type="image/webp">
-        <img src="foto-manuel-cutout.png" alt="Manuel Alfano, fundador de Orden Financiero" width="800" height="1200" fetchpriority="high">
-      </picture>
-      <span class="hero-photo-credit">Manuel Alfano · Fundador</span>
-    </div>
-  </div>
-
-  <a class="hero-scroll" href="#que-analizamos" aria-label="Bajar a la sección Qué analizamos">
-    <span>Qué analizamos</span>
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-  </a>
-</header>
-
-<!-- ── QUÉ ANALIZAMOS ── -->
-<section class="section soft" id="que-analizamos">
-  <div class="container">
-    <div class="section-head reveal">
-      <p class="section-eyebrow label-meta">El diagnóstico</p>
-      <h2 class="section-title">Cuatro eslabones que definen la salud financiera de tu negocio</h2>
-      <p class="section-sub">El diagnóstico recorre la cadena completa: dónde nace la ganancia, dónde se mide, dónde se convierte en plata y cómo se usa para decidir. El eslabón más débil es el que manda.</p>
-    </div>
-
-    <div class="pillars">
-      <!-- Cada eslabon es un <a> real: con JS abre el overlay; sin JS va a
-           la variante diagnostico.ordenfinanciero.com. Color por --eslabon
-           (mapeo aprobado 02/09/2026): 01 marca, 02 positivo, 03 alerta,
-           04 hallazgo; riesgo queda reservado al "eslabon mas debil". -->
-      <a class="pillar reveal" data-num="01" href="https://diagnostico.ordenfinanciero.com" onclick="openDiagnostico('pillar-01'); return false;">
-        <div class="pillar-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-        </div>
-        <div>
-          <p class="pillar-num">01</p>
-          <h3 class="pillar-title">Costos y precios estratégicos</h3>
-          <p class="pillar-desc">¿Tu precio te deja ganancia real? ¿Conocés el costo exacto de cada cosa que vendés, o lo calculás a ojo?</p>
-          <span class="pillar-go">Hacer el diagnóstico <span aria-hidden="true">→</span></span>
-        </div>
-      </a>
-
-      <a class="pillar reveal" data-num="02" href="https://diagnostico.ordenfinanciero.com" style="--eslabon:var(--positivo);--eslabon-rgb:var(--positivo-rgb)" onclick="openDiagnostico('pillar-02'); return false;">
-        <div class="pillar-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-        </div>
-        <div>
-          <p class="pillar-num">02</p>
-          <h3 class="pillar-title">Resultado económico</h3>
-          <p class="pillar-desc">¿Sabés cuánto ganó tu negocio el mes pasado? No cuánto facturaste: cuánto quedó de verdad.</p>
-          <span class="pillar-go">Hacer el diagnóstico <span aria-hidden="true">→</span></span>
-        </div>
-      </a>
-
-      <a class="pillar reveal" data-num="03" href="https://diagnostico.ordenfinanciero.com" style="--eslabon:var(--alerta);--eslabon-rgb:var(--alerta-rgb)" onclick="openDiagnostico('pillar-03'); return false;">
-        <div class="pillar-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
-        </div>
-        <div>
-          <p class="pillar-num">03</p>
-          <h3 class="pillar-title">Cash flow</h3>
-          <p class="pillar-desc">¿Tenés plata disponible cuando la necesitás? Un negocio rentable también puede quedarse sin caja.</p>
-          <span class="pillar-go">Hacer el diagnóstico <span aria-hidden="true">→</span></span>
-        </div>
-      </a>
-
-      <a class="pillar reveal" data-num="04" href="https://diagnostico.ordenfinanciero.com" style="--eslabon:var(--hallazgo);--eslabon-rgb:var(--hallazgo-rgb)" onclick="openDiagnostico('pillar-04'); return false;">
-        <div class="pillar-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-        </div>
-        <div>
-          <p class="pillar-num">04</p>
-          <h3 class="pillar-title">Indicadores de gestión</h3>
-          <p class="pillar-desc">¿Decidís con tus propios números o a ojo? Sin indicadores, cada decisión importante es una apuesta.</p>
-          <span class="pillar-go">Hacer el diagnóstico <span aria-hidden="true">→</span></span>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<main>
-
-<!-- ── NEGOCIOS QUE CONFÍAN ── -->
-<section class="logos-band" aria-label="Negocios que trabajan con Orden Financiero">
-  <div class="container">
-    <span class="logos-label label-meta">Negocios que ya ordenan sus números con nosotros</span>
-  </div>
-  <div class="logos-marquee">
-    <div class="logos-track"><span class="logo-item"><img src="logos/sao.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Panadería Centro SAO <span class="logo-rubro">Panadería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/cortez.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Cortez <span class="logo-rubro">Restaurant</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/byehenry.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Bye Henry <span class="logo-rubro">Cervecería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/waffle.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">El Almacén del Waffle <span class="logo-rubro">Wafflería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/hvplatense.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Hospital Veterinario Platense <span class="logo-rubro">Veterinaria</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/dulcejazmin.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Dulce Jazmín <span class="logo-rubro">Pastelería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/cenal.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Café Ceñal <span class="logo-rubro">Cafetería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/soberana.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Soberana <span class="logo-rubro">Restaurant</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/arroyon.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Puerto Arroyón <span class="logo-rubro">Parrilla</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/kaneman.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Kaneman <span class="logo-rubro">Escuela canina</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/livana.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Livana <span class="logo-rubro">Resto bar</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/mollica.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Mollica <span class="logo-rubro">Confitería y restaurant</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/burgerclub.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Burger Club <span class="logo-rubro">Hamburguesería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/giorello.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Natalia Giorello <span class="logo-rubro">Pastelería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/mezzogiorno.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Il Mezzogiorno <span class="logo-rubro">Restaurant</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/fghair.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">FG Hair Concept <span class="logo-rubro">Peluquería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/universocookies.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Universo Cookies <span class="logo-rubro">Cookies</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/sao.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Panadería Centro SAO <span class="logo-rubro">Panadería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/cortez.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Cortez <span class="logo-rubro">Restaurant</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/byehenry.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Bye Henry <span class="logo-rubro">Cervecería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/waffle.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">El Almacén del Waffle <span class="logo-rubro">Wafflería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/hvplatense.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Hospital Veterinario Platense <span class="logo-rubro">Veterinaria</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/dulcejazmin.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Dulce Jazmín <span class="logo-rubro">Pastelería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/cenal.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Café Ceñal <span class="logo-rubro">Cafetería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/soberana.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Soberana <span class="logo-rubro">Restaurant</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/arroyon.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Puerto Arroyón <span class="logo-rubro">Parrilla</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/kaneman.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Kaneman <span class="logo-rubro">Escuela canina</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/livana.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Livana <span class="logo-rubro">Resto bar</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/mollica.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Mollica <span class="logo-rubro">Confitería y restaurant</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/burgerclub.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Burger Club <span class="logo-rubro">Hamburguesería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/giorello.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Natalia Giorello <span class="logo-rubro">Pastelería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/mezzogiorno.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Il Mezzogiorno <span class="logo-rubro">Restaurant</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/fghair.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">FG Hair Concept <span class="logo-rubro">Peluquería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/universocookies.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Universo Cookies <span class="logo-rubro">Cookies</span></span></span><span class="logo-dot" aria-hidden="true"></span></div>
-  </div>
-</section>
-
-<!-- ── ESPEJO ── -->
-<section class="section" id="te-suena">
-  <div class="container">
-    <div class="section-head reveal">
-      <p class="section-eyebrow label-meta">¿Te suena?</p>
-      <h2 class="section-title">Las frases que escuchamos todas las semanas</h2>
-    </div>
-    <div class="mirror-grid reveal">
-      <div class="mirror-card">
-        <p class="mirror-quote">“Facturo un montón y no veo un peso.”</p>
-        <span class="mirror-foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Eslabón: Resultado económico</span>
-      </div>
-      <div class="mirror-card">
-        <p class="mirror-quote">“Los costos los llevo a ojo.”</p>
-        <span class="mirror-foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>Eslabón: Costos y precios</span>
-      </div>
-      <div class="mirror-card">
-        <p class="mirror-quote">“Mi contador me dice que está todo bien&hellip; y yo sigo sin entender cuánto gano.”</p>
-        <span class="mirror-foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>Eslabón: Indicadores de gestión</span>
-      </div>
-    </div>
-    <div class="mirror-bridge reveal">
-      <svg class="bridge-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="#7DB1F4" stroke-width="5"/><circle cx="12" cy="12" r="8.5" stroke="#0C66E4" stroke-width="5" stroke-dasharray="40 53.4" transform="rotate(-90 12 12)"/></svg>
-      <p><strong>Ninguna de estas frases es inventada:</strong> son de dueños de negocios reales, en reuniones reales. Si alguna te sonó propia, el diagnóstico existe para ponerle un número a esa sensación.</p>
-      <button class="btn btn-blue bridge-cta" onclick="openDiagnostico('mirror')">Ponerle un número <span class="arrow" aria-hidden="true">→</span></button>
-    </div>
-  </div>
-</section>
-
-
-
-<!-- ── CÓMO FUNCIONA ── -->
-<section class="section" id="como-funciona">
-  <div class="container">
-    <div class="section-head reveal">
-      <p class="section-eyebrow label-meta">Cómo funciona</p>
-      <h2 class="section-title">De la duda al diagnóstico en 3 minutos</h2>
-    </div>
-
-    <div class="steps">
-      <div class="step reveal">
-        <div class="step-num" aria-hidden="true"><span>1</span></div>
-        <h3 class="step-title">Respondés 12 preguntas</h3>
-        <p class="step-desc">Tres por cada eslabón, adaptadas a tu rubro. Sin números difíciles ni planillas: preguntas directas sobre cómo manejás el negocio hoy.</p>
-      </div>
-      <div class="step reveal">
-        <div class="step-num" aria-hidden="true"><span>2</span></div>
-        <h3 class="step-title">Recibís tu diagnóstico al instante</h3>
-        <p class="step-desc">Un puntaje de 0 a 36, el estado de cada eslabón y — lo más importante — cuál es tu eslabón más débil y por qué te está costando plata.</p>
-      </div>
-      <div class="step reveal">
-        <div class="step-num" aria-hidden="true"><span>3</span></div>
-        <h3 class="step-title">Si querés, lo revisamos juntos</h3>
-        <p class="step-desc">Podés agendar 30 minutos gratis con Manuel para pasar del diagnóstico a tus números reales. Sin compromiso.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── QUÉ RECIBÍS ── -->
-<section class="section soft" id="que-recibis">
-  <div class="container">
-    <div class="receive">
-      <div class="reveal">
-        <p class="section-eyebrow label-meta">Qué recibís</p>
-        <h2 class="section-title">Un resultado que se entiende en segundos</h2>
-        <ul class="receive-list">
-          <li class="receive-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-            <div><strong>Tu puntaje de salud financiera</strong><span>De 0 a 36, con una lectura clara de dónde está parado tu negocio.</span></div>
-          </li>
-          <li class="receive-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-            <div><strong>El estado de cada eslabón</strong><span>Costos, resultado, cash flow y gestión: qué está sólido y qué no.</span></div>
-          </li>
-          <li class="receive-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-            <div><strong>Tu eslabón más débil, explicado</strong><span>Qué está fallando, qué consecuencia tiene en tu rubro y por dónde se te está escapando la plata.</span></div>
-          </li>
-          <li class="receive-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-            <div><strong>Un primer paso concreto</strong><span>No un consejo genérico: el punto exacto por donde empezar a ordenar.</span></div>
-          </li>
-        </ul>
-      </div>
-
-      <div class="reveal">
-        <div class="mock" role="img" aria-label="Ejemplo del resultado del diagnóstico: puntaje total y estado de los cuatro eslabones">
+      <!-- El producto como imagen principal: un resultado de ejemplo, clickeable -->
+      <a class="hero-mock mock-link" href="#diagnostico" onclick="openDiagnostico('hero-mock'); return false;" aria-label="Ejemplo del resultado del diagnóstico: puntaje 21 de 36, estado de los cuatro eslabones, eslabón más débil flujo de caja. Hacer el diagnóstico.">
+        <div class="mock">
           <span class="mock-tag">Ejemplo de resultado</span>
           <div class="mock-score">
             <div>
@@ -2985,8 +2950,8 @@ footer {
               </svg>
               <div class="mock-cell-status warn">A mejorar</div>
             </div>
-            <div class="mock-cell">
-              <div class="mock-cell-name">Cash flow</div>
+            <div class="mock-cell mock-cell-weak">
+              <div class="mock-cell-name">Caja</div>
               <svg class="mock-gauge" viewBox="-4 0 208 116" aria-hidden="true">
                 <path d="M 20,100 A 80,80 0 0,1 180,100" class="track"/>
                 <path d="M 20,100 A 80,80 0 0,1 180,100" class="fill" style="stroke:var(--riesgo)" stroke-dasharray="251.33" stroke-dashoffset="167.55"/>
@@ -3004,82 +2969,203 @@ footer {
               <div class="mock-cell-status warn">A mejorar</div>
             </div>
           </div>
+          <div class="mock-foot">
+            <span class="mock-foot-label">Eslabón más débil</span>
+            <span class="mock-foot-value">Flujo de caja · el negocio es rentable en el papel, pero la plata no está cuando hace falta</span>
+          </div>
         </div>
+      </a>
+
+      <div class="hero-cta-row">
+        <button class="btn btn-blue" onclick="openDiagnostico('hero')">
+          <span id="hero-cta-text">Hacer el diagnóstico · 3 min</span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </button>
       </div>
+
+      <div class="hero-trust">
+        <span class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Gratis</span>
+        <span class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Sin planillas</span>
+        <span class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span id="hero-trust-3">Resultado al instante</span></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ── DOLOR: las frases del dueño, ancladas a su eslabón ── -->
+<section class="section" id="te-suena">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="section-eyebrow label-meta">¿Te suena?</p>
+      <h2 class="section-title">Las frases que escuchamos todas las semanas</h2>
+    </div>
+    <div class="mirror-grid reveal">
+      <div class="mirror-card">
+        <p class="mirror-quote">“Facturo un montón y no veo un peso.”</p>
+        <span class="mirror-foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Eslabón: Resultado económico</span>
+      </div>
+      <div class="mirror-card">
+        <p class="mirror-quote">“Los costos los llevo a ojo.”</p>
+        <span class="mirror-foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>Eslabón: Costos y precios</span>
+      </div>
+      <div class="mirror-card">
+        <p class="mirror-quote">“Siempre estamos al límite.”</p>
+        <span class="mirror-foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>Eslabón: Flujo de caja</span>
+      </div>
+      <div class="mirror-card">
+        <p class="mirror-quote">“Mi contador me dice que está todo bien&hellip; y yo sigo sin entender cuánto gano.”</p>
+        <span class="mirror-foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>Eslabón: Indicadores de gestión</span>
+      </div>
+    </div>
+    <div class="mirror-bridge reveal">
+      <svg class="bridge-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="#7DB1F4" stroke-width="5"/><circle cx="12" cy="12" r="8.5" stroke="#0C66E4" stroke-width="5" stroke-dasharray="40 53.4" transform="rotate(-90 12 12)"/></svg>
+      <p><strong>Ninguna de estas frases es inventada:</strong> son de dueños de negocios reales, en reuniones reales. Si alguna te sonó propia, el diagnóstico existe para ponerle un número a esa sensación.</p>
+      <button class="btn btn-blue bridge-cta" onclick="openDiagnostico('mirror')">Hacer el diagnóstico · 3 min <span class="arrow" aria-hidden="true">→</span></button>
     </div>
   </div>
 </section>
 
-<!-- ── EL MÉTODO ── -->
+<!-- ── ENTRADA: qué mide el diagnóstico (paso 1 del programa) ── -->
+<section class="section soft" id="que-analizamos">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="section-eyebrow label-meta">El diagnóstico · paso 1 del programa</p>
+      <h2 class="section-title">Cuatro eslabones que definen la salud financiera de tu negocio</h2>
+      <p class="section-sub">12 preguntas, tres por eslabón, sobre cómo se maneja el negocio hoy. El diagnóstico recorre la cadena completa: dónde nace la ganancia, dónde se mide, dónde se convierte en plata y cómo se usa para decidir. El eslabón más débil es el que manda, y es por donde arranca el programa.</p>
+    </div>
+
+    <div class="pillars">
+      <!-- Cada eslabon es un <a> real al diagnostico (#diagnostico abre el
+           overlay con o sin click). Color por --eslabon (mapeo 02/09/2026):
+           01 marca, 02 positivo, 03 alerta, 04 hallazgo. -->
+      <a class="pillar reveal" data-num="01" href="#diagnostico" onclick="openDiagnostico('pillar-01'); return false;">
+        <div class="pillar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+        </div>
+        <div>
+          <p class="pillar-num">01</p>
+          <h3 class="pillar-title">Costos y precios</h3>
+          <p class="pillar-desc">¿El precio deja ganancia real? ¿Cada cosa que vendés tiene su costo exacto, o el costo se calcula a ojo?</p>
+          <span class="pillar-go">Hacer el diagnóstico · 3 min <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
+
+      <a class="pillar reveal" data-num="02" href="#diagnostico" style="--eslabon:var(--positivo);--eslabon-rgb:var(--positivo-rgb)" onclick="openDiagnostico('pillar-02'); return false;">
+        <div class="pillar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <div>
+          <p class="pillar-num">02</p>
+          <h3 class="pillar-title">Resultado económico</h3>
+          <p class="pillar-desc">¿Cuánto ganó el negocio el mes pasado? No cuánto facturó: cuánto quedó de verdad.</p>
+          <span class="pillar-go">Hacer el diagnóstico · 3 min <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
+
+      <a class="pillar reveal" data-num="03" href="#diagnostico" style="--eslabon:var(--alerta);--eslabon-rgb:var(--alerta-rgb)" onclick="openDiagnostico('pillar-03'); return false;">
+        <div class="pillar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <div>
+          <p class="pillar-num">03</p>
+          <h3 class="pillar-title">Flujo de caja</h3>
+          <p class="pillar-desc">¿Hay plata disponible cuando hace falta? Un negocio rentable también puede quedarse sin caja.</p>
+          <span class="pillar-go">Hacer el diagnóstico · 3 min <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
+
+      <a class="pillar reveal" data-num="04" href="#diagnostico" style="--eslabon:var(--hallazgo);--eslabon-rgb:var(--hallazgo-rgb)" onclick="openDiagnostico('pillar-04'); return false;">
+        <div class="pillar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <div>
+          <p class="pillar-num">04</p>
+          <h3 class="pillar-title">Indicadores de gestión</h3>
+          <p class="pillar-desc">¿Las decisiones salen de tus propios números o de la intuición? Sin indicadores, cada decisión importante es una apuesta.</p>
+          <span class="pillar-go">Hacer el diagnóstico · 3 min <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
+    </div>
+
+    <p class="pillars-after reveal">Al terminar ves el puntaje del negocio sobre 36, el estado de cada eslabón y el primer paso concreto para ordenarlo. Gratis, al instante, sin planillas.</p>
+  </div>
+</section>
+
+<!-- ── EL PROGRAMA: tres meses que trabajan con los datos del negocio ── -->
 <section class="method" id="metodo">
   <div class="rings" aria-hidden="true">
     <div class="ring"></div><div class="ring"></div><div class="ring"></div>
   </div>
   <div class="method-inner">
     <div class="section-head reveal">
-      <p class="section-eyebrow label-meta">El método</p>
-      <h2 class="section-title">El Método Orden Financiero</h2>
-      <p class="section-sub">El diagnóstico es la puerta de entrada a un sistema completo: cinco pilares trabajados en 90 días, en tres fases. Salís con un sistema funcionando, no con un informe.</p>
+      <p class="section-eyebrow label-meta">El programa</p>
+      <h2 class="section-title">Del diagnóstico al negocio ordenado, en tres meses</h2>
+      <p class="section-sub">El diagnóstico es el paso 1. Después, el programa trabaja con los datos del negocio: lo que se vende, lo que se compra, lo que se paga y lo que se cobra. Salís con un sistema funcionando y con tus propios números a mano, no con un informe.</p>
     </div>
 
+    <!-- Los mismos 4 eslabones del diagnostico: que ordena el programa en cada uno -->
     <div class="pillars-row reveal">
       <div class="pillar-mini">
         <p class="pillar-mini-num">01</p>
-        <p class="pillar-mini-title">Costos precisos</p>
-        <p class="pillar-mini-desc">Cuánto cuesta exactamente cada cosa que vendés.</p>
+        <p class="pillar-mini-title">Costos y precios</p>
+        <p class="pillar-mini-desc">El costo real y el precio correcto de cada cosa que se vende.</p>
       </div>
       <div class="pillar-mini">
         <p class="pillar-mini-num">02</p>
-        <p class="pillar-mini-title">Flujo de fondos</p>
-        <p class="pillar-mini-desc">Cuándo entra y cuándo sale la plata.</p>
+        <p class="pillar-mini-title">Resultado económico</p>
+        <p class="pillar-mini-desc">Un cierre por mes: cuánto ganó el negocio de verdad, con gastos e impuestos descontados.</p>
       </div>
       <div class="pillar-mini">
         <p class="pillar-mini-num">03</p>
-        <p class="pillar-mini-title">Rentabilidad real</p>
-        <p class="pillar-mini-desc">Margen real por producto y por línea de negocio.</p>
+        <p class="pillar-mini-title">Flujo de caja</p>
+        <p class="pillar-mini-desc">Pagos, cobranzas y vencimientos a la vista, para que la plata esté cuando hace falta.</p>
       </div>
       <div class="pillar-mini">
         <p class="pillar-mini-num">04</p>
-        <p class="pillar-mini-title">Costos operativos</p>
-        <p class="pillar-mini-desc">Gastos fijos y variables bajo control.</p>
-      </div>
-      <div class="pillar-mini">
-        <p class="pillar-mini-num">05</p>
-        <p class="pillar-mini-title">Gestión con data</p>
-        <p class="pillar-mini-desc">Decisiones con tus propios números.</p>
+        <p class="pillar-mini-title">Indicadores de gestión</p>
+        <p class="pillar-mini-desc">Tres o cuatro números que se miran todos los meses antes de decidir.</p>
       </div>
     </div>
 
+    <!-- Fases = meses. Cada mes: con qué datos se trabaja, qué se hace, qué módulos deja. -->
     <div class="phases reveal">
       <div class="phase">
-        <p class="phase-days">Fase 1 · Días 1–30</p>
-        <p class="phase-title">Diagnóstico y base</p>
+        <p class="phase-days">Mes 1 · Diagnóstico y base</p>
+        <p class="phase-title">Poner los números arriba de la mesa</p>
+        <p class="phase-data"><strong>Datos con los que se trabaja:</strong> ventas, compras y costos de cada producto.</p>
         <ul>
           <li>Relevamiento completo del negocio</li>
-          <li>Armado de la estructura de costos</li>
-          <li>Identificación de fugas de rentabilidad</li>
-          <li>Tablero de control inicial</li>
+          <li>Armado de los costos del negocio, producto por producto</li>
+          <li>Identificación de por dónde se escapa la rentabilidad</li>
+          <li>Primer tablero con los números del mes</li>
         </ul>
+        <p class="phase-mods"><strong>Módulos que quedan:</strong> <a href="#mod-costeo">Costeo</a> · <a href="#mod-tablero">Tablero</a></p>
       </div>
       <div class="phase">
-        <p class="phase-days">Fase 2 · Días 31–60</p>
-        <p class="phase-title">Orden y sistema</p>
+        <p class="phase-days">Mes 2 · Orden y sistema</p>
+        <p class="phase-title">Que la plata del negocio se vea y se anticipe</p>
+        <p class="phase-data"><strong>Datos con los que se trabaja:</strong> pagos, cobranzas, sueldos y lo que sale para la casa.</p>
         <ul>
-          <li>Implementación del flujo de fondos</li>
-          <li>Separación finanzas personales / negocio</li>
+          <li>Flujo de caja en marcha</li>
+          <li>Separación de las finanzas personales y las del negocio</li>
           <li>Precio correcto de cada producto</li>
           <li>Rutina semanal de gestión financiera</li>
         </ul>
+        <p class="phase-mods"><strong>Módulos que quedan:</strong> <a href="#mod-agenda">Agenda</a> · <a href="#mod-costeo">Costeo</a></p>
       </div>
       <div class="phase">
-        <p class="phase-days">Fase 3 · Días 61–90</p>
-        <p class="phase-title">Control y autonomía</p>
+        <p class="phase-days">Mes 3 · Control y autonomía</p>
+        <p class="phase-title">El dueño maneja sus propios números</p>
+        <p class="phase-data"><strong>Datos con los que se trabaja:</strong> el tablero completo del mes, comparado contra los meses anteriores.</p>
         <ul>
           <li>El dueño maneja sus propios números</li>
-          <li>Decisiones basadas en data real</li>
-          <li>Planificación de rentabilidad futura</li>
+          <li>Decisiones basadas en datos reales</li>
+          <li>Planificación de la rentabilidad futura</li>
           <li>Independencia total del sistema</li>
         </ul>
+        <p class="phase-mods"><strong>Módulos que quedan:</strong> <a href="#mod-hoja-de-ruta">Hoja de ruta</a></p>
       </div>
     </div>
 
@@ -3102,7 +3188,69 @@ footer {
   </div>
 </section>
 
-<!-- ── MANUEL ── -->
+<!-- ── QUÉ SE LLEVA EL DUEÑO: los módulos del programa (A14 nombres provisorios) ── -->
+<section class="section soft" id="que-recibis">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="section-eyebrow label-meta">Qué te llevás</p>
+      <h2 class="section-title">Los módulos que quedan funcionando en tu negocio</h2>
+      <p class="section-sub">Cada módulo trabaja con un dato concreto del negocio y queda en tus manos cuando termina el programa. Los nombres son provisorios.</p>
+    </div>
+
+    <!-- Fuente unica de los modulos: renombrar aca renombra en todo el sitio (A14).
+         A15: la asignacion por mes solo esta donde el texto del programa lo permite. -->
+    <dl class="modulos reveal" id="modulos">
+      <div class="modulo" id="mod-registro">
+        <dt>Registro <span class="mod-mes mod-mes-pendiente">mes a definir</span></dt>
+        <dd>La carga de ingresos y gastos: el dato de base con el que trabaja todo lo demás.</dd>
+        <!-- A15: mes pendiente -->
+      </div>
+      <div class="modulo" id="mod-resultado">
+        <dt>Resultado <span class="mod-mes mod-mes-pendiente">mes a definir</span></dt>
+        <dd>El estado de resultados del mes: cuánto ganó el negocio de verdad, con gastos e impuestos descontados.</dd>
+        <!-- A15: mes pendiente -->
+      </div>
+      <div class="modulo" id="mod-costeo">
+        <dt>Costeo <span class="mod-mes">mes 1 y 2</span></dt>
+        <dd>Fichas de costo por producto, con merma incluida, y el precio que corresponde a cada uno.</dd>
+      </div>
+      <div class="modulo" id="mod-agenda">
+        <dt>Agenda <span class="mod-mes">mes 2</span></dt>
+        <dd>Vencimientos y pagos a la vista, para que ningún gasto grande agarre desprevenido al negocio.</dd>
+      </div>
+      <div class="modulo" id="mod-insumos">
+        <dt>Insumos <span class="mod-mes mod-mes-pendiente">mes a definir</span></dt>
+        <dd>Análisis de proveedores y compras: qué se paga, a quién y cómo cambia mes a mes.</dd>
+        <!-- A15: mes pendiente -->
+      </div>
+      <div class="modulo" id="mod-tablero">
+        <dt>Tablero <span class="mod-mes">mes 1</span></dt>
+        <dd>La vista visual del mes: los números que importan, de un vistazo.</dd>
+      </div>
+      <div class="modulo" id="mod-bitacora">
+        <dt>Bitácora <span class="mod-mes mod-mes-pendiente">mes a definir</span></dt>
+        <dd>Los acuerdos y cambios de cada sesión, anotados para volver a mirarlos.</dd>
+        <!-- A15: mes pendiente -->
+      </div>
+      <div class="modulo" id="mod-hoja-de-ruta">
+        <dt>Hoja de ruta <span class="mod-mes">mes 3</span></dt>
+        <dd>El plan de los tres meses y lo que sigue después: qué decidir, cuándo y con qué número.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- ── PRUEBA: negocios reales, lo más cerca posible del programa ── -->
+<section class="logos-band" aria-label="Negocios que trabajan con Orden Financiero">
+  <div class="container">
+    <span class="logos-label label-meta">Negocios que ya ordenan sus números con nosotros</span>
+  </div>
+  <div class="logos-marquee">
+    <div class="logos-track"><span class="logo-item"><img src="logos/sao.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Panadería Centro SAO <span class="logo-rubro">Panadería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/cortez.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Cortez <span class="logo-rubro">Restaurant</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/byehenry.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Bye Henry <span class="logo-rubro">Cervecería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/waffle.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">El Almacén del Waffle <span class="logo-rubro">Wafflería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/hvplatense.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Hospital Veterinario Platense <span class="logo-rubro">Veterinaria</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/dulcejazmin.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Dulce Jazmín <span class="logo-rubro">Pastelería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/cenal.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Café Ceñal <span class="logo-rubro">Cafetería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/soberana.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Soberana <span class="logo-rubro">Restaurant</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/arroyon.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Puerto Arroyón <span class="logo-rubro">Parrilla</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/kaneman.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Kaneman <span class="logo-rubro">Escuela canina</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/livana.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Livana <span class="logo-rubro">Resto bar</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/mollica.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Mollica <span class="logo-rubro">Confitería y restaurant</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/burgerclub.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Burger Club <span class="logo-rubro">Hamburguesería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/giorello.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Natalia Giorello <span class="logo-rubro">Pastelería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/mezzogiorno.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Il Mezzogiorno <span class="logo-rubro">Restaurant</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/fghair.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">FG Hair Concept <span class="logo-rubro">Peluquería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/universocookies.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Universo Cookies <span class="logo-rubro">Cookies</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/sao.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Panadería Centro SAO <span class="logo-rubro">Panadería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/cortez.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Cortez <span class="logo-rubro">Restaurant</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/byehenry.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Bye Henry <span class="logo-rubro">Cervecería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/waffle.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">El Almacén del Waffle <span class="logo-rubro">Wafflería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/hvplatense.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Hospital Veterinario Platense <span class="logo-rubro">Veterinaria</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/dulcejazmin.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Dulce Jazmín <span class="logo-rubro">Pastelería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/cenal.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Café Ceñal <span class="logo-rubro">Cafetería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/soberana.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Soberana <span class="logo-rubro">Restaurant</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/arroyon.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Puerto Arroyón <span class="logo-rubro">Parrilla</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/kaneman.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Kaneman <span class="logo-rubro">Escuela canina</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/livana.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Livana <span class="logo-rubro">Resto bar</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/mollica.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Mollica <span class="logo-rubro">Confitería y restaurant</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/burgerclub.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Burger Club <span class="logo-rubro">Hamburguesería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/giorello.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Natalia Giorello <span class="logo-rubro">Pastelería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/mezzogiorno.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Il Mezzogiorno <span class="logo-rubro">Restaurant</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/fghair.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">FG Hair Concept <span class="logo-rubro">Peluquería</span></span></span><span class="logo-dot" aria-hidden="true"></span><span class="logo-item"><img src="logos/universocookies.jpg" alt="" loading="lazy" width="150" height="150"><span class="logo-txt">Universo Cookies <span class="logo-rubro">Cookies</span></span></span><span class="logo-dot" aria-hidden="true"></span></div>
+  </div>
+</section>
+
+<!-- ── QUIÉN ESTÁ DETRÁS ── -->
 <section class="section" id="manuel">
   <div class="container">
     <div class="founder">
@@ -3112,7 +3260,7 @@ footer {
         </div>
         <picture>
           <source srcset="foto-manuel-cutout.webp" type="image/webp">
-          <img src="foto-manuel-cutout.png" alt="Manuel Alfano" width="800" height="1200" loading="lazy">
+          <img src="foto-manuel-cutout.png" alt="Manuel Alfano, fundador de Orden Financiero" width="800" height="1200" loading="lazy">
         </picture>
       </div>
       <div class="reveal">
@@ -3120,8 +3268,8 @@ footer {
         <h2 class="founder-name">Manuel Alfano</h2>
         <p class="founder-role">Fundador de Orden Financiero</p>
         <div class="founder-copy">
-          <p>Manuel no llegó a los números desde un escritorio: viene de más de 12 años en la gastronomía con negocio propio. Conoce de adentro lo que es cerrar el mes sin saber si quedó plata — por eso el método habla el idioma del dueño, no el del contador.</p>
-          <p>Hoy trabaja mano a mano con dueños de PyMEs — gastronomía, peluquerías, comercio, servicios — para que el resultado del negocio deje de ser una sensación y pase a ser un número: cuánto cuesta lo que vendés, cuánto queda a fin de mes y qué decisión conviene tomar con esos datos.</p>
+          <p>Manuel no llegó a los números desde un escritorio: viene de más de 12 años en la gastronomía con negocio propio. Conoce de adentro lo que es cerrar el mes sin saber si quedó plata, y por eso el programa habla el idioma del dueño, no el del contador.</p>
+          <p>Hoy trabaja mano a mano con dueños de PyMEs de gastronomía, peluquerías, comercio y servicios para que el resultado del negocio deje de ser una sensación y pase a ser un número: cuánto cuesta lo que se vende, cuánto queda a fin de mes y qué decisión conviene tomar con esos datos.</p>
           <p>El diagnóstico es el mismo punto de partida que usa con sus clientes: encontrar el eslabón más débil de la cadena financiera, porque por ahí es por donde se escapa la plata.</p>
         </div>
         <div class="founder-facts">
@@ -3129,15 +3277,14 @@ footer {
           <span class="fact-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Sesiones 1 a 1 · máx. 3 negocios nuevos por mes</span>
         </div>
         <div class="founder-cta-row">
-          <button class="btn btn-blue" onclick="openDiagnostico('manuel')">Hacer el diagnóstico gratis <span class="arrow" aria-hidden="true">→</span></button>
-          <a class="btn btn-ghost" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2ObyolYWVEvMKs_tLRnn44v51LuYKjodxamoeF-LVymZFv5-rlDky70uJEDAu2XCaUHjDTgARg" target="_blank" rel="noopener" onclick="track('cta_calendar_click', { desde: 'home-manuel' })">Agendar una llamada (30 min)</a>
+          <button class="btn btn-blue" onclick="openDiagnostico('manuel')">Hacer el diagnóstico · 3 min <span class="arrow" aria-hidden="true">→</span></button>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── PARA QUIÉN ── -->
+<!-- ── FILTRO ── -->
 <section class="section soft" id="para-quien">
   <div class="container">
     <div class="section-head reveal">
@@ -3149,9 +3296,9 @@ footer {
         <p class="forwho-head">El diagnóstico es para vos si&hellip;</p>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Tenés un negocio en marcha, con 1 a 4 locales o puntos de venta</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Tu negocio vende, pero no sabés exactamente cuánto ganás</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Mezclás plata personal con la del negocio</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Trabajás más de 10 horas por día y no podés desconectarte</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Tu negocio vende, pero el número de cuánto gana no está claro</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>La plata personal y la del negocio están mezcladas</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Trabajás más de 10 horas por día y el negocio no te deja desconectar</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Querés tomar decisiones con datos, no con intuición</li>
         </ul>
       </div>
@@ -3167,7 +3314,7 @@ footer {
   </div>
 </section>
 
-<!-- ── FAQ ── -->
+<!-- ── OBJECIONES ── -->
 <section class="section" id="preguntas-frecuentes">
   <div class="container">
     <div class="section-head center reveal">
@@ -3178,38 +3325,42 @@ footer {
     <div class="faq-list reveal">
       <details class="faq-item">
         <summary>¿Cuánto tarda el diagnóstico?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <div class="faq-body">Unos 3 minutos. Son 12 preguntas de opción múltiple — tres por cada eslabón — y el resultado aparece al instante, sin esperas ni mails de por medio.</div>
+        <div class="faq-body">Unos 3 minutos. Son 12 preguntas de opción múltiple, tres por cada eslabón, y el puntaje aparece al instante en la misma pantalla. Podés volver atrás y cambiar una respuesta, y si cerrás, retomás donde estabas.</div>
       </details>
       <details class="faq-item">
         <summary>¿Es realmente gratis?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <div class="faq-body">Sí. El diagnóstico es gratis, y la llamada de 30 minutos con Manuel también. La llamada es opcional: el diagnóstico completo lo ves igual, la hagas o no.</div>
+        <div class="faq-body">Sí. El diagnóstico es gratis, y la llamada de 30 minutos con Manuel también. El programa de tres meses es pago, y eso se conversa en la llamada, si querés darla.</div>
       </details>
       <details class="faq-item">
         <summary>¿Necesito saber de finanzas para responder?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <div class="faq-body">No. Las preguntas son sobre cómo manejás tu negocio en el día a día — no hace falta calcular nada ni tener planillas a mano. Si no sabés una respuesta con certeza, esa duda ya es parte del diagnóstico.</div>
+        <div class="faq-body">No. Las preguntas son sobre cómo se maneja el negocio en el día a día: no hace falta calcular nada ni tener planillas a mano. Si una respuesta no se sabe con certeza, esa duda ya es parte del diagnóstico.</div>
       </details>
       <details class="faq-item">
-        <summary>¿Qué pasa con mis datos?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <div class="faq-body">Tu información es confidencial y no se comparte con terceros. Los datos de contacto se usan únicamente para enviarte tu diagnóstico y, si lo pedís, coordinar la llamada.</div>
+        <summary>¿Qué datos me piden?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="faq-body">Ninguno para ver el puntaje y el estado de cada eslabón. Para ver el análisis completo y el primer paso te pedimos solo tu WhatsApp, que es el número al que Manuel te puede escribir para revisar el resultado. No lo compartimos con terceros.</div>
       </details>
       <details class="faq-item">
         <summary>¿Qué pasa después del diagnóstico?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <div class="faq-body">Ves tu resultado completo al instante: puntaje, estado de cada eslabón y tu punto más débil explicado. Después decidís vos — podés agendar la llamada gratuita con Manuel para revisar tus números reales, o quedarte con el diagnóstico como punto de partida.</div>
+        <div class="faq-body">Ves el puntaje del negocio, el estado de cada eslabón y, con tu WhatsApp, el análisis completo de tu eslabón más débil y el primer paso concreto. Después decidís vos: podés agendar 30 minutos gratis con Manuel para revisar tus números reales, o quedarte con el diagnóstico como punto de partida.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Por qué solo 3 negocios nuevos por mes?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="faq-body">Porque el programa es 1 a 1: sesiones mensuales, WhatsApp directo y trabajo sobre los datos reales de cada negocio. Con más de tres entradas por mes eso no se sostiene.</div>
       </details>
     </div>
   </div>
 </section>
 
-<!-- ── CTA FINAL ── -->
+<!-- ── CIERRE ── -->
 <section class="cta-final">
   <div class="rings" aria-hidden="true">
     <div class="ring"></div><div class="ring"></div><div class="ring"></div>
   </div>
   <div class="cta-final-inner reveal">
-    <h2 class="cta-final-title">¿Dónde se te está escapando la plata?</h2>
-    <p class="cta-final-sub">En 3 minutos lo sabés. Gratis y al instante.</p>
-    <button class="btn btn-white" onclick="openDiagnostico('cta-final')">Hacer el diagnóstico gratis <span class="arrow" aria-hidden="true">→</span></button>
-    <p class="cta-final-note">12 preguntas · Sin planillas · Sin compromiso</p>
+    <h2 class="cta-final-title">¿Por dónde se le escapa la plata a tu negocio?</h2>
+    <p class="cta-final-sub">12 preguntas, 3 minutos, gratis. El paso 1 del programa.</p>
+    <button class="btn btn-white" onclick="openDiagnostico('cta-final')">Hacer el diagnóstico · 3 min <span class="arrow" aria-hidden="true">→</span></button>
+    <p class="cta-final-note">Sin planillas · Sin compromiso</p>
   </div>
 </section>
 
@@ -3228,11 +3379,12 @@ footer {
       <p class="footer-tagline">La rentabilidad de tu negocio, siempre a mano</p>
     </div>
     <div class="footer-links">
-      <a class="footer-link" href="#que-analizamos">Qué analizamos</a>
-      <a class="footer-link" href="#como-funciona">Cómo funciona</a>
-      <a class="footer-link" href="https://orden-financiero-portal.vercel.app/login" rel="noopener">Portal de clientes</a>
+      <a class="footer-link" href="#que-analizamos">El diagnóstico</a>
+      <a class="footer-link" href="#metodo">El programa</a>
+      <a class="footer-link" href="#manuel">Quién está detrás</a>
     </div>
-    <p class="footer-copy">© 2026 Orden Financiero · Consultoría de gestión para PyMEs</p>
+    <!-- A9: descriptor unico de marca (placeholder) -->
+    <p class="footer-copy">© 2026 Orden Financiero · Programa de consultoría financiera con datos para gastronomía y servicios</p>
   </div>
 </footer>
 
@@ -3277,8 +3429,8 @@ footer {
           </div>
           <span class="node-short" aria-hidden="true">Costos</span>
           <div class="node-info">
-            <div class="node-name">Costos y Precios</div>
-            <div class="node-desc">¿Sabés cuánto te cuesta cada cosa?</div>
+            <div class="node-name">Costos y precios</div>
+            <div class="node-desc">¿Cada cosa que se vende tiene su costo?</div>
           </div>
           <div class="node-score" id="score-0">—</div>
         </div>
@@ -3288,8 +3440,8 @@ footer {
           </div>
           <span class="node-short" aria-hidden="true">Resultado</span>
           <div class="node-info">
-            <div class="node-name">Resultado Económico</div>
-            <div class="node-desc">¿Conocés la ganancia real de tu negocio?</div>
+            <div class="node-name">Resultado económico</div>
+            <div class="node-desc">¿Cuánto ganó el negocio de verdad?</div>
           </div>
           <div class="node-score" id="score-1">—</div>
         </div>
@@ -3299,8 +3451,8 @@ footer {
           </div>
           <span class="node-short" aria-hidden="true">Caja</span>
           <div class="node-info">
-            <div class="node-name">Cash Flow</div>
-            <div class="node-desc">¿Tenés plata cuando la necesitás?</div>
+            <div class="node-name">Flujo de caja</div>
+            <div class="node-desc">¿Hay plata cuando hace falta?</div>
           </div>
           <div class="node-score" id="score-2">—</div>
         </div>
@@ -3310,8 +3462,8 @@ footer {
           </div>
           <span class="node-short" aria-hidden="true">Gestión</span>
           <div class="node-info">
-            <div class="node-name">Indicadores de Gestión</div>
-            <div class="node-desc">¿Tomás decisiones con datos?</div>
+            <div class="node-name">Indicadores de gestión</div>
+            <div class="node-desc">¿Las decisiones salen de los números?</div>
           </div>
           <div class="node-score" id="score-3">—</div>
         </div>
@@ -3369,7 +3521,7 @@ footer {
       <div class="screen" id="screen-question">
         <div class="q-header">
           <div class="q-breadcrumb">
-            <span class="q-breadcrumb-block" id="q-eslabon-name">Costos y Precios</span>
+            <span class="q-breadcrumb-block" id="q-eslabon-name">Costos y precios</span>
             <span class="q-breadcrumb-sep" aria-hidden="true">·</span>
             <span class="q-breadcrumb-num" id="q-num">Pregunta 1 de 12</span>
           </div>
@@ -3435,12 +3587,12 @@ footer {
             <a class="btn btn-blue" id="cta-top-link" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2ObyolYWVEvMKs_tLRnn44v51LuYKjodxamoeF-LVymZFv5-rlDky70uJEDAu2XCaUHjDTgARg" target="_blank" rel="noopener" onclick="track('cta_calendar_click', { desde: 'resultado-arriba' })">Agendar la llamada <span class="arrow" aria-hidden="true">→</span></a>
           </div>
 
-          <div class="ai-narrative" id="narrative">
-            <div class="ai-narrative-header">
+          <div class="narrative-box" id="narrative">
+            <div class="narrative-box-header">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
               <span>Tu eslabón más débil, explicado</span>
             </div>
-            <div class="ai-narrative-text" id="narrative-content"></div>
+            <div class="narrative-box-text" id="narrative-content"></div>
           </div>
 
           <div class="cta-card">
@@ -3648,9 +3800,9 @@ const REACTION_ICONS = {
 
 // ── DATOS DEL DIAGNÓSTICO ──────────────────────────────────────
 const PREGUNTAS = [
-  // ESLABÓN 0: Costos y Precios
+  // ESLABÓN 0: Costos y precios
   {
-    eslabón: 0, eslabónNombre: "Costos y Precios",
+    eslabón: 0, eslabónNombre: "Costos y precios",
     texto: "¿Sabés cuánto te cuesta realmente producir o dar cada servicio?",
     opciones: [
       { letra:"A", texto:"Sí, lo tengo calculado y lo actualizo seguido", score: 3 },
@@ -3664,7 +3816,7 @@ const PREGUNTAS = [
     ]
   },
   {
-    eslabón: 0, eslabónNombre: "Costos y Precios",
+    eslabón: 0, eslabónNombre: "Costos y precios",
     texto: "¿Tu precio de venta está calculado sobre tus costos reales o lo fijás mirando a la competencia?",
     opciones: [
       { letra:"A", texto:"Sí, lo calculo sobre mis costos reales", score: 3 },
@@ -3678,7 +3830,7 @@ const PREGUNTAS = [
     ]
   },
   {
-    eslabón: 0, eslabónNombre: "Costos y Precios",
+    eslabón: 0, eslabónNombre: "Costos y precios",
     texto: "¿Actualizás tus precios cuando suben tus costos?",
     opciones: [
       { letra:"A", texto:"Sí, lo hago sistemáticamente", score: 3 },
@@ -3691,9 +3843,9 @@ const PREGUNTAS = [
       { tipo:"crit", texto:"En contexto inflacionario, no actualizar precios es subsidiar a tus clientes con tu propia rentabilidad." }
     ]
   },
-  // ESLABÓN 1: Resultado Económico
+  // ESLABÓN 1: Resultado económico
   {
-    eslabón: 1, eslabónNombre: "Resultado Económico",
+    eslabón: 1, eslabónNombre: "Resultado económico",
     texto: "¿Sabés exactamente cuánto ganó tu negocio el mes pasado?",
     opciones: [
       { letra:"A", texto:"Sí, lo tengo claro", score: 3 },
@@ -3702,12 +3854,12 @@ const PREGUNTAS = [
     ],
     reacciones: [
       { tipo:"ok",   texto:"Bien. Saber el resultado real es la diferencia entre gestionar y adivinar." },
-      { tipo:"warn", texto:"Si no lo sabés todos los meses, estás manejando el negocio a ciegas." },
-      { tipo:"crit", texto:"Vendés, pero no ves la plata. Sin ese número, no sabés si el negocio gana o gira en falso." }
+      { tipo:"warn", texto:"Si ese número no aparece todos los meses, el negocio se maneja a ciegas." },
+      { tipo:"crit", texto:"El negocio vende, pero la plata no se ve. Sin ese número no hay forma de saber si gana o gira en falso." }
     ]
   },
   {
-    eslabón: 1, eslabónNombre: "Resultado Económico",
+    eslabón: 1, eslabónNombre: "Resultado económico",
     texto: "¿Separás las finanzas del negocio de tus gastos personales?",
     opciones: [
       { letra:"A", texto:"Sí, siempre", score: 3 },
@@ -3721,7 +3873,7 @@ const PREGUNTAS = [
     ]
   },
   {
-    eslabón: 1, eslabónNombre: "Resultado Económico",
+    eslabón: 1, eslabónNombre: "Resultado económico",
     texto: "¿Tenés un cierre mensual que te muestre ventas, costos, estructura, impuestos y ganancia neta?",
     opciones: [
       { letra:"A", texto:"Sí, por supuesto que lo tengo", score: 3 },
@@ -3734,9 +3886,9 @@ const PREGUNTAS = [
       { tipo:"crit", texto:"Sin cierre mensual, el resultado del negocio es una sensación. No un número real." }
     ]
   },
-  // ESLABÓN 2: Cash Flow
+  // ESLABÓN 2: Flujo de caja
   {
-    eslabón: 2, eslabónNombre: "Cash Flow",
+    eslabón: 2, eslabónNombre: "Flujo de caja",
     texto: "¿Llegás a fin de mes con plata disponible para pagar sueldos y proveedores sin apurarte?",
     opciones: [
       { letra:"A", texto:"Sí, siempre", score: 3 },
@@ -3746,11 +3898,11 @@ const PREGUNTAS = [
     reacciones: [
       { tipo:"ok",   texto:"Bien. Tener liquidez cuando la necesitás es señal de que el flujo está ordenado." },
       { tipo:"warn", texto:"Llegar justo todos los meses no es normal. Es una señal de que algo en el flujo está desbalanceado." },
-      { tipo:"crit", texto:"Mientras más vendés, más te atorás. Eso es un cuello de botella financiero, no un problema de ventas." }
+      { tipo:"crit", texto:"Cuanto más vende el negocio, más se atora la caja. Eso es un cuello de botella financiero, no un problema de ventas." }
     ]
   },
   {
-    eslabón: 2, eslabónNombre: "Cash Flow",
+    eslabón: 2, eslabónNombre: "Flujo de caja",
     texto: "¿Sabés con anticipación cuándo van a ser tus próximos gastos fuertes?",
     opciones: [
       { letra:"A", texto:"Sí, los tengo mapeados", score: 3 },
@@ -3764,7 +3916,7 @@ const PREGUNTAS = [
     ]
   },
   {
-    eslabón: 2, eslabónNombre: "Cash Flow",
+    eslabón: 2, eslabónNombre: "Flujo de caja",
     texto: "¿Tus cobros y pagos están equilibrados o siempre pagás antes de cobrar?",
     opciones: [
       { letra:"A", texto:"Cobro antes o al mismo tiempo que pago", score: 3 },
@@ -3774,12 +3926,12 @@ const PREGUNTAS = [
     reacciones: [
       { tipo:"ok",   texto:"Bien. Cobrar antes de pagar es la base de un flujo sano. Muchos negocios rentables quiebran por esto." },
       { tipo:"warn", texto:"Cuando pagás antes de cobrar, financiás a tu cliente con tu propia plata. Eso tiene un costo real." },
-      { tipo:"crit", texto:"Estás esperando que entre la plata contando los días. Eso es un cuello de botella financiero puro." }
+      { tipo:"crit", texto:"La caja del negocio depende de que la plata entre a tiempo, contando los días. Eso es un cuello de botella financiero puro." }
     ]
   },
-  // ESLABÓN 3: Indicadores de Gestión
+  // ESLABÓN 3: Indicadores de gestión
   {
-    eslabón: 3, eslabónNombre: "Indicadores de Gestión",
+    eslabón: 3, eslabónNombre: "Indicadores de gestión",
     texto: "¿Revisás los números de tu negocio al menos una vez por mes?",
     opciones: [
       { letra:"A", texto:"Sí, lo hago todos los meses", score: 3 },
@@ -3789,11 +3941,11 @@ const PREGUNTAS = [
     reacciones: [
       { tipo:"ok",   texto:"Bien. El que revisa sus números mensualmente toma mejores decisiones que el que los mira una vez por año." },
       { tipo:"warn", texto:"Sin revisión mensual, los problemas se acumulan en silencio. Cuando los ves, ya costaron caro." },
-      { tipo:"crit", texto:"Manejás el negocio al tum tún. Sin los números arriba de la mesa, cualquier decisión es una apuesta." }
+      { tipo:"crit", texto:"Sin los números arriba de la mesa, el negocio se maneja al tum tún y cualquier decisión es una apuesta." }
     ]
   },
   {
-    eslabón: 3, eslabónNombre: "Indicadores de Gestión",
+    eslabón: 3, eslabónNombre: "Indicadores de gestión",
     texto: "¿Tenés algún indicador que seguís regularmente (crecimiento de ventas, contribución marginal, punto de equilibrio)?",
     opciones: [
       { letra:"A", texto:"Sí, tengo uno o más que sigo de cerca", score: 3 },
@@ -3802,12 +3954,12 @@ const PREGUNTAS = [
     ],
     reacciones: [
       { tipo:"ok",   texto:"Bien. Tener un indicador propio es señal de que gestionás con criterio, no a ojo." },
-      { tipo:"warn", texto:"Un indicador que mirás a veces no te da tendencia. Y sin tendencia, no podés saber si mejoraste." },
-      { tipo:"crit", texto:"Sin un número que seguir, lo que tenés dando vueltas por todos lados nunca se convierte en información útil." }
+      { tipo:"warn", texto:"Un indicador que se mira a veces no da tendencia. Y sin tendencia no se sabe si el negocio mejoró." },
+      { tipo:"crit", texto:"Sin un número que seguir (cuánto crecen las ventas, cuánto deja cada venta, cuánto hay que vender para cubrir los gastos), lo que da vueltas por todos lados nunca se convierte en información útil." }
     ]
   },
   {
-    eslabón: 3, eslabónNombre: "Indicadores de Gestión",
+    eslabón: 3, eslabónNombre: "Indicadores de gestión",
     texto: "¿Tomás decisiones de inversión o contratación con datos concretos?",
     opciones: [
       { letra:"A", texto:"Sí, siempre me baso en números", score: 3 },
@@ -3817,7 +3969,7 @@ const PREGUNTAS = [
     reacciones: [
       { tipo:"ok",   texto:"Bien. Decidir con datos no elimina el riesgo, pero sí lo reduce a lo que vale la pena asumir." },
       { tipo:"warn", texto:"A veces alcanza, a veces no. El problema es que cuando no alcanza, el costo de equivocarse es alto." },
-      { tipo:"crit", texto:"Decidís a ojo — eso ya lo sabemos. Este diagnóstico es el primer paso para cambiarlo." }
+      { tipo:"crit", texto:"Las decisiones grandes se toman a ojo. Este diagnóstico es el primer paso para que se tomen con números." }
     ]
   }
 ];
@@ -3826,14 +3978,14 @@ const PREGUNTAS = [
 const TEXTOS_RESULTADO = {
   costos: {
     critico: {
-      espejo: "Vendés todos los días, pero a fin de mes no entendés bien dónde se fue la plata.",
+      espejo: "El negocio vende todos los días, pero a fin de mes no queda claro dónde se fue la plata.",
       consecuencia: {
-        gastronomia: "Es muy probable que algunos platos de tu carta te den pérdida sin que lo sepas — cada vez que el costo de un ingrediente sube y el precio de la carta queda igual, estás regalando margen.",
+        gastronomia: "Es muy probable que algunos platos de la carta den pérdida sin que se note: cada vez que el costo de un ingrediente sube y el precio de la carta queda igual, el margen se regala.",
         peluqueria: "Es probable que algunos servicios te cuesten más en productos y tiempo de lo que cobrás por ellos — cada corte o color con descuento mal calculado te puede estar saliendo a pérdida.",
-        salud: "Es probable que algunas prácticas o productos no te estén dejando todo el margen que deberían — cada vez que no actualizás precios al ritmo de la inflación, perdés rentabilidad sin notarlo.",
-        comercio: "Es probable que tengas productos que vendés con un margen mínimo o negativo sin saberlo — la rotación te tapa el problema hasta que hacés el cálculo real.",
+        salud: "Es probable que algunas prácticas o productos no estén dejando todo el margen que deberían: cada vez que los precios no siguen a la inflación, la rentabilidad se pierde sin que se note.",
+        comercio: "Es probable que haya productos con margen mínimo o negativo sin que se vea: la rotación tapa el problema hasta que aparece el cálculo real.",
         servicios: "Es probable que tu tarifa no esté cubriendo todas las horas que realmente le dedicás a cada cliente — el tiempo invisible (mails, gestión, seguimiento) no está en tu precio.",
-        otro: "Es probable que estés vendiendo por debajo de tu costo real sin saberlo — sin un cálculo preciso, el margen se diluye en gastos que no ves."
+        otro: "Es probable que el negocio venda por debajo de su costo real sin que se note: sin un cálculo preciso, el margen se diluye en gastos que no aparecen."
       },
       gancho: "El problema no es vender más — es saber cuáles de tus ventas realmente te conviene hacer. Eso es lo que vemos en la llamada."
     },
@@ -3864,13 +4016,13 @@ const TEXTOS_RESULTADO = {
   },
   resultado: {
     critico: {
-      espejo: "Trabajás todo el mes, vendés, pero llegás a fin de mes sin tener claro cuánto ganaste realmente.",
+      espejo: "El negocio trabaja todo el mes y vende, pero llega a fin de mes sin un número claro de cuánto ganó de verdad.",
       consecuencia: {
-        gastronomia: "Es probable que estés confundiendo la plata que entra en caja con la ganancia real del local — son cosas muy distintas y la diferencia se nota cuando hay que invertir o afrontar un imprevisto.",
-        peluqueria: "Es probable que estés mezclando tu sueldo con la ganancia del salón sin darte cuenta — eso hace que cualquier decisión de inversión sea más difícil de evaluar.",
+        gastronomia: "Es probable que la plata que entra en caja se confunda con la ganancia real del local: son cosas muy distintas, y la diferencia aparece cuando hay que invertir o afrontar un imprevisto.",
+        peluqueria: "Es probable que tu sueldo y la ganancia del salón estén mezclados en un mismo número: eso hace que cualquier decisión de inversión sea más difícil de evaluar.",
         salud: "Es probable que la facturación te dé una sensación de orden que no necesariamente coincide con la ganancia real una vez descontados todos los costos.",
-        comercio: "Es probable que confundas ventas con ganancia — un mes de mucha venta no siempre es un mes de buena rentabilidad.",
-        servicios: "Es probable que no tengas separado lo que cobrás de lo que realmente te queda después de gastos e impuestos.",
+        comercio: "Es probable que las ventas y la ganancia se estén leyendo como lo mismo: un mes de mucha venta no siempre es un mes de buena rentabilidad.",
+        servicios: "Es probable que lo que se cobra y lo que realmente queda después de gastos e impuestos no estén separados en ningún lado.",
         otro: "Es probable que la sensación de 'me está yendo bien' no esté respaldada por un número concreto de ganancia real."
       },
       gancho: "Sin ese número, cualquier decisión grande es una apuesta. El primer paso es tener un cierre simple y confiable. Eso es lo que armamos en la llamada."
@@ -3940,7 +4092,7 @@ const TEXTOS_RESULTADO = {
   },
   gestion: {
     critico: {
-      espejo: "Tomás decisiones importantes del negocio más por intuición o urgencia que por información concreta.",
+      espejo: "Las decisiones importantes del negocio se toman más por intuición o urgencia que por información concreta.",
       consecuencia: {
         gastronomia: "Decisiones como sumar un plato, abrir un turno o contratar personal probablemente se están tomando sin el respaldo de números que confirmen si conviene.",
         peluqueria: "Decisiones como sumar una silla, un servicio nuevo o ajustar precios probablemente se toman sin un análisis de impacto real.",
@@ -4267,7 +4419,7 @@ function showResultPartial() {
     badge.className = 'score-badge critical';
   }
 
-  const nombres = ['Costos y Precios','Resultado Económico','Cash Flow','Indicadores de Gestión'];
+  const nombres = ['Costos y precios','Resultado económico','Flujo de caja','Indicadores de gestión'];
   const grid = document.getElementById('eslabones-grid');
   grid.innerHTML = '';
   const weakestIdx = state.eslabónScores.indexOf(Math.min(...state.eslabónScores));
@@ -4417,7 +4569,7 @@ function submitLead(e) {
 
 function sendLeadToSheet() {
   if (!SHEET_WEBHOOK_URL || SHEET_WEBHOOK_URL.startsWith('PEGAR_ACA')) return Promise.resolve('no-verificado');
-  const nombresEslabon = ['Costos y Precios','Resultado Económico','Cash Flow','Indicadores de Gestión'];
+  const nombresEslabon = ['Costos y precios','Resultado económico','Flujo de caja','Indicadores de gestión'];
   const { eslabonDebilIndex, total, nivelGravedad, titulo, data, consecuencia, primerPaso } = getDiagnosticoData();
 
   const eslabones = state.eslabónScores.map((s, i) => ({ nombre: nombresEslabon[i], score: s, estado: getEslabónLabel(s, 3) }));
@@ -4465,7 +4617,7 @@ const TITULO_DIAGNOSTICO = {
     solido:      'Buena base de costos — el problema está en otro lado'
   },
   resultado: {
-    critico:     'Trabajás mucho, pero no queda ganancia real',
+    critico:     'El negocio trabaja mucho, pero no queda ganancia real',
     desarrollo:  'Hay resultado, pero sin precisión ni control',
     solido:      'El resultado económico está ordenado'
   },
@@ -4475,14 +4627,14 @@ const TITULO_DIAGNOSTICO = {
     solido:      'El flujo de caja está bajo control'
   },
   gestion: {
-    critico:     'Tomás decisiones sin datos — y eso tiene costo',
+    critico:     'Las decisiones se toman sin datos, y eso tiene costo',
     desarrollo:  'Tenés intuición, pero faltan números concretos',
     solido:      'Buena gestión — podés optimizar los detalles'
   }
 };
 
 const PRIMER_PASO = {
-  costos:    "Podés estar vendiendo bien y tener productos que trabajan en contra tuya sin que lo notes. El costo real de lo que vendés no es lo que pagás por el insumo —es eso más un montón de gastos que se diluyen en el día a día—, y mientras siga siendo una estimación disfrazada de certeza, la distancia entre 'va bien' y lo que de verdad te queda es más grande de lo que parece.",
+  costos:    "El negocio puede estar vendiendo bien y tener productos que trabajan en contra sin que se note. El costo real de lo que vendés no es lo que pagás por el insumo —es eso más un montón de gastos que se diluyen en el día a día—, y mientras siga siendo una estimación disfrazada de certeza, la distancia entre 'va bien' y lo que de verdad te queda es más grande de lo que parece.",
   resultado: "Plata en caja no es ganancia: adentro de ese saldo hay costos, impuestos y estructura que todavía no descontaste, así que el negocio puede estar en rojo justo mientras vos lo sentís en verde. Cada mes que ese número real no aparece, seguís decidiendo precios, gastos y sueldos sobre una cifra que no existe.",
   cashflow:  "Rentable y con caja no son lo mismo: podés ganar plata todos los meses y aun así vivir tapando huecos con la tarjeta o con plata que era para otra cosa. Cada parche tiene un precio que casi nunca ves de frente —intereses, descuentos por necesitar la plata ya, oportunidades que dejás pasar— y el tamaño real del hueco no se siente desde adentro hasta que ya estás corriendo de atrás.",
   gestion:   "Cada decisión que tomás sin el número atrás es una apuesta que a veces sale bien de casualidad, no por criterio. Lo grave es que, sin datos, ni siquiera sabés cuántas veces ya salió mal ni cuánta plata quedó en el camino."
