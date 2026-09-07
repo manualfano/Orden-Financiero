@@ -2388,6 +2388,100 @@ footer { padding: var(--s-6) 0; }
   body.has-sticky-cta { padding-bottom: calc(var(--s-8) + var(--s-3)); }
 }
 
+/* ── ENCABEZADO TIPO TIRA (07/09): barra solida, marca y CTA mas grandes ── */
+nav {
+  height: 76px;
+  background: var(--navy-900);
+  border-bottom: 1px solid var(--w-border);
+}
+
+nav.scrolled { background: var(--navy-900-92); }
+[id] { scroll-margin-top: calc(var(--s-8) + var(--s-5)); }
+
+.nav-inner { gap: var(--s-6); }
+.brand { gap: var(--s-3); }
+.brand-mark { width: 42px; height: 42px; border-radius: var(--r-lg); }
+.brand-mark svg { width: 22px; height: 22px; }
+.brand-name { font-size: var(--fs-h3); }
+
+.nav-funnel { gap: var(--s-2); }
+.nav-link { font-size: var(--fs-base); padding: var(--s-2) var(--s-3); color: var(--w-92); }
+.nav-link:hover { color: var(--w); background: var(--w-10); }
+
+.nav-cta {
+  font-size: var(--fs-base);
+  padding: var(--s-3) var(--s-5);
+  min-height: 48px;
+  margin-left: var(--s-4);
+  background: var(--marca);
+  color: var(--w);
+  border: 1.5px solid var(--marca);
+}
+
+.nav-cta:hover { background: var(--marca-hover); border-color: var(--marca-hover); color: var(--w); }
+
+/* el hero arranca debajo de la tira, no detras */
+.hero-inner { padding-top: calc(var(--s-8) + var(--s-8)); }
+
+@media (max-width: 960px) {
+  nav { height: 64px; }
+  .brand-mark { width: 36px; height: 36px; border-radius: var(--r); }
+  .brand-mark svg { width: 18px; height: 18px; }
+  .brand-name { font-size: var(--fs-lead); }
+  .nav-cta { min-height: 44px; padding: var(--s-2) var(--s-4); font-size: var(--fs-sm); margin-left: var(--s-2); }
+  .hero-inner { padding-top: calc(var(--s-8) + var(--s-6)); }
+}
+
+@media (max-width: 640px) {
+  .brand-name { font-size: var(--fs-base); }
+  .nav-cta { padding: var(--s-2) var(--s-3); font-size: var(--fs-sm); letter-spacing: -0.01em; }
+}
+
+/* "Ingresar" al portal en la tira: delineado, misma altura que el CTA */
+.nav-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: var(--s-3) var(--s-4);
+  margin-left: var(--s-2);
+  border: 1.5px solid var(--w-20);
+  border-radius: var(--r);
+  color: var(--w);
+  font-size: var(--fs-base);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 1.2;
+  transition: background var(--t-instante), border-color var(--t-instante);
+}
+
+.nav-login:hover { background: var(--w-10); border-color: var(--w-92); }
+
+@media (max-width: 960px) {
+  .nav-login { min-height: 44px; padding: var(--s-2) var(--s-3); font-size: var(--fs-sm); }
+}
+
+@media (max-width: 640px) {
+  /* en el celular: isotipo + los dos botones; el nombre de la marca no entra */
+  .brand-name { display: none; }
+  .nav-inner { padding: 0 var(--s-3); gap: var(--s-2); }
+  .nav-cta { margin-left: 0; padding: var(--s-2) var(--s-3); }
+  .nav-login { margin-left: 0; padding: var(--s-2) var(--s-3); }
+}
+
+/* tres zonas: marca | links centrados | acciones */
+.nav-inner { display: grid; grid-template-columns: auto 1fr auto; align-items: center; }
+.nav-funnel { justify-content: center; }
+.nav-right { justify-content: flex-end; gap: var(--s-2); }
+.nav-cta { margin-left: 0; }
+.nav-login { margin-left: 0; }
+
+@media (max-width: 960px) {
+  .nav-inner { grid-template-columns: auto auto; justify-content: space-between; }
+  .nav-funnel { display: none; }
+}
+
 /* ══════════════════════════════════════════
    DIAGNÓSTICO — OVERLAY
    ══════════════════════════════════════════ */
@@ -3679,13 +3773,15 @@ footer { padding: var(--s-6) 0; }
       </span>
       <span class="brand-name">ordenfinanciero<span class="dot">.</span></span>
     </a>
+    <div class="nav-funnel">
+      <a href="#que-analizamos" class="nav-link">El diagnóstico</a>
+      <a href="#metodo" class="nav-link">El programa</a>
+      <a href="#manuel" class="nav-link">Quién está detrás</a>
+    </div>
     <div class="nav-right">
-      <div class="nav-funnel">
-        <a href="#que-analizamos" class="nav-link">El diagnóstico</a>
-        <a href="#metodo" class="nav-link">El programa</a>
-        <a href="#manuel" class="nav-link">Quién está detrás</a>
-        <button class="nav-cta" onclick="openDiagnostico('nav')">Hacer el diagnóstico · 3 min</button>
-      </div>
+      <button class="nav-cta" onclick="openDiagnostico('nav')">Hacer el diagnóstico · 3 min</button>
+      <!-- Acceso de clientes al portal (dueño, 07/09): delineado, al lado del CTA -->
+      <a class="nav-login" href="https://orden-financiero-portal.vercel.app/login" rel="noopener" onclick="track('cta_portal', { desde: 'nav' })">Ingresar</a>
     </div>
   </div>
 </nav>
