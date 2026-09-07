@@ -1918,13 +1918,6 @@ footer {
 .diag-overlay .btn-primary:hover { background: var(--marca-hover); transform: translateY(-1px); }
 .diag-overlay .btn-primary:active { transform: translateY(0); }
 
-.diag-overlay .btn-primary[aria-disabled="true"] {
-  background: var(--lienzo-2);
-  color: var(--tinta-3);
-  cursor: not-allowed;
-  transform: none;
-}
-
 /* ── RUBRO ── */
 .diag-overlay .lead-title {
   font-size: 24px;
@@ -2112,42 +2105,6 @@ footer {
 .diag-overlay .q-reaction.crit { background: var(--riesgo-bg); color: var(--riesgo); border-color: rgb(var(--riesgo-rgb) / 0.25); }
 .diag-overlay .q-reaction.crit svg { color: var(--riesgo); }
 
-.diag-overlay .q-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.diag-overlay .q-countdown {
-  display: none;
-  flex: 1;
-  max-width: 200px;
-}
-
-.diag-overlay .q-countdown.visible { display: block; }
-
-.diag-overlay .q-countdown-bar {
-  height: 3px;
-  background: var(--lienzo-2);
-  border-radius: 99px;
-  overflow: hidden;
-}
-
-.diag-overlay .q-countdown-fill {
-  height: 100%;
-  width: 100%;
-  background: var(--marca);
-  border-radius: 99px;
-  transform-origin: left;
-  animation: countdownShrink 4s linear forwards paused;
-}
-
-@keyframes countdownShrink {
-  from { transform: scaleX(1); }
-  to   { transform: scaleX(0); }
-}
-
 /* ── FORM (lead) ── */
 .diag-overlay .form-group { margin-bottom: 15px; }
 
@@ -2202,136 +2159,6 @@ footer {
 }
 
 .diag-overlay .privacy-note svg { width: 13px; height: 13px; flex-shrink: 0; }
-
-/* ── CHECKPOINT ── */
-.diag-overlay #screen-checkpoint { min-height: 60vh; }
-
-.diag-overlay #screen-checkpoint.active {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.diag-overlay .checkpoint-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  text-align: center;
-  animation: fadeUp var(--t-rapido) var(--ease-estandar);
-}
-
-.diag-overlay .checkpoint-ring { position: relative; width: 96px; height: 96px; }
-
-.diag-overlay .checkpoint-ring svg.ring-svg { width: 96px; height: 96px; transform: rotate(-90deg); }
-
-.diag-overlay .checkpoint-ring .ring-track { fill: none; stroke: var(--lienzo-2); stroke-width: 7; }
-.diag-overlay .checkpoint-ring .ring-fill  {
-  fill: none; stroke-width: 7; stroke-linecap: round;
-  transition: stroke-dashoffset 0.9s var(--ease-estandar) var(--t-instante);
-}
-.diag-overlay .checkpoint-ring.ok   .ring-fill { stroke: var(--positivo); }
-.diag-overlay .checkpoint-ring.warn .ring-fill { stroke: var(--alerta); }
-.diag-overlay .checkpoint-ring.crit .ring-fill { stroke: var(--riesgo); }
-
-.diag-overlay .checkpoint-ring .checkpoint-icon {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--navy);
-}
-
-.diag-overlay .checkpoint-ring .checkpoint-icon svg { width: 30px; height: 30px; }
-
-.diag-overlay .checkpoint-label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--marca);
-  background: var(--marca-soft);
-  border: 1px solid var(--marca-border);
-  border-radius: 99px;
-  padding: 3px 12px;
-}
-
-.diag-overlay .checkpoint-name {
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--navy);
-  letter-spacing: -0.015em;
-}
-
-.diag-overlay .checkpoint-score {
-  font-size: 40px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
-  line-height: 1;
-}
-
-.diag-overlay .checkpoint-score.ok   { color: var(--positivo); }
-.diag-overlay .checkpoint-score.warn { color: var(--alerta); }
-.diag-overlay .checkpoint-score.crit { color: var(--riesgo); }
-
-.diag-overlay .checkpoint-frase {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--tinta-2);
-}
-
-/* ── ANALIZANDO ── */
-.diag-overlay #screen-analyzing { min-height: 60vh; }
-
-.diag-overlay #screen-analyzing.active {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.diag-overlay .analyzing-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
-  text-align: center;
-}
-
-.diag-overlay .analyzing-mark {
-  width: 56px; height: 56px;
-  border-radius: 14px;
-  background: var(--marca);
-  display: flex; align-items: center; justify-content: center;
-  animation: analyzingPulse 1.4s ease-in-out infinite;
-}
-
-.diag-overlay .analyzing-mark svg { width: 28px; height: 28px; }
-
-@keyframes analyzingPulse {
-  0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.07); }
-}
-
-.diag-overlay .analyzing-lines {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  min-height: 90px;
-}
-
-.diag-overlay .analyzing-line {
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--tinta-2);
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity var(--t-rapido) var(--ease-estandar), transform var(--t-rapido) var(--ease-estandar);
-}
-
-.diag-overlay .analyzing-line.visible { opacity: 1; transform: translateY(0); }
-.diag-overlay .analyzing-line.fading  { opacity: 0.25; }
 
 /* ── RESULTADO ── */
 .diag-overlay #screen-result { max-width: 700px; padding-bottom: 24px; }
@@ -2640,37 +2467,236 @@ footer {
   padding: 13px 24px;
 }
 
+/* ── CIERRE Y NAVEGACIÓN DEL OVERLAY (Fase 2) ── */
+.diag-overlay .panel-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 44px;
+}
+
+.diag-overlay .panel-brand { margin: 0; }
+
+.diag-overlay .diag-close {
+  width: 44px; height: 44px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: var(--r);
+  border: 1px solid var(--w-border);
+  background: rgba(255,255,255,0.06);
+  color: var(--w);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--t-instante);
+}
+
+.diag-overlay .diag-close:hover { background: rgba(255,255,255,0.14); }
+.diag-overlay .diag-close svg { width: 18px; height: 18px; }
+
+.diag-overlay .close-confirm {
+  position: relative;
+  z-index: 2;
+  margin: -24px 0 20px;
+  padding: 14px 16px;
+  border: 1px solid var(--w-border);
+  border-radius: var(--r);
+  background: rgba(255,255,255,0.06);
+  color: var(--w-70);
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.diag-overlay .close-confirm[hidden] { display: none; }
+.diag-overlay .close-confirm p { margin: 0 0 10px; }
+.diag-overlay .close-confirm .row { display: flex; gap: 8px; }
+
+.diag-overlay .close-confirm button {
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  min-height: 44px;
+  padding: 9px 16px;
+  border-radius: var(--r);
+  cursor: pointer;
+  border: 1px solid var(--w-border);
+  background: transparent;
+  color: var(--w);
+}
+
+.diag-overlay .close-confirm button.primary { background: var(--w); color: var(--navy); border-color: var(--w); }
+
+.diag-overlay .node-short { display: none; }
+
+.diag-overlay .rubro-card-sub { font-weight: 400; color: var(--tinta-3); }
+
+.diag-overlay .q-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.diag-overlay .btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--navy);
+  border: 1.5px solid var(--borde);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 13px 20px;
+  border-radius: var(--r);
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color var(--t-instante), color var(--t-instante);
+}
+
+.diag-overlay .btn-secondary:hover { border-color: var(--marca); color: var(--marca); }
+
+.diag-overlay .btn-secondary:disabled,
+.diag-overlay .btn-primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* la opcion elegida: un solo estado "seleccionado" (la reaccion conserva
+   su color semantico) */
+.diag-overlay .q-option[aria-pressed="true"] {
+  border-color: var(--marca);
+  background: var(--marca-soft);
+  box-shadow: 0 0 0 3px rgb(var(--marca-rgb) / 0.08);
+}
+
+.diag-overlay .q-option[aria-pressed="true"] .opt-letter { background: var(--marca); color: var(--w); }
+
+/* ── COMPUERTA (un campo, después del resultado parcial) ── */
+.diag-overlay .gate {
+  background: var(--bg);
+  border: 1px solid var(--borde);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.diag-overlay .gate[hidden] { display: none; }
+
+.diag-overlay .gate-title {
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.diag-overlay .gate-desc {
+  font-size: 14.5px;
+  color: var(--tinta-2);
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.diag-overlay .form-hint { font-size: 12.5px; color: var(--tinta-3); margin-top: 6px; }
+
+.diag-overlay .gate .btn-primary { width: 100%; margin-top: 6px; }
+
+.diag-overlay .gate-status {
+  display: none;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: var(--r);
+  font-size: 13.5px;
+  line-height: 1.5;
+  border: 1px solid transparent;
+}
+
+.diag-overlay .gate-status.visible { display: flex; gap: 10px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.diag-overlay .gate-status.error { background: var(--riesgo-bg); color: var(--riesgo); border-color: rgb(var(--riesgo-rgb) / 0.25); }
+.diag-overlay .gate-status .btn-secondary { font-size: 13.5px; padding: 9px 14px; }
+
+.diag-overlay .eslabon-weak-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--riesgo);
+  margin-top: 6px;
+}
+
+#result-full[hidden] { display: none; }
+
+.diag-overlay .cta-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  background: var(--marca-soft);
+  border: 1px solid var(--marca-border);
+  border-radius: var(--r-lg);
+  padding: 16px 18px;
+  margin-bottom: 16px;
+}
+
+.diag-overlay .cta-strip p {
+  margin: 0;
+  flex: 1;
+  min-width: 200px;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--navy);
+  line-height: 1.5;
+}
+
+.diag-overlay .cta-strip .btn { font-size: 14px; padding: 12px 18px; }
+
 /* ── MOBILE (diagnóstico) ── */
 @media (max-width: 768px) {
   .diag-overlay .app { flex-direction: column; height: 100vh; height: 100dvh; }
 
   .diag-overlay .panel-left {
     width: 100%; min-width: unset; max-width: unset;
-    padding: 16px 20px 14px;
+    padding: 12px 16px 12px;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
   }
 
-  .diag-overlay .panel-brand { margin-bottom: 0; flex: 1; }
+  /* fila 1: marca + "7 / 12" + X · fila 2: los 4 eslabones */
+  .diag-overlay .panel-top { flex: 1 1 auto; margin-bottom: 0; order: 0; }
+  .diag-overlay .total-progress { flex: 0 0 auto; order: 1; padding: 0 12px 0 0; margin: 0; }
+  .diag-overlay .progress-label { margin: 0; }
+  .diag-overlay .progress-label span { display: none; }
+  .diag-overlay .progress-bar-bg { display: none; }
+  .diag-overlay .close-confirm { flex: 100%; order: 3; margin: 10px 0 0; }
   .diag-overlay .chain-title { display: none; }
-  .diag-overlay .chain { flex-direction: row; gap: 8px; flex: 100%; margin-top: 14px; }
-  .diag-overlay .chain-node { flex-direction: column; align-items: center; text-align: center; flex: 1; padding: 4px; gap: 6px; }
+  .diag-overlay .chain { flex-direction: row; gap: 6px; flex: 100%; order: 2; margin-top: 8px; }
+  .diag-overlay .chain-node { flex-direction: column; align-items: center; text-align: center; flex: 1; padding: 2px; gap: 4px; }
   .diag-overlay .chain-node::after { display: none; }
+  .diag-overlay .node-dot { width: 30px; height: 30px; }
   .diag-overlay .node-info { display: none; }
-  .diag-overlay .node-score { font-size: 10.5px; padding-top: 0; }
-  .diag-overlay .total-progress { display: none; }
-  .diag-overlay .panel-right { padding: 28px 18px; }
-  .diag-overlay .top-progress-track { width: calc(100% + 36px); margin: -28px -18px 0; }
-  .diag-overlay .screen { margin: 24px 0 auto; }
-  .diag-overlay #screen-checkpoint,
-  .diag-overlay #screen-analyzing { margin: auto 0; }
+  .diag-overlay .node-short { display: block; font-size: 12px; font-weight: 500; color: var(--w-70); line-height: 1.2; }
+  .diag-overlay .chain-node.state-active .node-short { color: var(--w); font-weight: 600; }
+  .diag-overlay .node-score { font-size: 12px; padding-top: 0; }
+  .diag-overlay .progress-label strong { font-size: 13px; }
+  .diag-overlay .panel-right { padding: 24px 18px; }
+  .diag-overlay .top-progress-track { width: calc(100% + 36px); margin: -24px -18px 0; }
+  .diag-overlay .screen { margin: 0 0 auto; }
   .rubro-grid { grid-template-columns: 1fr; }
-  .diag-overlay .eslabones-grid { grid-template-columns: 1fr; }
+  /* 2×2: el resultado parcial entero cabe en menos de dos pantallas */
+  .diag-overlay .eslabones-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .diag-overlay .eslabon-card { padding: 12px 8px 10px; }
+  .diag-overlay .gauge-svg { max-width: 120px; }
   .diag-overlay .form-input { font-size: 16px; }
   .diag-overlay .btn-primary { width: 100%; padding: 15px 24px; }
-  .diag-overlay .q-footer { flex-direction: column-reverse; align-items: stretch; }
-  .diag-overlay .q-countdown { max-width: unset; }
+  .diag-overlay .q-nav .btn-primary { width: auto; flex: 1; }
+  .diag-overlay .q-nav .btn-secondary { flex: 0 0 auto; padding: 13px 16px; }
+  .diag-overlay .cta-strip .btn { width: 100%; }
 }
 
 @media (max-width: 380px) {
@@ -3222,12 +3248,25 @@ footer {
         <div class="ring"></div><div class="ring"></div><div class="ring"></div>
       </div>
 
-      <button class="panel-brand brand" onclick="closeDiagnostico()" title="Volver al inicio">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7" stroke="#7DB1F4" stroke-width="4"/><circle cx="12" cy="12" r="7" stroke="#ffffff" stroke-width="4" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/></svg>
-        </span>
-        <span class="brand-name">ordenfinanciero<span class="dot">.</span></span>
-      </button>
+      <div class="panel-top">
+        <div class="panel-brand brand" aria-hidden="true">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7" stroke="#7DB1F4" stroke-width="4"/><circle cx="12" cy="12" r="7" stroke="#ffffff" stroke-width="4" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/></svg>
+          </span>
+          <span class="brand-name">ordenfinanciero<span class="dot">.</span></span>
+        </div>
+        <button class="diag-close" type="button" onclick="pedirCierre()" aria-label="Cerrar el diagnóstico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="close-confirm" id="close-confirm" hidden>
+        <p>Tus respuestas quedan guardadas en este navegador: podés retomar después.</p>
+        <div class="row">
+          <button type="button" class="primary" onclick="closeDiagnostico()">Cerrar</button>
+          <button type="button" onclick="cancelarCierre()">Seguir</button>
+        </div>
+      </div>
 
       <div class="chain-title">Tu negocio bajo la lupa</div>
 
@@ -3236,6 +3275,7 @@ footer {
           <div class="node-dot" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
           </div>
+          <span class="node-short" aria-hidden="true">Costos</span>
           <div class="node-info">
             <div class="node-name">Costos y Precios</div>
             <div class="node-desc">¿Sabés cuánto te cuesta cada cosa?</div>
@@ -3246,6 +3286,7 @@ footer {
           <div class="node-dot" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
           </div>
+          <span class="node-short" aria-hidden="true">Resultado</span>
           <div class="node-info">
             <div class="node-name">Resultado Económico</div>
             <div class="node-desc">¿Conocés la ganancia real de tu negocio?</div>
@@ -3256,6 +3297,7 @@ footer {
           <div class="node-dot" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
           </div>
+          <span class="node-short" aria-hidden="true">Caja</span>
           <div class="node-info">
             <div class="node-name">Cash Flow</div>
             <div class="node-desc">¿Tenés plata cuando la necesitás?</div>
@@ -3266,6 +3308,7 @@ footer {
           <div class="node-dot" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
           </div>
+          <span class="node-short" aria-hidden="true">Gestión</span>
           <div class="node-info">
             <div class="node-name">Indicadores de Gestión</div>
             <div class="node-desc">¿Tomás decisiones con datos?</div>
@@ -3286,30 +3329,30 @@ footer {
     </aside>
 
     <!-- ── PANEL DERECHO ── -->
-    <main class="panel-right" id="panel-right">
+    <section class="panel-right" id="panel-right" aria-label="Contenido del diagnóstico">
       <div class="top-progress-track" aria-hidden="true"><div class="top-progress-fill" id="top-progress-fill"></div></div>
 
-      <!-- SCREEN: RUBRO -->
+      <!-- SCREEN: RUBRO (elegir el rubro pasa directo a la pregunta 1) -->
       <div class="screen active" id="screen-rubro">
         <h2 class="lead-title">Antes de arrancar, contanos de tu negocio</h2>
-        <p class="lead-desc">Así adaptamos el diagnóstico a tu rubro.</p>
+        <p class="lead-desc">Así adaptamos el diagnóstico a tu rubro. Tocá el tuyo para empezar.</p>
 
         <div class="rubro-grid" role="radiogroup" aria-label="¿A qué se dedica tu negocio?">
           <button class="rubro-card" role="radio" aria-checked="false" data-rubro="gastronomia" onclick="selectRubro(this)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-            <span class="rubro-card-name">Gastronomía<br><small style="font-weight:400;color:var(--tinta-3)">restaurante, bar, café, panadería</small></span>
+            <span class="rubro-card-name">Gastronomía<br><small class="rubro-card-sub">restaurante, bar, café, panadería</small></span>
           </button>
           <button class="rubro-card" role="radio" aria-checked="false" data-rubro="peluqueria" onclick="selectRubro(this)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
-            <span class="rubro-card-name">Salón de belleza<br><small style="font-weight:400;color:var(--tinta-3)">peluquería, estética</small></span>
+            <span class="rubro-card-name">Salón de belleza<br><small class="rubro-card-sub">peluquería, estética</small></span>
           </button>
           <button class="rubro-card" role="radio" aria-checked="false" data-rubro="salud" onclick="selectRubro(this)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            <span class="rubro-card-name">Salud<br><small style="font-weight:400;color:var(--tinta-3)">veterinaria, consultorio, farmacia</small></span>
+            <span class="rubro-card-name">Salud<br><small class="rubro-card-sub">veterinaria, consultorio, farmacia</small></span>
           </button>
           <button class="rubro-card" role="radio" aria-checked="false" data-rubro="comercio" onclick="selectRubro(this)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-            <span class="rubro-card-name">Comercio<br><small style="font-weight:400;color:var(--tinta-3)">tienda, local de venta</small></span>
+            <span class="rubro-card-name">Comercio<br><small class="rubro-card-sub">tienda, local de venta</small></span>
           </button>
           <button class="rubro-card" role="radio" aria-checked="false" data-rubro="servicios" onclick="selectRubro(this)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
@@ -3320,10 +3363,6 @@ footer {
             <span class="rubro-card-name">Otro rubro</span>
           </button>
         </div>
-
-        <button class="btn-primary" id="btn-rubro-next" onclick="submitRubro()" aria-disabled="true">
-          Empezar diagnóstico <span aria-hidden="true">→</span>
-        </button>
       </div>
 
       <!-- SCREEN: PREGUNTAS -->
@@ -3337,89 +3376,20 @@ footer {
           <h2 class="q-text" id="q-text"></h2>
         </div>
 
-        <div class="q-options" id="q-options"></div>
+        <div class="q-options" id="q-options" role="group" aria-label="Opciones de respuesta"></div>
         <div class="q-reaction" id="q-reaction" aria-live="polite"></div>
 
-        <div class="q-footer">
-          <div class="q-countdown" id="q-countdown" aria-hidden="true">
-            <div class="q-countdown-bar"><div class="q-countdown-fill"></div></div>
-          </div>
-          <button class="btn-primary" id="btn-next" onclick="nextQuestion()" style="display:none">
+        <div class="q-nav">
+          <button class="btn-secondary" type="button" id="btn-prev" onclick="prevQuestion()">
+            <span aria-hidden="true">←</span> Anterior
+          </button>
+          <button class="btn-primary" type="button" id="btn-next" onclick="nextQuestion()" disabled>
             Siguiente <span aria-hidden="true">→</span>
           </button>
         </div>
       </div>
 
-      <!-- SCREEN: LEAD CAPTURE -->
-      <div class="screen" id="screen-lead">
-        <h2 class="lead-title">¡Casi listo! Tus resultados están listos.</h2>
-        <p class="lead-desc">Dejanos tus datos para enviarte el diagnóstico completo y que puedas consultarlo cuando quieras.</p>
-
-        <div class="form-group">
-          <label class="form-label" for="lead-name">Nombre y Apellido</label>
-          <input class="form-input" type="text" id="lead-name" name="name" autocomplete="name" placeholder="Juan García" />
-          <p class="form-error" id="err-name">Contanos tu nombre para personalizar el diagnóstico.</p>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="lead-wa">WhatsApp</label>
-          <input class="form-input" type="tel" id="lead-wa" name="tel" autocomplete="tel" inputmode="tel" placeholder="+54 9 11 1234-5678" />
-          <p class="form-error" id="err-wa">Necesitamos un WhatsApp para enviarte el diagnóstico.</p>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="lead-negocio">Nombre del negocio</label>
-          <input class="form-input" type="text" id="lead-negocio" name="organization" autocomplete="organization" placeholder="Mi Negocio" />
-          <p class="form-error" id="err-negocio">Contanos el nombre de tu negocio.</p>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="lead-sistema">Sistema de gestión / ventas <span class="opt">(opcional)</span></label>
-          <input class="form-input" type="text" id="lead-sistema" placeholder="Ej: Fudo, Tango, ninguno" />
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="lead-instagram">Instagram <span class="opt">(opcional)</span></label>
-          <input class="form-input" type="text" id="lead-instagram" placeholder="@minegocio" />
-        </div>
-
-        <button class="btn-primary" onclick="submitLead()" style="margin-top:8px">
-          Ver mi diagnóstico completo <span aria-hidden="true">→</span>
-        </button>
-        <p class="privacy-note">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          Tu información es confidencial. No compartimos tus datos con terceros.
-        </p>
-      </div>
-
-      <!-- SCREEN: CHECKPOINT -->
-      <div class="screen" id="screen-checkpoint">
-        <div class="checkpoint-wrap">
-          <div class="checkpoint-ring" id="checkpoint-ring">
-            <svg class="ring-svg" viewBox="0 0 96 96" aria-hidden="true">
-              <circle class="ring-track" cx="48" cy="48" r="42"/>
-              <circle class="ring-fill" id="checkpoint-ring-fill" cx="48" cy="48" r="42" stroke-dasharray="263.9" stroke-dashoffset="263.9"/>
-            </svg>
-            <div class="checkpoint-icon" id="checkpoint-icon" aria-hidden="true"></div>
-          </div>
-          <div class="checkpoint-label">Bloque completado</div>
-          <div class="checkpoint-name" id="checkpoint-name">Costos y Precios</div>
-          <div class="checkpoint-score" id="checkpoint-score">7/9</div>
-          <div class="checkpoint-frase" id="checkpoint-frase">Esto está ordenado</div>
-        </div>
-      </div>
-
-      <!-- SCREEN: ANALIZANDO -->
-      <div class="screen" id="screen-analyzing">
-        <div class="analyzing-wrap">
-          <div class="analyzing-mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7" stroke="#7DB1F4" stroke-width="4"/><circle cx="12" cy="12" r="7" stroke="#ffffff" stroke-width="4" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/></svg>
-          </div>
-          <div class="analyzing-lines" aria-live="polite">
-            <div class="analyzing-line" id="aline-1">Analizando tus respuestas...</div>
-            <div class="analyzing-line" id="aline-2">Identificando el eslabón más débil...</div>
-            <div class="analyzing-line" id="aline-3">Preparando tu diagnóstico personalizado...</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SCREEN: RESULTADO -->
+      <!-- SCREEN: RESULTADO (parcial → contacto → análisis completo) -->
       <div class="screen" id="screen-result">
         <div class="result-header">
           <div class="result-eyebrow">Diagnóstico financiero</div>
@@ -3440,27 +3410,53 @@ footer {
           <div class="eslabones-grid" id="eslabones-grid"></div>
         </div>
 
-        <div class="ai-narrative" id="ai-narrative">
-          <div class="ai-narrative-header">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-            <span>Análisis de tu negocio</span>
+        <!-- Compuerta: un solo campo, después del resultado parcial -->
+        <form class="gate" id="result-gate" novalidate onsubmit="return submitLead(event)">
+          <h3 class="gate-title" id="gate-title">Qué hacer primero con este resultado</h3>
+          <p class="gate-desc">Con tu WhatsApp destrabás el análisis completo de tu negocio y el primer paso concreto para ordenarlo. Es el número al que Manuel te puede escribir para revisar el resultado con vos.</p>
+          <div class="form-group">
+            <label class="form-label" for="lead-wa">Tu WhatsApp</label>
+            <input class="form-input" type="tel" id="lead-wa" name="tel" autocomplete="tel" inputmode="tel" placeholder="221 555 0000" required aria-describedby="wa-hint err-wa" oninput="previewWhatsApp()" />
+            <p class="form-hint" id="wa-hint">Código de área y número, sin el 0 ni el 15.</p>
+            <p class="form-error" id="err-wa" role="alert"></p>
           </div>
-          <div class="ai-narrative-text" id="ai-narrative-content"></div>
-        </div>
+          <button class="btn-primary" type="submit" id="btn-lead">Ver el análisis completo <span aria-hidden="true">→</span></button>
+          <div class="gate-status" id="gate-status"></div>
+          <p class="privacy-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Tu información es confidencial. No compartimos tus datos con terceros.
+          </p>
+        </form>
 
-        <div class="cta-card">
-          <div class="rings" aria-hidden="true">
-            <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+        <!-- Análisis completo: se muestra al dejar el WhatsApp -->
+        <div id="result-full" hidden>
+          <div class="cta-strip" id="cta-strip">
+            <p>Revisamos este resultado con tus números reales: 30 minutos, gratis, con Manuel.</p>
+            <a class="btn btn-blue" id="cta-top-link" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2ObyolYWVEvMKs_tLRnn44v51LuYKjodxamoeF-LVymZFv5-rlDky70uJEDAu2XCaUHjDTgARg" target="_blank" rel="noopener" onclick="track('cta_calendar_click', { desde: 'resultado-arriba' })">Agendar la llamada <span class="arrow" aria-hidden="true">→</span></a>
           </div>
-          <div class="cta-title" id="cta-card-title">Reservá 30 minutos gratis con Manuel</div>
-          <p class="cta-desc" id="cta-card-desc">Revisamos juntos tus números reales (no la encuesta) y salís con los próximos pasos para cerrar la brecha que marcó este diagnóstico.</p>
-          <a id="cta-card-link" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2ObyolYWVEvMKs_tLRnn44v51LuYKjodxamoeF-LVymZFv5-rlDky70uJEDAu2XCaUHjDTgARg" target="_blank" rel="noopener" class="btn btn-white" onclick="track('cta_calendar_click', { desde: location.hostname.startsWith('diagnostico.') ? 'post-agenda' : 'resultado' })">
-            Agendar llamada gratis (30 min) →
-          </a>
+
+          <div class="ai-narrative" id="narrative">
+            <div class="ai-narrative-header">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              <span>Tu eslabón más débil, explicado</span>
+            </div>
+            <div class="ai-narrative-text" id="narrative-content"></div>
+          </div>
+
+          <div class="cta-card">
+            <div class="rings" aria-hidden="true">
+              <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+            </div>
+            <div class="cta-title" id="cta-card-title">Reservá 30 minutos gratis con Manuel</div>
+            <p class="cta-desc" id="cta-card-desc">Revisamos juntos tus números reales (no la encuesta) y salís con los próximos pasos para cerrar la brecha que marcó este diagnóstico.</p>
+            <a id="cta-card-link" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2ObyolYWVEvMKs_tLRnn44v51LuYKjodxamoeF-LVymZFv5-rlDky70uJEDAu2XCaUHjDTgARg" target="_blank" rel="noopener" class="btn btn-white" onclick="track('cta_calendar_click', { desde: location.hostname.startsWith('diagnostico.') ? 'post-agenda' : 'resultado' })">
+              Agendar llamada gratis (30 min) →
+            </a>
+          </div>
         </div>
       </div>
 
-    </main>
+    </section>
   </div>
 </div>
 
@@ -3542,67 +3538,97 @@ function _cerrarTrap() {
   _lastFocus = null;
 }
 
-// ── OVERLAY: HISTORY API ────────────────────────────────────────
+// ── OVERLAY: abrir, retomar, cerrar ─────────────────────────────
+// El estado vive en sessionStorage (saveState/loadState, mas abajo):
+// recargar, volver atras o cerrar no pierde las respuestas.
 function openDiagnostico(origen) {
-  document.getElementById('diag-overlay').classList.add('active');
+  const ov = document.getElementById('diag-overlay');
+  ov.classList.add('active');
   document.body.style.overflow = 'hidden';
-  history.pushState({ diag: true }, '', '#diagnostico');
-  startDiag();
+  if (location.hash === '#diagnostico') history.replaceState({ diag: true }, '', '#diagnostico');
+  else history.pushState({ diag: true }, '', '#diagnostico');
+
+  const retomado = loadState();
+  if (!retomado) {
+    startDiag();
+    state.origen = origen || 'desconocido';
+  }
+  state._abandonTracked = false;
+  document.getElementById('close-confirm').hidden = true;
   _abrirTrap();
-  state.origen = origen || 'desconocido';
-  state.completado = false;
-  track('diag_open', { origen: state.origen });
+  track('diag_open', { origen: origen || 'desconocido', retomado: retomado ? 'si' : 'no' });
+  if (retomado) resumeScreen();
+}
+
+function resumeScreen() {
+  document.querySelectorAll('.rubro-card').forEach(c => {
+    const on = c.dataset.rubro === state.rubro;
+    c.classList.toggle('selected', on); c.setAttribute('aria-checked', on ? 'true' : 'false');
+  });
+  if (state.completado) { showResultPartial(); return; }
+  if (state.rubro) { renderQuestion(); showScreen('screen-question'); updateChain(); return; }
+  showScreen('screen-rubro'); updateChain();
 }
 
 // ultimo paso visible del prospecto, para diag_abandon
 function _ultimoPaso() {
+  if (state.leadOk) return 'analisis';
   if (state.completado) return 'resultado';
   const activa = document.querySelector('#diag-overlay .screen.active');
   const id = activa ? activa.id : '';
   if (id === 'screen-rubro') return 'rubro';
-  if (id === 'screen-lead') return 'lead';
-  if (id === 'screen-result') return 'resultado';
   return 'q' + Math.min(state.currentQ + 1, 12);
 }
 
 function _trackAbandon() {
   const ov = document.getElementById('diag-overlay');
-  if (!ov.classList.contains('active') || state.completado || state._abandonTracked) return;
+  if (!ov.classList.contains('active') || state.leadOk || state._abandonTracked) return;
   state._abandonTracked = true;
   track('diag_abandon', { ultimo_paso: _ultimoPaso() });
 }
 
 window.addEventListener('pagehide', _trackAbandon);
 
-function previewReporte() {
-  document.getElementById('diag-overlay').classList.add('active');
-  document.body.style.overflow = 'hidden';
-  history.pushState({ diag: true }, '', '#diagnostico');
-  state.rubro = 'gastronomia';
-  state.answers = Array(12).fill(2);
-  state.currentQ = 12;
-  state.eslabónScores = [6, 8, 5, 6];
-  state.eslabónCounts = [3, 3, 3, 3];
-  state.leadData = { name: 'Demo' };
-  updateChain();
-  showResult();
-  _abrirTrap();
+// La X pide confirmacion de una linea solo si ya hay algo cargado.
+function pedirCierre() {
+  const hayAlgo = state.rubro || state.answers.some(a => a !== null);
+  if (!hayAlgo) { closeDiagnostico(); return; }
+  const c = document.getElementById('close-confirm');
+  c.hidden = false;
+  const b = c.querySelector('button.primary');
+  if (b) b.focus();
+}
+
+function cancelarCierre() {
+  document.getElementById('close-confirm').hidden = true;
+  document.querySelector('.diag-close').focus();
 }
 
 function closeDiagnostico() {
   _trackAbandon();
   document.getElementById('diag-overlay').classList.remove('active');
+  document.getElementById('close-confirm').hidden = true;
   document.body.style.overflow = '';
+  if (location.hash === '#diagnostico') history.replaceState(null, '', location.pathname + location.search);
   _cerrarTrap();
 }
 
 window.addEventListener('popstate', function (e) {
-  if (!e.state || !e.state.diag) closeDiagnostico();
+  const ov = document.getElementById('diag-overlay');
+  if (e.state && e.state.diag) { if (!ov.classList.contains('active')) openDiagnostico('historial'); return; }
+  if (location.hash === '#diagnostico') { if (!ov.classList.contains('active')) openDiagnostico('link'); return; }
+  if (ov.classList.contains('active')) closeDiagnostico();
+});
+
+// Un link a #diagnostico estando ya en la pagina (sin recarga) tambien abre.
+window.addEventListener('hashchange', function () {
+  const ov = document.getElementById('diag-overlay');
+  if (location.hash === '#diagnostico' && !ov.classList.contains('active')) openDiagnostico('link');
 });
 
 window.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' && document.getElementById('diag-overlay').classList.contains('active')) {
-    closeDiagnostico();
+    pedirCierre();
   }
 });
 
@@ -3953,15 +3979,68 @@ const TEXTOS_RESULTADO = {
 };
 
 // ── ESTADO ────────────────────────────────────────────────────
+// answers[q] = indice de la opcion elegida (0..2) o null. Los puntajes por
+// eslabon se derivan de answers (syncScores) para que "Anterior" y cambiar
+// una respuesta no rompan la cuenta. Scoring y umbrales: sin cambios.
+const DIAG_STORAGE_KEY = 'of_diag_v2';
+
 const state = {
   currentQ: 0,
-  answers: [],
+  answers: Array(12).fill(null),
   eslabónScores: [0,0,0,0],
   eslabónCounts: [0,0,0,0],
-  leadData: {},
   rubro: null,
-  selectedOption: null
+  origen: 'desconocido',
+  leadData: {},
+  completado: false,   // llego al resultado parcial (conversion de la web, A1-a)
+  leadOk: false,       // dejo el WhatsApp y vio el analisis completo
+  _abandonTracked: false
 };
+
+function syncScores() {
+  const scores = [0,0,0,0], counts = [0,0,0,0];
+  state.answers.forEach((idx, q) => {
+    if (idx === null || idx === undefined) return;
+    const p = PREGUNTAS[q];
+    scores[p.eslabón] += p.opciones[idx].score;
+    counts[p.eslabón]++;
+  });
+  state.eslabónScores = scores;
+  state.eslabónCounts = counts;
+}
+
+function answeredCount() { return state.answers.filter(a => a !== null && a !== undefined).length; }
+
+function saveState() {
+  try {
+    sessionStorage.setItem(DIAG_STORAGE_KEY, JSON.stringify({
+      currentQ: state.currentQ, answers: state.answers, rubro: state.rubro,
+      origen: state.origen, completado: state.completado, leadOk: state.leadOk
+    }));
+  } catch (e) { /* sin storage (modo privado estricto): sigue en memoria */ }
+}
+
+function loadState() {
+  try {
+    const raw = sessionStorage.getItem(DIAG_STORAGE_KEY);
+    if (!raw) return false;
+    const s = JSON.parse(raw);
+    if (!s || !s.rubro) return false;
+    state.currentQ = Math.min(Math.max(parseInt(s.currentQ, 10) || 0, 0), 11);
+    state.answers = (Array.isArray(s.answers) && s.answers.length === 12) ? s.answers : Array(12).fill(null);
+    state.rubro = s.rubro;
+    state.origen = s.origen || 'desconocido';
+    state.completado = !!s.completado;
+    state.leadOk = !!s.leadOk;
+    state.leadData = {};
+    syncScores();
+    return true;
+  } catch (e) { return false; }
+}
+
+function clearState() {
+  try { sessionStorage.removeItem(DIAG_STORAGE_KEY); } catch (e) {}
+}
 
 // ── HELPERS ───────────────────────────────────────────────────
 function getEslabónState(score, count) {
@@ -3981,27 +4060,26 @@ function getEslabónLabel(score, count) {
 }
 
 function getProgressMicrocopy(total) {
-  if (total === 0) return 'Arrancamos';
-  if (total === 12) return '¡Listo!';
-  if (total >= 9) return 'Últimas preguntas';
-  if (total >= 6) return 'Vamos por la mitad';
-  if (total >= 3) return 'Buen ritmo';
+  if (total === 0) return '0 / 12';
+  if (total === 12) return '12 / 12';
   return `${total} / 12`;
 }
 
 const ESLABÓN_MICROFRASE = {
   ok:   'Esto está ordenado',
-  warn: 'Le falta una vuelta de tuerca, hay que ajustar',
+  warn: 'Le falta una vuelta de tuerca',
   crit: 'Acá se va la plata'
 };
 
 function updateChain() {
-  const total = state.answers.length;
+  syncScores();
+  const total = answeredCount();
   document.getElementById('progress-text').textContent = getProgressMicrocopy(total);
   document.getElementById('progress-fill').style.width = `${(total/12)*100}%`;
   const topFill = document.getElementById('top-progress-fill');
   if (topFill) topFill.style.width = `${(total/12)*100}%`;
 
+  const currentEslabón = state.completado ? -1 : (PREGUNTAS[state.currentQ] || {}).eslabón;
   for (let i = 0; i < 4; i++) {
     const node = document.getElementById(`node-${i}`);
     const scoreEl = document.getElementById(`score-${i}`);
@@ -4009,16 +4087,15 @@ function updateChain() {
     const s = state.eslabónScores[i];
     const c = state.eslabónCounts[i];
 
-    let st = getEslabónState(s, c);
-    const currentEslabón = PREGUNTAS[state.currentQ]?.eslabón;
+    let st = (c === 3) ? getEslabónState(s, c) : 'pending';
     if (st === 'pending' && i === currentEslabón) st = 'active';
 
     node.className = `chain-node state-${st}`;
     scoreEl.textContent = c > 0 ? `${s}/${c*3}` : '—';
 
-    if (c === 3 && descEl) {
-      descEl.textContent = ESLABÓN_MICROFRASE[st] || ESLABÓN_MICROFRASE.warn;
-      descEl.style.fontWeight = '600';
+    if (descEl) {
+      if (c === 3) { descEl.textContent = ESLABÓN_MICROFRASE[st] || ESLABÓN_MICROFRASE.warn; descEl.style.fontWeight = '600'; }
+      else { descEl.style.fontWeight = ''; }
     }
   }
 }
@@ -4031,31 +4108,36 @@ function showScreen(id) {
 
 // ── INICIO ────────────────────────────────────────────────────
 function startDiag() {
+  clearState();
   state.currentQ = 0;
-  state.answers = [];
+  state.answers = Array(12).fill(null);
   state.eslabónScores = [0,0,0,0];
   state.eslabónCounts = [0,0,0,0];
   state.rubro = null;
-  state.selectedOption = null;
+  state.leadData = {};
+  state.completado = false;
+  state.leadOk = false;
   document.getElementById('diag-overlay').classList.remove('show-result');
   document.querySelectorAll('.rubro-card').forEach(c => { c.classList.remove('selected'); c.setAttribute('aria-checked','false'); });
-  document.getElementById('btn-rubro-next').setAttribute('aria-disabled','true');
+  resetGate();
   showScreen('screen-rubro');
   updateChain();
 }
 
-// ── RUBRO ─────────────────────────────────────────────────────
+// ── RUBRO: tocar el rubro es empezar ──────────────────────────
 function selectRubro(el) {
   document.querySelectorAll('.rubro-card').forEach(c => { c.classList.remove('selected'); c.setAttribute('aria-checked','false'); });
   el.classList.add('selected');
   el.setAttribute('aria-checked','true');
   state.rubro = el.dataset.rubro;
-  document.getElementById('btn-rubro-next').setAttribute('aria-disabled','false');
+  saveState();
+  submitRubro();
 }
 
 function submitRubro() {
   if (!state.rubro) return;
   track('diag_rubro', { rubro: state.rubro });
+  state.currentQ = 0;
   renderQuestion();
   showScreen('screen-question');
   updateChain();
@@ -4064,10 +4146,7 @@ function submitRubro() {
 // ── RENDER PREGUNTA ───────────────────────────────────────────
 function renderQuestion() {
   const q = PREGUNTAS[state.currentQ];
-  state.selectedOption = null;
-  if (state._autoAdvanceTimer) { clearTimeout(state._autoAdvanceTimer); state._autoAdvanceTimer = null; }
-  const cd = document.getElementById('q-countdown');
-  if (cd) { cd.classList.remove('visible'); const f = cd.querySelector('.q-countdown-fill'); if (f) { f.style.animationPlayState = 'paused'; f.style.animation = 'none'; void f.offsetWidth; f.style.animation = ''; } }
+  const elegida = state.answers[state.currentQ];
 
   document.getElementById('q-eslabon-name').textContent = q.eslabónNombre;
   document.getElementById('q-num').textContent = `Pregunta ${state.currentQ + 1} de 12`;
@@ -4086,7 +4165,9 @@ function renderQuestion() {
 
   q.opciones.forEach((op, idx) => {
     const btn = document.createElement('button');
+    btn.type = 'button';
     btn.className = 'q-option q-option-stagger';
+    btn.setAttribute('aria-pressed', elegida === idx ? 'true' : 'false');
     btn.style.animationDelay = `${idx * 0.07}s`;
     btn.innerHTML = `
       <div class="opt-letter" aria-hidden="true">${op.letra}</div>
@@ -4096,232 +4177,83 @@ function renderQuestion() {
     container.appendChild(btn);
   });
 
-  const reaction = document.getElementById('q-reaction');
-  reaction.className = 'q-reaction';
-  reaction.innerHTML = '';
-  document.getElementById('btn-next').style.display = 'none';
+  renderReaction();
+
+  const prev = document.getElementById('btn-prev');
+  prev.disabled = false;
+  prev.innerHTML = state.currentQ === 0
+    ? '<span aria-hidden="true">←</span> Rubro'
+    : '<span aria-hidden="true">←</span> Anterior';
+
+  const next = document.getElementById('btn-next');
+  next.disabled = (elegida === null || elegida === undefined);
+  next.innerHTML = state.currentQ === 11
+    ? 'Ver mi resultado <span aria-hidden="true">→</span>'
+    : 'Siguiente <span aria-hidden="true">→</span>';
 }
 
-// ── SELECCIONAR OPCIÓN ────────────────────────────────────────
-function selectOption(idx) {
-  if (state.selectedOption !== null) return;
-  state.selectedOption = idx;
-
+function renderReaction() {
   const q = PREGUNTAS[state.currentQ];
-  const opts = document.querySelectorAll('#screen-question .q-option');
-  const styleMap = ['correct','warning','danger'];
-
-  opts.forEach((el, i) => {
-    if (i === idx) el.classList.add(styleMap[i]);
-    else el.style.opacity = '0.45';
-    el.style.pointerEvents = 'none';
-  });
-
-  const r = q.reacciones[idx];
+  const elegida = state.answers[state.currentQ];
   const reaction = document.getElementById('q-reaction');
+  if (elegida === null || elegida === undefined) {
+    reaction.className = 'q-reaction';
+    reaction.innerHTML = '';
+    return;
+  }
+  const r = q.reacciones[elegida];
   reaction.innerHTML = `${REACTION_ICONS[r.tipo]}<span>${r.texto}</span>`;
   reaction.className = `q-reaction visible ${r.tipo}`;
+}
 
-  const score = q.opciones[idx].score;
-  state.answers.push({
-    score,
-    eslabón: q.eslabón,
-    eslabónNombre: q.eslabónNombre,
-    pregunta: q.texto,
-    letra: q.opciones[idx].letra,
-    respuesta: q.opciones[idx].texto
+// ── SELECCIONAR OPCIÓN (se puede cambiar) ─────────────────────
+function selectOption(idx) {
+  const q = PREGUNTAS[state.currentQ];
+  state.answers[state.currentQ] = idx;
+  document.querySelectorAll('#screen-question .q-option').forEach((el, i) => {
+    el.setAttribute('aria-pressed', i === idx ? 'true' : 'false');
   });
-  state.eslabónScores[q.eslabón] += score;
-  state.eslabónCounts[q.eslabón]++;
-  track('diag_answer', { q: state.currentQ + 1, letra: q.opciones[idx].letra, eslabon: q.eslabónNombre });
-
+  renderReaction();
+  document.getElementById('btn-next').disabled = false;
+  saveState();
   updateChain();
-
-  // el usuario puede avanzar cuando quiera; si no, avanza solo a los 4s
-  document.getElementById('btn-next').style.display = 'inline-flex';
-
-  const countdown = document.getElementById('q-countdown');
-  countdown.classList.add('visible');
-  const fill = countdown.querySelector('.q-countdown-fill');
-  fill.style.animationDuration = '4s';
-  fill.style.animationPlayState = 'running';
-
-  state._autoAdvanceTimer = setTimeout(() => {
-    countdown.classList.remove('visible');
-    nextQuestion();
-  }, 4000);
+  track('diag_answer', { q: state.currentQ + 1, letra: q.opciones[idx].letra, eslabon: q.eslabónNombre });
 }
 
-// ── SIGUIENTE ─────────────────────────────────────────────────
+// ── SIGUIENTE / ANTERIOR ──────────────────────────────────────
 function nextQuestion() {
-  if (state._autoAdvanceTimer) { clearTimeout(state._autoAdvanceTimer); state._autoAdvanceTimer = null; }
-  state.currentQ++;
-  const eslabonCompletado = state.currentQ % 3 === 0;
-  if (state.currentQ < PREGUNTAS.length) {
-    if (eslabonCompletado) {
-      showCheckpoint(Math.floor(state.currentQ / 3) - 1, false);
-    } else {
-      renderQuestion();
-      document.getElementById('panel-right').scrollTop = 0;
-    }
+  const elegida = state.answers[state.currentQ];
+  if (elegida === null || elegida === undefined) return;
+  if (state.currentQ < PREGUNTAS.length - 1) {
+    state.currentQ++;
+    saveState();
+    renderQuestion();
+    updateChain();
+    document.getElementById('panel-right').scrollTop = 0;
   } else {
-    showCheckpoint(3, true);
+    showResultPartial();
   }
 }
 
-function showCheckpoint(eslabonIdx, isLast) {
-  const nombres = ['Costos y Precios','Resultado Económico','Cash Flow','Indicadores de Gestión'];
-  const s = state.eslabónScores[eslabonIdx];
-  const st = getEslabónState(s, 3);
-
-  document.getElementById('checkpoint-icon').innerHTML   = ICONS[eslabonIdx];
-  document.getElementById('checkpoint-name').textContent = nombres[eslabonIdx];
-  document.getElementById('checkpoint-score').textContent = `${s}/9`;
-  document.getElementById('checkpoint-score').className   = `checkpoint-score ${st}`;
-  document.getElementById('checkpoint-frase').textContent = ESLABÓN_MICROFRASE[st] || ESLABÓN_MICROFRASE.warn;
-  document.getElementById('checkpoint-ring').className    = `checkpoint-ring ${st}`;
-
-  const circ = 263.9;
-  const fill = document.getElementById('checkpoint-ring-fill');
-  fill.style.strokeDashoffset = circ;
-  showScreen('screen-checkpoint');
-  requestAnimationFrame(() => {
-    setTimeout(() => { fill.style.strokeDashoffset = (circ * (1 - s / 9)).toFixed(1); }, 60);
-  });
-
-  setTimeout(() => {
-    if (isLast) {
-      showScreen('screen-lead');
-      track('diag_lead_view', {});
-    } else {
-      renderQuestion();
-      showScreen('screen-question');
-      document.getElementById('panel-right').scrollTop = 0;
-    }
-  }, 3000);
+function prevQuestion() {
+  if (state.currentQ === 0) { showScreen('screen-rubro'); updateChain(); return; }
+  state.currentQ--;
+  saveState();
+  renderQuestion();
+  updateChain();
+  document.getElementById('panel-right').scrollTop = 0;
 }
 
-// ── LEAD SUBMIT ───────────────────────────────────────────────
-const SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxvSoyeIncaf-wEBQvdwiYdBTRdd1FPqS5fLDsX5tqDrFrCd517r5UC1hEJSeV9B5MIcQ/exec';
+// ── RESULTADO PARCIAL: el valor antes que el dato ─────────────
+function showResultPartial() {
+  syncScores();
+  if (answeredCount() < 12) { renderQuestion(); showScreen('screen-question'); return; }
+  const yaEstaba = state.completado;
+  state.completado = true;
+  saveState();
 
-function submitLead() {
-  const fields = [
-    { id: 'lead-name',    err: 'err-name' },
-    { id: 'lead-wa',      err: 'err-wa' },
-    { id: 'lead-negocio', err: 'err-negocio' }
-  ];
-
-  let firstInvalid = null;
-  fields.forEach(f => {
-    const input = document.getElementById(f.id);
-    const error = document.getElementById(f.err);
-    const ok = !!input.value.trim();
-    input.classList.toggle('invalid', !ok);
-    error.classList.toggle('visible', !ok);
-    if (!ok && !firstInvalid) firstInvalid = input;
-  });
-
-  if (firstInvalid) { firstInvalid.focus(); return; }
-
-  state.leadData = {
-    name:      document.getElementById('lead-name').value.trim(),
-    wa:        document.getElementById('lead-wa').value.trim(),
-    negocio:   document.getElementById('lead-negocio').value.trim(),
-    sistema:   document.getElementById('lead-sistema').value.trim(),
-    instagram: document.getElementById('lead-instagram').value.trim(),
-    rubro:     state.rubro
-  };
-  sendLeadToSheet();
-  // El envio actual es no-cors: no hay respuesta que leer, asi que el
-  // resultado del envio no se puede afirmar (ver A8). Se registra tal cual.
-  track('diag_lead_submit', { ok: 'no-verificado' });
-  showAnalyzing();
-}
-
-function showAnalyzing() {
-  showScreen('screen-analyzing');
-  const lines = ['aline-1','aline-2','aline-3'];
-  lines.forEach(id => document.getElementById(id).classList.remove('visible','fading'));
-
-  lines.forEach((id, i) => {
-    setTimeout(() => {
-      if (i > 0) document.getElementById(lines[i-1]).classList.add('fading');
-      document.getElementById(id).classList.add('visible');
-    }, i * 750);
-  });
-
-  setTimeout(() => { showResult(); }, 2600);
-}
-
-function sendLeadToSheet() {
-  if (!SHEET_WEBHOOK_URL || SHEET_WEBHOOK_URL.startsWith('PEGAR_ACA')) return;
-  const nombresEslabon = ['Costos y Precios','Resultado Económico','Cash Flow','Indicadores de Gestión'];
-  const { eslabonDebilIndex, total, titulo, data, consecuencia, primerPaso } = getDiagnosticoData();
-
-  const eslabones = state.eslabónScores.map((s, i) => ({
-    nombre: nombresEslabon[i],
-    score: s,
-    estado: getEslabónLabel(s, 3)
-  }));
-
-  const respuestas = state.answers.map(a => ({
-    eslabónNombre: a.eslabónNombre,
-    pregunta: a.pregunta,
-    letra: a.letra,
-    respuesta: a.respuesta,
-    score: a.score
-  }));
-
-  const diagnosticoTexto = [
-    titulo,
-    data.espejo,
-    consecuencia,
-    data.gancho,
-    'Acá se le escapa: ' + primerPaso
-  ].join('\n\n');
-
-  fetch(SHEET_WEBHOOK_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'text/plain' },
-    body: JSON.stringify({
-      leadId: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
-      timestamp: new Date().toISOString(),
-      nombre: state.leadData.name,
-      whatsapp: state.leadData.wa,
-      negocio: state.leadData.negocio,
-      sistema: state.leadData.sistema,
-      instagram: state.leadData.instagram,
-      rubro: state.leadData.rubro,
-      score: total,
-      maxScore: 36,
-      eslabonDebil: nombresEslabon[eslabonDebilIndex],
-      eslabones: eslabones,
-      respuestas: respuestas,
-      diagnostico: diagnosticoTexto
-    })
-  }).catch(() => {});
-}
-
-// ── MOSTRAR RESULTADO ─────────────────────────────────────────
-function animateScore(target) {
-  const el = document.getElementById('total-score');
-  const duration = 1400;
-  const start = performance.now();
-  function tick(now) {
-    const progress = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.round(eased * target);
-    if (progress < 1) requestAnimationFrame(tick);
-    else el.textContent = target;
-  }
-  requestAnimationFrame(tick);
-}
-
-function showResult() {
   const totalScore = state.eslabónScores.reduce((a,b) => a+b, 0);
-  document.getElementById('total-score').textContent = 0;
-  setTimeout(() => animateScore(totalScore), 300);
+  document.getElementById('total-score').textContent = totalScore;
 
   const badge = document.getElementById('score-badge');
   if (totalScore >= 30) {
@@ -4331,32 +4263,29 @@ function showResult() {
     badge.textContent = 'Tu negocio está en desarrollo';
     badge.className = 'score-badge moderate';
   } else {
-    badge.textContent = 'Tu negocio está en situación crítica — acción urgente';
+    badge.textContent = 'Tu negocio está en situación crítica';
     badge.className = 'score-badge critical';
   }
 
   const nombres = ['Costos y Precios','Resultado Económico','Cash Flow','Indicadores de Gestión'];
   const grid = document.getElementById('eslabones-grid');
   grid.innerHTML = '';
-
   const weakestIdx = state.eslabónScores.indexOf(Math.min(...state.eslabónScores));
 
   for (let i = 0; i < 4; i++) {
     const s = state.eslabónScores[i];
-    const maxS = 9;
-    const pct = (s / maxS) * 100;
+    const pct = (s / 9) * 100;
     const st = getEslabónState(s, 3);
     const label = getEslabónLabel(s, 3);
-
-    // 180° donut grueso: centro (100,100) r=80, arco superior (sweep=1)
     const arcLen = 251.33; // π × 80
     const offset = (arcLen * (1 - pct / 100)).toFixed(2);
+    const esDebil = i === weakestIdx;
 
     const card = document.createElement('div');
-    card.className = `eslabon-card ${st}${i === weakestIdx ? ' weakest' : ''}`;
+    card.className = `eslabon-card ${st}${esDebil ? ' weakest' : ''}`;
     card.innerHTML = `
       <div class="eslabon-card-name">${ICONS[i]} ${nombres[i]}</div>
-      <svg class="gauge-svg" viewBox="-4 0 208 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <svg class="gauge-svg" viewBox="-4 0 208 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${nombres[i]}: ${s} de 9, ${label}">
         <path d="M 20,100 A 80,80 0 0,1 180,100" class="gauge-track"/>
         <path d="M 20,100 A 80,80 0 0,1 180,100" class="gauge-fill"
               stroke-dasharray="${arcLen}"
@@ -4368,26 +4297,164 @@ function showResult() {
         <text x="180" y="124" class="gauge-min-max" text-anchor="middle">9</text>
       </svg>
       <div class="eslabon-card-status">${label}</div>
+      ${esDebil ? '<div class="eslabon-weak-label">Tu eslabón más débil</div>' : ''}
     `;
     grid.appendChild(card);
   }
 
   setTimeout(() => {
-    grid.querySelectorAll('.gauge-fill').forEach(el => {
-      el.style.strokeDashoffset = el.dataset.offset;
-    });
+    grid.querySelectorAll('.gauge-fill').forEach(el => { el.style.strokeDashoffset = el.dataset.offset; });
   }, 150);
 
   document.getElementById('diag-overlay').classList.add('show-result');
   showScreen('screen-result');
   updateChain();
-  showFixedNarrative();
-  state.completado = true;
-  // En el flujo actual el resultado parcial y el analisis completo son la
-  // misma pantalla; los dos eventos se separan en la Fase 2.
+
   const dd = getDiagnosticoData();
-  track('diag_result_view', { score: dd.total, gravedad: dd.nivelGravedad, eslabon_debil: dd.eslabonDebil });
-  track('diag_result_full', {});
+  if (!yaEstaba) track('diag_result_view', { score: dd.total, gravedad: dd.nivelGravedad, eslabon_debil: dd.eslabonDebil });
+
+  if (state.leadOk) {
+    renderFull();
+  } else {
+    resetGate();
+    document.getElementById('result-gate').hidden = false;
+    document.getElementById('result-full').hidden = true;
+    if (!yaEstaba) track('diag_lead_view', {});
+  }
+}
+
+// ── WHATSAPP: validacion y formato (numeros argentinos) ───────
+// Acepta 10 digitos (codigo de area + numero) con o sin +54 / 9 adelante.
+// Rechaza el 0 inicial y el 15. Devuelve {ok, digits, display, motivo}.
+function parseWhatsApp(raw) {
+  let d = String(raw || '').replace(/\D/g, '');
+  if (!d) return { ok: false, motivo: 'vacio' };
+  if (d.startsWith('54')) d = d.slice(2);
+  if (d.length === 11 && d.startsWith('9')) d = d.slice(1);
+  if (d.startsWith('0')) return { ok: false, motivo: 'cero' };
+  if (d.length === 12 && d.slice(2, 4) === '15') return { ok: false, motivo: 'quince' };
+  if (d.length === 12 && d.slice(3, 5) === '15') return { ok: false, motivo: 'quince' };
+  if (d.length !== 10) return { ok: false, motivo: 'largo' };
+  const area = d.startsWith('11') ? d.slice(0, 2) : d.slice(0, 3);
+  const resto = d.slice(area.length);
+  const display = `+54 9 ${area} ${resto.slice(0, resto.length - 4)}-${resto.slice(-4)}`;
+  return { ok: true, digits: '549' + d, display };
+}
+
+function previewWhatsApp() {
+  const input = document.getElementById('lead-wa');
+  const hint = document.getElementById('wa-hint');
+  const err = document.getElementById('err-wa');
+  const p = parseWhatsApp(input.value);
+  input.classList.remove('invalid');
+  err.classList.remove('visible'); err.textContent = '';
+  hint.textContent = p.ok ? `Se guarda como ${p.display}` : 'Código de área y número, sin el 0 ni el 15.';
+}
+
+function resetGate() {
+  const form = document.getElementById('result-gate');
+  if (!form) return;
+  form.hidden = false;
+  const input = document.getElementById('lead-wa');
+  input.value = ''; input.classList.remove('invalid'); input.disabled = false;
+  document.getElementById('wa-hint').textContent = 'Código de área y número, sin el 0 ni el 15.';
+  const err = document.getElementById('err-wa'); err.textContent = ''; err.classList.remove('visible');
+  const st = document.getElementById('gate-status'); st.className = 'gate-status'; st.innerHTML = '';
+  const btn = document.getElementById('btn-lead'); btn.disabled = false; btn.innerHTML = 'Ver el análisis completo <span aria-hidden="true">→</span>';
+}
+
+// ── ENVÍO ─────────────────────────────────────────────────────
+const SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxvSoyeIncaf-wEBQvdwiYdBTRdd1FPqS5fLDsX5tqDrFrCd517r5UC1hEJSeV9B5MIcQ/exec';
+// A8 (abierta): mientras el Apps Script no devuelva JSON con CORS, el envio
+// sigue siendo "fire and forget" (no-cors) y el resultado del envio no se
+// puede afirmar. Al pasar esto a true, submitLead lee la respuesta, muestra
+// estado de error con reintento y registra diag_lead_submit con ok real.
+const WEBHOOK_RESPONDS = false;
+
+function submitLead(e) {
+  if (e && e.preventDefault) e.preventDefault();
+  const input = document.getElementById('lead-wa');
+  const err = document.getElementById('err-wa');
+  const p = parseWhatsApp(input.value);
+
+  if (!p.ok) {
+    const msgs = {
+      vacio: 'Necesitamos tu WhatsApp para mostrarte el análisis completo.',
+      cero: 'Sacá el 0 del código de área: por ejemplo 221 555 0000.',
+      quince: 'Sacá el 15 del número: por ejemplo 221 555 0000.',
+      largo: 'Revisá el número: código de área y número, 10 dígitos en total (ej. 221 555 0000).'
+    };
+    input.classList.add('invalid');
+    err.textContent = msgs[p.motivo] || msgs.largo;
+    err.classList.add('visible');
+    input.focus();
+    return false;
+  }
+
+  state.leadData = { wa: p.digits, waDisplay: p.display };
+  const btn = document.getElementById('btn-lead');
+  const status = document.getElementById('gate-status');
+  btn.disabled = true; input.disabled = true;
+  btn.textContent = 'Guardando…';
+  status.className = 'gate-status'; status.innerHTML = '';
+
+  sendLeadToSheet().then(ok => {
+    if (ok === true || ok === 'no-verificado') {
+      track('diag_lead_submit', { ok: ok === true ? 'si' : 'no-verificado' });
+      state.leadOk = true;
+      saveState();
+      renderFull();
+    } else {
+      track('diag_lead_submit', { ok: 'no' });
+      btn.disabled = false; input.disabled = false;
+      btn.innerHTML = 'Ver el análisis completo <span aria-hidden="true">→</span>';
+      status.className = 'gate-status visible error';
+      status.innerHTML = '<span>No pudimos guardar tu número. Tu resultado sigue acá; probá de nuevo.</span><button type="button" class="btn-secondary" onclick="submitLead()">Reintentar</button>';
+    }
+  });
+  return false;
+}
+
+function sendLeadToSheet() {
+  if (!SHEET_WEBHOOK_URL || SHEET_WEBHOOK_URL.startsWith('PEGAR_ACA')) return Promise.resolve('no-verificado');
+  const nombresEslabon = ['Costos y Precios','Resultado Económico','Cash Flow','Indicadores de Gestión'];
+  const { eslabonDebilIndex, total, nivelGravedad, titulo, data, consecuencia, primerPaso } = getDiagnosticoData();
+
+  const eslabones = state.eslabónScores.map((s, i) => ({ nombre: nombresEslabon[i], score: s, estado: getEslabónLabel(s, 3) }));
+  const respuestas = state.answers.map((idx, q) => {
+    const p = PREGUNTAS[q]; const op = p.opciones[idx];
+    return { eslabónNombre: p.eslabónNombre, pregunta: p.texto, letra: op.letra, respuesta: op.texto, score: op.score };
+  });
+  const letras = state.answers.map((idx, q) => PREGUNTAS[q].opciones[idx].letra).join('');
+  const diagnosticoTexto = [titulo, data.espejo, consecuencia, data.gancho, 'Acá se le escapa: ' + primerPaso].join('\n\n');
+
+  const payload = {
+    leadId: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    timestamp: new Date().toISOString(),
+    whatsapp: state.leadData.wa,
+    rubro: state.rubro,
+    origen: state.origen,
+    score: total,
+    maxScore: 36,
+    gravedad: nivelGravedad,
+    eslabonDebil: nombresEslabon[eslabonDebilIndex],
+    letras: letras,
+    // Compatibilidad con las columnas que el Apps Script ya espera (A8):
+    // no se piden mas datos personales; estos campos viajan vacios.
+    nombre: '', negocio: '', sistema: '', instagram: '',
+    eslabones: eslabones,
+    respuestas: respuestas,
+    diagnostico: diagnosticoTexto
+  };
+
+  if (!WEBHOOK_RESPONDS) {
+    return fetch(SHEET_WEBHOOK_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(payload) })
+      .then(() => 'no-verificado').catch(() => 'no-verificado');
+  }
+  return fetch(SHEET_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(payload) })
+    .then(r => r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)))
+    .then(j => !!(j && j.ok))
+    .catch(() => false);
 }
 
 // ── NARRATIVA DE RESULTADO ──────────────────────────────────────
@@ -4443,7 +4510,7 @@ function getTextoResultado() {
   const { data, consecuencia, titulo, primerPaso } = getDiagnosticoData();
 
   return `
-    <div class="report-diag-title">${state.leadData.name ? state.leadData.name.split(' ')[0] + ', ' + titulo.charAt(0).toLowerCase() + titulo.slice(1) : titulo}</div>
+    <div class="report-diag-title">${titulo}</div>
     <p>${data.espejo}</p>
     <p>${consecuencia}</p>
     <p>${data.gancho}</p>
@@ -4454,8 +4521,17 @@ function getTextoResultado() {
   `;
 }
 
-function showFixedNarrative() {
-  document.getElementById('ai-narrative-content').innerHTML = getTextoResultado();
+// ── ANÁLISIS COMPLETO (después del WhatsApp) ──────────────────
+function renderFull() {
+  document.getElementById('narrative-content').innerHTML = getTextoResultado();
+  document.getElementById('result-gate').hidden = true;
+  const full = document.getElementById('result-full');
+  const primeraVez = full.hidden;
+  full.hidden = false;
+  if (primeraVez) {
+    track('diag_result_full', {});
+    setTimeout(() => { full.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 60);
+  }
 }
 
 // ── FRASES ROTANTES EN LANDING ────────────────────────────────
@@ -4496,14 +4572,19 @@ function showFixedNarrative() {
 
   document.getElementById('hero-eyebrow-text').textContent = 'Ya agendaste tu llamada';
   document.getElementById('hero-title').innerHTML = 'Antes de tu llamada, <em>completá este diagnóstico</em>';
-  document.getElementById('hero-subtitle').textContent = 'Son 3 minutos y nos ayuda a llegar a la reunión con información real de tu negocio, no con suposiciones.';
+  document.getElementById('hero-subtitle').textContent = 'Son 3 minutos y hace que la reunión arranque desde información real de tu negocio, no desde suposiciones.';
   document.getElementById('hero-cta-text').textContent = 'Completar mi diagnóstico';
-  document.getElementById('hero-trust-3').textContent = 'Le llega a Manuel antes de la llamada';
+  document.getElementById('hero-trust-3').textContent = 'Es el punto de partida de tu llamada';
 
+  document.getElementById('gate-title').textContent = 'Tu resultado, para llevar a la llamada';
   document.getElementById('cta-card-title').textContent = 'Ya tenés tu llamada agendada';
-  document.getElementById('cta-card-desc').textContent = 'Este diagnóstico ya le llegó a Manuel — lo vamos a tener a mano en la reunión para ir directo a tus números reales.';
+  document.getElementById('cta-card-desc').textContent = 'Llevá este resultado a la reunión: es el punto de partida para ir directo a tus números reales.';
   document.getElementById('cta-card-link').style.display = 'none';
+  document.getElementById('cta-strip').style.display = 'none';
 })();
+
+// ── APERTURA POR LINK DIRECTO: /#diagnostico ──────────────────
+if (location.hash === '#diagnostico') openDiagnostico('link');
 </script>
 </body>
 </html>
