@@ -4,3 +4,12 @@ preguntas_diagnostico.xlsx
 foto-manuel.png
 foto-manuel-v2.png
 ChatGPT Image 26 jun 2026, 12_11_06.png
+
+# Documentos internos y evidencia de auditoria: nunca publicos
+AUDIT-*.md
+INFORME-*.md
+audit-assets/
+.claude/
+tools/
+*.py
+*.xlsx
