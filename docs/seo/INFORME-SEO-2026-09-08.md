@@ -198,6 +198,12 @@ Sobre la "orientación a Argentina": Search Console **ya no tiene** ese ajuste (
 
 ---
 
+## 11-bis. Adenda 08/09 17:40 UTC — LinkedIn agregado y firewall de Vercel activo
+
+- **LinkedIn**: el dueño pasó la página de empresa (ID 106909356). `sameAs` ahora incluye `https://www.linkedin.com/company/106909356/` (commit `6909ef2`, deploy por CLI `3mnp7akzd`, verificado en producción desde un navegador real: el JSON-LD lo muestra). Se usó la URL por ID porque el Chrome del dueño no tiene sesión de LinkedIn y la URL "bonita" no se pudo leer sin login; la URL por ID es pública y permanente.
+- **Hallazgo nuevo, urgente**: desde ~17:30 UTC, `https://ordenfinanciero.com/*` responde **403 con `X-Vercel-Mitigated: challenge`** y la página "Vercel Security Checkpoint" a todo cliente que no sea un navegador con JavaScript: `curl`, WebFetch desde otra red, y **también `/robots.txt`**. Los navegadores pasan el checkpoint y ven el sitio normal. A las 17:20 UTC todo respondía 200 (`verificacion-fase4-prod.txt`). El token del CLI no tiene permiso para leer la configuración del firewall (`invalidToken`), así que no se pudo confirmar la causa desde acá. Dos causas posibles: (a) **Attack Challenge Mode** encendido en Vercel → proyecto → Firewall, o (b) la regla gestionada **Bot Protection** en modo "challenge". Según la documentación de Vercel los bots verificados (Googlebot) no reciben el challenge, pero eso no se pudo comprobar, y el challenge sí bloquea los previews de WhatsApp/Instagram (que leen `og:image` sin navegador), Lighthouse y cualquier verificación externa. **Acción del dueño:** Vercel → `orden-financiero` → Firewall → si "Attack Challenge Mode" está en ON, apagarlo; si "Bot Protection" está en "Challenge", ponerlo en "Log" o desactivarlo. Después, `curl -I https://ordenfinanciero.com/robots.txt` tiene que dar 200.
+- **Qué puede y qué no puede hacer el agente desde el Chrome del dueño**: la extensión bloquea la navegación a Google (Search Console, Business Profile), Instagram, DonWeb y Vercel ("Navigation to this domain is not allowed"). Ninguna de las cuatro tareas de §11 se puede operar desde acá; sí todo lo que viva en el repo o en el CLI de Vercel.
+
 ## 12. Deuda restante y decisiones pendientes (Anexo A actualizado)
 
 | # | Decisión | Estado |
@@ -210,7 +216,8 @@ Sobre la "orientación a Argentina": Search Console **ya no tiene** ese ajuste (
 | 6 | Search Console | **Pendiente tuya**: propiedad de dominio por DNS TXT en DonWeb (§11). No hay meta desde env porque no hay build ni env; no se commiteó ningún código de verificación |
 | 7 | Trailing slash | Sin trailing slash, consistente |
 | 8 | Description sin "gratis" y con Argentina | **Hecho** según tu OK |
-| 9 | LinkedIn del fundador en `sameAs` | **Pendiente tuya**: necesito la URL |
+| 9 | LinkedIn en `sameAs` | **Hecho** con la página de empresa (ID 106909356). Si además querés el perfil personal de Manuel, pasá la URL |
+| 15 | Firewall de Vercel en modo challenge (403 a clientes no-navegador, incluido `robots.txt`) | **Pendiente tuya, urgente** (§11-bis) |
 | 10 | Title corto | **Hecho** |
 | 11 | Deploys | Hechos por push a `master` (Fase 3 y 4). El de CLI duplicado no tuvo efecto |
 | 12 | `http://www` llega al apex en dos saltos (308 + 308) | Aceptable para Google. Si querés un solo salto: Vercel → Domains → `www.ordenfinanciero.com` → "Redirect to ordenfinanciero.com" (sin código) |
