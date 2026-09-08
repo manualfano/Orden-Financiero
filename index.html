@@ -17,7 +17,7 @@
 <meta property="og:image:alt" content="Ejemplo del resultado del diagnóstico financiero: puntaje 21 de 36 y estado de los cuatro eslabones, junto al titular El primer paso para hacer tu negocio más rentable empieza acá">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://ordenfinanciero.com/og-image.png">
-<meta name="theme-color" content="#0E2140">
+<meta name="theme-color" content="#0D2B6B">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%230C66E4'/%3E%3Ccircle cx='24' cy='24' r='11' fill='none' stroke='%237DB1F4' stroke-width='6'/%3E%3Ccircle cx='24' cy='24' r='11' fill='none' stroke='%23ffffff' stroke-width='6' stroke-dasharray='51.8 69.2' transform='rotate(-90 24 24)'/%3E%3C/svg%3E">
 <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -55,9 +55,16 @@ if (location.hostname === 'ordenfinanciero.com' || location.hostname.endsWith('.
   --celeste-marca: #7DB1F4;
   /* anillo del isotipo, nunca UI */
   --foco: #0C66E4;
-  /* fondos de marca del sitio (hero, banda del metodo) — propios */
-  --navy: #1B3A6B;
-  --navy-900: #0E2140;
+  /* Paleta Core sobre base #0D2B6B (decision del dueño, 07/09/2026;
+  espejo de tailwind.config.ts del portal): --navy es el canvas oscuro
+  (hero, header, banda del metodo, footer) y el texto principal sobre
+  blanco; --navy-900 conserva el nombre para sus consumidores y vale lo
+  mismo que --navy; --navy-2 es la superficie elevada sobre navy;
+  --secondary-dark, el texto secundario sobre navy. */
+  --navy: #0D2B6B;
+  --navy-900: #0D2B6B;
+  --navy-2: #143C8C;
+  --secondary-dark: #A3ADC2;
   /* texto */
   --tinta: #292A2E;
   --tinta-2: #505258;
@@ -98,7 +105,7 @@ if (location.hostname === 'ordenfinanciero.com' || location.hostname.endsWith('.
   --w: #ffffff;
   --w-70: rgba(255,255,255,0.7);
   --w-55: rgba(255,255,255,0.55);
-  --w-border: rgba(255,255,255,0.14);
+  --w-border: rgba(255,255,255,0.10);
   /* geometry (radios del sistema: control 8 / card 12) */
   --r:           8px;
   --r-lg: 12px;
@@ -138,7 +145,7 @@ if (location.hostname === 'ordenfinanciero.com' || location.hostname.endsWith('.
   --w-14: rgba(255,255,255,0.14);
   --w-20: rgba(255,255,255,0.20);
   --w-92: rgba(255,255,255,0.92);
-  --navy-900-92: rgba(14,33,64,0.92);
+  --navy-900-92: rgba(13,43,107,0.92);
   --tinta-rgb: 41 42 46;
   /* motion funcional (excepciones documentadas al sistema de 3 momentos) */
   --t-cero: 0.01ms;
@@ -4284,7 +4291,7 @@ nav.scrolled { background: var(--navy-900-92); }
       <a class="footer-link" href="#que-analizamos">El diagnóstico</a>
       <a class="footer-link" href="#metodo">El programa</a>
       <a class="footer-link" href="#manuel">Quién está detrás</a>
-      <a class="footer-link" href="/privacidad">Privacidad</a>
+      <a class="footer-link" href="/privacidad">Privacidad</a>
     <!-- A3 reabierta por el dueño (07/09): el acceso al portal vive solo aca, en el footer -->
       <a class="footer-link footer-link-portal" href="https://orden-financiero-portal.vercel.app/login" rel="noopener" onclick="track('cta_portal', { desde: 'footer' })">Portal de clientes <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
     </div>
