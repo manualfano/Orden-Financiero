@@ -210,7 +210,7 @@ El dueño creó la propiedad de dominio `ordenfinanciero.com`; Google la verific
 
 - **"La URL no está en Google" · "Rastreada: actualmente sin indexar"**. Último rastreo: **12 ago 2026 23:33**, robot para smartphones. Rastreo permitido, obtención correcta, indexación permitida, canónica declarada: "Nada" (en esa versión no había canonical). Páginas de referencia: dos sitios de venta de dominios expirados (`mail.runningwebsites.net`, `all-aged-domains.com`).
 - **Corrección a §2 y §9:** el resultado de `site:ordenfinanciero.com` era un resto del índice; según Search Console la home **no está indexada** desde que Google la rastreó el 12/08 (versión previa al rediseño, con mucho menos texto) y la clasificó como "sin indexar" por decisión de calidad, no por bloqueo técnico. Eso explica por qué no aparece para ninguna consulta. La versión actual (1.770 palabras, marca, servicio, país, schema) es la que Google va a evaluar cuando vuelva.
-- Acción: "Solicitar indexación" de la home y de `/privacidad`. Verificación en 24-72 h: la inspección tiene que pasar a "La URL está en Google" con rastreo nuevo, y `site:` tiene que mostrar el title nuevo.
+- **Hecho por el dueño (18:05 UTC):** "Solicitar indexación" enviado para la home ("Se ha añadido la URL a una cola de rastreo prioritaria") y para `/privacidad` (estado previo: "Descubierta: actualmente sin indexar", nunca rastreada). Verificación en 24-72 h: la inspección tiene que pasar a "La URL está en Google" con rastreo nuevo, y `site:` tiene que mostrar el title nuevo.
 
 ## 12. Deuda restante y decisiones pendientes (Anexo A actualizado)
 
