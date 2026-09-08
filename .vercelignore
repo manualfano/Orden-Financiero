@@ -9,6 +9,7 @@ ChatGPT Image 26 jun 2026, 12_11_06.png
 AUDIT-*.md
 INFORME-*.md
 audit-assets/
+docs/
 .claude/
 tools/
 *.py
