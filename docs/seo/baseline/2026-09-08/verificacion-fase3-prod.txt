@@ -1,0 +1,8 @@
+# Verificacion Fase 3 en produccion — 2026-09-08T17:17Z
+http://ordenfinanciero.com/  code=308 loc=https://ordenfinanciero.com/ xrobots=/nhttp://www.ordenfinanciero.com/  code=308 loc=https://www.ordenfinanciero.com/ xrobots=/nhttps://ordenfinanciero.com/  code=200 loc= xrobots=/nhttps://www.ordenfinanciero.com/  code=308 loc=https://ordenfinanciero.com/ xrobots=/nhttps://www.ordenfinanciero.com/?x=7006  code=308 loc=https://ordenfinanciero.com/?x=7006 xrobots=
+https://www.ordenfinanciero.com/privacidad  code=308 loc=https://ordenfinanciero.com/privacidad xrobots=/nhttps://diagnostico.ordenfinanciero.com/  code=200 loc= xrobots=noindex, follow/nhttps://diagnostico.ordenfinanciero.com/privacidad  code=200 loc= xrobots=noindex, follow/nhttps://diagnostico.ordenfinanciero.com/robots.txt  code=200 loc= xrobots=noindex, follow/nhttps://ordenfinanciero.com/privacidad  code=200 loc= xrobots=/nhttps://ordenfinanciero.com/robots.txt  code=200 loc= xrobots=/nhttps://ordenfinanciero.com/sitemap.xml  code=200 loc= xrobots=/nhttps://ordenfinanciero.com/docs/seo/AUDITORIA-SEO-2026-09-08.md  code=404 loc= xrobots=/nhttps://ordenfinanciero.com/ruta-x  code=404 loc= xrobots=/n--- cadena http://www
+HTTP/1.0 308 Permanent Redirect
+Location: https://www.ordenfinanciero.com/
+HTTP/1.0 308 Permanent Redirect
+Location: https://ordenfinanciero.com/
+HTTP/1.0 200 OK

@@ -1,0 +1,30 @@
+Consulta: "orden financiero" en Google, desde el celular del dueño en Argentina (Safari iOS),
+sesion iniciada, 2026-09-08 14:16 (hora local). Tres capturas enviadas por el dueño al agente.
+
+Captura 1 (arriba de todo):
+- "Vision general creada por IA": "El orden financiero personal es un sistema simple y
+  realista para administrar tus ingresos, controlar tus gastos y cumplir tus metas sin
+  privarte de todo." Fuente citada: Perfil +1. Subtitulo "Pasos para ordenar tus finanzas"
+  con "Haz un presupuesto previo...".
+- Primer resultado organico: ordenfinanciero.com.ar (https://www.ordenfinanciero.com.ar)
+  "Orden Financiero - Se el dueño de tu dinero" — "hace 4 dias — Pagas el minimo y el saldo
+  nunca baja. El banco te cobra intereses sobre intereses..."
+
+Captura 2:
+- "Mas preguntas": ¿Que es un orden financiero? / ¿Como juntar $5000 en un mes? /
+  ¿Cuales son los 4 pilares financieros? / ¿Cual es la regla 40 30 20 10?
+- Banco Galicia (galicia.ar): "Como ordenar tus finanzas personales en 3 simples pasos"
+- Perfil (perfil.com): "El orden financiero como primer paso para construir un ahorro | Canal E" (2 jul 2026)
+- BBVA: "Planificacion financiera personal: un..."
+
+Captura 3:
+- Imagenes: dos de LinkedIn ("6 acciones que ponen orden...", "La importancia del orden en...")
+- Videos: YouTube Value School, Instagram Carolina Mariana C. ("El trabajo en Argentina esta
+  cambiando", hace 1 dia), YouTube Mujer Financiera.
+
+ordenfinanciero.com: no aparece en lo capturado (primera pantalla y media de resultados).
+
+Lectura: coincide con la SERP medida por el agente (§4 de la auditoria). Diferencias por
+geolocalizacion real: el resumen de IA, ordenfinanciero.com.ar en el puesto 1 (TLD .com.ar,
+title exacto, contenido con fecha de rastreo reciente) y medios argentinos (Galicia, Perfil).
+La intencion que Google asigna a la consulta sigue siendo informativa de finanzas personales.

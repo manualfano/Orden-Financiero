@@ -1,0 +1,56 @@
+# Verificacion Fase 4 en produccion — 2026-09-08T17:20Z
+--- https://ordenfinanciero.com/
+<html lang="es-AR">
+<title>Orden Financiero · Consultoría financiera para gastronomía y servicios</title>
+<meta name="description" content="Programa de consultoría financiera con datos para negocios de gastronomía y servicios en Argentina. El primer paso es un diagnóstico de 12 preguntas.">
+<link rel="canonical" href="https://ordenfinanciero.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="El primer paso para hacer tu negocio más rentable empieza acá">
+<meta property="og:description" content="Programa de consultoría financiera con datos para negocios de gastronomía y servicios en Argentina. El paso 1 es un diagnóstico de 12 preguntas con resultado al instante.">
+<meta property="og:url" content="https://ordenfinanciero.com/">
+<meta property="og:locale" content="es_AR">
+<meta property="og:image" content="https://ordenfinanciero.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ejemplo del resultado del diagnóstico financiero: puntaje 21 de 36 y estado de los cuatro eslabones, junto al titular El primer paso para hacer tu negocio más rentable empieza acá">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ordenfinanciero.com/og-image.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": ["ProfessionalService", "Organization"], "@id": "https://ordenfinanciero.com/#organization", "name": "Orden Financiero", "alternateName": "ordenfinanciero", "url": "http
+--- https://ordenfinanciero.com/privacidad
+<html lang="es-AR">
+<title>Privacidad · Orden Financiero</title>
+<meta name="description" content="Qué datos pide ordenfinanciero.com, para qué se usan y cómo pedir que se borren.">
+<link rel="canonical" href="https://ordenfinanciero.com/privacidad">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Privacidad · Orden Financiero">
+<meta property="og:description" content="Qué datos pide ordenfinanciero.com, para qué se usan y cómo pedir que se borren.">
+<meta property="og:url" content="https://ordenfinanciero.com/privacidad">
+<meta property="og:locale" content="es_AR">
+<meta property="og:image" content="https://ordenfinanciero.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+--- sitemap
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://ordenfinanciero.com/</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://ordenfinanciero.com/privacidad</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+</urlset>
+--- robots
+User-agent: *
+Allow: /
+
+Sitemap: https://ordenfinanciero.com/sitemap.xml
+--- 404
+code=404
+<title>Página no encontrada · Orden Financiero</title>
+<meta name="robots" content="noindex">
