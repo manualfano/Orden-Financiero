@@ -2396,13 +2396,14 @@ footer { padding: var(--s-6) 0; }
 }
 
 /* ── ENCABEZADO TIPO TIRA (07/09): barra solida, marca y CTA mas grandes ── */
+/* Decision del dueño (07/09/2026): la tira va en navy-2, un tono mas
+   claro que el hero, sin borde -- la barra se distingue sola. */
 nav {
   height: 76px;
-  background: var(--navy-900);
-  border-bottom: 1px solid var(--w-border);
+  background: var(--navy-2);
 }
 
-nav.scrolled { background: var(--navy-900-92); }
+nav.scrolled { background: var(--navy-2); }
 [id] { scroll-margin-top: calc(var(--s-8) + var(--s-5)); }
 
 .nav-inner { gap: var(--s-6); }
