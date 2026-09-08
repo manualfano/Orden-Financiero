@@ -1,0 +1,50 @@
+--- https://ordenfinanciero.com.ar/
+code=200 final=https://www.ordenfinanciero.com.ar/ size=138789
+<html class="js" lang="es"
+<link rel="canonical" href="https://www.ordenfinanciero.com.ar/"
+<title>
+--- https://ordenfinanciero.co/
+code=200 final=https://ordenfinanciero.co/ size=64675
+<html lang="es"
+<title>Finanzas personales fáciles para ahorrar y ordenar tu dinero
+<meta name="description" content="Aprende a gestionar tu dinero con métodos de ahorro sencillos, hábitos financieros y guías prácticas para empezar de cero sin complicarte
+<link rel="canonical" href="https://ordenfinanciero.co/"
+<meta property="og:locale" content="es_ES"
+"@type":"Organization"
+"@type":"ImageObject"
+"@type":"WebSite"
+--- https://gpsgastronomico.com/
+code=200 final=https://www.gpsgastronomico.com/ size=182442
+<html  lang="en"
+<html lang="es"
+<title>GPS Gastronómico — Método GPS para Restaurantes
+<h1>Vende igual.
+--- https://www.marval.com/
+code=200 final=https://www.marval.com/ size=18047
+<html lang="es"
+<title>Estudio Jur&#xED;dico L&#xED;der en Argentina y Am&#xE9;rica Latina | Marval O&#x2019;Farrell Mairal
+<meta name="description" content="Marval O&#x2019;Farrell Mairal reconocido como el estudio jur&#xED;dico l&#xED;der en Argentina y Am&#xE9;rica Latina, con 300&#x2B; abogados, 100&#x2B; a&#xF1;
+<meta property="og:locale" content="es_AR"
+<link rel="canonical" href="https://www.marval.com/"
+"@type":"LawFirm"
+"@type":"QuantitativeValue"
+"@type":"PostalAddress"
+--- https://www.pwc.com.ar/
+code=403 final=https://www.pwc.com.ar/ size=370
+<TITLE>Access Denied
+<H1>Access Denied
+--- https://www.kpmg.com/ar/es/home.html
+code=200 final=https://kpmg.com/ar/es.html size=200411
+<html lang="es"
+<title>KPMG Argentina
+<meta name="description" content="Home Page
+<link rel="canonical" href="https://kpmg.com/ar/es.html"
+<h1 class="d-none">Make The Difference
+--- ordenfinanciero.com.ar (detalle)
+title: Orden Financiero - S� el due�o de tu dinero
+description: None
+h1: []
+og:locale: []
+ld types: []
+generator: []
+palabras aprox: 1859

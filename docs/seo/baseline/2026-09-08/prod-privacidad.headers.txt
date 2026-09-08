@@ -1,0 +1,16 @@
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Access-Control-Allow-Origin: *
+Age: 0
+Cache-Control: public, max-age=0, must-revalidate
+Content-Disposition: inline; filename="privacidad"
+Content-Length: 5292
+Content-Type: text/html; charset=utf-8
+Date: Tue, 08 Sep 2026 17:01:43 GMT
+Etag: "910f86f5b77dbb9ad0d0b13e78cebc39"
+Last-Modified: Tue, 08 Sep 2026 17:01:43 GMT
+Server: Vercel
+Strict-Transport-Security: max-age=63072000
+X-Vercel-Cache: MISS
+X-Vercel-Id: gru1::vkrsl-1788886903203-afc0769f470b
+

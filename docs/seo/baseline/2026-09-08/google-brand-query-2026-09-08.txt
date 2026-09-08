@@ -1,0 +1,28 @@
+Consulta: https://www.google.com/search?q=orden+financiero&hl=es-419&gl=ar&pws=0
+Fecha: 2026-09-08 (panel de navegador de Claude Code, sin sesion de Google; gl=ar fuerza
+pais Argentina en el parametro, pero la IP no es argentina: el dueño reporta ademas un
+resumen de IA y a ordenfinanciero.com.ar en su SERP desde Argentina).
+
+Pagina 1 (texto de la pagina, resumido):
+- Patrocinado: educatudinero.com (finanzas personales)
+- BBVA: "Planificacion financiera personal: un manual para..."
+- "Mas preguntas": ¿Que es un orden financiero? / ¿Cuales son los 4 pilares financieros? / ...
+- Principal: "Pon tu vida financiera en orden"
+- Instagram rubengranadosoficial: "Orden financiero..."
+- Videos: YouTube Value School, Mujer Financiera, Instagram Nicolas Passini, Moris Dieck
+- Revista Tigris (.com.ar): "Ordenar tus finanzas tambien es una forma de cuidar..."
+- Google Play: "Mis Finanzas: Gastos en orden"
+- Meer: "Los 7 pasos del orden financiero"
+- presupuestofamiliar.com.ar: "Programa Finanzas en Orden"
+- Patrocinados: Life Seguros, Bold
+- "Tambien se busco": organizacion financiera personal, finanzas personales excel/pdf...
+
+ordenfinanciero.com: NO aparece en la pagina 1.
+ordenfinanciero.com.ar: NO aparece en esta SERP (si en la del dueño desde Argentina).
+
+Lectura: Google interpreta "orden financiero" como consulta INFORMATIVA generica de
+finanzas personales, no como consulta de marca. Toda la pagina 1 es contenido
+educativo sobre ordenar finanzas personales.
+
+Consulta: site:www.ordenfinanciero.com OR site:diagnostico.ordenfinanciero.com
+Resultado: "No se han encontrado resultados". Los hosts duplicados no estan indexados (hoy).

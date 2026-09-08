@@ -1,0 +1,11 @@
+HTTP/1.1 308 Permanent Redirect
+Cache-Control: public, max-age=0, must-revalidate
+Content-Type: text/plain
+Date: Tue, 08 Sep 2026 17:01:44 GMT
+Location: /privacidad
+Refresh: 0;url=/privacidad
+Server: Vercel
+Strict-Transport-Security: max-age=63072000
+X-Vercel-Id: gru1::m7hf8-1788886904638-f998eb4fae67
+Transfer-Encoding: chunked
+

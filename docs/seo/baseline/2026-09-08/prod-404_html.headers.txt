@@ -1,0 +1,11 @@
+HTTP/1.1 308 Permanent Redirect
+Cache-Control: public, max-age=0, must-revalidate
+Content-Type: text/plain
+Date: Tue, 08 Sep 2026 17:01:46 GMT
+Location: /404
+Refresh: 0;url=/404
+Server: Vercel
+Strict-Transport-Security: max-age=63072000
+X-Vercel-Id: gru1::kl2js-1788886905997-99d5f0c8d016
+Transfer-Encoding: chunked
+

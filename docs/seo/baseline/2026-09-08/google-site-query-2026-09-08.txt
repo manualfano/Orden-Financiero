@@ -1,0 +1,14 @@
+Consulta: https://www.google.com/search?q=site%3Aordenfinanciero.com&hl=es-419&gl=ar&pws=0
+Fecha: 2026-09-08 (panel de navegador de Claude Code, sin sesion de Google)
+Resultado (texto de la pagina):
+
+Resultados web
+Orden Financiero · Consultora PyME
+ordenfinanciero.com
+https://ordenfinanciero.com
+El primer paso para ordenar tu negocio empieza acá · ¿Trabajás todo el mes y no sabés bien cuánto ganaste?
+
+Lectura: 1 (una) URL indexada, la home. Title y snippet corresponden a la version
+ANTERIOR al rediseño del 07/09/2026 (title actual en prod: "Orden Financiero ·
+Programa de consultoría financiera para gastronomía y servicios"; h1 actual:
+"El primer paso para hacer tu negocio más rentable empieza acá").
