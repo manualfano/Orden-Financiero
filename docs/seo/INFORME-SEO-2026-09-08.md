@@ -230,6 +230,8 @@ El dueño creó la propiedad de dominio `ordenfinanciero.com`; Google la verific
 | 11 | Deploys | Hechos por push a `master` (Fase 3 y 4). El de CLI duplicado no tuvo efecto |
 | 12 | `http://www` llega al apex en dos saltos (308 + 308) | Aceptable para Google. Si querés un solo salto: Vercel → Domains → `www.ordenfinanciero.com` → "Redirect to ordenfinanciero.com" (sin código) |
 | 13 | Google Business Profile | **Pendiente tuya** (§11, punto 2) |
+| 16 | Link de la bio de Instagram | **Ya estaba**: @orden.financiero enlaza directo a `ordenfinanciero.com` (captura del dueño, 08/09). Nota de coherencia, no SEO: la bio dice "negocio gastronómico / 12 semanas / 5 min al día"; la web, "gastronomía y servicios / tres meses / 3 minutos" |
+| 17 | Search Console | **Hecho por el dueño el 08/09**: propiedad de dominio verificada vía DonWeb, sitemap enviado, indexación solicitada para `/` y `/privacidad` (§11-ter) |
 | 14 | Wordmark visible "ordenfinanciero." en una palabra | No se toca (decisión de marca). Cubierto por `alternateName` en el schema |
 
 **Lo que NO se hizo, a propósito:** ni blog ni páginas nuevas; ni librerías ni scripts de terceros; ni cambios en el diagnóstico, el scoring, los 72 textos, el mail o el Sheet; ni mención al portal en metadatos; ni `hreflang`; ni FAQ schema (habría sido honesto porque las FAQ existen en la página, pero Google dejó de mostrar ese resultado enriquecido para sitios que no son de gobierno o salud y no cambia la indexación; lo dejo anotado por si querés que lo agregue igual).
