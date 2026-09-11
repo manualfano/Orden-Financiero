@@ -4480,7 +4480,6 @@ nav.scrolled { background: var(--navy-2); }
           <div class="cta-strip" id="cta-strip">
             <p>Revisamos este resultado con tus números reales: 30 minutos, gratis, con Manuel.</p>
             <div class="cta-strip-actions">
-              <a class="cta-wa cta-wa-light" hidden data-msg="Hola Manu, hice el diagnóstico en la web y quiero hablar del programa." onclick="track('cta_whatsapp_click', { desde: 'resultado' })"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.9 11.9 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7a11.9 11.9 0 0 0 5.6 1.4c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.4-8.3zM12 21.7c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4A9.8 9.8 0 0 1 2.1 12C2.1 6.5 6.5 2.1 12 2.1c2.6 0 5.1 1 7 2.9a9.8 9.8 0 0 1 2.9 7c0 5.4-4.5 9.7-9.9 9.7zm5.4-7.3c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.3z"/></svg>Hablar por WhatsApp</a>
               <a class="btn btn-blue" id="cta-top-link" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2ObyolYWVEvMKs_tLRnn44v51LuYKjodxamoeF-LVymZFv5-rlDky70uJEDAu2XCaUHjDTgARg" target="_blank" rel="noopener" onclick="track('cta_calendar_click', { desde: 'resultado-arriba' })">Agendar la llamada <span class="arrow" aria-hidden="true">→</span></a>
             </div>
           </div>
@@ -5495,6 +5494,9 @@ function mensajeRespaldo() {
   return `Hola Manu, hice el diagnóstico en la web y no se guardó mi número. Puntaje: ${total}/36. Eslabón más ${todosSolidos ? 'bajo' : 'débil'}: ${nombresEslabon[eslabonDebilIndex]}. Respuestas: ${letras}.`;
 }
 
+// Icono del boton de respaldo (el resultado ya no tiene WhatsApp: el CTA es la llamada)
+const ICONO_WHATSAPP = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.9 11.9 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7a11.9 11.9 0 0 0 5.6 1.4c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.4-8.3zM12 21.7c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4A9.8 9.8 0 0 1 2.1 12C2.1 6.5 6.5 2.1 12 2.1c2.6 0 5.1 1 7 2.9a9.8 9.8 0 0 1 2.9 7c0 5.4-4.5 9.7-9.9 9.7zm5.4-7.3c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.3z"/></svg>';
+
 function mostrarAvisoLead(modo) {
   const el = document.getElementById('lead-aviso');
   if (!el) return;
@@ -5505,7 +5507,7 @@ function mostrarAvisoLead(modo) {
     return;
   }
   const url = urlWhatsApp(mensajeRespaldo());
-  const icono = (document.querySelector('#cta-strip .cta-wa svg') || { outerHTML: '' }).outerHTML;
+  const icono = ICONO_WHATSAPP;
   el.className = 'gate-status visible error';
   el.innerHTML = '<span>No pudimos guardar tu número. El análisis está acá abajo igual: probá de nuevo o mandale el resultado a Manuel por WhatsApp.</span>'
     + '<span class="lead-aviso-acciones">'
