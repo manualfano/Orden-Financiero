@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Orden Financiero · Consultoría financiera para gastronomía y servicios</title>
-<meta name="description" content="Programa de consultoría financiera con datos para negocios de gastronomía y servicios en Argentina. El primer paso es un diagnóstico de 12 preguntas.">
+<title>Orden Financiero · Consultoría financiera para gastronomía</title>
+<meta name="description" content="Programa de consultoría financiera con datos para negocios de gastronomía en Argentina. El primer paso es un diagnóstico de 12 preguntas.">
 <link rel="canonical" href="https://ordenfinanciero.com/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="El primer paso para hacer tu negocio más rentable empieza acá">
-<meta property="og:description" content="Programa de consultoría financiera con datos para negocios de gastronomía y servicios en Argentina. El paso 1 es un diagnóstico de 12 preguntas con resultado al instante.">
+<meta property="og:description" content="Programa de consultoría financiera con datos para negocios de gastronomía en Argentina. El paso 1 es un diagnóstico de 12 preguntas con resultado al instante.">
 <meta property="og:url" content="https://ordenfinanciero.com/">
 <meta property="og:locale" content="es_AR">
 <meta property="og:image" content="https://ordenfinanciero.com/og-image.png">
@@ -46,7 +46,7 @@ function gtag() { dataLayer.push(arguments); }
 <!-- A17 (cerrada 07/09/2026): LocalBusiness con ciudad La Plata, sin calle ni telefono.
      SEO Fase 4 (08/09/2026): @graph con Organization (@id, alternateName = wordmark) y WebSite
      (inLanguage es-AR). sameAs: Instagram + pagina de empresa de LinkedIn (ID 106909356, URL dada por el dueño 08/09). -->
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": ["ProfessionalService", "Organization"], "@id": "https://ordenfinanciero.com/#organization", "name": "Orden Financiero", "alternateName": "ordenfinanciero", "url": "https://ordenfinanciero.com/", "logo": "https://ordenfinanciero.com/apple-touch-icon.png", "image": "https://ordenfinanciero.com/og-image.png", "description": "Programa de consultoría financiera con datos para negocios de gastronomía y servicios en Argentina. El primer paso es un diagnóstico de 12 preguntas.", "email": "manuel@ordenfinanciero.com", "areaServed": {"@type": "Country", "name": "Argentina"}, "founder": {"@type": "Person", "name": "Manuel Alfano"}, "sameAs": ["https://www.instagram.com/orden.financiero/", "https://www.linkedin.com/company/106909356/"], "address": {"@type": "PostalAddress", "addressLocality": "La Plata", "addressRegion": "Buenos Aires", "addressCountry": "AR"}}, {"@type": "WebSite", "@id": "https://ordenfinanciero.com/#website", "url": "https://ordenfinanciero.com/", "name": "Orden Financiero", "inLanguage": "es-AR", "publisher": {"@id": "https://ordenfinanciero.com/#organization"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": ["ProfessionalService", "Organization"], "@id": "https://ordenfinanciero.com/#organization", "name": "Orden Financiero", "alternateName": "ordenfinanciero", "url": "https://ordenfinanciero.com/", "logo": "https://ordenfinanciero.com/apple-touch-icon.png", "image": "https://ordenfinanciero.com/og-image.png", "description": "Programa de consultoría financiera con datos para negocios de gastronomía en Argentina. El primer paso es un diagnóstico de 12 preguntas.", "email": "manuel@ordenfinanciero.com", "areaServed": {"@type": "Country", "name": "Argentina"}, "founder": {"@type": "Person", "name": "Manuel Alfano"}, "sameAs": ["https://www.instagram.com/orden.financiero/", "https://www.linkedin.com/company/106909356/"], "address": {"@type": "PostalAddress", "addressLocality": "La Plata", "addressRegion": "Buenos Aires", "addressCountry": "AR"}}, {"@type": "WebSite", "@id": "https://ordenfinanciero.com/#website", "url": "https://ordenfinanciero.com/", "name": "Orden Financiero", "inLanguage": "es-AR", "publisher": {"@id": "https://ordenfinanciero.com/#organization"}}]}</script>
 <style>
 /* ══════════════════════════════════════════
    TOKENS
@@ -3805,8 +3805,6 @@ nav.scrolled { background: var(--navy-2); }
     </div>
     <div class="nav-right">
       <button class="nav-cta" onclick="openDiagnostico('nav')">Hacer el diagnóstico · 3 min</button>
-      <!-- Acceso de clientes al portal (dueño, 07/09): delineado, al lado del CTA -->
-      <a class="nav-login" href="https://orden-financiero-portal.vercel.app/login" rel="noopener" onclick="track('cta_portal', { desde: 'nav' })">Ingresar</a>
     </div>
   </div>
 </nav>
@@ -3822,7 +3820,7 @@ nav.scrolled { background: var(--navy-2); }
       <!-- A9 (cerrada 07/09/2026): descriptor unico de marca, definido por el dueño -->
       <p class="hero-eyebrow label-meta">
         <span class="hero-eyebrow-dot" aria-hidden="true"></span>
-        <span id="hero-eyebrow-text">Programa de consultoría financiera para gastronomía y servicios</span>
+        <span id="hero-eyebrow-text">Programa de consultoría financiera para gastronomía</span>
       </p>
 
       <!-- A12 (cerrada 07/09/2026): h1 definido por el dueño -->
@@ -3840,11 +3838,6 @@ nav.scrolled { background: var(--navy-2); }
           <span id="hero-cta-text">Hacer el diagnóstico · 3 min</span>
           <span class="arrow" aria-hidden="true">→</span>
         </button>
-        <!-- A24: lead caliente -> WhatsApp directo. Oculto hasta que WHATSAPP_NUMERO tenga valor. -->
-        <a class="cta-wa" hidden data-msg="Hola Manu, vengo de la web y quiero hablar del programa." onclick="track('cta_whatsapp_click', { desde: 'hero' })">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.9 11.9 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7a11.9 11.9 0 0 0 5.6 1.4c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.4-8.3zM12 21.7c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4A9.8 9.8 0 0 1 2.1 12C2.1 6.5 6.5 2.1 12 2.1c2.6 0 5.1 1 7 2.9a9.8 9.8 0 0 1 2.9 7c0 5.4-4.5 9.7-9.9 9.7zm5.4-7.3c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.3z"/></svg>
-          Hablar por WhatsApp
-        </a>
       </div>
 
       <a class="hero-proof" href="#logos" aria-label="Ver negocios que ya trabajan con Orden Financiero">
@@ -3852,7 +3845,7 @@ nav.scrolled { background: var(--navy-2); }
           <img src="logos/cortez.jpg" alt="" width="150" height="150" loading="lazy"><img src="logos/byehenry.jpg" alt="" width="150" height="150" loading="lazy"><img src="logos/sao.jpg" alt="" width="150" height="150" loading="lazy"><img src="logos/mollica.jpg" alt="" width="150" height="150" loading="lazy">
         </span>
         <!-- Cifra declarada por el dueño (07/09); la cinta muestra 17 con nombre -->
-        <span class="hero-proof-text"><strong>Más de 100 negocios</strong> de gastronomía y servicios ya ordenaron sus números con el programa</span>
+        <span class="hero-proof-text"><strong>Más de 100 negocios</strong> ya ordenaron sus números con el programa</span>
       </a>
 
       <div class="hero-trust">
@@ -4199,7 +4192,7 @@ nav.scrolled { background: var(--navy-2); }
         <p class="founder-role">Fundador de Orden Financiero</p>
         <div class="founder-copy">
           <p>Manuel no llegó a los números desde un escritorio: viene de más de 12 años en la gastronomía con negocio propio. Conoce de adentro lo que es cerrar el mes sin saber si quedó plata, y por eso el programa habla el idioma del dueño, no el del contador.</p>
-          <p>Hoy trabaja mano a mano con dueños de PyMEs de gastronomía, peluquerías, comercio y servicios para que el resultado del negocio deje de ser una sensación y pase a ser un número: cuánto cuesta lo que se vende, cuánto queda a fin de mes y qué decisión conviene tomar con esos datos.</p>
+          <p>Hoy trabaja mano a mano con dueños de negocios gastronómicos para que el resultado del negocio deje de ser una sensación y pase a ser un número: cuánto cuesta lo que se vende, cuánto queda a fin de mes y qué decisión conviene tomar con esos datos.</p>
           <p>El diagnóstico es el mismo punto de partida que usa con sus clientes: encontrar el eslabón más débil de la cadena financiera, porque por ahí es por donde se escapa la plata.</p>
         </div>
         <div class="founder-facts">
@@ -4225,7 +4218,7 @@ nav.scrolled { background: var(--navy-2); }
       <div class="forwho-col yes">
         <p class="forwho-head">El diagnóstico es para vos si&hellip;</p>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Tenés un negocio en marcha, con 1 a 4 locales o puntos de venta</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Tenés un negocio gastronómico en marcha, con 1 a 4 locales o puntos de venta</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Tu negocio vende, pero el número de cuánto gana no está claro</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>La plata personal y la del negocio están mezcladas</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Trabajás más de 10 horas por día y el negocio no te deja desconectar</li>
@@ -4310,11 +4303,11 @@ nav.scrolled { background: var(--navy-2); }
       <a class="footer-link" href="#metodo">El programa</a>
       <a class="footer-link" href="#manuel">Quién está detrás</a>
       <a class="footer-link" href="/privacidad">Privacidad</a>
-    <!-- A3 reabierta por el dueño (07/09): el acceso al portal vive solo aca, en el footer -->
-      <a class="footer-link footer-link-portal" href="https://orden-financiero-portal.vercel.app/login" rel="noopener" onclick="track('cta_portal', { desde: 'footer' })">Portal de clientes <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+    <!-- Fase 1 (11/09/2026): el unico acceso al portal es este, en el footer, y va al dominio propio (ahi funcionan las passkeys) -->
+      <a class="footer-link footer-link-portal" href="https://portal.ordenfinanciero.com/login" rel="noopener" onclick="track('cta_portal', { desde: 'footer' })">Portal de clientes <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
     </div>
     <!-- A9 (cerrada 07/09/2026): descriptor unico -->
-    <p class="footer-copy">© 2026 Orden Financiero · Programa de consultoría financiera para gastronomía y servicios</p>
+    <p class="footer-copy">© 2026 Orden Financiero · Programa de consultoría financiera para gastronomía</p>
   </div>
 </footer>
 
@@ -4416,41 +4409,8 @@ nav.scrolled { background: var(--navy-2); }
     <section class="panel-right" id="panel-right" aria-label="Contenido del diagnóstico">
       <div class="top-progress-track" aria-hidden="true"><div class="top-progress-fill" id="top-progress-fill"></div></div>
 
-      <!-- SCREEN: RUBRO (elegir el rubro pasa directo a la pregunta 1) -->
-      <div class="screen active" id="screen-rubro">
-        <h2 class="lead-title">Antes de arrancar, contanos de tu negocio</h2>
-        <p class="lead-desc">Así adaptamos el diagnóstico a tu rubro. Tocá el tuyo para empezar.</p>
-
-        <div class="rubro-grid" role="radiogroup" aria-label="¿A qué se dedica tu negocio?">
-          <button class="rubro-card" role="radio" aria-checked="false" data-rubro="gastronomia" onclick="selectRubro(this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-            <span class="rubro-card-name">Gastronomía<br><small class="rubro-card-sub">restaurante, bar, café, panadería</small></span>
-          </button>
-          <button class="rubro-card" role="radio" aria-checked="false" data-rubro="peluqueria" onclick="selectRubro(this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
-            <span class="rubro-card-name">Salón de belleza<br><small class="rubro-card-sub">peluquería, estética</small></span>
-          </button>
-          <button class="rubro-card" role="radio" aria-checked="false" data-rubro="salud" onclick="selectRubro(this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            <span class="rubro-card-name">Salud<br><small class="rubro-card-sub">veterinaria, consultorio, farmacia</small></span>
-          </button>
-          <button class="rubro-card" role="radio" aria-checked="false" data-rubro="comercio" onclick="selectRubro(this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-            <span class="rubro-card-name">Comercio<br><small class="rubro-card-sub">tienda, local de venta</small></span>
-          </button>
-          <button class="rubro-card" role="radio" aria-checked="false" data-rubro="servicios" onclick="selectRubro(this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-            <span class="rubro-card-name">Servicios profesionales</span>
-          </button>
-          <button class="rubro-card" role="radio" aria-checked="false" data-rubro="otro" onclick="selectRubro(this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
-            <span class="rubro-card-name">Otro rubro</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- SCREEN: PREGUNTAS -->
-      <div class="screen" id="screen-question">
+      <!-- SCREEN: PREGUNTAS (Fase 1: sin pantalla de rubro; la consultoria es solo gastronomica) -->
+      <div class="screen active" id="screen-question">
         <div class="q-header">
           <div class="q-breadcrumb">
             <span class="q-breadcrumb-block" id="q-eslabon-name">Costos y precios</span>
@@ -4550,7 +4510,7 @@ nav.scrolled { background: var(--navy-2); }
 
 <script>
 // ── MEDICION: una sola funcion; nunca datos personales en props ──
-// Eventos del embudo (ver INFORME-rediseno): diag_open, diag_rubro,
+// Eventos del embudo (ver INFORME-rediseno): diag_open,
 // diag_answer, diag_result_view, diag_lead_view, diag_lead_submit,
 // diag_lead_error, diag_result_full, cta_calendar_click,
 // cta_whatsapp_click, cta_portal, diag_abandon.
@@ -4688,22 +4648,14 @@ function openDiagnostico(origen) {
 }
 
 function resumeScreen() {
-  document.querySelectorAll('.rubro-card').forEach(c => {
-    const on = c.dataset.rubro === state.rubro;
-    c.classList.toggle('selected', on); c.setAttribute('aria-checked', on ? 'true' : 'false');
-  });
   if (state.completado) { showResultPartial(); return; }
-  if (state.rubro) { renderQuestion(); showScreen('screen-question'); updateChain(); return; }
-  showScreen('screen-rubro'); updateChain();
+  renderQuestion(); showScreen('screen-question'); updateChain();
 }
 
 // ultimo paso visible del prospecto, para diag_abandon
 function _ultimoPaso() {
   if (state.leadOk) return 'analisis';
   if (state.completado) return 'resultado';
-  const activa = document.querySelector('#diag-overlay .screen.active');
-  const id = activa ? activa.id : '';
-  if (id === 'screen-rubro') return 'rubro';
   return 'q' + Math.min(state.currentQ + 1, 12);
 }
 
@@ -4718,7 +4670,7 @@ window.addEventListener('pagehide', _trackAbandon);
 
 // La X pide confirmacion de una linea solo si ya hay algo cargado.
 function pedirCierre() {
-  const hayAlgo = state.rubro || state.answers.some(a => a !== null);
+  const hayAlgo = state.answers.some(a => a !== null);
   if (!hayAlgo) { closeDiagnostico(); return; }
   const c = document.getElementById('close-confirm');
   c.hidden = false;
@@ -4802,7 +4754,7 @@ const PREGUNTAS = [
     ],
     reacciones: [
       { tipo:"ok",   texto:"El que fija precio sobre sus costos manda. El que mira a la competencia, sigue." },
-      { tipo:"warn", texto:"Mirar al mercado no está mal, pero si no conocés tu costo podés estar vendiendo y perdiendo sin saberlo." },
+      { tipo:"warn", texto:"Mirar al mercado no está mal, pero sin el costo claro el negocio puede estar vendiendo y perdiendo sin que se note." },
       { tipo:"crit", texto:"Si tu precio lo pone la competencia, tu margen también lo pone ella. Así no se construye un negocio." }
     ]
   },
@@ -4816,7 +4768,7 @@ const PREGUNTAS = [
     ],
     reacciones: [
       { tipo:"ok",   texto:"Clave en Argentina. El que no actualiza trabaja cada mes con un margen más chico, aunque venda igual." },
-      { tipo:"warn", texto:"Cada mes que no actualizás, el costo sube y el precio queda quieto. El margen se achica solo." },
+      { tipo:"warn", texto:"Cada mes sin actualizar, el costo sube y el precio queda quieto. El margen se achica solo." },
       { tipo:"crit", texto:"En contexto inflacionario, no actualizar precios es subsidiar a tus clientes con tu propia rentabilidad." }
     ]
   },
@@ -4888,7 +4840,7 @@ const PREGUNTAS = [
     ],
     reacciones: [
       { tipo:"ok",   texto:"Bien. Anticipar gastos es lo que te permite no sorprenderte a fin de mes." },
-      { tipo:"warn", texto:"Si no lo sabés con anticipación, cada gasto grande te agarra desprevenido. Eso genera tensión de caja." },
+      { tipo:"warn", texto:"Sin anticipar esos gastos, cada gasto grande agarra al negocio desprevenido. Eso genera tensión de caja." },
       { tipo:"crit", texto:"Sin ese mapa de gastos, el negocio reacciona en vez de planificar. Y reaccionar siempre cuesta más caro." }
     ]
   },
@@ -4902,7 +4854,7 @@ const PREGUNTAS = [
     ],
     reacciones: [
       { tipo:"ok",   texto:"Bien. Cobrar antes de pagar es la base de un flujo sano. Muchos negocios rentables quiebran por esto." },
-      { tipo:"warn", texto:"Cuando pagás antes de cobrar, financiás a tu cliente con tu propia plata. Eso tiene un costo real." },
+      { tipo:"warn", texto:"Cuando el negocio paga antes de cobrar, financia a sus clientes con plata propia. Eso tiene un costo real." },
       { tipo:"crit", texto:"La caja del negocio depende de que la plata entre a tiempo, contando los días. Eso es un cuello de botella financiero puro." }
     ]
   },
@@ -4956,158 +4908,76 @@ const TEXTOS_RESULTADO = {
   costos: {
     critico: {
       espejo: "El negocio vende todos los días, pero a fin de mes no queda claro dónde se fue la plata.",
-      consecuencia: {
-        gastronomia: "Es muy probable que algunos platos de la carta den pérdida sin que se note: cada vez que el costo de un ingrediente sube y el precio de la carta queda igual, el margen se regala.",
-        peluqueria: "Es probable que algunos servicios te cuesten más en productos y tiempo de lo que cobrás por ellos — cada corte o color con descuento mal calculado te puede estar saliendo a pérdida.",
-        salud: "Es probable que algunas prácticas o productos no estén dejando todo el margen que deberían: cada vez que los precios no siguen a la inflación, la rentabilidad se pierde sin que se note.",
-        comercio: "Es probable que haya productos con margen mínimo o negativo sin que se vea: la rotación tapa el problema hasta que aparece el cálculo real.",
-        servicios: "Es probable que tu tarifa no esté cubriendo todas las horas que realmente le dedicás a cada cliente — el tiempo invisible (mails, gestión, seguimiento) no está en tu precio.",
-        otro: "Es probable que el negocio venda por debajo de su costo real sin que se note: sin un cálculo preciso, el margen se diluye en gastos que no aparecen."
-      },
+      consecuencia: "Es muy probable que algunos platos de la carta den pérdida sin que se note: cada vez que el costo de un ingrediente sube y el precio de la carta queda igual, el margen se regala.",
       gancho: "El problema no es vender más — es saber cuáles de tus ventas realmente te conviene hacer. Eso es lo que vemos en la llamada."
     },
     desarrollo: {
-      espejo: "Tenés una idea de tus costos, pero no la precisión suficiente como para confiar del todo en tus precios.",
-      consecuencia: {
-        gastronomia: "Hay platos que seguramente dejan mejor margen que otros, pero sin el cálculo exacto es difícil saber cuáles empujar y cuáles revisar.",
-        peluqueria: "Algunos servicios rinden mejor que otros, pero sin un cálculo preciso es difícil saber dónde conviene poner el foco comercial.",
-        salud: "Hay prácticas más rentables que otras, pero sin un cálculo afinado es difícil priorizar dónde conviene crecer.",
-        comercio: "Hay productos que dejan mejor margen que otros, pero sin un cálculo preciso es difícil decidir qué stock priorizar.",
-        servicios: "Algunos clientes o proyectos seguramente rinden mejor que otros, pero sin medirlo es difícil saber dónde poner el foco.",
-        otro: "Seguramente hay líneas más rentables que otras dentro de tu negocio, pero sin un cálculo preciso es difícil identificarlas con seguridad."
-      },
+      espejo: "Hay una idea de los costos, pero no la precisión suficiente como para confiar del todo en los precios.",
+      consecuencia: "Hay platos que seguramente dejan mejor margen que otros, pero sin el cálculo exacto es difícil saber cuáles empujar y cuáles revisar.",
       gancho: "Hay un ajuste relativamente simple que puede mejorar tu margen sin vender un peso más. Te lo muestro en la llamada."
     },
     solido: {
       espejo: "Tenés un manejo bastante claro de tus costos y precios — es una de las bases más sólidas de un negocio ordenado.",
-      consecuencia: {
-        gastronomia: "El siguiente nivel no es calcular mejor, es usar ese cálculo para decidir qué platos potenciar y cuáles sacar de la carta.",
-        peluqueria: "El siguiente nivel es usar esos números para decidir qué servicios o paquetes conviene impulsar más.",
-        salud: "El siguiente nivel es usar esos números para priorizar qué prácticas o especialidades conviene desarrollar.",
-        comercio: "El siguiente nivel es usar esos números para optimizar qué productos comprar más y cuáles dejar de reponer.",
-        servicios: "El siguiente nivel es usar esos números para decidir qué tipo de clientes o proyectos te conviene priorizar.",
-        otro: "El siguiente nivel es usar esa base para tomar decisiones estratégicas de crecimiento, no solo de control."
-      },
+      consecuencia: "El siguiente nivel no es calcular mejor, es usar ese cálculo para decidir qué platos potenciar y cuáles sacar de la carta.",
       gancho: "Tenés la base. La pregunta es si la estás usando para crecer con foco o solo para no perder plata. Eso lo vemos en la llamada."
     }
   },
   resultado: {
     critico: {
       espejo: "El negocio trabaja todo el mes y vende, pero llega a fin de mes sin un número claro de cuánto ganó de verdad.",
-      consecuencia: {
-        gastronomia: "Es probable que la plata que entra en caja se confunda con la ganancia real del local: son cosas muy distintas, y la diferencia aparece cuando hay que invertir o afrontar un imprevisto.",
-        peluqueria: "Es probable que tu sueldo y la ganancia del salón estén mezclados en un mismo número: eso hace que cualquier decisión de inversión sea más difícil de evaluar.",
-        salud: "Es probable que la facturación te dé una sensación de orden que no necesariamente coincide con la ganancia real una vez descontados todos los costos.",
-        comercio: "Es probable que las ventas y la ganancia se estén leyendo como lo mismo: un mes de mucha venta no siempre es un mes de buena rentabilidad.",
-        servicios: "Es probable que lo que se cobra y lo que realmente queda después de gastos e impuestos no estén separados en ningún lado.",
-        otro: "Es probable que la sensación de 'me está yendo bien' no esté respaldada por un número concreto de ganancia real."
-      },
+      consecuencia: "Es probable que la plata que entra en caja se confunda con la ganancia real del local: son cosas muy distintas, y la diferencia aparece cuando hay que invertir o afrontar un imprevisto.",
       gancho: "Sin ese número, cualquier decisión grande es una apuesta. El primer paso es tener un cierre simple y confiable. Eso es lo que armamos en la llamada."
     },
     desarrollo: {
-      espejo: "Tenés algo de noción de cómo te va, pero no un cierre formal que te dé el número exacto cada mes.",
-      consecuencia: {
-        gastronomia: "Capaz sentís que el mes estuvo bien o mal, pero sin el número exacto es difícil saber si esa sensación coincide con la realidad.",
-        peluqueria: "Tenés una intuición de cómo viene el mes, pero sin el cierre formal es difícil confirmar si esa intuición es certera.",
-        salud: "Tenés una idea general del resultado, pero sin el cierre exacto es difícil tomar decisiones de inversión con confianza.",
-        comercio: "Sabés más o menos cómo viene el negocio, pero sin el número preciso quedan decisiones importantes libradas a la intuición.",
-        servicios: "Tenés una percepción de cómo te está yendo, pero sin el cierre exacto es difícil saber si conviene tomar más clientes o subir tarifas.",
-        otro: "Tenés una idea aproximada, pero sin el número exacto las decisiones grandes quedan en terreno incierto."
-      },
+      espejo: "Hay una noción de cómo le va al negocio, pero no un cierre formal que dé el número exacto cada mes.",
+      consecuencia: "El mes puede sentirse bueno o malo, pero sin el número exacto es difícil saber si esa sensación coincide con la realidad.",
       gancho: "Formalizar ese cierre no lleva mucho tiempo y cambia completamente la calidad de tus decisiones. Te muestro cómo en la llamada."
     },
     solido: {
       espejo: "Tenés bastante claridad sobre cuánto gana tu negocio — eso ya te pone en mejor posición que la mayoría de las PyMEs.",
-      consecuencia: {
-        gastronomia: "El siguiente paso es usar ese número para planificar inversión y crecimiento, no solo para controlar que no falte plata.",
-        peluqueria: "El siguiente paso es usar ese resultado para decidir cuándo sumar otra silla o profesional, con respaldo de números.",
-        salud: "El siguiente paso es usar ese resultado para evaluar inversión en equipamiento o nuevos servicios con criterio financiero.",
-        comercio: "El siguiente paso es usar ese resultado para planificar expansión o nuevas líneas de producto con base sólida.",
-        servicios: "El siguiente paso es usar ese resultado para definir si conviene escalar el equipo o subir tarifas.",
-        otro: "El siguiente paso es usar ese resultado como base para decisiones de crecimiento, no solo de control."
-      },
+      consecuencia: "El siguiente paso es usar ese número para planificar inversión y crecimiento, no solo para controlar que no falte plata.",
       gancho: "Tener el número es la base. Usarlo para crecer con estrategia es el siguiente nivel. Eso lo vemos en la llamada."
     }
   },
   cashflow: {
     critico: {
-      espejo: "Hay meses en los que, aunque las cosas parecen ir bien, te cuesta llegar a fin de mes con la plata justa.",
-      consecuencia: {
-        gastronomia: "Es un patrón común en gastronomía: pagás proveedores antes de cobrar, y eso genera tensión financiera aunque el negocio sea rentable en el papel.",
-        peluqueria: "Si cobrás en el momento pero tenés gastos fijos grandes (alquiler, sueldos), cualquier mes flojo de turnos te puede complicar la caja.",
-        salud: "Entre la demora de obras sociales y los gastos fijos del consultorio, es común que haya baches de caja aunque el negocio sea rentable.",
-        comercio: "Si comprás stock por adelantado y cobrás de a poco, es común que la plata esté 'trabada' en mercadería en lugar de en tu cuenta.",
-        servicios: "Si facturás a 30 o 60 días pero tenés gastos mensuales fijos, los baches de cobro pueden generar tensión financiera real.",
-        otro: "Es un patrón frecuente: ser rentable en el papel pero no tener la plata disponible cuando hace falta."
-      },
+      espejo: "Hay meses en los que, aunque las cosas parecen ir bien, al negocio le cuesta llegar a fin de mes con la plata justa.",
+      consecuencia: "Es un patrón común en gastronomía: los proveedores se pagan antes de cobrar, y eso genera tensión financiera aunque el negocio sea rentable en el papel.",
       gancho: "Esto no se resuelve facturando más — se resuelve ordenando los tiempos de cobro y pago. Eso es lo que vemos en la llamada."
     },
     desarrollo: {
-      espejo: "En general llegás a fin de mes, pero sin mucho margen ni anticipación frente a gastos grandes.",
-      consecuencia: {
-        gastronomia: "Un arreglo, un aumento de insumos, un mes con menos mesas — sin colchón, cualquiera de esas te deja sin caja para operar.",
-        peluqueria: "Un mes flojo de turnos, un gasto de equipamiento inesperado — sin colchón, te quedás en rojo antes de que te des cuenta.",
-        salud: "Una demora de obra social, un gasto imprevisto del consultorio — sin colchón, la caja queda expuesta justo cuando más la necesitás.",
-        comercio: "Un pedido grande adelantado, una temporada floja de ventas — sin reserva, te quedás sin liquidez para seguir reponiendo.",
-        servicios: "Un mes de pocos proyectos con los gastos fijos corriendo — sin colchón, empezás a poner plata propia para cubrir.",
-        otro: "Sin colchón, cualquier imprevisto — un gasto, una cobranza que no entra — te deja sin caja para seguir operando."
-      },
+      espejo: "En general el negocio llega a fin de mes, pero sin mucho margen ni anticipación frente a gastos grandes.",
+      consecuencia: "Un arreglo, un aumento de insumos, un mes con menos mesas — sin colchón, cualquiera de esas te deja sin caja para operar.",
       gancho: "Con una proyección simple de 60-90 días, estos baches se anticipan en vez de sufrirse. Te muestro cómo armarla en la llamada."
     },
     solido: {
       espejo: "Manejás bien los tiempos de cobro y pago — eso le da bastante estabilidad a tu operación.",
-      consecuencia: {
-        gastronomia: "El siguiente nivel es usar ese colchón para negociar mejores condiciones con proveedores o invertir en momentos clave.",
-        peluqueria: "El siguiente nivel es usar esa estabilidad para planificar inversión en equipamiento o capacitación sin afectar la caja diaria.",
-        salud: "El siguiente nivel es usar esa estabilidad para evaluar inversión en equipamiento con mejor capacidad de negociación.",
-        comercio: "El siguiente nivel es usar ese margen para negociar mejores precios de compra por volumen o anticipación de pago.",
-        servicios: "El siguiente nivel es usar esa estabilidad para invertir en crecimiento del equipo sin poner en riesgo la operación diaria.",
-        otro: "El siguiente nivel es usar esa estabilidad como ventaja competitiva frente a otros negocios de tu rubro."
-      },
+      consecuencia: "El siguiente nivel es usar ese colchón para negociar mejores condiciones con proveedores o invertir en momentos clave.",
       gancho: "Tener la caja ordenada te da margen de maniobra que otros no tienen. La pregunta es cómo aprovecharlo mejor. Eso lo vemos en la llamada."
     }
   },
   gestion: {
     critico: {
       espejo: "Las decisiones importantes del negocio se toman más por intuición o urgencia que por información concreta.",
-      consecuencia: {
-        gastronomia: "Decisiones como sumar un plato, abrir un turno o contratar personal probablemente se están tomando sin el respaldo de números que confirmen si conviene.",
-        peluqueria: "Decisiones como sumar una silla, un servicio nuevo o ajustar precios probablemente se toman sin un análisis de impacto real.",
-        salud: "Decisiones de inversión en equipamiento o ampliación probablemente se toman sin un análisis financiero que las respalde del todo.",
-        comercio: "Decisiones de stock, precios o apertura de nuevas líneas probablemente se toman más por intuición comercial que por datos concretos.",
-        servicios: "Decisiones de tarifas, contratación o foco comercial probablemente se toman sin el respaldo de indicadores claros.",
-        otro: "Las decisiones importantes probablemente se están tomando con menos información de la que el negocio podría tener disponible."
-      },
+      consecuencia: "Decisiones como sumar un plato, abrir un turno o contratar personal probablemente se están tomando sin el respaldo de números que confirmen si conviene.",
       gancho: "Esto cambia completamente cuando empezás a mirar 3 o 4 números clave cada mes. Te muestro cuáles en la llamada."
     },
     desarrollo: {
-      espejo: "Controlás algunas cosas, pero no de manera sistemática — el seguimiento depende más de la memoria que de un proceso.",
-      consecuencia: {
-        gastronomia: "Sin un seguimiento sistemático, los problemas (mermas, baja rotación de algún plato) se detectan tarde, cuando ya impactaron en el resultado.",
-        peluqueria: "Sin un seguimiento regular, una caída en algún servicio o profesional se nota recién cuando ya afectó varios meses.",
-        salud: "Sin indicadores fijos, una baja en algún tipo de consulta o práctica puede pasar desapercibida hasta que ya es tendencia.",
-        comercio: "Sin seguimiento sistemático, productos de baja rotación o márgenes flojos se detectan tarde.",
-        servicios: "Sin seguimiento regular, una baja en la cartera de clientes o en la rentabilidad por proyecto se nota más tarde de lo ideal.",
-        otro: "Sin un proceso fijo de control, los problemas se detectan reactivamente en lugar de anticiparse."
-      },
+      espejo: "Algunas cosas se controlan, pero no de manera sistemática — el seguimiento depende más de la memoria que de un proceso.",
+      consecuencia: "Sin un seguimiento sistemático, los problemas (mermas, baja rotación de algún plato) se detectan tarde, cuando ya impactaron en el resultado.",
       gancho: "Con 3 o 4 indicadores simples revisados cada mes, esto pasa de reactivo a preventivo. Te muestro cuáles en la llamada."
     },
     solido: {
       espejo: "Tenés un buen hábito de revisar números y tomar decisiones con información — eso ya te diferencia de la mayoría.",
-      consecuencia: {
-        gastronomia: "El siguiente nivel es usar esos indicadores no solo para controlar, sino para proyectar crecimiento (nuevo local, nuevo turno, nueva carta).",
-        peluqueria: "El siguiente nivel es usar esos indicadores para planificar expansión: más sillas, más profesionales, nuevos servicios.",
-        salud: "El siguiente nivel es usar esos indicadores para planificar crecimiento de cartera o nuevas especialidades.",
-        comercio: "El siguiente nivel es usar esos indicadores para planificar expansión de líneas de producto o nuevos puntos de venta.",
-        servicios: "El siguiente nivel es usar esos indicadores para planificar escalamiento del equipo o la cartera de clientes.",
-        otro: "El siguiente nivel es usar esos indicadores no solo para controlar, sino para planificar el crecimiento del negocio."
-      },
+      consecuencia: "El siguiente nivel es usar esos indicadores no solo para controlar, sino para proyectar crecimiento (nuevo local, nuevo turno, nueva carta).",
       gancho: "Ya tenés el hábito. La pregunta es si lo estás usando para crecer o solo para no retroceder. Eso lo vemos en la llamada."
     }
   }
 };
 
 // ── ESTADO ────────────────────────────────────────────────────
+// Fase 1 (D): un solo rubro; viaja fijo en el estado y en el payload.
+const RUBRO = 'gastronomia';
 // answers[q] = indice de la opcion elegida (0..2) o null. Los puntajes por
 // eslabon se derivan de answers (syncScores) para que "Anterior" y cambiar
 // una respuesta no rompan la cuenta. Scoring y umbrales: sin cambios.
@@ -5118,7 +4988,7 @@ const state = {
   answers: Array(12).fill(null),
   eslabónScores: [0,0,0,0],
   eslabónCounts: [0,0,0,0],
-  rubro: null,
+  rubro: RUBRO,
   origen: 'desconocido',
   leadData: {},
   completado: false,   // llego al resultado parcial (conversion de la web, A1-a)
@@ -5158,10 +5028,11 @@ function loadState() {
     const raw = sessionStorage.getItem(DIAG_STORAGE_KEY);
     if (!raw) return false;
     const s = JSON.parse(raw);
-    if (!s || !s.rubro) return false;
+    // Hay algo que retomar si respondio al menos una pregunta (antes: si eligio rubro)
+    if (!s || !Array.isArray(s.answers) || (!s.completado && !s.answers.some(a => a !== null && a !== undefined))) return false;
     state.currentQ = Math.min(Math.max(parseInt(s.currentQ, 10) || 0, 0), 11);
     state.answers = (Array.isArray(s.answers) && s.answers.length === 12) ? s.answers : Array(12).fill(null);
-    state.rubro = s.rubro;
+    state.rubro = RUBRO;
     state.origen = s.origen || 'desconocido';
     state.completado = !!s.completado;
     state.leadOk = !!s.leadOk;
@@ -5284,33 +5155,14 @@ function startDiag() {
   state.answers = Array(12).fill(null);
   state.eslabónScores = [0,0,0,0];
   state.eslabónCounts = [0,0,0,0];
-  state.rubro = null;
+  state.rubro = RUBRO;
   state.leadData = {};
   state.completado = false;
   state.leadOk = false;
   state.leadGuardado = false;
   state.leadId = null;
   document.getElementById('diag-overlay').classList.remove('show-result');
-  document.querySelectorAll('.rubro-card').forEach(c => { c.classList.remove('selected'); c.setAttribute('aria-checked','false'); });
   resetGate();
-  showScreen('screen-rubro');
-  updateChain();
-}
-
-// ── RUBRO: tocar el rubro es empezar ──────────────────────────
-function selectRubro(el) {
-  document.querySelectorAll('.rubro-card').forEach(c => { c.classList.remove('selected'); c.setAttribute('aria-checked','false'); });
-  el.classList.add('selected');
-  el.setAttribute('aria-checked','true');
-  state.rubro = el.dataset.rubro;
-  saveState();
-  submitRubro();
-}
-
-function submitRubro() {
-  if (!state.rubro) return;
-  track('diag_rubro', { rubro: state.rubro });
-  state.currentQ = 0;
   renderQuestion();
   showScreen('screen-question');
   updateChain();
@@ -5353,10 +5205,8 @@ function renderQuestion() {
   renderReaction();
 
   const prev = document.getElementById('btn-prev');
-  prev.disabled = false;
-  prev.innerHTML = state.currentQ === 0
-    ? '<span aria-hidden="true">←</span> Rubro'
-    : '<span aria-hidden="true">←</span> Anterior';
+  prev.disabled = state.currentQ === 0;
+  prev.innerHTML = '<span aria-hidden="true">←</span> Anterior';
 
   const next = document.getElementById('btn-next');
   next.disabled = (elegida === null || elegida === undefined);
@@ -5427,7 +5277,7 @@ function nextQuestion() {
 
 function prevQuestion() {
   cancelAutoAdvance();
-  if (state.currentQ === 0) { showScreen('screen-rubro'); updateChain(); return; }
+  if (state.currentQ === 0) return;
   state.currentQ--;
   saveState();
   renderQuestion();
@@ -5748,21 +5598,21 @@ const TITULO_DIAGNOSTICO = {
   },
   cashflow: {
     critico:     'La caja es el problema central de tu negocio hoy',
-    desarrollo:  'Llegás a fin de mes, pero sin margen de maniobra',
+    desarrollo:  'El negocio llega a fin de mes, pero sin margen de maniobra',
     solido:      'El flujo de caja está bajo control'
   },
   gestion: {
     critico:     'Las decisiones se toman sin datos, y eso tiene costo',
-    desarrollo:  'Tenés intuición, pero faltan números concretos',
+    desarrollo:  'Hay intuición, pero faltan números concretos',
     solido:      'Buena gestión — podés optimizar los detalles'
   }
 };
 
 const PRIMER_PASO = {
   costos:    "El negocio puede estar vendiendo bien y tener productos que trabajan en contra sin que se note. El costo real de lo que vendés no es lo que pagás por el insumo —es eso más un montón de gastos que se diluyen en el día a día—, y mientras siga siendo una estimación disfrazada de certeza, la distancia entre 'va bien' y lo que de verdad te queda es más grande de lo que parece.",
-  resultado: "Plata en caja no es ganancia: adentro de ese saldo hay costos, impuestos y estructura que todavía no descontaste, así que el negocio puede estar en rojo justo mientras vos lo sentís en verde. Cada mes que ese número real no aparece, seguís decidiendo precios, gastos y sueldos sobre una cifra que no existe.",
-  cashflow:  "Rentable y con caja no son lo mismo: podés ganar plata todos los meses y aun así vivir tapando huecos con la tarjeta o con plata que era para otra cosa. Cada parche tiene un precio que casi nunca ves de frente —intereses, descuentos por necesitar la plata ya, oportunidades que dejás pasar— y el tamaño real del hueco no se siente desde adentro hasta que ya estás corriendo de atrás.",
-  gestion:   "Cada decisión que tomás sin el número atrás es una apuesta que a veces sale bien de casualidad, no por criterio. Lo grave es que, sin datos, ni siquiera sabés cuántas veces ya salió mal ni cuánta plata quedó en el camino."
+  resultado: "Plata en caja no es ganancia: adentro de ese saldo hay costos, impuestos y estructura que todavía no se descontaron, así que el negocio puede estar en rojo justo mientras se siente en verde. Cada mes que ese número real no aparece, los precios, los gastos y los sueldos se deciden sobre una cifra que no existe.",
+  cashflow:  "Rentable y con caja no son lo mismo: un negocio puede ganar plata todos los meses y aun así vivir tapando huecos con la tarjeta o con plata que era para otra cosa. Cada parche tiene un precio que casi nunca se ve de frente —intereses, descuentos por necesitar la plata ya, oportunidades que se pierden— y el tamaño real del hueco no se siente desde adentro hasta que el negocio ya está corriendo de atrás.",
+  gestion:   "Cada decisión que se toma sin el número atrás es una apuesta que a veces sale bien de casualidad, no por criterio. Lo grave es que, sin datos, no hay forma de saber cuántas veces ya salió mal ni cuánta plata quedó en el camino."
 };
 
 // Fase 1 (B): cada texto sale del estado del eslabon mas debil, el mismo que
@@ -5778,7 +5628,7 @@ function getDiagnosticoData() {
   const todosSolidos = nivelEslabonDebil === 'solido';
 
   const data = TEXTOS_RESULTADO[eslabonDebil][nivelEslabonDebil];
-  const consecuencia = data.consecuencia[state.rubro] || data.consecuencia.otro;
+  const consecuencia = data.consecuencia;
   const titulo = TITULO_DIAGNOSTICO[eslabonDebil][nivelEslabonDebil];
   // "Aca se te escapa" describe una falla: no va arriba de un eslabon solido
   const primerPaso = todosSolidos ? '' : PRIMER_PASO[eslabonDebil];
