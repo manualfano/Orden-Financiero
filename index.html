@@ -3616,6 +3616,11 @@ nav.scrolled { background: var(--navy-2); }
   padding: var(--s-2) var(--s-3);
 }
 
+/* Fase 1 (A): aviso de guardado fallido arriba del analisis, y campo trampa */
+.diag-overlay #lead-aviso { margin: 0 0 var(--s-4); }
+.diag-overlay .lead-aviso-acciones { display: flex; gap: var(--s-2); flex-wrap: wrap; }
+.campo-extra { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
 .diag-overlay .eslabon-weak-label {
   font-size: var(--fs-meta);
   font-weight: 600;
@@ -4487,6 +4492,9 @@ nav.scrolled { background: var(--navy-2); }
             <p class="form-hint" id="wa-hint">Código de área y número, sin el 0 ni el 15.</p>
             <p class="form-error" id="err-wa" role="alert"></p>
           </div>
+          <!-- Campo trampa (Fase 1, A): invisible y fuera del tabulado; si viene lleno, el Apps Script descarta el envio -->
+          <input class="campo-extra" type="text" id="campo-extra" name="campo_extra" tabindex="-1" autocomplete="off" aria-hidden="true">
+
           <button class="btn-primary" type="submit" id="btn-lead">Ver el análisis completo <span aria-hidden="true">→</span></button>
           <div class="gate-status" id="gate-status"></div>
           <p class="privacy-note">
@@ -4497,6 +4505,8 @@ nav.scrolled { background: var(--navy-2); }
 
         <!-- Análisis completo: se muestra al dejar el WhatsApp -->
         <div id="result-full" hidden>
+          <!-- Fase 1 (A): si el numero no se pudo guardar, el analisis se muestra igual con este aviso -->
+          <div class="gate-status" id="lead-aviso" role="alert"></div>
           <div class="cta-strip" id="cta-strip">
             <p>Revisamos este resultado con tus números reales: 30 minutos, gratis, con Manuel.</p>
             <div class="cta-strip-actions">
@@ -5080,6 +5090,8 @@ const state = {
   leadData: {},
   completado: false,   // llego al resultado parcial (conversion de la web, A1-a)
   leadOk: false,       // dejo el WhatsApp y vio el analisis completo
+  leadGuardado: false, // el Apps Script confirmo la fila (solo en memoria)
+  leadId: null,        // fijo por numero: el reintento reusa el mismo y no duplica
   _abandonTracked: false
 };
 
@@ -5099,9 +5111,11 @@ function answeredCount() { return state.answers.filter(a => a !== null && a !== 
 
 function saveState() {
   try {
+    // leadOk solo se guarda si el numero quedo en el Sheet: si no, al recargar
+    // vuelve a pedir el WhatsApp (que nunca va al storage) en vez de perder el lead.
     sessionStorage.setItem(DIAG_STORAGE_KEY, JSON.stringify({
       currentQ: state.currentQ, answers: state.answers, rubro: state.rubro,
-      origen: state.origen, completado: state.completado, leadOk: state.leadOk
+      origen: state.origen, completado: state.completado, leadOk: state.leadOk && state.leadGuardado
     }));
   } catch (e) { /* sin storage (modo privado estricto): sigue en memoria */ }
 }
@@ -5118,6 +5132,7 @@ function loadState() {
     state.origen = s.origen || 'desconocido';
     state.completado = !!s.completado;
     state.leadOk = !!s.leadOk;
+    state.leadGuardado = state.leadOk;
     state.leadData = {};
     syncScores();
     return true;
@@ -5203,6 +5218,8 @@ function startDiag() {
   state.leadData = {};
   state.completado = false;
   state.leadOk = false;
+  state.leadGuardado = false;
+  state.leadId = null;
   document.getElementById('diag-overlay').classList.remove('show-result');
   document.querySelectorAll('.rubro-card').forEach(c => { c.classList.remove('selected'); c.setAttribute('aria-checked','false'); });
   resetGate();
@@ -5468,24 +5485,32 @@ function resetGate() {
 }
 
 // ── ENVÍO ─────────────────────────────────────────────────────
-const SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxvSoyeIncaf-wEBQvdwiYdBTRdd1FPqS5fLDsX5tqDrFrCd517r5UC1hEJSeV9B5MIcQ/exec';
-// A8 (abierta): mientras el Apps Script no devuelva JSON con CORS, el envio
-// sigue siendo "fire and forget" (no-cors) y el resultado del envio no se
-// puede afirmar. Al pasar esto a true, submitLead lee la respuesta, muestra
-// estado de error con reintento y registra diag_lead_submit con ok real.
-const WEBHOOK_RESPONDS = false;
+// Fase 1 (11/09/2026): implementacion "Fase 1" del Apps Script
+// (docs/apps-script/doPost.gs). Responde JSON {ok, leadId} y no duplica si
+// el mismo leadId llega dos veces, asi que reintentar es seguro.
+const SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbw_4OP8ve0fKfP9M3VtCvRvmDG395PVzHUNOYqAH55FmVxaD93VNg8QfjDayOK-xVr_Ng/exec';
+// A8 cerrada el 11/09: el Apps Script responde JSON. En false vuelve al envio
+// ciego (no-cors) de antes: sirve solo como llave de emergencia si el script
+// dejara de responder JSON.
+const WEBHOOK_RESPONDS = true;
+const ENVIO_TIMEOUT_MS = 10000;
 
 // A24: WhatsApp directo para el lead caliente. Solo digitos con 549 adelante
 // (ej. 5492215550000). Vacio = los links .cta-wa quedan ocultos.
 const WHATSAPP_NUMERO = '5492216809170'; // +54 9 221 680-9170 (dueño, 07/09)
-(function () {
+// celular: la app via wa.me; computadora: WhatsApp Web directo, sin pantalla intermedia
+function urlWhatsApp(mensaje) {
   const n = String(WHATSAPP_NUMERO).replace(/\D/g, '');
+  if (!n) return '';
+  const texto = encodeURIComponent(mensaje || 'Hola Manu, vengo de la web.');
+  const esCelular = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && window.innerWidth < 960);
+  return esCelular ? ('https://wa.me/' + n + '?text=' + texto) : ('https://web.whatsapp.com/send?phone=' + n + '&text=' + texto);
+}
+(function () {
   document.querySelectorAll('.cta-wa').forEach(a => {
-    if (!n) { a.hidden = true; return; }
-    // celular: la app via wa.me; computadora: WhatsApp Web directo, sin pantalla intermedia
-    const texto = encodeURIComponent(a.dataset.msg || 'Hola Manu, vengo de la web.');
-    const esCelular = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && window.innerWidth < 960);
-    a.href = esCelular ? ('https://wa.me/' + n + '?text=' + texto) : ('https://web.whatsapp.com/send?phone=' + n + '&text=' + texto);
+    const url = urlWhatsApp(a.dataset.msg);
+    if (!url) { a.hidden = true; return; }
+    a.href = url;
     a.target = '_blank'; a.rel = 'noopener'; a.hidden = false;
   });
 })();
@@ -5510,6 +5535,10 @@ function submitLead(e) {
     return false;
   }
 
+  // Mismo numero = mismo leadId: un reintento nunca crea una segunda fila
+  if (!state.leadId || !state.leadData || state.leadData.wa !== p.digits) {
+    state.leadId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+  }
   state.leadData = { wa: p.digits, waDisplay: p.display };
   const btn = document.getElementById('btn-lead');
   const status = document.getElementById('gate-status');
@@ -5517,25 +5546,68 @@ function submitLead(e) {
   btn.textContent = 'Guardando…';
   status.className = 'gate-status'; status.innerHTML = '';
 
-  sendLeadToSheet().then(ok => {
-    if (ok === true || ok === 'no-verificado') {
-      track('diag_lead_submit', { ok: ok === true ? 'si' : 'no-verificado' });
-      state.leadOk = true;
-      saveState();
-      renderFull();
-    } else {
-      track('diag_lead_submit', { ok: 'no' });
-      btn.disabled = false; input.disabled = false;
-      btn.innerHTML = 'Ver el análisis completo <span aria-hidden="true">→</span>';
-      status.className = 'gate-status visible error';
-      status.innerHTML = '<span>No pudimos guardar tu número. Tu resultado sigue acá; probá de nuevo.</span><button type="button" class="btn-secondary" onclick="submitLead()">Reintentar</button>';
-    }
+  sendLeadToSheet().then(res => {
+    track('diag_lead_submit', { ok: res.ok ? 'true' : 'false' });
+    state.leadGuardado = res.ok;
+    // El analisis se muestra igual: si no se guardo, con aviso, Reintentar y WhatsApp
+    state.leadOk = true;
+    saveState();
+    renderFull();
+    mostrarAvisoLead(res.ok ? null : 'error');
   });
   return false;
 }
 
-function sendLeadToSheet() {
-  if (!SHEET_WEBHOOK_URL || SHEET_WEBHOOK_URL.startsWith('PEGAR_ACA')) return Promise.resolve('no-verificado');
+function reintentarLead(btn) {
+  if (btn) { btn.disabled = true; btn.textContent = 'Guardando…'; }
+  sendLeadToSheet().then(res => {
+    track('diag_lead_submit', { ok: res.ok ? 'true' : 'false' });
+    state.leadGuardado = res.ok;
+    saveState();
+    mostrarAvisoLead(res.ok ? 'ok' : 'error');
+  });
+}
+
+// Mensaje de respaldo para WhatsApp: con esto Manuel reconstruye el diagnostico
+function mensajeRespaldo() {
+  const nombresEslabon = ['Costos y precios','Resultado económico','Flujo de caja','Indicadores de gestión'];
+  const { eslabonDebilIndex, total } = getDiagnosticoData();
+  const letras = state.answers.map((idx, q) => PREGUNTAS[q].opciones[idx].letra).join('');
+  return `Hola Manu, hice el diagnóstico en la web y no se guardó mi número. Puntaje: ${total}/36. Eslabón más débil: ${nombresEslabon[eslabonDebilIndex]}. Respuestas: ${letras}.`;
+}
+
+function mostrarAvisoLead(modo) {
+  const el = document.getElementById('lead-aviso');
+  if (!el) return;
+  if (!modo) { el.className = 'gate-status'; el.innerHTML = ''; return; }
+  if (modo === 'ok') {
+    el.className = 'gate-status visible';
+    el.innerHTML = '<span>Listo: tu número quedó guardado.</span>';
+    return;
+  }
+  const url = urlWhatsApp(mensajeRespaldo());
+  const icono = (document.querySelector('#cta-strip .cta-wa svg') || { outerHTML: '' }).outerHTML;
+  el.className = 'gate-status visible error';
+  el.innerHTML = '<span>No pudimos guardar tu número. El análisis está acá abajo igual: probá de nuevo o mandale el resultado a Manuel por WhatsApp.</span>'
+    + '<span class="lead-aviso-acciones">'
+    + '<button type="button" class="btn-secondary" onclick="reintentarLead(this)">Reintentar</button>'
+    + (url ? `<a class="cta-wa cta-wa-light" href="${url}" target="_blank" rel="noopener" onclick="track('cta_whatsapp_click', { desde: 'aviso-guardado' })">${icono}Mandar por WhatsApp</a>` : '')
+    + '</span>';
+}
+
+// Un intento con tiempo maximo. Devuelve {ok:true} o {ok:false, tipo}
+// con tipo = timeout | red | respuesta_invalida | rechazado.
+function enviarUnaVez(payload) {
+  const ctrl = new AbortController();
+  const reloj = setTimeout(() => ctrl.abort(), ENVIO_TIMEOUT_MS);
+  return fetch(SHEET_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(payload), signal: ctrl.signal })
+    .then(r => r.ok ? r.json().catch(() => Promise.reject({ tipo: 'respuesta_invalida' })) : Promise.reject({ tipo: 'respuesta_invalida' }))
+    .then(j => (j && j.ok === true) ? { ok: true } : Promise.reject({ tipo: (j && j.error) ? 'rechazado' : 'respuesta_invalida' }))
+    .catch(e => ({ ok: false, tipo: (e && e.tipo) || (e && e.name === 'AbortError' ? 'timeout' : 'red') }))
+    .finally(() => clearTimeout(reloj));
+}
+
+function armarPayload() {
   const nombresEslabon = ['Costos y precios','Resultado económico','Flujo de caja','Indicadores de gestión'];
   const { eslabonDebilIndex, total, nivelGravedad, titulo, data, consecuencia, primerPaso } = getDiagnosticoData();
 
@@ -5547,8 +5619,8 @@ function sendLeadToSheet() {
   const letras = state.answers.map((idx, q) => PREGUNTAS[q].opciones[idx].letra).join('');
   const diagnosticoTexto = [titulo, data.espejo, consecuencia, data.gancho, 'Acá se le escapa: ' + primerPaso].join('\n\n');
 
-  const payload = {
-    leadId: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+  return {
+    leadId: state.leadId,
     timestamp: new Date().toISOString(),
     whatsapp: state.leadData.wa,
     rubro: state.rubro,
@@ -5558,22 +5630,33 @@ function sendLeadToSheet() {
     gravedad: nivelGravedad,
     eslabonDebil: nombresEslabon[eslabonDebilIndex],
     letras: letras,
-    // Compatibilidad con las columnas que el Apps Script ya espera (A8):
+    // Compatibilidad con las columnas que el Apps Script ya espera:
     // no se piden mas datos personales; estos campos viajan vacios.
     nombre: '', negocio: '', sistema: '', instagram: '',
     eslabones: eslabones,
     respuestas: respuestas,
-    diagnostico: diagnosticoTexto
+    diagnostico: diagnosticoTexto,
+    campo_extra: (document.getElementById('campo-extra') || {}).value || ''
   };
+}
+
+// Hasta dos intentos (el segundo, automatico). Cada falla se mide con su tipo.
+async function sendLeadToSheet() {
+  if (!SHEET_WEBHOOK_URL) return { ok: true };
+  const payload = armarPayload();
 
   if (!WEBHOOK_RESPONDS) {
-    return fetch(SHEET_WEBHOOK_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(payload) })
-      .then(() => 'no-verificado').catch(() => 'no-verificado');
+    await fetch(SHEET_WEBHOOK_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(payload) }).catch(() => {});
+    return { ok: true };
   }
-  return fetch(SHEET_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(payload) })
-    .then(r => r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)))
-    .then(j => !!(j && j.ok))
-    .catch(() => false);
+  let res = { ok: false, tipo: 'red' };
+  for (let intento = 1; intento <= 2; intento++) {
+    res = await enviarUnaVez(payload);
+    if (res.ok) return res;
+    track('diag_lead_error', { tipo: res.tipo, intento: intento });
+    if (intento === 1) await new Promise(r => setTimeout(r, 800));
+  }
+  return res;
 }
 
 // ── NARRATIVA DE RESULTADO ──────────────────────────────────────
