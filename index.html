@@ -21,17 +21,27 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%230C66E4'/%3E%3Ccircle cx='24' cy='24' r='11' fill='none' stroke='%237DB1F4' stroke-width='6'/%3E%3Ccircle cx='24' cy='24' r='11' fill='none' stroke='%23ffffff' stroke-width='6' stroke-dasharray='51.8 69.2' transform='rotate(-90 24 24)'/%3E%3C/svg%3E">
 <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<!-- Medicion: Vercel Web Analytics (decision A19, 07/09/2026). Sin cookies,
-     sin banner, mismo dominio. Requiere "Enable" en Vercel > proyecto >
-     Analytics; hasta entonces /_vercel/insights/script.js responde 404 y
-     track() no hace nada. Los eventos se emiten desde track() en el JS. -->
+<!-- Medicion: Google Analytics 4 (Fase 1, 11/09/2026; reemplaza a Vercel Web
+     Analytics, que no admite eventos en el plan Hobby). Carga solo en
+     ordenfinanciero.com y sus subdominios. En un preview de Vercel carga solo
+     con ?ga_debug=1 y en modo depuracion (GA4 > DebugView), para probar sin
+     mezclar datos. Los eventos del embudo salen de track() en el JS. -->
 <script>
-window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-// Solo en el dominio real (en localhost y previews el endpoint no existe). Hasta que
-// Analytics este habilitado en Vercel, en produccion el script responde 404 y track() no hace nada.
-if (location.hostname === 'ordenfinanciero.com' || location.hostname.endsWith('.ordenfinanciero.com')) {
-  var sc = document.createElement('script'); sc.defer = true; sc.src = '/_vercel/insights/script.js'; document.head.appendChild(sc);
-}
+window.dataLayer = window.dataLayer || [];
+function gtag() { dataLayer.push(arguments); }
+(function () {
+  var h = location.hostname;
+  var real = h === 'ordenfinanciero.com' || h.endsWith('.ordenfinanciero.com');
+  var prueba = /\.vercel\.app$/.test(h) && /[?&]ga_debug=1(&|$)/.test(location.search);
+  if (!real && !prueba) return;
+  gtag('js', new Date());
+  gtag('config', 'G-1S0RS4NL1X', prueba ? { debug_mode: true } : {});
+  // La libreria (~170 KiB) baja despues de que carga la pagina: cargada junto con
+  // ella, el LCP mobile de Lighthouse pasaba de 2,1 s a 3,8 s. Los eventos que
+  // ocurran antes quedan en dataLayer y salen apenas carga.
+  function cargar() { var sc = document.createElement('script'); sc.async = true; sc.src = 'https://www.googletagmanager.com/gtag/js?id=G-1S0RS4NL1X'; document.head.appendChild(sc); }
+  if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
+})();
 </script>
 <!-- A17 (cerrada 07/09/2026): LocalBusiness con ciudad La Plata, sin calle ni telefono.
      SEO Fase 4 (08/09/2026): @graph con Organization (@id, alternateName = wordmark) y WebSite
@@ -4542,15 +4552,37 @@ nav.scrolled { background: var(--navy-2); }
 // ── MEDICION: una sola funcion; nunca datos personales en props ──
 // Eventos del embudo (ver INFORME-rediseno): diag_open, diag_rubro,
 // diag_answer, diag_result_view, diag_lead_view, diag_lead_submit,
-// diag_result_full, cta_calendar_click, diag_abandon.
+// diag_lead_error, diag_result_full, cta_calendar_click,
+// cta_whatsapp_click, cta_portal, diag_abandon.
 // Duraciones de motion en JS: se leen del token, no se escriben a mano.
 const MOTION = (() => { const cs = getComputedStyle(document.documentElement); const ms = n => parseFloat(cs.getPropertyValue(n)) || 120; return { instante: ms('--t-instante'), rapido: ms('--t-rapido'), entrada: ms('--t-entrada'), autoavance: ms('--t-autoavance') || 4000 }; })();
 
+// Fase 1 (C): despacha a GA4 con los mismos nombres y parametros de antes
+// (GA4 admite todos los parametros de cada evento).
 function track(evento, props) {
   try {
-    if (typeof window.va === 'function') window.va('event', { name: evento, data: props || {} });
+    if (typeof gtag === 'function') gtag('event', evento, props || {});
   } catch (e) { /* la medicion nunca rompe la pagina */ }
 }
+
+// ── ATRIBUCION: primer contacto de la sesion (Fase 1, C) ─────────
+// UTMs, ?origen= y el sitio de donde llego (solo el dominio). Se guardan una
+// vez por pestaña y no se pisan: viajan al Sheet con el lead.
+const atribucion = (function () {
+  const KEY = 'of_atrib_v1';
+  try { const a = JSON.parse(sessionStorage.getItem(KEY) || 'null'); if (a) return a; } catch (e) {}
+  const q = new URLSearchParams(location.search);
+  const limpio = v => (v || '').trim().slice(0, 100);
+  let referrer = '';
+  try { if (document.referrer) { const u = new URL(document.referrer); if (u.hostname !== location.hostname) referrer = u.origin; } } catch (e) {}
+  const a = {
+    utm_source: limpio(q.get('utm_source')), utm_medium: limpio(q.get('utm_medium')),
+    utm_campaign: limpio(q.get('utm_campaign')), utm_content: limpio(q.get('utm_content')),
+    origen: limpio(q.get('origen')), referrer: referrer
+  };
+  try { sessionStorage.setItem(KEY, JSON.stringify(a)); } catch (e) {}
+  return a;
+})();
 
 // ── NAV: fondo al scrollear · CTA fijo en mobile al pasar el hero ──
 (function() {
@@ -4645,7 +4677,8 @@ function openDiagnostico(origen) {
   const retomado = loadState();
   if (!retomado) {
     startDiag();
-    state.origen = origen || 'desconocido';
+    // ?origen= (link de una guia, la bio, ManyChat) manda sobre el boton que abrio
+    state.origen = atribucion.origen || origen || 'desconocido';
   }
   state._abandonTracked = false;
   document.getElementById('close-confirm').hidden = true;
@@ -5674,7 +5707,11 @@ function armarPayload() {
     diagnostico: diagnosticoTexto,
     campo_extra: (document.getElementById('campo-extra') || {}).value || '',
     // Fase 1 (B), columna nueva al final: estado del eslabon mas debil
-    gravedadEslabon: nivelEslabonDebil
+    gravedadEslabon: nivelEslabonDebil,
+    // Fase 1 (C), columnas nuevas al final: de donde llego
+    utm_source: atribucion.utm_source, utm_medium: atribucion.utm_medium,
+    utm_campaign: atribucion.utm_campaign, utm_content: atribucion.utm_content,
+    referrer: atribucion.referrer
   };
 }
 

@@ -8,6 +8,25 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%230C66E4'/%3E%3Ccircle cx='24' cy='24' r='11' fill='none' stroke='%237DB1F4' stroke-width='6'/%3E%3Ccircle cx='24' cy='24' r='11' fill='none' stroke='%23ffffff' stroke-width='6' stroke-dasharray='51.8 69.2' transform='rotate(-90 24 24)'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<!-- Medicion: Google Analytics 4 (Fase 1, 11/09/2026), mismo codigo que index.html:
+     solo en ordenfinanciero.com y subdominios; en previews de Vercel, con ?ga_debug=1. -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag() { dataLayer.push(arguments); }
+(function () {
+  var h = location.hostname;
+  var real = h === 'ordenfinanciero.com' || h.endsWith('.ordenfinanciero.com');
+  var prueba = /\.vercel\.app$/.test(h) && /[?&]ga_debug=1(&|$)/.test(location.search);
+  if (!real && !prueba) return;
+  gtag('js', new Date());
+  gtag('config', 'G-1S0RS4NL1X', prueba ? { debug_mode: true } : {});
+  // La libreria (~170 KiB) baja despues de que carga la pagina: cargada junto con
+  // ella, el LCP mobile de Lighthouse pasaba de 2,1 s a 3,8 s. Los eventos que
+  // ocurran antes quedan en dataLayer y salen apenas carga.
+  function cargar() { var sc = document.createElement('script'); sc.async = true; sc.src = 'https://www.googletagmanager.com/gtag/js?id=G-1S0RS4NL1X'; document.head.appendChild(sc); }
+  if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
+})();
+</script>
 <style>
   @font-face { font-family: 'Inter'; font-weight: 100 900; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
   :root { --marca: #0C66E4; --marca-hover: #0055CC; --navy: #0D2B6B; --navy-900: #0D2B6B; --tinta-2: #505258; --w: #fff; --w-70: rgba(255,255,255,0.7); --r: 8px; --fs-sm: 14px; --fs-base: 15px; --fs-lead: 17px; --fs-h2: clamp(28px, 3.4vw, 42px); --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px; --t-instante: 120ms; }
