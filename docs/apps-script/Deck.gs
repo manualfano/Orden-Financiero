@@ -7,7 +7,9 @@
 // eslabón más débil desempata igual que la web.
 // ═══════════════════════════════════════════════════════════════
 
-const DECK_FOLDER_ID = '1PWLrxlDJDpqPPiWutYvKvvCdbFr24PZT';
+// Carpeta de Drive donde se guardan las presentaciones (decision del dueño,
+// 11/09/2026): "Presentaciones prospectos", dentro de "1.Diagnostico de preventa nuevo".
+const DECK_FOLDER_ID = '1Gid75p7L-8ejCfEwuZgWV1kYQQCBk_sb';
 
 // Sistema visual de Orden Financiero
 const OF_NAVY   = '#1B3A6B';
