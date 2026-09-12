@@ -4,6 +4,18 @@
   "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "diagnostico.ordenfinanciero.com"
+        }
+      ],
+      "destination": "/diagnostico"
+    }
+  ],
   "redirects": [
     {
       "source": "/sitemap.xml",

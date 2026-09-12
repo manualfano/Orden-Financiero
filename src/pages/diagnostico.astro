@@ -1,0 +1,49 @@
+---
+// Pagina post-agenda: la sirve diagnostico.ordenfinanciero.com como raiz
+// (regla de host en vercel.json). Quien entra aca ya agendo la llamada: no se
+// le vende de nuevo. Wordmark, una linea de contexto, el diagnostico y nada
+// mas. Los 8 textos son los literales de index.html:5675-5683 (master); el
+// mismo componente y el mismo envio del lead que la home. noindex y fuera del
+// sitemap. Sin degrade WebGL ni momentos expresivos: la marca en su version
+// mas callada.
+import Base from '../layouts/Base.astro';
+import Wordmark from '../components/Wordmark.astro';
+import Overlay from '../components/Diagnostico/Overlay.astro';
+---
+<Base
+  title="Antes de tu llamada, completá este diagnóstico · Orden Financiero"
+  description="Son 3 minutos y hace que la reunión arranque desde información real de tu negocio, no desde suposiciones."
+  path="/diagnostico"
+  noindex
+  ogTitle="Antes de tu llamada, completá este diagnóstico"
+  ogDescription="Son 3 minutos y hace que la reunión arranque desde información real de tu negocio, no desde suposiciones."
+  bodyClass="on-dark bg-navy text-superficie min-h-svh flex flex-col"
+>
+  <header class="bg-navy-2 border-b border-border-subtle-dark py-3.5"><div class="wrap"><Wordmark /></div></header>
+  <main id="hero" class="wrap flex-1 grid content-center gap-6 py-12 max-w-[760px]">
+    <p class="eyebrow text-accent-soft"><span id="hero-eyebrow-text">Ya agendaste tu llamada</span></p>
+    <h1 class="display" id="hero-title">Antes de tu llamada, <em class="not-italic text-accent-soft">completá este diagnóstico</em></h1>
+    <p class="lead text-secondary-dark" id="hero-subtitle">Son 3 minutos y hace que la reunión arranque desde información real de tu negocio, no desde suposiciones.</p>
+    <div class="grid gap-5">
+      <a href="#diagnostico" class="btn w-full sm:w-auto sm:justify-self-start" data-origen="hero"><span id="hero-cta-text">Completar mi diagnóstico</span> <span aria-hidden="true">→</span></a>
+      <ul class="flex flex-wrap gap-x-4 gap-y-1.5 text-[14px] font-medium text-secondary-dark list-none m-0 p-0">
+        <li class="before:content-['✓'] before:text-accent-soft before:mr-1.5">Gratis</li>
+        <li class="before:content-['✓'] before:text-accent-soft before:mr-1.5">Sin planillas</li>
+        <li class="before:content-['✓'] before:text-accent-soft before:mr-1.5"><span id="hero-trust-3">Es el punto de partida de tu llamada</span></li>
+      </ul>
+    </div>
+  </main>
+  <Overlay />
+</Base>
+<!-- Textos post-agenda dentro del overlay y sin boton de agendar ni barra de CTA:
+     hoy lo hace el JS mirando el host (index.html:5671-5686); aca queda fijo en la
+     pagina, para que valga por cualquier host. El JS, si corre en diagnostico.*,
+     escribe los mismos textos. -->
+<script is:inline>
+  document.getElementById('gate-title').textContent = 'Tu resultado, para llevar a la llamada';
+  document.getElementById('cta-card-title').textContent = 'Ya tenés tu llamada agendada';
+  document.getElementById('cta-card-desc').textContent = 'Llevá este resultado a la reunión: es el punto de partida para ir directo a tus números reales.';
+</script>
+<style is:global>
+  #cta-card-link, #cta-strip { display: none !important; }
+</style>
