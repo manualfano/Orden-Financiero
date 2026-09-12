@@ -3,3 +3,6 @@ dist/
 .astro/
 .vercel/
 npm-debug.log*
+
+# Reportes de Lighthouse del baseline SEO (regla anterior a la migracion)
+docs/seo/baseline/**/*.report.html
