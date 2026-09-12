@@ -1,2 +1,5 @@
-.vercel
-docs/seo/baseline/**/*.report.html
+node_modules/
+dist/
+.astro/
+.vercel/
+npm-debug.log*

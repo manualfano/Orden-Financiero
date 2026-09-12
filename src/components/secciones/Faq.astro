@@ -1,0 +1,31 @@
+---
+// Bloque 13 · Preguntas frecuentes: acordeon sobrio con <details>, funciona sin JS.
+// Copy literal (incluye los textos 33 aprobados en la fase 1).
+const faqs = [
+  { q: '¿Cuánto tarda el diagnóstico?', a: 'Unos 3 minutos. Son 12 preguntas de opción múltiple, tres por cada eslabón, y el puntaje aparece al instante en la misma pantalla. Podés volver atrás y cambiar una respuesta, y si cerrás, retomás donde estabas.' },
+  { q: '¿Es realmente gratis?', a: 'Sí. El diagnóstico es gratis, y la llamada de 30 minutos con Manuel también. El programa de tres meses es pago, y eso se conversa en la llamada, si querés darla.' },
+  { q: '¿Necesito saber de finanzas para responder?', a: 'No. Las preguntas son sobre cómo se maneja el negocio en el día a día: no hace falta calcular nada ni tener planillas a mano. Si una respuesta no se sabe con certeza, esa duda ya es parte del diagnóstico.' },
+  { q: '¿Qué datos me piden?', a: 'Ninguno para ver el puntaje y el estado de cada eslabón. Para ver el análisis completo y el primer paso te pedimos solo tu WhatsApp, que es el número al que Manuel te puede escribir para revisar el resultado. No se vende ni se usa para publicidad. Más detalle en la <a href="/privacidad">política de privacidad</a>.' },
+  { q: '¿Qué pasa después del diagnóstico?', a: 'Ves el puntaje del negocio, el estado de cada eslabón y, con tu WhatsApp, el análisis completo de tu eslabón más débil y el primer paso concreto. Después decidís vos: podés agendar 30 minutos gratis con Manuel para revisar tus números reales, o quedarte con el diagnóstico como punto de partida.' },
+  { q: '¿Por qué solo 3 negocios nuevos por mes?', a: 'Porque el programa es 1 a 1: sesiones mensuales, WhatsApp directo y trabajo sobre los datos reales de cada negocio. Con más de tres entradas por mes eso no se sostiene.' },
+];
+---
+<section id="preguntas-frecuentes" class="section">
+  <div class="wrap grid gap-10 lg:grid-cols-12 lg:gap-16">
+    <div class="lg:col-span-4">
+      <p class="eyebrow text-marca">Preguntas frecuentes</p>
+      <h2 class="titular text-navy mt-4">Antes de empezar</h2>
+    </div>
+    <div class="lg:col-span-8 border-t border-borde">
+      {faqs.map((f) => (
+        <details class="group border-b border-borde">
+          <summary class="list-none cursor-pointer flex items-center justify-between gap-6 py-5 font-medium text-navy text-[17px] md:text-[19px]">
+            {f.q}
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-marca transition-transform duration-[var(--duration-rapido)] group-open:rotate-180" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="pb-6 text-tinta-2 max-w-[62ch] [&_a]:text-marca [&_a]:underline [&_a]:underline-offset-2" set:html={f.a} />
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,23 @@
+---
+// CTA fijo solo en celular: aparece cuando el hero sale de pantalla y se oculta
+// cuando entra el CTA final (regla del prompt, §10). Respeta el area segura.
+import { CTA_TEXTO, CTA_HREF } from '../data/site';
+---
+<div id="sticky-cta" class="fixed inset-x-0 bottom-0 z-30 lg:hidden px-6 pb-[max(12px,env(safe-area-inset-bottom))] pt-3 bg-superficie/95 backdrop-blur border-t border-borde-soft transition-transform duration-[var(--duration-rapido)] translate-y-full" hidden>
+  <a href={CTA_HREF} class="btn w-full">{CTA_TEXTO} <span aria-hidden="true">→</span></a>
+</div>
+<script>
+  const el = document.getElementById('sticky-cta');
+  const hero = document.getElementById('hero');
+  const fin = document.getElementById('cta-final');
+  if (el && hero && fin && 'IntersectionObserver' in window) {
+    let heroVisible = true, finVisible = false;
+    const aplicar = () => {
+      const mostrar = !heroVisible && !finVisible;
+      el.hidden = false;
+      el.classList.toggle('translate-y-full', !mostrar);
+    };
+    new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; aplicar(); }, { threshold: 0.2 }).observe(hero);
+    new IntersectionObserver(([e]) => { finVisible = e.isIntersecting; aplicar(); }, { threshold: 0.1 }).observe(fin);
+  }
+</script>

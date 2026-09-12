@@ -1,0 +1,16 @@
+---
+// Wordmark: isotipo (anillo celeste con arco blanco, identidad aprobada por Manu)
+// + "ordenfinanciero." en Inter 600. Aeonik no existe en ningun repo (Anexo A, 9):
+// cuando llegue el archivo, se cambia solo aca.
+interface Props { href?: string; oculto?: boolean; class?: string }
+const { href = '/', oculto = false, class: cls = '' } = Astro.props;
+---
+<a href={href} class:list={['inline-flex items-center gap-2.5 text-superficie no-underline font-semibold text-[19px] tracking-[-0.01em] min-h-11', cls]}>
+  <span class="grid place-items-center w-8 h-8 rounded-r bg-marca shrink-0" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+      <circle cx="12" cy="12" r="7" stroke="var(--color-celeste)" stroke-width="4"/>
+      <circle cx="12" cy="12" r="7" stroke="var(--color-superficie)" stroke-width="4" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/>
+    </svg>
+  </span>
+  <span class:list={[oculto && 'sr-only sm:not-sr-only']}>ordenfinanciero<span class="text-celeste">.</span></span>
+</a>

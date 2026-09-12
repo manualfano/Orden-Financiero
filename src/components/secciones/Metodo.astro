@@ -1,0 +1,80 @@
+---
+// Bloque 5 · El metodo (obligatorio). Panel visual a la izquierda (en la Fase 6
+// se vuelve fijo y se transforma con el scroll: la cadena de 4 eslabones que se
+// arma) y los tres meses a la derecha. Copy literal del sitio anterior.
+const eslabones = [
+  { num: '01', titulo: 'Costos y precios', texto: 'El costo real y el precio correcto de cada cosa que se vende.' },
+  { num: '02', titulo: 'Resultado económico', texto: 'Un cierre por mes: cuánto ganó el negocio de verdad, con gastos e impuestos descontados.' },
+  { num: '03', titulo: 'Flujo de caja', texto: 'Pagos, cobranzas y vencimientos a la vista, para que la plata esté cuando hace falta.' },
+  { num: '04', titulo: 'Indicadores de gestión', texto: 'Tres o cuatro números que se miran todos los meses antes de decidir.' },
+];
+const meses = [
+  {
+    eyebrow: 'Mes 1 · Diagnóstico y base', titulo: 'Poner los números arriba de la mesa',
+    datos: 'ventas, compras y costos de cada producto.',
+    items: ['Relevamiento completo del negocio', 'Armado de los costos del negocio, producto por producto', 'Identificación de por dónde se escapa la rentabilidad', 'Primer tablero con los números del mes'],
+    modulos: [['#mod-registro', 'Registro'], ['#mod-resultado', 'Resultado'], ['#mod-costeo', 'Costeo'], ['#mod-tablero', 'Tablero'], ['#mod-bitacora', 'Bitácora']],
+  },
+  {
+    eyebrow: 'Mes 2 · Orden y sistema', titulo: 'Que la plata del negocio se vea y se anticipe',
+    datos: 'pagos, cobranzas, sueldos y lo que sale para la casa.',
+    items: ['Flujo de caja en marcha', 'Separación de las finanzas personales y las del negocio', 'Precio correcto de cada producto', 'Rutina semanal de gestión financiera'],
+    modulos: [['#mod-agenda', 'Agenda'], ['#mod-insumos', 'Insumos'], ['#mod-costeo', 'Costeo']],
+  },
+  {
+    eyebrow: 'Mes 3 · Control y autonomía', titulo: 'El dueño maneja sus propios números',
+    datos: 'el tablero completo del mes, comparado contra los meses anteriores.',
+    items: ['El dueño maneja sus propios números', 'Decisiones basadas en datos reales', 'Planificación de la rentabilidad futura', 'Independencia total del sistema'],
+    modulos: [['#mod-hoja-de-ruta', 'Hoja de ruta']],
+  },
+];
+---
+<section id="metodo" class="section">
+  <div class="wrap">
+    <div class="max-w-[60ch]">
+      <p class="eyebrow text-marca">El programa</p>
+      <h2 class="titular text-navy mt-4">Del diagnóstico al negocio ordenado, en tres meses</h2>
+      <p class="lead text-tinta-2 mt-6">El diagnóstico es el paso 1. Después, el programa trabaja con los datos del negocio: lo que se vende, lo que se compra, lo que se paga y lo que se cobra. Salís con un sistema funcionando y con tus propios números a mano, no con un informe.</p>
+    </div>
+
+    <div class="mt-14 grid gap-12 lg:grid-cols-12 lg:gap-16 lg:items-start">
+      <!-- Panel visual: la cadena de cuatro eslabones. Fase 6: sticky + estados por paso; hoy, el estado final. -->
+      <ol id="metodo-visual" class="lg:col-span-5 list-none m-0 p-0 border-t border-borde">
+        {eslabones.map((e) => (
+          <li class="grid grid-cols-[3ch_1fr] gap-4 py-5 border-b border-borde">
+            <span class="cifra text-[15px] font-medium text-marca pt-1">{e.num}</span>
+            <div>
+              <p class="subtitular text-navy m-0">{e.titulo}</p>
+              <p class="text-tinta-2 mt-1.5 m-0">{e.texto}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <ol class="lg:col-span-7 list-none m-0 p-0 grid gap-10">
+        {meses.map((m) => (
+          <li class="grid gap-3">
+            <p class="eyebrow text-marca">{m.eyebrow}</p>
+            <h3 class="subtitular text-navy m-0">{m.titulo}</h3>
+            <p class="text-tinta-2 m-0"><strong class="text-tinta">Datos con los que se trabaja:</strong> {m.datos}</p>
+            <ul class="list-disc pl-5 text-tinta-2 grid gap-1 m-0">
+              {m.items.map((i) => <li>{i}</li>)}
+            </ul>
+            <p class="text-[15px] text-tinta-2 m-0"><strong class="text-tinta">Módulos que quedan:</strong> {m.modulos.map(([href, t], i) => <>{i > 0 && ' · '}<a href={href} class="text-marca underline underline-offset-2">{t}</a></>)}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <div class="mt-14 grid gap-8 md:grid-cols-2 md:gap-12 border-t border-borde pt-10">
+      <div>
+        <p class="subtitular text-navy m-0">Garantía simple</p>
+        <p class="text-tinta-2 mt-3 m-0">Si en 90 días no sabés exactamente a dónde va a parar cada peso que factura tu negocio, seguimos trabajando sin costo hasta que lo sepas.</p>
+      </div>
+      <div>
+        <p class="subtitular text-navy m-0">Máximo 3 negocios nuevos por mes</p>
+        <p class="text-tinta-2 mt-3 m-0">No es una cifra de marketing: es lo que permite sostener el acompañamiento 1 a 1, el WhatsApp directo y las sesiones mensuales de cada cliente.</p>
+      </div>
+    </div>
+  </div>
+</section>

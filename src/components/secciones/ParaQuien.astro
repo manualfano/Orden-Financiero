@@ -1,0 +1,36 @@
+---
+// Bloque 10 (opcional) · Para quien es y para quien no. Dos columnas
+// tipograficas, sin iconos. Copy literal (textos 10 y 11 aprobados en fase 1).
+const si = [
+  'Tenés un negocio gastronómico en marcha, con 1 a 4 locales o puntos de venta',
+  'Tu negocio vende, pero el número de cuánto gana no está claro',
+  'La plata personal y la del negocio están mezcladas',
+  'Trabajás más de 10 horas por día y el negocio no te deja desconectar',
+  'Querés tomar decisiones con datos, no con intuición',
+];
+const no = [
+  'Todavía no tenés un negocio en marcha',
+  'Tu empresa ya tiene equipo contable y de gestión propio',
+  'Buscás asesoría de inversiones o bolsa',
+];
+---
+<section id="para-quien" class="section">
+  <div class="wrap">
+    <p class="eyebrow text-marca">Antes de que pierdas 3 minutos</p>
+    <h2 class="titular text-navy mt-4">¿Es para vos?</h2>
+    <div class="mt-12 grid gap-10 md:grid-cols-2 md:gap-16">
+      <div>
+        <p class="subtitular text-navy m-0">El diagnóstico es para vos si…</p>
+        <ul class="mt-5 list-none m-0 p-0 divide-y divide-borde-soft border-y border-borde-soft">
+          {si.map((t) => <li class="py-3.5 text-tinta-2 pl-5 relative before:content-['—'] before:absolute before:left-0 before:text-marca">{t}</li>)}
+        </ul>
+      </div>
+      <div>
+        <p class="subtitular text-navy m-0">No es para vos si…</p>
+        <ul class="mt-5 list-none m-0 p-0 divide-y divide-borde-soft border-y border-borde-soft">
+          {no.map((t) => <li class="py-3.5 text-tinta-2 pl-5 relative before:content-['—'] before:absolute before:left-0 before:text-tinta-3">{t}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,16 @@
+---
+// 404: mismo texto que el sitio anterior, sobre el canvas de marca.
+import Base from '../layouts/Base.astro';
+import Wordmark from '../components/Wordmark.astro';
+import { CTA_TEXTO } from '../data/site';
+---
+<Base title="Página no encontrada · Orden Financiero" description="Esta página no existe, pero el diagnóstico sí." path="/404" noindex bodyClass="on-dark canvas-marca text-superficie min-h-svh flex flex-col">
+  <header class="wrap py-4"><Wordmark /></header>
+  <main class="wrap flex-1 grid place-content-center text-center gap-4 py-12">
+    <p class="eyebrow text-secondary-dark justify-center">Error 404</p>
+    <h1 class="titular max-w-[18ch]">Esta página no existe, pero el diagnóstico sí</h1>
+    <p class="lead text-secondary-dark max-w-[44ch] mx-auto">El link que seguiste no lleva a ninguna parte. El primer paso para hacer tu negocio más rentable sigue estando a 3 minutos.</p>
+    <a class="btn justify-self-center" href="/#diagnostico">{CTA_TEXTO} <span aria-hidden="true">→</span></a>
+    <p class="text-[14px] text-secondary-dark">O volvé al <a href="/" class="text-superficie">inicio</a>.</p>
+  </main>
+</Base>

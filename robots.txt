@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://ordenfinanciero.com/sitemap.xml

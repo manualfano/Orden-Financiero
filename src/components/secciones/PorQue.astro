@@ -1,0 +1,25 @@
+---
+// Bloque 4 (opcional) · Por que lo de siempre no alcanza: descartar las
+// alternativas (contador, planilla, hacerlo solo). No hay copy aprobado para
+// este bloque: los textos entre corchetes son huecos (Anexo A, decision 2).
+// Manu decide si el bloque entra (Anexo A, decision 4).
+const alternativas = [
+  { titulo: 'El contador', texto: '[Copy pendiente · Anexo A, 2]' },
+  { titulo: 'La planilla', texto: '[Copy pendiente · Anexo A, 2]' },
+  { titulo: 'Hacerlo solo', texto: '[Copy pendiente · Anexo A, 2]' },
+];
+---
+<section id="por-que" class="bg-lienzo section">
+  <div class="wrap">
+    <p class="eyebrow text-marca">[Eyebrow pendiente · Anexo A, 2]</p>
+    <h2 class="titular text-navy mt-4 max-w-[20ch]">[Titular pendiente: por qué lo de siempre no alcanza · Anexo A, 2]</h2>
+    <dl class="mt-12 grid gap-8 md:grid-cols-3 md:gap-12">
+      {alternativas.map((a) => (
+        <div class="border-t border-borde pt-5">
+          <dt class="subtitular text-navy">{a.titulo}</dt>
+          <dd class="mt-3 text-tinta-2 m-0">{a.texto}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>

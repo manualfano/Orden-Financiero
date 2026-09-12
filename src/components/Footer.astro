@@ -1,0 +1,22 @@
+---
+// Footer: marca, tagline, los links que existen hoy y el unico acceso al portal.
+// "Guias" y "Plataforma" se suman cuando esas paginas existan.
+import Wordmark from './Wordmark.astro';
+import { PORTAL_URL, DESCRIPTOR } from '../data/site';
+---
+<footer class="on-dark bg-navy text-superficie section-tight">
+  <div class="wrap grid gap-10 md:grid-cols-[1fr_auto] md:items-start">
+    <div>
+      <Wordmark />
+      <p class="eyebrow text-secondary-dark mt-4">La rentabilidad de tu negocio, siempre a mano</p>
+    </div>
+    <nav aria-label="Pie de página" class="flex flex-wrap gap-x-6 gap-y-3 text-[15px]">
+      <a class="text-secondary-dark hover:text-superficie no-underline" href="/#diagnostico">El diagnóstico</a>
+      <a class="text-secondary-dark hover:text-superficie no-underline" href="/#metodo">El programa</a>
+      <a class="text-secondary-dark hover:text-superficie no-underline" href="/#manuel">Quién está detrás</a>
+      <a class="text-secondary-dark hover:text-superficie no-underline" href="/privacidad">Privacidad</a>
+      <a class="text-secondary-dark hover:text-superficie no-underline inline-flex items-center gap-1" href={PORTAL_URL} rel="noopener" onclick="track('cta_portal', { desde: 'footer' })">Portal de clientes <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+    </nav>
+    <p class="text-[13px] text-secondary-dark md:col-span-2 border-t border-border-subtle-dark pt-6">© 2026 Orden Financiero · {DESCRIPTOR}</p>
+  </div>
+</footer>

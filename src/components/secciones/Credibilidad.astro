@@ -1,0 +1,20 @@
+---
+// Bloque 2 · Franja de credibilidad: los 17 negocios, en franja estatica
+// (nunca carrusel automatico). Cada logo lleva alt="" y el nombre en texto al
+// lado: es la forma accesible correcta (audit C11).
+import { logos } from '../../data/logos';
+---
+<section id="clientes" class="bg-lienzo border-y border-borde-soft section-tight" aria-label="Negocios que trabajan con Orden Financiero">
+  <div class="wrap">
+    <p class="eyebrow text-tinta-3 justify-center w-full">Negocios que ya ordenan sus números con nosotros</p>
+    <!-- En celular, dos columnas compactas; desde tablet, franja centrada con el rubro. -->
+    <ul class="mt-8 grid grid-cols-2 gap-x-4 gap-y-4 sm:flex sm:flex-wrap sm:justify-center sm:gap-x-8 sm:gap-y-5 list-none m-0 p-0">
+      {logos.map((l) => (
+        <li class="flex items-center gap-2.5 text-[13px] sm:text-[14px] min-w-0">
+          <img src={`/logos/${l.file}`} alt="" width="36" height="36" loading="lazy" decoding="async" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full grayscale opacity-80 shrink-0" />
+          <span class="font-medium text-tinta leading-tight">{l.nombre} <span class="block sm:inline text-[10px] sm:text-[11px] uppercase tracking-[0.12em] text-tinta-3 font-normal sm:ml-1.5">{l.rubro}</span></span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

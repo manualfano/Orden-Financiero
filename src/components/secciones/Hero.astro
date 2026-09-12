@@ -1,0 +1,58 @@
+---
+// Bloque 1 · Hero. Direccion "A + retrato" elegida por Manu el 11/09/2026:
+// tipografia display sobre el degrade de marca, la unica foto a la derecha
+// fundida al navy por mascara (nunca un rectangulo semitransparente) y, en
+// celular, debajo de la prueba social. El LCP es el H1 en texto; la foto no.
+import { CTA_TEXTO, CTA_HREF, DESCRIPTOR } from '../../data/site';
+import { avataresHero } from '../../data/logos';
+---
+<section id="hero" class="on-dark canvas-marca text-superficie relative overflow-hidden isolate">
+  <div class="wrap relative grid lg:content-center py-10 md:py-16 lg:min-h-[calc(100svh-67px)]">
+    <!-- En celular y tablet el contenido ocupa el alto de la pantalla (menos la cinta): la foto arranca
+         justo debajo del primer pantallazo, carga en diferido y el LCP es siempre el titular. -->
+    <div class="grid content-between lg:content-start gap-8 lg:gap-6 max-w-[760px] relative z-10 min-h-[calc(100svh-67px-80px)] lg:min-h-0">
+      <div class="grid gap-6">
+        <p class="eyebrow text-accent-soft"><span id="hero-eyebrow-text">{DESCRIPTOR}</span></p>
+        <h1 class="display" id="hero-title">El primer paso para <em class="not-italic text-accent-soft">hacer tu negocio más rentable</em> empieza acá</h1>
+        <p class="lead text-secondary-dark max-w-[34ch]" id="hero-subtitle">Un programa de tres meses para que tu negocio trabaje con sus propios números. El paso 1 es un diagnóstico gratis de 3 minutos.</p>
+      </div>
+      <div class="grid gap-6">
+      <div class="flex flex-wrap items-center gap-4 md:gap-6">
+        <a href={CTA_HREF} class="btn w-full sm:w-auto" data-origen="hero"><span id="hero-cta-text">{CTA_TEXTO}</span> <span aria-hidden="true">→</span></a>
+        <ul class="flex flex-wrap gap-x-4 gap-y-1.5 text-[14px] font-medium text-secondary-dark list-none m-0 p-0">
+          <li class="before:content-['✓'] before:text-accent-soft before:mr-1.5">Gratis</li>
+          <li class="before:content-['✓'] before:text-accent-soft before:mr-1.5">Sin planillas</li>
+          <li class="before:content-['✓'] before:text-accent-soft before:mr-1.5"><span id="hero-trust-3">Resultado al instante</span></li>
+        </ul>
+      </div>
+      <!-- Prueba social: se queda en el hero por decision de Manu (11/09). Cifra declarada por el dueño (07/09); la cinta muestra 17 con nombre. -->
+      <a class="flex items-center gap-3 text-[14px] text-secondary-dark no-underline max-w-[420px] leading-snug" href="#clientes">
+        <span class="flex shrink-0" aria-hidden="true">
+          {avataresHero.map((f, i) => <img src={`/logos/${f}`} alt="" width="30" height="30" loading="lazy" decoding="async" class:list={['w-[30px] h-[30px] rounded-full border-2 border-navy bg-superficie object-cover', i > 0 && '-ml-2']} />)}
+        </span>
+        <span><strong class="text-superficie">Más de 100 negocios</strong> ya ordenaron sus números con el programa</span>
+      </a>
+      </div>
+    </div>
+    <!-- Retrato: la unica foto que existe. En escritorio, absoluta al borde derecho, fundida al navy;
+         en celular, en flujo debajo del primer pantallazo. loading="lazy": en celular no compite con
+         el titular (verificado con Lighthouse: con la foto a la vista, el LCP pasaba a ser la imagen). -->
+    <img
+      src="/foto-manuel-cutout.webp" alt="Manuel Alfano, fundador de Orden Financiero" width="800" height="1200" decoding="async" loading="lazy"
+      class="hero-foto pointer-events-none block w-[72%] max-w-[360px] mx-auto mt-6 lg:absolute lg:right-[3%] lg:bottom-0 lg:mt-0 lg:w-auto lg:max-w-none lg:h-[min(86vh,720px)] lg:-z-10"
+    />
+  </div>
+</section>
+<style>
+  /* La mascara solo usa el canal alfa: "black" = opaco, no es un color de la paleta. */
+  .hero-foto {
+    -webkit-mask-image: linear-gradient(to bottom, black 62%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 62%, transparent 100%);
+  }
+  @media (min-width: 64rem) {
+    .hero-foto {
+      -webkit-mask-image: linear-gradient(to bottom, black 58%, transparent 97%);
+      mask-image: linear-gradient(to bottom, black 58%, transparent 97%);
+    }
+  }
+</style>

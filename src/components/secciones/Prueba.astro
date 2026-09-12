@@ -1,0 +1,18 @@
+---
+// Bloque 9 · Prueba: cita tipografica gigante con nombre y rubro. Sin casos
+// confirmados por el dueño (Anexo A, 3) el bloque queda construido y oculto.
+const casos: { cita: string; nombre: string; rubro: string }[] = [];
+---
+<section id="prueba" class="bg-lienzo section" hidden={casos.length === 0}>
+  <div class="wrap">
+    <p class="eyebrow text-marca">Lo que dicen los que ya lo hicieron</p>
+    <ul class="mt-10 list-none m-0 p-0 grid gap-12">
+      {casos.map((c) => (
+        <li>
+          <blockquote class="titular text-navy m-0 max-w-[24ch]">“{c.cita}”</blockquote>
+          <p class="mt-5 text-tinta-2"><strong class="text-tinta">{c.nombre}</strong> · {c.rubro}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

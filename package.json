@@ -1,0 +1,19 @@
+{
+  "name": "orden-financiero-sitio",
+  "private": true,
+  "version": "2.0.0",
+  "description": "Sitio publico de ordenfinanciero.com (Astro + Tailwind). Fase 2 de la migracion, 09/2026.",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "devDependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.2",
+    "tailwindcss": "^4.3.3"
+  }
+}

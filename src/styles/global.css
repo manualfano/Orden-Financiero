@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Tokens: una sola vez, desde la fuente de verdad (Portal Orden Financiero/
+   tailwind.config.ts, paleta Core sobre navy #0D2B6B, decision de Manu del
+   07/09/2026). Tailwind los consume como utilidades (bg-navy, text-tinta-2…).
+   Ningun hex fuera de este bloque.
+   ────────────────────────────────────────────────────────────────────────── */
+@theme {
+  --font-sans: "Inter", "Inter-fallback", system-ui, sans-serif;
+
+  /* Marca y accion */
+  --color-marca: #0C66E4;
+  --color-marca-hover: #0055CC;
+  --color-celeste: #7DB1F4;           /* solo el isotipo */
+  --color-foco: #0C66E4;
+
+  /* Paleta Core (canvas oscuro) */
+  --color-navy: #0D2B6B;
+  --color-navy-2: #143C8C;
+  --color-secondary: #5B6478;
+  --color-secondary-dark: #A3ADC2;
+  --color-accent: #3B82F6;
+  --color-accent-strong: #2563EB;
+  --color-accent-soft: #93C5FD;
+  --color-warm: #E0B23A;
+  --color-border-subtle: rgba(13, 43, 107, 0.12);
+  --color-border-subtle-dark: rgba(255, 255, 255, 0.10);
+
+  /* Texto y superficies (canvas claro) */
+  --color-tinta: #292A2E;
+  --color-tinta-2: #505258;
+  --color-tinta-3: #6B6E76;
+  --color-superficie: #FFFFFF;
+  --color-lienzo: #F8F8F8;
+  --color-lienzo-2: #F0F1F2;
+  --color-borde: rgba(11, 18, 14, 0.14);
+  --color-borde-soft: rgba(11, 18, 14, 0.08);
+  --color-borde-input: #8C8F97;
+  --color-seleccion-bg: #E9F2FF;
+
+  /* Semanticos (texto + fondo, par por par) — solo en mockups y estados del diagnostico */
+  --color-positivo: #4C6B1F;
+  --color-positivo-bg: #EFFFD6;
+  --color-riesgo: #AE2E24;
+  --color-riesgo-bg: #FFECEB;
+  --color-alerta: #9E4C00;
+  --color-alerta-bg: #FFF5DB;
+  --color-hallazgo: #803FA5;
+  --color-hallazgo-bg: #F8EEFE;
+
+  /* Radios */
+  --radius-r: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* Motion: tres momentos del sistema. Los tokens expresivos (reveal, draw,
+     stagger, ambient) se calibran en la Fase 7. */
+  --ease-salida: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-estandar: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-instante: 120ms;
+  --duration-rapido: 240ms;
+  --duration-entrada: 480ms;
+}
+
+/* Inter variable, self-hosted (48 KB), con fallback metrico para que el texto
+   no salte cuando carga. */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/inter-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter-fallback";
+  src: local("Arial");
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+  size-adjust: 107%;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    @apply font-sans text-tinta bg-superficie antialiased;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  strong, b { font-weight: 600; }
+  :focus-visible { outline: 2px solid var(--color-foco); outline-offset: 3px; }
+  .on-dark :focus-visible { outline-color: var(--color-accent-soft); }
+  ::selection { background: var(--color-seleccion-bg); color: var(--color-navy); }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+}
+
+@layer components {
+  /* Columna unica del sitio. Regla de Manu (11/09/2026): nada toca el borde —
+     40 px de aire por lado en escritorio, 24 px en celular; el header comparte
+     esta misma columna. */
+  .wrap { @apply w-full max-w-[1200px] mx-auto px-6 md:px-10; }
+
+  /* Ritmo vertical: una sola escala. El espacio entre secciones es mayor que
+     cualquier espacio interno. */
+  .section { padding-block: clamp(72px, 9vw, 128px); }
+  .section-tight { padding-block: clamp(48px, 6vw, 80px); }
+
+  /* Tipografia: lo gigante sale del tamaño, no del peso (Inter 500; aprobado 11/09). */
+  .display {
+    @apply font-medium;
+    font-size: clamp(35px, 5.6vw, 76px);
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+  .titular {
+    @apply font-medium;
+    font-size: clamp(30px, 3.6vw, 52px);
+    letter-spacing: -0.03em;
+    line-height: 1.06;
+    text-wrap: balance;
+  }
+  .subtitular {
+    @apply font-medium;
+    font-size: clamp(22px, 2vw, 28px);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .lead { font-size: clamp(17px, 1.4vw, 20px); line-height: 1.5; max-width: 60ch; }
+  .eyebrow {
+    @apply inline-flex items-center gap-2.5 font-medium uppercase;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+  }
+  .eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .cifra { font-variant-numeric: tabular-nums; letter-spacing: -0.03em; }
+
+  /* Botones: sin sombra, radio del sistema, 44 px minimos de alto. */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2.5 font-semibold text-[16px] leading-none whitespace-nowrap rounded-lg bg-marca text-superficie no-underline;
+    min-height: 44px;
+    padding: 15px 22px;
+    transition: background-color var(--duration-instante) var(--ease-estandar);
+  }
+  .btn:hover { background: var(--color-marca-hover); }
+  .btn-sm { @apply text-[14px] rounded-r; padding: 12px 16px; min-height: 40px; }
+  .btn-white { @apply bg-superficie text-marca; }
+  .btn-white:hover { background: var(--color-lienzo); }
+
+  /* Fondo del hero y del cierre: estado estatico del degrade (aprobado 11/09).
+     En la Fase 6 el shader WebGL se monta encima con estos mismos colores como
+     uniforms; sin JS, sin WebGL o con movimiento reducido queda esto. */
+  .canvas-marca {
+    background-color: var(--color-navy);
+    background-image:
+      radial-gradient(70% 90% at 85% 15%, color-mix(in srgb, var(--color-marca) 62%, transparent) 0%, transparent 62%),
+      radial-gradient(55% 70% at 10% 95%, var(--color-navy-2) 0%, transparent 65%),
+      radial-gradient(35% 45% at 62% 72%, color-mix(in srgb, var(--color-accent-soft) 16%, transparent) 0%, transparent 60%);
+  }
+}

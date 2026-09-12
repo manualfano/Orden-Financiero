@@ -1,45 +1,56 @@
-# Proyecto: Fase 2 del sitio público
+# Proyecto: Fase 2 del sitio público — migración a Astro y rediseño de la página de venta
 
 Rama de trabajo: `staging-fase-dos` (sale de `master`, que ya tiene toda la Fase 1 integrada).
 
 ## Cómo se trabaja
 
-1. Todos los cambios de la Fase 2 se commitean en `staging-fase-dos`.
+1. Todos los cambios se commitean en `staging-fase-dos`, **un commit por fase** del plan.
 2. Cada push genera una vista previa en Vercel:
    `orden-financiero-git-staging-fase-dos-manualfanos-projects.vercel.app`
-3. El dueño revisa la vista previa y da el OK.
+3. El dueño revisa la vista previa (en el celular, desde Instagram) y da el OK.
 4. Recién ahí se integra a `master`, que es lo que sirve ordenfinanciero.com.
 
 Nada de esta rama llega a ordenfinanciero.com sin el OK explícito del dueño.
 
-## De dónde arranca
+## Qué es
 
-La Fase 1 (commits `A` a `E`, 11/09) cerró los tres P0 de `AUDIT-2026-09-11.md`: el lead
-dejó de perderse, el diagnóstico dejó de contradecirse y la medición pasó a GA4 con
-atribución. También fijó gastronomía como único rubro y la llamada como único CTA.
+El `index.html` escrito a mano (5.692 líneas) se reemplaza por un proyecto **Astro + Tailwind**,
+100 % estático, con layout compartido, tokens definidos una sola vez, colección de contenido
+lista para las guías y sitemap generado. La página de venta se reconstruye con la secuencia
+atención → problema → mecanismo → oferta → prueba → objeciones → acción, un solo CTA (el
+diagnóstico) y tres momentos expresivos (degradé del hero, el método con el scroll, el mockup
+del entregable). El informe de trabajo es `LANDING-REPORT-2026-09.md` (no se commitea).
 
-## Pendiente de definir (dueño)
+## Decisiones del dueño (11/09/2026)
 
-El alcance de la Fase 2 todavía no está elegido. Los candidatos son los hallazgos que
-la Fase 1 no tocó, agrupados por frente:
+- Dirección de arte **A + retrato**: hero tipográfico sobre el degradé, con la foto a la derecha.
+- Se quedan la cinta del header con los tres links y la prueba social con los logos.
+- Inter 500 para el display; el degradé del hero como está.
+- Ningún botón toca un borde: 40 px de aire por lado en escritorio, 24 en celular, 14 arriba y abajo en la cinta.
 
-- **Contenidos y guías** (H31–H36): hoy no hay plantilla, layout compartido ni sitemap
-  automático; cada guía sería una copia a mano de `index.html`. Es el frente más grande.
-- **Header y responsive** (H11): entre 961 y ~1.075 px el header ya estaba justo, y a
-  ≤960 px no hay menú. Sin resolverlo no entra ningún ítem nuevo de navegación.
-- **Accesibilidad** (H12, H17–H19): foco que cae a `<body>` en cada pregunta, nombre
-  accesible de la marca en mobile, cinta de logos duplicada, contraste del anillo de foco.
-- **Identidad** (H21–H22): la paleta Core decidida está implementada en 1 de 10 valores.
-- **Seguridad y prolijidad** (H06, H23): el webhook sigue siendo escritura pública (la
-  Fase 1 le sumó campo trampa) y el apex no manda headers de seguridad.
+## Fases
 
-Antes de tomar cualquiera hay que reconfirmarlo contra el código: la Fase 1 tocó
-`index.html` a fondo y varios hallazgos pueden haber quedado resueltos de paso.
+| # | Fase | Estado |
+|---|---|---|
+| 0 | Auditoría y baseline | Hecha (informe) |
+| 1 | Tesis y direcciones de arte | Hecha, dirección elegida |
+| 2 | Proyecto Astro, estructura y contenido, sin efectos | Este commit |
+| 3 | Diagnóstico portado, cero diferencias en 531.441 combinaciones | Pendiente |
+| 3b | Página post-agenda (`/diagnostico`, servida por `diagnostico.ordenfinanciero.com`) | Pendiente |
+| 4–9 | Sistema visual, mockups, momentos expresivos, motion, mobile, performance e informe | Pendientes |
+
+## Cómo se corre
+
+```
+npm install
+npm run dev       # http://localhost:4321
+npm run build     # genera dist/ (index.html, privacidad.html, 404.html, sitemap)
+```
+
+Vercel builda con `npm run build` y publica `dist/` (configurado en `vercel.json`, sin tocar el dashboard).
 
 ## Notas técnicas
 
-- GA4 no mide en las vistas previas salvo que se abran con `?ga_debug=1`. Los números de
-  producción no se ensucian con las pruebas de esta rama.
-- El sitio es 100 % estático: no hay `api/`, ni `package.json`, ni funciones. Todo lo que
-  necesite servidor (descargas protegidas, rate limit real) pasa por Apps Script o cambia
-  esa condición.
+- Salida `format: 'file'`: las URLs no cambian (`/`, `/privacidad`); `/sitemap.xml` redirige al generado.
+- GA4 y `track()` viven en el layout; los eventos del diagnóstico se portan en la Fase 3.
+- Hasta la Fase 3 el CTA lleva a la sección del diagnóstico; el overlay con las 12 preguntas no está en esta vista previa.

@@ -1,0 +1,34 @@
+---
+// Politica de privacidad: mismo texto aprobado en la fase 1 (11/09/2026),
+// incluida la fecha; ahora con el layout, el header y el footer compartidos.
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<Base
+  title="Privacidad · Orden Financiero"
+  description="Qué datos pide ordenfinanciero.com, para qué se usan y cómo pedir que se borren."
+  path="/privacidad"
+>
+  <Header />
+  <main class="wrap section max-w-[760px]">
+    <p class="eyebrow text-marca">Privacidad</p>
+    <h1 class="titular text-navy mt-4">Qué datos pide esta web y para qué</h1>
+    <div class="mt-8 grid gap-4 text-tinta-2 lead [&_h2]:subtitular [&_h2]:text-navy [&_h2]:mt-6 [&_a]:text-marca [&_a]:underline [&_a]:underline-offset-2">
+      <p>Última actualización: 11 de septiembre de 2026.</p>
+      <p>Esta página describe, en lenguaje llano, qué información se recolecta en ordenfinanciero.com y qué se hace con ella.</p>
+      <h2>El diagnóstico</h2>
+      <p>Las 12 respuestas del diagnóstico se procesan en tu navegador. Para ver el puntaje y el estado de cada eslabón no se pide ningún dato.</p>
+      <h2>Tu WhatsApp</h2>
+      <p>Para ver el análisis completo te pedimos un solo dato: tu número de WhatsApp. Se guarda junto con tus respuestas, tu resultado y de dónde llegaste a la web (por ejemplo, un link de Instagram), con un único fin: que Manuel Alfano pueda escribirte para revisar el resultado con vos. Esos datos se guardan en servicios de Google (Apps Script, Hojas de cálculo, Presentaciones y Gmail). No se venden ni se usan para publicidad.</p>
+      <h2>Medición</h2>
+      <p>Para saber cómo se usa la web (cuántas personas abren el diagnóstico, en qué pregunta lo dejan y desde dónde llegan) usamos Google Analytics, que guarda cookies en tu navegador. Google Analytics no recibe tu WhatsApp. Podés bloquear o borrar esas cookies desde la configuración de tu navegador.</p>
+      <h2>La llamada</h2>
+      <p>Si reservás la llamada con Manuel, el turno se agenda en Google Calendar, con los datos que cargues ahí.</p>
+      <h2>Borrar tus datos</h2>
+      <p>Podés pedir que borremos tu número y tus respuestas escribiendo a <a href="mailto:manuel@ordenfinanciero.com">manuel@ordenfinanciero.com</a>.</p>
+    </div>
+    <a class="btn mt-10" href="/">Volver al inicio <span aria-hidden="true">→</span></a>
+  </main>
+  <Footer />
+</Base>

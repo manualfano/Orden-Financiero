@@ -1,0 +1,80 @@
+---
+// Layout compartido: head con metadatos por pagina, favicon, fuente, GA4 y
+// datos estructurados. Cada pagina declara title, description y canonical;
+// el OG cae a la imagen general si no trae una propia.
+import '../styles/global.css';
+import { SITE_URL, GA4_ID } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Ruta canonica, sin dominio (ej. "/privacidad"). */
+  path: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  noindex?: boolean;
+  /** JSON-LD ya serializado (solo la home lo trae). */
+  jsonld?: string;
+  bodyClass?: string;
+}
+const {
+  title, description, path, ogTitle = title, ogDescription = description,
+  ogImage = '/og-image.png', ogImageAlt, noindex = false, jsonld, bodyClass = '',
+} = Astro.props;
+const canonical = `${SITE_URL}${path === '/' ? '/' : path}`;
+const ogImageAbs = `${SITE_URL}${ogImage}`;
+---
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{title}</title>
+<meta name="description" content={description}>
+<link rel="canonical" href={canonical}>
+{noindex && <meta name="robots" content="noindex, follow">}
+<meta property="og:type" content="website">
+<meta property="og:title" content={ogTitle}>
+<meta property="og:description" content={ogDescription}>
+<meta property="og:url" content={canonical}>
+<meta property="og:locale" content="es_AR">
+<meta property="og:image" content={ogImageAbs}>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+{ogImageAlt && <meta property="og:image:alt" content={ogImageAlt}>}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content={ogImageAbs}>
+<meta name="theme-color" content="#0D2B6B">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%230C66E4'/%3E%3Ccircle cx='24' cy='24' r='11' fill='none' stroke='%237DB1F4' stroke-width='6'/%3E%3Ccircle cx='24' cy='24' r='11' fill='none' stroke='%23ffffff' stroke-width='6' stroke-dasharray='51.8 69.2' transform='rotate(-90 24 24)'/%3E%3C/svg%3E">
+<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<!-- Medicion: Google Analytics 4 (Fase 1, 11/09/2026). Carga solo en
+     ordenfinanciero.com y sus subdominios. En un preview de Vercel carga solo
+     con ?ga_debug=1 y en modo depuracion (GA4 > DebugView), para probar sin
+     mezclar datos. La libreria (~170 KiB) baja despues del evento load: cargada
+     con la pagina, el LCP mobile pasaba de 2,1 s a 3,8 s. track() es la unica
+     funcion de medicion del sitio; nunca lleva datos personales. -->
+<script is:inline define:vars={{ GA4_ID }}>
+window.dataLayer = window.dataLayer || [];
+function gtag() { dataLayer.push(arguments); }
+function track(evento, props) { try { gtag('event', evento, props || {}); } catch (e) {} }
+window.track = track;
+(function () {
+  var h = location.hostname;
+  var real = h === 'ordenfinanciero.com' || h.endsWith('.ordenfinanciero.com');
+  var prueba = /\.vercel\.app$/.test(h) && /[?&]ga_debug=1(&|$)/.test(location.search);
+  if (!real && !prueba) return;
+  gtag('js', new Date());
+  gtag('config', GA4_ID, prueba ? { debug_mode: true } : {});
+  function cargar() { var sc = document.createElement('script'); sc.async = true; sc.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID; document.head.appendChild(sc); }
+  if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
+})();
+</script>
+{jsonld && <script type="application/ld+json" set:html={jsonld} />}
+</head>
+<body class={bodyClass}>
+<slot />
+</body>
+</html>

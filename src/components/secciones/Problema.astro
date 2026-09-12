@@ -1,0 +1,27 @@
+---
+// Bloque 3 · Problema: que el dueño se reconozca. Las cuatro frases reales,
+// como tipografia editorial grande; sin tarjetas, sin iconos, sin fotos.
+const frases = [
+  { texto: 'Facturo un montón y no veo un peso.', eslabon: 'Resultado económico' },
+  { texto: 'Los costos los llevo a ojo.', eslabon: 'Costos y precios' },
+  { texto: 'Siempre estamos al límite.', eslabon: 'Flujo de caja' },
+  { texto: 'Mi contador me dice que está todo bien… y yo sigo sin entender cuánto gano.', eslabon: 'Indicadores de gestión' },
+];
+---
+<section id="te-suena" class="section">
+  <div class="wrap grid gap-12 lg:grid-cols-12 lg:gap-16">
+    <div class="lg:col-span-4">
+      <p class="eyebrow text-marca">¿Te suena?</p>
+      <h2 class="titular text-navy mt-4">Las frases que escuchamos todas las semanas</h2>
+      <p class="lead text-tinta-2 mt-6"><strong>Ninguna de estas frases es inventada:</strong> son de dueños de negocios reales, en reuniones reales. Si alguna te sonó propia, el diagnóstico existe para ponerle un número a esa sensación.</p>
+    </div>
+    <ul class="lg:col-span-8 list-none m-0 p-0 divide-y divide-borde-soft border-y border-borde-soft">
+      {frases.map((f) => (
+        <li class="py-7 md:py-9 grid gap-3">
+          <blockquote class="subtitular text-navy m-0 max-w-[26ch]">“{f.texto}”</blockquote>
+          <p class="eyebrow text-tinta-3">Eslabón: {f.eslabon}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

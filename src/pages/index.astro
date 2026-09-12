@@ -1,0 +1,52 @@
+---
+// Home: la secuencia de venta del prompt (§10). Atencion → problema → mecanismo
+// → oferta → prueba → objeciones → accion. Un solo CTA: el diagnostico.
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import StickyCta from '../components/StickyCta.astro';
+import Hero from '../components/secciones/Hero.astro';
+import Credibilidad from '../components/secciones/Credibilidad.astro';
+import Problema from '../components/secciones/Problema.astro';
+import PorQue from '../components/secciones/PorQue.astro';
+import Metodo from '../components/secciones/Metodo.astro';
+import Programa from '../components/secciones/Programa.astro';
+import CtaIntermedio from '../components/secciones/CtaIntermedio.astro';
+import Quien from '../components/secciones/Quien.astro';
+import Prueba from '../components/secciones/Prueba.astro';
+import ParaQuien from '../components/secciones/ParaQuien.astro';
+import Camino from '../components/secciones/Camino.astro';
+import Diagnostico from '../components/secciones/Diagnostico.astro';
+import Faq from '../components/secciones/Faq.astro';
+import CtaFinal from '../components/secciones/CtaFinal.astro';
+import jsonld from '../data/jsonld.json';
+---
+<Base
+  title="Orden Financiero · Consultoría financiera para gastronomía"
+  description="Programa de consultoría financiera con datos para negocios de gastronomía en Argentina. El primer paso es un diagnóstico de 12 preguntas."
+  path="/"
+  ogTitle="El primer paso para hacer tu negocio más rentable empieza acá"
+  ogDescription="Programa de consultoría financiera con datos para negocios de gastronomía en Argentina. El paso 1 es un diagnóstico de 12 preguntas con resultado al instante."
+  ogImageAlt="Ejemplo del resultado del diagnóstico financiero: puntaje 22 de 36 y estado de los cuatro eslabones, junto al titular El primer paso para hacer tu negocio más rentable empieza acá"
+  jsonld={JSON.stringify(jsonld)}
+>
+  <Header />
+  <main>
+    <Hero />
+    <Credibilidad />
+    <Problema />
+    <PorQue />
+    <Metodo />
+    <Programa />
+    <CtaIntermedio />
+    <Quien />
+    <Prueba />
+    <ParaQuien />
+    <Camino />
+    <Diagnostico />
+    <Faq />
+    <CtaFinal />
+  </main>
+  <Footer />
+  <StickyCta />
+</Base>

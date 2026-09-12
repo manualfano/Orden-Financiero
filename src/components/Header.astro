@@ -1,0 +1,38 @@
+---
+// Cinta del header (navy-2) con marca | 3 links | CTA. Los tres links se quedan
+// por decision de Manu (11/09/2026), aunque el prompt pedia navegacion minima.
+// El boton lleva 14 px de aire arriba y abajo dentro de la cinta (regla: ningun
+// boton toca un borde). En celular los links van a un menu <details> que
+// funciona sin JS.
+import Wordmark from './Wordmark.astro';
+import { CTA_TEXTO, CTA_HREF } from '../data/site';
+
+const links = [
+  { href: '/#diagnostico', texto: 'El diagnóstico' },
+  { href: '/#metodo', texto: 'El programa' },
+  { href: '/#manuel', texto: 'Quién está detrás' },
+];
+---
+<header class="on-dark bg-navy-2 border-b border-border-subtle-dark py-3.5" id="site-header">
+  <nav class="wrap grid grid-cols-[auto_1fr_auto] items-center gap-6" aria-label="Principal">
+    <Wordmark oculto />
+    <ul class="hidden lg:flex justify-center gap-8 list-none m-0 p-0">
+      {links.map((l) => (
+        <li><a href={l.href} class="text-superficie/90 hover:text-superficie no-underline text-[15px] font-medium py-2">{l.texto}</a></li>
+      ))}
+    </ul>
+    <div class="flex items-center gap-3 justify-self-end col-start-3">
+      <a href={CTA_HREF} class="btn btn-sm">{CTA_TEXTO}</a>
+      <details class="lg:hidden relative">
+        <summary class="list-none cursor-pointer grid place-items-center w-11 h-11 rounded-r text-superficie" aria-label="Menú">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </summary>
+        <ul class="absolute right-0 top-[calc(100%+10px)] min-w-56 bg-navy-2 border border-border-subtle-dark rounded-lg p-2 list-none m-0 z-20">
+          {links.map((l) => (
+            <li><a href={l.href} class="block px-4 py-3 rounded-r text-superficie no-underline text-[15px] font-medium hover:bg-navy">{l.texto}</a></li>
+          ))}
+        </ul>
+      </details>
+    </div>
+  </nav>
+</header>

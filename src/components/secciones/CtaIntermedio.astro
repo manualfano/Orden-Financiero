@@ -1,0 +1,12 @@
+---
+// Bloque 7 · CTA intermedio: capturar al que ya se convencio. Mismo CTA, sin
+// texto nuevo (la linea es la del cierre). Unico cambio de canvas en el medio
+// de la pagina.
+import { CTA_TEXTO, CTA_HREF } from '../../data/site';
+---
+<section id="cta-intermedio" class="on-dark bg-navy text-superficie section-tight">
+  <div class="wrap flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+    <p class="subtitular m-0 max-w-[28ch]">12 preguntas, 3 minutos, gratis. El paso 1 del programa.</p>
+    <a href={CTA_HREF} class="btn w-full md:w-auto" data-origen="intermedio">{CTA_TEXTO} <span aria-hidden="true">→</span></a>
+  </div>
+</section>

@@ -1,0 +1,26 @@
+---
+// Bloque 11 (opcional) · El camino: bajar la incertidumbre de "¿y despues que?".
+// Cuatro pasos con frases que ya existen en el sitio (FAQ, cierre, programa);
+// no se redacta nada nuevo.
+const pasos = [
+  { n: '1', titulo: 'Diagnóstico', texto: '12 preguntas, 3 minutos, gratis.' },
+  { n: '2', titulo: 'Resultado', texto: 'El puntaje del negocio sobre 36, el estado de cada eslabón y el primer paso concreto.' },
+  { n: '3', titulo: 'Conversación', texto: '30 minutos gratis con Manuel para revisar tus números reales.' },
+  { n: '4', titulo: 'Programa', texto: 'Tres meses para que tu negocio trabaje con sus propios números.' },
+];
+---
+<section id="camino" class="bg-lienzo section">
+  <div class="wrap">
+    <p class="eyebrow text-marca">El camino</p>
+    <h2 class="titular text-navy mt-4 max-w-[20ch]">Qué pasa después del diagnóstico</h2>
+    <ol class="mt-12 list-none m-0 p-0 grid gap-8 md:grid-cols-4 md:gap-6 border-t border-borde">
+      {pasos.map((p) => (
+        <li class="pt-5 md:pr-6">
+          <span class="cifra display text-marca block leading-none">{p.n}</span>
+          <p class="subtitular text-navy mt-4 m-0">{p.titulo}</p>
+          <p class="text-tinta-2 mt-2 m-0">{p.texto}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

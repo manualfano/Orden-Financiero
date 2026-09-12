@@ -1,0 +1,32 @@
+---
+// Plantilla de guia (/guias/<slug>). Preparada en la Fase 2 sin contenido:
+// cada markdown en src/content/guias/ genera su pagina con metadatos propios,
+// header, footer y el CTA al diagnostico con ?origen=guia-<slug> para no perder
+// la atribucion. La pagina de indice (/guias) y el link del header se suman
+// cuando exista la primera guia.
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { CTA_TEXTO } from '../../data/site';
+
+export async function getStaticPaths() {
+  const guias = await getCollection('guias', ({ data }) => !data.draft);
+  return guias.map((g) => ({ params: { slug: g.id }, props: { guia: g } }));
+}
+const { guia } = Astro.props;
+const { Content } = await render(guia);
+---
+<Base title={`${guia.data.title} · Orden Financiero`} description={guia.data.description} path={`/guias/${guia.id}`}>
+  <Header />
+  <main class="wrap section max-w-[760px]">
+    <p class="eyebrow text-marca">Guía</p>
+    <h1 class="titular text-navy mt-4">{guia.data.title}</h1>
+    <p class="lead text-tinta-2 mt-6">{guia.data.description}</p>
+    <article class="mt-10 grid gap-4 text-tinta-2 lead [&_h2]:subtitular [&_h2]:text-navy [&_h2]:mt-6 [&_a]:text-marca [&_ul]:list-disc [&_ul]:pl-5">
+      <Content />
+    </article>
+    <a class="btn mt-12" href={`/?origen=guia-${guia.id}#diagnostico`}>{CTA_TEXTO} <span aria-hidden="true">→</span></a>
+  </main>
+  <Footer />
+</Base>
