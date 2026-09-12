@@ -1,0 +1,22 @@
+---
+// Mockup: ficha de costo de un plato (ingredientes, merma, costo, precio, food cost).
+import { calcularFicha } from '../../data/ejemplo.js';
+import { $, pct } from '../../data/formato.js';
+const f = calcularFicha();
+---
+<figure class="m-0 text-tinta text-[13px]">
+  <div class="border-b border-borde pb-2">
+    <p class="eyebrow text-tinta-3 before:hidden">Ficha de costo · Datos de ejemplo</p>
+    <p class="font-medium text-navy m-0 mt-1">{f.plato}</p>
+  </div>
+  <ul class="list-none m-0 p-0 divide-y divide-borde-soft">
+    {f.ingredientes.map((i) => <li class="flex justify-between gap-3 py-1.5"><span class="text-tinta-2">{i.nombre}</span><span class="cifra">{$(i.costo)}</span></li>)}
+    <li class="flex justify-between gap-3 py-1.5"><span class="text-tinta-2">Merma {pct(f.mermaPct)}</span><span class="cifra">{$(f.merma)}</span></li>
+  </ul>
+  <dl class="mt-2 grid grid-cols-3 gap-2 border-t border-borde pt-3 m-0">
+    <div><dt class="eyebrow text-tinta-3 before:hidden text-[10px]">Costo</dt><dd class="cifra font-medium text-navy m-0 mt-1 text-[15px] whitespace-nowrap">{$(f.costo)}</dd></div>
+    <div><dt class="eyebrow text-tinta-3 before:hidden text-[10px]">Precio</dt><dd class="cifra font-medium text-navy m-0 mt-1 text-[15px] whitespace-nowrap">{$(f.precioCarta)}</dd></div>
+    <div><dt class="eyebrow text-tinta-3 before:hidden text-[10px] whitespace-nowrap">Food cost</dt><dd class="cifra font-medium text-positivo m-0 mt-1 text-[15px] whitespace-nowrap">{pct(f.foodCostPct)}</dd></div>
+  </dl>
+  <figcaption class="sr-only">Ficha de costo de ejemplo de {f.plato}: insumos {$(f.insumos)}, merma {pct(f.mermaPct)}, costo {$(f.costo)}, precio de carta {$(f.precioCarta)}, food cost {pct(f.foodCostPct)}.</figcaption>
+</figure>

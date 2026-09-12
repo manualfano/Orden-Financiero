@@ -6,6 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "test": "node scripts/test-ejemplo.mjs",
+    "prebuild": "node scripts/test-ejemplo.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check"

@@ -1,0 +1,32 @@
+---
+// Mockup: flujo de caja de una semana. Linea del saldo en SVG (se dibuja una
+// vez en la Fase 6) sobre los tokens; cobros arriba, pagos abajo.
+import { calcularCaja } from '../../data/ejemplo.js';
+import { $ } from '../../data/formato.js';
+const c = calcularCaja();
+const W = 320, H = 96, pad = 6;
+const puntos = [c.saldoInicial, ...c.serie.map((s) => s.saldo)];
+const max = Math.max(...puntos), min = Math.min(...puntos);
+const x = (i) => pad + (i * (W - 2 * pad)) / (puntos.length - 1);
+const y = (v) => H - pad - ((v - min) / (max - min || 1)) * (H - 2 * pad);
+const d = puntos.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
+const idxMin = puntos.indexOf(min);
+---
+<figure class="m-0 text-tinta text-[13px]">
+  <div class="border-b border-borde pb-2">
+    <p class="eyebrow text-tinta-3 before:hidden">Flujo de caja · Datos de ejemplo</p>
+    <p class="font-medium text-navy m-0 mt-1">{c.semana}</p>
+  </div>
+  <svg viewBox={`0 0 ${W} ${H}`} class="w-full h-auto mt-3" aria-hidden="true">
+    <line x1={pad} y1={y(c.saldoInicial)} x2={W - pad} y2={y(c.saldoInicial)} stroke="var(--color-borde)" stroke-dasharray="3 4" />
+    <path class="mock-linea" d={d} fill="none" stroke="var(--color-marca)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+    <circle cx={x(idxMin)} cy={y(min)} r="4" fill="var(--color-riesgo)" />
+    <circle cx={x(puntos.length - 1)} cy={y(c.saldoFinal)} r="4" fill="var(--color-marca)" />
+  </svg>
+  <dl class="mt-2 grid grid-cols-3 gap-2 m-0">
+    <div><dt class="eyebrow text-tinta-3 before:hidden text-[10px]">Inicio</dt><dd class="cifra font-medium text-navy m-0 mt-1 whitespace-nowrap">{$(c.saldoInicial)}</dd></div>
+    <div><dt class="eyebrow text-riesgo before:hidden text-[10px]">Mínimo</dt><dd class="cifra font-medium text-riesgo m-0 mt-1 whitespace-nowrap">{$(c.saldoMinimo)}</dd></div>
+    <div><dt class="eyebrow text-tinta-3 before:hidden text-[10px]">Cierre</dt><dd class="cifra font-medium text-navy m-0 mt-1 whitespace-nowrap">{$(c.saldoFinal)}</dd></div>
+  </dl>
+  <figcaption class="sr-only">Flujo de caja de ejemplo, {c.semana}: saldo inicial {$(c.saldoInicial)}, cobros {$(c.cobros)}, pagos {$(c.pagos)}, saldo mínimo {$(c.saldoMinimo)}, saldo final {$(c.saldoFinal)}.</figcaption>
+</figure>

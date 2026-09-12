@@ -1,0 +1,38 @@
+---
+// Mockup: estado de resultados del mes. HTML puro con los tokens, datos de
+// src/data/ejemplo.js (cierran al peso, test en cada build), formato es-AR,
+// cifras tabulares. Las barras son la proporcion de cada linea sobre las ventas.
+// Fase 6: las barras crecen desde la base una sola vez; las cifras aparecen ya
+// en su valor final. Alternativa textual en <figcaption class="sr-only">.
+import { negocio, calcularEERR } from '../../data/ejemplo.js';
+import { $, pct } from '../../data/formato.js';
+const r = calcularEERR();
+const filas = [
+  { concepto: 'Ventas', monto: r.ventas, pct: 100, tipo: 'ventas' },
+  ...r.lineas,
+  { concepto: 'Resultado del mes', monto: r.resultado, pct: r.resultadoPct, tipo: 'resultado' },
+];
+---
+<figure class="mock-eerr m-0 text-tinta">
+  <div class="border-b border-borde pb-3">
+    <p class="eyebrow text-tinta-3 before:hidden">Estado de resultados · {negocio.mes} · Datos de ejemplo</p>
+    <p class="font-medium text-navy mt-1 m-0">{negocio.nombre}</p>
+  </div>
+  <table class="w-full text-[13px] mt-2 border-collapse">
+    <tbody>
+      {filas.map((f) => (
+        <tr class:list={['border-b border-borde-soft', f.tipo === 'resultado' && 'border-t border-t-borde']}>
+          <td class:list={['py-2 pr-3 align-middle', (f.tipo === 'ventas' || f.tipo === 'resultado') ? 'font-medium text-navy' : 'text-tinta-2']}>{f.concepto}</td>
+          <td class="py-2 w-[34%] align-middle" aria-hidden="true">
+            <span class="block h-1.5 rounded-full bg-lienzo-2 overflow-hidden">
+              <span class:list={['mock-barra block h-full rounded-full', f.tipo === 'ventas' ? 'bg-marca' : f.tipo === 'resultado' ? 'bg-positivo' : f.tipo === 'cmv' ? 'bg-navy-2' : 'bg-secondary-dark']} style={`width:${Math.max(2, f.pct)}%`}></span>
+            </span>
+          </td>
+          <td class:list={['py-2 pl-3 text-right cifra whitespace-nowrap align-middle', (f.tipo === 'ventas' || f.tipo === 'resultado') ? 'font-medium text-navy' : 'text-tinta']}>{$(f.monto)}</td>
+          <td class:list={['py-2 pl-3 text-right cifra whitespace-nowrap align-middle w-[12%]', f.tipo === 'resultado' ? 'text-positivo font-medium' : 'text-tinta-3']}>{pct(f.pct)}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  <figcaption class="sr-only">Estado de resultados de {negocio.nombre}, {negocio.mes}, con datos de ejemplo: ventas {$(r.ventas)}; {r.lineas.map((l) => `${l.concepto} ${$(l.monto)} (${pct(l.pct)})`).join('; ')}; resultado del mes {$(r.resultado)}, {pct(r.resultadoPct)} de las ventas.</figcaption>
+</figure>

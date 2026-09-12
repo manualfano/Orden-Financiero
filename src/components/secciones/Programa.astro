@@ -3,6 +3,12 @@
 // como celda protagonista (ahi va el mockup del estado de resultados que se
 // construye, Fase 5). Fuente unica de los modulos (A14): renombrar aca renombra
 // en todo el sitio. Meses definidos por el dueño (A15, 07/09/2026).
+import Eerr from '../mockups/Eerr.astro';
+import Ficha from '../mockups/Ficha.astro';
+import Caja from '../mockups/Caja.astro';
+import Tablero from '../mockups/Tablero.astro';
+// Fase 5: mockups de entregables en cuatro celdas (Resultado, Costeo, Agenda, Tablero).
+const mockups = { 'mod-resultado': Eerr, 'mod-costeo': Ficha, 'mod-agenda': Caja, 'mod-tablero': Tablero };
 const modulos = [
   { id: 'mod-resultado', nombre: 'Resultado', mes: 'mes 1', texto: 'El estado de resultados del mes: cuánto ganó el negocio de verdad, con gastos e impuestos descontados.', protagonista: true },
   { id: 'mod-registro', nombre: 'Registro', mes: 'mes 1', texto: 'La carga de ingresos y gastos: el dato de base con el que trabaja todo lo demás.' },
@@ -29,7 +35,7 @@ const modulos = [
             <span class="eyebrow text-tinta-3 normal-case tracking-[0.06em]">{m.mes}</span>
           </dt>
           <dd class="m-0 text-tinta-2">{m.texto}</dd>
-          {/* Fase 5: en la celda protagonista se construye el mockup del estado de resultados (HTML/SVG con datos de ejemplo que cierran al peso). */}
+          {mockups[m.id] && (() => { const M = mockups[m.id]; return <dd class="m-0 mt-5 pt-5 border-t border-borde-soft"><M /></dd>; })()}
         </div>
       ))}
     </dl>

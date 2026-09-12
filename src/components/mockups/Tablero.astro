@@ -1,0 +1,29 @@
+---
+// Mockup: tablero del mes, tres o cuatro numeros. Todos derivados del EERR y
+// la caja de ejemplo (mismas funciones): un numero que no cierra no puede existir.
+import { calcularTablero } from '../../data/ejemplo.js';
+import { $, pct } from '../../data/formato.js';
+const t = calcularTablero();
+const kpis = [
+  { label: 'Food cost', valor: pct(t.foodCostPct), nota: 'CMV sobre ventas' },
+  { label: 'Margen neto', valor: pct(t.margenNetoPct), nota: 'resultado sobre ventas', ok: true },
+  { label: 'Ticket promedio', valor: $(t.ticketPromedio), nota: 'ventas por cubierto' },
+  { label: 'Resultado', valor: $(t.resultado), nota: 'del mes', ok: true },
+];
+---
+<figure class="m-0 text-tinta text-[13px]">
+  <div class="border-b border-borde pb-2">
+    <p class="eyebrow text-tinta-3 before:hidden">Tablero · Datos de ejemplo</p>
+    <p class="font-medium text-navy m-0 mt-1">Los números del mes</p>
+  </div>
+  <dl class="mt-3 grid grid-cols-2 gap-x-4 gap-y-3 m-0">
+    {kpis.map((k) => (
+      <div class="min-w-0">
+        <dt class="eyebrow text-tinta-3 before:hidden text-[10px] whitespace-nowrap">{k.label}</dt>
+        <dd class:list={['cifra font-medium m-0 mt-1 text-[17px] whitespace-nowrap', k.ok ? 'text-positivo' : 'text-navy']}>{k.valor}</dd>
+        <dd class="text-[11px] text-tinta-3 m-0">{k.nota}</dd>
+      </div>
+    ))}
+  </dl>
+  <figcaption class="sr-only">Tablero de ejemplo: {kpis.map((k) => `${k.label} ${k.valor}`).join(', ')}.</figcaption>
+</figure>
