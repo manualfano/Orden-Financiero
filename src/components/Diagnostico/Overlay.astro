@@ -1,0 +1,18 @@
+---
+// Overlay del diagnostico: markup portado VERBATIM desde master:index.html
+// (4322-4509) y logica en /js/diagnostico.js, tambien verbatim (Fase 3). Los
+// estilos viejos viven en diagnostico.css, scoped a #diag-overlay y leyendo
+// los tokens nuevos. Se importa el HTML como texto para que Astro no lo
+// reinterprete: cero cambios de comportamiento, validado con la simulacion
+// exhaustiva de las 531.441 combinaciones. El rediseño visual es la Fase 4.
+//
+// El script se inyecta despues del evento load (como GA4): con defer, la
+// primera pasada de estilos y layout de la pagina quedaba dentro de su tarea y
+// Lighthouse mobile bajaba de 99 a 94 (TBT 226 ms); despues de load vuelve a
+// 98-100 (TBT 53-74 ms). Un clic antes de load cae al hash #diagnostico y el
+// script lo abre al llegar (como hoy con red lenta), con origen "link".
+import '../../styles/diagnostico.css';
+import overlay from './overlay.html?raw';
+---
+<Fragment set:html={overlay} />
+<script is:inline>window.addEventListener("load", function () { var s = document.createElement("script"); s.src = "/js/diagnostico.js"; document.body.appendChild(s); }, { once: true });</script>

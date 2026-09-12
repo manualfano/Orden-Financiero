@@ -34,9 +34,9 @@ del entregable). El informe de trabajo es `LANDING-REPORT-2026-09.md` (no se com
 |---|---|---|
 | 0 | Auditoría y baseline | Hecha (informe) |
 | 1 | Tesis y direcciones de arte | Hecha, dirección elegida |
-| 2 | Proyecto Astro, estructura y contenido, sin efectos | Este commit |
-| 3 | Diagnóstico portado, cero diferencias en 531.441 combinaciones | Pendiente |
-| 3b | Página post-agenda (`/diagnostico`, servida por `diagnostico.ordenfinanciero.com`) | Pendiente |
+| 2 | Proyecto Astro, estructura y contenido, sin efectos | Hecha |
+| 3 | Diagnóstico portado, cero diferencias en 531.441 combinaciones | Hecha (JS byte-idéntico, `public/js/diagnostico.js`; lead real probado) |
+| 3b | Página post-agenda (`/diagnostico`, servida por `diagnostico.ordenfinanciero.com`) | Hecha (regla de host en `vercel.json`) |
 | 4–9 | Sistema visual, mockups, momentos expresivos, motion, mobile, performance e informe | Pendientes |
 
 ## Cómo se corre
@@ -52,5 +52,5 @@ Vercel builda con `npm run build` y publica `dist/` (configurado en `vercel.json
 ## Notas técnicas
 
 - Salida `format: 'file'`: las URLs no cambian (`/`, `/privacidad`); `/sitemap.xml` redirige al generado.
-- GA4 y `track()` viven en el layout; los eventos del diagnóstico se portan en la Fase 3.
-- Hasta la Fase 3 el CTA lleva a la sección del diagnóstico; el overlay con las 12 preguntas no está en esta vista previa.
+- GA4 y `track()` viven en el layout; el diagnóstico (overlay, puntaje, envío del lead, eventos) es `public/js/diagnostico.js`, portado sin cambios y cargado después del `load`.
+- `src/components/Diagnostico/overlay.html` es el markup del overlay tal cual; `src/styles/diagnostico.css` sus estilos, scoped a `#diag-overlay` y leyendo los tokens nuevos. Se rediseñan en la Fase 4.

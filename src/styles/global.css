@@ -49,6 +49,13 @@
   --color-hallazgo: #803FA5;
   --color-hallazgo-bg: #F8EEFE;
 
+  /* Acentos de dato (medidores y gráficos del diagnóstico; nunca como texto). Valores de index.html:105-115. */
+  --color-dato-azul: #8FB8F6;
+  --color-dato-azul-claro: #C2DBFB;
+  --color-dato-lima: #B3DF72;
+  --color-dato-amarillo: #FBD779;
+  --color-dato-rojo: #FD9891;
+
   /* Radios */
   --radius-r: 8px;
   --radius-lg: 12px;
@@ -82,6 +89,16 @@
 }
 
 @layer base {
+  /* El JS del diagnostico lee sus duraciones de estos tokens (MOTION, diagnostico.js). */
+  :root {
+    --t-instante: 120ms;
+    --t-rapido: 240ms;
+    --t-entrada: 480ms;
+    --t-autoavance: 4000ms; /* avanza solo si no se toca nada */
+    --t-cero: 0.01ms;
+    --t-pulso: 2s;
+    --t-gauge: 1.3s;
+  }
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body {
     @apply font-sans text-tinta bg-superficie antialiased;

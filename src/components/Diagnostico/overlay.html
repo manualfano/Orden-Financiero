@@ -1,0 +1,187 @@
+<div class="diag-overlay" id="diag-overlay" role="dialog" aria-modal="true" aria-label="Diagnóstico financiero" tabindex="-1">
+  <div class="app">
+
+    <!-- ── PANEL IZQUIERDO ── -->
+    <aside class="panel-left">
+
+      <div class="panel-top">
+        <div class="panel-brand brand" aria-hidden="true">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7" stroke="#7DB1F4" stroke-width="4"/><circle cx="12" cy="12" r="7" stroke="#ffffff" stroke-width="4" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/></svg>
+          </span>
+          <span class="brand-name">ordenfinanciero<span class="dot">.</span></span>
+        </div>
+        <button class="diag-close" type="button" onclick="pedirCierre()" aria-label="Cerrar el diagnóstico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="close-confirm" id="close-confirm" hidden>
+        <p>Tus respuestas quedan guardadas en este navegador: podés retomar después.</p>
+        <div class="row">
+          <button type="button" class="primary" onclick="closeDiagnostico()">Cerrar</button>
+          <button type="button" onclick="cancelarCierre()">Seguir</button>
+        </div>
+      </div>
+
+      <div class="chain-title">Tu negocio bajo la lupa</div>
+
+      <div class="chain" id="chain">
+        <div class="chain-node state-pending" id="node-0">
+          <div class="node-dot" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+          </div>
+          <span class="node-short" aria-hidden="true">Costos</span>
+          <div class="node-info">
+            <div class="node-name">Costos y precios</div>
+            <div class="node-desc">¿Cada cosa que se vende tiene su costo?</div>
+          </div>
+          <div class="node-score" id="score-0">—</div>
+        </div>
+        <div class="chain-node state-pending" id="node-1">
+          <div class="node-dot" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <span class="node-short" aria-hidden="true">Resultado</span>
+          <div class="node-info">
+            <div class="node-name">Resultado económico</div>
+            <div class="node-desc">¿Cuánto ganó el negocio de verdad?</div>
+          </div>
+          <div class="node-score" id="score-1">—</div>
+        </div>
+        <div class="chain-node state-pending" id="node-2">
+          <div class="node-dot" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+          </div>
+          <span class="node-short" aria-hidden="true">Caja</span>
+          <div class="node-info">
+            <div class="node-name">Flujo de caja</div>
+            <div class="node-desc">¿Hay plata cuando hace falta?</div>
+          </div>
+          <div class="node-score" id="score-2">—</div>
+        </div>
+        <div class="chain-node state-pending" id="node-3">
+          <div class="node-dot" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <span class="node-short" aria-hidden="true">Gestión</span>
+          <div class="node-info">
+            <div class="node-name">Indicadores de gestión</div>
+            <div class="node-desc">¿Las decisiones salen de los números?</div>
+          </div>
+          <div class="node-score" id="score-3">—</div>
+        </div>
+      </div>
+
+      <div class="total-progress">
+        <div class="progress-label">
+          <span>Progreso</span>
+          <strong id="progress-text" aria-live="polite">0 / 12</strong>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── PANEL DERECHO ── -->
+    <section class="panel-right" id="panel-right" aria-label="Contenido del diagnóstico">
+      <div class="top-progress-track" aria-hidden="true"><div class="top-progress-fill" id="top-progress-fill"></div></div>
+
+      <!-- SCREEN: PREGUNTAS (Fase 1: sin pantalla de rubro; la consultoria es solo gastronomica) -->
+      <div class="screen active" id="screen-question">
+        <div class="q-header">
+          <div class="q-breadcrumb">
+            <span class="q-breadcrumb-block" id="q-eslabon-name">Costos y precios</span>
+            <span class="q-breadcrumb-sep" aria-hidden="true">·</span>
+            <span class="q-breadcrumb-num" id="q-num">Pregunta 1 de 12</span>
+          </div>
+          <h2 class="q-text" id="q-text"></h2>
+        </div>
+
+        <div class="q-options" id="q-options" role="group" aria-label="Opciones de respuesta"></div>
+        <div class="q-reaction" id="q-reaction" aria-live="polite"></div>
+
+        <div class="q-countdown" id="q-countdown" aria-hidden="true"><div class="q-countdown-fill" id="q-countdown-fill"></div></div>
+        <div class="q-nav">
+          <button class="btn-secondary" type="button" id="btn-prev" onclick="prevQuestion()">
+            <span aria-hidden="true">←</span> Anterior
+          </button>
+          <button class="btn-primary" type="button" id="btn-next" onclick="nextQuestion()" disabled>
+            Siguiente <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- SCREEN: RESULTADO (parcial → contacto → análisis completo) -->
+      <div class="screen" id="screen-result">
+        <div class="result-header">
+          <div class="result-eyebrow">Diagnóstico financiero</div>
+          <div class="result-score-hero">
+            <div class="score-hero-row">
+              <div>
+                <span class="score-number" id="total-score">0</span>
+                <span class="score-max">/36</span>
+                <div class="score-label">Puntaje total</div>
+              </div>
+              <div class="score-badge" id="score-badge">—</div>
+            </div>
+          </div>
+
+          <div class="eslabones-grid" id="eslabones-grid"></div>
+        </div>
+
+        <!-- Compuerta: un solo campo, después del resultado parcial -->
+        <form class="gate" id="result-gate" novalidate onsubmit="return submitLead(event)">
+          <h3 class="gate-title" id="gate-title">Qué hacer primero con este resultado</h3>
+          <p class="gate-desc">Con tu WhatsApp destrabás el análisis completo de tu negocio y el primer paso concreto para ordenarlo. Es el número al que Manuel te puede escribir para revisar el resultado con vos.</p>
+          <div class="form-group">
+            <label class="form-label" for="lead-wa">Tu WhatsApp</label>
+            <input class="form-input" type="tel" id="lead-wa" name="tel" autocomplete="tel" inputmode="tel" placeholder="221 555 0000" required aria-describedby="wa-hint err-wa" oninput="previewWhatsApp()" />
+            <p class="form-hint" id="wa-hint">Código de área y número, sin el 0 ni el 15.</p>
+            <p class="form-error" id="err-wa" role="alert"></p>
+          </div>
+          <!-- Campo trampa (Fase 1, A): invisible y fuera del tabulado; si viene lleno, el Apps Script descarta el envio -->
+          <input class="campo-extra" type="text" id="campo-extra" name="campo_extra" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <button class="btn-primary" type="submit" id="btn-lead">Ver el análisis completo <span aria-hidden="true">→</span></button>
+          <div class="gate-status" id="gate-status"></div>
+          <p class="privacy-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Tu información es confidencial: no se vende ni se usa para publicidad. <a href="/privacidad" target="_blank" rel="noopener">Privacidad</a>
+          </p>
+        </form>
+
+        <!-- Análisis completo: se muestra al dejar el WhatsApp -->
+        <div id="result-full" hidden>
+          <!-- Fase 1 (A): si el numero no se pudo guardar, el analisis se muestra igual con este aviso -->
+          <div class="gate-status" id="lead-aviso" role="alert"></div>
+          <div class="cta-strip" id="cta-strip">
+            <p>Revisamos este resultado con tus números reales: 30 minutos, gratis, con Manuel.</p>
+            <div class="cta-strip-actions">
+              <a class="btn btn-blue" id="cta-top-link" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2ObyolYWVEvMKs_tLRnn44v51LuYKjodxamoeF-LVymZFv5-rlDky70uJEDAu2XCaUHjDTgARg" target="_blank" rel="noopener" onclick="track('cta_calendar_click', { desde: 'resultado-arriba' })">Agendar la llamada <span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <div class="narrative-box" id="narrative">
+            <div class="narrative-box-header">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              <span id="narrative-title">Tu eslabón más débil, explicado</span>
+            </div>
+            <div class="narrative-box-text" id="narrative-content"></div>
+          </div>
+
+          <div class="cta-card">
+            <div class="cta-title" id="cta-card-title">Reservá 30 minutos gratis con Manuel</div>
+            <p class="cta-desc" id="cta-card-desc">Revisamos juntos tus números reales (no la encuesta) y salís con los próximos pasos para cerrar la brecha que marcó este diagnóstico.</p>
+            <p class="cta-cupo" id="cta-card-cupo">Manuel toma como máximo 3 negocios nuevos por mes.</p>
+            <a id="cta-card-link" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2ObyolYWVEvMKs_tLRnn44v51LuYKjodxamoeF-LVymZFv5-rlDky70uJEDAu2XCaUHjDTgARg" target="_blank" rel="noopener" class="btn btn-white" onclick="track('cta_calendar_click', { desde: location.hostname.startsWith('diagnostico.') ? 'post-agenda' : 'resultado' })">
+              Agendar llamada gratis (30 min) →
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</div>
