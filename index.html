@@ -77,6 +77,10 @@ function gtag() { dataLayer.push(arguments); }
   --navy-900: #0D2B6B;
   --navy-2: #143C8C;
   --secondary-dark: #A3ADC2;
+  /* accent-soft: el brillo mas claro del degrade del hero. Valor de la paleta
+     Core del portal (tailwind.config.ts), copiado el 12/09/2026. */
+  --accent-soft: #93C5FD;
+  --accent-soft-rgb: 147 197 253;
   /* texto */
   --tinta: #292A2E;
   --tinta-2: #505258;
@@ -439,10 +443,22 @@ nav.scrolled {
    HERO
    ══════════════════════════════════════════ */
 
+/* Fondo del hero (12/09/2026): degrade de marca en lugar del navy plano. Los
+   colores son los tokens de siempre — navy de base, marca como luz principal
+   desde el centro-derecha, un realce tenue arriba a la izquierda, navy-2 en
+   la esquina de abajo y accent-soft como brillo. Son cuatro capas de CSS: sin
+   JavaScript, sin imagenes y sin costo de carga.
+   Los porcentajes salen de igualar, punto por punto, el render del shader
+   WebGL que se probo el 12/09 (queda a ~6 de 255 por canal en 7 muestras). */
 .hero {
   position: relative;
   min-height: 100svh;
-  background: var(--navy-900);
+  background-color: var(--navy);
+  background-image:
+    radial-gradient(150% 140% at 70% 45%, rgb(var(--marca-rgb) / 0.58) 0%, rgb(var(--marca-rgb) / 0.30) 48%, rgb(var(--marca-rgb) / 0.10) 72%, transparent 92%),
+    radial-gradient(70% 60% at 0% 0%, rgb(var(--marca-rgb) / 0.18) 0%, transparent 70%),
+    radial-gradient(50% 70% at 2% 100%, var(--navy-2) 0%, transparent 75%),
+    radial-gradient(48% 58% at 60% 68%, rgb(var(--accent-soft-rgb) / 0.14) 0%, transparent 66%);
   display: flex;
   align-items: stretch;
   overflow: hidden;
