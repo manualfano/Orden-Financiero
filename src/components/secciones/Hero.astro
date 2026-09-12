@@ -9,7 +9,9 @@ import HeroFondo from '../HeroFondo.astro';
 ---
 <section id="hero" class="on-dark canvas-marca text-superficie relative overflow-hidden isolate">
   <HeroFondo />
-  <div class="wrap relative grid lg:content-center py-10 md:py-16 lg:min-h-[calc(100svh-67px)]">
+  <!-- En escritorio el hero no crece con la ventana mas alla de 780 px: si no, en pantallas altas la foto
+       (anclada abajo) quedaba lejos del titular. La foto toma el alto del hero menos 60 px. -->
+  <div class="wrap relative grid lg:content-center py-10 md:py-16 lg:min-h-[min(calc(100svh-67px),780px)]">
     <!-- En celular y tablet el contenido ocupa el alto de la pantalla (menos la cinta): la foto arranca
          justo debajo del primer pantallazo, carga en diferido y el LCP es siempre el titular. -->
     <div class="grid content-between lg:content-start gap-8 lg:gap-6 max-w-[760px] relative z-10 min-h-[calc(100svh-67px-80px)] lg:min-h-0">
@@ -41,7 +43,7 @@ import HeroFondo from '../HeroFondo.astro';
          el titular (verificado con Lighthouse: con la foto a la vista, el LCP pasaba a ser la imagen). -->
     <img
       src="/foto-manuel-cutout.webp" alt="Manuel Alfano, fundador de Orden Financiero" width="800" height="1200" decoding="async" loading="lazy"
-      class="hero-foto pointer-events-none block w-[72%] max-w-[360px] mx-auto mt-6 lg:absolute lg:right-[3%] lg:bottom-0 lg:mt-0 lg:w-auto lg:max-w-none lg:h-[min(86vh,720px)] lg:-z-10"
+      class="hero-foto pointer-events-none block w-[72%] max-w-[360px] mx-auto mt-6 lg:absolute lg:right-[3%] lg:bottom-0 lg:mt-0 lg:w-auto lg:max-w-none lg:h-[calc(100%-60px)] lg:max-h-[720px] lg:-z-10"
     />
   </div>
 </section>

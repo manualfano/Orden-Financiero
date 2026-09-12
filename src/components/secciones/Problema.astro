@@ -10,12 +10,12 @@ const frases = [
 ---
 <section id="te-suena" class="section">
   <div class="wrap grid gap-12 lg:grid-cols-12 lg:gap-16">
-    <div class="lg:col-span-4">
+    <div class="lg:col-span-4" data-reveal>
       <p class="eyebrow text-marca">¿Te suena?</p>
       <h2 class="titular text-navy mt-4">Las frases que escuchamos todas las semanas</h2>
       <p class="lead text-tinta-2 mt-6"><strong>Ninguna de estas frases es inventada:</strong> son de dueños de negocios reales, en reuniones reales. Si alguna te sonó propia, el diagnóstico existe para ponerle un número a esa sensación.</p>
     </div>
-    <ul class="lg:col-span-8 list-none m-0 p-0 divide-y divide-borde-soft border-y border-borde-soft">
+    <ul class="lg:col-span-8 list-none m-0 p-0 divide-y divide-borde-soft border-y border-borde-soft" data-reveal>
       {frases.map((f) => (
         <li class="py-7 md:py-9 grid gap-3">
           <blockquote class="subtitular text-navy m-0 max-w-[26ch]">“{f.texto}”</blockquote>
