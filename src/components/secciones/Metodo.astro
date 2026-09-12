@@ -37,11 +37,14 @@ const meses = [
       <p class="lead text-tinta-2 mt-6">El diagnóstico es el paso 1. Después, el programa trabaja con los datos del negocio: lo que se vende, lo que se compra, lo que se paga y lo que se cobra. Salís con un sistema funcionando y con tus propios números a mano, no con un informe.</p>
     </div>
 
-    <div class="mt-14 grid gap-12 lg:grid-cols-12 lg:gap-16 lg:items-start">
-      <!-- Panel visual: la cadena de cuatro eslabones. Fase 6: sticky + estados por paso; hoy, el estado final. -->
-      <ol id="metodo-visual" class="lg:col-span-5 list-none m-0 p-0 border-t border-borde">
-        {eslabones.map((e) => (
-          <li class="grid grid-cols-[3ch_1fr] gap-4 py-5 border-b border-borde">
+    <!-- Momento 2 · el metodo ligado al scroll: el panel de la cadena queda fijo y cada
+         eslabon se arma cuando el mes que lo trabaja entra en pantalla (mes 1 → 01 y 02,
+         mes 2 → 03, mes 3 → 04). CSS scroll-driven (view timelines con timeline-scope);
+         fallback con IntersectionObserver (Momentos.astro); estado final por defecto. -->
+    <div class="metodo-scroll mt-14 grid gap-12 lg:grid-cols-12 lg:gap-16 lg:items-start">
+      <ol id="metodo-visual" class="lg:col-span-5 lg:sticky lg:top-24 list-none m-0 p-0 border-t border-borde">
+        {eslabones.map((e, i) => (
+          <li class="eslabon grid grid-cols-[3ch_1fr] gap-4 py-5 border-b border-borde relative" data-eslabon={i + 1}>
             <span class="cifra text-[15px] font-medium text-marca pt-1">{e.num}</span>
             <div>
               <p class="subtitular text-navy m-0">{e.titulo}</p>
@@ -52,8 +55,8 @@ const meses = [
       </ol>
 
       <ol class="lg:col-span-7 list-none m-0 p-0 grid gap-10">
-        {meses.map((m) => (
-          <li class="grid gap-3">
+        {meses.map((m, i) => (
+          <li class="paso grid gap-3" data-paso={i + 1}>
             <p class="eyebrow text-marca">{m.eyebrow}</p>
             <h3 class="subtitular text-navy m-0">{m.titulo}</h3>
             <p class="text-tinta-2 m-0"><strong class="text-tinta">Datos con los que se trabaja:</strong> {m.datos}</p>
@@ -78,3 +81,51 @@ const meses = [
     </div>
   </div>
 </section>
+<style is:global>
+  /* Estado final por defecto (sin JS, sin soporte, movimiento reducido): los cuatro eslabones armados. */
+  .eslabon::before { content: ""; position: absolute; left: 0; top: -1px; height: 2px; width: 100%; background: var(--color-marca); transform-origin: left; }
+
+  /* Scroll-driven nativo: cada paso publica una view timeline y los eslabones se arman con ella.
+     Solo desde 1024 px: en celular el panel va arriba de los pasos y no se veria armarse. */
+  @supports (animation-timeline: view()) and (timeline-scope: --paso1) {
+    .metodo-scroll { timeline-scope: --paso1, --paso2, --paso3; }
+    .paso[data-paso="1"] { view-timeline: --paso1 block; }
+    .paso[data-paso="2"] { view-timeline: --paso2 block; }
+    .paso[data-paso="3"] { view-timeline: --paso3 block; }
+    /* Estado "sin armar": el texto no baja de contraste (tinta-3 sobre blanco, 5:1);
+       lo que cambia es el color del numero y del titulo, la linea y un desplazamiento. */
+    @media (prefers-reduced-motion: no-preference) and (min-width: 64rem) {
+      .eslabon { animation: eslabon-armar linear both; animation-range: entry 10% entry 70%; }
+      .eslabon::before { animation: eslabon-linea linear both; animation-range: entry 10% entry 70%; }
+      .eslabon > span { animation: eslabon-num linear both; animation-range: entry 10% entry 70%; }
+      .eslabon .subtitular { animation: eslabon-titulo linear both; animation-range: entry 10% entry 70%; }
+      .eslabon[data-eslabon="1"], .eslabon[data-eslabon="1"]::before, .eslabon[data-eslabon="1"] > span, .eslabon[data-eslabon="1"] .subtitular { animation-timeline: --paso1; }
+      .eslabon[data-eslabon="2"], .eslabon[data-eslabon="2"]::before, .eslabon[data-eslabon="2"] > span, .eslabon[data-eslabon="2"] .subtitular { animation-timeline: --paso1; animation-range: entry 40% entry 100%; }
+      .eslabon[data-eslabon="3"], .eslabon[data-eslabon="3"]::before, .eslabon[data-eslabon="3"] > span, .eslabon[data-eslabon="3"] .subtitular { animation-timeline: --paso2; }
+      .eslabon[data-eslabon="4"], .eslabon[data-eslabon="4"]::before, .eslabon[data-eslabon="4"] > span, .eslabon[data-eslabon="4"] .subtitular { animation-timeline: --paso3; }
+    }
+  }
+  @keyframes eslabon-armar { from { transform: translateY(10px); } to { transform: none; } }
+  @keyframes eslabon-linea { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes eslabon-num { from { color: var(--color-tinta-3); } to { color: var(--color-marca); } }
+  @keyframes eslabon-titulo { from { color: var(--color-tinta-3); } to { color: var(--color-navy); } }
+
+  /* Fallback con IntersectionObserver: la seccion lleva data-paso-activo y el CSS arma hasta ahi. */
+  @media (min-width: 64rem) {
+    html.js #metodo.sin-scroll-timeline .eslabon { transform: translateY(10px); transition: transform 600ms var(--ease-salida); }
+    html.js #metodo.sin-scroll-timeline .eslabon > span, html.js #metodo.sin-scroll-timeline .eslabon .subtitular { color: var(--color-tinta-3); transition: color 600ms var(--ease-salida); }
+    html.js #metodo.sin-scroll-timeline .eslabon::before { transform: scaleX(0); transition: transform 800ms var(--ease-salida); }
+    html.js #metodo.sin-scroll-timeline[data-paso-activo="1"] .eslabon:nth-child(-n+2),
+    html.js #metodo.sin-scroll-timeline[data-paso-activo="2"] .eslabon:nth-child(-n+3),
+    html.js #metodo.sin-scroll-timeline[data-paso-activo="3"] .eslabon { transform: none; }
+    html.js #metodo.sin-scroll-timeline[data-paso-activo="1"] .eslabon:nth-child(-n+2) > span,
+    html.js #metodo.sin-scroll-timeline[data-paso-activo="2"] .eslabon:nth-child(-n+3) > span,
+    html.js #metodo.sin-scroll-timeline[data-paso-activo="3"] .eslabon > span { color: var(--color-marca); }
+    html.js #metodo.sin-scroll-timeline[data-paso-activo="1"] .eslabon:nth-child(-n+2) .subtitular,
+    html.js #metodo.sin-scroll-timeline[data-paso-activo="2"] .eslabon:nth-child(-n+3) .subtitular,
+    html.js #metodo.sin-scroll-timeline[data-paso-activo="3"] .eslabon .subtitular { color: var(--color-navy); }
+    html.js #metodo.sin-scroll-timeline[data-paso-activo="1"] .eslabon:nth-child(-n+2)::before,
+    html.js #metodo.sin-scroll-timeline[data-paso-activo="2"] .eslabon:nth-child(-n+3)::before,
+    html.js #metodo.sin-scroll-timeline[data-paso-activo="3"] .eslabon::before { transform: scaleX(1); }
+  }
+</style>

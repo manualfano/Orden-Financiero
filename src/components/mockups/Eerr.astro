@@ -13,15 +13,16 @@ const filas = [
   { concepto: 'Resultado del mes', monto: r.resultado, pct: r.resultadoPct, tipo: 'resultado' },
 ];
 ---
-<figure class="mock-eerr m-0 text-tinta">
+<figure class="mock-eerr m-0 text-tinta" data-anim>
   <div class="border-b border-borde pb-3">
     <p class="eyebrow text-tinta-3 before:hidden">Estado de resultados · {negocio.mes} · Datos de ejemplo</p>
     <p class="font-medium text-navy mt-1 m-0">{negocio.nombre}</p>
   </div>
   <table class="w-full text-[13px] mt-2 border-collapse">
+    <thead class="sr-only"><tr><th scope="col">Concepto</th><th scope="col">Proporción sobre ventas</th><th scope="col">Monto</th><th scope="col">Porcentaje</th></tr></thead>
     <tbody>
-      {filas.map((f) => (
-        <tr class:list={['border-b border-borde-soft', f.tipo === 'resultado' && 'border-t border-t-borde']}>
+      {filas.map((f, i) => (
+        <tr class:list={['border-b border-borde-soft', f.tipo === 'resultado' && 'border-t border-t-borde']} style={`--i:${i}`}>
           <td class:list={['py-2 pr-3 align-middle', (f.tipo === 'ventas' || f.tipo === 'resultado') ? 'font-medium text-navy' : 'text-tinta-2']}>{f.concepto}</td>
           <td class="py-2 w-[34%] align-middle" aria-hidden="true">
             <span class="block h-1.5 rounded-full bg-lienzo-2 overflow-hidden">

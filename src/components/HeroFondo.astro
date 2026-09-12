@@ -1,0 +1,81 @@
+---
+// Momento 1 · Fondo del hero. Componente INTERCAMBIABLE: el estado estatico es
+// el degrade CSS de .canvas-marca (fallback y LCP nunca es esto); encima, un
+// canvas WebGL con un fragment shader que mezcla cuatro colores de la paleta
+// (uniforms leidos de los tokens, nada hardcodeado) con ruido suave y muy
+// lento. Si el video del dueño sirve, reemplaza a este archivo: misma
+// interfaz (un hijo absoluto del hero, detras del contenido, con el fondo
+// estatico como estado final).
+//
+// Reglas: resolucion a la mitad del contenedor escalada por CSS, DPR topado en
+// 1,5, dithering ±0,5/255 contra el banding, pausa fuera de viewport y con la
+// pestaña oculta, monta despues de load y hace fade-in. No se crea con
+// prefers-reduced-motion, con ahorro de datos ni sin WebGL: queda el degrade.
+---
+<canvas id="hero-fondo" class="absolute inset-0 -z-20 w-full h-full opacity-0 transition-opacity duration-[1200ms] ease-out pointer-events-none" aria-hidden="true"></canvas>
+<script>
+  const canvas = document.getElementById('hero-fondo') as HTMLCanvasElement | null;
+  const hero = canvas?.parentElement;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saveData = (navigator as any).connection?.saveData === true;
+
+  function token(name: string) {
+    const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    const m = v.match(/^#([0-9a-f]{6})$/i);
+    if (!m) return [0.05, 0.17, 0.42];
+    const n = parseInt(m[1], 16);
+    return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
+  }
+
+  function montar() {
+    if (!canvas || !hero || reduce || saveData) return;
+    const gl = canvas.getContext('webgl', { antialias: false, alpha: false, powerPreference: 'low-power' });
+    if (!gl) return;
+    const vs = `attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}`;
+    const fs = `precision mediump float;uniform vec2 r;uniform float t;uniform vec3 c0,c1,c2,c3;
+    vec3 h3(vec3 p){p=fract(p*vec3(.1031,.1030,.0973));p+=dot(p,p.yxz+33.33);return fract((p.xxy+p.yxx)*p.zyx);}
+    float n3(vec3 p){vec3 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
+      float a=h3(i).x,b=h3(i+vec3(1,0,0)).x,c=h3(i+vec3(0,1,0)).x,d=h3(i+vec3(1,1,0)).x,e=h3(i+vec3(0,0,1)).x,g=h3(i+vec3(1,0,1)).x,k=h3(i+vec3(0,1,1)).x,l=h3(i+vec3(1,1,1)).x;
+      return mix(mix(mix(a,b,f.x),mix(c,d,f.x),f.y),mix(mix(e,g,f.x),mix(k,l,f.x),f.y),f.z);}
+    void main(){vec2 uv=gl_FragCoord.xy/r;float as=r.x/r.y;vec2 q=vec2(uv.x*as,uv.y);
+      float n1=n3(vec3(q*1.1,t*.05));float n2=n3(vec3(q*2.3+7.,t*.04));
+      float a=smoothstep(.15,.95,n1*.75+n2*.25);
+      float glow=smoothstep(1.2,.1,distance(uv,vec2(.85,.85)));
+      float low=smoothstep(1.0,.0,distance(uv,vec2(.1,.05)));
+      vec3 col=mix(c0,c1,low*.9);col=mix(col,c2,glow*.62*(.6+.4*a));col=mix(col,c3,pow(a,3.)*.16);
+      col+=(fract(sin(dot(gl_FragCoord.xy,vec2(12.9898,78.233)))*43758.5453)-.5)/255.;
+      gl_FragColor=vec4(col,1.);}`;
+    const sh = (type: number, src: string) => { const s = gl.createShader(type)!; gl.shaderSource(s, src); gl.compileShader(s); return s; };
+    const prog = gl.createProgram()!;
+    gl.attachShader(prog, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+    gl.useProgram(prog);
+    const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    const p = gl.getAttribLocation(prog, 'p'); gl.enableVertexAttribArray(p); gl.vertexAttribPointer(p, 2, gl.FLOAT, false, 0, 0);
+    const u = (n: string) => gl.getUniformLocation(prog, n);
+    // Uniforms desde los tokens: navy (base), navy-2 (sombra), marca (luz), accent-soft (brillo)
+    gl.uniform3fv(u('c0'), token('--color-navy')); gl.uniform3fv(u('c1'), token('--color-navy-2'));
+    gl.uniform3fv(u('c2'), token('--color-marca')); gl.uniform3fv(u('c3'), token('--color-accent-soft'));
+    const uR = u('r'), uT = u('t');
+
+    function medir() {
+      const dpr = Math.min(devicePixelRatio || 1, 1.5);
+      const w = Math.max(1, Math.round((hero!.clientWidth * dpr) / 2)), h = Math.max(1, Math.round((hero!.clientHeight * dpr) / 2));
+      if (canvas!.width !== w || canvas!.height !== h) { canvas!.width = w; canvas!.height = h; gl!.viewport(0, 0, w, h); gl!.uniform2f(uR, w, h); }
+    }
+    let visible = true, raf = 0; const t0 = performance.now();
+    function frame(now: number) {
+      raf = 0; if (!visible || document.hidden) return;
+      medir(); gl!.uniform1f(uT, (now - t0) / 1000); gl!.drawArrays(gl!.TRIANGLES, 0, 3);
+      raf = requestAnimationFrame(frame);
+    }
+    const arrancar = () => { if (!raf && visible && !document.hidden) raf = requestAnimationFrame(frame); };
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; arrancar(); }).observe(hero);
+    document.addEventListener('visibilitychange', arrancar);
+    addEventListener('resize', medir);
+    arrancar();
+    requestAnimationFrame(() => canvas!.classList.remove('opacity-0'));
+  }
+  if (document.readyState === 'complete') montar(); else addEventListener('load', montar, { once: true });
+</script>

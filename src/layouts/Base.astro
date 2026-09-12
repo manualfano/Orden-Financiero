@@ -50,6 +50,9 @@ const ogImageAbs = `${SITE_URL}${ogImage}`;
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%230C66E4'/%3E%3Ccircle cx='24' cy='24' r='11' fill='none' stroke='%237DB1F4' stroke-width='6'/%3E%3Ccircle cx='24' cy='24' r='11' fill='none' stroke='%23ffffff' stroke-width='6' stroke-dasharray='51.8 69.2' transform='rotate(-90 24 24)'/%3E%3C/svg%3E">
 <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<!-- html.js antes del primer pintado: habilita los estados iniciales de los momentos
+     (Fases 6-7) sin destello. Con movimiento reducido no se agrega y todo queda en su estado final. -->
+<script is:inline>if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window)document.documentElement.classList.add('js');</script>
 <!-- Medicion: Google Analytics 4 (Fase 1, 11/09/2026). Carga solo en
      ordenfinanciero.com y sus subdominios. En un preview de Vercel carga solo
      con ?ga_debug=1 y en modo depuracion (GA4 > DebugView), para probar sin

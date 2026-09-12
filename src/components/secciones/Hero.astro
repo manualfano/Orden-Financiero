@@ -5,8 +5,10 @@
 // celular, debajo de la prueba social. El LCP es el H1 en texto; la foto no.
 import { CTA_TEXTO, CTA_HREF, DESCRIPTOR } from '../../data/site';
 import { avataresHero } from '../../data/logos';
+import HeroFondo from '../HeroFondo.astro';
 ---
 <section id="hero" class="on-dark canvas-marca text-superficie relative overflow-hidden isolate">
+  <HeroFondo />
   <div class="wrap relative grid lg:content-center py-10 md:py-16 lg:min-h-[calc(100svh-67px)]">
     <!-- En celular y tablet el contenido ocupa el alto de la pantalla (menos la cinta): la foto arranca
          justo debajo del primer pantallazo, carga en diferido y el LCP es siempre el titular. -->

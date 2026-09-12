@@ -1,0 +1,49 @@
+---
+// Momentos 2 y 3 (y revelados de la Fase 7): la parte que necesita JS.
+// - html.js habilita los estados iniciales "sin armar": sin JS, el CSS deja
+//   todo en su estado final y la pagina vende igual.
+// - Mockups (data-anim): al entrar en pantalla, una sola vez, las barras crecen
+//   y la linea se dibuja (la longitud real se mide con getTotalLength).
+// - Metodo: si el navegador no soporta scroll-driven animations con
+//   timeline-scope (iOS anterior a 26, navegador in-app de Instagram en iOS),
+//   un IntersectionObserver por paso marca data-paso en la seccion.
+// - Revelados (data-reveal): 16-24 px, una sola vez.
+// Con prefers-reduced-motion todo queda en su estado final (CSS).
+---
+<script>
+  // html.js lo agrega el layout antes del primer pintado. Todo lo que fuerza
+  // layout (getTotalLength, observadores) corre despues de load: con defer, la
+  // primera pasada de estilos quedaba dentro de esta tarea y Lighthouse mobile
+  // bajaba a 92-95 (TBT 225 ms).
+  function momentos() {
+    if (!document.documentElement.classList.contains('js')) return;
+
+    // Lineas SVG: la longitud real para dibujarlas
+    document.querySelectorAll<SVGPathElement>('.mock-linea').forEach((p) => {
+      const L = p.getTotalLength();
+      p.style.strokeDasharray = `${L}`; p.style.strokeDashoffset = `${L}`;
+    });
+
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }, { threshold: 0.25 });
+    document.querySelectorAll('[data-anim], [data-reveal]').forEach((el) => io.observe(el));
+
+    // Metodo: fallback del scroll-driven
+    const metodo = document.getElementById('metodo');
+    const soporta = CSS.supports('animation-timeline: view()') && CSS.supports('timeline-scope: --a');
+    if (metodo && !soporta) {
+      metodo.classList.add('sin-scroll-timeline');
+      const pasos = metodo.querySelectorAll<HTMLElement>('[data-paso]');
+      const ioPasos = new IntersectionObserver((entries) => {
+        for (const e of entries) if (e.isIntersecting) {
+          const n = Number(e.target.getAttribute('data-paso'));
+          const actual = Number(metodo.getAttribute('data-paso-activo') || 0);
+          if (n > actual) metodo.setAttribute('data-paso-activo', String(n));
+        }
+      }, { rootMargin: '0px 0px -35% 0px', threshold: 0.2 });
+      pasos.forEach((p) => ioPasos.observe(p));
+    }
+  }
+  if (document.readyState === 'complete') momentos(); else addEventListener('load', momentos, { once: true });
+</script>

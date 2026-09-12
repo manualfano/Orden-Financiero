@@ -68,6 +68,16 @@
   --duration-instante: 120ms;
   --duration-rapido: 240ms;
   --duration-entrada: 480ms;
+
+  /* Motion expresivo (Fases 6-7), calibrado: micro (hover, foco), reveal (bloque
+     que entra), draw (linea o barra que se dibuja), stagger (retraso entre
+     elementos), ambient (ciclo del degrade). Solo transform y opacity; nada rebota. */
+  --motion-micro: 180ms;
+  --motion-reveal: 520ms;
+  --motion-draw: 800ms;
+  --motion-stagger: 70ms;
+  --motion-ambient: 30s;
+  --ease-out-premium: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Inter variable, self-hosted (48 KB), con fallback metrico para que el texto
@@ -167,6 +177,17 @@
   .btn-sm { @apply text-[14px] rounded-r; padding: 12px 16px; min-height: 40px; }
   .btn-white { @apply bg-superficie text-marca; }
   .btn-white:hover { background: var(--color-lienzo); }
+
+  /* Momento 3 · mockups que se construyen, una sola vez, solo con JS y sin
+     movimiento reducido: las barras crecen desde la base escalonadas, la linea
+     del saldo se dibuja. Las cifras ya estan en su valor final (sin contadores). */
+  html.js [data-anim] .mock-barra { transform: scaleX(0); transform-origin: left; }
+  html.js [data-anim].in .mock-barra { transform: scaleX(1); transition: transform var(--motion-draw) var(--ease-out-premium) calc(var(--i, 0) * var(--motion-stagger)); }
+  html.js [data-anim].in .mock-linea { transition: stroke-dashoffset var(--motion-draw) var(--ease-out-premium) 120ms; stroke-dashoffset: 0 !important; }
+
+  /* Fase 7 · revelado de bloques al entrar (16-24 px, una vez). */
+  html.js [data-reveal] { opacity: 0; transform: translateY(20px); }
+  html.js [data-reveal].in { opacity: 1; transform: none; transition: opacity var(--motion-reveal) var(--ease-out-premium), transform var(--motion-reveal) var(--ease-out-premium); }
 
   /* Fondo del hero y del cierre: estado estatico del degrade (aprobado 11/09).
      En la Fase 6 el shader WebGL se monta encima con estos mismos colores como
