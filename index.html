@@ -527,12 +527,18 @@ nav.scrolled {
   flex-shrink: 0;
 }
 
+/* Titular del hero (12/09/2026): la proporcion que eligio el dueño. Crece por
+   tamaño y no por grosor — Inter 500, no 600 —, con el tracking y el
+   interlineado mas cerrados que corresponden a ese tamaño. A 1280 da 72 px
+   contra los 54 de antes; en celular queda en 35, que es lo mas grande que
+   entra en tres lineas. El tope de 76 px evita que se desmadre en pantallas
+   muy anchas. Es el unico titular que cambia: el resto de la pagina no se toca. */
 .hero-title {
-  font-size: var(--fs-h1);
-  font-weight: 600;
+  font-size: clamp(35px, 5.6vw, 72px);
+  font-weight: 500;
   color: var(--w);
-  line-height: 1.08;
-  letter-spacing: -0.025em;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
   margin-bottom: var(--s-4);
   text-wrap: balance;
 }
@@ -554,11 +560,14 @@ nav.scrolled {
 /* marco de las frases rotantes: sin el "quien lo dice" no se entienden
    (pedido del dueño, 02/09/2026) */
 
+/* La bajada acompaña al titular nuevo: un punto mas grande, mas junta y en una
+   medida mas corta, para que las tres lineas queden debajo del titular y no se
+   estiren a lo ancho. */
 .hero-subtitle {
-  font-size: var(--fs-lead);
+  font-size: clamp(17px, 1.4vw, 20px);
   color: var(--w-70);
-  line-height: 1.65;
-  max-width: 520px;
+  line-height: 1.5;
+  max-width: 34ch;
 }
 
 .btn {
@@ -616,6 +625,10 @@ nav.scrolled {
 .btn:hover .arrow { transform: translateX(3px); }
 
 .hero-cta-row { margin-top: var(--s-6); }
+
+/* Los respaldos ahora viven dentro de la fila del CTA: sin el margen de arriba
+   que tenian cuando iban solos, para que queden a la altura del boton. */
+.hero-cta-row .hero-trust { margin-top: 0; }
 
 .hero-trust {
   display: flex;
@@ -1847,7 +1860,10 @@ footer {
 @media (min-width: 961px) {
 
   .hero-inner {
-    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    /* 11/5 en lugar de 6/5 (12/09): el titular, ahora de 72 px, necesita esa
+       columna para entrar en tres lineas de 1024 a 2560. La foto no pierde
+       tamaño — tiene su propio ancho maximo y la columna le sobraba. */
+    grid-template-columns: minmax(0, 11fr) minmax(0, 5fr);
     column-gap: var(--s-7);
     row-gap: 0;
     align-content: center;
@@ -1864,7 +1880,9 @@ footer {
   .hero-inner { padding-top: calc(var(--s-8) + var(--s-6)); }
   .hero-content { padding-bottom: var(--s-7); }
   .hero-title {
-    font-size: var(--fs-h1);
+    /* misma escala que en escritorio: en celular el clamp la deja en 35 px,
+       que es lo mas grande que entra en tres lineas con este copy */
+    font-size: clamp(35px, 5.6vw, 72px);
     margin-bottom: var(--s-2);
   }
   /* en mobile la promesa (h1), el producto (mock) y el CTA entran en el
@@ -3869,11 +3887,19 @@ nav.scrolled { background: var(--navy-2); }
       </p>
 
 
+      <!-- Los tres respaldos van al lado del boton, no debajo de la prueba
+           (12/09): es el orden de la proporcion que eligio el dueño. Mismo
+           contenido, mismos textos, mismo unico CTA. -->
       <div class="hero-cta-row">
         <button class="btn btn-blue" onclick="openDiagnostico('hero')">
           <span id="hero-cta-text">Hacer el diagnóstico · 3 min</span>
           <span class="arrow" aria-hidden="true">→</span>
         </button>
+        <div class="hero-trust">
+          <span class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Gratis</span>
+          <span class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Sin planillas</span>
+          <span class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span id="hero-trust-3">Resultado al instante</span></span>
+        </div>
       </div>
 
       <a class="hero-proof" href="#logos" aria-label="Ver negocios que ya trabajan con Orden Financiero">
@@ -3883,12 +3909,6 @@ nav.scrolled { background: var(--navy-2); }
         <!-- Cifra declarada por el dueño (07/09); la cinta muestra 17 con nombre -->
         <span class="hero-proof-text"><strong>Más de 100 negocios</strong> ya ordenaron sus números con el programa</span>
       </a>
-
-      <div class="hero-trust">
-        <span class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Gratis</span>
-        <span class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Sin planillas</span>
-        <span class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span id="hero-trust-3">Resultado al instante</span></span>
-      </div>
 
       <!-- La foto del fundador es la imagen del hero (decision del dueño, 07/09) -->
       <div class="hero-photo">
