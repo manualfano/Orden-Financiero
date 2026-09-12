@@ -19,7 +19,8 @@ import Overlay from '../components/Diagnostico/Overlay.astro';
   ogDescription="Son 3 minutos y hace que la reunión arranque desde información real de tu negocio, no desde suposiciones."
   bodyClass="on-dark bg-navy text-superficie min-h-svh flex flex-col"
 >
-  <header class="bg-navy-2 border-b border-border-subtle-dark py-3.5"><div class="wrap"><Wordmark /></div></header>
+  <!-- Sin links a la home ni al portal (§9 bis): el wordmark no navega. -->
+  <header class="bg-navy-2 border-b border-border-subtle-dark py-3.5"><div class="wrap"><Wordmark href="#hero" /></div></header>
   <main id="hero" class="wrap flex-1 grid content-center gap-6 py-12 max-w-[760px]">
     <p class="eyebrow text-accent-soft"><span id="hero-eyebrow-text">Ya agendaste tu llamada</span></p>
     <h1 class="display" id="hero-title">Antes de tu llamada, <em class="not-italic text-accent-soft">completá este diagnóstico</em></h1>

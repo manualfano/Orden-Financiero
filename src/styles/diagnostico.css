@@ -346,3 +346,25 @@
   #diag-overlay .result-score-hero { padding: var(--s-5) var(--s-4); }
   #diag-overlay .lead-title { font-size: var(--fs-h3); }
 }
+
+/* ── Fase 4 · sistema visual sobre el overlay portado ─────────────────────────
+   Lo gigante sale del tamano, no del peso (Inter 500, decision de Manu 11/09).
+   Titulos y cifras del diagnostico a 500 con tracking negativo; 600 queda solo
+   en botones, rotulos meta y enfasis. Cifras tabulares. Nada cambia de lugar. */
+#diag-overlay .q-text,
+#diag-overlay .report-diag-title,
+#diag-overlay #narrative-title,
+#diag-overlay #gate-title,
+#diag-overlay .cta-title,
+#diag-overlay .score-num,
+#diag-overlay .node-score,
+#diag-overlay .eslabon-score,
+#diag-overlay .gauge-value { font-weight: 500; letter-spacing: -0.02em; }
+#diag-overlay .q-text { font-size: clamp(24px, 2.6vw, 34px); line-height: 1.15; letter-spacing: -0.025em; text-wrap: balance; }
+#diag-overlay .score-num,
+#diag-overlay .node-score,
+#diag-overlay .eslabon-score,
+#diag-overlay .gauge-value,
+#diag-overlay .q-counter { font-variant-numeric: tabular-nums; }
+#diag-overlay :focus-visible { outline: 2px solid var(--color-foco); outline-offset: 3px; }
+#diag-overlay .panel-left :focus-visible { outline-color: var(--color-accent-soft); }
