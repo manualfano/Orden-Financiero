@@ -449,7 +449,10 @@ nav.scrolled {
    la esquina de abajo y accent-soft como brillo. Son cuatro capas de CSS: sin
    JavaScript, sin imagenes y sin costo de carga.
    Los porcentajes salen de igualar, punto por punto, el render del shader
-   WebGL que se probo el 12/09 (queda a ~6 de 255 por canal en 7 muestras). */
+   WebGL que corre encima (queda a ~6 de 255 por canal en 7 muestras): por eso
+   este degrade es tambien el respaldo exacto del canvas. Si el canvas no se
+   crea —sin WebGL, con movimiento reducido, con ahorro de datos o sin
+   JavaScript— la seccion se ve practicamente igual, solo que quieta. */
 .hero {
   position: relative;
   min-height: 100svh;
@@ -463,6 +466,22 @@ nav.scrolled {
   align-items: stretch;
   overflow: hidden;
 }
+
+/* El canvas del fondo animado. Va detras de los anillos y del contenido (que
+   tiene z-index 1), no recibe clicks y aparece con un fundido cuando termina
+   de montar, para que no se note el cambio entre el degrade y el canvas.
+   No ocupa lugar: es absoluto dentro del hero, no mueve ni un pixel del resto. */
+.hero-fondo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1200ms var(--ease-salida);
+}
+
+.hero-fondo.visible { opacity: 1; }
 
 .hero .rings {
   top: -180px;
@@ -3827,6 +3846,7 @@ nav.scrolled { background: var(--navy-2); }
 
 <!-- ── HERO: la promesa y el producto a la vista ── -->
 <header class="hero" id="hero">
+  <canvas class="hero-fondo" id="hero-fondo" aria-hidden="true"></canvas>
   <div class="rings" aria-hidden="true">
     <div class="ring"></div><div class="ring"></div><div class="ring"></div>
   </div>
@@ -5703,6 +5723,116 @@ function renderFull() {
 
 // ── APERTURA POR LINK DIRECTO: /#diagnostico ──────────────────
 if (location.hash === '#diagnostico') openDiagnostico('link');
+
+// ── FONDO ANIMADO DEL HERO (12/09/2026) ───────────────────────
+// Mejora progresiva sobre el degrade CSS del hero, que es su estado final: un
+// shader que mezcla los mismos cuatro colores (leidos de los tokens, nada
+// escrito a mano) con una textura de ruido que se desplaza muy despacio. La
+// luz no cambia de lugar: cambia donde esta mas densa. Ciclo de ~30 s.
+//
+// No se crea con movimiento reducido, con ahorro de datos ni sin WebGL, y en
+// esos casos queda el degrade CSS, que es casi identico. Monta despues del
+// evento load (el LCP sigue siendo el titular), dibuja a 24 cuadros por
+// segundo, a la mitad de la resolucion del contenedor y con el DPR topado en
+// 1,5, y se detiene cuando el hero sale de pantalla o la pestaña se oculta.
+(function () {
+  var canvas = document.getElementById('hero-fondo');
+  var hero = document.getElementById('hero');
+  if (!canvas || !hero) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (navigator.connection && navigator.connection.saveData === true) return;
+
+  function token(nombre) {
+    var v = getComputedStyle(document.documentElement).getPropertyValue(nombre).trim();
+    var m = v.match(/^#([0-9a-f]{6})$/i);
+    if (!m) return [0.05, 0.17, 0.42];
+    var n = parseInt(m[1], 16);
+    return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
+  }
+
+  function montar() {
+    var gl = canvas.getContext('webgl', { antialias: false, alpha: false, powerPreference: 'low-power' });
+    if (!gl) return;
+
+    var vs = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+    var fs = 'precision mediump float;uniform vec2 r;uniform float t;uniform vec3 c0,c1,c2,c3;' +
+      'vec3 h3(vec3 p){p=fract(p*vec3(.1031,.1030,.0973));p+=dot(p,p.yxz+33.33);return fract((p.xxy+p.yxx)*p.zyx);}' +
+      'float n3(vec3 p){vec3 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);' +
+      'float a=h3(i).x,b=h3(i+vec3(1,0,0)).x,c=h3(i+vec3(0,1,0)).x,d=h3(i+vec3(1,1,0)).x,e=h3(i+vec3(0,0,1)).x,g=h3(i+vec3(1,0,1)).x,k=h3(i+vec3(0,1,1)).x,l=h3(i+vec3(1,1,1)).x;' +
+      'return mix(mix(mix(a,b,f.x),mix(c,d,f.x),f.y),mix(mix(e,g,f.x),mix(k,l,f.x),f.y),f.z);}' +
+      'void main(){vec2 uv=gl_FragCoord.xy/r;float as=r.x/r.y;vec2 q=vec2(uv.x*as,uv.y);' +
+      'float n1=n3(vec3(q*1.1,t*.05));float n2=n3(vec3(q*2.3+7.,t*.04));' +
+      'float a=smoothstep(.15,.95,n1*.75+n2*.25);' +
+      'float glow=smoothstep(1.2,.1,distance(uv,vec2(.85,.85)));' +
+      'float low=smoothstep(1.0,.0,distance(uv,vec2(.1,.05)));' +
+      'vec3 col=mix(c0,c1,low*.9);col=mix(col,c2,glow*.62*(.6+.4*a));col=mix(col,c3,pow(a,3.)*.16);' +
+      'col+=(fract(sin(dot(gl_FragCoord.xy,vec2(12.9898,78.233)))*43758.5453)-.5)/255.;' +
+      'gl_FragColor=vec4(col,1.);}';
+
+    function shader(tipo, src) { var s = gl.createShader(tipo); gl.shaderSource(s, src); gl.compileShader(s); return s; }
+    var prog = gl.createProgram();
+    gl.attachShader(prog, shader(gl.VERTEX_SHADER, vs));
+    gl.attachShader(prog, shader(gl.FRAGMENT_SHADER, fs));
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+    gl.useProgram(prog);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    var p = gl.getAttribLocation(prog, 'p');
+    gl.enableVertexAttribArray(p);
+    gl.vertexAttribPointer(p, 2, gl.FLOAT, false, 0, 0);
+
+    var u = function (n) { return gl.getUniformLocation(prog, n); };
+    gl.uniform3fv(u('c0'), token('--navy'));
+    gl.uniform3fv(u('c1'), token('--navy-2'));
+    gl.uniform3fv(u('c2'), token('--marca'));
+    gl.uniform3fv(u('c3'), token('--accent-soft'));
+    var uR = u('r'), uT = u('t');
+
+    function medir() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      var w = Math.max(1, Math.round((hero.clientWidth * dpr) / 2));
+      var h = Math.max(1, Math.round((hero.clientHeight * dpr) / 2));
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width = w; canvas.height = h;
+        gl.viewport(0, 0, w, h);
+        gl.uniform2f(uR, w, h);
+      }
+    }
+
+    // 24 cuadros por segundo: con un ciclo de 30 s no se distingue de 60 y es
+    // la mitad de trabajo para el telefono.
+    var MS_POR_CUADRO = 1000 / 24;
+    var visible = true, raf = 0, t0 = performance.now(), ultimo = 0;
+    function frame(now) {
+      raf = 0;
+      if (!visible || document.hidden) return;
+      if (now - ultimo >= MS_POR_CUADRO) {
+        ultimo = now;
+        gl.uniform1f(uT, (now - t0) / 1000);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+      }
+      raf = requestAnimationFrame(frame);
+    }
+    function arrancar() { if (!raf && visible && !document.hidden) raf = requestAnimationFrame(frame); }
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (e) { visible = e[0].isIntersecting; arrancar(); }).observe(hero);
+    }
+    document.addEventListener('visibilitychange', arrancar);
+    // medir() lee clientWidth, que obliga al navegador a recalcular el layout:
+    // por eso corre una sola vez al montar y despues solo cuando cambia el
+    // tamaño de la ventana, nunca dentro del bucle de dibujo.
+    window.addEventListener('resize', medir);
+    medir();
+    arrancar();
+    requestAnimationFrame(function () { canvas.classList.add('visible'); });
+  }
+
+  if (document.readyState === 'complete') montar();
+  else window.addEventListener('load', montar, { once: true });
+})();
 </script>
 </body>
 </html>
