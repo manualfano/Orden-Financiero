@@ -3841,41 +3841,80 @@ nav.scrolled { background: var(--navy-2); }
 
 /* ══════════════════════════════════════════
    PANTALLAS GRANDES (12/09/2026)
-   Hasta 1535 px la pagina queda exactamente como estaba. Desde ahi la columna
-   y la tipografia crecen juntas: en un monitor de 27" el contenido no puede
-   quedar como una isla de 1120 px en el medio de la pantalla. Los seis lugares
-   que usan --container crecen a la vez, asi que nada se desalinea, y la foto
-   del hero acompaña porque tenia su propio tope.
+   Hasta 1399 px la pagina queda exactamente como estaba. Desde ahi la columna,
+   la tipografia y la foto crecen juntas: en un monitor grande el contenido no
+   puede quedar como una isla de 1120 px en el medio de la pantalla.
+
+   Son cuatro escalones chicos y no dos grandes, a proposito: 1536 px es lo que
+   reporta un Full HD con la escala de Windows al 125 %, y con dos escalones una
+   notebook de 1440 y otra de 1536 se veian claramente distintas. Asi, entre un
+   escalon y el siguiente el titular cambia 4 px y la columna 80: no se nota.
+
+   El escalado continuo con vw se probo y falla: el titular crece mas rapido que
+   su columna y entre 1536 y 2048 se va a cuatro lineas y choca con la foto.
+   Para hacerlo bien habria que atar el titular al ancho de su columna y que la
+   foto escale en paralelo, que es rehacer el hero.
+
+   Los seis lugares que usan --container crecen a la vez, asi que el nav, el
+   hero y las secciones siguen alineados entre si.
    ══════════════════════════════════════════ */
 
-@media (min-width: 1536px) {
+@media (min-width: 1400px) {
   :root {
-    --container: 1360px;
-    --fs-sm: 15px;
-    --fs-base: 16px;
-    --fs-lead: 18px;
-    --fs-h3: 23px;
-    --fs-h2: clamp(42px, 3.2vw, 50px);
+    --container: 1200px;
+    --fs-base: 15.5px;
+    --fs-lead: 17.5px;
+    --fs-h3: 22px;
+    --fs-h2: clamp(42px, 3.4vw, 45px);
   }
-  .hero-title { font-size: 84px; }
-  .hero-photo { max-width: 540px; }
-  .hero-photo img { max-width: 500px; }
-  /* Al ensanchar la columna, estos dos parrafos pasaban de 62 a 87 caracteres
-     por linea. Se acotan a una medida que se siga leyendo comodo; el resto ya
-     tiene su propio ancho y no hizo falta tocarlo. */
+  .hero-title { font-size: 76px; }
+  .hero-photo { max-width: 480px; }
+  .hero-photo img { max-width: 450px; }
+  /* Al ensanchar la columna, estos dos parrafos se estiraban de 62 a 87
+     caracteres por linea. Se acotan para que la medida de lectura se mantenga;
+     el resto del cuerpo ya tiene su propio ancho y no hizo falta tocarlo. */
   .founder-copy p { max-width: 62ch; }
   .mirror-bridge p { max-width: 78ch; }
 }
 
-@media (min-width: 1920px) {
+@media (min-width: 1600px) {
+  :root {
+    --container: 1320px;
+    --fs-sm: 15px;
+    --fs-base: 16px;
+    --fs-lead: 18px;
+    --fs-h3: 23px;
+    --fs-h2: clamp(45px, 3.2vw, 48px);
+  }
+  .hero-title { font-size: 80px; }
+  .hero-photo { max-width: 520px; }
+  .hero-photo img { max-width: 490px; }
+}
+
+@media (min-width: 1800px) {
+  :root {
+    --container: 1440px;
+    --fs-base: 16.5px;
+    --fs-lead: 18.5px;
+    --fs-h2: clamp(48px, 3vw, 52px);
+  }
+  .hero-title { font-size: 84px; }
+  .hero-photo { max-width: 560px; }
+  .hero-photo img { max-width: 530px; }
+}
+
+@media (min-width: 2000px) {
   :root {
     --container: 1520px;
     --fs-base: 17px;
     --fs-lead: 19px;
     --fs-h3: 24px;
-    --fs-h2: clamp(50px, 3vw, 56px);
+    --fs-h2: clamp(52px, 2.9vw, 56px);
   }
   .hero-title { font-size: 88px; }
+  /* La foto se centra en su columna y se sale un poco hacia la izquierda, por
+     debajo del espacio que dejan las lineas cortas del titular. Verificado
+     linea por linea: la mas larga termina a 124 px de la figura. */
   .hero-photo { max-width: 600px; }
   .hero-photo img { max-width: 560px; }
 }
