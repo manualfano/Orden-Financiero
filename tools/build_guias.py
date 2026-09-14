@@ -253,6 +253,41 @@ def tarjeta(g):
             f'<span class="meta">{etiquetas}<span>{minutos(g)} min</span></span></a></li>\n')
 
 
+OG_DIR = ROOT / 'tools' / 'og'
+
+
+def plantilla_og(g):
+    """HTML de 1200x630 para sacar la imagen de la guía con Chrome headless."""
+    _, bloque, texto, _, _ = ESLABONES[g['eje']]
+    etiquetas = ' · '.join(incluye(g) + [f'{minutos(g)} min de lectura'])
+    return f"""<!DOCTYPE html>
+<html lang="es-AR"><head><meta charset="UTF-8"><style>
+{TOKENS}
+  :root {{ --of-azul: #0C66E4; --of-verde: #1F845A; --of-turquesa: #00A3BF; --of-violeta: #6E5DC6; --ink: #172B4D; }}
+  * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+  html, body {{ width: 1200px; height: 630px; overflow: hidden; }}
+  body {{ font-family: 'Inter', system-ui, sans-serif; background: var(--{bloque}); color: var(--{texto}); position: relative; }}
+  .circulos {{ position: absolute; right: -170px; top: -150px; width: 720px; height: 720px; opacity: 0.16; }}
+  .marca {{ position: absolute; left: 80px; top: 72px; display: flex; align-items: center; gap: 16px; font-size: 34px; font-weight: 600; letter-spacing: -0.01em; }}
+  .isotipo {{ width: 56px; height: 56px; border-radius: 12px; background: var(--w); display: flex; align-items: center; justify-content: center; }}
+  .isotipo svg {{ width: 30px; height: 30px; }}
+  .contenido {{ position: absolute; left: 80px; right: 150px; top: 200px; }}
+  .eyebrow {{ font-size: 22px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 22px; }}
+  h1 {{ font-size: 64px; line-height: 1.08; font-weight: 600; letter-spacing: -0.02em; }}
+  .pie {{ position: absolute; left: 80px; right: 80px; bottom: 64px; display: flex; justify-content: space-between; align-items: center; font-size: 24px; font-weight: 600; }}
+  .chip {{ border: 2px solid currentColor; border-radius: 999px; padding: 8px 20px; }}
+</style></head><body>
+  <svg class="circulos" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="66"/><circle cx="100" cy="100" r="36"/></svg>
+  <div class="marca"><span class="isotipo"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="7" stroke="#7DB1F4" stroke-width="4"/><circle cx="12" cy="12" r="7" stroke="#0C66E4" stroke-width="4" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/></svg></span>ordenfinanciero.</div>
+  <div class="contenido">
+    <p class="eyebrow">Guía · {html.escape(g['eje'])}</p>
+    <h1>{html.escape(g['title'])}</h1>
+  </div>
+  <div class="pie"><span class="chip">{html.escape(etiquetas)}</span><span>ordenfinanciero.com/guias</span></div>
+</body></html>
+"""
+
+
 def fecha_larga(iso):
     a, m, d = iso.split('-')
     return f'{int(d)} de {MESES[int(m) - 1]} de {a}'
@@ -270,9 +305,10 @@ def leer_guias():
     return guias
 
 
-def pagina(*, title, description, path, og_type, ld, cuerpo, cta_origen, cta_general=False, main_clase=''):
+def pagina(*, title, description, path, og_type, ld, cuerpo, cta_origen, cta_general=False, main_clase='', og_image=None):
     url = BASE + path
     e = html.escape
+    og = BASE + (og_image or '/og-image.png')
     main_attr = f' class="{main_clase}"' if main_clase else ''
     # La oferta es gastronomica (decision del dueño, 14/09): las guias generales lo dicen en el cierre.
     if cta_general:
@@ -295,10 +331,11 @@ def pagina(*, title, description, path, og_type, ld, cuerpo, cta_origen, cta_gen
 <meta property="og:url" content="{url}">
 <meta property="og:locale" content="es_AR">
 <meta property="og:site_name" content="Orden Financiero">
-<meta property="og:image" content="{BASE}/og-image.png">
+<meta property="og:image" content="{og}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{og}">
 <meta name="theme-color" content="#0D2B6B">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -362,7 +399,9 @@ def main():
     autor = {"@type": "Person", "@id": BASE + "/#manuel", "name": "Manuel Alfano", "url": BASE + "/#manuel"}
 
     por_slug = {g['slug']: g for g in guias}
+    OG_DIR.mkdir(exist_ok=True)
     for g in guias:
+        (OG_DIR / f"{g['slug']}.html").write_text(plantilla_og(g), encoding='utf-8', newline='\n')
         path = '/guias/' + g['slug']
         items = [("Inicio", "/"), ("Guías", "/guias"), (g['miga'], None)]
         rel = [por_slug[x] for x in g.get('relacionadas', []) if x in por_slug]
@@ -403,7 +442,7 @@ def main():
   </div>"""
         ld = {"@context": "https://schema.org", "@graph": [
             {"@type": "Article", "@id": BASE + path + "#article", "headline": g['h1'], "description": g['description'],
-             "image": BASE + "/og-image.png", "inLanguage": "es-AR", "datePublished": g['publicada'],
+             "image": BASE + f"/guias/og/{g['slug']}.png", "inLanguage": "es-AR", "datePublished": g['publicada'],
              "dateModified": g['actualizada'], "author": autor, "publisher": org,
              "mainEntityOfPage": BASE + path, "isPartOf": {"@id": BASE + "/guias#coleccion"}},
             breadcrumb_ld(items)]}
@@ -413,6 +452,7 @@ def main():
         (OUT / f"{g['slug']}.html").write_text(pagina(
             title=g['title'] + ' · Orden Financiero', description=g['description'], path=path,
             og_type='article', ld=ld, cuerpo=cuerpo, cta_origen='guia-' + g['slug'], main_clase='guia',
+            og_image=f"/guias/og/{g['slug']}.png",
             cta_general=g.get('cta_general', False)), encoding='utf-8', newline='\n')
 
     # Indice /guias
@@ -452,7 +492,7 @@ def main():
         f'      <li style="{estilo_eslabon(por_slug[slug]["eje"])}"><a href="/guias/{slug}">'
         f'<span class="paso" aria-hidden="true">{i + 1}</span>'
         f'<span class="paso-eje">{html.escape(por_slug[slug]["eje"])}</span>'
-        f'<strong>{html.escape(por_slug[slug]["h1"])}</strong>'
+        f'<strong>{html.escape(por_slug[slug]["miga"])}</strong>'
         f'<span class="paso-txt">{html.escape(texto)}</span></a></li>\n'
         for i, (slug, texto) in enumerate(empeza))
     secciones = ('  <section class="empeza" aria-labelledby="empeza">\n'
