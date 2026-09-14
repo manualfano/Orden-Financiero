@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capital de trabajo: qué es, fórmula y ejemplo · Orden Financiero</title>
+<meta name="description" content="Qué es el capital de trabajo, la fórmula, qué significa que sea negativo, el ciclo de caja, ejemplos en pesos de un comercio y un restaurante y cómo calcularlo en Excel.">
+<link rel="canonical" href="https://ordenfinanciero.com/guias/capital-de-trabajo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Capital de trabajo: qué es, fórmula y ejemplo · Orden Financiero">
+<meta property="og:description" content="Qué es el capital de trabajo, la fórmula, qué significa que sea negativo, el ciclo de caja, ejemplos en pesos de un comercio y un restaurante y cómo calcularlo en Excel.">
+<meta property="og:url" content="https://ordenfinanciero.com/guias/capital-de-trabajo">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Orden Financiero">
+<meta property="og:image" content="https://ordenfinanciero.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0D2B6B">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<!-- Medicion: Google Analytics 4 (Fase 1, 11/09/2026), mismo codigo que index.html:
+     solo en ordenfinanciero.com y subdominios; en previews de Vercel, con ?ga_debug=1. -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag() { dataLayer.push(arguments); }
+(function () {
+  var h = location.hostname;
+  var real = h === 'ordenfinanciero.com' || h.endsWith('.ordenfinanciero.com');
+  var prueba = /\.vercel\.app$/.test(h) && /[?&]ga_debug=1(&|$)/.test(location.search);
+  if (!real && !prueba) return;
+  gtag('js', new Date());
+  gtag('config', 'G-1S0RS4NL1X', prueba ? { debug_mode: true } : {});
+  // La libreria (~170 KiB) baja despues de que carga la pagina: cargada junto con
+  // ella, el LCP mobile de Lighthouse pasaba de 2,1 s a 3,8 s. Los eventos que
+  // ocurran antes quedan en dataLayer y salen apenas carga.
+  function cargar() { var sc = document.createElement('script'); sc.async = true; sc.src = 'https://www.googletagmanager.com/gtag/js?id=G-1S0RS4NL1X'; document.head.appendChild(sc); }
+  if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
+})();
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://ordenfinanciero.com/guias/capital-de-trabajo#article", "headline": "Capital de trabajo: qué es, cómo se calcula y cuánto necesita tu negocio", "description": "Qué es el capital de trabajo, la fórmula, qué significa que sea negativo, el ciclo de caja, ejemplos en pesos de un comercio y un restaurante y cómo calcularlo en Excel.", "image": "https://ordenfinanciero.com/og-image.png", "inLanguage": "es-AR", "datePublished": "2026-09-14", "dateModified": "2026-09-14", "author": {"@type": "Person", "@id": "https://ordenfinanciero.com/#manuel", "name": "Manuel Alfano", "url": "https://ordenfinanciero.com/#manuel"}, "publisher": {"@id": "https://ordenfinanciero.com/#organization"}, "mainEntityOfPage": "https://ordenfinanciero.com/guias/capital-de-trabajo", "isPartOf": {"@id": "https://ordenfinanciero.com/guias#coleccion"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ordenfinanciero.com/"}, {"@type": "ListItem", "position": 2, "name": "Guías", "item": "https://ordenfinanciero.com/guias"}, {"@type": "ListItem", "position": 3, "name": "Capital de trabajo"}]}, {"@type": "FAQPage", "@id": "https://ordenfinanciero.com/guias/capital-de-trabajo#faq", "mainEntity": [{"@type": "Question", "name": "¿Qué es el capital de trabajo?", "acceptedAnswer": {"@type": "Answer", "text": "Es la plata que un negocio tiene disponible para funcionar en el día a día: lo que tiene en caja, por cobrar y en stock, menos lo que debe pagar en el corto plazo."}}, {"@type": "Question", "name": "¿Cuál es la fórmula del capital de trabajo?", "acceptedAnswer": {"@type": "Answer", "text": "Capital de trabajo = activo corriente − pasivo corriente. Con $11.500.000 entre caja, cobros pendientes y stock, y $8.500.000 de deudas de corto plazo, el capital de trabajo es $3.000.000."}}, {"@type": "Question", "name": "¿Qué significa tener capital de trabajo negativo?", "acceptedAnswer": {"@type": "Answer", "text": "Que las deudas de corto plazo superan a lo que el negocio tiene en caja, por cobrar y en stock. Es común en gastronomía, que cobra rápido y paga a proveedores a 30 días. No es necesariamente malo, pero deja al negocio muy expuesto si las ventas caen."}}, {"@type": "Question", "name": "¿Qué es un crédito para capital de trabajo?", "acceptedAnswer": {"@type": "Answer", "text": "Es un préstamo de corto plazo para financiar el stock o la diferencia entre lo que tardás en cobrar y lo que tardás en pagar. Conviene cuando su costo es menor que lo que te deja vender más o comprar mejor; si se usa para tapar pérdidas, agranda el problema."}}, {"@type": "Question", "name": "¿Capital de trabajo y ganancia son lo mismo?", "acceptedAnswer": {"@type": "Answer", "text": "No. La ganancia sale del estado de resultados y mide si el negocio gana. El capital de trabajo mide si tiene con qué pagar lo que vence. Un negocio puede ganar plata y aun así quedarse sin capital de trabajo."}}]}]}</script>
+<style>
+@font-face { font-family: 'Inter'; font-weight: 100 900; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
+  :root { --marca: #0C66E4; --marca-hover: #0055CC; --navy: #0D2B6B; --navy-900: #0D2B6B; --tinta: #292A2E; --tinta-2: #505258; --tinta-3: #6B6E76; --bg: #fff; --lienzo: #F8F8F8; --borde: rgba(11,18,14,0.14); --w: #fff; --r: 8px; --r-lg: 12px; --fs-meta: 12px; --fs-sm: 14px; --fs-base: 15px; --fs-lead: 17px; --fs-h3: 21px; --fs-h2: clamp(28px, 3.4vw, 42px); --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px; --s-7: 48px; --t-instante: 120ms; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', system-ui, sans-serif; font-size: var(--fs-base); line-height: 1.7; color: var(--tinta); background: var(--bg); }
+  header { background: var(--navy-900); padding: var(--s-3) var(--s-5); }
+  .head-in { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--w); font-weight: 600; font-size: var(--fs-lead); letter-spacing: -0.01em; min-height: 44px; }
+  .brand-mark { width: 34px; height: 34px; border-radius: var(--r); background: var(--marca); display: inline-flex; align-items: center; justify-content: center; }
+  .brand-mark svg { width: 18px; height: 18px; }
+  .dot { color: var(--marca); }
+  .head-nav { display: flex; align-items: center; gap: var(--s-4); }
+  .head-nav a { color: var(--w); text-decoration: none; font-size: var(--fs-sm); font-weight: 500; min-height: 44px; display: inline-flex; align-items: center; }
+  .head-nav .head-cta { background: var(--marca); padding: 0 var(--s-4); border-radius: var(--r); font-weight: 600; }
+  .head-nav .head-cta:hover { background: var(--marca-hover); }
+  main { max-width: 720px; margin: 0 auto; padding: var(--s-6) var(--s-5) var(--s-7); }
+  .migas { font-size: var(--fs-sm); color: var(--tinta-3); margin-bottom: var(--s-5); }
+  .migas a { color: var(--tinta-3); }
+  .eyebrow { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--marca); margin-bottom: var(--s-3); }
+  h1 { font-size: var(--fs-h2); font-weight: 600; color: var(--navy); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: var(--s-4); }
+  h2 { font-size: var(--fs-h3); font-weight: 600; color: var(--navy); line-height: 1.3; margin: var(--s-6) 0 var(--s-3); }
+  h3 { font-size: var(--fs-lead); font-weight: 600; color: var(--navy); margin: var(--s-5) 0 var(--s-2); }
+  p, li { color: var(--tinta-2); }
+  article p, article ul, article ol { margin-bottom: var(--s-3); }
+  article li { margin-bottom: var(--s-2); }
+  ul, ol { padding-left: var(--s-5); }
+  strong { color: var(--tinta); font-weight: 600; }
+  a { color: var(--marca); }
+  .bajada { font-size: var(--fs-lead); }
+  .autor { font-size: var(--fs-sm); color: var(--tinta-3); margin-top: var(--s-4); padding-bottom: var(--s-5); margin-bottom: var(--s-5); border-bottom: 1px solid var(--borde); }
+  .formula { background: var(--lienzo); border-left: 3px solid var(--marca); border-radius: var(--r); padding: var(--s-3) var(--s-4); margin: var(--s-4) 0; font-weight: 600; color: var(--navy); }
+  .tabla { overflow-x: auto; margin: var(--s-4) 0; }
+  table { border-collapse: collapse; width: 100%; font-size: var(--fs-sm); }
+  .tabla table:has(tr > :nth-child(4)) { min-width: 520px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--borde); color: var(--tinta-2); }
+  th { color: var(--navy); font-weight: 600; background: var(--lienzo); }
+  .n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  th.n { white-space: normal; }
+  tr.total td { font-weight: 600; color: var(--navy); }
+  .nota { font-size: var(--fs-sm); color: var(--tinta-3); }
+  .grafico { margin: var(--s-4) 0; padding: var(--s-4); background: var(--lienzo); border-radius: var(--r-lg); }
+  .grafico svg { display: block; width: 100%; height: auto; font-family: 'Inter', system-ui, sans-serif; }
+  .cta { margin: var(--s-7) 0 var(--s-6); background: var(--navy); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); }
+  .cta p { color: rgba(255,255,255,0.88); }
+  .cta .cta-t { font-size: var(--fs-h3); font-weight: 600; line-height: 1.3; color: var(--w); margin-bottom: var(--s-2); }
+  .btn { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: var(--s-3) var(--s-5); border-radius: var(--r); background: var(--marca); color: var(--w); font-weight: 600; text-decoration: none; margin-top: var(--s-4); transition: background var(--t-instante); }
+  .btn:hover { background: var(--marca-hover); }
+  .lista-guias { list-style: none; padding: 0; }
+  .lista-guias li { border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-4) var(--s-5); margin-bottom: var(--s-3); }
+  .lista-guias a { font-weight: 600; font-size: var(--fs-lead); text-decoration: none; line-height: 1.4; }
+  .lista-guias p { margin-top: var(--s-2); font-size: var(--fs-sm); }
+  footer { background: var(--navy-900); padding: var(--s-6) var(--s-5); font-size: var(--fs-sm); }
+  .foot-in { max-width: 960px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5); justify-content: space-between; color: rgba(255,255,255,0.75); }
+  .foot-in nav { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
+  .foot-in a { color: var(--w); text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--marca); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<!-- Generado por tools/build_guias.py: editar la fuente en tools/guias/, no este archivo -->
+<header>
+  <div class="head-in">
+    <a href="/" class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7" stroke="#7DB1F4" stroke-width="4"/><circle cx="12" cy="12" r="7" stroke="#ffffff" stroke-width="4" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/></svg></span>ordenfinanciero<span class="dot">.</span></a>
+    <nav class="head-nav" aria-label="Principal">
+      <a href="/guias">Guías</a>
+      <a class="head-cta" href="/?origen=guia-capital-de-trabajo#diagnostico">Hacer el diagnóstico</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <nav class="migas" aria-label="Ruta"><a href="/">Inicio</a> › <a href="/guias">Guías</a> › <span>Capital de trabajo</span></nav>
+  <p class="eyebrow">Guía · Flujo de caja</p>
+  <h1>Capital de trabajo: qué es, cómo se calcula y cuánto necesita tu negocio</h1>
+  <p class="bajada">Qué es el capital de trabajo, la fórmula, qué significa que sea negativo, el ciclo de caja, ejemplos en pesos de un comercio y un restaurante y cómo calcularlo en Excel.</p>
+  <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · Actualizada el 14 de septiembre de 2026</p>
+  <article>
+<p>Hay negocios que venden bien, dan ganancia y aun así viven con la cuenta en rojo. Casi siempre el problema no está en el resultado, sino en el capital de trabajo: la plata queda atrapada en stock, en tarjetas por cobrar o se va en pagos que vencen antes de cobrar.</p>
+
+    <h2>Qué es el capital de trabajo</h2>
+    <p>El <strong>capital de trabajo</strong> es la plata que el negocio tiene disponible para funcionar en el día a día: lo que tiene <strong>en caja, por cobrar y en stock</strong>, menos lo que <strong>debe pagar en el corto plazo</strong>. Responde una pregunta simple: si hoy tuvieras que pagar todo lo que vence en los próximos meses, ¿te alcanza con lo que tenés?</p>
+
+    <h2>La fórmula del capital de trabajo</h2>
+    <p class="formula">Capital de trabajo = activo corriente − pasivo corriente</p>
+    <ul>
+      <li><strong>Activo corriente:</strong> lo que es plata o se convierte en plata en menos de un año. Caja y bancos, ventas con tarjeta por acreditar, cuentas de clientes y stock.</li>
+      <li><strong>Pasivo corriente:</strong> lo que hay que pagar en menos de un año. Proveedores, sueldos y cargas sociales a pagar, impuestos a pagar y las cuotas de préstamos de los próximos 12 meses.</li>
+    </ul>
+    <p>Un indicador que se calcula con los mismos números es la <strong>liquidez corriente</strong>: activo corriente ÷ pasivo corriente. Si da más de 1, lo que tenés alcanza para cubrir lo que debés en el corto plazo.</p>
+
+    <h2>Ejemplo 1: el capital de trabajo de un comercio</h2>
+    <div class="tabla">
+      <table>
+        <tbody>
+          <tr><td>Caja y bancos</td><td class="n">$2.000.000</td></tr>
+          <tr><td>Ventas con tarjeta por acreditar</td><td class="n">$3.500.000</td></tr>
+          <tr><td>Stock</td><td class="n">$6.000.000</td></tr>
+          <tr class="total"><td>Activo corriente</td><td class="n">$11.500.000</td></tr>
+          <tr><td>Proveedores</td><td class="n">$4.500.000</td></tr>
+          <tr><td>Sueldos y cargas sociales a pagar</td><td class="n">$2.200.000</td></tr>
+          <tr><td>Impuestos a pagar</td><td class="n">$800.000</td></tr>
+          <tr><td>Cuotas de préstamos de los próximos 12 meses</td><td class="n">$1.000.000</td></tr>
+          <tr class="total"><td>Pasivo corriente</td><td class="n">$8.500.000</td></tr>
+          <tr class="total"><td>Capital de trabajo</td><td class="n">$3.000.000</td></tr>
+          <tr><td>Liquidez corriente: $11.500.000 ÷ $8.500.000</td><td class="n">1,35</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Ejemplo 2: un restaurante con capital de trabajo negativo</h2>
+    <div class="tabla">
+      <table>
+        <tbody>
+          <tr><td>Caja, bancos y tarjetas por acreditar</td><td class="n">$2.200.000</td></tr>
+          <tr><td>Stock de materia prima y bebidas</td><td class="n">$1.500.000</td></tr>
+          <tr class="total"><td>Activo corriente</td><td class="n">$3.700.000</td></tr>
+          <tr><td>Proveedores</td><td class="n">$3.000.000</td></tr>
+          <tr><td>Sueldos y cargas sociales a pagar</td><td class="n">$2.500.000</td></tr>
+          <tr><td>Impuestos a pagar</td><td class="n">$600.000</td></tr>
+          <tr class="total"><td>Pasivo corriente</td><td class="n">$6.100.000</td></tr>
+          <tr class="total"><td>Capital de trabajo</td><td class="n">−$2.400.000</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nota">Números de ejemplo, para mostrar el método.</p>
+    <p>En gastronomía es común: se cobra en el momento o en pocos días, casi no hay stock y a los proveedores se les paga a 30 días. En los hechos, <strong>los proveedores financian el negocio</strong>. Funciona mientras las ventas se sostienen; si caen, la plata para pagar lo ya comprado no aparece.</p>
+
+    <h2>El ciclo de caja: cuánta plata necesita tu negocio</h2>
+    <p>El capital de trabajo que necesita un negocio depende de cuántos días pasan entre que paga y que cobra:</p>
+    <p class="formula">Ciclo de caja = días de stock + días de cobro − días de pago a proveedores<br>Capital de trabajo necesario ≈ costo diario de lo que vendés × ciclo de caja</p>
+    <ul>
+      <li><strong>Comercio del ejemplo:</strong> 45 días de stock + 20 días de cobro − 30 días de pago = <strong>35 días</strong>. Con un costo de mercadería vendida de $8.500.000 por mes (unos $283.000 por día), necesita alrededor de <strong>$9.900.000</strong> para sostener la operación.</li>
+      <li><strong>Restaurante:</strong> 7 días de stock + 5 días de cobro − 30 días de pago = <strong>−18 días</strong>. Cobra antes de pagar, y por eso puede funcionar con capital de trabajo negativo.</li>
+    </ul>
+
+    <h2>Cómo calcular el capital de trabajo en Excel</h2>
+    <div class="tabla">
+      <table>
+        <thead><tr><th>Celda</th><th>Qué va</th><th>Fórmula</th></tr></thead>
+        <tbody>
+          <tr><td>B2</td><td>Caja y bancos</td><td>—</td></tr>
+          <tr><td>B3</td><td>Cobros pendientes (tarjetas, clientes)</td><td>—</td></tr>
+          <tr><td>B4</td><td>Stock</td><td>—</td></tr>
+          <tr><td>B5</td><td>Activo corriente</td><td><code>=SUMA(B2:B4)</code></td></tr>
+          <tr><td>B6</td><td>Proveedores</td><td>—</td></tr>
+          <tr><td>B7</td><td>Sueldos y cargas a pagar</td><td>—</td></tr>
+          <tr><td>B8</td><td>Impuestos a pagar</td><td>—</td></tr>
+          <tr><td>B9</td><td>Deudas de los próximos 12 meses</td><td>—</td></tr>
+          <tr><td>B10</td><td>Pasivo corriente</td><td><code>=SUMA(B6:B9)</code></td></tr>
+          <tr><td>B11</td><td>Capital de trabajo</td><td><code>=B5-B10</code></td></tr>
+          <tr><td>B12</td><td>Liquidez corriente</td><td><code>=B5/B10</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Cómo mejorar el capital de trabajo de tu negocio</h2>
+    <ul>
+      <li><strong>Cobrá antes:</strong> revisá plazos de acreditación de tarjetas y billeteras, y cuánto te cuesta adelantarlos.</li>
+      <li><strong>Comprá mejor:</strong> menos stock parado. El stock que no rota es plata inmovilizada que, con inflación, además pierde valor si no se repone a tiempo.</li>
+      <li><strong>Negociá plazos con proveedores</strong>, cuidando no pagar de más por financiarte con ellos.</li>
+      <li><strong>Separá la plata del negocio de la personal:</strong> los retiros sin control son la forma más rápida de quedarse sin capital de trabajo.</li>
+      <li><strong>Miralo junto con el resultado:</strong> el <a href="/guias/estado-de-resultados">estado de resultados</a> dice si ganás; el capital de trabajo, si llegás a fin de mes.</li>
+    </ul>
+
+    <h2>Errores comunes</h2>
+    <ul>
+      <li><strong>Confundirlo con la ganancia:</strong> un buen mes de ventas no garantiza caja.</li>
+      <li><strong>Contar deudas de largo plazo enteras:</strong> en el pasivo corriente van solo las cuotas de los próximos 12 meses.</li>
+      <li><strong>Valorizar stock que no se vende</strong> como si fuera plata.</li>
+      <li><strong>Olvidar las tarjetas por acreditar</strong> o los sueldos y cargas devengados que todavía no se pagaron.</li>
+    </ul>
+    <h2>Preguntas frecuentes</h2>
+    <h3>¿Qué es el capital de trabajo?</h3>
+    <p>Es la plata que un negocio tiene disponible para funcionar en el día a día: lo que tiene en caja, por cobrar y en stock, menos lo que debe pagar en el corto plazo.</p>
+    <h3>¿Cuál es la fórmula del capital de trabajo?</h3>
+    <p>Capital de trabajo = activo corriente − pasivo corriente. Con $11.500.000 entre caja, cobros pendientes y stock, y $8.500.000 de deudas de corto plazo, el capital de trabajo es $3.000.000.</p>
+    <h3>¿Qué significa tener capital de trabajo negativo?</h3>
+    <p>Que las deudas de corto plazo superan a lo que el negocio tiene en caja, por cobrar y en stock. Es común en gastronomía, que cobra rápido y paga a proveedores a 30 días. No es necesariamente malo, pero deja al negocio muy expuesto si las ventas caen.</p>
+    <h3>¿Qué es un crédito para capital de trabajo?</h3>
+    <p>Es un préstamo de corto plazo para financiar el stock o la diferencia entre lo que tardás en cobrar y lo que tardás en pagar. Conviene cuando su costo es menor que lo que te deja vender más o comprar mejor; si se usa para tapar pérdidas, agranda el problema.</p>
+    <h3>¿Capital de trabajo y ganancia son lo mismo?</h3>
+    <p>No. La ganancia sale del estado de resultados y mide si el negocio gana. El capital de trabajo mide si tiene con qué pagar lo que vence. Un negocio puede ganar plata y aun así quedarse sin capital de trabajo.</p>
+
+  </article>
+  <h2>Seguí leyendo</h2>
+  <ul class="lista-guias">
+    <li><a href="/guias/costo-de-mercaderia-vendida">Costo de mercadería vendida (CMV): qué es, fórmula y ejemplo</a><p>Qué es el costo de mercadería vendida o CMV, la fórmula con inventario inicial, compras e inventario final, ejemplos en pesos y cómo calcularlo en Excel.</p></li>
+    <li><a href="/guias/punto-de-equilibrio">Punto de equilibrio: qué es, fórmula y cómo calcularlo en tu negocio</a><p>Qué es el punto de equilibrio de una empresa, la fórmula en unidades y en pesos, el gráfico, ejemplos de un comercio y de un restaurante y cómo calcularlo en Excel.</p></li>
+    <li><a href="/guias/estado-de-resultados">Estado de resultados: qué es, estructura, modelo y ejemplo</a><p>Qué es un estado de resultados, su estructura paso a paso, un modelo para un negocio en Argentina, un ejemplo completo en pesos y cómo armarlo en Excel.</p></li>
+  </ul>
+  <aside class="cta">
+    <p class="cta-t">¿Tenés un negocio gastronómico?</p>
+    <p>En 3 minutos sabés por dónde se le escapa la plata: 12 preguntas gratis y el puntaje de los cuatro eslabones al instante.</p>
+    <a class="btn" href="/?origen=guia-capital-de-trabajo#diagnostico">Hacer el diagnóstico · 3 min <span aria-hidden="true">→</span></a>
+  </aside>
+</main>
+<footer>
+  <div class="foot-in">
+    <nav aria-label="Pie">
+      <a href="/">Inicio</a>
+      <a href="/guias">Guías</a>
+      <a href="/#manuel">Quién está detrás</a>
+      <a href="/privacidad">Privacidad</a>
+    </nav>
+    <span>© 2026 Orden Financiero · Programa de consultoría financiera para gastronomía</span>
+  </div>
+</footer>
+</body>
+</html>
