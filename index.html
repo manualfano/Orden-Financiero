@@ -96,30 +96,35 @@ function gtag() { dataLayer.push(arguments); }
   --borde-soft: rgba(11,18,14,0.08);
   --borde-input: #8C8F97;
   --seleccion-bg: #E9F2FF;
-  /* semanticos (texto + fondo, AA verificado) */
-  --positivo: #4C6B1F;
-  --positivo-bg: #EFFFD6;
-  --positivo-rgb: 76 107 31;
-  --alerta: #9E4C00;
-  --alerta-bg: #FFF5DB;
-  --alerta-rgb: 158 76 0;
-  --riesgo: #AE2E24;
-  --riesgo-bg: #FFECEB;
-  --riesgo-rgb: 174 46 36;
-  --hallazgo: #803FA5;
-  --hallazgo-rgb: 128 63 165;
+  /* semanticos: el color base es para letra (AA sobre blanco y su -bg); -vivo y -rgb
+     son para rellenos, trazos, iconos, bordes y alfas */
+  --positivo: #3D7A1F;
+  --positivo-bg: #E8F5E2;
+  --positivo-rgb: 93 187 47;
+  --positivo-vivo: #5DBB2F;
+  --alerta: #956308;
+  --alerta-bg: #FDF2DE;
+  --alerta-rgb: 242 165 22;
+  --alerta-vivo: #F2A516;
+  --riesgo: #C5311A;
+  --riesgo-bg: #FBE7E4;
+  --riesgo-rgb: 229 83 61;
+  --riesgo-vivo: #E5533D;
+  --hallazgo: #4C4FEF;
+  --hallazgo-rgb: 99 102 241;
+  --hallazgo-vivo: #6366F1;
   /* series de dato sobre navy (CHART.onDark del portal) */
   --dato-azul: #8FB8F6;
   --dato-azul-rgb: 143 184 246;
   /* tinte claro propio del sitio para segundo nivel de serie en mocks */
   --dato-azul-claro: #C2DBFB;
   /* icono/score del eslabon activo sobre navy */
-  --dato-lima: #B3DF72;
-  --dato-lima-rgb: 179 223 114;
-  --dato-amarillo: #FBD779;
-  --dato-amarillo-rgb: 251 215 121;
-  --dato-rojo: #FD9891;
-  --dato-rojo-rgb: 253 152 145;
+  --dato-lima: #8BD163;
+  --dato-lima-rgb: 139 209 99;
+  --dato-amarillo: #F6BE55;
+  --dato-amarillo-rgb: 246 190 85;
+  --dato-rojo: #F59C8E;
+  --dato-rojo-rgb: 245 156 142;
   /* on-dark */
   --w: #ffffff;
   --w-70: rgba(255,255,255,0.7);
@@ -772,6 +777,7 @@ nav.scrolled {
 .pillar {
   --eslabon: var(--marca);
   --eslabon-rgb: var(--marca-rgb);
+  --eslabon-icono: var(--eslabon);
   background: var(--bg);
   border: 1px solid var(--borde);
   border-radius: var(--r-lg);
@@ -828,7 +834,7 @@ nav.scrolled {
   height: 44px;
   border-radius: var(--r);
   background: rgb(var(--eslabon-rgb) / 0.08);
-  color: var(--eslabon);
+  color: var(--eslabon-icono);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1002,6 +1008,12 @@ nav.scrolled {
   background: var(--riesgo-bg);
   color: var(--riesgo);
 }
+
+.lozenge.ok::before { background: var(--positivo-vivo); }
+
+.lozenge.warn::before { background: var(--alerta-vivo); }
+
+.lozenge.crit::before { background: var(--riesgo-vivo); }
 
 .mock-grid {
   display: grid;
@@ -1763,7 +1775,7 @@ footer {
   margin-top: var(--s-1);
 }
 
-.forwho .yes li svg { color: var(--positivo); }
+.forwho .yes li svg { color: var(--positivo-vivo); }
 
 .forwho .no  li svg { color: var(--tinta-3); }
 
@@ -1835,7 +1847,7 @@ footer {
   border-radius: var(--r-lg);
 }
 
-.mock-cell-weak { border-color: var(--riesgo); }
+.mock-cell-weak { border-color: var(--riesgo-vivo); }
 
 .mock-foot {
   margin-top: var(--s-3);
@@ -3122,7 +3134,7 @@ nav.scrolled { background: var(--navy-2); }
   border-color: rgb(var(--positivo-rgb) / 0.25);
 }
 
-.diag-overlay .q-reaction.ok svg { color: var(--positivo); }
+.diag-overlay .q-reaction.ok svg { color: var(--positivo-vivo); }
 
 .diag-overlay .q-reaction.warn {
   background: var(--alerta-bg);
@@ -3130,7 +3142,7 @@ nav.scrolled { background: var(--navy-2); }
   border-color: rgb(var(--alerta-rgb) / 0.3);
 }
 
-.diag-overlay .q-reaction.warn svg { color: var(--alerta); }
+.diag-overlay .q-reaction.warn svg { color: var(--alerta-vivo); }
 
 .diag-overlay .q-reaction.crit {
   background: var(--riesgo-bg);
@@ -3138,7 +3150,7 @@ nav.scrolled { background: var(--navy-2); }
   border-color: rgb(var(--riesgo-rgb) / 0.25);
 }
 
-.diag-overlay .q-reaction.crit svg { color: var(--riesgo); }
+.diag-overlay .q-reaction.crit svg { color: var(--riesgo-vivo); }
 
 /* ── FORM (lead) ── */
 
@@ -3176,7 +3188,7 @@ nav.scrolled { background: var(--navy-2); }
   box-shadow: 0 0 0 3px rgb(var(--marca-rgb) / 0.1);
 }
 
-.diag-overlay .form-input.invalid { border-color: var(--riesgo); }
+.diag-overlay .form-input.invalid { border-color: var(--riesgo-vivo); }
 
 .diag-overlay .form-error {
   display: none;
@@ -3334,7 +3346,7 @@ nav.scrolled { background: var(--navy-2); }
 }
 
 .diag-overlay .eslabon-card.weakest {
-  border-color: var(--riesgo);
+  border-color: var(--riesgo-vivo);
   box-shadow: 0 0 0 3px rgb(var(--riesgo-rgb) / 0.07);
 }
 
@@ -3381,11 +3393,11 @@ nav.scrolled { background: var(--navy-2); }
   transition: stroke-dashoffset var(--t-gauge) var(--ease-salida) var(--t-instante);
 }
 
-.diag-overlay .ok   .gauge-fill { stroke: var(--positivo); }
+.diag-overlay .ok   .gauge-fill { stroke: var(--positivo-vivo); }
 
-.diag-overlay .warn .gauge-fill { stroke: var(--alerta); }
+.diag-overlay .warn .gauge-fill { stroke: var(--alerta-vivo); }
 
-.diag-overlay .crit .gauge-fill { stroke: var(--riesgo); }
+.diag-overlay .crit .gauge-fill { stroke: var(--riesgo-vivo); }
 
 .diag-overlay .gauge-target {
   stroke: var(--navy);
@@ -4095,7 +4107,7 @@ nav.scrolled { background: var(--navy-2); }
             <div class="mock-cell-name">Costos</div>
             <svg class="mock-gauge" viewBox="-4 0 208 116" aria-hidden="true">
               <path d="M 20,100 A 80,80 0 0,1 180,100" class="track"/>
-              <path d="M 20,100 A 80,80 0 0,1 180,100" class="fill" style="stroke:var(--positivo)" stroke-dasharray="251.33" stroke-dashoffset="41.89"/>
+              <path d="M 20,100 A 80,80 0 0,1 180,100" class="fill" style="stroke:var(--positivo-vivo)" stroke-dasharray="251.33" stroke-dashoffset="41.89"/>
               <text x="100" y="95" font-size="40">8</text>
             </svg>
             <div class="mock-cell-status ok">Sólido</div>
@@ -4104,7 +4116,7 @@ nav.scrolled { background: var(--navy-2); }
             <div class="mock-cell-name">Resultado</div>
             <svg class="mock-gauge" viewBox="-4 0 208 116" aria-hidden="true">
               <path d="M 20,100 A 80,80 0 0,1 180,100" class="track"/>
-              <path d="M 20,100 A 80,80 0 0,1 180,100" class="fill" style="stroke:var(--alerta)" stroke-dasharray="251.33" stroke-dashoffset="167.55"/>
+              <path d="M 20,100 A 80,80 0 0,1 180,100" class="fill" style="stroke:var(--alerta-vivo)" stroke-dasharray="251.33" stroke-dashoffset="167.55"/>
               <text x="100" y="95" font-size="40">5</text>
             </svg>
             <div class="mock-cell-status warn">A mejorar</div>
@@ -4113,7 +4125,7 @@ nav.scrolled { background: var(--navy-2); }
             <div class="mock-cell-name">Caja</div>
             <svg class="mock-gauge" viewBox="-4 0 208 116" aria-hidden="true">
               <path d="M 20,100 A 80,80 0 0,1 180,100" class="track"/>
-              <path d="M 20,100 A 80,80 0 0,1 180,100" class="fill" style="stroke:var(--riesgo)" stroke-dasharray="251.33" stroke-dashoffset="251.33"/>
+              <path d="M 20,100 A 80,80 0 0,1 180,100" class="fill" style="stroke:var(--riesgo-vivo)" stroke-dasharray="251.33" stroke-dashoffset="251.33"/>
               <text x="100" y="95" font-size="40">3</text>
             </svg>
             <div class="mock-cell-status crit">Crítico</div>
@@ -4122,7 +4134,7 @@ nav.scrolled { background: var(--navy-2); }
             <div class="mock-cell-name">Gestión</div>
             <svg class="mock-gauge" viewBox="-4 0 208 116" aria-hidden="true">
               <path d="M 20,100 A 80,80 0 0,1 180,100" class="track"/>
-              <path d="M 20,100 A 80,80 0 0,1 180,100" class="fill" style="stroke:var(--alerta)" stroke-dasharray="251.33" stroke-dashoffset="125.67"/>
+              <path d="M 20,100 A 80,80 0 0,1 180,100" class="fill" style="stroke:var(--alerta-vivo)" stroke-dasharray="251.33" stroke-dashoffset="125.67"/>
               <text x="100" y="95" font-size="40">6</text>
             </svg>
             <div class="mock-cell-status warn">A mejorar</div>
@@ -4201,7 +4213,7 @@ nav.scrolled { background: var(--navy-2); }
         </div>
       </a>
 
-      <a class="pillar reveal" data-num="02" href="#diagnostico" style="--eslabon:var(--positivo);--eslabon-rgb:var(--positivo-rgb)" onclick="openDiagnostico('pillar-02'); return false;">
+      <a class="pillar reveal" data-num="02" href="#diagnostico" style="--eslabon:var(--positivo);--eslabon-rgb:var(--positivo-rgb);--eslabon-icono:var(--positivo-vivo)" onclick="openDiagnostico('pillar-02'); return false;">
         <div class="pillar-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
         </div>
@@ -4213,7 +4225,7 @@ nav.scrolled { background: var(--navy-2); }
         </div>
       </a>
 
-      <a class="pillar reveal" data-num="03" href="#diagnostico" style="--eslabon:var(--alerta);--eslabon-rgb:var(--alerta-rgb)" onclick="openDiagnostico('pillar-03'); return false;">
+      <a class="pillar reveal" data-num="03" href="#diagnostico" style="--eslabon:var(--alerta);--eslabon-rgb:var(--alerta-rgb);--eslabon-icono:var(--alerta-vivo)" onclick="openDiagnostico('pillar-03'); return false;">
         <div class="pillar-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
         </div>
@@ -4225,7 +4237,7 @@ nav.scrolled { background: var(--navy-2); }
         </div>
       </a>
 
-      <a class="pillar reveal" data-num="04" href="#diagnostico" style="--eslabon:var(--hallazgo);--eslabon-rgb:var(--hallazgo-rgb)" onclick="openDiagnostico('pillar-04'); return false;">
+      <a class="pillar reveal" data-num="04" href="#diagnostico" style="--eslabon:var(--hallazgo);--eslabon-rgb:var(--hallazgo-rgb);--eslabon-icono:var(--hallazgo-vivo)" onclick="openDiagnostico('pillar-04'); return false;">
         <div class="pillar-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
         </div>
