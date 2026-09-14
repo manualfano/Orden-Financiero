@@ -2558,6 +2558,61 @@ nav.scrolled { background: var(--navy-2); }
   .nav-funnel { display: none; }
 }
 
+/* SEO 14/09/2026: menu (links + Guías) detrás de un botón de tres líneas.
+   Hasta 1099 px: con cuatro links la barra se salía del borde entre 961 y 1099 px. */
+.nav-burger { display: none; }
+.nav-menu[hidden] { display: none; }
+
+@media (max-width: 1099px) {
+  .nav-inner { grid-template-columns: auto auto; justify-content: space-between; }
+  .nav-funnel { display: none; }
+  .nav-burger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1.5px solid var(--w-20);
+    border-radius: var(--r);
+    background: transparent;
+    color: var(--w);
+    cursor: pointer;
+    transition: background var(--t-instante), border-color var(--t-instante);
+  }
+  .nav-burger:hover { background: var(--w-10); border-color: var(--w-92); }
+  .nav-burger svg { width: 22px; height: 22px; }
+  .nav-burger .ico-cerrar { display: none; }
+  .nav-burger[aria-expanded="true"] .ico-abrir { display: none; }
+  .nav-burger[aria-expanded="true"] .ico-cerrar { display: block; }
+
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    padding: var(--s-2) var(--s-4) var(--s-4);
+    background: var(--navy-2);
+    border-top: 1px solid var(--w-10);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+  }
+  .nav-menu-link {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 0 var(--s-2);
+    border-bottom: 1px solid var(--w-10);
+    color: var(--w-92);
+    font-size: var(--fs-lead);
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .nav-menu-link:last-child { border-bottom: 0; }
+  .nav-menu-link:hover { color: var(--w); background: var(--w-10); }
+}
+
 /* ══════════════════════════════════════════
    DIAGNÓSTICO — OVERLAY
    ══════════════════════════════════════════ */
@@ -3938,10 +3993,22 @@ nav.scrolled { background: var(--navy-2); }
       <a href="#que-analizamos" class="nav-link">El diagnóstico</a>
       <a href="#metodo" class="nav-link">El programa</a>
       <a href="#manuel" class="nav-link">Quién está detrás</a>
+      <a href="/guias" class="nav-link" onclick="track('nav_guias', { desde: 'barra' })">Guías</a>
     </div>
     <div class="nav-right">
       <button class="nav-cta" onclick="openDiagnostico('nav')">Hacer el diagnóstico · 3 min</button>
+      <!-- SEO 14/09/2026: en celular los links viven en un menu (pedido del dueño) -->
+      <button class="nav-burger" id="nav-burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu">
+        <svg class="ico-abrir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        <svg class="ico-cerrar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+      </button>
     </div>
+  </div>
+  <div class="nav-menu" id="nav-menu" hidden>
+    <a href="#que-analizamos" class="nav-menu-link">El diagnóstico</a>
+    <a href="#metodo" class="nav-menu-link">El programa</a>
+    <a href="#manuel" class="nav-menu-link">Quién está detrás</a>
+    <a href="/guias" class="nav-menu-link" onclick="track('nav_guias', { desde: 'menu' })">Guías</a>
   </div>
 </nav>
 
@@ -4681,6 +4748,31 @@ const atribucion = (function () {
   };
   try { sessionStorage.setItem(KEY, JSON.stringify(a)); } catch (e) {}
   return a;
+})();
+
+// ── NAV: menu de celular (SEO 14/09/2026) ──
+(function() {
+  const boton = document.getElementById('nav-burger');
+  const menu = document.getElementById('nav-menu');
+  if (!boton || !menu) return;
+  function cerrar() {
+    if (menu.hidden) return;
+    menu.hidden = true;
+    boton.setAttribute('aria-expanded', 'false');
+    boton.setAttribute('aria-label', 'Abrir menú');
+  }
+  boton.addEventListener('click', function (e) {
+    e.stopPropagation();
+    const abrir = menu.hidden;
+    menu.hidden = !abrir;
+    boton.setAttribute('aria-expanded', String(abrir));
+    boton.setAttribute('aria-label', abrir ? 'Cerrar menú' : 'Abrir menú');
+    if (abrir) track('nav_menu_open', {});
+  });
+  menu.addEventListener('click', function (e) { if (e.target.closest('a')) cerrar(); });
+  document.addEventListener('click', function (e) { if (!e.target.closest('#site-nav')) cerrar(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') cerrar(); });
+  window.addEventListener('resize', function () { if (window.innerWidth > 1099) cerrar(); });
 })();
 
 // ── NAV: fondo al scrollear · CTA fijo en mobile al pasar el hero ──
