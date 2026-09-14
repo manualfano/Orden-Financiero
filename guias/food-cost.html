@@ -136,6 +136,56 @@ function gtag() { dataLayer.push(arguments); }
   .meta span { font-size: var(--fs-meta); font-weight: 600; color: var(--tinta-3); background: var(--lienzo); border-radius: 999px; padding: 2px 10px; }
   @media (max-width: 640px) { .tema-num { display: none; } .tema-cab { align-items: flex-start; } }
   @media (prefers-reduced-motion: reduce) { .pasos a:hover, .tarjetas a:hover { transform: none; } }
+  /* Índice: cifras, buscador y tarjetas cortas */
+  .cifras { color: rgba(255,255,255,0.9); font-size: var(--fs-sm); margin-top: var(--s-2); }
+  .cifras strong { color: var(--w); }
+  .buscador { margin-top: var(--s-5); max-width: 560px; }
+  .buscador label { display: block; font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-soft); margin-bottom: var(--s-2); }
+  .buscador input { width: 100%; min-height: 48px; padding: 0 var(--s-4); border: 0; border-radius: var(--r); font: inherit; font-size: var(--fs-base); color: var(--tinta); background: var(--w); }
+  .buscador input:focus-visible { outline: 3px solid var(--accent-soft); outline-offset: 2px; }
+  .sin-resultados { margin-top: var(--s-6); padding: var(--s-5); background: var(--w); border: 1px solid var(--borde); border-radius: var(--r-lg); }
+  .tema .tarjetas .paso-eje { display: none; }
+  .meta { flex-wrap: nowrap; overflow: hidden; }
+  /* Página de guía */
+  main.guia { max-width: 1080px; }
+  .guia-cab { position: relative; overflow: hidden; background: var(--bloque); color: var(--bloque-texto); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); margin-bottom: var(--s-6); }
+  .guia-cab > :not(.circulos) { position: relative; }
+  .guia-cab .migas, .guia-cab .migas a, .guia-cab .eyebrow, .guia-cab h1, .guia-cab .bajada, .guia-cab .autor, .guia-cab .autor a { color: inherit; }
+  .guia-cab h1 { max-width: 780px; }
+  .guia-cab .bajada { max-width: 700px; }
+  .guia-cab .autor { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
+  .guia-cab .meta { margin-top: var(--s-3); }
+  .guia-cab .meta span { background: transparent; color: inherit; border: 1px solid currentColor; }
+  .guia-cuerpo { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: var(--s-7); align-items: start; }
+  .guia-principal { min-width: 0; max-width: 720px; }
+  .indice-guia { position: sticky; top: var(--s-5); border-left: 3px solid var(--bloque); padding-left: var(--s-4); }
+  .indice-guia p, .resumen p { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: var(--s-2); }
+  .indice-guia p { color: var(--tinta-3); }
+  .indice-guia ol, .indice-movil ol { list-style: none; padding: 0; }
+  .indice-guia li { margin-bottom: 6px; }
+  .indice-guia a, .indice-movil a { color: var(--tinta-2); font-size: var(--fs-sm); line-height: 1.4; text-decoration: none; display: block; }
+  .indice-guia a:hover, .indice-movil a:hover { color: var(--acento); }
+  .indice-movil { display: none; }
+  .resumen { background: var(--lienzo); border-left: 4px solid var(--bloque); border-radius: var(--r); padding: var(--s-4) var(--s-5); margin-bottom: var(--s-6); }
+  .resumen p { color: var(--acento); }
+  .resumen ul { padding-left: var(--s-5); }
+  .resumen li { color: var(--tinta); margin-bottom: 6px; }
+  main.guia .formula { border-left-color: var(--bloque); }
+  article h2 { scroll-margin-top: var(--s-5); }
+  .caja-autor { display: flex; gap: var(--s-4); align-items: center; border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-5); margin-top: var(--s-7); }
+  .caja-autor img { width: 72px; height: 72px; border-radius: 999px; object-fit: cover; object-position: top; background: var(--lienzo); flex-shrink: 0; }
+  .caja-autor strong { color: var(--navy); display: block; }
+  .caja-autor p { font-size: var(--fs-sm); margin-top: 4px; }
+  .seguir { margin-top: var(--s-7); }
+  .seguir h2 { margin: 0 0 var(--s-3); }
+  @media (max-width: 900px) {
+    .guia-cuerpo { grid-template-columns: 1fr; }
+    .indice-guia { display: none; }
+    .indice-movil { display: block; border: 1px solid var(--borde); border-radius: var(--r-lg); padding: 0 var(--s-4); margin-bottom: var(--s-5); }
+    .indice-movil summary { min-height: 48px; display: flex; align-items: center; font-weight: 600; color: var(--navy); cursor: pointer; }
+    .indice-movil ol { padding-bottom: var(--s-3); }
+    .indice-movil li { padding: 6px 0; border-top: 1px solid var(--borde); }
+  }
   footer { background: var(--navy-900); padding: var(--s-6) var(--s-5); font-size: var(--fs-sm); }
   .foot-in { max-width: 960px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5); justify-content: space-between; color: rgba(255,255,255,0.75); }
   .foot-in nav { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
@@ -154,23 +204,31 @@ function gtag() { dataLayer.push(arguments); }
     </nav>
   </div>
 </header>
-<main>
+<main class="guia">
+  <section class="guia-cab" style="--bloque:var(--of-azul);--bloque-texto:var(--w);--acento:var(--of-azul)">
+    <svg class="circulos" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="66"/><circle cx="100" cy="100" r="36"/></svg>
   <nav class="migas" aria-label="Ruta"><a href="/">Inicio</a> › <a href="/guias">Guías</a> › <span>Food cost</span></nav>
-  <p class="eyebrow" style="color:var(--of-azul)">Guía · Costos y precios</p>
-  <h1>Food cost (costo de la materia prima): qué es, fórmula y cómo calcularlo</h1>
-  <p class="bajada">Qué es el food cost o costo de la materia prima en gastronomía, la fórmula por plato y por mes, ejemplos en pesos, cómo calcularlo en Excel y qué porcentaje tomar.</p>
-  <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · Actualizada el 14 de septiembre de 2026</p>
-  <article>
+    <p class="eyebrow">Guía · Costos y precios</p>
+    <h1>Food cost (costo de la materia prima): qué es, fórmula y cómo calcularlo</h1>
+    <p class="bajada">Qué es el food cost o costo de la materia prima en gastronomía, la fórmula por plato y por mes, ejemplos en pesos, cómo calcularlo en Excel y qué porcentaje tomar.</p>
+    <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · Actualizada el 14 de septiembre de 2026</p>
+    <div class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>6 min de lectura</span></div>
+  </section>
+  <div class="guia-cuerpo" style="--bloque:var(--of-azul);--bloque-texto:var(--w);--acento:var(--of-azul)">
+    <div class="guia-principal">
+      <aside class="resumen"><p>Lo más importante</p><ul><li>El food cost es el porcentaje de las ventas que se va en materia prima.</li><li>Por plato: costo ÷ precio sin IVA. Por mes: (inventario inicial + compras − inventario final) ÷ ventas netas.</li><li>Compará el de las fichas con el real del mes, sobre las mismas ventas netas: la diferencia es plata que se pierde.</li></ul></aside>
+      <details class="indice-movil"><summary>En esta guía</summary><ol><li><a href="#que-es-el-food-cost">Qué es el food cost</a></li><li><a href="#la-formula-del-food-cost">La fórmula del food cost</a></li><li><a href="#ejemplo-el-food-cost-de-un-plato">Ejemplo: el food cost de un plato</a></li><li><a href="#ejemplo-el-food-cost-real-del-mes">Ejemplo: el food cost real del mes</a></li><li><a href="#food-cost-teorico-contra-real">Food cost teórico contra real</a></li><li><a href="#como-calcular-el-food-cost-en-excel">Cómo calcular el food cost en Excel</a></li><li><a href="#que-porcentaje-de-food-cost-es-bueno">¿Qué porcentaje de food cost es &quot;bueno&quot;?</a></li><li><a href="#como-usar-el-food-cost-en-tu-negocio">Cómo usar el food cost en tu negocio</a></li><li><a href="#preguntas-frecuentes">Preguntas frecuentes</a></li></ol></details>
+      <article>
 <p>De cada $100 que cobra tu negocio, ¿cuántos se van en materia prima? Esa pregunta la responde el food cost, el indicador más usado en gastronomía.</p>
 
-    <h2>Qué es el food cost</h2>
+    <h2 id="que-es-el-food-cost">Qué es el food cost</h2>
     <p>El <strong>food cost</strong>, en castellano <strong>costo de la materia prima</strong> o costo de la comida, es el porcentaje de las ventas que se va en materia prima. Se calcula de dos formas que sirven para cosas distintas: <strong>por plato</strong>, para armar la carta, y <strong>por mes</strong>, para saber qué pasó de verdad.</p>
 
-    <h2>La fórmula del food cost</h2>
+    <h2 id="la-formula-del-food-cost">La fórmula del food cost</h2>
     <p class="formula">Food cost de un plato = costo del plato ÷ precio de venta sin IVA × 100<br>Food cost del mes = (inventario inicial + compras − inventario final) ÷ ventas netas del mes × 100</p>
     <p>El costo del plato sale de la <a href="/guias/costo-de-un-plato">ficha de costo</a>. El precio va <strong>sin IVA</strong> porque el IVA no es plata del negocio: si sos responsable inscripto, lo cobrás y lo pagás al fisco. Si sos monotributista, no cobrás IVA aparte ni lo recuperás en las compras: calculá el costo del plato con los precios que pagaste con IVA y dividilo por el precio que cobrás.</p>
 
-    <h2>Ejemplo: el food cost de un plato</h2>
+    <h2 id="ejemplo-el-food-cost-de-un-plato">Ejemplo: el food cost de un plato</h2>
     <p>Una milanesa con puré cuesta $4.145 y en la carta sale $16.000 con IVA.</p>
     <ul>
       <li>Precio sin IVA: $16.000 ÷ 1,21 = <strong>$13.223</strong></li>
@@ -178,7 +236,7 @@ function gtag() { dataLayer.push(arguments); }
     </ul>
     <p>De cada $100 que el negocio cobra por ese plato (sin IVA), unos $31 se van en materia prima. Con los otros $69 hay que pagar comisiones, sueldos, alquiler, servicios e impuestos y, si queda, ganar.</p>
 
-    <h2>Ejemplo: el food cost real del mes</h2>
+    <h2 id="ejemplo-el-food-cost-real-del-mes">Ejemplo: el food cost real del mes</h2>
     <p>El consumo del mes es el <a href="/guias/costo-de-mercaderia-vendida">costo de mercadería vendida (CMV)</a>. El food cost por plato dice cuánto <em>debería</em> costar lo que se vendió. El del mes dice cuánto costó <em>de verdad</em>, porque parte de la mercadería que entró y salió del depósito:</p>
     <div class="tabla">
       <table>
@@ -194,7 +252,7 @@ function gtag() { dataLayer.push(arguments); }
     </div>
     <p class="nota">Números de ejemplo. Para que el cálculo sea confiable, el inventario se cuenta siempre el mismo día, de la misma forma, y cada producto se valoriza con su último precio de compra.</p>
 
-    <h2>Food cost teórico contra real</h2>
+    <h2 id="food-cost-teorico-contra-real">Food cost teórico contra real</h2>
     <p>Si sumás el costo de ficha de todos los platos vendidos en el mes (sale del reporte de ventas por producto de tu sistema) y lo dividís por las <strong>mismas ventas netas</strong>, obtenés el <strong>food cost teórico</strong>: lo que tendría que haber pasado si todo salió como dice la receta.</p>
     <p class="nota">Ojo: el food cost de cada ficha se calcula sobre el precio de carta, que todavía incluye las comisiones de apps y tarjetas. Para comparar teórico con real, usá las ventas netas en los dos; si no, el real siempre da más alto aunque no falte nada.</p>
     <p>Supongamos que en el ejemplo el teórico da 29,0 % y el real 32,3 %. Esos <strong>3,3 puntos</strong> de diferencia, sobre $30.000.000 de ventas, son <strong>$990.000 en el mes</strong> que se fueron sin quedar registrados en ningún plato. Las causas habituales:</p>
@@ -207,7 +265,7 @@ function gtag() { dataLayer.push(arguments); }
       <li>Fichas de costo con precios desactualizados.</li>
     </ul>
 
-    <h2>Cómo calcular el food cost en Excel</h2>
+    <h2 id="como-calcular-el-food-cost-en-excel">Cómo calcular el food cost en Excel</h2>
     <p><strong>Por plato</strong>, una fila por plato:</p>
     <div class="tabla">
       <table>
@@ -223,7 +281,7 @@ function gtag() { dataLayer.push(arguments); }
     </div>
     <p><strong>Por mes</strong>: inventario inicial en B2, compras en B3, inventario final en B4, consumo en B5 con <code>=B2+B3-B4</code>, ventas netas en B6 y food cost real en B7 con <code>=B5/B6</code>. Si armás una columna por mes, ves la evolución de un vistazo.</p>
 
-    <h2>¿Qué porcentaje de food cost es "bueno"?</h2>
+    <h2 id="que-porcentaje-de-food-cost-es-bueno">¿Qué porcentaje de food cost es "bueno"?</h2>
     <p>En el rubro se suele tomar como referencia un food cost de entre <strong>25 % y 35 %</strong>. Pero es una referencia, no una regla: depende del tipo de negocio, de la carta y de cuánto pesan los otros costos. Una cafetería, una parrilla y una pizzería tienen estructuras muy distintas.</p>
     <p>Más útil que compararte con un número general es:</p>
     <ul>
@@ -236,7 +294,7 @@ function gtag() { dataLayer.push(arguments); }
     <p class="formula">Food cost objetivo = 100 % − estructura % − costos financieros % − impuestos % − lo que querés ganar %</p>
     <p>Con el restaurante de la guía de estado de resultados, queriendo ganar 15 %: 100 % − 47,7 % − 1,2 % − 3,7 % − 15 % = <strong>32,4 %</strong>. Si vendés más, los costos fijos pesan menos y ese número se afloja; si vendés menos, se achica.</p>
 
-    <h2>Cómo usar el food cost en tu negocio</h2>
+    <h2 id="como-usar-el-food-cost-en-tu-negocio">Cómo usar el food cost en tu negocio</h2>
     <ol>
       <li><strong>Revisá las fichas</strong> de los platos que más se venden con los precios actuales.</li>
       <li><strong>Compará teórico contra real</strong>: si la diferencia es grande, el problema está en la cocina o el depósito, no en la carta.</li>
@@ -250,7 +308,7 @@ function gtag() { dataLayer.push(arguments); }
       <li>Durante el mes, anotá lo que se tira y la comida del personal.</li>
       <li>Si el real supera al teórico por más de 1 o 2 puntos, revisá primero los 5 insumos que más pesan.</li>
     </ol>
-    <h2>Preguntas frecuentes</h2>
+    <h2 id="preguntas-frecuentes">Preguntas frecuentes</h2>
     <h3>¿Para qué sirve el food cost?</h3>
     <p>Para saber qué parte de lo que vendés se va en materia prima, fijar precios que dejen margen y detectar a tiempo cuándo suben los costos, las porciones o las mermas.</p>
     <h3>¿Cuál es la fórmula del food cost?</h3>
@@ -262,13 +320,16 @@ function gtag() { dataLayer.push(arguments); }
     <h3>¿El food cost se calcula con o sin IVA?</h3>
     <p>Sin IVA si sos responsable inscripto, porque el IVA no es plata del negocio. Si sos monotributista no discriminás IVA: usá el precio cobrado y consultá con tu contador cómo impactan tus impuestos.</p>
 
-  </article>
-  <h2>Seguí leyendo</h2>
-  <ul class="lista-guias">
-    <li><a href="/guias/costo-de-un-plato">Cómo calcular el costo de un plato: fórmula, ejemplo y ficha de costo</a><p>Qué es el costo de un plato, la fórmula con la merma incluida, un ejemplo completo en pesos y cómo armar la ficha de costo en Excel.</p></li>
-    <li><a href="/guias/precio-de-venta-de-un-plato">Cómo calcular el precio de venta de un plato: fórmula y ejemplo</a><p>La fórmula para poner el precio de un plato a partir de su costo, con ejemplos en pesos: food cost objetivo, margen de contribución, IVA, Excel y delivery.</p></li>
-    <li><a href="/guias/estado-de-resultados">Estado de resultados: qué es, estructura, modelo y ejemplo</a><p>Qué es un estado de resultados, su estructura paso a paso, un modelo para un negocio en Argentina, un ejemplo completo en pesos y cómo armarlo en Excel.</p></li>
-  </ul>
+      </article>
+      <aside class="caja-autor"><img src="/foto-manuel-cutout.webp" alt="Manuel Alfano" width="72" height="72" loading="lazy"><div><strong>Manuel Alfano</strong><p>Fundador de Orden Financiero. Más de 12 años en la gastronomía con negocio propio; hoy trabaja mano a mano con dueños de negocios para ordenar sus números.</p></div></aside>
+      <section class="seguir"><h2>Seguí leyendo</h2><ul class="tarjetas">
+      <li style="--bloque:var(--of-azul);--bloque-texto:var(--w);--acento:var(--of-azul)" data-claves="El costo de un plato es lo que cuesta la materia prima de una porción, con la merma incluida. Costo real por kilo = precio de compra ÷ rendimiento; después se multiplica por la cantidad de la porción. Actualizá la ficha cuando aumenta un insumo importante: tres o cuatro explican casi todo el costo. ¿Qué es la ficha de costo de un plato? ¿Cómo se calcula la merma? ¿Cómo saco el costo de una receta que rinde varias porciones? ¿Qué porcentaje del precio debería ser el costo de un plato? ¿Cada cuánto hay que actualizar el costo de un plato? Cómo calcular el costo de un plato: fórmula, ejemplo y ficha de costo Costos y precios"><a href="/guias/costo-de-un-plato"><span class="paso-eje">Costos y precios</span><strong>Costo de un plato</strong><span class="desc">Qué es el costo de un plato, la fórmula con la merma incluida, un ejemplo completo en pesos y cómo armar la ficha de costo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>6 min</span></span></a></li>
+      <li style="--bloque:var(--of-azul);--bloque-texto:var(--w);--acento:var(--of-azul)" data-claves="Precio sin IVA = costo del plato ÷ food cost objetivo; si sos responsable inscripto, sumá el IVA. Mirá también los pesos que deja cada plato, no solo el porcentaje. En apps de delivery la comisión va dentro del precio, o el plato te deja menos que en el salón. ¿Cuánto cobrar por un plato de comida? ¿Cuál es la fórmula del precio de venta de un plato? ¿Cómo calculo el precio con IVA y cómo le saco el IVA? ¿Qué es el multiplicador de un plato? Cómo calcular el precio de venta de un plato: fórmula y ejemplo Costos y precios"><a href="/guias/precio-de-venta-de-un-plato"><span class="paso-eje">Costos y precios</span><strong>Precio de venta de un plato</strong><span class="desc">La fórmula para poner el precio de un plato a partir de su costo, con ejemplos en pesos: food cost objetivo, margen de contribución, IVA, Excel y delivery.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>6 min</span></span></a></li>
+      <li style="--bloque:var(--of-verde);--bloque-texto:var(--w);--acento:var(--of-verde)" data-claves="Muestra si el negocio ganó o perdió en el mes: ventas netas − CMV − estructura − costos financieros − impuestos. Los porcentajes van sobre ventas netas, y cada mes se suma una parte del aguinaldo. No es lo mismo que la caja: un negocio puede ganar plata y quedarse sin efectivo. ¿Qué es un estado de resultados? ¿Cuál es la estructura del estado de resultados? ¿Qué diferencia hay entre el estado de resultados y el flujo de caja? ¿El estado de resultados y el balance son lo mismo? ¿Cada cuánto conviene hacer el estado de resultados? Estado de resultados: qué es, estructura, modelo y ejemplo Resultado económico"><a href="/guias/estado-de-resultados"><span class="paso-eje">Resultado económico</span><strong>Estado de resultados</strong><span class="desc">Qué es un estado de resultados, su estructura paso a paso, un modelo para un negocio en Argentina, un ejemplo completo en pesos y cómo armarlo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>7 min</span></span></a></li>
+      </ul></section>
+    </div>
+    <nav class="indice-guia" aria-label="En esta guía"><p>En esta guía</p><ol><li><a href="#que-es-el-food-cost">Qué es el food cost</a></li><li><a href="#la-formula-del-food-cost">La fórmula del food cost</a></li><li><a href="#ejemplo-el-food-cost-de-un-plato">Ejemplo: el food cost de un plato</a></li><li><a href="#ejemplo-el-food-cost-real-del-mes">Ejemplo: el food cost real del mes</a></li><li><a href="#food-cost-teorico-contra-real">Food cost teórico contra real</a></li><li><a href="#como-calcular-el-food-cost-en-excel">Cómo calcular el food cost en Excel</a></li><li><a href="#que-porcentaje-de-food-cost-es-bueno">¿Qué porcentaje de food cost es &quot;bueno&quot;?</a></li><li><a href="#como-usar-el-food-cost-en-tu-negocio">Cómo usar el food cost en tu negocio</a></li><li><a href="#preguntas-frecuentes">Preguntas frecuentes</a></li></ol></nav>
+  </div>
   <aside class="cta">
     <p class="cta-t">¿Por dónde se le escapa la plata a tu negocio?</p>
     <p>Hacé el diagnóstico gratis: 12 preguntas, 3 minutos y el puntaje de los cuatro eslabones al instante.</p>

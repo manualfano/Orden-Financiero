@@ -119,6 +119,56 @@ CSS = TOKENS + """
   .meta span { font-size: var(--fs-meta); font-weight: 600; color: var(--tinta-3); background: var(--lienzo); border-radius: 999px; padding: 2px 10px; }
   @media (max-width: 640px) { .tema-num { display: none; } .tema-cab { align-items: flex-start; } }
   @media (prefers-reduced-motion: reduce) { .pasos a:hover, .tarjetas a:hover { transform: none; } }
+  /* Índice: cifras, buscador y tarjetas cortas */
+  .cifras { color: rgba(255,255,255,0.9); font-size: var(--fs-sm); margin-top: var(--s-2); }
+  .cifras strong { color: var(--w); }
+  .buscador { margin-top: var(--s-5); max-width: 560px; }
+  .buscador label { display: block; font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-soft); margin-bottom: var(--s-2); }
+  .buscador input { width: 100%; min-height: 48px; padding: 0 var(--s-4); border: 0; border-radius: var(--r); font: inherit; font-size: var(--fs-base); color: var(--tinta); background: var(--w); }
+  .buscador input:focus-visible { outline: 3px solid var(--accent-soft); outline-offset: 2px; }
+  .sin-resultados { margin-top: var(--s-6); padding: var(--s-5); background: var(--w); border: 1px solid var(--borde); border-radius: var(--r-lg); }
+  .tema .tarjetas .paso-eje { display: none; }
+  .meta { flex-wrap: nowrap; overflow: hidden; }
+  /* Página de guía */
+  main.guia { max-width: 1080px; }
+  .guia-cab { position: relative; overflow: hidden; background: var(--bloque); color: var(--bloque-texto); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); margin-bottom: var(--s-6); }
+  .guia-cab > :not(.circulos) { position: relative; }
+  .guia-cab .migas, .guia-cab .migas a, .guia-cab .eyebrow, .guia-cab h1, .guia-cab .bajada, .guia-cab .autor, .guia-cab .autor a { color: inherit; }
+  .guia-cab h1 { max-width: 780px; }
+  .guia-cab .bajada { max-width: 700px; }
+  .guia-cab .autor { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
+  .guia-cab .meta { margin-top: var(--s-3); }
+  .guia-cab .meta span { background: transparent; color: inherit; border: 1px solid currentColor; }
+  .guia-cuerpo { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: var(--s-7); align-items: start; }
+  .guia-principal { min-width: 0; max-width: 720px; }
+  .indice-guia { position: sticky; top: var(--s-5); border-left: 3px solid var(--bloque); padding-left: var(--s-4); }
+  .indice-guia p, .resumen p { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: var(--s-2); }
+  .indice-guia p { color: var(--tinta-3); }
+  .indice-guia ol, .indice-movil ol { list-style: none; padding: 0; }
+  .indice-guia li { margin-bottom: 6px; }
+  .indice-guia a, .indice-movil a { color: var(--tinta-2); font-size: var(--fs-sm); line-height: 1.4; text-decoration: none; display: block; }
+  .indice-guia a:hover, .indice-movil a:hover { color: var(--acento); }
+  .indice-movil { display: none; }
+  .resumen { background: var(--lienzo); border-left: 4px solid var(--bloque); border-radius: var(--r); padding: var(--s-4) var(--s-5); margin-bottom: var(--s-6); }
+  .resumen p { color: var(--acento); }
+  .resumen ul { padding-left: var(--s-5); }
+  .resumen li { color: var(--tinta); margin-bottom: 6px; }
+  main.guia .formula { border-left-color: var(--bloque); }
+  article h2 { scroll-margin-top: var(--s-5); }
+  .caja-autor { display: flex; gap: var(--s-4); align-items: center; border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-5); margin-top: var(--s-7); }
+  .caja-autor img { width: 72px; height: 72px; border-radius: 999px; object-fit: cover; object-position: top; background: var(--lienzo); flex-shrink: 0; }
+  .caja-autor strong { color: var(--navy); display: block; }
+  .caja-autor p { font-size: var(--fs-sm); margin-top: 4px; }
+  .seguir { margin-top: var(--s-7); }
+  .seguir h2 { margin: 0 0 var(--s-3); }
+  @media (max-width: 900px) {
+    .guia-cuerpo { grid-template-columns: 1fr; }
+    .indice-guia { display: none; }
+    .indice-movil { display: block; border: 1px solid var(--borde); border-radius: var(--r-lg); padding: 0 var(--s-4); margin-bottom: var(--s-5); }
+    .indice-movil summary { min-height: 48px; display: flex; align-items: center; font-weight: 600; color: var(--navy); cursor: pointer; }
+    .indice-movil ol { padding-bottom: var(--s-3); }
+    .indice-movil li { padding: 6px 0; border-top: 1px solid var(--borde); }
+  }
   footer { background: var(--navy-900); padding: var(--s-6) var(--s-5); font-size: var(--fs-sm); }
   .foot-in { max-width: 960px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5); justify-content: space-between; color: rgba(255,255,255,0.75); }
   .foot-in nav { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
@@ -167,6 +217,40 @@ def incluye(g):
     if 'Excel</h2>' in c:
         out.append('Excel')
     return out
+
+
+def slug_texto(t):
+    import unicodedata
+    t = unicodedata.normalize('NFD', t)
+    t = ''.join(c for c in t if unicodedata.category(c) != 'Mn').lower()
+    return re.sub(r'[^a-z0-9]+', '-', t).strip('-')[:60]
+
+
+def con_ids(cuerpo):
+    """Pone id a cada h2 y devuelve la lista para el índice de la guía."""
+    vistos, toc = set(), []
+
+    def poner(m):
+        texto = re.sub(r'<[^>]+>', '', m.group(1))
+        base = slug_texto(texto) or 'seccion'
+        ident, n = base, 2
+        while ident in vistos:
+            ident, n = f'{base}-{n}', n + 1
+        vistos.add(ident)
+        toc.append((ident, texto))
+        return f'<h2 id="{ident}">{m.group(1)}</h2>'
+
+    return re.sub(r'<h2>(.*?)</h2>', poner, cuerpo), toc
+
+
+def tarjeta(g):
+    etiquetas = ''.join(f'<span>{x}</span>' for x in incluye(g))
+    claves = ' '.join(g.get('resumen', []) + [x['q'] for x in g.get('faq', [])] + [g['h1'], g['eje']])
+    return (f'      <li style="{estilo_eslabon(g["eje"])}" data-claves="{html.escape(claves)}">'
+            f'<a href="/guias/{g["slug"]}"><span class="paso-eje">{html.escape(g["eje"])}</span>'
+            f'<strong>{html.escape(g["miga"])}</strong>'
+            f'<span class="desc">{html.escape(g["description"])}</span>'
+            f'<span class="meta">{etiquetas}<span>{minutos(g)} min</span></span></a></li>\n')
 
 
 def fecha_larga(iso):
@@ -277,28 +361,46 @@ def main():
     org = {"@id": BASE + "/#organization"}
     autor = {"@type": "Person", "@id": BASE + "/#manuel", "name": "Manuel Alfano", "url": BASE + "/#manuel"}
 
+    por_slug = {g['slug']: g for g in guias}
     for g in guias:
         path = '/guias/' + g['slug']
         items = [("Inicio", "/"), ("Guías", "/guias"), (g['miga'], None)]
-        rel = [x for x in guias if x['slug'] in g.get('relacionadas', [])]
+        rel = [por_slug[x] for x in g.get('relacionadas', []) if x in por_slug]
         rel_html = ''
         if rel:
-            rel_html = '\n  <h2>Seguí leyendo</h2>\n  <ul class="lista-guias">\n' + ''.join(
-                f'    <li><a href="/guias/{x["slug"]}">{html.escape(x["h1"])}</a><p>{html.escape(x["description"])}</p></li>\n'
-                for x in rel) + '  </ul>'
+            rel_html = ('\n      <section class="seguir"><h2>Seguí leyendo</h2><ul class="tarjetas">\n'
+                        + ''.join(tarjeta(x) for x in rel) + '      </ul></section>')
         faq = g.get('faq', [])
         faq_html = ''
         if faq:
             faq_html = '\n    <h2>Preguntas frecuentes</h2>\n' + ''.join(
                 f'    <h3>{html.escape(x["q"])}</h3>\n    <p>{html.escape(x["a"])}</p>\n' for x in faq)
-        cuerpo = f"""{migas(items)}
-  <p class="eyebrow" style="color:var(--{ESLABONES[g['eje']][3]})">Guía · {html.escape(g['eje'])}</p>
-  <h1>{html.escape(g['h1'])}</h1>
-  <p class="bajada">{html.escape(g['description'])}</p>
-  <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · Actualizada el {fecha_larga(g['actualizada'])}</p>
-  <article>
-{g['cuerpo']}{faq_html}
-  </article>{rel_html}"""
+        cuerpo_art, toc = con_ids(g['cuerpo'] + faq_html)
+        toc_html = ''.join(f'<li><a href="#{i}">{html.escape(t)}</a></li>' for i, t in toc)
+        resumen = ''.join(f'<li>{html.escape(x)}</li>' for x in g.get('resumen', []))
+        assert resumen, f"{g['slug']}: falta el resumen"
+        etiquetas = ''.join(f'<span>{x}</span>' for x in incluye(g))
+        estilo = estilo_eslabon(g['eje'])
+        cuerpo = f"""  <section class="guia-cab" style="{estilo}">
+    {CIRCULOS}
+{migas(items)}
+    <p class="eyebrow">Guía · {html.escape(g['eje'])}</p>
+    <h1>{html.escape(g['h1'])}</h1>
+    <p class="bajada">{html.escape(g['description'])}</p>
+    <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · Actualizada el {fecha_larga(g['actualizada'])}</p>
+    <div class="meta">{etiquetas}<span>{minutos(g)} min de lectura</span></div>
+  </section>
+  <div class="guia-cuerpo" style="{estilo}">
+    <div class="guia-principal">
+      <aside class="resumen"><p>Lo más importante</p><ul>{resumen}</ul></aside>
+      <details class="indice-movil"><summary>En esta guía</summary><ol>{toc_html}</ol></details>
+      <article>
+{cuerpo_art}
+      </article>
+      <aside class="caja-autor"><img src="/foto-manuel-cutout.webp" alt="Manuel Alfano" width="72" height="72" loading="lazy"><div><strong>Manuel Alfano</strong><p>Fundador de Orden Financiero. Más de 12 años en la gastronomía con negocio propio; hoy trabaja mano a mano con dueños de negocios para ordenar sus números.</p></div></aside>{rel_html}
+    </div>
+    <nav class="indice-guia" aria-label="En esta guía"><p>En esta guía</p><ol>{toc_html}</ol></nav>
+  </div>"""
         ld = {"@context": "https://schema.org", "@graph": [
             {"@type": "Article", "@id": BASE + path + "#article", "headline": g['h1'], "description": g['description'],
              "image": BASE + "/og-image.png", "inLanguage": "es-AR", "datePublished": g['publicada'],
@@ -310,7 +412,7 @@ def main():
                 {"@type": "Question", "name": x['q'], "acceptedAnswer": {"@type": "Answer", "text": x['a']}} for x in faq]})
         (OUT / f"{g['slug']}.html").write_text(pagina(
             title=g['title'] + ' · Orden Financiero', description=g['description'], path=path,
-            og_type='article', ld=ld, cuerpo=cuerpo, cta_origen='guia-' + g['slug'],
+            og_type='article', ld=ld, cuerpo=cuerpo, cta_origen='guia-' + g['slug'], main_clase='guia',
             cta_general=g.get('cta_general', False)), encoding='utf-8', newline='\n')
 
     # Indice /guias
@@ -342,12 +444,6 @@ def main():
         for slug in slugs:
             assert por_slug[slug]['eje'] == nombre, f'{slug}: su eje no coincide con la sección {nombre}'
     visibles = [t for t in temas if t[2]]
-
-    def tarjeta(g):
-        etiquetas = ''.join(f'<span>{x}</span>' for x in incluye(g))
-        return (f'      <li><a href="/guias/{g["slug"]}"><strong>{html.escape(g["h1"])}</strong>'
-                f'<span class="desc">{html.escape(g["description"])}</span>'
-                f'<span class="meta">{etiquetas}<span>{minutos(g)} min de lectura</span></span></a></li>\n')
 
     botones = ''.join(
         f'<a href="#{ESLABONES[n][0]}" style="{estilo_eslabon(n)}">{svg_icono(n)}{html.escape(n)}</a>'
@@ -382,10 +478,35 @@ def main():
     <p class="eyebrow">Guías</p>
     <h1>Guías de finanzas para <em>dueños de negocio</em></h1>
     <p class="bajada">{desc}</p>
+    <p class="cifras"><strong>{len(guias)} guías</strong> · fórmula, ejemplo en pesos y cómo armarlo en Excel en cada una</p>
     <p class="autor">Escritas por <a href="/#manuel">Manuel Alfano</a>, con más de 12 años en la gastronomía con negocio propio.</p>
     <nav class="temas" aria-label="Temas de las guías">{botones}</nav>
+    <div class="buscador"><label for="buscar-guia">Buscá una guía</label><input id="buscar-guia" type="search" placeholder="Ej.: precio, merma, IVA, punto de equilibrio" autocomplete="off"></div>
   </section>
-{secciones}"""
+  <p class="sin-resultados" id="sin-resultados" hidden>No encontramos guías con esa palabra. Probá con otra, o <a href="/?origen=guias-busqueda#diagnostico">hacé el diagnóstico</a> y te decimos por dónde empezar.</p>
+{secciones}  <script>
+  (function () {{
+    var campo = document.getElementById('buscar-guia');
+    if (!campo) return;
+    var norm = function (t) {{ return t.toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g, ''); }};
+    var tarjetas = [].slice.call(document.querySelectorAll('.tema .tarjetas li'));
+    tarjetas.forEach(function (li) {{ li._texto = norm(li.textContent + ' ' + (li.getAttribute('data-claves') || '')); }});
+    var temas = [].slice.call(document.querySelectorAll('.tema'));
+    var empeza = document.querySelector('.empeza');
+    var nada = document.getElementById('sin-resultados');
+    var espera;
+    campo.addEventListener('input', function () {{
+      var q = norm(campo.value.trim());
+      var total = 0;
+      tarjetas.forEach(function (li) {{ var ok = !q || li._texto.indexOf(q) > -1; li.hidden = !ok; if (ok) total++; }});
+      temas.forEach(function (t) {{ t.hidden = !t.querySelector('.tarjetas li:not([hidden])'); }});
+      if (empeza) empeza.hidden = !!q;
+      nada.hidden = !(q && total === 0);
+      clearTimeout(espera);
+      if (q && window.gtag) espera = setTimeout(function () {{ gtag('event', 'guias_busqueda', {{ termino: q.slice(0, 40), resultados: total }}); }}, 900);
+    }});
+  }})();
+  </script>"""
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "CollectionPage", "@id": BASE + "/guias#coleccion", "url": BASE + "/guias",
          "name": "Guías de finanzas para dueños de negocio", "description": desc, "inLanguage": "es-AR",

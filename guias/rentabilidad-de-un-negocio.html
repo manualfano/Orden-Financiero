@@ -136,6 +136,56 @@ function gtag() { dataLayer.push(arguments); }
   .meta span { font-size: var(--fs-meta); font-weight: 600; color: var(--tinta-3); background: var(--lienzo); border-radius: 999px; padding: 2px 10px; }
   @media (max-width: 640px) { .tema-num { display: none; } .tema-cab { align-items: flex-start; } }
   @media (prefers-reduced-motion: reduce) { .pasos a:hover, .tarjetas a:hover { transform: none; } }
+  /* Índice: cifras, buscador y tarjetas cortas */
+  .cifras { color: rgba(255,255,255,0.9); font-size: var(--fs-sm); margin-top: var(--s-2); }
+  .cifras strong { color: var(--w); }
+  .buscador { margin-top: var(--s-5); max-width: 560px; }
+  .buscador label { display: block; font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-soft); margin-bottom: var(--s-2); }
+  .buscador input { width: 100%; min-height: 48px; padding: 0 var(--s-4); border: 0; border-radius: var(--r); font: inherit; font-size: var(--fs-base); color: var(--tinta); background: var(--w); }
+  .buscador input:focus-visible { outline: 3px solid var(--accent-soft); outline-offset: 2px; }
+  .sin-resultados { margin-top: var(--s-6); padding: var(--s-5); background: var(--w); border: 1px solid var(--borde); border-radius: var(--r-lg); }
+  .tema .tarjetas .paso-eje { display: none; }
+  .meta { flex-wrap: nowrap; overflow: hidden; }
+  /* Página de guía */
+  main.guia { max-width: 1080px; }
+  .guia-cab { position: relative; overflow: hidden; background: var(--bloque); color: var(--bloque-texto); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); margin-bottom: var(--s-6); }
+  .guia-cab > :not(.circulos) { position: relative; }
+  .guia-cab .migas, .guia-cab .migas a, .guia-cab .eyebrow, .guia-cab h1, .guia-cab .bajada, .guia-cab .autor, .guia-cab .autor a { color: inherit; }
+  .guia-cab h1 { max-width: 780px; }
+  .guia-cab .bajada { max-width: 700px; }
+  .guia-cab .autor { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
+  .guia-cab .meta { margin-top: var(--s-3); }
+  .guia-cab .meta span { background: transparent; color: inherit; border: 1px solid currentColor; }
+  .guia-cuerpo { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: var(--s-7); align-items: start; }
+  .guia-principal { min-width: 0; max-width: 720px; }
+  .indice-guia { position: sticky; top: var(--s-5); border-left: 3px solid var(--bloque); padding-left: var(--s-4); }
+  .indice-guia p, .resumen p { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: var(--s-2); }
+  .indice-guia p { color: var(--tinta-3); }
+  .indice-guia ol, .indice-movil ol { list-style: none; padding: 0; }
+  .indice-guia li { margin-bottom: 6px; }
+  .indice-guia a, .indice-movil a { color: var(--tinta-2); font-size: var(--fs-sm); line-height: 1.4; text-decoration: none; display: block; }
+  .indice-guia a:hover, .indice-movil a:hover { color: var(--acento); }
+  .indice-movil { display: none; }
+  .resumen { background: var(--lienzo); border-left: 4px solid var(--bloque); border-radius: var(--r); padding: var(--s-4) var(--s-5); margin-bottom: var(--s-6); }
+  .resumen p { color: var(--acento); }
+  .resumen ul { padding-left: var(--s-5); }
+  .resumen li { color: var(--tinta); margin-bottom: 6px; }
+  main.guia .formula { border-left-color: var(--bloque); }
+  article h2 { scroll-margin-top: var(--s-5); }
+  .caja-autor { display: flex; gap: var(--s-4); align-items: center; border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-5); margin-top: var(--s-7); }
+  .caja-autor img { width: 72px; height: 72px; border-radius: 999px; object-fit: cover; object-position: top; background: var(--lienzo); flex-shrink: 0; }
+  .caja-autor strong { color: var(--navy); display: block; }
+  .caja-autor p { font-size: var(--fs-sm); margin-top: 4px; }
+  .seguir { margin-top: var(--s-7); }
+  .seguir h2 { margin: 0 0 var(--s-3); }
+  @media (max-width: 900px) {
+    .guia-cuerpo { grid-template-columns: 1fr; }
+    .indice-guia { display: none; }
+    .indice-movil { display: block; border: 1px solid var(--borde); border-radius: var(--r-lg); padding: 0 var(--s-4); margin-bottom: var(--s-5); }
+    .indice-movil summary { min-height: 48px; display: flex; align-items: center; font-weight: 600; color: var(--navy); cursor: pointer; }
+    .indice-movil ol { padding-bottom: var(--s-3); }
+    .indice-movil li { padding: 6px 0; border-top: 1px solid var(--borde); }
+  }
   footer { background: var(--navy-900); padding: var(--s-6) var(--s-5); font-size: var(--fs-sm); }
   .foot-in { max-width: 960px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5); justify-content: space-between; color: rgba(255,255,255,0.75); }
   .foot-in nav { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
@@ -154,23 +204,31 @@ function gtag() { dataLayer.push(arguments); }
     </nav>
   </div>
 </header>
-<main>
+<main class="guia">
+  <section class="guia-cab" style="--bloque:var(--of-verde);--bloque-texto:var(--w);--acento:var(--of-verde)">
+    <svg class="circulos" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="66"/><circle cx="100" cy="100" r="36"/></svg>
   <nav class="migas" aria-label="Ruta"><a href="/">Inicio</a> › <a href="/guias">Guías</a> › <span>Rentabilidad de un negocio</span></nav>
-  <p class="eyebrow" style="color:var(--of-verde)">Guía · Resultado económico</p>
-  <h1>Rentabilidad de un negocio: qué es, fórmula y cómo calcularla</h1>
-  <p class="bajada">Qué es la rentabilidad de un negocio, la fórmula sobre ventas y sobre lo invertido, en cuánto se recupera la inversión, un ejemplo en pesos y cómo calcularla en Excel.</p>
-  <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · Actualizada el 14 de septiembre de 2026</p>
-  <article>
+    <p class="eyebrow">Guía · Resultado económico</p>
+    <h1>Rentabilidad de un negocio: qué es, fórmula y cómo calcularla</h1>
+    <p class="bajada">Qué es la rentabilidad de un negocio, la fórmula sobre ventas y sobre lo invertido, en cuánto se recupera la inversión, un ejemplo en pesos y cómo calcularla en Excel.</p>
+    <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · Actualizada el 14 de septiembre de 2026</p>
+    <div class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>4 min de lectura</span></div>
+  </section>
+  <div class="guia-cuerpo" style="--bloque:var(--of-verde);--bloque-texto:var(--w);--acento:var(--of-verde)">
+    <div class="guia-principal">
+      <aside class="resumen"><p>Lo más importante</p><ul><li>Rentabilidad sobre ventas = resultado neto ÷ ventas netas.</li><li>Sobre la inversión = resultado neto del año ÷ plata invertida, a valores de hoy.</li><li>Incluí tu sueldo antes de calcularla; si no, sale inflada.</li></ul></aside>
+      <details class="indice-movil"><summary>En esta guía</summary><ol><li><a href="#que-es-la-rentabilidad-de-un-negocio">Qué es la rentabilidad de un negocio</a></li><li><a href="#la-formula-de-la-rentabilidad">La fórmula de la rentabilidad</a></li><li><a href="#ejemplo-la-rentabilidad-de-un-restaurante">Ejemplo: la rentabilidad de un restaurante</a></li><li><a href="#la-rentabilidad-de-un-producto">La rentabilidad de un producto</a></li><li><a href="#como-calcular-la-rentabilidad-en-excel">Cómo calcular la rentabilidad en Excel</a></li><li><a href="#como-usar-la-rentabilidad-en-tu-negocio">Cómo usar la rentabilidad en tu negocio</a></li><li><a href="#errores-comunes">Errores comunes</a></li><li><a href="#preguntas-frecuentes">Preguntas frecuentes</a></li></ol></details>
+      <article>
 <p>"Facturo mucho" no es lo mismo que "gano mucho". Y ganar mucho tampoco dice si valió la pena poner la plata en ese negocio. Para eso está la rentabilidad.</p>
 
-    <h2>Qué es la rentabilidad de un negocio</h2>
+    <h2 id="que-es-la-rentabilidad-de-un-negocio">Qué es la rentabilidad de un negocio</h2>
     <p>La <strong>rentabilidad</strong> es cuánto gana el negocio comparado con algo. Se mira de dos formas:</p>
     <ul>
       <li><strong>Sobre las ventas:</strong> de cada $100 que vendés, cuántos te quedan de ganancia.</li>
       <li><strong>Sobre la inversión:</strong> cuánto rinde por año la plata que pusiste para armar el negocio.</li>
     </ul>
 
-    <h2>La fórmula de la rentabilidad</h2>
+    <h2 id="la-formula-de-la-rentabilidad">La fórmula de la rentabilidad</h2>
     <p class="formula">Rentabilidad sobre ventas = resultado neto ÷ ventas netas × 100<br>Rentabilidad sobre la inversión = resultado neto del año ÷ plata invertida × 100<br>Meses para recuperar la inversión = plata invertida ÷ resultado neto del mes</p>
     <ul>
       <li><strong>Resultado neto:</strong> lo que queda al final del <a href="/guias/estado-de-resultados">estado de resultados</a>, después de mercadería, estructura, costos financieros e impuestos.</li>
@@ -178,7 +236,7 @@ function gtag() { dataLayer.push(arguments); }
       <li><strong>Plata invertida:</strong> obra, equipamiento, llave o fondo de comercio y la plata inicial para arrancar. Con inflación, calculala a valores de hoy: lo que te costaría armarlo ahora.</li>
     </ul>
 
-    <h2>Ejemplo: la rentabilidad de un restaurante</h2>
+    <h2 id="ejemplo-la-rentabilidad-de-un-restaurante">Ejemplo: la rentabilidad de un restaurante</h2>
     <p>Usamos el restaurante de la guía de estado de resultados, que para armarse necesitó $120.000.000 a valores de hoy:</p>
     <div class="tabla">
       <table>
@@ -199,10 +257,10 @@ function gtag() { dataLayer.push(arguments); }
     <h3>El sueldo del dueño</h3>
     <p>Si trabajás en el negocio, tu sueldo tiene que estar en los gastos antes de calcular la rentabilidad. Si no, el número mezcla dos cosas: lo que ganás por tu trabajo y lo que rinde la plata que pusiste.</p>
 
-    <h2>La rentabilidad de un producto</h2>
+    <h2 id="la-rentabilidad-de-un-producto">La rentabilidad de un producto</h2>
     <p>Para saber qué producto conviene más, no se usa la rentabilidad del negocio sino lo que deja cada uno: el <strong>margen de contribución</strong> (precio sin IVA menos sus costos variables) multiplicado por cuántos vendés. Está explicado en <a href="/guias/margen-de-ganancia">margen de ganancia</a> y en <a href="/guias/precio-de-venta-de-un-plato">precio de venta de un plato</a>.</p>
 
-    <h2>Cómo calcular la rentabilidad en Excel</h2>
+    <h2 id="como-calcular-la-rentabilidad-en-excel">Cómo calcular la rentabilidad en Excel</h2>
     <div class="tabla">
       <table>
         <thead><tr><th>Celda</th><th>Qué va</th><th>Fórmula</th></tr></thead>
@@ -218,7 +276,7 @@ function gtag() { dataLayer.push(arguments); }
     </div>
     <p>Si tus resultados cambian mucho de un mes a otro, usá el promedio de los últimos 6 o 12 meses en lugar de un solo mes.</p>
 
-    <h2>Cómo usar la rentabilidad en tu negocio</h2>
+    <h2 id="como-usar-la-rentabilidad-en-tu-negocio">Cómo usar la rentabilidad en tu negocio</h2>
     <ul>
       <li><strong>Mirá la rentabilidad sobre ventas todos los meses.</strong> Si baja, el estado de resultados te dice dónde: mercadería, personal, alquiler o comisiones.</li>
       <li><strong>Mirá la rentabilidad sobre la inversión una vez por año.</strong> Preguntate si el negocio te deja más de lo que obtendrías con esa plata en otra alternativa, además de tu sueldo.</li>
@@ -226,7 +284,7 @@ function gtag() { dataLayer.push(arguments); }
       <li><strong>No la confundas con la plata en la cuenta.</strong> Un negocio puede ser rentable y quedarse sin caja; eso se mira con el <a href="/guias/capital-de-trabajo">capital de trabajo</a>.</li>
     </ul>
 
-    <h2>Errores comunes</h2>
+    <h2 id="errores-comunes">Errores comunes</h2>
     <ul>
       <li><strong>Confundir facturación con rentabilidad:</strong> vender más no sirve si cada venta deja menos.</li>
       <li><strong>No incluir el sueldo del dueño:</strong> la rentabilidad parece mucho mejor de lo que es.</li>
@@ -234,7 +292,7 @@ function gtag() { dataLayer.push(arguments); }
       <li><strong>Usar la inversión a valores viejos:</strong> con inflación, la rentabilidad sobre la inversión sale inflada.</li>
       <li><strong>Mirar un solo mes:</strong> un mes bueno o malo no dice cómo anda el negocio.</li>
     </ul>
-    <h2>Preguntas frecuentes</h2>
+    <h2 id="preguntas-frecuentes">Preguntas frecuentes</h2>
     <h3>¿Qué es la rentabilidad de un negocio?</h3>
     <p>Es cuánto gana el negocio comparado con algo: con lo que vende (de cada $100 que vende, cuántos le quedan) o con la plata que se puso para armarlo (cuánto rinde esa plata por año).</p>
     <h3>¿Cómo se calcula la rentabilidad de un negocio?</h3>
@@ -246,13 +304,16 @@ function gtag() { dataLayer.push(arguments); }
     <h3>¿En cuánto tiempo se recupera la inversión?</h3>
     <p>Dividí la plata invertida por lo que gana el negocio por mes. Con $120.000.000 invertidos y $4.547.500 de resultado neto mensual, se recupera en unos 26 meses.</p>
 
-  </article>
-  <h2>Seguí leyendo</h2>
-  <ul class="lista-guias">
-    <li><a href="/guias/margen-de-ganancia">Margen de ganancia: qué es, cómo se calcula y en qué se diferencia del markup</a><p>Qué es el margen de ganancia, la fórmula para calcularlo de un producto y de un negocio, la diferencia con el markup, ejemplos en pesos y cómo hacerlo en Excel.</p></li>
-    <li><a href="/guias/estado-de-resultados">Estado de resultados: qué es, estructura, modelo y ejemplo</a><p>Qué es un estado de resultados, su estructura paso a paso, un modelo para un negocio en Argentina, un ejemplo completo en pesos y cómo armarlo en Excel.</p></li>
-    <li><a href="/guias/capital-de-trabajo">Capital de trabajo: qué es, cómo se calcula y cuánto necesita tu negocio</a><p>Qué es el capital de trabajo, la fórmula, qué significa que sea negativo, el ciclo de caja, ejemplos en pesos de un comercio y un restaurante y cómo calcularlo en Excel.</p></li>
-  </ul>
+      </article>
+      <aside class="caja-autor"><img src="/foto-manuel-cutout.webp" alt="Manuel Alfano" width="72" height="72" loading="lazy"><div><strong>Manuel Alfano</strong><p>Fundador de Orden Financiero. Más de 12 años en la gastronomía con negocio propio; hoy trabaja mano a mano con dueños de negocios para ordenar sus números.</p></div></aside>
+      <section class="seguir"><h2>Seguí leyendo</h2><ul class="tarjetas">
+      <li style="--bloque:var(--of-verde);--bloque-texto:var(--w);--acento:var(--of-verde)" data-claves="Muestra si el negocio ganó o perdió en el mes: ventas netas − CMV − estructura − costos financieros − impuestos. Los porcentajes van sobre ventas netas, y cada mes se suma una parte del aguinaldo. No es lo mismo que la caja: un negocio puede ganar plata y quedarse sin efectivo. ¿Qué es un estado de resultados? ¿Cuál es la estructura del estado de resultados? ¿Qué diferencia hay entre el estado de resultados y el flujo de caja? ¿El estado de resultados y el balance son lo mismo? ¿Cada cuánto conviene hacer el estado de resultados? Estado de resultados: qué es, estructura, modelo y ejemplo Resultado económico"><a href="/guias/estado-de-resultados"><span class="paso-eje">Resultado económico</span><strong>Estado de resultados</strong><span class="desc">Qué es un estado de resultados, su estructura paso a paso, un modelo para un negocio en Argentina, un ejemplo completo en pesos y cómo armarlo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>7 min</span></span></a></li>
+      <li style="--bloque:var(--of-verde);--bloque-texto:var(--w);--acento:var(--of-verde)" data-claves="Margen = (precio sin IVA − costo) ÷ precio. Markup = (precio − costo) ÷ costo. Un 40 % de margen es un 66,7 % de markup: confundirlos es perder plata en cada venta. El margen bruto no alcanza: mirá el margen neto, después de todos los gastos. ¿Qué es el margen de ganancia? ¿Cómo se calcula el margen de ganancia de un producto? ¿Margen y markup son lo mismo? ¿Margen de ganancia y rentabilidad son lo mismo? ¿Qué margen de ganancia es bueno? Margen de ganancia: qué es, cómo se calcula y en qué se diferencia del markup Resultado económico"><a href="/guias/margen-de-ganancia"><span class="paso-eje">Resultado económico</span><strong>Margen de ganancia</strong><span class="desc">Qué es el margen de ganancia, la fórmula para calcularlo de un producto y de un negocio, la diferencia con el markup, ejemplos en pesos y cómo hacerlo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>5 min</span></span></a></li>
+      <li style="--bloque:var(--of-turquesa);--bloque-texto:var(--ink);--acento:var(--ink)" data-claves="Capital de trabajo = lo que tenés en caja, por cobrar y en stock − lo que debés en el corto plazo. Mirá la liquidez sin el stock: si da menos de 1, sin vender mercadería no llegás a pagar lo que vence. Si es negativo, la plata de la cuenta no es toda tuya: una parte ya es de proveedores y sueldos. ¿Qué es el capital de trabajo? ¿Cuál es la fórmula del capital de trabajo? ¿Qué significa tener capital de trabajo negativo? ¿Qué es un crédito para capital de trabajo? ¿Capital de trabajo y ganancia son lo mismo? Capital de trabajo: qué es, cómo se calcula y cuánto necesita tu negocio Flujo de caja"><a href="/guias/capital-de-trabajo"><span class="paso-eje">Flujo de caja</span><strong>Capital de trabajo</strong><span class="desc">Qué es el capital de trabajo, la fórmula, qué significa que sea negativo, el ciclo de caja, ejemplos en pesos de un comercio y un restaurante y cómo calcularlo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>7 min</span></span></a></li>
+      </ul></section>
+    </div>
+    <nav class="indice-guia" aria-label="En esta guía"><p>En esta guía</p><ol><li><a href="#que-es-la-rentabilidad-de-un-negocio">Qué es la rentabilidad de un negocio</a></li><li><a href="#la-formula-de-la-rentabilidad">La fórmula de la rentabilidad</a></li><li><a href="#ejemplo-la-rentabilidad-de-un-restaurante">Ejemplo: la rentabilidad de un restaurante</a></li><li><a href="#la-rentabilidad-de-un-producto">La rentabilidad de un producto</a></li><li><a href="#como-calcular-la-rentabilidad-en-excel">Cómo calcular la rentabilidad en Excel</a></li><li><a href="#como-usar-la-rentabilidad-en-tu-negocio">Cómo usar la rentabilidad en tu negocio</a></li><li><a href="#errores-comunes">Errores comunes</a></li><li><a href="#preguntas-frecuentes">Preguntas frecuentes</a></li></ol></nav>
+  </div>
   <aside class="cta">
     <p class="cta-t">¿Tenés un negocio gastronómico?</p>
     <p>En 3 minutos sabés por dónde se le escapa la plata: 12 preguntas gratis y el puntaje de los cuatro eslabones al instante.</p>

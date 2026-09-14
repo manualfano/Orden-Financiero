@@ -136,6 +136,56 @@ function gtag() { dataLayer.push(arguments); }
   .meta span { font-size: var(--fs-meta); font-weight: 600; color: var(--tinta-3); background: var(--lienzo); border-radius: 999px; padding: 2px 10px; }
   @media (max-width: 640px) { .tema-num { display: none; } .tema-cab { align-items: flex-start; } }
   @media (prefers-reduced-motion: reduce) { .pasos a:hover, .tarjetas a:hover { transform: none; } }
+  /* Índice: cifras, buscador y tarjetas cortas */
+  .cifras { color: rgba(255,255,255,0.9); font-size: var(--fs-sm); margin-top: var(--s-2); }
+  .cifras strong { color: var(--w); }
+  .buscador { margin-top: var(--s-5); max-width: 560px; }
+  .buscador label { display: block; font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-soft); margin-bottom: var(--s-2); }
+  .buscador input { width: 100%; min-height: 48px; padding: 0 var(--s-4); border: 0; border-radius: var(--r); font: inherit; font-size: var(--fs-base); color: var(--tinta); background: var(--w); }
+  .buscador input:focus-visible { outline: 3px solid var(--accent-soft); outline-offset: 2px; }
+  .sin-resultados { margin-top: var(--s-6); padding: var(--s-5); background: var(--w); border: 1px solid var(--borde); border-radius: var(--r-lg); }
+  .tema .tarjetas .paso-eje { display: none; }
+  .meta { flex-wrap: nowrap; overflow: hidden; }
+  /* Página de guía */
+  main.guia { max-width: 1080px; }
+  .guia-cab { position: relative; overflow: hidden; background: var(--bloque); color: var(--bloque-texto); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); margin-bottom: var(--s-6); }
+  .guia-cab > :not(.circulos) { position: relative; }
+  .guia-cab .migas, .guia-cab .migas a, .guia-cab .eyebrow, .guia-cab h1, .guia-cab .bajada, .guia-cab .autor, .guia-cab .autor a { color: inherit; }
+  .guia-cab h1 { max-width: 780px; }
+  .guia-cab .bajada { max-width: 700px; }
+  .guia-cab .autor { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
+  .guia-cab .meta { margin-top: var(--s-3); }
+  .guia-cab .meta span { background: transparent; color: inherit; border: 1px solid currentColor; }
+  .guia-cuerpo { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: var(--s-7); align-items: start; }
+  .guia-principal { min-width: 0; max-width: 720px; }
+  .indice-guia { position: sticky; top: var(--s-5); border-left: 3px solid var(--bloque); padding-left: var(--s-4); }
+  .indice-guia p, .resumen p { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: var(--s-2); }
+  .indice-guia p { color: var(--tinta-3); }
+  .indice-guia ol, .indice-movil ol { list-style: none; padding: 0; }
+  .indice-guia li { margin-bottom: 6px; }
+  .indice-guia a, .indice-movil a { color: var(--tinta-2); font-size: var(--fs-sm); line-height: 1.4; text-decoration: none; display: block; }
+  .indice-guia a:hover, .indice-movil a:hover { color: var(--acento); }
+  .indice-movil { display: none; }
+  .resumen { background: var(--lienzo); border-left: 4px solid var(--bloque); border-radius: var(--r); padding: var(--s-4) var(--s-5); margin-bottom: var(--s-6); }
+  .resumen p { color: var(--acento); }
+  .resumen ul { padding-left: var(--s-5); }
+  .resumen li { color: var(--tinta); margin-bottom: 6px; }
+  main.guia .formula { border-left-color: var(--bloque); }
+  article h2 { scroll-margin-top: var(--s-5); }
+  .caja-autor { display: flex; gap: var(--s-4); align-items: center; border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-5); margin-top: var(--s-7); }
+  .caja-autor img { width: 72px; height: 72px; border-radius: 999px; object-fit: cover; object-position: top; background: var(--lienzo); flex-shrink: 0; }
+  .caja-autor strong { color: var(--navy); display: block; }
+  .caja-autor p { font-size: var(--fs-sm); margin-top: 4px; }
+  .seguir { margin-top: var(--s-7); }
+  .seguir h2 { margin: 0 0 var(--s-3); }
+  @media (max-width: 900px) {
+    .guia-cuerpo { grid-template-columns: 1fr; }
+    .indice-guia { display: none; }
+    .indice-movil { display: block; border: 1px solid var(--borde); border-radius: var(--r-lg); padding: 0 var(--s-4); margin-bottom: var(--s-5); }
+    .indice-movil summary { min-height: 48px; display: flex; align-items: center; font-weight: 600; color: var(--navy); cursor: pointer; }
+    .indice-movil ol { padding-bottom: var(--s-3); }
+    .indice-movil li { padding: 6px 0; border-top: 1px solid var(--borde); }
+  }
   footer { background: var(--navy-900); padding: var(--s-6) var(--s-5); font-size: var(--fs-sm); }
   .foot-in { max-width: 960px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5); justify-content: space-between; color: rgba(255,255,255,0.75); }
   .foot-in nav { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
@@ -154,19 +204,27 @@ function gtag() { dataLayer.push(arguments); }
     </nav>
   </div>
 </header>
-<main>
+<main class="guia">
+  <section class="guia-cab" style="--bloque:var(--of-turquesa);--bloque-texto:var(--ink);--acento:var(--ink)">
+    <svg class="circulos" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="66"/><circle cx="100" cy="100" r="36"/></svg>
   <nav class="migas" aria-label="Ruta"><a href="/">Inicio</a> › <a href="/guias">Guías</a> › <span>Capital de trabajo</span></nav>
-  <p class="eyebrow" style="color:var(--ink)">Guía · Flujo de caja</p>
-  <h1>Capital de trabajo: qué es, cómo se calcula y cuánto necesita tu negocio</h1>
-  <p class="bajada">Qué es el capital de trabajo, la fórmula, qué significa que sea negativo, el ciclo de caja, ejemplos en pesos de un comercio y un restaurante y cómo calcularlo en Excel.</p>
-  <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · Actualizada el 14 de septiembre de 2026</p>
-  <article>
+    <p class="eyebrow">Guía · Flujo de caja</p>
+    <h1>Capital de trabajo: qué es, cómo se calcula y cuánto necesita tu negocio</h1>
+    <p class="bajada">Qué es el capital de trabajo, la fórmula, qué significa que sea negativo, el ciclo de caja, ejemplos en pesos de un comercio y un restaurante y cómo calcularlo en Excel.</p>
+    <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · Actualizada el 14 de septiembre de 2026</p>
+    <div class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>7 min de lectura</span></div>
+  </section>
+  <div class="guia-cuerpo" style="--bloque:var(--of-turquesa);--bloque-texto:var(--ink);--acento:var(--ink)">
+    <div class="guia-principal">
+      <aside class="resumen"><p>Lo más importante</p><ul><li>Capital de trabajo = lo que tenés en caja, por cobrar y en stock − lo que debés en el corto plazo.</li><li>Mirá la liquidez sin el stock: si da menos de 1, sin vender mercadería no llegás a pagar lo que vence.</li><li>Si es negativo, la plata de la cuenta no es toda tuya: una parte ya es de proveedores y sueldos.</li></ul></aside>
+      <details class="indice-movil"><summary>En esta guía</summary><ol><li><a href="#que-es-el-capital-de-trabajo">Qué es el capital de trabajo</a></li><li><a href="#la-formula-del-capital-de-trabajo">La fórmula del capital de trabajo</a></li><li><a href="#ejemplo-1-el-capital-de-trabajo-de-un-comercio">Ejemplo 1: el capital de trabajo de un comercio</a></li><li><a href="#ejemplo-2-un-restaurante-con-capital-de-trabajo-negativo">Ejemplo 2: un restaurante con capital de trabajo negativo</a></li><li><a href="#el-ciclo-de-caja-cuanta-plata-necesita-tu-negocio">El ciclo de caja: cuánta plata necesita tu negocio</a></li><li><a href="#como-calcular-el-capital-de-trabajo-en-excel">Cómo calcular el capital de trabajo en Excel</a></li><li><a href="#como-mejorar-el-capital-de-trabajo-de-tu-negocio">Cómo mejorar el capital de trabajo de tu negocio</a></li><li><a href="#errores-comunes">Errores comunes</a></li><li><a href="#preguntas-frecuentes">Preguntas frecuentes</a></li></ol></details>
+      <article>
 <p>Hay negocios que venden bien, dan ganancia y aun así viven con la cuenta en rojo. Casi siempre el problema no está en el resultado, sino en el capital de trabajo: la plata queda atrapada en stock, en tarjetas por cobrar o se va en pagos que vencen antes de cobrar.</p>
 
-    <h2>Qué es el capital de trabajo</h2>
+    <h2 id="que-es-el-capital-de-trabajo">Qué es el capital de trabajo</h2>
     <p>El <strong>capital de trabajo</strong> es lo que el negocio tiene para funcionar en el día a día: lo que tiene <strong>en caja, por cobrar y en stock</strong>, menos lo que <strong>debe pagar en el corto plazo</strong>. Responde una pregunta simple: si hoy tuvieras que pagar todo lo que vence en los próximos meses, ¿te alcanza con lo que tenés?</p>
 
-    <h2>La fórmula del capital de trabajo</h2>
+    <h2 id="la-formula-del-capital-de-trabajo">La fórmula del capital de trabajo</h2>
     <p class="formula">Capital de trabajo = activo corriente − pasivo corriente</p>
     <ul>
       <li><strong>Activo corriente:</strong> lo que es plata o se convierte en plata en menos de un año. Caja y bancos, ventas con tarjeta por acreditar, cuentas de clientes y stock.</li>
@@ -174,7 +232,7 @@ function gtag() { dataLayer.push(arguments); }
     </ul>
     <p>Con los mismos números se calcula la <strong>liquidez</strong>: activo corriente ÷ pasivo corriente. Si da más de 1, lo que tenés cubre lo que debés, <strong>siempre que puedas vender el stock a tiempo</strong>. Por eso conviene mirar también la cuenta <strong>sin el stock</strong>: (activo corriente − stock) ÷ pasivo corriente. Si da menos de 1, sin vender mercadería no llegás a pagar lo que vence.</p>
 
-    <h2>Ejemplo 1: el capital de trabajo de un comercio</h2>
+    <h2 id="ejemplo-1-el-capital-de-trabajo-de-un-comercio">Ejemplo 1: el capital de trabajo de un comercio</h2>
     <div class="tabla">
       <table>
         <tbody>
@@ -194,7 +252,7 @@ function gtag() { dataLayer.push(arguments); }
       </table>
     </div>
 
-    <h2>Ejemplo 2: un restaurante con capital de trabajo negativo</h2>
+    <h2 id="ejemplo-2-un-restaurante-con-capital-de-trabajo-negativo">Ejemplo 2: un restaurante con capital de trabajo negativo</h2>
     <div class="tabla">
       <table>
         <tbody>
@@ -213,7 +271,7 @@ function gtag() { dataLayer.push(arguments); }
     <p>En gastronomía es común: se cobra en el momento o en pocos días, casi no hay stock y a los proveedores se les paga a 30 días. En los hechos, <strong>los proveedores financian el negocio</strong>. Funciona mientras las ventas se sostienen; si caen, la plata para pagar lo ya comprado no aparece.</p>
     <p>Por eso, en un negocio así, <strong>la plata que ves en la cuenta no es toda tuya</strong>: una parte ya es de proveedores, sueldos e impuestos que vencen. Antes de retirar o invertir, restá lo que vence en los próximos 30 días.</p>
 
-    <h2>El ciclo de caja: cuánta plata necesita tu negocio</h2>
+    <h2 id="el-ciclo-de-caja-cuanta-plata-necesita-tu-negocio">El ciclo de caja: cuánta plata necesita tu negocio</h2>
     <p>La plata que necesita un negocio para funcionar depende de cuántos días pasan entre que paga y que cobra:</p>
     <p class="formula">Ciclo de caja = días de stock + días de cobro − días de pago a proveedores<br>Plata necesaria para funcionar ≈ costo diario de lo que vendés × ciclo de caja</p>
     <p>Cada plazo se calcula con los saldos de fin de mes:</p>
@@ -238,7 +296,7 @@ function gtag() { dataLayer.push(arguments); }
     <p>En el restaurante del ejemplo 2 pasa lo contrario: con unos 7 días de stock, 5 de cobro y 30 de pago a proveedores, el ciclo da <strong>−18 días</strong>. Cobra antes de pagar, y por eso puede funcionar con capital de trabajo negativo.</p>
     <p>Medí estos plazos todos los meses: si los días de stock o de cobro suben, o los de pago bajan, vas a necesitar más plata aunque vendas lo mismo.</p>
 
-    <h2>Cómo calcular el capital de trabajo en Excel</h2>
+    <h2 id="como-calcular-el-capital-de-trabajo-en-excel">Cómo calcular el capital de trabajo en Excel</h2>
     <div class="tabla">
       <table>
         <thead><tr><th>Celda</th><th>Qué va</th><th>Fórmula</th></tr></thead>
@@ -259,7 +317,7 @@ function gtag() { dataLayer.push(arguments); }
       </table>
     </div>
 
-    <h2>Cómo mejorar el capital de trabajo de tu negocio</h2>
+    <h2 id="como-mejorar-el-capital-de-trabajo-de-tu-negocio">Cómo mejorar el capital de trabajo de tu negocio</h2>
     <ul>
       <li><strong>Cobrá antes:</strong> revisá plazos de acreditación de tarjetas y billeteras, y cuánto te cuesta adelantarlos.</li>
       <li><strong>Comprá mejor:</strong> para cada insumo importante, definí un stock mínimo (lo que consumís mientras llega el pedido, más un margen) y pedí cuando llegás ahí. Lo que pasa 30 días sin moverse es plata parada que se puede vencer o quedar vieja.</li>
@@ -269,14 +327,14 @@ function gtag() { dataLayer.push(arguments); }
       <li><strong>Miralo junto con el resultado:</strong> el <a href="/guias/estado-de-resultados">estado de resultados</a> dice si ganás; el capital de trabajo, si llegás a fin de mes.</li>
     </ul>
 
-    <h2>Errores comunes</h2>
+    <h2 id="errores-comunes">Errores comunes</h2>
     <ul>
       <li><strong>Confundirlo con la ganancia:</strong> un buen mes de ventas no garantiza caja.</li>
       <li><strong>Contar deudas de largo plazo enteras:</strong> en el pasivo corriente van solo las cuotas de los próximos 12 meses.</li>
       <li><strong>Valorizar stock que no se vende</strong> como si fuera plata.</li>
       <li><strong>Olvidar las tarjetas por acreditar</strong> o los sueldos y cargas devengados que todavía no se pagaron.</li>
     </ul>
-    <h2>Preguntas frecuentes</h2>
+    <h2 id="preguntas-frecuentes">Preguntas frecuentes</h2>
     <h3>¿Qué es el capital de trabajo?</h3>
     <p>Es lo que el negocio tiene para funcionar en el día a día (caja, cobros pendientes y stock) menos lo que debe pagar en el corto plazo. No es lo mismo que la plata en la cuenta: el stock y las tarjetas por acreditar todavía no son efectivo.</p>
     <h3>¿Cuál es la fórmula del capital de trabajo?</h3>
@@ -288,13 +346,16 @@ function gtag() { dataLayer.push(arguments); }
     <h3>¿Capital de trabajo y ganancia son lo mismo?</h3>
     <p>No. La ganancia sale del estado de resultados y mide si el negocio gana. El capital de trabajo mide si tiene con qué pagar lo que vence. Un negocio puede ganar plata y aun así quedarse sin capital de trabajo.</p>
 
-  </article>
-  <h2>Seguí leyendo</h2>
-  <ul class="lista-guias">
-    <li><a href="/guias/costo-de-mercaderia-vendida">Costo de mercadería vendida (CMV): qué es, fórmula y ejemplo</a><p>Qué es el costo de mercadería vendida o CMV, la fórmula con inventario inicial, compras e inventario final, ejemplos en pesos y cómo calcularlo en Excel.</p></li>
-    <li><a href="/guias/punto-de-equilibrio">Punto de equilibrio: qué es, fórmula y cómo calcularlo en tu negocio</a><p>Qué es el punto de equilibrio de una empresa, la fórmula en unidades y en pesos, el gráfico, ejemplos de un comercio y de un restaurante y cómo calcularlo en Excel.</p></li>
-    <li><a href="/guias/estado-de-resultados">Estado de resultados: qué es, estructura, modelo y ejemplo</a><p>Qué es un estado de resultados, su estructura paso a paso, un modelo para un negocio en Argentina, un ejemplo completo en pesos y cómo armarlo en Excel.</p></li>
-  </ul>
+      </article>
+      <aside class="caja-autor"><img src="/foto-manuel-cutout.webp" alt="Manuel Alfano" width="72" height="72" loading="lazy"><div><strong>Manuel Alfano</strong><p>Fundador de Orden Financiero. Más de 12 años en la gastronomía con negocio propio; hoy trabaja mano a mano con dueños de negocios para ordenar sus números.</p></div></aside>
+      <section class="seguir"><h2>Seguí leyendo</h2><ul class="tarjetas">
+      <li style="--bloque:var(--of-verde);--bloque-texto:var(--w);--acento:var(--of-verde)" data-claves="Muestra si el negocio ganó o perdió en el mes: ventas netas − CMV − estructura − costos financieros − impuestos. Los porcentajes van sobre ventas netas, y cada mes se suma una parte del aguinaldo. No es lo mismo que la caja: un negocio puede ganar plata y quedarse sin efectivo. ¿Qué es un estado de resultados? ¿Cuál es la estructura del estado de resultados? ¿Qué diferencia hay entre el estado de resultados y el flujo de caja? ¿El estado de resultados y el balance son lo mismo? ¿Cada cuánto conviene hacer el estado de resultados? Estado de resultados: qué es, estructura, modelo y ejemplo Resultado económico"><a href="/guias/estado-de-resultados"><span class="paso-eje">Resultado económico</span><strong>Estado de resultados</strong><span class="desc">Qué es un estado de resultados, su estructura paso a paso, un modelo para un negocio en Argentina, un ejemplo completo en pesos y cómo armarlo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>7 min</span></span></a></li>
+      <li style="--bloque:var(--of-azul);--bloque-texto:var(--w);--acento:var(--of-azul)" data-claves="El CMV es lo que costó la mercadería que vendiste, no lo que compraste. CMV = inventario inicial + compras − inventario final. Sin contar el stock, el resultado del mes sale mal: los meses de compra parecen malos y los de venta de stock, buenos. ¿Qué es el CMV? ¿Cuál es la fórmula del costo de mercadería vendida? ¿CMV y food cost son lo mismo? ¿El costo de mercadería vendida lleva IVA? ¿Qué pasa si no hago inventario? Costo de mercadería vendida (CMV): qué es, fórmula y ejemplo Costos y precios"><a href="/guias/costo-de-mercaderia-vendida"><span class="paso-eje">Costos y precios</span><strong>Costo de mercadería vendida</strong><span class="desc">Qué es el costo de mercadería vendida o CMV, la fórmula con inventario inicial, compras e inventario final, ejemplos en pesos y cómo calcularlo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>5 min</span></span></a></li>
+      <li style="--bloque:var(--of-verde);--bloque-texto:var(--w);--acento:var(--of-verde)" data-claves="Es cuánto tenés que vender en el mes para no ganar ni perder. En pesos: costos fijos ÷ margen de contribución en %. Ingresos Brutos y comisiones son costos variables. Es el piso, no la meta: bajalo a ventas o cubiertos por día y compará con lo que entra en tu local. ¿Qué es el punto de equilibrio en una empresa? ¿Cuál es la fórmula del punto de equilibrio? ¿Cómo se calcula el punto de equilibrio si vendo muchos productos? ¿Qué diferencia hay entre el punto de equilibrio económico y el financiero? ¿El punto de equilibrio es una meta de ventas? Punto de equilibrio: qué es, fórmula y cómo calcularlo en tu negocio Resultado económico"><a href="/guias/punto-de-equilibrio"><span class="paso-eje">Resultado económico</span><strong>Punto de equilibrio</strong><span class="desc">Qué es el punto de equilibrio de una empresa, la fórmula en unidades y en pesos, el gráfico, ejemplos de un comercio y de un restaurante y cómo calcularlo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>6 min</span></span></a></li>
+      </ul></section>
+    </div>
+    <nav class="indice-guia" aria-label="En esta guía"><p>En esta guía</p><ol><li><a href="#que-es-el-capital-de-trabajo">Qué es el capital de trabajo</a></li><li><a href="#la-formula-del-capital-de-trabajo">La fórmula del capital de trabajo</a></li><li><a href="#ejemplo-1-el-capital-de-trabajo-de-un-comercio">Ejemplo 1: el capital de trabajo de un comercio</a></li><li><a href="#ejemplo-2-un-restaurante-con-capital-de-trabajo-negativo">Ejemplo 2: un restaurante con capital de trabajo negativo</a></li><li><a href="#el-ciclo-de-caja-cuanta-plata-necesita-tu-negocio">El ciclo de caja: cuánta plata necesita tu negocio</a></li><li><a href="#como-calcular-el-capital-de-trabajo-en-excel">Cómo calcular el capital de trabajo en Excel</a></li><li><a href="#como-mejorar-el-capital-de-trabajo-de-tu-negocio">Cómo mejorar el capital de trabajo de tu negocio</a></li><li><a href="#errores-comunes">Errores comunes</a></li><li><a href="#preguntas-frecuentes">Preguntas frecuentes</a></li></ol></nav>
+  </div>
   <aside class="cta">
     <p class="cta-t">¿Tenés un negocio gastronómico?</p>
     <p>En 3 minutos sabés por dónde se le escapa la plata: 12 preguntas gratis y el puntaje de los cuatro eslabones al instante.</p>
