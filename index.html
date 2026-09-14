@@ -61,15 +61,33 @@ function gtag() { dataLayer.push(arguments); }
   cambia aca. La marca (#0C66E4, celeste #7DB1F4, navy del hero) es propia
   e intocable;
   el resto sale de la referencia vigente. */
-  /* marca y accion */
-  --marca: #0C66E4;
-  --marca-hover: #0055CC;
+  /* Paleta "C · Navy + lima + violeta" (aprobada por el dueño, 14/09/2026).
+  Identidad fija: el wordmark y el isotipo siguen en azul #0C66E4 + celeste
+  #7DB1F4 (--marca-logo); el degrade del hero conserva sus colores aprobados
+  (--hero-luz, --hero-brillo). La accion (botones, links, foco) pasa a violeta. */
+  --marca-logo: #0C66E4;
+  --marca-logo-rgb: 12 102 228;
+  --hero-luz: #0C66E4;
+  --hero-luz-rgb: 12 102 228;
+  --hero-brillo: #93C5FD;
+  --hero-brillo-rgb: 147 197 253;
+  /* accion: violeta. Blanco sobre --marca 4,79:1; sobre --marca-hover 6,30:1.
+     --marca-texto (= hover) para texto chico sobre #F4F7FB o lila, donde el
+     violeta base no llega a 4,5:1. */
+  --marca: #6E5DE7;
+  --marca-hover: #5A48D6;
+  --marca-texto: #5A48D6;
   --marca-soft: rgb(var(--marca-rgb) / 0.08);
-  --marca-border: rgba(12,102,228,0.22);
-  --marca-rgb: 12 102 228;
+  --marca-border: rgba(110,93,231,0.24);
+  --marca-rgb: 110 93 231;
   --celeste-marca: #7DB1F4;
   /* anillo del isotipo, nunca UI */
-  --foco: #0C66E4;
+  --foco: #6E5DE7;
+  /* lima: solo datos y marcas puntuales sobre navy (8,84:1); nunca texto sobre claro */
+  --lima: #A3E635;
+  --lila: #E8E6FF;
+  /* texto secundario claro sobre navy (migas): 8,55:1 */
+  --navy-claro: #BFD0EE;
   /* Paleta Core sobre base #0D2B6B (decision del dueño, 07/09/2026;
   espejo de tailwind.config.ts del portal): --navy es el canvas oscuro
   (hero, header, banda del metodo, footer) y el texto principal sobre
@@ -80,22 +98,22 @@ function gtag() { dataLayer.push(arguments); }
   --navy-900: #0D2B6B;
   --navy-2: #143C8C;
   --secondary-dark: #A3ADC2;
-  /* accent-soft: el brillo mas claro del degrade del hero. Valor de la paleta
-     Core del portal (tailwind.config.ts), copiado el 12/09/2026. */
-  --accent-soft: #93C5FD;
-  --accent-soft-rgb: 147 197 253;
+  /* accent-soft: destacado sobre navy (em del titular). Lima desde el 14/09/2026;
+     el brillo del degrade del hero quedo fijo en --hero-brillo. */
+  --accent-soft: #A3E635;
+  --accent-soft-rgb: 163 230 53;
   /* texto */
   --tinta: #292A2E;
   --tinta-2: #505258;
   --tinta-3: #6B6E76;
   /* superficies y bordes */
   --bg: #ffffff;
-  --lienzo: #F8F8F8;
+  --lienzo: #F4F7FB;
   --lienzo-2: #F0F1F2;
   --borde: rgba(11,18,14,0.14);
   --borde-soft: rgba(11,18,14,0.08);
   --borde-input: #8C8F97;
-  --seleccion-bg: #E9F2FF;
+  --seleccion-bg: #E8E6FF;
   /* semanticos (texto + fondo, AA verificado) */
   --positivo: #4C6B1F;
   --positivo-bg: #EFFFD6;
@@ -219,7 +237,7 @@ strong, b { font-weight: 600; }
 
 a { color: var(--marca); }
 
-::selection { background: rgb(var(--marca-rgb) / 0.18); }
+::selection { background: var(--seleccion-bg); }
 
 :focus-visible {
   outline: 2px solid var(--marca);
@@ -284,7 +302,7 @@ a { color: var(--marca); }
   width: 34px;
   height: 34px;
   border-radius: var(--r);
-  background: var(--marca);
+  background: var(--marca-logo);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -305,7 +323,7 @@ a { color: var(--marca); }
   line-height: 1;
 }
 
-.brand-name .dot { color: var(--marca); }
+.brand-name .dot { color: var(--marca-logo); }
 
 nav.on-light .brand-name { color: var(--navy); }
 
@@ -461,10 +479,10 @@ nav.scrolled {
   min-height: 100svh;
   background-color: var(--navy);
   background-image:
-    radial-gradient(150% 140% at 70% 45%, rgb(var(--marca-rgb) / 0.58) 0%, rgb(var(--marca-rgb) / 0.30) 48%, rgb(var(--marca-rgb) / 0.10) 72%, transparent 92%),
-    radial-gradient(70% 60% at 0% 0%, rgb(var(--marca-rgb) / 0.18) 0%, transparent 70%),
+    radial-gradient(150% 140% at 70% 45%, rgb(var(--hero-luz-rgb) / 0.58) 0%, rgb(var(--hero-luz-rgb) / 0.30) 48%, rgb(var(--hero-luz-rgb) / 0.10) 72%, transparent 92%),
+    radial-gradient(70% 60% at 0% 0%, rgb(var(--hero-luz-rgb) / 0.18) 0%, transparent 70%),
     radial-gradient(50% 70% at 2% 100%, var(--navy-2) 0%, transparent 75%),
-    radial-gradient(48% 58% at 60% 68%, rgb(var(--accent-soft-rgb) / 0.14) 0%, transparent 66%);
+    radial-gradient(48% 58% at 60% 68%, rgb(var(--hero-brillo-rgb) / 0.14) 0%, transparent 66%);
   display: flex;
   align-items: stretch;
   overflow: hidden;
@@ -526,7 +544,7 @@ nav.scrolled {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--marca);
+  background: var(--lima);
   flex-shrink: 0;
 }
 
@@ -548,7 +566,7 @@ nav.scrolled {
 
 .hero-title em {
   font-style: normal;
-  color: var(--dato-azul);
+  color: var(--accent-soft);
 }
 
 @media (min-width: 961px) {
@@ -700,7 +718,7 @@ nav.scrolled {
   display: inline-flex;
   align-items: center;
   gap: var(--s-2);
-  color: var(--marca);
+  color: var(--marca-texto);
   margin-bottom: var(--s-4);
 }
 
@@ -770,8 +788,8 @@ nav.scrolled {
    TEÑIDO del color del eslabon — el efecto informa donde estas, no adorna. */
 
 .pillar {
-  --eslabon: var(--marca);
-  --eslabon-rgb: var(--marca-rgb);
+  --eslabon: var(--marca-logo);
+  --eslabon-rgb: var(--marca-logo-rgb);
   background: var(--bg);
   border: 1px solid var(--borde);
   border-radius: var(--r-lg);
@@ -1117,7 +1135,7 @@ nav.scrolled {
 .founder-role {
   font-size: var(--fs-sm);
   font-weight: 500;
-  color: var(--marca);
+  color: var(--marca-texto);
   margin-bottom: var(--s-4);
 }
 
@@ -1212,7 +1230,8 @@ nav.scrolled {
 
 .cta-final {
   position: relative;
-  background: var(--marca);
+  background: var(--navy);
+  border-bottom: 1px solid var(--w-border);
   overflow: hidden;
 }
 
@@ -3006,7 +3025,7 @@ nav.scrolled { background: var(--navy-2); }
 .diag-overlay .q-breadcrumb-block {
   font-size: var(--fs-meta);
   font-weight: 600;
-  color: var(--marca);
+  color: var(--marca-texto);
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
@@ -3488,7 +3507,7 @@ nav.scrolled { background: var(--navy-2); }
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--marca);
+  color: var(--marca-texto);
   margin-bottom: var(--s-2);
 }
 
@@ -3503,7 +3522,7 @@ nav.scrolled { background: var(--navy-2); }
 /* CTA final del resultado */
 
 .diag-overlay .cta-card {
-  background: var(--marca);
+  background: var(--navy);
   border-radius: var(--r-lg);
   padding: var(--s-6) var(--s-5);
   text-align: center;
@@ -3529,7 +3548,7 @@ nav.scrolled { background: var(--navy-2); }
   line-height: 1.55;
 }
 
-.diag-overlay .cta-card .btn-white {
+.diag-overlay .cta-card .btn-blue {
   position: relative;
   font-size: var(--fs-base);
   padding: var(--s-3) var(--s-5);
@@ -4485,7 +4504,7 @@ nav.scrolled { background: var(--navy-2); }
   <div class="cta-final-inner reveal">
     <h2 class="cta-final-title">¿Por dónde se le escapa la plata a tu negocio?</h2>
     <p class="cta-final-sub">12 preguntas, 3 minutos, gratis. El paso 1 del programa.</p>
-    <button class="btn btn-white" onclick="openDiagnostico('cta-final')">Hacer el diagnóstico · 3 min <span class="arrow" aria-hidden="true">→</span></button>
+    <button class="btn btn-blue" onclick="openDiagnostico('cta-final')">Hacer el diagnóstico · 3 min <span class="arrow" aria-hidden="true">→</span></button>
     <p class="cta-final-note">Sin planillas · Sin compromiso</p>
   </div>
 </section>
@@ -4703,7 +4722,7 @@ nav.scrolled { background: var(--navy-2); }
             <div class="cta-title" id="cta-card-title">Reservá 30 minutos gratis con Manuel</div>
             <p class="cta-desc" id="cta-card-desc">Revisamos juntos tus números reales (no la encuesta) y salís con los próximos pasos para cerrar la brecha que marcó este diagnóstico.</p>
             <p class="cta-cupo" id="cta-card-cupo">Manuel toma como máximo 3 negocios nuevos por mes.</p>
-            <a id="cta-card-link" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2ObyolYWVEvMKs_tLRnn44v51LuYKjodxamoeF-LVymZFv5-rlDky70uJEDAu2XCaUHjDTgARg" target="_blank" rel="noopener" class="btn btn-white" onclick="track('cta_calendar_click', { desde: location.hostname.startsWith('diagnostico.') ? 'post-agenda' : 'resultado' })">
+            <a id="cta-card-link" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2ObyolYWVEvMKs_tLRnn44v51LuYKjodxamoeF-LVymZFv5-rlDky70uJEDAu2XCaUHjDTgARg" target="_blank" rel="noopener" class="btn btn-blue" onclick="track('cta_calendar_click', { desde: location.hostname.startsWith('diagnostico.') ? 'post-agenda' : 'resultado' })">
               Agendar llamada gratis (30 min) →
             </a>
           </div>
@@ -5982,8 +6001,8 @@ if (location.hash === '#diagnostico') openDiagnostico('link');
     var u = function (n) { return gl.getUniformLocation(prog, n); };
     gl.uniform3fv(u('c0'), token('--navy'));
     gl.uniform3fv(u('c1'), token('--navy-2'));
-    gl.uniform3fv(u('c2'), token('--marca'));
-    gl.uniform3fv(u('c3'), token('--accent-soft'));
+    gl.uniform3fv(u('c2'), token('--hero-luz'));
+    gl.uniform3fv(u('c3'), token('--hero-brillo'));
     var uR = u('r'), uT = u('t');
 
     function medir() {
