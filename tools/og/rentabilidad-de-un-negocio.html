@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html lang="es-AR"><head><meta charset="UTF-8"><style>
 @font-face { font-family: 'Inter'; font-weight: 100 900; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
-  :root { --marca: #0C66E4; --marca-hover: #0055CC; --navy: #0D2B6B; --navy-900: #0D2B6B; --tinta: #292A2E; --tinta-2: #505258; --tinta-3: #6B6E76; --bg: #fff; --lienzo: #F8F8F8; --borde: rgba(11,18,14,0.14); --w: #fff; --r: 8px; --r-lg: 12px; --fs-meta: 12px; --fs-sm: 14px; --fs-base: 15px; --fs-lead: 17px; --fs-h3: 21px; --fs-h2: clamp(28px, 3.4vw, 42px); --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px; --s-7: 48px; --t-instante: 120ms; }
-  :root { --of-azul: #0C66E4; --of-verde: #1F845A; --of-turquesa: #00A3BF; --of-violeta: #6E5DC6; --ink: #172B4D; }
+  :root { --marca-logo: #0C66E4; --marca: #6E5DE7; --marca-hover: #5A48D6; --lima: #A3E635; --lila: #E8E6FF; --navy-claro: #BFD0EE; --navy: #0D2B6B; --navy-900: #0D2B6B; --tinta: #292A2E; --tinta-2: #505258; --tinta-3: #6B6E76; --bg: #fff; --lienzo: #F4F7FB; --borde: rgba(11,18,14,0.14); --w: #fff; --r: 8px; --r-lg: 12px; --fs-meta: 12px; --fs-sm: 14px; --fs-base: 15px; --fs-lead: 17px; --fs-h3: 21px; --fs-h2: clamp(28px, 3.4vw, 42px); --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px; --s-7: 48px; --t-instante: 120ms; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: 1200px; height: 630px; overflow: hidden; }
-  body { font-family: 'Inter', system-ui, sans-serif; background: var(--of-verde); color: var(--w); position: relative; }
-  .circulos { position: absolute; right: -170px; top: -150px; width: 720px; height: 720px; opacity: 0.16; }
+  body { font-family: 'Inter', system-ui, sans-serif; background: var(--navy); color: var(--w); position: relative; }
+  .barras { position: absolute; right: 80px; top: 72px; height: 96px; display: flex; align-items: flex-end; gap: 12px; }
+  .barras span { width: 22px; border-radius: 4px; background: rgba(255,255,255,0.22); }
+  .barras span:nth-child(1) { height: 44px; }
+  .barras span:nth-child(2) { height: 68px; }
+  .barras span:nth-child(3) { height: 96px; background: var(--lima); }
   .marca { position: absolute; left: 80px; top: 72px; display: flex; align-items: center; gap: 16px; font-size: 34px; font-weight: 600; letter-spacing: -0.01em; }
-  .isotipo { width: 56px; height: 56px; border-radius: 12px; background: var(--w); display: flex; align-items: center; justify-content: center; }
+  .isotipo { width: 56px; height: 56px; border-radius: 12px; background: var(--marca-logo); display: flex; align-items: center; justify-content: center; }
   .isotipo svg { width: 30px; height: 30px; }
   .contenido { position: absolute; left: 80px; right: 150px; top: 200px; }
-  .eyebrow { font-size: 22px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 22px; }
+  .eyebrow { font-size: 22px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--lima); margin-bottom: 22px; }
   h1 { font-size: 64px; line-height: 1.08; font-weight: 600; letter-spacing: -0.02em; }
   .pie { position: absolute; left: 80px; right: 80px; bottom: 64px; display: flex; justify-content: space-between; align-items: center; font-size: 24px; font-weight: 600; }
-  .chip { border: 2px solid currentColor; border-radius: 999px; padding: 8px 20px; }
+  .chip { background: var(--lima); color: var(--navy); border-radius: 999px; padding: 10px 22px; }
+  .url { color: var(--navy-claro); }
 </style></head><body>
-  <svg class="circulos" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="66"/><circle cx="100" cy="100" r="36"/></svg>
-  <div class="marca"><span class="isotipo"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="7" stroke="#7DB1F4" stroke-width="4"/><circle cx="12" cy="12" r="7" stroke="#0C66E4" stroke-width="4" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/></svg></span>ordenfinanciero.</div>
+  <div class="barras" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="marca"><span class="isotipo"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="7" stroke="#7DB1F4" stroke-width="4"/><circle cx="12" cy="12" r="7" stroke="#ffffff" stroke-width="4" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/></svg></span>ordenfinanciero.</div>
   <div class="contenido">
     <p class="eyebrow">Guía · Resultado económico</p>
     <h1>Rentabilidad de un negocio: qué es y fórmula</h1>
   </div>
-  <div class="pie"><span class="chip">Fórmula · Ejemplo · Excel · 4 min de lectura</span><span>ordenfinanciero.com/guias</span></div>
+  <div class="pie"><span class="chip">Fórmula · Ejemplo · Excel · 4 min de lectura</span><span class="url">ordenfinanciero.com/guias</span></div>
 </body></html>

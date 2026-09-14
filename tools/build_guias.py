@@ -32,9 +32,10 @@ CSS = TOKENS + """
   header { background: var(--navy-900); padding: var(--s-3) var(--s-5); }
   .head-in { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
   .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--w); font-weight: 600; font-size: var(--fs-lead); letter-spacing: -0.01em; min-height: 44px; }
-  .brand-mark { width: 34px; height: 34px; border-radius: var(--r); background: var(--marca); display: inline-flex; align-items: center; justify-content: center; }
+  .brand-mark { width: 34px; height: 34px; border-radius: var(--r); background: var(--marca-logo); display: inline-flex; align-items: center; justify-content: center; }
   .brand-mark svg { width: 18px; height: 18px; }
-  .dot { color: var(--marca); }
+  .dot { color: var(--marca-logo); }
+  ::selection { background: var(--lila); }
   .head-nav { display: flex; align-items: center; gap: var(--s-4); }
   .head-nav a { color: var(--w); text-decoration: none; font-size: var(--fs-sm); font-weight: 500; min-height: 44px; display: inline-flex; align-items: center; }
   .head-nav .head-cta { background: var(--marca); padding: 0 var(--s-4); border-radius: var(--r); font-weight: 600; }
@@ -42,7 +43,7 @@ CSS = TOKENS + """
   main { max-width: 720px; margin: 0 auto; padding: var(--s-6) var(--s-5) var(--s-7); }
   .migas { font-size: var(--fs-sm); color: var(--tinta-3); margin-bottom: var(--s-5); }
   .migas a { color: var(--tinta-3); }
-  .eyebrow { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--marca); margin-bottom: var(--s-3); }
+  .eyebrow { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--marca-hover); margin-bottom: var(--s-3); }
   h1 { font-size: var(--fs-h2); font-weight: 600; color: var(--navy); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: var(--s-4); }
   h2 { font-size: var(--fs-h3); font-weight: 600; color: var(--navy); line-height: 1.3; margin: var(--s-6) 0 var(--s-3); }
   h3 { font-size: var(--fs-lead); font-weight: 600; color: var(--navy); margin: var(--s-5) 0 var(--s-2); }
@@ -54,7 +55,7 @@ CSS = TOKENS + """
   a { color: var(--marca); }
   .bajada { font-size: var(--fs-lead); }
   .autor { font-size: var(--fs-sm); color: var(--tinta-3); margin-top: var(--s-4); padding-bottom: var(--s-5); margin-bottom: var(--s-5); border-bottom: 1px solid var(--borde); }
-  .formula { background: var(--lienzo); border-left: 3px solid var(--marca); border-radius: var(--r); padding: var(--s-3) var(--s-4); margin: var(--s-4) 0; font-weight: 600; color: var(--navy); }
+  .formula { background: var(--lienzo); border-left: 4px solid var(--lima); border-radius: var(--r); padding: var(--s-3) var(--s-4); margin: var(--s-4) 0; font-weight: 600; color: var(--navy); }
   .tabla { overflow-x: auto; margin: var(--s-4) 0; }
   table { border-collapse: collapse; width: 100%; font-size: var(--fs-sm); }
   .tabla table:has(tr > :nth-child(4)) { min-width: 520px; }
@@ -76,45 +77,45 @@ CSS = TOKENS + """
   .lista-guias li { border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-4) var(--s-5); margin-bottom: var(--s-3); }
   .lista-guias a { font-weight: 600; font-size: var(--fs-lead); text-decoration: none; line-height: 1.4; }
   .lista-guias p { margin-top: var(--s-2); font-size: var(--fs-sm); }
-  /* Bloques de color por eslabón: tokens admin.* del sistema de diseño; pares de texto con contraste AA verificado */
-  :root { --of-azul: #0C66E4; --of-verde: #1F845A; --of-turquesa: #00A3BF; --of-violeta: #6E5DC6; --ink: #172B4D; --accent-soft: #93C5FD; }
+  /* Paleta navy + lima + violeta (14/09/2026): el tema se distingue por ícono y nombre, no por color.
+     Pares AA: lima/navy 8,84 · navy-claro/navy 8,55 · violeta hover/blanco 6,30 · violeta hover/lila 5,16 */
   body:has(main.ancho) { background: var(--lienzo); }
   main.ancho { max-width: 1040px; }
-  .circulos { position: absolute; width: 320px; height: 320px; right: -80px; top: -90px; opacity: 0.14; pointer-events: none; }
-  .portada { position: relative; overflow: hidden; background: var(--navy-900); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); color: var(--w); }
-  .portada > :not(.circulos) { position: relative; }
-  .portada .migas, .portada .migas a { color: rgba(255,255,255,0.72); }
-  .portada .eyebrow { color: var(--accent-soft); }
+  .portada { background: var(--navy-900); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); color: var(--w); }
+  .portada .migas, .portada .migas a { color: var(--navy-claro); }
+  .portada .eyebrow { color: var(--lima); }
   .portada h1 { color: var(--w); max-width: 760px; }
-  .portada h1 em { font-style: normal; color: var(--accent-soft); }
+  .portada h1 em { font-style: normal; color: var(--lima); }
   .portada .bajada { color: rgba(255,255,255,0.9); max-width: 660px; }
-  .portada .autor { color: rgba(255,255,255,0.75); border-bottom-color: rgba(255,255,255,0.16); }
+  .portada .autor { color: var(--navy-claro); border-bottom-color: rgba(255,255,255,0.16); }
   .portada .autor a { color: var(--w); }
   .temas { display: flex; flex-wrap: wrap; gap: var(--s-2); }
-  .temas a { display: inline-flex; align-items: center; gap: var(--s-2); min-height: 44px; padding: 0 var(--s-4) 0 var(--s-3); border-radius: 999px; background: var(--bloque); color: var(--bloque-texto); font-size: var(--fs-sm); font-weight: 600; text-decoration: none; transition: box-shadow var(--t-instante); }
-  .temas a:hover { box-shadow: 0 0 0 3px rgba(255,255,255,0.35); }
-  .temas svg { width: 18px; height: 18px; }
+  .temas a { display: inline-flex; align-items: center; gap: var(--s-2); min-height: 44px; padding: 0 var(--s-4) 0 var(--s-3); border-radius: 999px; background: var(--w); border: 1.5px solid var(--navy); color: var(--navy); font-size: var(--fs-sm); font-weight: 600; text-decoration: none; transition: background var(--t-instante), color var(--t-instante), border-color var(--t-instante); }
+  .temas svg { width: 18px; height: 18px; color: var(--marca-hover); }
+  .temas a:hover, .temas a:focus-visible { background: var(--navy); color: var(--w); border-color: rgba(255,255,255,0.6); }
+  .temas a:hover svg, .temas a:focus-visible svg { color: var(--lima); }
   .empeza { margin: var(--s-7) 0 0; }
   .empeza > p { margin-bottom: var(--s-4); }
   .pasos, .tarjetas { list-style: none; padding: 0; display: grid; gap: var(--s-3); }
   .pasos { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
   .tarjetas { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
-  .pasos a, .tarjetas a { display: flex; flex-direction: column; gap: var(--s-2); height: 100%; padding: var(--s-5); background: var(--w); border: 1px solid var(--borde); border-top: 4px solid var(--bloque); border-radius: var(--r-lg); text-decoration: none; transition: border-color var(--t-instante), transform var(--t-instante); }
-  .pasos a:hover, .tarjetas a:hover { border-color: var(--bloque); transform: translateY(-2px); }
-  .paso { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 999px; background: var(--bloque); color: var(--bloque-texto); font-size: var(--fs-sm); font-weight: 600; }
-  .paso-eje { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--acento); }
+  .pasos a, .tarjetas a { display: flex; flex-direction: column; gap: var(--s-2); height: 100%; padding: var(--s-5); background: var(--w); border: 1px solid var(--borde); border-radius: var(--r-lg); text-decoration: none; transition: border-color var(--t-instante), transform var(--t-instante); }
+  .pasos a:hover, .tarjetas a:hover { border-color: var(--marca); transform: translateY(-2px); }
+  .paso { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 999px; background: var(--navy); color: var(--lima); font-size: var(--fs-sm); font-weight: 600; }
+  .t-cab { display: flex; align-items: center; gap: var(--s-3); }
+  .t-ico { width: 36px; height: 36px; border-radius: var(--r); background: var(--lila); color: var(--marca-hover); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .t-ico svg { width: 18px; height: 18px; }
+  .paso-eje { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tinta-3); }
   .pasos strong, .tarjetas strong { color: var(--navy); font-size: var(--fs-lead); font-weight: 600; line-height: 1.35; }
-  .pasos a:hover strong, .tarjetas a:hover strong { color: var(--acento); }
+  .pasos a:hover strong, .tarjetas a:hover strong { color: var(--marca-hover); }
   .paso-txt, .tarjetas .desc { color: var(--tinta-2); font-size: var(--fs-sm); line-height: 1.55; }
   .tema { margin-top: var(--s-7); }
-  .tema-cab { position: relative; overflow: hidden; display: flex; gap: var(--s-4); align-items: center; background: var(--bloque); color: var(--bloque-texto); border-radius: var(--r-lg); padding: var(--s-5); margin-bottom: var(--s-3); }
-  .tema-cab > :not(.circulos) { position: relative; }
-  .tema-cab .circulos { width: 240px; height: 240px; right: -60px; top: -80px; opacity: 0.18; }
-  .tema-cab .ico { width: 52px; height: 52px; border-radius: var(--r); border: 2px solid currentColor; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .tema-cab { display: flex; gap: var(--s-4); align-items: center; padding-bottom: var(--s-4); margin-bottom: var(--s-4); border-bottom: 1px solid var(--borde); }
+  .tema-cab .ico { width: 52px; height: 52px; border-radius: var(--r); background: var(--lila); color: var(--marca-hover); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .tema-cab .ico svg { width: 26px; height: 26px; }
-  .tema-cab h2 { margin: 0 0 4px; color: inherit; scroll-margin-top: var(--s-5); }
-  .tema-cab p { color: inherit; }
-  .tema-num { margin-left: auto; font-size: var(--fs-sm); font-weight: 600; white-space: nowrap; }
+  .tema-cab h2 { margin: 0 0 4px; color: var(--navy); scroll-margin-top: var(--s-5); }
+  .tema-cab p { color: var(--tinta-2); }
+  .tema-num { margin-left: auto; font-size: var(--fs-sm); font-weight: 600; color: var(--tinta-3); white-space: nowrap; }
   .meta { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: auto; padding-top: var(--s-2); }
   .meta span { font-size: var(--fs-meta); font-weight: 600; color: var(--tinta-3); background: var(--lienzo); border-radius: 999px; padding: 2px 10px; }
   @media (max-width: 640px) { .tema-num { display: none; } .tema-cab { align-items: flex-start; } }
@@ -123,37 +124,39 @@ CSS = TOKENS + """
   .cifras { color: rgba(255,255,255,0.9); font-size: var(--fs-sm); margin-top: var(--s-2); }
   .cifras strong { color: var(--w); }
   .buscador { margin-top: var(--s-5); max-width: 560px; }
-  .buscador label { display: block; font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-soft); margin-bottom: var(--s-2); }
+  .buscador label { display: block; font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lima); margin-bottom: var(--s-2); }
   .buscador input { width: 100%; min-height: 48px; padding: 0 var(--s-4); border: 0; border-radius: var(--r); font: inherit; font-size: var(--fs-base); color: var(--tinta); background: var(--w); }
-  .buscador input:focus-visible { outline: 3px solid var(--accent-soft); outline-offset: 2px; }
+  .buscador input:focus-visible { outline: 3px solid var(--lima); outline-offset: 2px; }
   .sin-resultados { margin-top: var(--s-6); padding: var(--s-5); background: var(--w); border: 1px solid var(--borde); border-radius: var(--r-lg); }
   .tema .tarjetas .paso-eje { display: none; }
   .meta { flex-wrap: nowrap; overflow: hidden; }
   /* Página de guía */
   main.guia { max-width: 1080px; }
-  .guia-cab { position: relative; overflow: hidden; background: var(--bloque); color: var(--bloque-texto); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); margin-bottom: var(--s-6); }
-  .guia-cab > :not(.circulos) { position: relative; }
-  .guia-cab .migas, .guia-cab .migas a, .guia-cab .eyebrow, .guia-cab h1, .guia-cab .bajada, .guia-cab .autor, .guia-cab .autor a { color: inherit; }
-  .guia-cab h1 { max-width: 780px; }
-  .guia-cab .bajada { max-width: 700px; }
-  .guia-cab .autor { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
-  .guia-cab .meta { margin-top: var(--s-3); }
-  .guia-cab .meta span { background: transparent; color: inherit; border: 1px solid currentColor; }
+  .guia-cab { background: var(--navy); color: var(--w); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); margin-bottom: var(--s-6); }
+  .guia-cab .migas, .guia-cab .migas a { color: var(--navy-claro); }
+  .guia-cab .eyebrow { color: var(--lima); }
+  .guia-cab h1 { color: var(--w); max-width: 780px; }
+  .guia-cab .bajada { color: rgba(255,255,255,0.9); max-width: 700px; }
+  .guia-cab .autor { color: var(--navy-claro); border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
+  .guia-cab .autor a { color: var(--w); }
+  .guia-cab .meta { margin-top: var(--s-4); }
+  .guia-cab .meta span { background: var(--lima); color: var(--navy); }
+  .guia-cab .meta .min { background: rgba(255,255,255,0.12); color: var(--w); }
   .guia-cuerpo { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: var(--s-7); align-items: start; }
   .guia-principal { min-width: 0; max-width: 720px; }
-  .indice-guia { position: sticky; top: var(--s-5); border-left: 3px solid var(--bloque); padding-left: var(--s-4); }
+  .indice-guia { position: sticky; top: var(--s-5); border-left: 3px solid var(--borde); padding-left: var(--s-4); }
   .indice-guia p, .resumen p { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: var(--s-2); }
   .indice-guia p { color: var(--tinta-3); }
   .indice-guia ol, .indice-movil ol { list-style: none; padding: 0; }
   .indice-guia li { margin-bottom: 6px; }
   .indice-guia a, .indice-movil a { color: var(--tinta-2); font-size: var(--fs-sm); line-height: 1.4; text-decoration: none; display: block; }
-  .indice-guia a:hover, .indice-movil a:hover { color: var(--acento); }
+  .indice-guia a:hover, .indice-movil a:hover, .indice-guia a[aria-current="true"] { color: var(--marca-hover); }
+  .indice-guia a[aria-current="true"] { font-weight: 600; }
   .indice-movil { display: none; }
-  .resumen { background: var(--lienzo); border-left: 4px solid var(--bloque); border-radius: var(--r); padding: var(--s-4) var(--s-5); margin-bottom: var(--s-6); }
-  .resumen p { color: var(--acento); }
+  .resumen { background: var(--lila); border-radius: var(--r-lg); padding: var(--s-4) var(--s-5); margin-bottom: var(--s-6); }
+  .resumen p { color: var(--marca-hover); }
   .resumen ul { padding-left: var(--s-5); }
   .resumen li { color: var(--tinta); margin-bottom: 6px; }
-  main.guia .formula { border-left-color: var(--bloque); }
   article h2 { scroll-margin-top: var(--s-5); }
   .caja-autor { display: flex; gap: var(--s-4); align-items: center; border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-5); margin-top: var(--s-7); }
   .caja-autor img { width: 72px; height: 72px; border-radius: 999px; object-fit: cover; object-position: top; background: var(--lienzo); flex-shrink: 0; }
@@ -174,32 +177,26 @@ CSS = TOKENS + """
   .foot-in nav { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
   .foot-in a { color: var(--w); text-decoration: none; }
   :focus-visible { outline: 2px solid var(--marca); outline-offset: 2px; }
+  header :focus-visible, footer :focus-visible, .portada :focus-visible, .guia-cab :focus-visible, .cta :focus-visible { outline-color: var(--lima); }
 """
 
 
-# Eslabones: id, token del bloque, token del texto sobre el bloque, token del acento sobre blanco, ícono.
-# Íconos: los de los pilares de la home. Colores: bloques por categoría del sistema de diseño (AA verificado).
+# Eslabones: id del ancla e ícono (los de los pilares de la home). Desde el 14/09/2026 el tema
+# se distingue por ícono y nombre, no por color: los bloques de color por tema se retiraron.
 ESLABONES = {
-    'Costos y precios': ('costos-y-precios', 'of-azul', 'w', 'of-azul',
+    'Costos y precios': ('costos-y-precios',
                          '<path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>'),
-    'Resultado económico': ('resultado-economico', 'of-verde', 'w', 'of-verde',
+    'Resultado económico': ('resultado-economico',
                             '<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>'),
-    'Flujo de caja': ('flujo-de-caja', 'of-turquesa', 'ink', 'ink', '<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>'),
-    'Indicadores de gestión': ('indicadores-de-gestion', 'of-violeta', 'w', 'of-violeta',
+    'Flujo de caja': ('flujo-de-caja', '<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>'),
+    'Indicadores de gestión': ('indicadores-de-gestion',
                                '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>'),
 }
-CIRCULOS = ('<svg class="circulos" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">'
-            '<circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="66"/><circle cx="100" cy="100" r="36"/></svg>')
-
-
-def estilo_eslabon(eje):
-    _, bloque, texto, acento, _ = ESLABONES[eje]
-    return f'--bloque:var(--{bloque});--bloque-texto:var(--{texto});--acento:var(--{acento})'
 
 
 def svg_icono(eje):
     return ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" '
-            f'stroke-linejoin="round" aria-hidden="true">{ESLABONES[eje][4]}</svg>')
+            f'stroke-linejoin="round" aria-hidden="true">{ESLABONES[eje][1]}</svg>')
 
 
 def minutos(g):
@@ -246,8 +243,9 @@ def con_ids(cuerpo):
 def tarjeta(g):
     etiquetas = ''.join(f'<span>{x}</span>' for x in incluye(g))
     claves = ' '.join(g.get('resumen', []) + [x['q'] for x in g.get('faq', [])] + [g['h1'], g['eje']])
-    return (f'      <li style="{estilo_eslabon(g["eje"])}" data-claves="{html.escape(claves)}">'
-            f'<a href="/guias/{g["slug"]}"><span class="paso-eje">{html.escape(g["eje"])}</span>'
+    return (f'      <li data-claves="{html.escape(claves)}">'
+            f'<a href="/guias/{g["slug"]}"><span class="t-cab"><span class="t-ico">{svg_icono(g["eje"])}</span>'
+            f'<span class="paso-eje">{html.escape(g["eje"])}</span></span>'
             f'<strong>{html.escape(g["miga"])}</strong>'
             f'<span class="desc">{html.escape(g["description"])}</span>'
             f'<span class="meta">{etiquetas}<span>{minutos(g)} min</span></span></a></li>\n')
@@ -257,33 +255,37 @@ OG_DIR = ROOT / 'tools' / 'og'
 
 
 def plantilla_og(g):
-    """HTML de 1200x630 para sacar la imagen de la guía con Chrome headless."""
-    _, bloque, texto, _, _ = ESLABONES[g['eje']]
+    """HTML de 1200x630 para sacar la imagen de la guía con Chrome headless.
+    Paleta navy + lima + violeta: fondo navy liso, tema en lima, título blanco."""
     etiquetas = ' · '.join(incluye(g) + [f'{minutos(g)} min de lectura'])
     return f"""<!DOCTYPE html>
 <html lang="es-AR"><head><meta charset="UTF-8"><style>
 {TOKENS}
-  :root {{ --of-azul: #0C66E4; --of-verde: #1F845A; --of-turquesa: #00A3BF; --of-violeta: #6E5DC6; --ink: #172B4D; }}
   * {{ margin: 0; padding: 0; box-sizing: border-box; }}
   html, body {{ width: 1200px; height: 630px; overflow: hidden; }}
-  body {{ font-family: 'Inter', system-ui, sans-serif; background: var(--{bloque}); color: var(--{texto}); position: relative; }}
-  .circulos {{ position: absolute; right: -170px; top: -150px; width: 720px; height: 720px; opacity: 0.16; }}
+  body {{ font-family: 'Inter', system-ui, sans-serif; background: var(--navy); color: var(--w); position: relative; }}
+  .barras {{ position: absolute; right: 80px; top: 72px; height: 96px; display: flex; align-items: flex-end; gap: 12px; }}
+  .barras span {{ width: 22px; border-radius: 4px; background: rgba(255,255,255,0.22); }}
+  .barras span:nth-child(1) {{ height: 44px; }}
+  .barras span:nth-child(2) {{ height: 68px; }}
+  .barras span:nth-child(3) {{ height: 96px; background: var(--lima); }}
   .marca {{ position: absolute; left: 80px; top: 72px; display: flex; align-items: center; gap: 16px; font-size: 34px; font-weight: 600; letter-spacing: -0.01em; }}
-  .isotipo {{ width: 56px; height: 56px; border-radius: 12px; background: var(--w); display: flex; align-items: center; justify-content: center; }}
+  .isotipo {{ width: 56px; height: 56px; border-radius: 12px; background: var(--marca-logo); display: flex; align-items: center; justify-content: center; }}
   .isotipo svg {{ width: 30px; height: 30px; }}
   .contenido {{ position: absolute; left: 80px; right: 150px; top: 200px; }}
-  .eyebrow {{ font-size: 22px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 22px; }}
+  .eyebrow {{ font-size: 22px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--lima); margin-bottom: 22px; }}
   h1 {{ font-size: 64px; line-height: 1.08; font-weight: 600; letter-spacing: -0.02em; }}
   .pie {{ position: absolute; left: 80px; right: 80px; bottom: 64px; display: flex; justify-content: space-between; align-items: center; font-size: 24px; font-weight: 600; }}
-  .chip {{ border: 2px solid currentColor; border-radius: 999px; padding: 8px 20px; }}
+  .chip {{ background: var(--lima); color: var(--navy); border-radius: 999px; padding: 10px 22px; }}
+  .url {{ color: var(--navy-claro); }}
 </style></head><body>
-  <svg class="circulos" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="66"/><circle cx="100" cy="100" r="36"/></svg>
-  <div class="marca"><span class="isotipo"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="7" stroke="#7DB1F4" stroke-width="4"/><circle cx="12" cy="12" r="7" stroke="#0C66E4" stroke-width="4" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/></svg></span>ordenfinanciero.</div>
+  <div class="barras" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="marca"><span class="isotipo"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="7" stroke="#7DB1F4" stroke-width="4"/><circle cx="12" cy="12" r="7" stroke="#ffffff" stroke-width="4" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/></svg></span>ordenfinanciero.</div>
   <div class="contenido">
     <p class="eyebrow">Guía · {html.escape(g['eje'])}</p>
     <h1>{html.escape(g['title'])}</h1>
   </div>
-  <div class="pie"><span class="chip">{html.escape(etiquetas)}</span><span>ordenfinanciero.com/guias</span></div>
+  <div class="pie"><span class="chip">{html.escape(etiquetas)}</span><span class="url">ordenfinanciero.com/guias</span></div>
 </body></html>
 """
 
@@ -419,17 +421,15 @@ def main():
         resumen = ''.join(f'<li>{html.escape(x)}</li>' for x in g.get('resumen', []))
         assert resumen, f"{g['slug']}: falta el resumen"
         etiquetas = ''.join(f'<span>{x}</span>' for x in incluye(g))
-        estilo = estilo_eslabon(g['eje'])
-        cuerpo = f"""  <section class="guia-cab" style="{estilo}">
-    {CIRCULOS}
+        cuerpo = f"""  <section class="guia-cab">
 {migas(items)}
     <p class="eyebrow">Guía · {html.escape(g['eje'])}</p>
     <h1>{html.escape(g['h1'])}</h1>
     <p class="bajada">{html.escape(g['description'])}</p>
     <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · Actualizada el {fecha_larga(g['actualizada'])}</p>
-    <div class="meta">{etiquetas}<span>{minutos(g)} min de lectura</span></div>
+    <div class="meta">{etiquetas}<span class="min">{minutos(g)} min de lectura</span></div>
   </section>
-  <div class="guia-cuerpo" style="{estilo}">
+  <div class="guia-cuerpo">
     <div class="guia-principal">
       <aside class="resumen"><p>Lo más importante</p><ul>{resumen}</ul></aside>
       <details class="indice-movil"><summary>En esta guía</summary><ol>{toc_html}</ol></details>
@@ -439,7 +439,23 @@ def main():
       <aside class="caja-autor"><img src="/foto-manuel-cutout.webp" alt="Manuel Alfano" width="72" height="72" loading="lazy"><div><strong>Manuel Alfano</strong><p>Fundador de Orden Financiero. Más de 12 años en la gastronomía con negocio propio; hoy trabaja mano a mano con dueños de negocios para ordenar sus números.</p></div></aside>{rel_html}
     </div>
     <nav class="indice-guia" aria-label="En esta guía"><p>En esta guía</p><ol>{toc_html}</ol></nav>
-  </div>"""
+  </div>
+  <script>
+  (function () {{
+    var links = [].slice.call(document.querySelectorAll('.indice-guia a'));
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var porId = {{}};
+    links.forEach(function (a) {{ porId[a.getAttribute('href').slice(1)] = a; }});
+    var obs = new IntersectionObserver(function (entradas) {{
+      entradas.forEach(function (e) {{
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) {{ a.removeAttribute('aria-current'); }});
+        if (porId[e.target.id]) porId[e.target.id].setAttribute('aria-current', 'true');
+      }});
+    }}, {{ rootMargin: '0px 0px -70% 0px' }});
+    Object.keys(porId).forEach(function (id) {{ var h = document.getElementById(id); if (h) obs.observe(h); }});
+  }})();
+  </script>"""
         ld = {"@context": "https://schema.org", "@graph": [
             {"@type": "Article", "@id": BASE + path + "#article", "headline": g['h1'], "description": g['description'],
              "image": BASE + f"/guias/og/{g['slug']}.png", "inLanguage": "es-AR", "datePublished": g['publicada'],
@@ -461,8 +477,8 @@ def main():
             'con fórmulas y ejemplos en pesos. Con foco en gastronomía.')
     lista = ''.join(f'    <li><a href="/guias/{g["slug"]}">{html.escape(g["h1"])}</a><p>{html.escape(g["description"])}</p></li>\n'
                     for g in guias)
-    # Agrupadas por los cuatro eslabones del diagnóstico: un bloque de color entero por eslabón
-    # (tabla de bloques por categoría del sistema de diseño) y un "Empezá por acá" arriba.
+    # Agrupadas por los cuatro eslabones del diagnóstico (ícono y nombre, sin color por tema)
+    # y un "Empezá por acá" arriba.
     temas = [
         ('Costos y precios', 'El costo real y el precio correcto de cada cosa que se vende.',
          ['costo-de-un-plato', 'food-cost', 'costo-de-mercaderia-vendida', 'costos-fijos-y-variables',
@@ -486,10 +502,10 @@ def main():
     visibles = [t for t in temas if t[2]]
 
     botones = ''.join(
-        f'<a href="#{ESLABONES[n][0]}" style="{estilo_eslabon(n)}">{svg_icono(n)}{html.escape(n)}</a>'
+        f'<a href="#{ESLABONES[n][0]}">{svg_icono(n)}{html.escape(n)}</a>'
         for n, _, _ in visibles)
     pasos = ''.join(
-        f'      <li style="{estilo_eslabon(por_slug[slug]["eje"])}"><a href="/guias/{slug}">'
+        f'      <li><a href="/guias/{slug}">'
         f'<span class="paso" aria-hidden="true">{i + 1}</span>'
         f'<span class="paso-eje">{html.escape(por_slug[slug]["eje"])}</span>'
         f'<strong>{html.escape(por_slug[slug]["miga"])}</strong>'
@@ -503,8 +519,8 @@ def main():
     for nombre, intro, slugs in visibles:
         tid = ESLABONES[nombre][0]
         cantidad = f'{len(slugs)} guía' + ('s' if len(slugs) != 1 else '')
-        secciones += (f'  <section class="tema" aria-labelledby="{tid}" style="{estilo_eslabon(nombre)}">\n'
-                      f'    <div class="tema-cab">{CIRCULOS}<span class="ico">{svg_icono(nombre)}</span>'
+        secciones += (f'  <section class="tema" aria-labelledby="{tid}">\n'
+                      f'    <div class="tema-cab"><span class="ico">{svg_icono(nombre)}</span>'
                       f'<div><h2 id="{tid}">{html.escape(nombre)}</h2><p>{html.escape(intro)}</p></div>'
                       f'<span class="tema-num">{cantidad}</span></div>\n'
                       '    <ul class="tarjetas">\n'
@@ -513,7 +529,6 @@ def main():
     guias = [por_slug[slug] for slug in asignadas]
 
     cuerpo = f"""  <section class="portada">
-    {CIRCULOS}
 {migas(items)}
     <p class="eyebrow">Guías</p>
     <h1>Guías de finanzas para <em>dueños de negocio</em></h1>

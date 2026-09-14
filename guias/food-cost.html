@@ -44,15 +44,16 @@ function gtag() { dataLayer.push(arguments); }
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://ordenfinanciero.com/guias/food-cost#article", "headline": "Food cost (costo de la materia prima): qué es, fórmula y cómo calcularlo", "description": "Qué es el food cost o costo de la materia prima en gastronomía, la fórmula por plato y por mes, ejemplos en pesos, cómo calcularlo en Excel y qué porcentaje tomar.", "image": "https://ordenfinanciero.com/guias/og/food-cost.png", "inLanguage": "es-AR", "datePublished": "2026-09-14", "dateModified": "2026-09-14", "author": {"@type": "Person", "@id": "https://ordenfinanciero.com/#manuel", "name": "Manuel Alfano", "url": "https://ordenfinanciero.com/#manuel"}, "publisher": {"@id": "https://ordenfinanciero.com/#organization"}, "mainEntityOfPage": "https://ordenfinanciero.com/guias/food-cost", "isPartOf": {"@id": "https://ordenfinanciero.com/guias#coleccion"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ordenfinanciero.com/"}, {"@type": "ListItem", "position": 2, "name": "Guías", "item": "https://ordenfinanciero.com/guias"}, {"@type": "ListItem", "position": 3, "name": "Food cost"}]}, {"@type": "FAQPage", "@id": "https://ordenfinanciero.com/guias/food-cost#faq", "mainEntity": [{"@type": "Question", "name": "¿Para qué sirve el food cost?", "acceptedAnswer": {"@type": "Answer", "text": "Para saber qué parte de lo que vendés se va en materia prima, fijar precios que dejen margen y detectar a tiempo cuándo suben los costos, las porciones o las mermas."}}, {"@type": "Question", "name": "¿Cuál es la fórmula del food cost?", "acceptedAnswer": {"@type": "Answer", "text": "Food cost = costo de la materia prima ÷ ventas sin IVA × 100. Por plato se usa el costo de la ficha y el precio de carta sin IVA; por mes, el consumo (inventario inicial + compras − inventario final) y las ventas netas del mes, sin IVA ni comisiones."}}, {"@type": "Question", "name": "¿Food cost y costo de mercadería vendida son lo mismo?", "acceptedAnswer": {"@type": "Answer", "text": "Se parecen. El costo de mercadería vendida (CMV) es el nombre contable del consumo del período: inventario inicial más compras menos inventario final. El food cost es ese costo expresado como porcentaje de las ventas."}}, {"@type": "Question", "name": "¿Las bebidas entran en el food cost?", "acceptedAnswer": {"@type": "Answer", "text": "Conviene medirlas aparte, con su propio porcentaje, porque las bebidas suelen tener márgenes muy distintos a los de la comida. Mezcladas, esconden lo que pasa en cada una."}}, {"@type": "Question", "name": "¿El food cost se calcula con o sin IVA?", "acceptedAnswer": {"@type": "Answer", "text": "Sin IVA si sos responsable inscripto, porque el IVA no es plata del negocio. Si sos monotributista no discriminás IVA: usá el precio cobrado y consultá con tu contador cómo impactan tus impuestos."}}]}]}</script>
 <style>
 @font-face { font-family: 'Inter'; font-weight: 100 900; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
-  :root { --marca: #0C66E4; --marca-hover: #0055CC; --navy: #0D2B6B; --navy-900: #0D2B6B; --tinta: #292A2E; --tinta-2: #505258; --tinta-3: #6B6E76; --bg: #fff; --lienzo: #F8F8F8; --borde: rgba(11,18,14,0.14); --w: #fff; --r: 8px; --r-lg: 12px; --fs-meta: 12px; --fs-sm: 14px; --fs-base: 15px; --fs-lead: 17px; --fs-h3: 21px; --fs-h2: clamp(28px, 3.4vw, 42px); --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px; --s-7: 48px; --t-instante: 120ms; }
+  :root { --marca-logo: #0C66E4; --marca: #6E5DE7; --marca-hover: #5A48D6; --lima: #A3E635; --lila: #E8E6FF; --navy-claro: #BFD0EE; --navy: #0D2B6B; --navy-900: #0D2B6B; --tinta: #292A2E; --tinta-2: #505258; --tinta-3: #6B6E76; --bg: #fff; --lienzo: #F4F7FB; --borde: rgba(11,18,14,0.14); --w: #fff; --r: 8px; --r-lg: 12px; --fs-meta: 12px; --fs-sm: 14px; --fs-base: 15px; --fs-lead: 17px; --fs-h3: 21px; --fs-h2: clamp(28px, 3.4vw, 42px); --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px; --s-7: 48px; --t-instante: 120ms; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Inter', system-ui, sans-serif; font-size: var(--fs-base); line-height: 1.7; color: var(--tinta); background: var(--bg); }
   header { background: var(--navy-900); padding: var(--s-3) var(--s-5); }
   .head-in { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
   .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--w); font-weight: 600; font-size: var(--fs-lead); letter-spacing: -0.01em; min-height: 44px; }
-  .brand-mark { width: 34px; height: 34px; border-radius: var(--r); background: var(--marca); display: inline-flex; align-items: center; justify-content: center; }
+  .brand-mark { width: 34px; height: 34px; border-radius: var(--r); background: var(--marca-logo); display: inline-flex; align-items: center; justify-content: center; }
   .brand-mark svg { width: 18px; height: 18px; }
-  .dot { color: var(--marca); }
+  .dot { color: var(--marca-logo); }
+  ::selection { background: var(--lila); }
   .head-nav { display: flex; align-items: center; gap: var(--s-4); }
   .head-nav a { color: var(--w); text-decoration: none; font-size: var(--fs-sm); font-weight: 500; min-height: 44px; display: inline-flex; align-items: center; }
   .head-nav .head-cta { background: var(--marca); padding: 0 var(--s-4); border-radius: var(--r); font-weight: 600; }
@@ -60,7 +61,7 @@ function gtag() { dataLayer.push(arguments); }
   main { max-width: 720px; margin: 0 auto; padding: var(--s-6) var(--s-5) var(--s-7); }
   .migas { font-size: var(--fs-sm); color: var(--tinta-3); margin-bottom: var(--s-5); }
   .migas a { color: var(--tinta-3); }
-  .eyebrow { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--marca); margin-bottom: var(--s-3); }
+  .eyebrow { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--marca-hover); margin-bottom: var(--s-3); }
   h1 { font-size: var(--fs-h2); font-weight: 600; color: var(--navy); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: var(--s-4); }
   h2 { font-size: var(--fs-h3); font-weight: 600; color: var(--navy); line-height: 1.3; margin: var(--s-6) 0 var(--s-3); }
   h3 { font-size: var(--fs-lead); font-weight: 600; color: var(--navy); margin: var(--s-5) 0 var(--s-2); }
@@ -72,7 +73,7 @@ function gtag() { dataLayer.push(arguments); }
   a { color: var(--marca); }
   .bajada { font-size: var(--fs-lead); }
   .autor { font-size: var(--fs-sm); color: var(--tinta-3); margin-top: var(--s-4); padding-bottom: var(--s-5); margin-bottom: var(--s-5); border-bottom: 1px solid var(--borde); }
-  .formula { background: var(--lienzo); border-left: 3px solid var(--marca); border-radius: var(--r); padding: var(--s-3) var(--s-4); margin: var(--s-4) 0; font-weight: 600; color: var(--navy); }
+  .formula { background: var(--lienzo); border-left: 4px solid var(--lima); border-radius: var(--r); padding: var(--s-3) var(--s-4); margin: var(--s-4) 0; font-weight: 600; color: var(--navy); }
   .tabla { overflow-x: auto; margin: var(--s-4) 0; }
   table { border-collapse: collapse; width: 100%; font-size: var(--fs-sm); }
   .tabla table:has(tr > :nth-child(4)) { min-width: 520px; }
@@ -94,45 +95,45 @@ function gtag() { dataLayer.push(arguments); }
   .lista-guias li { border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-4) var(--s-5); margin-bottom: var(--s-3); }
   .lista-guias a { font-weight: 600; font-size: var(--fs-lead); text-decoration: none; line-height: 1.4; }
   .lista-guias p { margin-top: var(--s-2); font-size: var(--fs-sm); }
-  /* Bloques de color por eslabón: tokens admin.* del sistema de diseño; pares de texto con contraste AA verificado */
-  :root { --of-azul: #0C66E4; --of-verde: #1F845A; --of-turquesa: #00A3BF; --of-violeta: #6E5DC6; --ink: #172B4D; --accent-soft: #93C5FD; }
+  /* Paleta navy + lima + violeta (14/09/2026): el tema se distingue por ícono y nombre, no por color.
+     Pares AA: lima/navy 8,84 · navy-claro/navy 8,55 · violeta hover/blanco 6,30 · violeta hover/lila 5,16 */
   body:has(main.ancho) { background: var(--lienzo); }
   main.ancho { max-width: 1040px; }
-  .circulos { position: absolute; width: 320px; height: 320px; right: -80px; top: -90px; opacity: 0.14; pointer-events: none; }
-  .portada { position: relative; overflow: hidden; background: var(--navy-900); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); color: var(--w); }
-  .portada > :not(.circulos) { position: relative; }
-  .portada .migas, .portada .migas a { color: rgba(255,255,255,0.72); }
-  .portada .eyebrow { color: var(--accent-soft); }
+  .portada { background: var(--navy-900); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); color: var(--w); }
+  .portada .migas, .portada .migas a { color: var(--navy-claro); }
+  .portada .eyebrow { color: var(--lima); }
   .portada h1 { color: var(--w); max-width: 760px; }
-  .portada h1 em { font-style: normal; color: var(--accent-soft); }
+  .portada h1 em { font-style: normal; color: var(--lima); }
   .portada .bajada { color: rgba(255,255,255,0.9); max-width: 660px; }
-  .portada .autor { color: rgba(255,255,255,0.75); border-bottom-color: rgba(255,255,255,0.16); }
+  .portada .autor { color: var(--navy-claro); border-bottom-color: rgba(255,255,255,0.16); }
   .portada .autor a { color: var(--w); }
   .temas { display: flex; flex-wrap: wrap; gap: var(--s-2); }
-  .temas a { display: inline-flex; align-items: center; gap: var(--s-2); min-height: 44px; padding: 0 var(--s-4) 0 var(--s-3); border-radius: 999px; background: var(--bloque); color: var(--bloque-texto); font-size: var(--fs-sm); font-weight: 600; text-decoration: none; transition: box-shadow var(--t-instante); }
-  .temas a:hover { box-shadow: 0 0 0 3px rgba(255,255,255,0.35); }
-  .temas svg { width: 18px; height: 18px; }
+  .temas a { display: inline-flex; align-items: center; gap: var(--s-2); min-height: 44px; padding: 0 var(--s-4) 0 var(--s-3); border-radius: 999px; background: var(--w); border: 1.5px solid var(--navy); color: var(--navy); font-size: var(--fs-sm); font-weight: 600; text-decoration: none; transition: background var(--t-instante), color var(--t-instante), border-color var(--t-instante); }
+  .temas svg { width: 18px; height: 18px; color: var(--marca-hover); }
+  .temas a:hover, .temas a:focus-visible { background: var(--navy); color: var(--w); border-color: rgba(255,255,255,0.6); }
+  .temas a:hover svg, .temas a:focus-visible svg { color: var(--lima); }
   .empeza { margin: var(--s-7) 0 0; }
   .empeza > p { margin-bottom: var(--s-4); }
   .pasos, .tarjetas { list-style: none; padding: 0; display: grid; gap: var(--s-3); }
   .pasos { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
   .tarjetas { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
-  .pasos a, .tarjetas a { display: flex; flex-direction: column; gap: var(--s-2); height: 100%; padding: var(--s-5); background: var(--w); border: 1px solid var(--borde); border-top: 4px solid var(--bloque); border-radius: var(--r-lg); text-decoration: none; transition: border-color var(--t-instante), transform var(--t-instante); }
-  .pasos a:hover, .tarjetas a:hover { border-color: var(--bloque); transform: translateY(-2px); }
-  .paso { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 999px; background: var(--bloque); color: var(--bloque-texto); font-size: var(--fs-sm); font-weight: 600; }
-  .paso-eje { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--acento); }
+  .pasos a, .tarjetas a { display: flex; flex-direction: column; gap: var(--s-2); height: 100%; padding: var(--s-5); background: var(--w); border: 1px solid var(--borde); border-radius: var(--r-lg); text-decoration: none; transition: border-color var(--t-instante), transform var(--t-instante); }
+  .pasos a:hover, .tarjetas a:hover { border-color: var(--marca); transform: translateY(-2px); }
+  .paso { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 999px; background: var(--navy); color: var(--lima); font-size: var(--fs-sm); font-weight: 600; }
+  .t-cab { display: flex; align-items: center; gap: var(--s-3); }
+  .t-ico { width: 36px; height: 36px; border-radius: var(--r); background: var(--lila); color: var(--marca-hover); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .t-ico svg { width: 18px; height: 18px; }
+  .paso-eje { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tinta-3); }
   .pasos strong, .tarjetas strong { color: var(--navy); font-size: var(--fs-lead); font-weight: 600; line-height: 1.35; }
-  .pasos a:hover strong, .tarjetas a:hover strong { color: var(--acento); }
+  .pasos a:hover strong, .tarjetas a:hover strong { color: var(--marca-hover); }
   .paso-txt, .tarjetas .desc { color: var(--tinta-2); font-size: var(--fs-sm); line-height: 1.55; }
   .tema { margin-top: var(--s-7); }
-  .tema-cab { position: relative; overflow: hidden; display: flex; gap: var(--s-4); align-items: center; background: var(--bloque); color: var(--bloque-texto); border-radius: var(--r-lg); padding: var(--s-5); margin-bottom: var(--s-3); }
-  .tema-cab > :not(.circulos) { position: relative; }
-  .tema-cab .circulos { width: 240px; height: 240px; right: -60px; top: -80px; opacity: 0.18; }
-  .tema-cab .ico { width: 52px; height: 52px; border-radius: var(--r); border: 2px solid currentColor; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .tema-cab { display: flex; gap: var(--s-4); align-items: center; padding-bottom: var(--s-4); margin-bottom: var(--s-4); border-bottom: 1px solid var(--borde); }
+  .tema-cab .ico { width: 52px; height: 52px; border-radius: var(--r); background: var(--lila); color: var(--marca-hover); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .tema-cab .ico svg { width: 26px; height: 26px; }
-  .tema-cab h2 { margin: 0 0 4px; color: inherit; scroll-margin-top: var(--s-5); }
-  .tema-cab p { color: inherit; }
-  .tema-num { margin-left: auto; font-size: var(--fs-sm); font-weight: 600; white-space: nowrap; }
+  .tema-cab h2 { margin: 0 0 4px; color: var(--navy); scroll-margin-top: var(--s-5); }
+  .tema-cab p { color: var(--tinta-2); }
+  .tema-num { margin-left: auto; font-size: var(--fs-sm); font-weight: 600; color: var(--tinta-3); white-space: nowrap; }
   .meta { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: auto; padding-top: var(--s-2); }
   .meta span { font-size: var(--fs-meta); font-weight: 600; color: var(--tinta-3); background: var(--lienzo); border-radius: 999px; padding: 2px 10px; }
   @media (max-width: 640px) { .tema-num { display: none; } .tema-cab { align-items: flex-start; } }
@@ -141,37 +142,39 @@ function gtag() { dataLayer.push(arguments); }
   .cifras { color: rgba(255,255,255,0.9); font-size: var(--fs-sm); margin-top: var(--s-2); }
   .cifras strong { color: var(--w); }
   .buscador { margin-top: var(--s-5); max-width: 560px; }
-  .buscador label { display: block; font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-soft); margin-bottom: var(--s-2); }
+  .buscador label { display: block; font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lima); margin-bottom: var(--s-2); }
   .buscador input { width: 100%; min-height: 48px; padding: 0 var(--s-4); border: 0; border-radius: var(--r); font: inherit; font-size: var(--fs-base); color: var(--tinta); background: var(--w); }
-  .buscador input:focus-visible { outline: 3px solid var(--accent-soft); outline-offset: 2px; }
+  .buscador input:focus-visible { outline: 3px solid var(--lima); outline-offset: 2px; }
   .sin-resultados { margin-top: var(--s-6); padding: var(--s-5); background: var(--w); border: 1px solid var(--borde); border-radius: var(--r-lg); }
   .tema .tarjetas .paso-eje { display: none; }
   .meta { flex-wrap: nowrap; overflow: hidden; }
   /* Página de guía */
   main.guia { max-width: 1080px; }
-  .guia-cab { position: relative; overflow: hidden; background: var(--bloque); color: var(--bloque-texto); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); margin-bottom: var(--s-6); }
-  .guia-cab > :not(.circulos) { position: relative; }
-  .guia-cab .migas, .guia-cab .migas a, .guia-cab .eyebrow, .guia-cab h1, .guia-cab .bajada, .guia-cab .autor, .guia-cab .autor a { color: inherit; }
-  .guia-cab h1 { max-width: 780px; }
-  .guia-cab .bajada { max-width: 700px; }
-  .guia-cab .autor { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
-  .guia-cab .meta { margin-top: var(--s-3); }
-  .guia-cab .meta span { background: transparent; color: inherit; border: 1px solid currentColor; }
+  .guia-cab { background: var(--navy); color: var(--w); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); margin-bottom: var(--s-6); }
+  .guia-cab .migas, .guia-cab .migas a { color: var(--navy-claro); }
+  .guia-cab .eyebrow { color: var(--lima); }
+  .guia-cab h1 { color: var(--w); max-width: 780px; }
+  .guia-cab .bajada { color: rgba(255,255,255,0.9); max-width: 700px; }
+  .guia-cab .autor { color: var(--navy-claro); border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
+  .guia-cab .autor a { color: var(--w); }
+  .guia-cab .meta { margin-top: var(--s-4); }
+  .guia-cab .meta span { background: var(--lima); color: var(--navy); }
+  .guia-cab .meta .min { background: rgba(255,255,255,0.12); color: var(--w); }
   .guia-cuerpo { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: var(--s-7); align-items: start; }
   .guia-principal { min-width: 0; max-width: 720px; }
-  .indice-guia { position: sticky; top: var(--s-5); border-left: 3px solid var(--bloque); padding-left: var(--s-4); }
+  .indice-guia { position: sticky; top: var(--s-5); border-left: 3px solid var(--borde); padding-left: var(--s-4); }
   .indice-guia p, .resumen p { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: var(--s-2); }
   .indice-guia p { color: var(--tinta-3); }
   .indice-guia ol, .indice-movil ol { list-style: none; padding: 0; }
   .indice-guia li { margin-bottom: 6px; }
   .indice-guia a, .indice-movil a { color: var(--tinta-2); font-size: var(--fs-sm); line-height: 1.4; text-decoration: none; display: block; }
-  .indice-guia a:hover, .indice-movil a:hover { color: var(--acento); }
+  .indice-guia a:hover, .indice-movil a:hover, .indice-guia a[aria-current="true"] { color: var(--marca-hover); }
+  .indice-guia a[aria-current="true"] { font-weight: 600; }
   .indice-movil { display: none; }
-  .resumen { background: var(--lienzo); border-left: 4px solid var(--bloque); border-radius: var(--r); padding: var(--s-4) var(--s-5); margin-bottom: var(--s-6); }
-  .resumen p { color: var(--acento); }
+  .resumen { background: var(--lila); border-radius: var(--r-lg); padding: var(--s-4) var(--s-5); margin-bottom: var(--s-6); }
+  .resumen p { color: var(--marca-hover); }
   .resumen ul { padding-left: var(--s-5); }
   .resumen li { color: var(--tinta); margin-bottom: 6px; }
-  main.guia .formula { border-left-color: var(--bloque); }
   article h2 { scroll-margin-top: var(--s-5); }
   .caja-autor { display: flex; gap: var(--s-4); align-items: center; border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-5); margin-top: var(--s-7); }
   .caja-autor img { width: 72px; height: 72px; border-radius: 999px; object-fit: cover; object-position: top; background: var(--lienzo); flex-shrink: 0; }
@@ -192,6 +195,7 @@ function gtag() { dataLayer.push(arguments); }
   .foot-in nav { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
   .foot-in a { color: var(--w); text-decoration: none; }
   :focus-visible { outline: 2px solid var(--marca); outline-offset: 2px; }
+  header :focus-visible, footer :focus-visible, .portada :focus-visible, .guia-cab :focus-visible, .cta :focus-visible { outline-color: var(--lima); }
 </style>
 </head>
 <body>
@@ -206,16 +210,15 @@ function gtag() { dataLayer.push(arguments); }
   </div>
 </header>
 <main class="guia">
-  <section class="guia-cab" style="--bloque:var(--of-azul);--bloque-texto:var(--w);--acento:var(--of-azul)">
-    <svg class="circulos" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="66"/><circle cx="100" cy="100" r="36"/></svg>
+  <section class="guia-cab">
   <nav class="migas" aria-label="Ruta"><a href="/">Inicio</a> › <a href="/guias">Guías</a> › <span>Food cost</span></nav>
     <p class="eyebrow">Guía · Costos y precios</p>
     <h1>Food cost (costo de la materia prima): qué es, fórmula y cómo calcularlo</h1>
     <p class="bajada">Qué es el food cost o costo de la materia prima en gastronomía, la fórmula por plato y por mes, ejemplos en pesos, cómo calcularlo en Excel y qué porcentaje tomar.</p>
     <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · Actualizada el 14 de septiembre de 2026</p>
-    <div class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>6 min de lectura</span></div>
+    <div class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span class="min">6 min de lectura</span></div>
   </section>
-  <div class="guia-cuerpo" style="--bloque:var(--of-azul);--bloque-texto:var(--w);--acento:var(--of-azul)">
+  <div class="guia-cuerpo">
     <div class="guia-principal">
       <aside class="resumen"><p>Lo más importante</p><ul><li>El food cost es el porcentaje de las ventas que se va en materia prima.</li><li>Por plato: costo ÷ precio sin IVA. Por mes: (inventario inicial + compras − inventario final) ÷ ventas netas.</li><li>Compará el de las fichas con el real del mes, sobre las mismas ventas netas: la diferencia es plata que se pierde.</li></ul></aside>
       <details class="indice-movil"><summary>En esta guía</summary><ol><li><a href="#que-es-el-food-cost">Qué es el food cost</a></li><li><a href="#la-formula-del-food-cost">La fórmula del food cost</a></li><li><a href="#ejemplo-el-food-cost-de-un-plato">Ejemplo: el food cost de un plato</a></li><li><a href="#ejemplo-el-food-cost-real-del-mes">Ejemplo: el food cost real del mes</a></li><li><a href="#food-cost-teorico-contra-real">Food cost teórico contra real</a></li><li><a href="#como-calcular-el-food-cost-en-excel">Cómo calcular el food cost en Excel</a></li><li><a href="#que-porcentaje-de-food-cost-es-bueno">¿Qué porcentaje de food cost es &quot;bueno&quot;?</a></li><li><a href="#como-usar-el-food-cost-en-tu-negocio">Cómo usar el food cost en tu negocio</a></li><li><a href="#preguntas-frecuentes">Preguntas frecuentes</a></li></ol></details>
@@ -324,13 +327,29 @@ function gtag() { dataLayer.push(arguments); }
       </article>
       <aside class="caja-autor"><img src="/foto-manuel-cutout.webp" alt="Manuel Alfano" width="72" height="72" loading="lazy"><div><strong>Manuel Alfano</strong><p>Fundador de Orden Financiero. Más de 12 años en la gastronomía con negocio propio; hoy trabaja mano a mano con dueños de negocios para ordenar sus números.</p></div></aside>
       <section class="seguir"><h2>Seguí leyendo</h2><ul class="tarjetas">
-      <li style="--bloque:var(--of-azul);--bloque-texto:var(--w);--acento:var(--of-azul)" data-claves="El costo de un plato es lo que cuesta la materia prima de una porción, con la merma incluida. Costo real por kilo = precio de compra ÷ rendimiento; después se multiplica por la cantidad de la porción. Actualizá la ficha cuando aumenta un insumo importante: tres o cuatro explican casi todo el costo. ¿Qué es la ficha de costo de un plato? ¿Cómo se calcula la merma? ¿Cómo saco el costo de una receta que rinde varias porciones? ¿Qué porcentaje del precio debería ser el costo de un plato? ¿Cada cuánto hay que actualizar el costo de un plato? Cómo calcular el costo de un plato: fórmula, ejemplo y ficha de costo Costos y precios"><a href="/guias/costo-de-un-plato"><span class="paso-eje">Costos y precios</span><strong>Costo de un plato</strong><span class="desc">Qué es el costo de un plato, la fórmula con la merma incluida, un ejemplo completo en pesos y cómo armar la ficha de costo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>6 min</span></span></a></li>
-      <li style="--bloque:var(--of-azul);--bloque-texto:var(--w);--acento:var(--of-azul)" data-claves="Precio sin IVA = costo del plato ÷ food cost objetivo; si sos responsable inscripto, sumá el IVA. Mirá también los pesos que deja cada plato, no solo el porcentaje. En apps de delivery la comisión va dentro del precio, o el plato te deja menos que en el salón. ¿Cuánto cobrar por un plato de comida? ¿Cuál es la fórmula del precio de venta de un plato? ¿Cómo calculo el precio con IVA y cómo le saco el IVA? ¿Qué es el multiplicador de un plato? Cómo calcular el precio de venta de un plato: fórmula y ejemplo Costos y precios"><a href="/guias/precio-de-venta-de-un-plato"><span class="paso-eje">Costos y precios</span><strong>Precio de venta de un plato</strong><span class="desc">La fórmula para poner el precio de un plato a partir de su costo, con ejemplos en pesos: food cost objetivo, margen de contribución, IVA, Excel y delivery.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>6 min</span></span></a></li>
-      <li style="--bloque:var(--of-verde);--bloque-texto:var(--w);--acento:var(--of-verde)" data-claves="Muestra si el negocio ganó o perdió en el mes: ventas netas − CMV − estructura − costos financieros − impuestos. Los porcentajes van sobre ventas netas, y cada mes se suma una parte del aguinaldo. No es lo mismo que la caja: un negocio puede ganar plata y quedarse sin efectivo. ¿Qué es un estado de resultados? ¿Cuál es la estructura del estado de resultados? ¿Qué diferencia hay entre el estado de resultados y el flujo de caja? ¿El estado de resultados y el balance son lo mismo? ¿Cada cuánto conviene hacer el estado de resultados? Estado de resultados: qué es, estructura, modelo y ejemplo Resultado económico"><a href="/guias/estado-de-resultados"><span class="paso-eje">Resultado económico</span><strong>Estado de resultados</strong><span class="desc">Qué es un estado de resultados, su estructura paso a paso, un modelo para un negocio en Argentina, un ejemplo completo en pesos y cómo armarlo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>7 min</span></span></a></li>
+      <li data-claves="El costo de un plato es lo que cuesta la materia prima de una porción, con la merma incluida. Costo real por kilo = precio de compra ÷ rendimiento; después se multiplica por la cantidad de la porción. Actualizá la ficha cuando aumenta un insumo importante: tres o cuatro explican casi todo el costo. ¿Qué es la ficha de costo de un plato? ¿Cómo se calcula la merma? ¿Cómo saco el costo de una receta que rinde varias porciones? ¿Qué porcentaje del precio debería ser el costo de un plato? ¿Cada cuánto hay que actualizar el costo de un plato? Cómo calcular el costo de un plato: fórmula, ejemplo y ficha de costo Costos y precios"><a href="/guias/costo-de-un-plato"><span class="t-cab"><span class="t-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span><span class="paso-eje">Costos y precios</span></span><strong>Costo de un plato</strong><span class="desc">Qué es el costo de un plato, la fórmula con la merma incluida, un ejemplo completo en pesos y cómo armar la ficha de costo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>6 min</span></span></a></li>
+      <li data-claves="Precio sin IVA = costo del plato ÷ food cost objetivo; si sos responsable inscripto, sumá el IVA. Mirá también los pesos que deja cada plato, no solo el porcentaje. En apps de delivery la comisión va dentro del precio, o el plato te deja menos que en el salón. ¿Cuánto cobrar por un plato de comida? ¿Cuál es la fórmula del precio de venta de un plato? ¿Cómo calculo el precio con IVA y cómo le saco el IVA? ¿Qué es el multiplicador de un plato? Cómo calcular el precio de venta de un plato: fórmula y ejemplo Costos y precios"><a href="/guias/precio-de-venta-de-un-plato"><span class="t-cab"><span class="t-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span><span class="paso-eje">Costos y precios</span></span><strong>Precio de venta de un plato</strong><span class="desc">La fórmula para poner el precio de un plato a partir de su costo, con ejemplos en pesos: food cost objetivo, margen de contribución, IVA, Excel y delivery.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>6 min</span></span></a></li>
+      <li data-claves="Muestra si el negocio ganó o perdió en el mes: ventas netas − CMV − estructura − costos financieros − impuestos. Los porcentajes van sobre ventas netas, y cada mes se suma una parte del aguinaldo. No es lo mismo que la caja: un negocio puede ganar plata y quedarse sin efectivo. ¿Qué es un estado de resultados? ¿Cuál es la estructura del estado de resultados? ¿Qué diferencia hay entre el estado de resultados y el flujo de caja? ¿El estado de resultados y el balance son lo mismo? ¿Cada cuánto conviene hacer el estado de resultados? Estado de resultados: qué es, estructura, modelo y ejemplo Resultado económico"><a href="/guias/estado-de-resultados"><span class="t-cab"><span class="t-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="paso-eje">Resultado económico</span></span><strong>Estado de resultados</strong><span class="desc">Qué es un estado de resultados, su estructura paso a paso, un modelo para un negocio en Argentina, un ejemplo completo en pesos y cómo armarlo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>7 min</span></span></a></li>
       </ul></section>
     </div>
     <nav class="indice-guia" aria-label="En esta guía"><p>En esta guía</p><ol><li><a href="#que-es-el-food-cost">Qué es el food cost</a></li><li><a href="#la-formula-del-food-cost">La fórmula del food cost</a></li><li><a href="#ejemplo-el-food-cost-de-un-plato">Ejemplo: el food cost de un plato</a></li><li><a href="#ejemplo-el-food-cost-real-del-mes">Ejemplo: el food cost real del mes</a></li><li><a href="#food-cost-teorico-contra-real">Food cost teórico contra real</a></li><li><a href="#como-calcular-el-food-cost-en-excel">Cómo calcular el food cost en Excel</a></li><li><a href="#que-porcentaje-de-food-cost-es-bueno">¿Qué porcentaje de food cost es &quot;bueno&quot;?</a></li><li><a href="#como-usar-el-food-cost-en-tu-negocio">Cómo usar el food cost en tu negocio</a></li><li><a href="#preguntas-frecuentes">Preguntas frecuentes</a></li></ol></nav>
   </div>
+  <script>
+  (function () {
+    var links = [].slice.call(document.querySelectorAll('.indice-guia a'));
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var porId = {};
+    links.forEach(function (a) { porId[a.getAttribute('href').slice(1)] = a; });
+    var obs = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) { a.removeAttribute('aria-current'); });
+        if (porId[e.target.id]) porId[e.target.id].setAttribute('aria-current', 'true');
+      });
+    }, { rootMargin: '0px 0px -70% 0px' });
+    Object.keys(porId).forEach(function (id) { var h = document.getElementById(id); if (h) obs.observe(h); });
+  })();
+  </script>
   <aside class="cta">
     <p class="cta-t">¿Por dónde se le escapa la plata a tu negocio?</p>
     <p>Hacé el diagnóstico gratis: 12 preguntas, 3 minutos y el puntaje de los cuatro eslabones al instante.</p>
