@@ -76,24 +76,97 @@ CSS = TOKENS + """
   .lista-guias li { border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-4) var(--s-5); margin-bottom: var(--s-3); }
   .lista-guias a { font-weight: 600; font-size: var(--fs-lead); text-decoration: none; line-height: 1.4; }
   .lista-guias p { margin-top: var(--s-2); font-size: var(--fs-sm); }
-  .temas { display: flex; flex-wrap: wrap; gap: var(--s-2); margin: var(--s-5) 0; }
-  .temas a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--s-4); border: 1px solid var(--borde); border-radius: 999px; font-size: var(--fs-sm); font-weight: 600; color: var(--navy); text-decoration: none; }
-  .temas a:hover { border-color: var(--marca); color: var(--marca); }
-  .empeza { background: var(--lienzo); border-radius: var(--r-lg); padding: var(--s-5); margin: var(--s-5) 0 var(--s-6); }
-  .empeza h2 { margin-top: 0; }
-  .pasos { list-style: none; padding: 0; margin-top: var(--s-4); }
-  .pasos li { display: flex; gap: var(--s-3); align-items: flex-start; margin-bottom: var(--s-4); }
-  .pasos .paso { flex: none; width: 28px; height: 28px; margin-top: 2px; border-radius: 50%; background: var(--marca); color: var(--w); font-size: var(--fs-sm); font-weight: 600; display: inline-flex; align-items: center; justify-content: center; }
-  .pasos a { font-weight: 600; text-decoration: none; line-height: 1.4; }
-  .pasos p { margin-top: 2px; font-size: var(--fs-sm); }
-  .tema h2 { scroll-margin-top: var(--s-5); }
-  .tema-intro { margin-bottom: var(--s-4); }
+  /* Bloques de color por eslabón: tokens admin.* del sistema de diseño; pares de texto con contraste AA verificado */
+  :root { --of-azul: #0C66E4; --of-verde: #1F845A; --of-turquesa: #00A3BF; --of-violeta: #6E5DC6; --ink: #172B4D; --accent-soft: #93C5FD; }
+  body:has(main.ancho) { background: var(--lienzo); }
+  main.ancho { max-width: 1040px; }
+  .circulos { position: absolute; width: 320px; height: 320px; right: -80px; top: -90px; opacity: 0.14; pointer-events: none; }
+  .portada { position: relative; overflow: hidden; background: var(--navy-900); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); color: var(--w); }
+  .portada > :not(.circulos) { position: relative; }
+  .portada .migas, .portada .migas a { color: rgba(255,255,255,0.72); }
+  .portada .eyebrow { color: var(--accent-soft); }
+  .portada h1 { color: var(--w); max-width: 760px; }
+  .portada h1 em { font-style: normal; color: var(--accent-soft); }
+  .portada .bajada { color: rgba(255,255,255,0.9); max-width: 660px; }
+  .portada .autor { color: rgba(255,255,255,0.75); border-bottom-color: rgba(255,255,255,0.16); }
+  .portada .autor a { color: var(--w); }
+  .temas { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+  .temas a { display: inline-flex; align-items: center; gap: var(--s-2); min-height: 44px; padding: 0 var(--s-4) 0 var(--s-3); border-radius: 999px; background: var(--bloque); color: var(--bloque-texto); font-size: var(--fs-sm); font-weight: 600; text-decoration: none; transition: box-shadow var(--t-instante); }
+  .temas a:hover { box-shadow: 0 0 0 3px rgba(255,255,255,0.35); }
+  .temas svg { width: 18px; height: 18px; }
+  .empeza { margin: var(--s-7) 0 0; }
+  .empeza > p { margin-bottom: var(--s-4); }
+  .pasos, .tarjetas { list-style: none; padding: 0; display: grid; gap: var(--s-3); }
+  .pasos { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .tarjetas { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+  .pasos a, .tarjetas a { display: flex; flex-direction: column; gap: var(--s-2); height: 100%; padding: var(--s-5); background: var(--w); border: 1px solid var(--borde); border-top: 4px solid var(--bloque); border-radius: var(--r-lg); text-decoration: none; transition: border-color var(--t-instante), transform var(--t-instante); }
+  .pasos a:hover, .tarjetas a:hover { border-color: var(--bloque); transform: translateY(-2px); }
+  .paso { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 999px; background: var(--bloque); color: var(--bloque-texto); font-size: var(--fs-sm); font-weight: 600; }
+  .paso-eje { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--acento); }
+  .pasos strong, .tarjetas strong { color: var(--navy); font-size: var(--fs-lead); font-weight: 600; line-height: 1.35; }
+  .pasos a:hover strong, .tarjetas a:hover strong { color: var(--acento); }
+  .paso-txt, .tarjetas .desc { color: var(--tinta-2); font-size: var(--fs-sm); line-height: 1.55; }
+  .tema { margin-top: var(--s-7); }
+  .tema-cab { position: relative; overflow: hidden; display: flex; gap: var(--s-4); align-items: center; background: var(--bloque); color: var(--bloque-texto); border-radius: var(--r-lg); padding: var(--s-5); margin-bottom: var(--s-3); }
+  .tema-cab > :not(.circulos) { position: relative; }
+  .tema-cab .circulos { width: 240px; height: 240px; right: -60px; top: -80px; opacity: 0.18; }
+  .tema-cab .ico { width: 52px; height: 52px; border-radius: var(--r); border: 2px solid currentColor; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .tema-cab .ico svg { width: 26px; height: 26px; }
+  .tema-cab h2 { margin: 0 0 4px; color: inherit; scroll-margin-top: var(--s-5); }
+  .tema-cab p { color: inherit; }
+  .tema-num { margin-left: auto; font-size: var(--fs-sm); font-weight: 600; white-space: nowrap; }
+  .meta { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: auto; padding-top: var(--s-2); }
+  .meta span { font-size: var(--fs-meta); font-weight: 600; color: var(--tinta-3); background: var(--lienzo); border-radius: 999px; padding: 2px 10px; }
+  @media (max-width: 640px) { .tema-num { display: none; } .tema-cab { align-items: flex-start; } }
+  @media (prefers-reduced-motion: reduce) { .pasos a:hover, .tarjetas a:hover { transform: none; } }
   footer { background: var(--navy-900); padding: var(--s-6) var(--s-5); font-size: var(--fs-sm); }
   .foot-in { max-width: 960px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5); justify-content: space-between; color: rgba(255,255,255,0.75); }
   .foot-in nav { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
   .foot-in a { color: var(--w); text-decoration: none; }
   :focus-visible { outline: 2px solid var(--marca); outline-offset: 2px; }
 """
+
+
+# Eslabones: id, token del bloque, token del texto sobre el bloque, token del acento sobre blanco, ícono.
+# Íconos: los de los pilares de la home. Colores: bloques por categoría del sistema de diseño (AA verificado).
+ESLABONES = {
+    'Costos y precios': ('costos-y-precios', 'of-azul', 'w', 'of-azul',
+                         '<path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>'),
+    'Resultado económico': ('resultado-economico', 'of-verde', 'w', 'of-verde',
+                            '<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>'),
+    'Flujo de caja': ('flujo-de-caja', 'of-turquesa', 'ink', 'ink', '<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>'),
+    'Indicadores de gestión': ('indicadores-de-gestion', 'of-violeta', 'w', 'of-violeta',
+                               '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>'),
+}
+CIRCULOS = ('<svg class="circulos" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">'
+            '<circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="66"/><circle cx="100" cy="100" r="36"/></svg>')
+
+
+def estilo_eslabon(eje):
+    _, bloque, texto, acento, _ = ESLABONES[eje]
+    return f'--bloque:var(--{bloque});--bloque-texto:var(--{texto});--acento:var(--{acento})'
+
+
+def svg_icono(eje):
+    return ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" '
+            f'stroke-linejoin="round" aria-hidden="true">{ESLABONES[eje][4]}</svg>')
+
+
+def minutos(g):
+    texto = re.sub(r'<[^>]+>', ' ', g['cuerpo']) + ' ' + ' '.join(x['q'] + ' ' + x['a'] for x in g.get('faq', []))
+    return max(1, round(len(texto.split()) / 200))
+
+
+def incluye(g):
+    c = g['cuerpo']
+    out = []
+    if 'class="formula"' in c:
+        out.append('Fórmula')
+    if re.search(r'<h[23]>Ejemplo', c):
+        out.append('Ejemplo')
+    if 'Excel</h2>' in c:
+        out.append('Excel')
+    return out
 
 
 def fecha_larga(iso):
@@ -113,9 +186,10 @@ def leer_guias():
     return guias
 
 
-def pagina(*, title, description, path, og_type, ld, cuerpo, cta_origen, cta_general=False):
+def pagina(*, title, description, path, og_type, ld, cuerpo, cta_origen, cta_general=False, main_clase=''):
     url = BASE + path
     e = html.escape
+    main_attr = f' class="{main_clase}"' if main_clase else ''
     # La oferta es gastronomica (decision del dueño, 14/09): las guias generales lo dicen en el cierre.
     if cta_general:
         cta_t = '¿Tenés un negocio gastronómico?'
@@ -162,7 +236,7 @@ def pagina(*, title, description, path, og_type, ld, cuerpo, cta_origen, cta_gen
     </nav>
   </div>
 </header>
-<main>
+<main{main_attr}>
 {cuerpo}
   <aside class="cta">
     <p class="cta-t">{cta_t}</p>
@@ -218,7 +292,7 @@ def main():
             faq_html = '\n    <h2>Preguntas frecuentes</h2>\n' + ''.join(
                 f'    <h3>{html.escape(x["q"])}</h3>\n    <p>{html.escape(x["a"])}</p>\n' for x in faq)
         cuerpo = f"""{migas(items)}
-  <p class="eyebrow">Guía · {html.escape(g['eje'])}</p>
+  <p class="eyebrow" style="color:var(--{ESLABONES[g['eje']][3]})">Guía · {html.escape(g['eje'])}</p>
   <h1>{html.escape(g['h1'])}</h1>
   <p class="bajada">{html.escape(g['description'])}</p>
   <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · Actualizada el {fecha_larga(g['actualizada'])}</p>
@@ -245,57 +319,72 @@ def main():
             'con fórmulas y ejemplos en pesos. Con foco en gastronomía.')
     lista = ''.join(f'    <li><a href="/guias/{g["slug"]}">{html.escape(g["h1"])}</a><p>{html.escape(g["description"])}</p></li>\n'
                     for g in guias)
-    # Agrupadas por los cuatro eslabones del diagnóstico (mismo mapa que la home), con un
-    # "Empezá por acá" arriba: patrón de Stripe, Xero, QuickBooks y los clusters de HubSpot.
+    # Agrupadas por los cuatro eslabones del diagnóstico: un bloque de color entero por eslabón
+    # (tabla de bloques por categoría del sistema de diseño) y un "Empezá por acá" arriba.
     temas = [
-        ('costos-y-precios', 'Costos y precios', 'El costo real y el precio correcto de cada cosa que se vende.',
+        ('Costos y precios', 'El costo real y el precio correcto de cada cosa que se vende.',
          ['costo-de-un-plato', 'food-cost', 'costo-de-mercaderia-vendida', 'costos-fijos-y-variables',
           'precio-de-venta-de-un-plato', 'precio-de-venta-de-un-producto']),
-        ('resultado-economico', 'Resultado económico', 'Un cierre por mes: cuánto ganó el negocio de verdad, con gastos e impuestos descontados.',
+        ('Resultado económico', 'Un cierre por mes: cuánto ganó el negocio de verdad, con gastos e impuestos descontados.',
          ['estado-de-resultados', 'margen-de-ganancia', 'punto-de-equilibrio', 'rentabilidad-de-un-negocio']),
-        ('flujo-de-caja', 'Flujo de caja', 'Pagos, cobranzas y vencimientos a la vista, para que la plata esté cuando hace falta.',
+        ('Flujo de caja', 'Pagos, cobranzas y vencimientos a la vista, para que la plata esté cuando hace falta.',
          ['capital-de-trabajo']),
-        ('indicadores-de-gestion', 'Indicadores de gestión', 'Tres o cuatro números que se miran todos los meses antes de decidir.',
-         []),
+        ('Indicadores de gestión', 'Tres o cuatro números que se miran todos los meses antes de decidir.', []),
     ]
     empeza = [('costo-de-un-plato', 'Sabé cuánto te cuesta de verdad cada plato.'),
               ('precio-de-venta-de-un-plato', 'Poné un precio que te deje plata.'),
               ('estado-de-resultados', 'Mirá cuánto ganó el negocio en el mes.')]
     por_slug = {g['slug']: g for g in guias}
-    asignadas = [s for _, _, _, slugs in temas for s in slugs]
+    asignadas = [slug for _, _, slugs in temas for slug in slugs]
     sin_tema = [g['slug'] for g in guias if g['slug'] not in asignadas]
     assert not sin_tema, f'Guías sin tema en el índice: {sin_tema}'
-    visibles = [t for t in temas if t[3]]
+    for nombre, _, slugs in temas:
+        for slug in slugs:
+            assert por_slug[slug]['eje'] == nombre, f'{slug}: su eje no coincide con la sección {nombre}'
+    visibles = [t for t in temas if t[2]]
 
-    def item(g):
-        return (f'      <li><a href="/guias/{g["slug"]}">{html.escape(g["h1"])}</a>'
-                f'<p>{html.escape(g["description"])}</p></li>\n')
+    def tarjeta(g):
+        etiquetas = ''.join(f'<span>{x}</span>' for x in incluye(g))
+        return (f'      <li><a href="/guias/{g["slug"]}"><strong>{html.escape(g["h1"])}</strong>'
+                f'<span class="desc">{html.escape(g["description"])}</span>'
+                f'<span class="meta">{etiquetas}<span>{minutos(g)} min de lectura</span></span></a></li>\n')
 
-    botones = ''.join(f'<a href="#{tid}">{html.escape(nombre)}</a>' for tid, nombre, _, _ in visibles)
+    botones = ''.join(
+        f'<a href="#{ESLABONES[n][0]}" style="{estilo_eslabon(n)}">{svg_icono(n)}{html.escape(n)}</a>'
+        for n, _, _ in visibles)
     pasos = ''.join(
-        f'      <li><span class="paso" aria-hidden="true">{i + 1}</span><div><a href="/guias/{s}">'
-        f'{html.escape(por_slug[s]["h1"])}</a><p>{html.escape(texto)}</p></div></li>\n'
-        for i, (s, texto) in enumerate(empeza))
-    secciones = (f'  <nav class="temas" aria-label="Temas de las guías">{botones}</nav>\n'
-                 '  <section class="empeza" aria-labelledby="empeza">\n'
+        f'      <li style="{estilo_eslabon(por_slug[slug]["eje"])}"><a href="/guias/{slug}">'
+        f'<span class="paso" aria-hidden="true">{i + 1}</span>'
+        f'<span class="paso-eje">{html.escape(por_slug[slug]["eje"])}</span>'
+        f'<strong>{html.escape(por_slug[slug]["h1"])}</strong>'
+        f'<span class="paso-txt">{html.escape(texto)}</span></a></li>\n'
+        for i, (slug, texto) in enumerate(empeza))
+    secciones = ('  <section class="empeza" aria-labelledby="empeza">\n'
                  '    <h2 id="empeza">Empezá por acá</h2>\n'
-                 '    <p>Si tenés un negocio gastronómico, estas tres guías son el orden más útil para arrancar.</p>\n'
+                 '    <p>Si tenés un negocio gastronómico, este es el orden más útil para arrancar.</p>\n'
                  f'    <ol class="pasos">\n{pasos}    </ol>\n'
                  '  </section>\n')
-    for tid, nombre, intro, slugs in visibles:
-        secciones += (f'  <section class="tema" aria-labelledby="{tid}">\n'
-                      f'    <h2 id="{tid}">{html.escape(nombre)}</h2>\n'
-                      f'    <p class="tema-intro">{html.escape(intro)}</p>\n'
-                      '    <ul class="lista-guias">\n'
-                      + ''.join(item(por_slug[s]) for s in slugs)
+    for nombre, intro, slugs in visibles:
+        tid = ESLABONES[nombre][0]
+        cantidad = f'{len(slugs)} guía' + ('s' if len(slugs) != 1 else '')
+        secciones += (f'  <section class="tema" aria-labelledby="{tid}" style="{estilo_eslabon(nombre)}">\n'
+                      f'    <div class="tema-cab">{CIRCULOS}<span class="ico">{svg_icono(nombre)}</span>'
+                      f'<div><h2 id="{tid}">{html.escape(nombre)}</h2><p>{html.escape(intro)}</p></div>'
+                      f'<span class="tema-num">{cantidad}</span></div>\n'
+                      '    <ul class="tarjetas">\n'
+                      + ''.join(tarjeta(por_slug[slug]) for slug in slugs)
                       + '    </ul>\n  </section>\n')
-    guias = [por_slug[s] for s in asignadas]
+    guias = [por_slug[slug] for slug in asignadas]
 
-    cuerpo = f"""{migas(items)}
-  <p class="eyebrow">Guías</p>
-  <h1>Guías de finanzas para dueños de negocio</h1>
-  <p class="bajada">{desc}</p>
-  <p class="autor">Escritas por <a href="/#manuel">Manuel Alfano</a>, con más de 12 años en la gastronomía con negocio propio.</p>
+    cuerpo = f"""  <section class="portada">
+    {CIRCULOS}
+{migas(items)}
+    <p class="eyebrow">Guías</p>
+    <h1>Guías de finanzas para <em>dueños de negocio</em></h1>
+    <p class="bajada">{desc}</p>
+    <p class="autor">Escritas por <a href="/#manuel">Manuel Alfano</a>, con más de 12 años en la gastronomía con negocio propio.</p>
+    <nav class="temas" aria-label="Temas de las guías">{botones}</nav>
+  </section>
 {secciones}"""
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "CollectionPage", "@id": BASE + "/guias#coleccion", "url": BASE + "/guias",
@@ -307,7 +396,7 @@ def main():
         breadcrumb_ld(items)]}
     (OUT / 'index.html').write_text(pagina(
         title='Guías de finanzas para dueños de negocio · Orden Financiero', description=desc, path='/guias',
-        og_type='website', ld=ld, cuerpo=cuerpo, cta_origen='guias'), encoding='utf-8', newline='\n')
+        og_type='website', ld=ld, cuerpo=cuerpo, cta_origen='guias', main_clase='ancho'), encoding='utf-8', newline='\n')
 
     # sitemap.xml completo
     ultima = max(g['actualizada'] for g in guias)

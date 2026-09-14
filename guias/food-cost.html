@@ -93,18 +93,49 @@ function gtag() { dataLayer.push(arguments); }
   .lista-guias li { border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-4) var(--s-5); margin-bottom: var(--s-3); }
   .lista-guias a { font-weight: 600; font-size: var(--fs-lead); text-decoration: none; line-height: 1.4; }
   .lista-guias p { margin-top: var(--s-2); font-size: var(--fs-sm); }
-  .temas { display: flex; flex-wrap: wrap; gap: var(--s-2); margin: var(--s-5) 0; }
-  .temas a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--s-4); border: 1px solid var(--borde); border-radius: 999px; font-size: var(--fs-sm); font-weight: 600; color: var(--navy); text-decoration: none; }
-  .temas a:hover { border-color: var(--marca); color: var(--marca); }
-  .empeza { background: var(--lienzo); border-radius: var(--r-lg); padding: var(--s-5); margin: var(--s-5) 0 var(--s-6); }
-  .empeza h2 { margin-top: 0; }
-  .pasos { list-style: none; padding: 0; margin-top: var(--s-4); }
-  .pasos li { display: flex; gap: var(--s-3); align-items: flex-start; margin-bottom: var(--s-4); }
-  .pasos .paso { flex: none; width: 28px; height: 28px; margin-top: 2px; border-radius: 50%; background: var(--marca); color: var(--w); font-size: var(--fs-sm); font-weight: 600; display: inline-flex; align-items: center; justify-content: center; }
-  .pasos a { font-weight: 600; text-decoration: none; line-height: 1.4; }
-  .pasos p { margin-top: 2px; font-size: var(--fs-sm); }
-  .tema h2 { scroll-margin-top: var(--s-5); }
-  .tema-intro { margin-bottom: var(--s-4); }
+  /* Bloques de color por eslabón: tokens admin.* del sistema de diseño; pares de texto con contraste AA verificado */
+  :root { --of-azul: #0C66E4; --of-verde: #1F845A; --of-turquesa: #00A3BF; --of-violeta: #6E5DC6; --ink: #172B4D; --accent-soft: #93C5FD; }
+  body:has(main.ancho) { background: var(--lienzo); }
+  main.ancho { max-width: 1040px; }
+  .circulos { position: absolute; width: 320px; height: 320px; right: -80px; top: -90px; opacity: 0.14; pointer-events: none; }
+  .portada { position: relative; overflow: hidden; background: var(--navy-900); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); color: var(--w); }
+  .portada > :not(.circulos) { position: relative; }
+  .portada .migas, .portada .migas a { color: rgba(255,255,255,0.72); }
+  .portada .eyebrow { color: var(--accent-soft); }
+  .portada h1 { color: var(--w); max-width: 760px; }
+  .portada h1 em { font-style: normal; color: var(--accent-soft); }
+  .portada .bajada { color: rgba(255,255,255,0.9); max-width: 660px; }
+  .portada .autor { color: rgba(255,255,255,0.75); border-bottom-color: rgba(255,255,255,0.16); }
+  .portada .autor a { color: var(--w); }
+  .temas { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+  .temas a { display: inline-flex; align-items: center; gap: var(--s-2); min-height: 44px; padding: 0 var(--s-4) 0 var(--s-3); border-radius: 999px; background: var(--bloque); color: var(--bloque-texto); font-size: var(--fs-sm); font-weight: 600; text-decoration: none; transition: box-shadow var(--t-instante); }
+  .temas a:hover { box-shadow: 0 0 0 3px rgba(255,255,255,0.35); }
+  .temas svg { width: 18px; height: 18px; }
+  .empeza { margin: var(--s-7) 0 0; }
+  .empeza > p { margin-bottom: var(--s-4); }
+  .pasos, .tarjetas { list-style: none; padding: 0; display: grid; gap: var(--s-3); }
+  .pasos { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .tarjetas { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+  .pasos a, .tarjetas a { display: flex; flex-direction: column; gap: var(--s-2); height: 100%; padding: var(--s-5); background: var(--w); border: 1px solid var(--borde); border-top: 4px solid var(--bloque); border-radius: var(--r-lg); text-decoration: none; transition: border-color var(--t-instante), transform var(--t-instante); }
+  .pasos a:hover, .tarjetas a:hover { border-color: var(--bloque); transform: translateY(-2px); }
+  .paso { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 999px; background: var(--bloque); color: var(--bloque-texto); font-size: var(--fs-sm); font-weight: 600; }
+  .paso-eje { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--acento); }
+  .pasos strong, .tarjetas strong { color: var(--navy); font-size: var(--fs-lead); font-weight: 600; line-height: 1.35; }
+  .pasos a:hover strong, .tarjetas a:hover strong { color: var(--acento); }
+  .paso-txt, .tarjetas .desc { color: var(--tinta-2); font-size: var(--fs-sm); line-height: 1.55; }
+  .tema { margin-top: var(--s-7); }
+  .tema-cab { position: relative; overflow: hidden; display: flex; gap: var(--s-4); align-items: center; background: var(--bloque); color: var(--bloque-texto); border-radius: var(--r-lg); padding: var(--s-5); margin-bottom: var(--s-3); }
+  .tema-cab > :not(.circulos) { position: relative; }
+  .tema-cab .circulos { width: 240px; height: 240px; right: -60px; top: -80px; opacity: 0.18; }
+  .tema-cab .ico { width: 52px; height: 52px; border-radius: var(--r); border: 2px solid currentColor; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .tema-cab .ico svg { width: 26px; height: 26px; }
+  .tema-cab h2 { margin: 0 0 4px; color: inherit; scroll-margin-top: var(--s-5); }
+  .tema-cab p { color: inherit; }
+  .tema-num { margin-left: auto; font-size: var(--fs-sm); font-weight: 600; white-space: nowrap; }
+  .meta { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: auto; padding-top: var(--s-2); }
+  .meta span { font-size: var(--fs-meta); font-weight: 600; color: var(--tinta-3); background: var(--lienzo); border-radius: 999px; padding: 2px 10px; }
+  @media (max-width: 640px) { .tema-num { display: none; } .tema-cab { align-items: flex-start; } }
+  @media (prefers-reduced-motion: reduce) { .pasos a:hover, .tarjetas a:hover { transform: none; } }
   footer { background: var(--navy-900); padding: var(--s-6) var(--s-5); font-size: var(--fs-sm); }
   .foot-in { max-width: 960px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5); justify-content: space-between; color: rgba(255,255,255,0.75); }
   .foot-in nav { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
@@ -125,7 +156,7 @@ function gtag() { dataLayer.push(arguments); }
 </header>
 <main>
   <nav class="migas" aria-label="Ruta"><a href="/">Inicio</a> › <a href="/guias">Guías</a> › <span>Food cost</span></nav>
-  <p class="eyebrow">Guía · Costos y precios</p>
+  <p class="eyebrow" style="color:var(--of-azul)">Guía · Costos y precios</p>
   <h1>Food cost (costo de la materia prima): qué es, fórmula y cómo calcularlo</h1>
   <p class="bajada">Qué es el food cost o costo de la materia prima en gastronomía, la fórmula por plato y por mes, ejemplos en pesos, cómo calcularlo en Excel y qué porcentaje tomar.</p>
   <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · Actualizada el 14 de septiembre de 2026</p>
