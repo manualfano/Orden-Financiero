@@ -76,6 +76,18 @@ CSS = TOKENS + """
   .lista-guias li { border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-4) var(--s-5); margin-bottom: var(--s-3); }
   .lista-guias a { font-weight: 600; font-size: var(--fs-lead); text-decoration: none; line-height: 1.4; }
   .lista-guias p { margin-top: var(--s-2); font-size: var(--fs-sm); }
+  .temas { display: flex; flex-wrap: wrap; gap: var(--s-2); margin: var(--s-5) 0; }
+  .temas a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--s-4); border: 1px solid var(--borde); border-radius: 999px; font-size: var(--fs-sm); font-weight: 600; color: var(--navy); text-decoration: none; }
+  .temas a:hover { border-color: var(--marca); color: var(--marca); }
+  .empeza { background: var(--lienzo); border-radius: var(--r-lg); padding: var(--s-5); margin: var(--s-5) 0 var(--s-6); }
+  .empeza h2 { margin-top: 0; }
+  .pasos { list-style: none; padding: 0; margin-top: var(--s-4); }
+  .pasos li { display: flex; gap: var(--s-3); align-items: flex-start; margin-bottom: var(--s-4); }
+  .pasos .paso { flex: none; width: 28px; height: 28px; margin-top: 2px; border-radius: 50%; background: var(--marca); color: var(--w); font-size: var(--fs-sm); font-weight: 600; display: inline-flex; align-items: center; justify-content: center; }
+  .pasos a { font-weight: 600; text-decoration: none; line-height: 1.4; }
+  .pasos p { margin-top: 2px; font-size: var(--fs-sm); }
+  .tema h2 { scroll-margin-top: var(--s-5); }
+  .tema-intro { margin-bottom: var(--s-4); }
   footer { background: var(--navy-900); padding: var(--s-6) var(--s-5); font-size: var(--fs-sm); }
   .foot-in { max-width: 960px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5); justify-content: space-between; color: rgba(255,255,255,0.75); }
   .foot-in nav { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
@@ -233,13 +245,58 @@ def main():
             'con fórmulas y ejemplos en pesos. Con foco en gastronomía.')
     lista = ''.join(f'    <li><a href="/guias/{g["slug"]}">{html.escape(g["h1"])}</a><p>{html.escape(g["description"])}</p></li>\n'
                     for g in guias)
+    # Agrupadas por los cuatro eslabones del diagnóstico (mismo mapa que la home), con un
+    # "Empezá por acá" arriba: patrón de Stripe, Xero, QuickBooks y los clusters de HubSpot.
+    temas = [
+        ('costos-y-precios', 'Costos y precios', 'El costo real y el precio correcto de cada cosa que se vende.',
+         ['costo-de-un-plato', 'food-cost', 'costo-de-mercaderia-vendida', 'costos-fijos-y-variables',
+          'precio-de-venta-de-un-plato', 'precio-de-venta-de-un-producto']),
+        ('resultado-economico', 'Resultado económico', 'Un cierre por mes: cuánto ganó el negocio de verdad, con gastos e impuestos descontados.',
+         ['estado-de-resultados', 'margen-de-ganancia', 'punto-de-equilibrio', 'rentabilidad-de-un-negocio']),
+        ('flujo-de-caja', 'Flujo de caja', 'Pagos, cobranzas y vencimientos a la vista, para que la plata esté cuando hace falta.',
+         ['capital-de-trabajo']),
+        ('indicadores-de-gestion', 'Indicadores de gestión', 'Tres o cuatro números que se miran todos los meses antes de decidir.',
+         []),
+    ]
+    empeza = [('costo-de-un-plato', 'Sabé cuánto te cuesta de verdad cada plato.'),
+              ('precio-de-venta-de-un-plato', 'Poné un precio que te deje plata.'),
+              ('estado-de-resultados', 'Mirá cuánto ganó el negocio en el mes.')]
+    por_slug = {g['slug']: g for g in guias}
+    asignadas = [s for _, _, _, slugs in temas for s in slugs]
+    sin_tema = [g['slug'] for g in guias if g['slug'] not in asignadas]
+    assert not sin_tema, f'Guías sin tema en el índice: {sin_tema}'
+    visibles = [t for t in temas if t[3]]
+
+    def item(g):
+        return (f'      <li><a href="/guias/{g["slug"]}">{html.escape(g["h1"])}</a>'
+                f'<p>{html.escape(g["description"])}</p></li>\n')
+
+    botones = ''.join(f'<a href="#{tid}">{html.escape(nombre)}</a>' for tid, nombre, _, _ in visibles)
+    pasos = ''.join(
+        f'      <li><span class="paso" aria-hidden="true">{i + 1}</span><div><a href="/guias/{s}">'
+        f'{html.escape(por_slug[s]["h1"])}</a><p>{html.escape(texto)}</p></div></li>\n'
+        for i, (s, texto) in enumerate(empeza))
+    secciones = (f'  <nav class="temas" aria-label="Temas de las guías">{botones}</nav>\n'
+                 '  <section class="empeza" aria-labelledby="empeza">\n'
+                 '    <h2 id="empeza">Empezá por acá</h2>\n'
+                 '    <p>Si tenés un negocio gastronómico, estas tres guías son el orden más útil para arrancar.</p>\n'
+                 f'    <ol class="pasos">\n{pasos}    </ol>\n'
+                 '  </section>\n')
+    for tid, nombre, intro, slugs in visibles:
+        secciones += (f'  <section class="tema" aria-labelledby="{tid}">\n'
+                      f'    <h2 id="{tid}">{html.escape(nombre)}</h2>\n'
+                      f'    <p class="tema-intro">{html.escape(intro)}</p>\n'
+                      '    <ul class="lista-guias">\n'
+                      + ''.join(item(por_slug[s]) for s in slugs)
+                      + '    </ul>\n  </section>\n')
+    guias = [por_slug[s] for s in asignadas]
+
     cuerpo = f"""{migas(items)}
   <p class="eyebrow">Guías</p>
   <h1>Guías de finanzas para dueños de negocio</h1>
   <p class="bajada">{desc}</p>
   <p class="autor">Escritas por <a href="/#manuel">Manuel Alfano</a>, con más de 12 años en la gastronomía con negocio propio.</p>
-  <ul class="lista-guias">
-{lista}  </ul>"""
+{secciones}"""
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "CollectionPage", "@id": BASE + "/guias#coleccion", "url": BASE + "/guias",
          "name": "Guías de finanzas para dueños de negocio", "description": desc, "inLanguage": "es-AR",
