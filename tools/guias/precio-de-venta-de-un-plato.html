@@ -1,20 +1,30 @@
 <!--META {
   "orden": 3,
-  "title": "Cómo calcular el precio de venta de un plato",
-  "h1": "Cómo calcular el precio de venta de un plato",
+  "title": "Precio de venta de un plato: fórmula y ejemplo",
+  "h1": "Cómo calcular el precio de venta de un plato: fórmula y ejemplo",
   "miga": "Precio de venta de un plato",
   "eje": "Costos y precios",
-  "description": "Tres formas de poner el precio de un plato a partir de su costo: food cost objetivo, margen de contribución y precio en apps de delivery, con ejemplos.",
+  "description": "La fórmula para poner el precio de un plato a partir de su costo, con ejemplos en pesos: food cost objetivo, margen de contribución, IVA, Excel y delivery.",
   "publicada": "2026-09-14",
   "actualizada": "2026-09-14",
-  "relacionadas": ["costo-de-un-plato", "food-cost"]
+  "relacionadas": ["costo-de-un-plato", "food-cost", "margen-de-ganancia"],
+  "faq": [
+    {"q": "¿Cuánto cobrar por un plato de comida?", "a": "Depende de lo que te cuesta. Dividí el costo del plato por el food cost que querés (por ejemplo, 0,30 para un 30 %), sumá el IVA si corresponde y redondeá para arriba. Después compará con el mercado antes de publicar el precio."},
+    {"q": "¿Cuál es la fórmula del precio de venta de un plato?", "a": "Precio sin IVA = costo del plato ÷ food cost objetivo. Precio de carta = precio sin IVA × 1,21 si discriminás IVA. Con un costo de $4.145 y un food cost objetivo de 30 %, el precio sin IVA es $13.817 y con IVA, $16.718."},
+    {"q": "¿Cómo calculo el precio con IVA y cómo le saco el IVA?", "a": "Para sumar el IVA de 21 %, multiplicá el precio sin IVA por 1,21. Para sacarlo de un precio que ya lo incluye, dividí por 1,21: $16.800 ÷ 1,21 = $13.884."},
+    {"q": "¿Qué es el multiplicador o markup de un plato?", "a": "Es cuántas veces el costo cobrás: precio sin IVA ÷ costo del plato. Con un food cost de 30 %, el precio es 3,33 veces el costo. Un multiplicador de 3 equivale a un food cost de 33,3 %."}
+  ]
 } -->
     <p>Poner precios mirando solo a la competencia es arriesgado: el local de enfrente tiene otro alquiler, otros proveedores y otras porciones. El punto de partida tiene que ser <strong>tu costo</strong>. Después se contrasta con el mercado.</p>
-    <p>Para todo lo que sigue necesitás el costo del plato, que sale de la <a href="/guias/costo-de-un-plato">ficha de costo</a>. En los ejemplos usamos una milanesa con puré que cuesta <strong>$4.145</strong>.</p>
 
-    <h2>Método 1: a partir de un food cost objetivo</h2>
-    <p>Es el método más usado. Definís qué porcentaje del precio querés que se vaya en materia prima (tu <a href="/guias/food-cost">food cost</a> objetivo) y despejás el precio:</p>
+    <h2>Qué es el precio de venta de un plato</h2>
+    <p>Es el precio de carta que cubre la materia prima del plato y deja un margen para pagar sueldos, alquiler, servicios e impuestos y, al final, ganar. Se calcula a partir del <a href="/guias/costo-de-un-plato">costo del plato</a>, que en los ejemplos es una milanesa con puré de <strong>$4.145</strong>.</p>
+
+    <h2>La fórmula del precio de venta de un plato</h2>
     <p class="formula">Precio sin IVA = costo del plato ÷ food cost objetivo<br>Precio de carta = precio sin IVA × 1,21 (si discriminás IVA)</p>
+    <p>El <a href="/guias/food-cost">food cost</a> objetivo es el porcentaje del precio que querés que se vaya en materia prima, escrito como decimal: 30 % es 0,30.</p>
+
+    <h2>Ejemplo 1: a partir de un food cost objetivo</h2>
     <p>Con un food cost objetivo de 30 %:</p>
     <ul>
       <li>Precio sin IVA: $4.145 ÷ 0,30 = <strong>$13.817</strong></li>
@@ -23,32 +33,46 @@
     </ul>
     <p>Conviene redondear para arriba: si redondeás para abajo, el plato queda por encima de tu objetivo.</p>
 
-    <h2>Método 2: mirando el margen de contribución</h2>
+    <h2>Ejemplo 2: mirando el margen de contribución</h2>
     <p>El porcentaje no lo dice todo. Un plato con food cost bajo pero precio bajo puede dejar menos pesos que uno con food cost más alto. Por eso conviene mirar también el <strong>margen de contribución</strong>: los pesos que quedan de cada plato para pagar los costos fijos y ganar.</p>
     <p class="formula">Margen de contribución = precio sin IVA − costo del plato</p>
     <p>Con la milanesa a $16.800: precio sin IVA $13.884 − costo $4.145 = <strong>$9.739 por plato</strong>.</p>
-    <p>Ese número se puede poner contra los costos fijos del mes. Si el negocio tiene $12.000.000 de costos fijos (sueldos, alquiler, servicios) y todos los platos dejaran lo mismo que la milanesa, habría que vender $12.000.000 ÷ $9.739 = <strong>1.233 platos</strong> en el mes solo para cubrirlos. Recién desde ahí el negocio empieza a ganar.</p>
+    <p>Si el negocio tiene $12.000.000 de costos fijos en el mes (sueldos, alquiler, servicios) y todos los platos dejaran lo mismo que la milanesa, habría que vender $12.000.000 ÷ $9.739 = <strong>1.233 platos</strong> solo para cubrirlos. Recién desde ahí el negocio empieza a ganar.</p>
     <p class="nota">En la realidad cada plato deja un margen distinto: el cálculo se hace con el margen promedio de lo que se vende. Números de ejemplo.</p>
 
-    <h2>Método 3: contrastar con el mercado</h2>
+    <h2>Ejemplo 3: contrastar con el mercado</h2>
     <p>Con el precio calculado, mirá la carta de negocios parecidos al tuyo. Pueden pasar dos cosas:</p>
     <ul>
       <li><strong>Tu precio queda por debajo del mercado</strong>: tenés margen para subirlo sin perder competitividad.</li>
       <li><strong>Tu precio queda por encima</strong>: antes de bajarlo y resignar margen, revisá el plato. Porción, receta, proveedor o presentación suelen tener más lugar de lo que parece.</li>
     </ul>
-    <p>Lo que no conviene es igualar el precio de la competencia sin saber qué margen te deja.</p>
 
     <h2>El precio en apps de delivery</h2>
     <p>Si vendés por una app que cobra comisión sobre el precio, ese costo tiene que estar en el precio. Si no, el mismo plato te deja mucho menos que en el salón.</p>
     <p class="formula">Precio en la app sin IVA = precio sin IVA del salón ÷ (1 − comisión)</p>
     <p>Por ejemplo, si la app cobrara 25 %: $13.884 ÷ 0,75 = $18.512 sin IVA, unos <strong>$22.400</strong> con IVA. Sumá además el envase, que va en la ficha de costo del plato de delivery.</p>
     <p class="nota">La comisión del ejemplo es ilustrativa: usá la de tu contrato. La comisión también lleva impuestos; el tratamiento exacto conviene revisarlo con tu contador.</p>
-    <p>La misma lógica sirve para los costos de cobro: si un medio de pago te cobra un porcentaje, dividí por (1 − ese porcentaje) para saber cuánto tendrías que cobrar para recibir lo mismo.</p>
+    <p>La misma lógica sirve para los costos de cobro: si un medio de pago te cobra un porcentaje, dividí por (1 − ese porcentaje) para saber cuánto cobrar para recibir lo mismo.</p>
 
-    <h2>Cada cuánto revisar los precios</h2>
-    <p>Cada vez que cambia el costo del plato. Una forma práctica: fijá un <strong>food cost máximo</strong> por plato (por ejemplo, tu objetivo más dos puntos) y, cuando al actualizar la ficha un plato lo pase, revisá su precio. Así no tenés que rehacer la carta entera cada mes, solo lo que se desvió.</p>
+    <h2>Cómo calcular el precio de venta en Excel</h2>
+    <div class="tabla">
+      <table>
+        <thead><tr><th>Columna</th><th>Qué va</th><th>Fórmula (fila 2)</th></tr></thead>
+        <tbody>
+          <tr><td>A</td><td>Plato</td><td>—</td></tr>
+          <tr><td>B</td><td>Costo del plato</td><td>—</td></tr>
+          <tr><td>C</td><td>Food cost objetivo (formato %)</td><td>—</td></tr>
+          <tr><td>D</td><td>Precio sin IVA</td><td><code>=B2/C2</code></td></tr>
+          <tr><td>E</td><td>Precio con IVA</td><td><code>=D2*1,21</code></td></tr>
+          <tr><td>F</td><td>Precio de carta, redondeado a la centena para arriba</td><td><code>=REDONDEAR.MAS(E2;-2)</code></td></tr>
+          <tr><td>G</td><td>Food cost final (formato %)</td><td><code>=B2/(F2/1,21)</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Cuando actualizás el costo en la columna B, ves al instante qué platos quedaron por encima de tu objetivo en la columna G.</p>
 
-    <h2>En resumen</h2>
+    <h2>Cómo usarlo en tu negocio</h2>
+    <p>Revisá los precios cada vez que cambia el costo de un plato. Una forma práctica: fijá un <strong>food cost máximo</strong> por plato (por ejemplo, tu objetivo más dos puntos) y, cuando al actualizar la ficha un plato lo pase, revisá su precio. Así no rehacés la carta entera cada mes, solo lo que se desvió.</p>
     <ol>
       <li>Calculá el <strong>costo real</strong> del plato, con merma.</li>
       <li>Sacá el precio con tu <strong>food cost objetivo</strong> y redondeá para arriba.</li>

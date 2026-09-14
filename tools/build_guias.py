@@ -56,7 +56,8 @@ CSS = TOKENS + """
   .autor { font-size: var(--fs-sm); color: var(--tinta-3); margin-top: var(--s-4); padding-bottom: var(--s-5); margin-bottom: var(--s-5); border-bottom: 1px solid var(--borde); }
   .formula { background: var(--lienzo); border-left: 3px solid var(--marca); border-radius: var(--r); padding: var(--s-3) var(--s-4); margin: var(--s-4) 0; font-weight: 600; color: var(--navy); }
   .tabla { overflow-x: auto; margin: var(--s-4) 0; }
-  table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: var(--fs-sm); }
+  table { border-collapse: collapse; width: 100%; font-size: var(--fs-sm); }
+  .tabla table:has(tr > :nth-child(4)) { min-width: 520px; }
   th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--borde); color: var(--tinta-2); }
   th { color: var(--navy); font-weight: 600; background: var(--lienzo); }
   .n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
@@ -96,9 +97,16 @@ def leer_guias():
     return guias
 
 
-def pagina(*, title, description, path, og_type, ld, cuerpo, cta_origen):
+def pagina(*, title, description, path, og_type, ld, cuerpo, cta_origen, cta_general=False):
     url = BASE + path
     e = html.escape
+    # La oferta es gastronomica (decision del dueño, 14/09): las guias generales lo dicen en el cierre.
+    if cta_general:
+        cta_t = '¿Tenés un negocio gastronómico?'
+        cta_p = 'En 3 minutos sabés por dónde se le escapa la plata: 12 preguntas gratis y el puntaje de los cuatro eslabones al instante.'
+    else:
+        cta_t = '¿Por dónde se le escapa la plata a tu negocio?'
+        cta_p = 'Hacé el diagnóstico gratis: 12 preguntas, 3 minutos y el puntaje de los cuatro eslabones al instante.'
     return f"""<!DOCTYPE html>
 <html lang="es-AR">
 <head>
@@ -141,8 +149,8 @@ def pagina(*, title, description, path, og_type, ld, cuerpo, cta_origen):
 <main>
 {cuerpo}
   <aside class="cta">
-    <p class="cta-t">¿Por dónde se le escapa la plata a tu negocio?</p>
-    <p>Hacé el diagnóstico gratis: 12 preguntas, 3 minutos y el puntaje de los cuatro eslabones al instante.</p>
+    <p class="cta-t">{cta_t}</p>
+    <p>{cta_p}</p>
     <a class="btn" href="/?origen={cta_origen}#diagnostico">Hacer el diagnóstico · 3 min <span aria-hidden="true">→</span></a>
   </aside>
 </main>
@@ -188,13 +196,18 @@ def main():
             rel_html = '\n  <h2>Seguí leyendo</h2>\n  <ul class="lista-guias">\n' + ''.join(
                 f'    <li><a href="/guias/{x["slug"]}">{html.escape(x["h1"])}</a><p>{html.escape(x["description"])}</p></li>\n'
                 for x in rel) + '  </ul>'
+        faq = g.get('faq', [])
+        faq_html = ''
+        if faq:
+            faq_html = '\n    <h2>Preguntas frecuentes</h2>\n' + ''.join(
+                f'    <h3>{html.escape(x["q"])}</h3>\n    <p>{html.escape(x["a"])}</p>\n' for x in faq)
         cuerpo = f"""{migas(items)}
   <p class="eyebrow">Guía · {html.escape(g['eje'])}</p>
   <h1>{html.escape(g['h1'])}</h1>
   <p class="bajada">{html.escape(g['description'])}</p>
   <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · Actualizada el {fecha_larga(g['actualizada'])}</p>
   <article>
-{g['cuerpo']}
+{g['cuerpo']}{faq_html}
   </article>{rel_html}"""
         ld = {"@context": "https://schema.org", "@graph": [
             {"@type": "Article", "@id": BASE + path + "#article", "headline": g['h1'], "description": g['description'],
@@ -202,33 +215,37 @@ def main():
              "dateModified": g['actualizada'], "author": autor, "publisher": org,
              "mainEntityOfPage": BASE + path, "isPartOf": {"@id": BASE + "/guias#coleccion"}},
             breadcrumb_ld(items)]}
+        if faq:
+            ld['@graph'].append({"@type": "FAQPage", "@id": BASE + path + "#faq", "mainEntity": [
+                {"@type": "Question", "name": x['q'], "acceptedAnswer": {"@type": "Answer", "text": x['a']}} for x in faq]})
         (OUT / f"{g['slug']}.html").write_text(pagina(
             title=g['title'] + ' · Orden Financiero', description=g['description'], path=path,
-            og_type='article', ld=ld, cuerpo=cuerpo, cta_origen='guia-' + g['slug']), encoding='utf-8', newline='\n')
+            og_type='article', ld=ld, cuerpo=cuerpo, cta_origen='guia-' + g['slug'],
+            cta_general=g.get('cta_general', False)), encoding='utf-8', newline='\n')
 
     # Indice /guias
     items = [("Inicio", "/"), ("Guías", None)]
-    desc = ('Guías prácticas para dueños de negocios gastronómicos: costos, precios, food cost y '
-            'rentabilidad, explicados con ejemplos en pesos.')
+    desc = ('Guías prácticas para dueños de negocio: precios, costos, márgenes y rentabilidad, '
+            'con fórmulas y ejemplos en pesos. Con foco en gastronomía.')
     lista = ''.join(f'    <li><a href="/guias/{g["slug"]}">{html.escape(g["h1"])}</a><p>{html.escape(g["description"])}</p></li>\n'
                     for g in guias)
     cuerpo = f"""{migas(items)}
   <p class="eyebrow">Guías</p>
-  <h1>Guías de finanzas para negocios gastronómicos</h1>
+  <h1>Guías de finanzas para dueños de negocio</h1>
   <p class="bajada">{desc}</p>
   <p class="autor">Escritas por <a href="/#manuel">Manuel Alfano</a>, con más de 12 años en la gastronomía con negocio propio.</p>
   <ul class="lista-guias">
 {lista}  </ul>"""
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "CollectionPage", "@id": BASE + "/guias#coleccion", "url": BASE + "/guias",
-         "name": "Guías de finanzas para negocios gastronómicos", "description": desc, "inLanguage": "es-AR",
+         "name": "Guías de finanzas para dueños de negocio", "description": desc, "inLanguage": "es-AR",
          "isPartOf": {"@id": BASE + "/#website"}, "publisher": org,
          "mainEntity": {"@type": "ItemList", "itemListElement": [
              {"@type": "ListItem", "position": i + 1, "url": BASE + "/guias/" + g['slug'], "name": g['h1']}
              for i, g in enumerate(guias)]}},
         breadcrumb_ld(items)]}
     (OUT / 'index.html').write_text(pagina(
-        title='Guías de finanzas para gastronomía · Orden Financiero', description=desc, path='/guias',
+        title='Guías de finanzas para dueños de negocio · Orden Financiero', description=desc, path='/guias',
         og_type='website', ld=ld, cuerpo=cuerpo, cta_origen='guias'), encoding='utf-8', newline='\n')
 
     # sitemap.xml completo

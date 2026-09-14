@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Precio de venta de un producto: fórmula y ejemplo · Orden Financiero</title>
+<meta name="description" content="Qué es el precio de venta, la fórmula con margen y con markup, cómo sumar el IVA y las comisiones, ejemplos en pesos y cómo calcularlo en Excel.">
+<link rel="canonical" href="https://ordenfinanciero.com/guias/precio-de-venta-de-un-producto">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Precio de venta de un producto: fórmula y ejemplo · Orden Financiero">
+<meta property="og:description" content="Qué es el precio de venta, la fórmula con margen y con markup, cómo sumar el IVA y las comisiones, ejemplos en pesos y cómo calcularlo en Excel.">
+<meta property="og:url" content="https://ordenfinanciero.com/guias/precio-de-venta-de-un-producto">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Orden Financiero">
+<meta property="og:image" content="https://ordenfinanciero.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0D2B6B">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<!-- Medicion: Google Analytics 4 (Fase 1, 11/09/2026), mismo codigo que index.html:
+     solo en ordenfinanciero.com y subdominios; en previews de Vercel, con ?ga_debug=1. -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag() { dataLayer.push(arguments); }
+(function () {
+  var h = location.hostname;
+  var real = h === 'ordenfinanciero.com' || h.endsWith('.ordenfinanciero.com');
+  var prueba = /\.vercel\.app$/.test(h) && /[?&]ga_debug=1(&|$)/.test(location.search);
+  if (!real && !prueba) return;
+  gtag('js', new Date());
+  gtag('config', 'G-1S0RS4NL1X', prueba ? { debug_mode: true } : {});
+  // La libreria (~170 KiB) baja despues de que carga la pagina: cargada junto con
+  // ella, el LCP mobile de Lighthouse pasaba de 2,1 s a 3,8 s. Los eventos que
+  // ocurran antes quedan en dataLayer y salen apenas carga.
+  function cargar() { var sc = document.createElement('script'); sc.async = true; sc.src = 'https://www.googletagmanager.com/gtag/js?id=G-1S0RS4NL1X'; document.head.appendChild(sc); }
+  if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
+})();
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://ordenfinanciero.com/guias/precio-de-venta-de-un-producto#article", "headline": "Cómo calcular el precio de venta de un producto: fórmula y ejemplos", "description": "Qué es el precio de venta, la fórmula con margen y con markup, cómo sumar el IVA y las comisiones, ejemplos en pesos y cómo calcularlo en Excel.", "image": "https://ordenfinanciero.com/og-image.png", "inLanguage": "es-AR", "datePublished": "2026-09-14", "dateModified": "2026-09-14", "author": {"@type": "Person", "@id": "https://ordenfinanciero.com/#manuel", "name": "Manuel Alfano", "url": "https://ordenfinanciero.com/#manuel"}, "publisher": {"@id": "https://ordenfinanciero.com/#organization"}, "mainEntityOfPage": "https://ordenfinanciero.com/guias/precio-de-venta-de-un-producto", "isPartOf": {"@id": "https://ordenfinanciero.com/guias#coleccion"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ordenfinanciero.com/"}, {"@type": "ListItem", "position": 2, "name": "Guías", "item": "https://ordenfinanciero.com/guias"}, {"@type": "ListItem", "position": 3, "name": "Precio de venta de un producto"}]}, {"@type": "FAQPage", "@id": "https://ordenfinanciero.com/guias/precio-de-venta-de-un-producto#faq", "mainEntity": [{"@type": "Question", "name": "¿Cuál es la fórmula para calcular el precio de venta?", "acceptedAnswer": {"@type": "Answer", "text": "Precio de venta sin IVA = costo ÷ (1 − margen deseado). Con un costo de $10.500 y un margen de 40 %, el precio sin IVA es $10.500 ÷ 0,60 = $17.500."}}, {"@type": "Question", "name": "¿Cómo calculo el precio de venta con IVA?", "acceptedAnswer": {"@type": "Answer", "text": "Calculá primero el precio sin IVA y multiplicalo por 1,21. $17.500 × 1,21 = $21.175. Si sos monotributista no discriminás IVA; consultá con tu contador cómo impactan tus impuestos en el precio."}}, {"@type": "Question", "name": "¿Cómo calculo el precio de venta de un producto para revender?", "acceptedAnswer": {"@type": "Answer", "text": "Sumá todo lo que te cuesta tenerlo listo para vender: precio del proveedor, flete y cualquier otro gasto por unidad. Sobre ese costo aplicás la fórmula con el margen que querés ganar."}}, {"@type": "Question", "name": "¿Es lo mismo sumar un 40 % al costo que ganar un 40 %?", "acceptedAnswer": {"@type": "Answer", "text": "No. Sumar 40 % al costo es un markup de 40 % y deja un margen de 28,6 % sobre el precio. Para ganar 40 % del precio hay que dividir el costo por 0,60, que equivale a un markup de 66,7 %."}}, {"@type": "Question", "name": "¿Qué margen de ganancia tengo que poner?", "acceptedAnswer": {"@type": "Answer", "text": "No hay un número universal: depende del rubro, de la rotación del producto y de cuánto pesan tus costos fijos. El margen tiene que cubrir los gastos del negocio y dejar ganancia; si no sabés cuánto necesitás, empezá por tus costos fijos."}}]}]}</script>
+<style>
+@font-face { font-family: 'Inter'; font-weight: 100 900; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
+  :root { --marca: #0C66E4; --marca-hover: #0055CC; --navy: #0D2B6B; --navy-900: #0D2B6B; --tinta: #292A2E; --tinta-2: #505258; --tinta-3: #6B6E76; --bg: #fff; --lienzo: #F8F8F8; --borde: rgba(11,18,14,0.14); --w: #fff; --r: 8px; --r-lg: 12px; --fs-meta: 12px; --fs-sm: 14px; --fs-base: 15px; --fs-lead: 17px; --fs-h3: 21px; --fs-h2: clamp(28px, 3.4vw, 42px); --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px; --s-7: 48px; --t-instante: 120ms; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', system-ui, sans-serif; font-size: var(--fs-base); line-height: 1.7; color: var(--tinta); background: var(--bg); }
+  header { background: var(--navy-900); padding: var(--s-3) var(--s-5); }
+  .head-in { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--w); font-weight: 600; font-size: var(--fs-lead); letter-spacing: -0.01em; min-height: 44px; }
+  .brand-mark { width: 34px; height: 34px; border-radius: var(--r); background: var(--marca); display: inline-flex; align-items: center; justify-content: center; }
+  .brand-mark svg { width: 18px; height: 18px; }
+  .dot { color: var(--marca); }
+  .head-nav { display: flex; align-items: center; gap: var(--s-4); }
+  .head-nav a { color: var(--w); text-decoration: none; font-size: var(--fs-sm); font-weight: 500; min-height: 44px; display: inline-flex; align-items: center; }
+  .head-nav .head-cta { background: var(--marca); padding: 0 var(--s-4); border-radius: var(--r); font-weight: 600; }
+  .head-nav .head-cta:hover { background: var(--marca-hover); }
+  main { max-width: 720px; margin: 0 auto; padding: var(--s-6) var(--s-5) var(--s-7); }
+  .migas { font-size: var(--fs-sm); color: var(--tinta-3); margin-bottom: var(--s-5); }
+  .migas a { color: var(--tinta-3); }
+  .eyebrow { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--marca); margin-bottom: var(--s-3); }
+  h1 { font-size: var(--fs-h2); font-weight: 600; color: var(--navy); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: var(--s-4); }
+  h2 { font-size: var(--fs-h3); font-weight: 600; color: var(--navy); line-height: 1.3; margin: var(--s-6) 0 var(--s-3); }
+  h3 { font-size: var(--fs-lead); font-weight: 600; color: var(--navy); margin: var(--s-5) 0 var(--s-2); }
+  p, li { color: var(--tinta-2); }
+  article p, article ul, article ol { margin-bottom: var(--s-3); }
+  article li { margin-bottom: var(--s-2); }
+  ul, ol { padding-left: var(--s-5); }
+  strong { color: var(--tinta); font-weight: 600; }
+  a { color: var(--marca); }
+  .bajada { font-size: var(--fs-lead); }
+  .autor { font-size: var(--fs-sm); color: var(--tinta-3); margin-top: var(--s-4); padding-bottom: var(--s-5); margin-bottom: var(--s-5); border-bottom: 1px solid var(--borde); }
+  .formula { background: var(--lienzo); border-left: 3px solid var(--marca); border-radius: var(--r); padding: var(--s-3) var(--s-4); margin: var(--s-4) 0; font-weight: 600; color: var(--navy); }
+  .tabla { overflow-x: auto; margin: var(--s-4) 0; }
+  table { border-collapse: collapse; width: 100%; font-size: var(--fs-sm); }
+  .tabla table:has(tr > :nth-child(4)) { min-width: 520px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--borde); color: var(--tinta-2); }
+  th { color: var(--navy); font-weight: 600; background: var(--lienzo); }
+  .n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tr.total td { font-weight: 600; color: var(--navy); }
+  .nota { font-size: var(--fs-sm); color: var(--tinta-3); }
+  .cta { margin: var(--s-7) 0 var(--s-6); background: var(--navy); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); }
+  .cta p { color: rgba(255,255,255,0.88); }
+  .cta .cta-t { font-size: var(--fs-h3); font-weight: 600; line-height: 1.3; color: var(--w); margin-bottom: var(--s-2); }
+  .btn { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: var(--s-3) var(--s-5); border-radius: var(--r); background: var(--marca); color: var(--w); font-weight: 600; text-decoration: none; margin-top: var(--s-4); transition: background var(--t-instante); }
+  .btn:hover { background: var(--marca-hover); }
+  .lista-guias { list-style: none; padding: 0; }
+  .lista-guias li { border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-4) var(--s-5); margin-bottom: var(--s-3); }
+  .lista-guias a { font-weight: 600; font-size: var(--fs-lead); text-decoration: none; line-height: 1.4; }
+  .lista-guias p { margin-top: var(--s-2); font-size: var(--fs-sm); }
+  footer { background: var(--navy-900); padding: var(--s-6) var(--s-5); font-size: var(--fs-sm); }
+  .foot-in { max-width: 960px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5); justify-content: space-between; color: rgba(255,255,255,0.75); }
+  .foot-in nav { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
+  .foot-in a { color: var(--w); text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--marca); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<!-- Generado por tools/build_guias.py: editar la fuente en tools/guias/, no este archivo -->
+<header>
+  <div class="head-in">
+    <a href="/" class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7" stroke="#7DB1F4" stroke-width="4"/><circle cx="12" cy="12" r="7" stroke="#ffffff" stroke-width="4" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/></svg></span>ordenfinanciero<span class="dot">.</span></a>
+    <nav class="head-nav" aria-label="Principal">
+      <a href="/guias">Guías</a>
+      <a class="head-cta" href="/?origen=guia-precio-de-venta-de-un-producto#diagnostico">Hacer el diagnóstico</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <nav class="migas" aria-label="Ruta"><a href="/">Inicio</a> › <a href="/guias">Guías</a> › <span>Precio de venta de un producto</span></nav>
+  <p class="eyebrow">Guía · Precios y márgenes</p>
+  <h1>Cómo calcular el precio de venta de un producto: fórmula y ejemplos</h1>
+  <p class="bajada">Qué es el precio de venta, la fórmula con margen y con markup, cómo sumar el IVA y las comisiones, ejemplos en pesos y cómo calcularlo en Excel.</p>
+  <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · Actualizada el 14 de septiembre de 2026</p>
+  <article>
+<p>Muchos dueños ponen precio "sumándole un porcentaje" a lo que pagaron, o copiando a la competencia. Funciona hasta que aumentan los costos, aparecen las comisiones o se descubre que el porcentaje que se sumaba no era el que se creía ganar. Esta guía sirve para cualquier negocio que vende productos: comercio, fabricación propia o gastronomía.</p>
+
+    <h2>Qué es el precio de venta</h2>
+    <p>Es el precio al que vendés un producto. Tiene que cubrir <strong>el costo del producto</strong> y dejar un <strong>margen</strong> que pague los gastos del negocio (alquiler, sueldos, servicios, impuestos) y la ganancia. Se calcula a partir del costo, no al revés.</p>
+
+    <h2>La fórmula del precio de venta</h2>
+    <p>Hay dos formas de calcularlo, y confundirlas es uno de los errores más caros:</p>
+    <p class="formula">Con margen sobre el precio: precio sin IVA = costo ÷ (1 − margen)<br>Con markup sobre el costo: precio sin IVA = costo × (1 + markup)<br>Precio final con IVA = precio sin IVA × 1,21</p>
+    <ul>
+      <li><strong>Costo:</strong> todo lo que cuesta tener el producto listo para vender, por unidad.</li>
+      <li><strong>Margen:</strong> el porcentaje del <em>precio</em> que querés que quede después de pagar el costo.</li>
+      <li><strong>Markup:</strong> el porcentaje que le sumás al <em>costo</em>.</li>
+    </ul>
+    <p>Un 40 % de margen y un 40 % de markup <strong>no son lo mismo</strong>. Lo explicamos en detalle en la guía de <a href="/guias/margen-de-ganancia">margen de ganancia y markup</a>.</p>
+
+    <h2>Ejemplo 1: un producto para revender</h2>
+    <p>Un comercio compra un producto a $10.000 y paga $500 de flete por unidad. Quiere ganar un <strong>40 % de margen</strong> sobre el precio.</p>
+    <ul>
+      <li>Costo por unidad: $10.000 + $500 = <strong>$10.500</strong></li>
+      <li>Precio sin IVA: $10.500 ÷ (1 − 0,40) = $10.500 ÷ 0,60 = <strong>$17.500</strong></li>
+      <li>Precio con IVA: $17.500 × 1,21 = $21.175, redondeado a <strong>$21.200</strong></li>
+    </ul>
+    <p>Comprobación: $17.500 − $10.500 = $7.000 de ganancia bruta, que es el 40 % de $17.500.</p>
+
+    <h3>El error de "sumarle el 40 %"</h3>
+    <p>Si en lugar de eso le sumás 40 % al costo: $10.500 × 1,40 = $14.700 sin IVA. La ganancia bruta es $4.200, que sobre el precio es un margen de <strong>28,6 %</strong>, no 40 %. En cada venta dejás $2.800 menos de lo que creías.</p>
+
+    <h2>Ejemplo 2: un producto de fabricación propia</h2>
+    <p>Si fabricás lo que vendés, el costo por unidad suma materiales, envase y la mano de obra que lleva cada unidad:</p>
+    <div class="tabla">
+      <table>
+        <tbody>
+          <tr><td>Materiales</td><td class="n">$3.200</td></tr>
+          <tr><td>Envase y etiqueta</td><td class="n">$800</td></tr>
+          <tr><td>Mano de obra por unidad</td><td class="n">$1.000</td></tr>
+          <tr class="total"><td>Costo por unidad</td><td class="n">$5.000</td></tr>
+          <tr><td>Precio sin IVA con 50 % de margen: $5.000 ÷ 0,50</td><td class="n">$10.000</td></tr>
+          <tr class="total"><td>Precio con IVA</td><td class="n">$12.100</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nota">Números de ejemplo, para mostrar el método.</p>
+
+    <h2>Ejemplo 3: con comisiones (Mercado Libre, apps, tarjetas)</h2>
+    <p>Si una plataforma o un medio de pago te cobra un porcentaje del precio, esa comisión sale de tu margen salvo que la incluyas en la fórmula:</p>
+    <p class="formula">Precio sin IVA = costo ÷ (1 − margen − comisión)</p>
+    <p>Con el producto de $10.500, 40 % de margen y una comisión de 13 %: $10.500 ÷ (1 − 0,40 − 0,13) = $10.500 ÷ 0,47 = <strong>$22.340</strong> sin IVA.</p>
+    <p>Comprobación: la comisión es $2.904; $22.340 − $2.904 − $10.500 = $8.936, que es el 40 % de $22.340.</p>
+    <p class="nota">La comisión del ejemplo es ilustrativa y se aplica sobre el precio sin IVA para simplificar. Revisá cómo cobra la tuya y el tratamiento impositivo con tu contador.</p>
+    <p>En gastronomía el razonamiento es el mismo, con el food cost: está explicado en <a href="/guias/precio-de-venta-de-un-plato">cómo calcular el precio de venta de un plato</a>.</p>
+
+    <h2>Cómo calcular el precio de venta en Excel</h2>
+    <div class="tabla">
+      <table>
+        <thead><tr><th>Columna</th><th>Qué va</th><th>Fórmula (fila 2)</th></tr></thead>
+        <tbody>
+          <tr><td>A</td><td>Producto</td><td>—</td></tr>
+          <tr><td>B</td><td>Costo por unidad</td><td>—</td></tr>
+          <tr><td>C</td><td>Margen deseado (formato %)</td><td>—</td></tr>
+          <tr><td>D</td><td>Comisión (formato %; 0 si no hay)</td><td>—</td></tr>
+          <tr><td>E</td><td>Precio sin IVA</td><td><code>=B2/(1-C2-D2)</code></td></tr>
+          <tr><td>F</td><td>Precio con IVA</td><td><code>=E2*1,21</code></td></tr>
+          <tr><td>G</td><td>Precio redondeado a la centena, para arriba</td><td><code>=REDONDEAR.MAS(F2;-2)</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Cómo usarlo en tu negocio</h2>
+    <ul>
+      <li><strong>Calculá con el costo de reposición.</strong> Con inflación, el precio tiene que alcanzar para volver a comprar el producto, no para pagar lo que costó hace dos meses.</li>
+      <li><strong>Contrastá con el mercado.</strong> Si tu precio queda muy arriba, revisá el costo (proveedor, flete, cantidad de compra) antes de resignar margen.</li>
+      <li><strong>Mirá los pesos, no solo el porcentaje.</strong> Un producto con margen alto que se vende poco puede aportar menos que uno con margen bajo que se vende todos los días.</li>
+      <li><strong>Revisá cuando cambia algo:</strong> costo, comisión o alícuota. Con la planilla armada, es cambiar un número.</li>
+    </ul>
+
+    <h2>Errores comunes</h2>
+    <ul>
+      <li><strong>Confundir margen con markup:</strong> sumar 40 % al costo no es ganar 40 %.</li>
+      <li><strong>Olvidar costos por unidad:</strong> flete, envase, comisiones, descuentos por pago en efectivo o cuotas.</li>
+      <li><strong>Calcular el margen sobre el precio con IVA:</strong> el IVA no es plata del negocio.</li>
+      <li><strong>Copiar el precio de la competencia</strong> sin saber qué margen te deja a vos.</li>
+    </ul>
+    <h2>Preguntas frecuentes</h2>
+    <h3>¿Cuál es la fórmula para calcular el precio de venta?</h3>
+    <p>Precio de venta sin IVA = costo ÷ (1 − margen deseado). Con un costo de $10.500 y un margen de 40 %, el precio sin IVA es $10.500 ÷ 0,60 = $17.500.</p>
+    <h3>¿Cómo calculo el precio de venta con IVA?</h3>
+    <p>Calculá primero el precio sin IVA y multiplicalo por 1,21. $17.500 × 1,21 = $21.175. Si sos monotributista no discriminás IVA; consultá con tu contador cómo impactan tus impuestos en el precio.</p>
+    <h3>¿Cómo calculo el precio de venta de un producto para revender?</h3>
+    <p>Sumá todo lo que te cuesta tenerlo listo para vender: precio del proveedor, flete y cualquier otro gasto por unidad. Sobre ese costo aplicás la fórmula con el margen que querés ganar.</p>
+    <h3>¿Es lo mismo sumar un 40 % al costo que ganar un 40 %?</h3>
+    <p>No. Sumar 40 % al costo es un markup de 40 % y deja un margen de 28,6 % sobre el precio. Para ganar 40 % del precio hay que dividir el costo por 0,60, que equivale a un markup de 66,7 %.</p>
+    <h3>¿Qué margen de ganancia tengo que poner?</h3>
+    <p>No hay un número universal: depende del rubro, de la rotación del producto y de cuánto pesan tus costos fijos. El margen tiene que cubrir los gastos del negocio y dejar ganancia; si no sabés cuánto necesitás, empezá por tus costos fijos.</p>
+
+  </article>
+  <h2>Seguí leyendo</h2>
+  <ul class="lista-guias">
+    <li><a href="/guias/precio-de-venta-de-un-plato">Cómo calcular el precio de venta de un plato: fórmula y ejemplo</a><p>La fórmula para poner el precio de un plato a partir de su costo, con ejemplos en pesos: food cost objetivo, margen de contribución, IVA, Excel y delivery.</p></li>
+    <li><a href="/guias/margen-de-ganancia">Margen de ganancia: qué es, cómo se calcula y en qué se diferencia del markup</a><p>Qué es el margen de ganancia, la fórmula para calcularlo de un producto y de un negocio, la diferencia con el markup, ejemplos en pesos y cómo hacerlo en Excel.</p></li>
+  </ul>
+  <aside class="cta">
+    <p class="cta-t">¿Tenés un negocio gastronómico?</p>
+    <p>En 3 minutos sabés por dónde se le escapa la plata: 12 preguntas gratis y el puntaje de los cuatro eslabones al instante.</p>
+    <a class="btn" href="/?origen=guia-precio-de-venta-de-un-producto#diagnostico">Hacer el diagnóstico · 3 min <span aria-hidden="true">→</span></a>
+  </aside>
+</main>
+<footer>
+  <div class="foot-in">
+    <nav aria-label="Pie">
+      <a href="/">Inicio</a>
+      <a href="/guias">Guías</a>
+      <a href="/#manuel">Quién está detrás</a>
+      <a href="/privacidad">Privacidad</a>
+    </nav>
+    <span>© 2026 Orden Financiero · Programa de consultoría financiera para gastronomía</span>
+  </div>
+</footer>
+</body>
+</html>
