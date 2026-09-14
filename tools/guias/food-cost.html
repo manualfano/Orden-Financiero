@@ -10,7 +10,7 @@
   "relacionadas": ["costo-de-un-plato", "costo-de-mercaderia-vendida", "precio-de-venta-de-un-plato"],
   "faq": [
     {"q": "¿Para qué sirve el food cost?", "a": "Para saber qué parte de lo que vendés se va en materia prima, fijar precios que dejen margen y detectar a tiempo cuándo suben los costos, las porciones o las mermas."},
-    {"q": "¿Cuál es la fórmula del food cost?", "a": "Food cost = costo de la materia prima ÷ ventas sin IVA × 100. Por plato se usa el costo de la ficha y el precio de carta sin IVA; por mes, el consumo (inventario inicial + compras − inventario final) y las ventas del mes."},
+    {"q": "¿Cuál es la fórmula del food cost?", "a": "Food cost = costo de la materia prima ÷ ventas sin IVA × 100. Por plato se usa el costo de la ficha y el precio de carta sin IVA; por mes, el consumo (inventario inicial + compras − inventario final) y las ventas netas del mes, sin IVA ni comisiones."},
     {"q": "¿Food cost y costo de mercadería vendida son lo mismo?", "a": "Se parecen. El costo de mercadería vendida (CMV) es el nombre contable del consumo del período: inventario inicial más compras menos inventario final. El food cost es ese costo expresado como porcentaje de las ventas."},
     {"q": "¿Las bebidas entran en el food cost?", "a": "Conviene medirlas aparte, con su propio porcentaje, porque las bebidas suelen tener márgenes muy distintos a los de la comida. Mezcladas, esconden lo que pasa en cada una."},
     {"q": "¿El food cost se calcula con o sin IVA?", "a": "Sin IVA si sos responsable inscripto, porque el IVA no es plata del negocio. Si sos monotributista no discriminás IVA: usá el precio cobrado y consultá con tu contador cómo impactan tus impuestos."}
@@ -22,7 +22,7 @@
     <p>El <strong>food cost</strong>, en castellano <strong>costo de la materia prima</strong> o costo de la comida, es el porcentaje de las ventas que se va en materia prima. Se calcula de dos formas que sirven para cosas distintas: <strong>por plato</strong>, para armar la carta, y <strong>por mes</strong>, para saber qué pasó de verdad.</p>
 
     <h2>La fórmula del food cost</h2>
-    <p class="formula">Food cost de un plato = costo del plato ÷ precio de venta sin IVA × 100<br>Food cost del mes = (inventario inicial + compras − inventario final) ÷ ventas del mes sin IVA × 100</p>
+    <p class="formula">Food cost de un plato = costo del plato ÷ precio de venta sin IVA × 100<br>Food cost del mes = (inventario inicial + compras − inventario final) ÷ ventas netas del mes × 100</p>
     <p>El costo del plato sale de la <a href="/guias/costo-de-un-plato">ficha de costo</a>. El precio va <strong>sin IVA</strong> porque el IVA no es plata del negocio: si sos responsable inscripto, lo cobrás y lo pagás al fisco. Si sos monotributista no discriminás IVA; en ese caso usá el precio cobrado y consultá con tu contador cómo impactan tus impuestos.</p>
 
     <h2>Ejemplo: el food cost de un plato</h2>
@@ -42,7 +42,7 @@
           <tr><td>+ Compras de materia prima del mes</td><td class="n">$9.500.000</td></tr>
           <tr><td>− Inventario al cierre del mes</td><td class="n">$1.800.000</td></tr>
           <tr class="total"><td>= Consumo del mes</td><td class="n">$9.700.000</td></tr>
-          <tr><td>Ventas del mes sin IVA</td><td class="n">$30.000.000</td></tr>
+          <tr><td>Ventas netas del mes (sin IVA ni comisiones)</td><td class="n">$30.000.000</td></tr>
           <tr class="total"><td>Food cost real</td><td class="n">32,3 %</td></tr>
         </tbody>
       </table>
@@ -75,7 +75,7 @@
         </tbody>
       </table>
     </div>
-    <p><strong>Por mes</strong>: inventario inicial en B2, compras en B3, inventario final en B4, consumo en B5 con <code>=B2+B3-B4</code>, ventas sin IVA en B6 y food cost real en B7 con <code>=B5/B6</code>. Si armás una columna por mes, ves la evolución de un vistazo.</p>
+    <p><strong>Por mes</strong>: inventario inicial en B2, compras en B3, inventario final en B4, consumo en B5 con <code>=B2+B3-B4</code>, ventas netas en B6 y food cost real en B7 con <code>=B5/B6</code>. Si armás una columna por mes, ves la evolución de un vistazo.</p>
 
     <h2>¿Qué porcentaje de food cost es "bueno"?</h2>
     <p>En el rubro se suele tomar como referencia un food cost de entre <strong>25 % y 35 %</strong>. Pero es una referencia, no una regla: depende del tipo de negocio, de la carta y de cuánto pesan los otros costos. Una cafetería, una parrilla y una pizzería tienen estructuras muy distintas.</p>

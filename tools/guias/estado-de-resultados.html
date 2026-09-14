@@ -11,7 +11,7 @@
   "relacionadas": ["costo-de-mercaderia-vendida", "punto-de-equilibrio", "capital-de-trabajo"],
   "faq": [
     {"q": "¿Qué es un estado de resultados?", "a": "Es el informe que muestra si un negocio ganó o perdió plata en un período, por ejemplo un mes: a las ventas se les restan el costo de lo vendido y los gastos, y lo que queda es el resultado. También se lo llama cuadro de resultados o estado de pérdidas y ganancias."},
-    {"q": "¿Cuál es la estructura del estado de resultados?", "a": "Ventas netas, menos costo de mercadería vendida, igual resultado bruto; menos gastos de comercialización y de estructura, igual resultado operativo; menos gastos financieros, igual resultado antes del impuesto a las ganancias."},
+    {"q": "¿Cuál es la estructura del estado de resultados?", "a": "Ventas brutas, menos comisiones de apps y tarjetas, igual ventas netas; menos costo de mercadería vendida, igual utilidad bruta; menos estructura operativa, igual resultado operativo; menos costos financieros, igual resultado antes de impuestos; menos impuestos, igual resultado neto. Los porcentajes se calculan sobre las ventas netas."},
     {"q": "¿Qué diferencia hay entre el estado de resultados y el flujo de caja?", "a": "El estado de resultados registra las ventas y los gastos del mes en que ocurren, aunque se cobren o se paguen después. El flujo de caja registra cuándo entra y sale la plata. Un negocio puede ganar plata en el mes y quedarse sin caja."},
     {"q": "¿El estado de resultados y el balance son lo mismo?", "a": "No. El balance (estado de situación patrimonial) muestra lo que el negocio tiene y lo que debe en una fecha. El estado de resultados muestra lo que pasó en un período: cuánto se vendió, cuánto costó y cuánto quedó."},
     {"q": "¿Cada cuánto conviene hacer el estado de resultados?", "a": "Todos los meses. El estado contable anual lo prepara el contador; el mensual es la herramienta del dueño para tomar decisiones a tiempo."}
@@ -24,59 +24,63 @@
     <p>El modelo de esta guía es el <strong>de gestión</strong>, pensado para que el dueño lo use todos los meses. El estado contable formal, con las normas profesionales argentinas, lo prepara el contador.</p>
 
     <h2>La estructura del estado de resultados</h2>
-    <p class="formula">Ventas netas (sin IVA)<br>− Costo de mercadería vendida<br>= Resultado bruto<br>− Gastos de comercialización<br>− Gastos de estructura<br>= Resultado operativo<br>− Gastos financieros<br>= Resultado antes del impuesto a las ganancias</p>
+    <p class="formula">Ventas brutas (sin IVA)<br>− Comisiones de apps y tarjetas<br>= Ventas netas<br>− Costo de mercadería vendida (CMV)<br>= Utilidad bruta<br>− Estructura operativa<br>= Resultado operativo<br>− Costos financieros<br>= Resultado antes de impuestos<br>− Impuestos<br>= Resultado neto</p>
     <ul>
-      <li><strong>Ventas netas:</strong> lo facturado sin IVA, descontando devoluciones y descuentos.</li>
+      <li><strong>Ventas brutas:</strong> lo facturado sin IVA, descontando devoluciones y descuentos.</li>
+      <li><strong>Comisiones de apps y tarjetas:</strong> se restan primero, porque es plata de la venta que nunca llega al negocio. Lo que queda son las <strong>ventas netas</strong>, y todos los porcentajes se calculan sobre ellas.</li>
       <li><strong>Costo de mercadería vendida:</strong> lo que costó lo que se vendió, no lo que se compró. Se calcula con el inventario; está explicado en <a href="/guias/costo-de-mercaderia-vendida">costo de mercadería vendida (CMV)</a>.</li>
-      <li><strong>Gastos de comercialización:</strong> los que dependen de vender: comisiones de apps y tarjetas, Ingresos Brutos, publicidad, envíos.</li>
-      <li><strong>Gastos de estructura:</strong> los que existen aunque se venda poco: sueldos y cargas sociales (incluido el del dueño si trabaja en el negocio), alquiler, servicios, honorarios, sistemas.</li>
-      <li><strong>Gastos financieros:</strong> intereses de préstamos, descubiertos y costos bancarios. La cuota de un préstamo no va entera: solo los intereses.</li>
+      <li><strong>Estructura operativa:</strong> sueldos y cargas sociales (incluido el del dueño si trabaja en el negocio), alquiler, servicios y otros gastos, como honorarios, sistemas y publicidad.</li>
+      <li><strong>Costos financieros:</strong> intereses de préstamos, descubiertos y costos bancarios. La cuota de un préstamo no va entera: solo los intereses.</li>
+      <li><strong>Impuestos:</strong> Ingresos Brutos y las tasas sobre la actividad. El impuesto a las ganancias, si corresponde, se calcula con tu contador.</li>
     </ul>
 
     <h2>Ejemplo: el estado de resultados de un restaurante</h2>
     <div class="tabla">
       <table>
-        <thead><tr><th>Concepto</th><th class="n">Pesos</th><th class="n">% de ventas</th></tr></thead>
+        <thead><tr><th>Concepto</th><th class="n">Pesos</th><th class="n">% sobre ventas netas</th></tr></thead>
         <tbody>
-          <tr class="total"><td>Ventas netas sin IVA</td><td class="n">$30.000.000</td><td class="n">100 %</td></tr>
-          <tr><td>− Costo de mercadería vendida</td><td class="n">$9.700.000</td><td class="n">32,3 %</td></tr>
-          <tr class="total"><td>= Resultado bruto</td><td class="n">$20.300.000</td><td class="n">67,7 %</td></tr>
+          <tr><td>Ventas brutas sin IVA</td><td class="n">$31.500.000</td><td class="n"></td></tr>
           <tr><td>− Comisiones de apps de delivery</td><td class="n">$900.000</td><td class="n">3,0 %</td></tr>
           <tr><td>− Comisiones de tarjetas y billeteras</td><td class="n">$600.000</td><td class="n">2,0 %</td></tr>
-          <tr><td>− Ingresos Brutos</td><td class="n">$1.050.000</td><td class="n">3,5 %</td></tr>
-          <tr><td>− Publicidad</td><td class="n">$300.000</td><td class="n">1,0 %</td></tr>
+          <tr class="total"><td>= Ventas netas</td><td class="n">$30.000.000</td><td class="n">100,0 %</td></tr>
+          <tr><td>− Costo de mercadería vendida (CMV)</td><td class="n">$9.700.000</td><td class="n">32,3 %</td></tr>
+          <tr class="total"><td>= Utilidad bruta</td><td class="n">$20.300.000</td><td class="n">67,7 %</td></tr>
           <tr><td>− Sueldos y cargas sociales</td><td class="n">$9.500.000</td><td class="n">31,7 %</td></tr>
           <tr><td>− Alquiler</td><td class="n">$2.500.000</td><td class="n">8,3 %</td></tr>
           <tr><td>− Servicios (luz, gas, agua, internet)</td><td class="n">$1.200.000</td><td class="n">4,0 %</td></tr>
-          <tr><td>− Honorarios, sistemas y otros</td><td class="n">$800.000</td><td class="n">2,7 %</td></tr>
-          <tr class="total"><td>= Resultado operativo</td><td class="n">$3.450.000</td><td class="n">11,5 %</td></tr>
+          <tr><td>− Otros (honorarios, sistemas, publicidad)</td><td class="n">$1.100.000</td><td class="n">3,7 %</td></tr>
+          <tr class="total"><td>= Resultado operativo</td><td class="n">$6.000.000</td><td class="n">20,0 %</td></tr>
           <tr><td>− Intereses y gastos bancarios</td><td class="n">$350.000</td><td class="n">1,2 %</td></tr>
-          <tr class="total"><td>= Resultado antes del impuesto a las ganancias</td><td class="n">$3.100.000</td><td class="n">10,3 %</td></tr>
+          <tr class="total"><td>= Resultado antes de impuestos</td><td class="n">$5.650.000</td><td class="n">18,8 %</td></tr>
+          <tr><td>− Ingresos Brutos (3,5 % de las ventas brutas)</td><td class="n">$1.102.500</td><td class="n">3,7 %</td></tr>
+          <tr class="total"><td>= Resultado neto</td><td class="n">$4.547.500</td><td class="n">15,2 %</td></tr>
         </tbody>
       </table>
     </div>
     <p class="nota">Números de ejemplo. La alícuota de Ingresos Brutos depende de la jurisdicción y la actividad; el impuesto a las ganancias, si corresponde, se calcula con tu contador.</p>
-    <p>Leído en una línea: de cada $100 que vende este restaurante, $32 se van en materia prima, $57 en el resto de los gastos y le quedan <strong>$10 antes de impuestos</strong>.</p>
+    <p>Leído en una línea: de cada $100 de ventas netas, $32 se van en mercadería, $48 en la estructura, $5 en costos financieros e impuestos, y quedan <strong>$15 de resultado neto</strong>.</p>
 
     <h2>Cómo armar el estado de resultados en Excel</h2>
     <div class="tabla">
       <table>
         <thead><tr><th>Fila</th><th>Concepto (columna A)</th><th>Pesos (columna B)</th></tr></thead>
         <tbody>
-          <tr><td>2</td><td>Ventas netas sin IVA</td><td>—</td></tr>
-          <tr><td>3</td><td>Costo de mercadería vendida</td><td>—</td></tr>
-          <tr><td>4</td><td>Resultado bruto</td><td><code>=B2-B3</code></td></tr>
-          <tr><td>5 a 8</td><td>Gastos de comercialización</td><td>—</td></tr>
-          <tr><td>9</td><td>Total comercialización</td><td><code>=SUMA(B5:B8)</code></td></tr>
-          <tr><td>10 a 13</td><td>Gastos de estructura</td><td>—</td></tr>
-          <tr><td>14</td><td>Total estructura</td><td><code>=SUMA(B10:B13)</code></td></tr>
-          <tr><td>15</td><td>Resultado operativo</td><td><code>=B4-B9-B14</code></td></tr>
-          <tr><td>16</td><td>Gastos financieros</td><td>—</td></tr>
-          <tr><td>17</td><td>Resultado antes de ganancias</td><td><code>=B15-B16</code></td></tr>
+          <tr><td>2</td><td>Ventas brutas sin IVA</td><td>—</td></tr>
+          <tr><td>3</td><td>Comisiones de apps y tarjetas</td><td>—</td></tr>
+          <tr><td>4</td><td>Ventas netas</td><td><code>=B2-B3</code></td></tr>
+          <tr><td>5</td><td>Costo de mercadería vendida</td><td>—</td></tr>
+          <tr><td>6</td><td>Utilidad bruta</td><td><code>=B4-B5</code></td></tr>
+          <tr><td>7 a 10</td><td>Estructura operativa: sueldos y cargas, alquiler, servicios, otros</td><td>—</td></tr>
+          <tr><td>11</td><td>Total estructura operativa</td><td><code>=SUMA(B7:B10)</code></td></tr>
+          <tr><td>12</td><td>Resultado operativo</td><td><code>=B6-B11</code></td></tr>
+          <tr><td>13</td><td>Costos financieros</td><td>—</td></tr>
+          <tr><td>14</td><td>Resultado antes de impuestos</td><td><code>=B12-B13</code></td></tr>
+          <tr><td>15</td><td>Impuestos</td><td>—</td></tr>
+          <tr><td>16</td><td>Resultado neto</td><td><code>=B14-B15</code></td></tr>
         </tbody>
       </table>
     </div>
-    <p>En la columna C, el porcentaje sobre ventas: <code>=B2/$B$2</code> en C2 y copiado hacia abajo. Con una columna por mes ves de un vistazo qué gasto creció más que las ventas.</p>
+    <p>En la columna C, el porcentaje sobre ventas netas: <code>=B3/$B$4</code> en C3 y copiado hacia abajo. Con una columna por mes ves de un vistazo qué gasto creció más que las ventas.</p>
 
     <h2>Estado de resultados y flujo de caja no son lo mismo</h2>
     <p>El estado de resultados cuenta una venta en el mes en que se hizo, aunque se cobre con tarjeta en cuotas. Cuenta un gasto en el mes en que corresponde, aunque se pague a 30 días. El flujo de caja, en cambio, mira cuándo entra y sale la plata. Por eso un negocio puede <strong>ganar plata y quedarse sin caja</strong>, y hacen falta los dos. La plata que necesitás para sostener esa diferencia es el <a href="/guias/capital-de-trabajo">capital de trabajo</a>.</p>

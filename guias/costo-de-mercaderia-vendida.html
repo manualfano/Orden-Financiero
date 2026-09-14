@@ -140,8 +140,8 @@ function gtag() { dataLayer.push(arguments); }
           <tr><td>+ Compras del mes</td><td class="n">$8.000.000</td></tr>
           <tr><td>− Inventario al cierre del mes</td><td class="n">$2.500.000</td></tr>
           <tr class="total"><td>= Costo de mercadería vendida</td><td class="n">$8.500.000</td></tr>
-          <tr><td>Ventas del mes sin IVA</td><td class="n">$14.000.000</td></tr>
-          <tr class="total"><td>Resultado bruto (ventas − CMV)</td><td class="n">$5.500.000</td></tr>
+          <tr><td>Ventas netas del mes (sin IVA ni comisiones)</td><td class="n">$14.000.000</td></tr>
+          <tr class="total"><td>Utilidad bruta (ventas netas − CMV)</td><td class="n">$5.500.000</td></tr>
           <tr><td>CMV sobre ventas</td><td class="n">60,7 %</td></tr>
           <tr><td>Margen bruto</td><td class="n">39,3 %</td></tr>
         </tbody>
@@ -154,9 +154,9 @@ function gtag() { dataLayer.push(arguments); }
     <p>Pasa lo mismo al revés: el mes que se vende stock sin reponer, si no se cuenta el inventario, el resultado parece mejor de lo que es.</p>
 
     <h2>El CMV en el estado de resultados</h2>
-    <p>El CMV es el primer costo que se resta de las ventas. Todo lo demás viene después:</p>
-    <p class="formula">Ventas − costo de mercadería vendida = resultado bruto<br>Resultado bruto − gastos del negocio = resultado del mes</p>
-    <p>Por eso un CMV mal calculado arrastra el error hasta la última línea del <a href="/guias/estado-de-resultados">estado de resultados</a>. Con el resultado bruto también se calcula el <a href="/guias/margen-de-ganancia">margen de ganancia</a> del negocio.</p>
+    <p>El CMV se resta de las ventas netas, después de descontar las comisiones de apps y tarjetas:</p>
+    <p class="formula">Ventas netas − costo de mercadería vendida = utilidad bruta<br>Utilidad bruta − estructura operativa = resultado operativo</p>
+    <p>Por eso un CMV mal calculado arrastra el error hasta la última línea del <a href="/guias/estado-de-resultados">estado de resultados</a>. Con la utilidad bruta también se calcula el <a href="/guias/margen-de-ganancia">margen de ganancia</a> del negocio.</p>
 
     <h2>Cómo calcular el costo de mercadería vendida en Excel</h2>
     <div class="tabla">
@@ -167,9 +167,9 @@ function gtag() { dataLayer.push(arguments); }
           <tr><td>B3</td><td>Compras del mes</td><td>—</td></tr>
           <tr><td>B4</td><td>Inventario final</td><td>—</td></tr>
           <tr><td>B5</td><td>Costo de mercadería vendida</td><td><code>=B2+B3-B4</code></td></tr>
-          <tr><td>B6</td><td>Ventas del mes sin IVA</td><td>—</td></tr>
+          <tr><td>B6</td><td>Ventas netas del mes</td><td>—</td></tr>
           <tr><td>B7</td><td>CMV sobre ventas (formato %)</td><td><code>=B5/B6</code></td></tr>
-          <tr><td>B8</td><td>Resultado bruto</td><td><code>=B6-B5</code></td></tr>
+          <tr><td>B8</td><td>Utilidad bruta</td><td><code>=B6-B5</code></td></tr>
           <tr><td>B9</td><td>Margen bruto (formato %)</td><td><code>=B8/B6</code></td></tr>
         </tbody>
       </table>
