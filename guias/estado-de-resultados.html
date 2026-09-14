@@ -127,11 +127,11 @@ function gtag() { dataLayer.push(arguments); }
     <p class="formula">Ventas brutas (sin IVA)<br>− Comisiones de apps y tarjetas<br>= Ventas netas<br>− Costo de mercadería vendida (CMV)<br>= Utilidad bruta<br>− Estructura operativa<br>= Resultado operativo<br>− Costos financieros<br>= Resultado antes de impuestos<br>− Impuestos<br>= Resultado neto</p>
     <ul>
       <li><strong>Ventas brutas:</strong> lo facturado sin IVA, descontando devoluciones y descuentos.</li>
-      <li><strong>Comisiones de apps y tarjetas:</strong> se restan primero, porque es plata de la venta que nunca llega al negocio. Lo que queda son las <strong>ventas netas</strong>, y todos los porcentajes se calculan sobre ellas.</li>
+      <li><strong>Comisiones de apps y tarjetas:</strong> se restan primero, porque es plata de la venta que nunca llega al negocio (si sos responsable inscripto, cargalas sin IVA). Lo que queda son las <strong>ventas netas</strong>, y todos los porcentajes se calculan sobre ellas.</li>
       <li><strong>Costo de mercadería vendida:</strong> lo que costó lo que se vendió, no lo que se compró. Se calcula con el inventario; está explicado en <a href="/guias/costo-de-mercaderia-vendida">costo de mercadería vendida (CMV)</a>.</li>
-      <li><strong>Estructura operativa:</strong> sueldos y cargas sociales (incluido el del dueño si trabaja en el negocio), alquiler, servicios y otros gastos, como honorarios, sistemas y publicidad.</li>
+      <li><strong>Estructura operativa:</strong> sueldos y cargas sociales (incluido el del dueño si trabaja en el negocio), alquiler, servicios y otros gastos, como honorarios, sistemas, publicidad y el desgaste del equipamiento. Sumá cada mes la parte proporcional del aguinaldo y las vacaciones: si no, junio y diciembre dan pérdida y el resto del año parece mejor.</li>
       <li><strong>Costos financieros:</strong> intereses de préstamos, descubiertos y costos bancarios. La cuota de un préstamo no va entera: solo los intereses.</li>
-      <li><strong>Impuestos:</strong> Ingresos Brutos y las tasas sobre la actividad. El impuesto a las ganancias, si corresponde, se calcula con tu contador.</li>
+      <li><strong>Impuestos:</strong> Ingresos Brutos y las tasas sobre la actividad. Ingresos Brutos se paga sobre lo que vendés, ganes o pierdas: para calcular precios y el punto de equilibrio, tratalo como un costo más de cada venta. Si tu negocio es una sociedad, restá también una estimación del impuesto a las ganancias; si sos monotributista, acá va la cuota mensual.</li>
     </ul>
 
     <h2>Ejemplo: el estado de resultados de un restaurante</h2>
@@ -157,8 +157,22 @@ function gtag() { dataLayer.push(arguments); }
         </tbody>
       </table>
     </div>
-    <p class="nota">Números de ejemplo. La alícuota de Ingresos Brutos depende de la jurisdicción y la actividad; el impuesto a las ganancias, si corresponde, se calcula con tu contador.</p>
+    <p class="nota">Números de ejemplo, con los porcentajes redondeados. La alícuota de Ingresos Brutos depende de la provincia y la actividad. Muchos restaurantes trabajan con bastante menos resultado: tomalo como ejemplo del método, no como referencia.</p>
     <p>Leído en una línea: de cada $100 de ventas netas, $32 se van en mercadería, $48 en la estructura, $5 en costos financieros e impuestos, y quedan <strong>$15 de resultado neto</strong>.</p>
+
+    <h2>Los números para mirar todos los meses</h2>
+    <div class="tabla">
+      <table>
+        <thead><tr><th>Número</th><th>Cómo se calcula</th><th class="n">En el ejemplo</th></tr></thead>
+        <tbody>
+          <tr><td>Food cost</td><td>CMV ÷ ventas netas</td><td class="n">32,3 %</td></tr>
+          <tr><td>Costo del personal</td><td>sueldos y cargas ÷ ventas netas</td><td class="n">31,7 %</td></tr>
+          <tr><td>Mercadería + personal (prime cost)</td><td>(CMV + sueldos y cargas) ÷ ventas netas</td><td class="n">64,0 %</td></tr>
+          <tr><td>Alquiler</td><td>alquiler ÷ ventas netas</td><td class="n">8,3 %</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>En gastronomía se suele mirar que mercadería más personal no pase de 60 % a 65 % de las ventas netas. Más útil que cualquier referencia es tu propia evolución: si un número sube dos meses seguidos sin que suban las ventas, buscá la causa.</p>
 
     <h2>Cómo armar el estado de resultados en Excel</h2>
     <div class="tabla">
@@ -191,6 +205,7 @@ function gtag() { dataLayer.push(arguments); }
       <li><strong>Mirá los porcentajes, no solo los pesos:</strong> con inflación, los pesos siempre suben; el porcentaje sobre ventas muestra qué gasto se está comiendo el margen.</li>
       <li><strong>Compará contra el punto de equilibrio:</strong> con los costos fijos y el margen del estado de resultados se calcula el <a href="/guias/punto-de-equilibrio">punto de equilibrio</a>.</li>
       <li><strong>Decidí con el resultado operativo:</strong> es lo que genera el negocio, antes de cómo se financia.</li>
+      <li><strong>Compará contra algo:</strong> al lado del mes, poné el mes anterior y lo que esperabas. Para cada línea que se desvía más de 2 puntos, anotá la causa y qué vas a hacer.</li>
     </ul>
 
     <h2>Errores comunes</h2>
@@ -200,6 +215,7 @@ function gtag() { dataLayer.push(arguments); }
       <li><strong>No poner el sueldo del dueño:</strong> el negocio parece ganar más de lo que gana.</li>
       <li><strong>Incluir el IVA</strong> en ventas y compras siendo responsable inscripto.</li>
       <li><strong>Poner la cuota entera de un préstamo como gasto:</strong> solo los intereses son gasto; el capital es devolución de deuda.</li>
+      <li><strong>Cargar como gasto las retenciones</strong> que te hacen el banco, las tarjetas o las apps: son pagos a cuenta de tus impuestos, no gastos.</li>
     </ul>
     <h2>Preguntas frecuentes</h2>
     <h3>¿Qué es un estado de resultados?</h3>

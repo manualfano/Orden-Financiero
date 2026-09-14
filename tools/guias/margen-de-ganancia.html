@@ -8,7 +8,7 @@
   "publicada": "2026-09-14",
   "actualizada": "2026-09-14",
   "cta_general": true,
-  "relacionadas": ["precio-de-venta-de-un-producto", "food-cost"],
+  "relacionadas": ["precio-de-venta-de-un-producto", "estado-de-resultados", "punto-de-equilibrio"],
   "faq": [
     {"q": "¿Qué es el margen de ganancia?", "a": "Es el porcentaje del precio de venta que queda después de restar el costo del producto. Si vendés a $17.500 algo que te cuesta $10.500, te quedan $7.000, que son el 40 % del precio."},
     {"q": "¿Cómo se calcula el margen de ganancia de un producto?", "a": "Margen % = (precio de venta sin IVA − costo) ÷ precio de venta sin IVA × 100. Siempre se divide por el precio, no por el costo."},
@@ -52,6 +52,7 @@
       </table>
     </div>
     <p class="formula">Markup = margen ÷ (1 − margen)<br>Margen = markup ÷ (1 + markup)</p>
+    <p class="nota">Los multiplicadores de la tabla están redondeados. Para el número exacto, dividí el costo por (1 − margen).</p>
 
     <h2>Margen bruto y margen neto de un negocio</h2>
     <p>El margen de un producto solo resta lo que cuesta el producto. Para saber cuánto gana el negocio hay que restar también los gastos:</p>
@@ -59,10 +60,13 @@
       <table>
         <tbody>
           <tr><td>Ventas netas del mes (sin IVA ni comisiones)</td><td class="n">$20.000.000</td></tr>
-          <tr><td>− Costo de lo vendido</td><td class="n">$12.000.000</td></tr>
+          <tr><td>− Costo de mercadería vendida (CMV)</td><td class="n">$12.000.000</td></tr>
           <tr class="total"><td>= Utilidad bruta · margen bruto 40 %</td><td class="n">$8.000.000</td></tr>
-          <tr><td>− Estructura operativa, costos financieros e impuestos</td><td class="n">$5.500.000</td></tr>
-          <tr class="total"><td>= Resultado · margen neto 12,5 %</td><td class="n">$2.500.000</td></tr>
+          <tr><td>− Estructura operativa (sueldos, alquiler, servicios)</td><td class="n">$4.500.000</td></tr>
+          <tr class="total"><td>= Resultado operativo · 17,5 %</td><td class="n">$3.500.000</td></tr>
+          <tr><td>− Costos financieros</td><td class="n">$300.000</td></tr>
+          <tr><td>− Impuestos</td><td class="n">$700.000</td></tr>
+          <tr class="total"><td>= Resultado neto · margen neto 12,5 %</td><td class="n">$2.500.000</td></tr>
         </tbody>
       </table>
     </div>
@@ -83,7 +87,7 @@
         </tbody>
       </table>
     </div>
-    <p>Si sumás una columna con las unidades vendidas en el mes y otra con <code>=D2*G2</code>, ves cuántos pesos aporta cada producto: es la mejor forma de decidir qué conviene empujar.</p>
+    <p>Si sumás en la columna G las unidades vendidas en el mes y en la H <code>=D2*G2</code>, ves cuántos pesos aporta cada producto: es la mejor forma de decidir qué conviene empujar.</p>
 
     <h2>Cómo usar el margen en tu negocio</h2>
     <ul>

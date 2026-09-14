@@ -8,13 +8,13 @@
   "publicada": "2026-09-14",
   "actualizada": "2026-09-14",
   "cta_general": true,
-  "relacionadas": ["food-cost", "margen-de-ganancia"],
+  "relacionadas": ["food-cost", "estado-de-resultados", "capital-de-trabajo"],
   "faq": [
     {"q": "¿Qué es el CMV?", "a": "CMV son las siglas de costo de mercadería vendida: lo que le costó al negocio la mercadería que efectivamente vendió en un período. No es lo que compró, sino lo que salió del stock."},
     {"q": "¿Cuál es la fórmula del costo de mercadería vendida?", "a": "CMV = inventario inicial + compras del período − inventario final. Con un inventario inicial de $3.000.000, compras por $8.000.000 y un inventario final de $2.500.000, el CMV es $8.500.000."},
-    {"q": "¿CMV y food cost son lo mismo?", "a": "Se calculan igual. El CMV es el costo en pesos de lo vendido; el food cost es ese costo expresado como porcentaje de las ventas, y es el nombre que se usa en gastronomía."},
+    {"q": "¿CMV y food cost son lo mismo?", "a": "No exactamente. El CMV es el costo en pesos de lo vendido; el food cost real es ese CMV dividido por las ventas netas, en porcentaje, y es el nombre que se usa en gastronomía."},
     {"q": "¿El costo de mercadería vendida lleva IVA?", "a": "Si sos responsable inscripto, las compras y el inventario van sin IVA, porque el IVA de las compras es un crédito fiscal. Si sos monotributista, consultá con tu contador cómo registrarlo."},
-    {"q": "¿Qué pasa si no hago inventario?", "a": "Sin inventario final, el CMV queda igual a las compras, y el resultado del mes sale mal: los meses que comprás para stock parecen malos y los que vendés stock parecen buenos. Contar el stock una vez por mes, siempre igual, alcanza."}
+    {"q": "¿Qué pasa si no hago inventario?", "a": "Sin contar el stock, el costo termina siendo igual a lo que compraste, y el resultado del mes sale mal: los meses que comprás para stock parecen malos y los que vendés stock parecen buenos. Contar el stock una vez por mes, siempre igual, alcanza."}
   ]
 } -->
     <p>"Este mes compré mucho, así que gané poco." Esa frase mezcla dos cosas distintas: lo que el negocio compró y lo que le costó lo que vendió. La diferencia es el stock, y el número que la resuelve es el costo de mercadería vendida.</p>
@@ -28,9 +28,10 @@
     <ul>
       <li><strong>Inventario inicial:</strong> el valor de la mercadería que había al empezar el período.</li>
       <li><strong>Compras:</strong> lo que se compró en el período, descontando devoluciones y bonificaciones, y sumando los fletes de compra.</li>
-      <li><strong>Inventario final:</strong> el valor de la mercadería que quedó al cerrar el período.</li>
+      <li><strong>Inventario final:</strong> el valor de la mercadería que quedó al cerrar el período, incluidas las preparaciones hechas y no vendidas (en gastronomía: salsas, masas, milanesas armadas).</li>
     </ul>
     <p>Si sos responsable inscripto, todo va <strong>sin IVA</strong>: el IVA de las compras es crédito fiscal, no costo.</p>
+    <p>Valorizá el stock siempre con el mismo criterio: el último precio de compra de cada producto. Con inflación, una parte de la mejora del CMV puede venir de que el stock subió de precio, no de que se trabajó mejor.</p>
 
     <h2>Ejemplo: el CMV de un comercio</h2>
     <div class="tabla">
@@ -50,8 +51,8 @@
     <p class="nota">Números de ejemplo, para mostrar el método.</p>
 
     <h3>Por qué importa contar el inventario</h3>
-    <p>Si en el ejemplo no se cuenta el stock y se toma el CMV igual a lo comprado en el mes, la cuenta da $3.000.000 + $8.000.000 = $11.000.000 de costo. El margen bruto caería a <strong>21,4 %</strong> y parecería que el negocio anda mucho peor de lo que anda, cuando en realidad quedaron $2.500.000 de mercadería en el depósito.</p>
-    <p>Pasa lo mismo al revés: el mes que se vende stock sin reponer, si no se cuenta el inventario, el resultado parece mejor de lo que es.</p>
+    <p>Si no contás el stock y tomás lo que compraste en el mes como costo, el costo da $8.000.000 y el margen bruto <strong>sube a 42,9 %</strong>. El mes parece mejor de lo que fue, porque en realidad también vendiste $500.000 de mercadería que ya tenías en el depósito.</p>
+    <p>Pasa al revés el mes que comprás para stock: las compras superan a lo vendido y el mes parece peor de lo que fue. Contar el inventario todos los meses corrige las dos cosas.</p>
 
     <h2>El CMV en el estado de resultados</h2>
     <p>El CMV se resta de las ventas netas, después de descontar las comisiones de apps y tarjetas:</p>
@@ -81,13 +82,13 @@
       <li><strong>Calculalo todos los meses</strong>, con el inventario contado siempre el mismo día y de la misma forma.</li>
       <li><strong>Mirá el porcentaje sobre ventas mes a mes.</strong> Si sube sin que hayas bajado precios, algo cambió: aumentos de proveedores que no trasladaste, faltantes, mermas o errores de carga.</li>
       <li><strong>Comparalo con el costo teórico:</strong> lo que tendría que haber costado lo vendido según el costo de cada producto. La diferencia es plata que se fue sin quedar registrada.</li>
-      <li><strong>Usalo para revisar precios:</strong> si el CMV se come cada vez más de las ventas, el margen no alcanza para los gastos.</li>
+      <li><strong>Usalo para revisar precios:</strong> si el CMV se come cada vez más de las ventas, el margen no alcanza para los gastos. Antes de subir precios, descartá faltantes, mermas y fichas con precios viejos.</li>
     </ul>
 
     <h2>Errores comunes</h2>
     <ul>
       <li><strong>Tomar las compras como costo</strong> sin contar el inventario.</li>
-      <li><strong>Valorizar el stock con criterios distintos</strong> cada mes: con inflación, conviene definir el criterio con tu contador y mantenerlo.</li>
+      <li><strong>Valorizar el stock con criterios distintos</strong> cada mes: elegí uno (por ejemplo, el último precio de compra) y mantenelo.</li>
       <li><strong>Incluir el IVA</strong> de las compras siendo responsable inscripto.</li>
-      <li><strong>Meter gastos que no son mercadería</strong>, como alquiler, sueldos o servicios: esos van en los gastos del negocio.</li>
+      <li><strong>Meter gastos que no son mercadería</strong>, como alquiler, sueldos o servicios: esos van en la estructura operativa.</li>
     </ul>

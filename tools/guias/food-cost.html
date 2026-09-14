@@ -7,7 +7,7 @@
   "description": "Qué es el food cost o costo de la materia prima en gastronomía, la fórmula por plato y por mes, ejemplos en pesos, cómo calcularlo en Excel y qué porcentaje tomar.",
   "publicada": "2026-09-14",
   "actualizada": "2026-09-14",
-  "relacionadas": ["costo-de-un-plato", "costo-de-mercaderia-vendida", "precio-de-venta-de-un-plato"],
+  "relacionadas": ["costo-de-un-plato", "precio-de-venta-de-un-plato", "estado-de-resultados"],
   "faq": [
     {"q": "¿Para qué sirve el food cost?", "a": "Para saber qué parte de lo que vendés se va en materia prima, fijar precios que dejen margen y detectar a tiempo cuándo suben los costos, las porciones o las mermas."},
     {"q": "¿Cuál es la fórmula del food cost?", "a": "Food cost = costo de la materia prima ÷ ventas sin IVA × 100. Por plato se usa el costo de la ficha y el precio de carta sin IVA; por mes, el consumo (inventario inicial + compras − inventario final) y las ventas netas del mes, sin IVA ni comisiones."},
@@ -16,14 +16,14 @@
     {"q": "¿El food cost se calcula con o sin IVA?", "a": "Sin IVA si sos responsable inscripto, porque el IVA no es plata del negocio. Si sos monotributista no discriminás IVA: usá el precio cobrado y consultá con tu contador cómo impactan tus impuestos."}
   ]
 } -->
-    <p>De cada $100 que cobra tu negocio, ¿cuántos se van en comida y bebida? Esa pregunta la responde el food cost, el indicador más usado en gastronomía.</p>
+    <p>De cada $100 que cobra tu negocio, ¿cuántos se van en materia prima? Esa pregunta la responde el food cost, el indicador más usado en gastronomía.</p>
 
     <h2>Qué es el food cost</h2>
     <p>El <strong>food cost</strong>, en castellano <strong>costo de la materia prima</strong> o costo de la comida, es el porcentaje de las ventas que se va en materia prima. Se calcula de dos formas que sirven para cosas distintas: <strong>por plato</strong>, para armar la carta, y <strong>por mes</strong>, para saber qué pasó de verdad.</p>
 
     <h2>La fórmula del food cost</h2>
     <p class="formula">Food cost de un plato = costo del plato ÷ precio de venta sin IVA × 100<br>Food cost del mes = (inventario inicial + compras − inventario final) ÷ ventas netas del mes × 100</p>
-    <p>El costo del plato sale de la <a href="/guias/costo-de-un-plato">ficha de costo</a>. El precio va <strong>sin IVA</strong> porque el IVA no es plata del negocio: si sos responsable inscripto, lo cobrás y lo pagás al fisco. Si sos monotributista no discriminás IVA; en ese caso usá el precio cobrado y consultá con tu contador cómo impactan tus impuestos.</p>
+    <p>El costo del plato sale de la <a href="/guias/costo-de-un-plato">ficha de costo</a>. El precio va <strong>sin IVA</strong> porque el IVA no es plata del negocio: si sos responsable inscripto, lo cobrás y lo pagás al fisco. Si sos monotributista, no cobrás IVA aparte ni lo recuperás en las compras: calculá el costo del plato con los precios que pagaste con IVA y dividilo por el precio que cobrás.</p>
 
     <h2>Ejemplo: el food cost de un plato</h2>
     <p>Una milanesa con puré cuesta $4.145 y en la carta sale $16.000 con IVA.</p>
@@ -31,15 +31,15 @@
       <li>Precio sin IVA: $16.000 ÷ 1,21 = <strong>$13.223</strong></li>
       <li>Food cost: $4.145 ÷ $13.223 = <strong>31,3 %</strong></li>
     </ul>
-    <p>De cada $100 que el negocio cobra por ese plato (sin IVA), $31,30 se van en materia prima. Con los otros $68,70 hay que pagar sueldos, alquiler, servicios e impuestos y, si queda, ganar.</p>
+    <p>De cada $100 que el negocio cobra por ese plato (sin IVA), unos $31 se van en materia prima. Con los otros $69 hay que pagar comisiones, sueldos, alquiler, servicios e impuestos y, si queda, ganar.</p>
 
     <h2>Ejemplo: el food cost real del mes</h2>
-    <p>El consumo del mes es el <a href="/guias/costo-de-mercaderia-vendida">costo de mercadería vendida (CMV)</a> de la cocina. El food cost por plato dice cuánto <em>debería</em> costar lo que se vendió. El del mes dice cuánto costó <em>de verdad</em>, porque parte de la mercadería que entró y salió del depósito:</p>
+    <p>El consumo del mes es el <a href="/guias/costo-de-mercaderia-vendida">costo de mercadería vendida (CMV)</a>. El food cost por plato dice cuánto <em>debería</em> costar lo que se vendió. El del mes dice cuánto costó <em>de verdad</em>, porque parte de la mercadería que entró y salió del depósito:</p>
     <div class="tabla">
       <table>
         <tbody>
           <tr><td>Inventario al inicio del mes</td><td class="n">$2.000.000</td></tr>
-          <tr><td>+ Compras de materia prima del mes</td><td class="n">$9.500.000</td></tr>
+          <tr><td>+ Compras de materia prima del mes (sin IVA si sos responsable inscripto)</td><td class="n">$9.500.000</td></tr>
           <tr><td>− Inventario al cierre del mes</td><td class="n">$1.800.000</td></tr>
           <tr class="total"><td>= Consumo del mes</td><td class="n">$9.700.000</td></tr>
           <tr><td>Ventas netas del mes (sin IVA ni comisiones)</td><td class="n">$30.000.000</td></tr>
@@ -47,10 +47,11 @@
         </tbody>
       </table>
     </div>
-    <p class="nota">Números de ejemplo. Para que el cálculo sea confiable, el inventario se cuenta siempre el mismo día y de la misma forma.</p>
+    <p class="nota">Números de ejemplo. Para que el cálculo sea confiable, el inventario se cuenta siempre el mismo día, de la misma forma, y cada producto se valoriza con su último precio de compra.</p>
 
     <h2>Food cost teórico contra real</h2>
-    <p>Si sumás el costo de ficha de todos los platos vendidos en el mes y lo dividís por las ventas, obtenés el <strong>food cost teórico</strong>: lo que tendría que haber pasado si todo salió como dice la receta.</p>
+    <p>Si sumás el costo de ficha de todos los platos vendidos en el mes (sale del reporte de ventas por producto de tu sistema) y lo dividís por las <strong>mismas ventas netas</strong>, obtenés el <strong>food cost teórico</strong>: lo que tendría que haber pasado si todo salió como dice la receta.</p>
+    <p class="nota">Ojo: el food cost de cada ficha se calcula sobre el precio de carta, que todavía incluye las comisiones de apps y tarjetas. Para comparar teórico con real, usá las ventas netas en los dos; si no, el real siempre da más alto aunque no falte nada.</p>
     <p>Supongamos que en el ejemplo el teórico da 29,0 % y el real 32,3 %. Esos <strong>3,3 puntos</strong> de diferencia, sobre $30.000.000 de ventas, son <strong>$990.000 en el mes</strong> que se fueron sin quedar registrados en ningún plato. Las causas habituales:</p>
     <ul>
       <li>Porciones más grandes que las de la receta.</li>
@@ -85,6 +86,10 @@
       <li>Mirar la <strong>evolución</strong> mes a mes: si sube, algo cambió (precios de proveedores, porciones, mermas).</li>
       <li>Mirarlo <strong>por plato</strong>: un promedio razonable puede esconder platos que se venden mucho y dejan poco.</li>
     </ul>
+    <h3>Cómo sacar tu food cost objetivo</h3>
+    <p>Partí de tu <a href="/guias/estado-de-resultados">estado de resultados</a>, con los porcentajes sobre ventas netas:</p>
+    <p class="formula">Food cost objetivo = 100 % − estructura % − costos financieros % − impuestos % − lo que querés ganar %</p>
+    <p>Con el restaurante de la guía de estado de resultados, queriendo ganar 15 %: 100 % − 47,7 % − 1,2 % − 3,7 % − 15 % = <strong>32,4 %</strong>. Si vendés más, los costos fijos pesan menos y ese número se afloja; si vendés menos, se achica.</p>
 
     <h2>Cómo usar el food cost en tu negocio</h2>
     <ol>
@@ -92,4 +97,11 @@
       <li><strong>Compará teórico contra real</strong>: si la diferencia es grande, el problema está en la cocina o el depósito, no en la carta.</li>
       <li><strong>Ajustá lo que depende de vos</strong>: porciones, receta, proveedores, compras.</li>
       <li>Recién después, <a href="/guias/precio-de-venta-de-un-plato">revisá los precios</a>.</li>
+    </ol>
+    <h3>La rutina de cierre de mes</h3>
+    <ol>
+      <li>El último día, después del servicio, contá el stock con la misma planilla de siempre, incluidas las preparaciones hechas (salsas, masas, milanesas armadas). Mejor si cuentan dos personas.</li>
+      <li>Valorizá cada producto con su último precio de compra (sin IVA si sos responsable inscripto).</li>
+      <li>Durante el mes, anotá lo que se tira y la comida del personal.</li>
+      <li>Si el real supera al teórico por más de 1 o 2 puntos, revisá primero los 5 insumos que más pesan.</li>
     </ol>

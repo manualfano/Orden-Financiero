@@ -8,10 +8,10 @@
   "publicada": "2026-09-14",
   "actualizada": "2026-09-14",
   "cta_general": true,
-  "relacionadas": ["margen-de-ganancia", "precio-de-venta-de-un-plato"],
+  "relacionadas": ["margen-de-ganancia", "punto-de-equilibrio", "precio-de-venta-de-un-plato"],
   "faq": [
     {"q": "¿Cuál es la fórmula para calcular el precio de venta?", "a": "Precio de venta sin IVA = costo ÷ (1 − margen deseado). Con un costo de $10.500 y un margen de 40 %, el precio sin IVA es $10.500 ÷ 0,60 = $17.500."},
-    {"q": "¿Cómo calculo el precio de venta con IVA?", "a": "Calculá primero el precio sin IVA y multiplicalo por 1,21. $17.500 × 1,21 = $21.175. Si sos monotributista no discriminás IVA; consultá con tu contador cómo impactan tus impuestos en el precio."},
+    {"q": "¿Cómo calculo el precio de venta con IVA?", "a": "Si sos responsable inscripto, calculá primero el precio sin IVA y multiplicalo por 1,21 (o por 1,105 si tu producto lleva 10,5 %): $17.500 × 1,21 = $21.175. Si sos monotributista no sumás IVA: el precio que calculás es el precio final, y el costo va con el IVA que pagaste."},
     {"q": "¿Cómo calculo el precio de venta de un producto para revender?", "a": "Sumá todo lo que te cuesta tenerlo listo para vender: precio del proveedor, flete y cualquier otro gasto por unidad. Sobre ese costo aplicás la fórmula con el margen que querés ganar."},
     {"q": "¿Es lo mismo sumar un 40 % al costo que ganar un 40 %?", "a": "No. Sumar 40 % al costo es un markup de 40 % y deja un margen de 28,6 % sobre el precio. Para ganar 40 % del precio hay que dividir el costo por 0,60, que equivale a un markup de 66,7 %."},
     {"q": "¿Qué margen de ganancia tengo que poner?", "a": "No hay un número universal: depende del rubro, de la rotación del producto y de cuánto pesan tus costos fijos. El margen tiene que cubrir los gastos del negocio y dejar ganancia; si no sabés cuánto necesitás, empezá por tus costos fijos."}
@@ -24,9 +24,9 @@
 
     <h2>La fórmula del precio de venta</h2>
     <p>Hay dos formas de calcularlo, y confundirlas es uno de los errores más caros:</p>
-    <p class="formula">Con margen sobre el precio: precio sin IVA = costo ÷ (1 − margen)<br>Con markup sobre el costo: precio sin IVA = costo × (1 + markup)<br>Precio final con IVA = precio sin IVA × 1,21</p>
+    <p class="formula">Con margen sobre el precio: precio sin IVA = costo ÷ (1 − margen)<br>Con markup sobre el costo: precio sin IVA = costo × (1 + markup)<br>Precio final con IVA = precio sin IVA × 1,21 (si sos responsable inscripto)</p>
     <ul>
-      <li><strong>Costo:</strong> todo lo que cuesta tener el producto listo para vender, por unidad.</li>
+      <li><strong>Costo:</strong> todo lo que cuesta tener el producto listo para vender, por unidad. Si sos responsable inscripto, sin IVA; si sos monotributista, con el IVA que pagaste.</li>
       <li><strong>Margen:</strong> el porcentaje del <em>precio</em> que querés que quede después de pagar el costo.</li>
       <li><strong>Markup:</strong> el porcentaje que le sumás al <em>costo</em>.</li>
     </ul>
@@ -42,7 +42,7 @@
     <p>Comprobación: $17.500 − $10.500 = $7.000 de ganancia bruta, que es el 40 % de $17.500.</p>
 
     <h3>El error de "sumarle el 40 %"</h3>
-    <p>Si en lugar de eso le sumás 40 % al costo: $10.500 × 1,40 = $14.700 sin IVA. La ganancia bruta es $4.200, que sobre el precio es un margen de <strong>28,6 %</strong>, no 40 %. En cada venta dejás $2.800 menos de lo que creías.</p>
+    <p>Si en lugar de eso le sumás 40 % al costo: $10.500 × 1,40 = $14.700 sin IVA. La ganancia bruta es $4.200, que sobre el precio es un margen de <strong>28,6 %</strong>, no 40 %. En cada venta ganás $2.800 menos que con el precio correcto de $17.500.</p>
 
     <h2>Ejemplo 2: un producto de fabricación propia</h2>
     <p>Si fabricás lo que vendés, el costo por unidad suma materiales, envase y la mano de obra que lleva cada unidad:</p>
@@ -58,14 +58,19 @@
         </tbody>
       </table>
     </div>
-    <p class="nota">Números de ejemplo, para mostrar el método.</p>
+    <p class="nota">Números de ejemplo, para mostrar el método. Si la mano de obra es un sueldo fijo que ya pagás igual, acá está repartida: para aceptar un pedido extra, el mínimo es cubrir materiales y envase.</p>
 
     <h2>Ejemplo 3: con comisiones (Mercado Libre, apps, tarjetas)</h2>
-    <p>Si una plataforma o un medio de pago te cobra un porcentaje del precio, esa comisión sale de tu margen salvo que la incluyas en la fórmula:</p>
-    <p class="formula">Precio sin IVA = costo ÷ (1 − margen − comisión)</p>
-    <p>Con el producto de $10.500, 40 % de margen y una comisión de 13 %: $10.500 ÷ (1 − 0,40 − 0,13) = $10.500 ÷ 0,47 = <strong>$22.340</strong> sin IVA.</p>
-    <p>Comprobación: la comisión es $2.904; $22.340 − $2.904 − $10.500 = $8.936, que es el 40 % de $22.340.</p>
-    <p class="nota">La comisión del ejemplo es ilustrativa y se aplica sobre el precio sin IVA para simplificar. Revisá cómo cobra la tuya y el tratamiento impositivo con tu contador.</p>
+    <p>Si una plataforma o un medio de pago te cobra un porcentaje de cada venta, primero calculá lo que necesitás recibir y después agrandalo por la comisión:</p>
+    <p class="formula">Lo que necesitás recibir sin IVA = costo ÷ (1 − margen)<br>Precio final con IVA = lo que necesitás recibir ÷ (1 ÷ 1,21 − comisión)</p>
+    <p>El 1 ÷ 1,21 (0,826) está porque las plataformas suelen cobrar la comisión sobre el precio final, con IVA incluido.</p>
+    <p>Con el producto de $10.500, 40 % de margen y una comisión de 13 %:</p>
+    <ul>
+      <li>Lo que necesitás recibir: $10.500 ÷ 0,60 = <strong>$17.500</strong></li>
+      <li>Precio final con IVA: $17.500 ÷ (0,826 − 0,13) = <strong>$25.128</strong></li>
+    </ul>
+    <p>Comprobación: sin IVA son $20.767; la comisión es 13 % de $25.128 = $3.267; te quedan $17.500, y los $7.000 de ganancia son el 40 %.</p>
+    <p class="nota">Si sos monotributista, no sumás IVA y el IVA de la comisión es costo para vos: precio = lo que necesitás recibir ÷ (1 − comisión × 1,21). Fijate en tu liquidación sobre qué te cobran la comisión.</p>
     <p>En gastronomía el razonamiento es el mismo, con el food cost: está explicado en <a href="/guias/precio-de-venta-de-un-plato">cómo calcular el precio de venta de un plato</a>.</p>
 
     <h2>Cómo calcular el precio de venta en Excel</h2>
@@ -77,8 +82,8 @@
           <tr><td>B</td><td>Costo por unidad</td><td>—</td></tr>
           <tr><td>C</td><td>Margen deseado (formato %)</td><td>—</td></tr>
           <tr><td>D</td><td>Comisión (formato %; 0 si no hay)</td><td>—</td></tr>
-          <tr><td>E</td><td>Precio sin IVA</td><td><code>=B2/(1-C2-D2)</code></td></tr>
-          <tr><td>F</td><td>Precio con IVA</td><td><code>=E2*1,21</code></td></tr>
+          <tr><td>E</td><td>Lo que necesitás recibir sin IVA</td><td><code>=B2/(1-C2)</code></td></tr>
+          <tr><td>F</td><td>Precio final con IVA</td><td><code>=E2/(1/1,21-D2)</code></td></tr>
           <tr><td>G</td><td>Precio redondeado a la centena, para arriba</td><td><code>=REDONDEAR.MAS(F2;-2)</code></td></tr>
         </tbody>
       </table>
@@ -87,7 +92,7 @@
     <h2>Cómo usarlo en tu negocio</h2>
     <ul>
       <li><strong>Calculá con el costo de reposición.</strong> Con inflación, el precio tiene que alcanzar para volver a comprar el producto, no para pagar lo que costó hace dos meses.</li>
-      <li><strong>Contrastá con el mercado.</strong> Si tu precio queda muy arriba, revisá el costo (proveedor, flete, cantidad de compra) antes de resignar margen.</li>
+      <li><strong>Contrastá con el mercado.</strong> Si tu precio queda muy arriba, revisá el costo (proveedor, flete, cantidad de compra) antes de resignar margen. Si queda abajo, subilo de a poco y mirá que la plata total que deja no baje.</li>
       <li><strong>Mirá los pesos, no solo el porcentaje.</strong> Un producto con margen alto que se vende poco puede aportar menos que uno con margen bajo que se vende todos los días.</li>
       <li><strong>Revisá cuando cambia algo:</strong> costo, comisión o alícuota. Con la planilla armada, es cambiar un número.</li>
     </ul>
@@ -96,6 +101,7 @@
     <ul>
       <li><strong>Confundir margen con markup:</strong> sumar 40 % al costo no es ganar 40 %.</li>
       <li><strong>Olvidar costos por unidad:</strong> flete, envase, comisiones, descuentos por pago en efectivo o cuotas.</li>
+      <li><strong>Olvidar lo que se lleva cada venta:</strong> Ingresos Brutos y el costo de vender en cuotas sin interés también son un porcentaje de la venta, como la comisión.</li>
       <li><strong>Calcular el margen sobre el precio con IVA:</strong> el IVA no es plata del negocio.</li>
       <li><strong>Copiar el precio de la competencia</strong> sin saber qué margen te deja a vos.</li>
     </ul>
