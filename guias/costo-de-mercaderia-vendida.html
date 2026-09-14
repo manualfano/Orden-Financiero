@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Costo de mercadería vendida (CMV): fórmula y ejemplo · Orden Financiero</title>
+<meta name="description" content="Qué es el costo de mercadería vendida o CMV, la fórmula con inventario inicial, compras e inventario final, ejemplos en pesos y cómo calcularlo en Excel.">
+<link rel="canonical" href="https://ordenfinanciero.com/guias/costo-de-mercaderia-vendida">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Costo de mercadería vendida (CMV): fórmula y ejemplo · Orden Financiero">
+<meta property="og:description" content="Qué es el costo de mercadería vendida o CMV, la fórmula con inventario inicial, compras e inventario final, ejemplos en pesos y cómo calcularlo en Excel.">
+<meta property="og:url" content="https://ordenfinanciero.com/guias/costo-de-mercaderia-vendida">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Orden Financiero">
+<meta property="og:image" content="https://ordenfinanciero.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0D2B6B">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<!-- Medicion: Google Analytics 4 (Fase 1, 11/09/2026), mismo codigo que index.html:
+     solo en ordenfinanciero.com y subdominios; en previews de Vercel, con ?ga_debug=1. -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag() { dataLayer.push(arguments); }
+(function () {
+  var h = location.hostname;
+  var real = h === 'ordenfinanciero.com' || h.endsWith('.ordenfinanciero.com');
+  var prueba = /\.vercel\.app$/.test(h) && /[?&]ga_debug=1(&|$)/.test(location.search);
+  if (!real && !prueba) return;
+  gtag('js', new Date());
+  gtag('config', 'G-1S0RS4NL1X', prueba ? { debug_mode: true } : {});
+  // La libreria (~170 KiB) baja despues de que carga la pagina: cargada junto con
+  // ella, el LCP mobile de Lighthouse pasaba de 2,1 s a 3,8 s. Los eventos que
+  // ocurran antes quedan en dataLayer y salen apenas carga.
+  function cargar() { var sc = document.createElement('script'); sc.async = true; sc.src = 'https://www.googletagmanager.com/gtag/js?id=G-1S0RS4NL1X'; document.head.appendChild(sc); }
+  if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
+})();
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://ordenfinanciero.com/guias/costo-de-mercaderia-vendida#article", "headline": "Costo de mercadería vendida (CMV): qué es, fórmula y ejemplo", "description": "Qué es el costo de mercadería vendida o CMV, la fórmula con inventario inicial, compras e inventario final, ejemplos en pesos y cómo calcularlo en Excel.", "image": "https://ordenfinanciero.com/og-image.png", "inLanguage": "es-AR", "datePublished": "2026-09-14", "dateModified": "2026-09-14", "author": {"@type": "Person", "@id": "https://ordenfinanciero.com/#manuel", "name": "Manuel Alfano", "url": "https://ordenfinanciero.com/#manuel"}, "publisher": {"@id": "https://ordenfinanciero.com/#organization"}, "mainEntityOfPage": "https://ordenfinanciero.com/guias/costo-de-mercaderia-vendida", "isPartOf": {"@id": "https://ordenfinanciero.com/guias#coleccion"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ordenfinanciero.com/"}, {"@type": "ListItem", "position": 2, "name": "Guías", "item": "https://ordenfinanciero.com/guias"}, {"@type": "ListItem", "position": 3, "name": "Costo de mercadería vendida"}]}, {"@type": "FAQPage", "@id": "https://ordenfinanciero.com/guias/costo-de-mercaderia-vendida#faq", "mainEntity": [{"@type": "Question", "name": "¿Qué es el CMV?", "acceptedAnswer": {"@type": "Answer", "text": "CMV son las siglas de costo de mercadería vendida: lo que le costó al negocio la mercadería que efectivamente vendió en un período. No es lo que compró, sino lo que salió del stock."}}, {"@type": "Question", "name": "¿Cuál es la fórmula del costo de mercadería vendida?", "acceptedAnswer": {"@type": "Answer", "text": "CMV = inventario inicial + compras del período − inventario final. Con un inventario inicial de $3.000.000, compras por $8.000.000 y un inventario final de $2.500.000, el CMV es $8.500.000."}}, {"@type": "Question", "name": "¿CMV y food cost son lo mismo?", "acceptedAnswer": {"@type": "Answer", "text": "Se calculan igual. El CMV es el costo en pesos de lo vendido; el food cost es ese costo expresado como porcentaje de las ventas, y es el nombre que se usa en gastronomía."}}, {"@type": "Question", "name": "¿El costo de mercadería vendida lleva IVA?", "acceptedAnswer": {"@type": "Answer", "text": "Si sos responsable inscripto, las compras y el inventario van sin IVA, porque el IVA de las compras es un crédito fiscal. Si sos monotributista, consultá con tu contador cómo registrarlo."}}, {"@type": "Question", "name": "¿Qué pasa si no hago inventario?", "acceptedAnswer": {"@type": "Answer", "text": "Sin inventario final, el CMV queda igual a las compras, y el resultado del mes sale mal: los meses que comprás para stock parecen malos y los que vendés stock parecen buenos. Contar el stock una vez por mes, siempre igual, alcanza."}}]}]}</script>
+<style>
+@font-face { font-family: 'Inter'; font-weight: 100 900; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
+  :root { --marca: #0C66E4; --marca-hover: #0055CC; --navy: #0D2B6B; --navy-900: #0D2B6B; --tinta: #292A2E; --tinta-2: #505258; --tinta-3: #6B6E76; --bg: #fff; --lienzo: #F8F8F8; --borde: rgba(11,18,14,0.14); --w: #fff; --r: 8px; --r-lg: 12px; --fs-meta: 12px; --fs-sm: 14px; --fs-base: 15px; --fs-lead: 17px; --fs-h3: 21px; --fs-h2: clamp(28px, 3.4vw, 42px); --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px; --s-7: 48px; --t-instante: 120ms; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', system-ui, sans-serif; font-size: var(--fs-base); line-height: 1.7; color: var(--tinta); background: var(--bg); }
+  header { background: var(--navy-900); padding: var(--s-3) var(--s-5); }
+  .head-in { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--w); font-weight: 600; font-size: var(--fs-lead); letter-spacing: -0.01em; min-height: 44px; }
+  .brand-mark { width: 34px; height: 34px; border-radius: var(--r); background: var(--marca); display: inline-flex; align-items: center; justify-content: center; }
+  .brand-mark svg { width: 18px; height: 18px; }
+  .dot { color: var(--marca); }
+  .head-nav { display: flex; align-items: center; gap: var(--s-4); }
+  .head-nav a { color: var(--w); text-decoration: none; font-size: var(--fs-sm); font-weight: 500; min-height: 44px; display: inline-flex; align-items: center; }
+  .head-nav .head-cta { background: var(--marca); padding: 0 var(--s-4); border-radius: var(--r); font-weight: 600; }
+  .head-nav .head-cta:hover { background: var(--marca-hover); }
+  main { max-width: 720px; margin: 0 auto; padding: var(--s-6) var(--s-5) var(--s-7); }
+  .migas { font-size: var(--fs-sm); color: var(--tinta-3); margin-bottom: var(--s-5); }
+  .migas a { color: var(--tinta-3); }
+  .eyebrow { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--marca); margin-bottom: var(--s-3); }
+  h1 { font-size: var(--fs-h2); font-weight: 600; color: var(--navy); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: var(--s-4); }
+  h2 { font-size: var(--fs-h3); font-weight: 600; color: var(--navy); line-height: 1.3; margin: var(--s-6) 0 var(--s-3); }
+  h3 { font-size: var(--fs-lead); font-weight: 600; color: var(--navy); margin: var(--s-5) 0 var(--s-2); }
+  p, li { color: var(--tinta-2); }
+  article p, article ul, article ol { margin-bottom: var(--s-3); }
+  article li { margin-bottom: var(--s-2); }
+  ul, ol { padding-left: var(--s-5); }
+  strong { color: var(--tinta); font-weight: 600; }
+  a { color: var(--marca); }
+  .bajada { font-size: var(--fs-lead); }
+  .autor { font-size: var(--fs-sm); color: var(--tinta-3); margin-top: var(--s-4); padding-bottom: var(--s-5); margin-bottom: var(--s-5); border-bottom: 1px solid var(--borde); }
+  .formula { background: var(--lienzo); border-left: 3px solid var(--marca); border-radius: var(--r); padding: var(--s-3) var(--s-4); margin: var(--s-4) 0; font-weight: 600; color: var(--navy); }
+  .tabla { overflow-x: auto; margin: var(--s-4) 0; }
+  table { border-collapse: collapse; width: 100%; font-size: var(--fs-sm); }
+  .tabla table:has(tr > :nth-child(4)) { min-width: 520px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--borde); color: var(--tinta-2); }
+  th { color: var(--navy); font-weight: 600; background: var(--lienzo); }
+  .n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  th.n { white-space: normal; }
+  tr.total td { font-weight: 600; color: var(--navy); }
+  .nota { font-size: var(--fs-sm); color: var(--tinta-3); }
+  .cta { margin: var(--s-7) 0 var(--s-6); background: var(--navy); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); }
+  .cta p { color: rgba(255,255,255,0.88); }
+  .cta .cta-t { font-size: var(--fs-h3); font-weight: 600; line-height: 1.3; color: var(--w); margin-bottom: var(--s-2); }
+  .btn { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: var(--s-3) var(--s-5); border-radius: var(--r); background: var(--marca); color: var(--w); font-weight: 600; text-decoration: none; margin-top: var(--s-4); transition: background var(--t-instante); }
+  .btn:hover { background: var(--marca-hover); }
+  .lista-guias { list-style: none; padding: 0; }
+  .lista-guias li { border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-4) var(--s-5); margin-bottom: var(--s-3); }
+  .lista-guias a { font-weight: 600; font-size: var(--fs-lead); text-decoration: none; line-height: 1.4; }
+  .lista-guias p { margin-top: var(--s-2); font-size: var(--fs-sm); }
+  footer { background: var(--navy-900); padding: var(--s-6) var(--s-5); font-size: var(--fs-sm); }
+  .foot-in { max-width: 960px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5); justify-content: space-between; color: rgba(255,255,255,0.75); }
+  .foot-in nav { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
+  .foot-in a { color: var(--w); text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--marca); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<!-- Generado por tools/build_guias.py: editar la fuente en tools/guias/, no este archivo -->
+<header>
+  <div class="head-in">
+    <a href="/" class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7" stroke="#7DB1F4" stroke-width="4"/><circle cx="12" cy="12" r="7" stroke="#ffffff" stroke-width="4" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/></svg></span>ordenfinanciero<span class="dot">.</span></a>
+    <nav class="head-nav" aria-label="Principal">
+      <a href="/guias">Guías</a>
+      <a class="head-cta" href="/?origen=guia-costo-de-mercaderia-vendida#diagnostico">Hacer el diagnóstico</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <nav class="migas" aria-label="Ruta"><a href="/">Inicio</a> › <a href="/guias">Guías</a> › <span>Costo de mercadería vendida</span></nav>
+  <p class="eyebrow">Guía · Costos y precios</p>
+  <h1>Costo de mercadería vendida (CMV): qué es, fórmula y ejemplo</h1>
+  <p class="bajada">Qué es el costo de mercadería vendida o CMV, la fórmula con inventario inicial, compras e inventario final, ejemplos en pesos y cómo calcularlo en Excel.</p>
+  <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · Actualizada el 14 de septiembre de 2026</p>
+  <article>
+<p>"Este mes compré mucho, así que gané poco." Esa frase mezcla dos cosas distintas: lo que el negocio compró y lo que le costó lo que vendió. La diferencia es el stock, y el número que la resuelve es el costo de mercadería vendida.</p>
+
+    <h2>Qué es el costo de mercadería vendida (CMV)</h2>
+    <p>El <strong>costo de mercadería vendida</strong>, o <strong>CMV</strong>, es lo que le costó al negocio la mercadería que <strong>efectivamente vendió</strong> en un período, por ejemplo un mes. No es lo que compró: parte de lo comprado puede seguir en el depósito, y parte de lo vendido puede venir del stock del mes anterior.</p>
+    <p>También se lo llama <strong>costo de ventas</strong> o <strong>costo de lo vendido</strong>. En gastronomía, ese mismo cálculo como porcentaje de las ventas es el <a href="/guias/food-cost">food cost</a>, o costo de la materia prima.</p>
+
+    <h2>La fórmula del costo de mercadería vendida</h2>
+    <p class="formula">CMV = inventario inicial + compras del período − inventario final</p>
+    <ul>
+      <li><strong>Inventario inicial:</strong> el valor de la mercadería que había al empezar el período.</li>
+      <li><strong>Compras:</strong> lo que se compró en el período, descontando devoluciones y bonificaciones, y sumando los fletes de compra.</li>
+      <li><strong>Inventario final:</strong> el valor de la mercadería que quedó al cerrar el período.</li>
+    </ul>
+    <p>Si sos responsable inscripto, todo va <strong>sin IVA</strong>: el IVA de las compras es crédito fiscal, no costo.</p>
+
+    <h2>Ejemplo: el CMV de un comercio</h2>
+    <div class="tabla">
+      <table>
+        <tbody>
+          <tr><td>Inventario al inicio del mes</td><td class="n">$3.000.000</td></tr>
+          <tr><td>+ Compras del mes</td><td class="n">$8.000.000</td></tr>
+          <tr><td>− Inventario al cierre del mes</td><td class="n">$2.500.000</td></tr>
+          <tr class="total"><td>= Costo de mercadería vendida</td><td class="n">$8.500.000</td></tr>
+          <tr><td>Ventas del mes sin IVA</td><td class="n">$14.000.000</td></tr>
+          <tr class="total"><td>Resultado bruto (ventas − CMV)</td><td class="n">$5.500.000</td></tr>
+          <tr><td>CMV sobre ventas</td><td class="n">60,7 %</td></tr>
+          <tr><td>Margen bruto</td><td class="n">39,3 %</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nota">Números de ejemplo, para mostrar el método.</p>
+
+    <h3>Por qué importa contar el inventario</h3>
+    <p>Si en el ejemplo no se cuenta el stock y se toma el CMV igual a lo comprado en el mes, la cuenta da $3.000.000 + $8.000.000 = $11.000.000 de costo. El margen bruto caería a <strong>21,4 %</strong> y parecería que el negocio anda mucho peor de lo que anda, cuando en realidad quedaron $2.500.000 de mercadería en el depósito.</p>
+    <p>Pasa lo mismo al revés: el mes que se vende stock sin reponer, si no se cuenta el inventario, el resultado parece mejor de lo que es.</p>
+
+    <h2>El CMV en el estado de resultados</h2>
+    <p>El CMV es el primer costo que se resta de las ventas. Todo lo demás viene después:</p>
+    <p class="formula">Ventas − costo de mercadería vendida = resultado bruto<br>Resultado bruto − gastos del negocio = resultado del mes</p>
+    <p>Por eso un CMV mal calculado arrastra el error hasta la última línea. Con el resultado bruto también se calcula el <a href="/guias/margen-de-ganancia">margen de ganancia</a> del negocio.</p>
+
+    <h2>Cómo calcular el costo de mercadería vendida en Excel</h2>
+    <div class="tabla">
+      <table>
+        <thead><tr><th>Celda</th><th>Qué va</th><th>Fórmula</th></tr></thead>
+        <tbody>
+          <tr><td>B2</td><td>Inventario inicial</td><td>—</td></tr>
+          <tr><td>B3</td><td>Compras del mes</td><td>—</td></tr>
+          <tr><td>B4</td><td>Inventario final</td><td>—</td></tr>
+          <tr><td>B5</td><td>Costo de mercadería vendida</td><td><code>=B2+B3-B4</code></td></tr>
+          <tr><td>B6</td><td>Ventas del mes sin IVA</td><td>—</td></tr>
+          <tr><td>B7</td><td>CMV sobre ventas (formato %)</td><td><code>=B5/B6</code></td></tr>
+          <tr><td>B8</td><td>Resultado bruto</td><td><code>=B6-B5</code></td></tr>
+          <tr><td>B9</td><td>Margen bruto (formato %)</td><td><code>=B8/B6</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Armá una columna por mes y el inventario final de un mes pasa a ser el inicial del siguiente: en C2 ponés <code>=B4</code>.</p>
+
+    <h2>Cómo usar el CMV en tu negocio</h2>
+    <ul>
+      <li><strong>Calculalo todos los meses</strong>, con el inventario contado siempre el mismo día y de la misma forma.</li>
+      <li><strong>Mirá el porcentaje sobre ventas mes a mes.</strong> Si sube sin que hayas bajado precios, algo cambió: aumentos de proveedores que no trasladaste, faltantes, mermas o errores de carga.</li>
+      <li><strong>Comparalo con el costo teórico:</strong> lo que tendría que haber costado lo vendido según el costo de cada producto. La diferencia es plata que se fue sin quedar registrada.</li>
+      <li><strong>Usalo para revisar precios:</strong> si el CMV se come cada vez más de las ventas, el margen no alcanza para los gastos.</li>
+    </ul>
+
+    <h2>Errores comunes</h2>
+    <ul>
+      <li><strong>Tomar las compras como costo</strong> sin contar el inventario.</li>
+      <li><strong>Valorizar el stock con criterios distintos</strong> cada mes: con inflación, conviene definir el criterio con tu contador y mantenerlo.</li>
+      <li><strong>Incluir el IVA</strong> de las compras siendo responsable inscripto.</li>
+      <li><strong>Meter gastos que no son mercadería</strong>, como alquiler, sueldos o servicios: esos van en los gastos del negocio.</li>
+    </ul>
+    <h2>Preguntas frecuentes</h2>
+    <h3>¿Qué es el CMV?</h3>
+    <p>CMV son las siglas de costo de mercadería vendida: lo que le costó al negocio la mercadería que efectivamente vendió en un período. No es lo que compró, sino lo que salió del stock.</p>
+    <h3>¿Cuál es la fórmula del costo de mercadería vendida?</h3>
+    <p>CMV = inventario inicial + compras del período − inventario final. Con un inventario inicial de $3.000.000, compras por $8.000.000 y un inventario final de $2.500.000, el CMV es $8.500.000.</p>
+    <h3>¿CMV y food cost son lo mismo?</h3>
+    <p>Se calculan igual. El CMV es el costo en pesos de lo vendido; el food cost es ese costo expresado como porcentaje de las ventas, y es el nombre que se usa en gastronomía.</p>
+    <h3>¿El costo de mercadería vendida lleva IVA?</h3>
+    <p>Si sos responsable inscripto, las compras y el inventario van sin IVA, porque el IVA de las compras es un crédito fiscal. Si sos monotributista, consultá con tu contador cómo registrarlo.</p>
+    <h3>¿Qué pasa si no hago inventario?</h3>
+    <p>Sin inventario final, el CMV queda igual a las compras, y el resultado del mes sale mal: los meses que comprás para stock parecen malos y los que vendés stock parecen buenos. Contar el stock una vez por mes, siempre igual, alcanza.</p>
+
+  </article>
+  <h2>Seguí leyendo</h2>
+  <ul class="lista-guias">
+    <li><a href="/guias/food-cost">Food cost (costo de la materia prima): qué es, fórmula y cómo calcularlo</a><p>Qué es el food cost o costo de la materia prima en gastronomía, la fórmula por plato y por mes, ejemplos en pesos, cómo calcularlo en Excel y qué porcentaje tomar.</p></li>
+    <li><a href="/guias/margen-de-ganancia">Margen de ganancia: qué es, cómo se calcula y en qué se diferencia del markup</a><p>Qué es el margen de ganancia, la fórmula para calcularlo de un producto y de un negocio, la diferencia con el markup, ejemplos en pesos y cómo hacerlo en Excel.</p></li>
+  </ul>
+  <aside class="cta">
+    <p class="cta-t">¿Tenés un negocio gastronómico?</p>
+    <p>En 3 minutos sabés por dónde se le escapa la plata: 12 preguntas gratis y el puntaje de los cuatro eslabones al instante.</p>
+    <a class="btn" href="/?origen=guia-costo-de-mercaderia-vendida#diagnostico">Hacer el diagnóstico · 3 min <span aria-hidden="true">→</span></a>
+  </aside>
+</main>
+<footer>
+  <div class="foot-in">
+    <nav aria-label="Pie">
+      <a href="/">Inicio</a>
+      <a href="/guias">Guías</a>
+      <a href="/#manuel">Quién está detrás</a>
+      <a href="/privacidad">Privacidad</a>
+    </nav>
+    <span>© 2026 Orden Financiero · Programa de consultoría financiera para gastronomía</span>
+  </div>
+</footer>
+</body>
+</html>
