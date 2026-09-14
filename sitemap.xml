@@ -25,6 +25,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ordenfinanciero.com/guias/costo-de-mercaderia-vendida</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ordenfinanciero.com/guias/costos-fijos-y-variables</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ordenfinanciero.com/guias/precio-de-venta-de-un-plato</loc>
     <lastmod>2026-09-14</lastmod>
     <changefreq>monthly</changefreq>
@@ -37,13 +49,13 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ordenfinanciero.com/guias/margen-de-ganancia</loc>
+    <loc>https://ordenfinanciero.com/guias/estado-de-resultados</loc>
     <lastmod>2026-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ordenfinanciero.com/guias/costo-de-mercaderia-vendida</loc>
+    <loc>https://ordenfinanciero.com/guias/margen-de-ganancia</loc>
     <lastmod>2026-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -55,25 +67,13 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ordenfinanciero.com/guias/estado-de-resultados</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ordenfinanciero.com/guias/capital-de-trabajo</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://ordenfinanciero.com/guias/rentabilidad-de-un-negocio</loc>
     <lastmod>2026-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ordenfinanciero.com/guias/costos-fijos-y-variables</loc>
+    <loc>https://ordenfinanciero.com/guias/capital-de-trabajo</loc>
     <lastmod>2026-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
