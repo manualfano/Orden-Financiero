@@ -149,6 +149,23 @@ function gtag() { dataLayer.push(arguments); }
   .buscador label { display: block; font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--secondary-dark); margin-bottom: var(--s-2); }
   .buscador input { width: 100%; min-height: 48px; padding: 0 var(--s-4); border: 0; border-radius: var(--r); font: inherit; font-size: var(--fs-base); color: var(--tinta); background: var(--w); }
   .buscador input:focus-visible { outline: 3px solid var(--w); outline-offset: 2px; }
+  /* Portada en dos columnas (14/09/2026, Manu: "esta todo muy sobre la
+     izquierda"): texto a la izquierda; a la derecha un panel con los cuatro
+     problemas apilados y el buscador. Debajo de 1024 px se apila como antes. */
+  .atajo-txt { flex: 1; }
+  .atajos .flecha { display: none; }
+  @media (min-width: 1024px) {
+    .portada { padding: var(--s-7) var(--s-6); }
+    .portada-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(360px, 1fr); gap: var(--s-7); align-items: center; }
+    .portada .autor { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
+    .portada-panel { background: var(--w-08); border: 1px solid var(--w-18); border-radius: var(--r-lg); padding: var(--s-5); }
+    .portada-panel .atajos { flex-direction: column; flex-wrap: nowrap; }
+    .portada-panel .atajos a { width: 100%; min-height: 52px; border-radius: var(--r); padding: 0 var(--s-4) 0 var(--s-2); background: var(--w-08); font-size: var(--fs-base); }
+    .portada-panel .atajos a:hover { background: var(--w-18); }
+    .portada-panel .atajos .flecha { display: inline; color: var(--w-72); font-weight: 600; transition: transform var(--t-instante); }
+    .portada-panel .atajos a:hover .flecha { transform: translateX(3px); }
+    .portada-panel .buscador { max-width: none; }
+  }
   .sin-resultados { margin-top: var(--s-6); padding: var(--s-5); background: var(--w); border: 1px solid var(--borde); border-radius: var(--r-lg); }
   /* Banda azul marca al cierre, como .cta-final de la home: título lima (26 px a 600, texto grande) y botón blanco */
   .cta { background: var(--marca); }
@@ -241,14 +258,20 @@ function gtag() { dataLayer.push(arguments); }
   <section class="portada">
     <svg class="circulos" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="66"/><circle cx="100" cy="100" r="36"/></svg>
   <nav class="migas" aria-label="Ruta"><a href="/">Inicio</a> › <span>Guías</span></nav>
-    <p class="eyebrow"><span class="punto" aria-hidden="true"></span>Guías</p>
-    <h1>Guías de finanzas para <em>dueños de negocio</em></h1>
-    <p class="bajada">Guías prácticas para dueños de negocio: precios, costos, márgenes y rentabilidad, con fórmulas y ejemplos en pesos. Con foco en gastronomía.</p>
-    <p class="cifras"><strong>11 guías</strong> · fórmula, ejemplo en pesos y cómo armarlo en Excel en cada una</p>
-    <p class="autor">Escritas por <a href="/#manuel">Manuel Alfano</a>, con más de 12 años en la gastronomía con negocio propio.</p>
-    <p class="atajos-t" id="atajos-t">¿Qué te pasa con los números?</p>
-    <nav class="atajos" aria-labelledby="atajos-t"><a href="#no-se-cuanto-me-cuesta"><span class="n-mini" aria-hidden="true">1</span>No sé cuánto me cuesta</a><a href="#no-se-que-precio-poner"><span class="n-mini" aria-hidden="true">2</span>No sé qué precio poner</a><a href="#vendo-bien-pero-no-me-queda-plata"><span class="n-mini" aria-hidden="true">3</span>No me queda plata</a><a href="#nunca-llego-con-la-plata"><span class="n-mini" aria-hidden="true">4</span>No llego a pagar</a></nav>
-    <div class="buscador"><label for="buscar-guia">Buscá una guía</label><input id="buscar-guia" type="search" placeholder="Ej.: precio, merma, IVA, punto de equilibrio" autocomplete="off"></div>
+    <div class="portada-grid">
+      <div class="portada-texto">
+        <p class="eyebrow"><span class="punto" aria-hidden="true"></span>Guías</p>
+        <h1>Guías de finanzas para <em>dueños de negocio</em></h1>
+        <p class="bajada">Guías prácticas para dueños de negocio: precios, costos, márgenes y rentabilidad, con fórmulas y ejemplos en pesos. Con foco en gastronomía.</p>
+        <p class="cifras"><strong>11 guías</strong> · fórmula, ejemplo en pesos y cómo armarlo en Excel en cada una</p>
+        <p class="autor">Escritas por <a href="/#manuel">Manuel Alfano</a>, con más de 12 años en la gastronomía con negocio propio.</p>
+      </div>
+      <div class="portada-panel">
+        <p class="atajos-t" id="atajos-t">¿Qué te pasa con los números?</p>
+        <nav class="atajos" aria-labelledby="atajos-t"><a href="#no-se-cuanto-me-cuesta"><span class="n-mini" aria-hidden="true">1</span><span class="atajo-txt">No sé cuánto me cuesta lo que vendo</span><span class="flecha" aria-hidden="true">→</span></a><a href="#no-se-que-precio-poner"><span class="n-mini" aria-hidden="true">2</span><span class="atajo-txt">No sé qué precio poner</span><span class="flecha" aria-hidden="true">→</span></a><a href="#vendo-bien-pero-no-me-queda-plata"><span class="n-mini" aria-hidden="true">3</span><span class="atajo-txt">Vendo bien pero no me queda plata</span><span class="flecha" aria-hidden="true">→</span></a><a href="#nunca-llego-con-la-plata"><span class="n-mini" aria-hidden="true">4</span><span class="atajo-txt">Nunca llego con la plata para pagar</span><span class="flecha" aria-hidden="true">→</span></a></nav>
+        <div class="buscador"><label for="buscar-guia">O buscá una guía</label><input id="buscar-guia" type="search" placeholder="Ej.: merma, IVA, precio" autocomplete="off"></div>
+      </div>
+    </div>
   </section>
   <p class="sin-resultados" id="sin-resultados" hidden>No encontramos guías con esa palabra. Probá con otra, o <a href="/?origen=guias-busqueda#diagnostico">hacé el diagnóstico</a> y te decimos por dónde empezar.</p>
   <section class="problema" id="no-se-cuanto-me-cuesta" aria-labelledby="no-se-cuanto-me-cuesta-t">

@@ -131,6 +131,23 @@ CSS = TOKENS + """
   .buscador label { display: block; font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--secondary-dark); margin-bottom: var(--s-2); }
   .buscador input { width: 100%; min-height: 48px; padding: 0 var(--s-4); border: 0; border-radius: var(--r); font: inherit; font-size: var(--fs-base); color: var(--tinta); background: var(--w); }
   .buscador input:focus-visible { outline: 3px solid var(--w); outline-offset: 2px; }
+  /* Portada en dos columnas (14/09/2026, Manu: "esta todo muy sobre la
+     izquierda"): texto a la izquierda; a la derecha un panel con los cuatro
+     problemas apilados y el buscador. Debajo de 1024 px se apila como antes. */
+  .atajo-txt { flex: 1; }
+  .atajos .flecha { display: none; }
+  @media (min-width: 1024px) {
+    .portada { padding: var(--s-7) var(--s-6); }
+    .portada-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(360px, 1fr); gap: var(--s-7); align-items: center; }
+    .portada .autor { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
+    .portada-panel { background: var(--w-08); border: 1px solid var(--w-18); border-radius: var(--r-lg); padding: var(--s-5); }
+    .portada-panel .atajos { flex-direction: column; flex-wrap: nowrap; }
+    .portada-panel .atajos a { width: 100%; min-height: 52px; border-radius: var(--r); padding: 0 var(--s-4) 0 var(--s-2); background: var(--w-08); font-size: var(--fs-base); }
+    .portada-panel .atajos a:hover { background: var(--w-18); }
+    .portada-panel .atajos .flecha { display: inline; color: var(--w-72); font-weight: 600; transition: transform var(--t-instante); }
+    .portada-panel .atajos a:hover .flecha { transform: translateX(3px); }
+    .portada-panel .buscador { max-width: none; }
+  }
   .sin-resultados { margin-top: var(--s-6); padding: var(--s-5); background: var(--w); border: 1px solid var(--borde); border-radius: var(--r-lg); }
   /* Banda azul marca al cierre, como .cta-final de la home: título lima (26 px a 600, texto grande) y botón blanco */
   .cta { background: var(--marca); }
@@ -541,8 +558,10 @@ def main():
             'con fórmulas y ejemplos en pesos. Con foco en gastronomía.')
     # Agrupadas por el problema que resuelven (PROBLEMAS), en el orden en que le pasan al dueño.
     visibles = [(i + 1, p, lista) for i, (p, lista) in enumerate(grupos) if lista]
+    # Atajos del panel derecho de la portada: la frase completa del problema y una flecha.
     atajos = ''.join(
-        f'<a href="#{p["id"]}"><span class="n-mini" aria-hidden="true">{n}</span>{html.escape(p["atajo"])}</a>'
+        f'<a href="#{p["id"]}"><span class="n-mini" aria-hidden="true">{n}</span>'
+        f'<span class="atajo-txt">{html.escape(p["titulo"])}</span><span class="flecha" aria-hidden="true">→</span></a>'
         for n, p, _ in visibles)
     secciones = ''
     for n, p, lista in visibles:
@@ -557,14 +576,20 @@ def main():
     cuerpo = f"""  <section class="portada">
     {CIRCULOS}
 {migas(items)}
-    <p class="eyebrow"><span class="punto" aria-hidden="true"></span>Guías</p>
-    <h1>Guías de finanzas para <em>dueños de negocio</em></h1>
-    <p class="bajada">{desc}</p>
-    <p class="cifras"><strong>{len(guias)} guías</strong> · fórmula, ejemplo en pesos y cómo armarlo en Excel en cada una</p>
-    <p class="autor">Escritas por <a href="/#manuel">Manuel Alfano</a>, con más de 12 años en la gastronomía con negocio propio.</p>
-    <p class="atajos-t" id="atajos-t">¿Qué te pasa con los números?</p>
-    <nav class="atajos" aria-labelledby="atajos-t">{atajos}</nav>
-    <div class="buscador"><label for="buscar-guia">Buscá una guía</label><input id="buscar-guia" type="search" placeholder="Ej.: precio, merma, IVA, punto de equilibrio" autocomplete="off"></div>
+    <div class="portada-grid">
+      <div class="portada-texto">
+        <p class="eyebrow"><span class="punto" aria-hidden="true"></span>Guías</p>
+        <h1>Guías de finanzas para <em>dueños de negocio</em></h1>
+        <p class="bajada">{desc}</p>
+        <p class="cifras"><strong>{len(guias)} guías</strong> · fórmula, ejemplo en pesos y cómo armarlo en Excel en cada una</p>
+        <p class="autor">Escritas por <a href="/#manuel">Manuel Alfano</a>, con más de 12 años en la gastronomía con negocio propio.</p>
+      </div>
+      <div class="portada-panel">
+        <p class="atajos-t" id="atajos-t">¿Qué te pasa con los números?</p>
+        <nav class="atajos" aria-labelledby="atajos-t">{atajos}</nav>
+        <div class="buscador"><label for="buscar-guia">O buscá una guía</label><input id="buscar-guia" type="search" placeholder="Ej.: merma, IVA, precio" autocomplete="off"></div>
+      </div>
+    </div>
   </section>
   <p class="sin-resultados" id="sin-resultados" hidden>No encontramos guías con esa palabra. Probá con otra, o <a href="/?origen=guias-busqueda#diagnostico">hacé el diagnóstico</a> y te decimos por dónde empezar.</p>
 {secciones}  <script>
