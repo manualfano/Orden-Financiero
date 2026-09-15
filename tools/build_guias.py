@@ -252,7 +252,7 @@ PROBLEMAS = [
      'slugs': ['estado-de-resultados', 'punto-de-equilibrio', 'rentabilidad-de-un-negocio']},
     {'id': 'nunca-llego-con-la-plata', 'titulo': 'Nunca llego con la plata para pagar', 'atajo': 'No llego a pagar',
      'corto': 'Caja', 'linea': 'Sabé cuánta plata necesitás para pagar todo a tiempo mientras esperás cobrar.',
-     'slugs': ['capital-de-trabajo'], 'pendientes': ['flujo-de-caja']},
+     'slugs': ['flujo-de-caja', 'capital-de-trabajo']},
 ]
 
 
