@@ -415,8 +415,9 @@ DESCARGAS = {
     },
 }
 
-# Mismo endpoint, formato de payload y validación de WhatsApp que el diagnóstico de index.html.
-# El Apps Script exige 4 eslabones con puntaje numérico: viajan en 0 y "gravedad" lo aclara.
+# Mismo endpoint y validación de WhatsApp que el diagnóstico de index.html. El payload va
+# marcado con tipo "descarga": el Apps Script (versión 2026-09-15-descargas) lo guarda en la
+# pestaña "Descarga de Excel", manda un mail corto y no arma presentación.
 DESCARGA_JS = r"""  <script>
   (function () {
     var WEBHOOK = 'https://script.google.com/macros/s/AKfycbw_4OP8ve0fKfP9M3VtCvRvmDG395PVzHUNOYqAH55FmVxaD93VNg8QfjDayOK-xVr_Ng/exec';
@@ -456,19 +457,14 @@ DESCARGA_JS = r"""  <script>
       try { sessionStorage.setItem(KEY, JSON.stringify(b)); } catch (e) {}
       return b;
     }
-    function armarPayload(wa, origen, trampa) {
+    function armarPayload(wa, origen, archivo, trampa) {
       var at = atribucion();
-      var nombres = ['Costos y precios', 'Resultado económico', 'Flujo de caja', 'Indicadores de gestión'];
       return {
+        tipo: 'descarga',
         leadId: Date.now() + '-' + Math.random().toString(36).slice(2, 8),
         timestamp: new Date().toISOString(),
-        whatsapp: wa, rubro: '', origen: origen,
-        score: 0, maxScore: 36, gravedad: 'Sin diagnóstico (descarga)', eslabonDebil: '', letras: '',
-        nombre: '', negocio: '', sistema: '', instagram: '',
-        eslabones: nombres.map(function (n) { return { nombre: n, score: 0, estado: '' }; }),
-        respuestas: [],
-        diagnostico: 'Descargó un Excel desde las guías (' + origen + '). No hizo el diagnóstico.',
-        campo_extra: trampa, gravedadEslabon: '',
+        whatsapp: wa, origen: origen, archivo: archivo,
+        campo_extra: trampa,
         utm_source: at.utm_source, utm_medium: at.utm_medium, utm_campaign: at.utm_campaign,
         utm_content: at.utm_content, referrer: at.referrer
       };
@@ -547,7 +543,7 @@ DESCARGA_JS = r"""  <script>
         var trampa = (form.querySelector('.campo-extra') || {}).value || '';
         btn.disabled = true; input.disabled = true;
         btn.textContent = 'Preparando la descarga…';
-        enviar(armarPayload(p.digits, caja.dataset.origen, trampa)).then(function (res) {
+        enviar(armarPayload(p.digits, caja.dataset.origen, caja.dataset.nombre, trampa)).then(function (res) {
           // Si el lead no se guardó, igual se descarga: se mide el error, no se castiga al usuario
           if (!res.ok) track('descarga_lead_error', { descarga: caja.dataset.descarga, tipo: res.tipo });
           bajar(caja.dataset.archivo, caja.dataset.nombre);

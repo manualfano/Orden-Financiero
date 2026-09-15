@@ -4,6 +4,22 @@
 // anterior. Va junto con Deck.gs (misma carpeta), que también se reemplaza.
 // ═══════════════════════════════════════════════════════════════
 //
+// CAMBIO 15/09/2026 (versión 2026-09-15-descargas)
+// Las descargas de Excel desde las guías llegan con tipo "descarga" y van a
+// una pestaña propia, "Descarga de Excel" (se crea sola con la primera
+// descarga), con un mail corto "Descargó el Excel". No tocan Leads ni
+// Detalle y NO arman presentación. El diagnóstico funciona igual que antes.
+//
+// PARA PUBLICAR ESTE CAMBIO (sin cortar el servicio):
+//  1. Extensiones → Apps Script → "Código.gs": Ctrl+A, pegar este archivo,
+//     guardar (disquete). Deck.gs NO se toca.
+//  2. Implementar → Gestionar implementaciones → la implementación
+//     "Fase 1" → lápiz (editar) → Versión: "Nueva versión" → Implementar.
+//     Es la que usa la web: la URL no cambia.
+//  3. Abrir la URL /exec en el navegador: tiene que decir
+//     "version":"2026-09-15-descargas".
+//  4. Para volver atrás: mismo lugar → elegir la versión anterior.
+//
 // POR QUÉ ESTA VERSIÓN
 // Desde el 07/09 15:39 la web manda los eslabones con nombres nuevos
 // ("Flujo de caja", "Costos y precios"…) y la versión anterior los buscaba
@@ -40,7 +56,13 @@
 //     versión anterior. Nada se borra.
 // ═══════════════════════════════════════════════════════════════
 
-const VERSION_SCRIPT = '2026-09-11-fase1';
+const VERSION_SCRIPT = '2026-09-15-descargas';
+
+// Descargas de material desde las guías (15/09/2026): van a su propia pestaña,
+// con un mail corto y SIN presentación. La web las marca con tipo "descarga".
+const HOJA_DESCARGAS = 'Descarga de Excel';
+const DESCARGAS_HEADERS = ['Lead ID', 'Fecha', 'WhatsApp', 'Archivo', 'Origen',
+  'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'Referrer'];
 
 // ── COLORES DE MARCA ──────────────────────────────────────────
 const NAVY = '#1B3A6B';
@@ -106,6 +128,9 @@ function doPost(e) {
     return responder({ ok: false, leadId: leadId, error: 'whatsapp_invalido' });
   }
 
+  // Descarga de un Excel desde una guía: otra pestaña, otro mail, sin presentación.
+  if (String(data.tipo || '') === 'descarga') return guardarDescarga(data, leadId);
+
   let lead;
   try {
     lead = normalizarLead(data);
@@ -157,6 +182,85 @@ function doPost(e) {
   }
 
   return responder({ ok: true, leadId: leadId });
+}
+
+// ── DESCARGAS DE EXCEL ────────────────────────────────────────
+function guardarDescarga(data, leadId) {
+  const d = {
+    leadId: leadId,
+    timestamp: (function () { const f = new Date(data.timestamp); return isNaN(f.getTime()) ? new Date() : f; })(),
+    whatsapp: String(data.whatsapp),
+    archivo: textoSeguro(data.archivo, 120),
+    origen: textoSeguro(data.origen, 100),
+    utm_source: textoSeguro(data.utm_source, 100),
+    utm_medium: textoSeguro(data.utm_medium, 100),
+    utm_campaign: textoSeguro(data.utm_campaign, 100),
+    utm_content: textoSeguro(data.utm_content, 100),
+    referrer: textoSeguro(data.referrer, 300)
+  };
+
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const lock = LockService.getScriptLock();
+  try {
+    lock.waitLock(25000);
+  } catch (err) {
+    return responder({ ok: false, leadId: leadId, error: 'ocupado' });
+  }
+  try {
+    const sheet = hojaDescargas(ss);
+    if (CacheService.getScriptCache().get('lead:' + leadId) ||
+        (sheet.getLastRow() > 1 && sheet.getRange(2, 1, sheet.getLastRow() - 1, 1)
+          .createTextFinder(leadId).matchEntireCell(true).findNext())) {
+      return responder({ ok: true, leadId: leadId, repetido: true });
+    }
+    const tel = normalizeArgWhatsApp(d.whatsapp);
+    sheet.appendRow([
+      d.leadId, d.timestamp,
+      tel ? `=HYPERLINK("https://wa.me/${tel}","${formatearWhatsApp(d.whatsapp)}")` : '',
+      d.archivo, d.origen, d.utm_source, d.utm_medium, d.utm_campaign, d.utm_content, d.referrer
+    ]);
+    sheet.getRange(sheet.getLastRow(), 2).setNumberFormat('dd/mm/yyyy hh:mm');
+    marcarProcesado(leadId);
+  } catch (err) {
+    console.error('No se pudo guardar la descarga ' + leadId + ': ' + (err && err.stack ? err.stack : err));
+    return responder({ ok: false, leadId: leadId, error: 'no_se_pudo_guardar' });
+  } finally {
+    lock.releaseLock();
+  }
+
+  try {
+    const tel = normalizeArgWhatsApp(d.whatsapp);
+    const prueba = leadId.indexOf('PRUEBA-') === 0 ? '[PRUEBA] ' : '';
+    MailApp.sendEmail(MAIL_DESTINO,
+      `${prueba}Descargó el Excel: ${formatearWhatsApp(d.whatsapp)} — ${d.archivo || 'ficha'}`,
+      [
+        `WhatsApp: ${formatearWhatsApp(d.whatsapp)}${tel ? '  →  https://wa.me/' + tel : ''}`,
+        `Archivo: ${d.archivo || '-'}`,
+        `Origen: ${d.origen || '-'}`,
+        `UTM (source / medium / campaign / content): ${[d.utm_source, d.utm_medium, d.utm_campaign, d.utm_content].map(v => v || '-').join(' / ')}`,
+        `Llegó desde: ${d.referrer || '-'}`,
+        '',
+        'Queda en la pestaña "Descarga de Excel" del Sheet. No se arma presentación.'
+      ].join('\n'));
+  } catch (err) {
+    console.error('Mail descarga ' + leadId + ': ' + err);
+  }
+  return responder({ ok: true, leadId: leadId });
+}
+
+function hojaDescargas(ss) {
+  let sheet = ss.getSheetByName(HOJA_DESCARGAS);
+  if (!sheet) sheet = ss.insertSheet(HOJA_DESCARGAS);
+  if (sheet.getLastRow() === 0) {
+    const header = sheet.getRange(1, 1, 1, DESCARGAS_HEADERS.length);
+    header.setValues([DESCARGAS_HEADERS]);
+    header.setFontWeight('bold').setFontColor('#FFFFFF').setBackground(NAVY)
+      .setHorizontalAlignment('center').setVerticalAlignment('middle').setFontSize(10);
+    sheet.setFrozenRows(1);
+    sheet.setRowHeight(1, 32);
+    [110, 130, 170, 230, 200, 110, 110, 130, 110, 220].forEach((w, i) => sheet.setColumnWidth(i + 1, w));
+  }
+  return sheet;
 }
 
 // Abrir la URL /exec en el navegador muestra qué versión está publicada.
