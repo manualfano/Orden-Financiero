@@ -158,7 +158,8 @@ function gtag() { dataLayer.push(arguments); }
     .portada { padding: var(--s-7) var(--s-6); }
     .portada-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(360px, 1fr); gap: var(--s-7); align-items: center; }
     .portada .autor { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
-    .portada-panel { background: var(--w-08); border: 1px solid var(--w-18); border-radius: var(--r-lg); padding: var(--s-5); }
+    /* Fondo solido (navy-2): translucido dejaba ver los circulos de atras. */
+    .portada-panel { background: var(--navy-2); border: 1px solid var(--w-18); border-radius: var(--r-lg); padding: var(--s-5); }
     .portada-panel .atajos { flex-direction: column; flex-wrap: nowrap; }
     .portada-panel .atajos a { width: 100%; min-height: 52px; border-radius: var(--r); padding: 0 var(--s-4) 0 var(--s-2); background: var(--w-08); font-size: var(--fs-base); }
     .portada-panel .atajos a:hover { background: var(--w-18); }
