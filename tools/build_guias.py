@@ -30,7 +30,7 @@ CSS = TOKENS + """
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Inter', system-ui, sans-serif; font-size: var(--fs-base); line-height: 1.7; color: var(--tinta); background: var(--bg); }
   header { background: var(--navy-900); padding: var(--s-3) var(--s-5); }
-  .head-in { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
+  .head-in { max-width: calc(var(--ancho) - 2 * var(--s-5)); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
   .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--w); font-weight: 600; font-size: var(--fs-lead); letter-spacing: -0.01em; min-height: 44px; }
   .brand-mark { width: 34px; height: 34px; border-radius: var(--r); background: var(--marca); display: inline-flex; align-items: center; justify-content: center; }
   .brand-mark svg { width: 18px; height: 18px; }
@@ -82,7 +82,7 @@ CSS = TOKENS + """
   html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   body:has(main.ancho) { background: var(--lienzo); }
-  main.ancho { max-width: 1040px; }
+  main.ancho { max-width: var(--ancho); }
   .circulos { position: absolute; width: 320px; height: 320px; right: -80px; top: -90px; color: var(--w); opacity: 0.06; pointer-events: none; }
   /* Fondos navy: portada del índice y cabecera de cada guía */
   .portada, .guia-cab { position: relative; overflow: hidden; background: var(--navy); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); color: var(--w); }
@@ -141,9 +141,9 @@ CSS = TOKENS + """
   main.ancho .cta { text-align: center; padding: var(--s-7) var(--s-5); }
   main.ancho .cta .cta-t { font-size: clamp(26px, 3vw, 34px); text-wrap: balance; }
   /* Página de guía */
-  main.guia { max-width: 1080px; }
+  main.guia { max-width: var(--ancho); }
   .guia-cuerpo { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: var(--s-7); align-items: start; }
-  .guia-principal { min-width: 0; max-width: 720px; }
+  .guia-principal { min-width: 0; max-width: var(--lectura); }
   .indice-guia { position: sticky; top: var(--s-5); border-left: 1px solid var(--borde); }
   .indice-guia p, .resumen p { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: var(--s-2); }
   .indice-guia p { color: var(--tinta-3); padding-left: var(--s-4); }
@@ -174,10 +174,38 @@ CSS = TOKENS + """
     .indice-movil li { padding: 6px 0; border-top: 1px solid var(--borde); }
   }
   footer { background: var(--navy-900); padding: var(--s-6) var(--s-5); font-size: var(--fs-sm); }
-  .foot-in { max-width: 960px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5); justify-content: space-between; color: rgba(255,255,255,0.75); }
+  .foot-in { max-width: calc(var(--ancho) - 2 * var(--s-5)); margin: 0 auto; display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5); justify-content: space-between; color: rgba(255,255,255,0.75); }
   .foot-in nav { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
   .foot-in a { color: var(--w); text-decoration: none; }
   :focus-visible { outline: 2px solid var(--marca); outline-offset: 2px; }
+  /* Escala para pantallas grandes (14/09/2026, Manu: "se ve un poco estrecho").
+     Mismos cuatro escalones que la home: crecen a la vez el ancho de header,
+     contenido y footer, y la letra. La columna de lectura de cada guia crece
+     menos, para que las lineas no pasen de ~75 caracteres. */
+  :root { --ancho: 1080px; --lectura: 720px; }
+  @media (min-width: 1400px) {
+    :root { --ancho: 1200px; --lectura: 760px; --fs-base: 15.5px; --fs-lead: 17.5px; --fs-h3: 22px; --fs-h2: clamp(42px, 3.4vw, 45px); }
+    .portada h1, .guia-cab h1 { max-width: 860px; }
+    .portada .bajada, .guia-cab .bajada { max-width: 760px; }
+    .guia-cuerpo { grid-template-columns: minmax(0, 1fr) 270px; }
+  }
+  @media (min-width: 1600px) {
+    :root { --ancho: 1320px; --lectura: 800px; --fs-sm: 15px; --fs-base: 16px; --fs-lead: 18px; --fs-h3: 23px; --fs-h2: clamp(45px, 3.2vw, 48px); }
+    .portada h1, .guia-cab h1 { max-width: 940px; }
+    .portada .bajada, .guia-cab .bajada { max-width: 800px; }
+    .buscador { max-width: 640px; }
+    .guia-cuerpo { grid-template-columns: minmax(0, 1fr) 290px; }
+  }
+  @media (min-width: 1800px) {
+    :root { --ancho: 1440px; --lectura: 830px; --fs-base: 16.5px; --fs-lead: 18.5px; --fs-h2: clamp(48px, 3vw, 52px); }
+    .portada h1, .guia-cab h1 { max-width: 1000px; }
+    .guia-cuerpo { grid-template-columns: minmax(0, 1fr) 300px; }
+  }
+  @media (min-width: 2000px) {
+    :root { --ancho: 1520px; --lectura: 860px; --fs-base: 17px; --fs-lead: 19px; --fs-h3: 24px; --fs-h2: clamp(52px, 2.9vw, 56px); }
+    .portada .bajada, .guia-cab .bajada { max-width: 860px; }
+    .buscador { max-width: 700px; }
+  }
 """
 
 
