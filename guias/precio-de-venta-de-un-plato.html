@@ -214,6 +214,45 @@ function gtag() { dataLayer.push(arguments); }
   .foot-in nav { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
   .foot-in a { color: var(--w); text-decoration: none; }
   :focus-visible { outline: 2px solid var(--marca); outline-offset: 2px; }
+  /* Descarga a cambio del WhatsApp (DESCARGAS): caja --seleccion-bg, formulario en tarjeta blanca,
+     botón azul marca con texto blanco. Sin lima: la caja es clara. */
+  :root { --riesgo: #C5311A; }
+  .descarga { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: var(--s-5); align-items: start; background: var(--seleccion-bg); border: 1px solid rgba(12,102,228,0.18); border-radius: var(--r-lg); padding: var(--s-5); margin: var(--s-6) 0; }
+  .descarga-tipo { display: inline-flex; align-items: center; gap: var(--s-2); font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy-2); margin-bottom: var(--s-2); }
+  .descarga-tipo svg { width: 16px; height: 16px; }
+  article .descarga-t { font-size: var(--fs-h3); line-height: 1.25; margin: 0 0 var(--s-2); }
+  article .descarga-linea { color: var(--tinta); margin-bottom: var(--s-4); }
+  .descarga-hoja { background: var(--w); border: 1px solid rgba(12,102,228,0.18); border-radius: var(--r); overflow: hidden; font-size: var(--fs-meta); line-height: 1.4; font-variant-numeric: tabular-nums; }
+  .descarga-hoja .fila { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; }
+  .descarga-hoja .fila span { padding: 6px 10px; min-width: 68px; border-bottom: 1px solid var(--borde); color: var(--tinta-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .descarga-hoja .fila span + span { text-align: right; border-left: 1px solid var(--borde); }
+  .descarga-hoja .cab span { background: var(--lienzo); color: var(--navy); font-weight: 600; }
+  .descarga-hoja .total span { color: var(--navy); font-weight: 600; }
+  .descarga-hoja .pestanas { display: flex; gap: 2px; padding: 4px 6px 0; background: var(--lienzo-2); overflow: hidden; }
+  .descarga-hoja .pestanas span { padding: 3px 8px; border-radius: 4px 4px 0 0; color: var(--tinta-3); white-space: nowrap; }
+  .descarga-hoja .pestanas .on { background: var(--w); color: var(--marca); font-weight: 600; }
+  article ul.descarga-trae { list-style: none; padding: 0; margin: var(--s-3) 0 0; }
+  article .descarga-trae li { font-size: var(--fs-sm); line-height: 1.5; margin-bottom: 6px; padding-left: 22px; position: relative; color: var(--tinta-2); }
+  .descarga-trae li::before { content: ""; position: absolute; left: 2px; top: 5px; width: 12px; height: 7px; border-left: 2px solid var(--marca); border-bottom: 2px solid var(--marca); transform: rotate(-45deg); }
+  .descarga-form { background: var(--w); border-radius: var(--r); padding: var(--s-4); box-shadow: 0 1px 2px rgba(13,43,107,0.08); }
+  .descarga-form label { display: block; font-size: var(--fs-sm); font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+  .descarga-form input[type="tel"] { width: 100%; min-height: 48px; padding: 0 var(--s-3); border: 1px solid rgba(11,18,14,0.28); border-radius: var(--r); font: inherit; font-size: 16px; color: var(--tinta); background: var(--w); }
+  .descarga-form input[type="tel"]:focus-visible { outline: 2px solid var(--marca); outline-offset: 1px; border-color: var(--marca); }
+  .descarga-form input[aria-invalid="true"] { border-color: var(--riesgo); }
+  article .descarga-hint { font-size: var(--fs-meta); color: var(--tinta-2); margin: 6px 0 0; }
+  article .descarga-error { font-size: var(--fs-sm); color: var(--riesgo); font-weight: 600; margin: 6px 0 0; }
+  article .descarga-error:empty { display: none; }
+  .campo-extra { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .descarga-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2); width: 100%; min-height: 48px; margin-top: var(--s-3); padding: 0 var(--s-5); border: 0; border-radius: var(--r); background: var(--marca); color: var(--w); font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; transition: background var(--t-instante); }
+  .descarga-btn:hover { background: var(--marca-hover); }
+  .descarga-btn:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
+  .descarga-btn[disabled] { opacity: 0.75; cursor: progress; }
+  article .descarga-priv { font-size: var(--fs-meta); color: var(--tinta-2); margin: var(--s-3) 0 0; line-height: 1.5; }
+  article .descarga-listo { margin: 0; }
+  article .descarga-listo:empty { display: none; }
+  .descarga-listo { font-size: var(--fs-sm); color: var(--tinta); }
+  .descarga-listo strong { display: block; font-size: var(--fs-lead); color: var(--navy); margin-bottom: 4px; }
+  .descarga-listo a:not(.descarga-btn) { font-weight: 600; }
   /* Escala para pantallas grandes (14/09/2026, Manu: "se ve un poco estrecho").
      Mismos cuatro escalones que la home: crecen a la vez el ancho de header,
      contenido y footer, y la letra. La columna de lectura de cada guia crece

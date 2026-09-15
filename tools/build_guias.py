@@ -196,6 +196,45 @@ CSS = TOKENS + """
   .foot-in nav { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
   .foot-in a { color: var(--w); text-decoration: none; }
   :focus-visible { outline: 2px solid var(--marca); outline-offset: 2px; }
+  /* Descarga a cambio del WhatsApp (DESCARGAS): caja --seleccion-bg, formulario en tarjeta blanca,
+     botón azul marca con texto blanco. Sin lima: la caja es clara. */
+  :root { --riesgo: #C5311A; }
+  .descarga { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: var(--s-5); align-items: start; background: var(--seleccion-bg); border: 1px solid rgba(12,102,228,0.18); border-radius: var(--r-lg); padding: var(--s-5); margin: var(--s-6) 0; }
+  .descarga-tipo { display: inline-flex; align-items: center; gap: var(--s-2); font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy-2); margin-bottom: var(--s-2); }
+  .descarga-tipo svg { width: 16px; height: 16px; }
+  article .descarga-t { font-size: var(--fs-h3); line-height: 1.25; margin: 0 0 var(--s-2); }
+  article .descarga-linea { color: var(--tinta); margin-bottom: var(--s-4); }
+  .descarga-hoja { background: var(--w); border: 1px solid rgba(12,102,228,0.18); border-radius: var(--r); overflow: hidden; font-size: var(--fs-meta); line-height: 1.4; font-variant-numeric: tabular-nums; }
+  .descarga-hoja .fila { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; }
+  .descarga-hoja .fila span { padding: 6px 10px; min-width: 68px; border-bottom: 1px solid var(--borde); color: var(--tinta-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .descarga-hoja .fila span + span { text-align: right; border-left: 1px solid var(--borde); }
+  .descarga-hoja .cab span { background: var(--lienzo); color: var(--navy); font-weight: 600; }
+  .descarga-hoja .total span { color: var(--navy); font-weight: 600; }
+  .descarga-hoja .pestanas { display: flex; gap: 2px; padding: 4px 6px 0; background: var(--lienzo-2); overflow: hidden; }
+  .descarga-hoja .pestanas span { padding: 3px 8px; border-radius: 4px 4px 0 0; color: var(--tinta-3); white-space: nowrap; }
+  .descarga-hoja .pestanas .on { background: var(--w); color: var(--marca); font-weight: 600; }
+  article ul.descarga-trae { list-style: none; padding: 0; margin: var(--s-3) 0 0; }
+  article .descarga-trae li { font-size: var(--fs-sm); line-height: 1.5; margin-bottom: 6px; padding-left: 22px; position: relative; color: var(--tinta-2); }
+  .descarga-trae li::before { content: ""; position: absolute; left: 2px; top: 5px; width: 12px; height: 7px; border-left: 2px solid var(--marca); border-bottom: 2px solid var(--marca); transform: rotate(-45deg); }
+  .descarga-form { background: var(--w); border-radius: var(--r); padding: var(--s-4); box-shadow: 0 1px 2px rgba(13,43,107,0.08); }
+  .descarga-form label { display: block; font-size: var(--fs-sm); font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+  .descarga-form input[type="tel"] { width: 100%; min-height: 48px; padding: 0 var(--s-3); border: 1px solid rgba(11,18,14,0.28); border-radius: var(--r); font: inherit; font-size: 16px; color: var(--tinta); background: var(--w); }
+  .descarga-form input[type="tel"]:focus-visible { outline: 2px solid var(--marca); outline-offset: 1px; border-color: var(--marca); }
+  .descarga-form input[aria-invalid="true"] { border-color: var(--riesgo); }
+  article .descarga-hint { font-size: var(--fs-meta); color: var(--tinta-2); margin: 6px 0 0; }
+  article .descarga-error { font-size: var(--fs-sm); color: var(--riesgo); font-weight: 600; margin: 6px 0 0; }
+  article .descarga-error:empty { display: none; }
+  .campo-extra { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .descarga-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2); width: 100%; min-height: 48px; margin-top: var(--s-3); padding: 0 var(--s-5); border: 0; border-radius: var(--r); background: var(--marca); color: var(--w); font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; transition: background var(--t-instante); }
+  .descarga-btn:hover { background: var(--marca-hover); }
+  .descarga-btn:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
+  .descarga-btn[disabled] { opacity: 0.75; cursor: progress; }
+  article .descarga-priv { font-size: var(--fs-meta); color: var(--tinta-2); margin: var(--s-3) 0 0; line-height: 1.5; }
+  article .descarga-listo { margin: 0; }
+  article .descarga-listo:empty { display: none; }
+  .descarga-listo { font-size: var(--fs-sm); color: var(--tinta); }
+  .descarga-listo strong { display: block; font-size: var(--fs-lead); color: var(--navy); margin-bottom: 4px; }
+  .descarga-listo a:not(.descarga-btn) { font-weight: 600; }
   /* Escala para pantallas grandes (14/09/2026, Manu: "se ve un poco estrecho").
      Mismos cuatro escalones que la home: crecen a la vez el ancho de header,
      contenido y footer, y la letra. La columna de lectura de cada guia crece
@@ -352,6 +391,223 @@ SCROLLSPY = """  <script>
     Object.keys(mapa).forEach(function (id) { var h = document.getElementById(id); if (h) obs.observe(h); });
   })();
   </script>"""
+
+
+# Descargas a cambio del WhatsApp. Una guía la activa con "descarga": "<clave>" en su META
+# y el bloque va justo después de la sección "...Excel</h2>". El lead viaja al mismo Apps Script
+# que el diagnóstico (index.html, SHEET_WEBHOOK_URL) con origen guia-<slug>-excel.
+# El archivo queda en una URL pública: el WhatsApp se pide, pero no es un bloqueo real.
+DESCARGAS = {
+    'ficha-costo-plato': {
+        'titulo': 'Descargá la ficha de costo en Excel',
+        'linea': 'Con merma, fórmulas listas y una hoja en blanco para tus platos.',
+        'archivo': '/descargas/ficha-de-costo-por-plato.xlsx',
+        'nombre': 'Ficha-de-costo-por-plato-Orden-Financiero.xlsx',
+        'evento': 'ficha_excel_descarga',
+        'tipo': 'Excel gratis · 3 hojas',
+        'hoja': {'cab': ('Ingrediente', 'Merma', 'Costo'),
+                 'filas': [('Nalga', '20 %', '$3.000'), ('Papa', '15 %', '$353')],
+                 'total': ('Costo del plato', '', '$4.145'),
+                 'pestanas': ['Ejemplo milanesa', 'Plato nuevo', 'Cómo usarla']},
+        'trae': ['El ejemplo de esta guía ya calculado, con merma y varios.',
+                 'Una ficha en blanco: cargás precios y cantidades y calcula sola.',
+                 'Cómo usarla, paso a paso.'],
+    },
+}
+
+# Mismo endpoint, formato de payload y validación de WhatsApp que el diagnóstico de index.html.
+# El Apps Script exige 4 eslabones con puntaje numérico: viajan en 0 y "gravedad" lo aclara.
+DESCARGA_JS = r"""  <script>
+  (function () {
+    var WEBHOOK = 'https://script.google.com/macros/s/AKfycbw_4OP8ve0fKfP9M3VtCvRvmDG395PVzHUNOYqAH55FmVxaD93VNg8QfjDayOK-xVr_Ng/exec';
+    var TIMEOUT_MS = 6000;
+    var HINT = 'Código de área y número, sin el 0 ni el 15.';
+    var MSGS = {
+      vacio: 'Escribí tu WhatsApp para descargar la ficha.',
+      cero: 'Sacá el 0 del código de área: por ejemplo 221 555 0000.',
+      quince: 'Sacá el 15 del número: por ejemplo 221 555 0000.',
+      largo: 'Revisá el número: código de área y número, 10 dígitos en total (ej. 221 555 0000).'
+    };
+    function track(ev, props) { try { if (typeof gtag === 'function') gtag('event', ev, props || {}); } catch (e) {} }
+    // Igual que parseWhatsApp de index.html
+    function parseWhatsApp(raw) {
+      var d = String(raw || '').replace(/\D/g, '');
+      if (!d) return { ok: false, motivo: 'vacio' };
+      if (d.indexOf('54') === 0) d = d.slice(2);
+      if (d.length === 11 && d.charAt(0) === '9') d = d.slice(1);
+      if (d.charAt(0) === '0') return { ok: false, motivo: 'cero' };
+      if (d.length === 12 && d.slice(2, 4) === '15') return { ok: false, motivo: 'quince' };
+      if (d.length === 12 && d.slice(3, 5) === '15') return { ok: false, motivo: 'quince' };
+      if (d.length !== 10) return { ok: false, motivo: 'largo' };
+      var area = d.indexOf('11') === 0 ? d.slice(0, 2) : d.slice(0, 3);
+      var resto = d.slice(area.length);
+      return { ok: true, digits: '549' + d, display: '+54 9 ' + area + ' ' + resto.slice(0, resto.length - 4) + '-' + resto.slice(-4) };
+    }
+    // Misma atribución que la home (clave of_atrib_v1 por pestaña)
+    function atribucion() {
+      var KEY = 'of_atrib_v1';
+      try { var a = JSON.parse(sessionStorage.getItem(KEY) || 'null'); if (a) return a; } catch (e) {}
+      var q = new URLSearchParams(location.search);
+      var limpio = function (v) { return (v || '').trim().slice(0, 100); };
+      var referrer = '';
+      try { if (document.referrer) { var u = new URL(document.referrer); if (u.hostname !== location.hostname) referrer = u.origin; } } catch (e) {}
+      var b = { utm_source: limpio(q.get('utm_source')), utm_medium: limpio(q.get('utm_medium')), utm_campaign: limpio(q.get('utm_campaign')),
+                utm_content: limpio(q.get('utm_content')), origen: limpio(q.get('origen')), referrer: referrer };
+      try { sessionStorage.setItem(KEY, JSON.stringify(b)); } catch (e) {}
+      return b;
+    }
+    function armarPayload(wa, origen, trampa) {
+      var at = atribucion();
+      var nombres = ['Costos y precios', 'Resultado económico', 'Flujo de caja', 'Indicadores de gestión'];
+      return {
+        leadId: Date.now() + '-' + Math.random().toString(36).slice(2, 8),
+        timestamp: new Date().toISOString(),
+        whatsapp: wa, rubro: '', origen: origen,
+        score: 0, maxScore: 36, gravedad: 'Sin diagnóstico (descarga)', eslabonDebil: '', letras: '',
+        nombre: '', negocio: '', sistema: '', instagram: '',
+        eslabones: nombres.map(function (n) { return { nombre: n, score: 0, estado: '' }; }),
+        respuestas: [],
+        diagnostico: 'Descargó un Excel desde las guías (' + origen + '). No hizo el diagnóstico.',
+        campo_extra: trampa, gravedadEslabon: '',
+        utm_source: at.utm_source, utm_medium: at.utm_medium, utm_campaign: at.utm_campaign,
+        utm_content: at.utm_content, referrer: at.referrer
+      };
+    }
+    // Un intento con tiempo máximo; {ok:true} o {ok:false, tipo} como enviarUnaVez de la home
+    function enviar(payload) {
+      var ctrl = ('AbortController' in window) ? new AbortController() : null;
+      var reloj = setTimeout(function () { if (ctrl) ctrl.abort(); }, TIMEOUT_MS);
+      return fetch(WEBHOOK, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(payload), signal: ctrl ? ctrl.signal : undefined })
+        .then(function (r) { return r.ok ? r.json().catch(function () { return Promise.reject({ tipo: 'respuesta_invalida' }); }) : Promise.reject({ tipo: 'respuesta_invalida' }); })
+        .then(function (j) { return (j && j.ok === true) ? { ok: true } : Promise.reject({ tipo: (j && j.error) ? 'rechazado' : 'respuesta_invalida' }); })
+        .catch(function (e) { return { ok: false, tipo: (e && e.tipo) || (e && e.name === 'AbortError' ? 'timeout' : 'red') }; })
+        .then(function (res) { clearTimeout(reloj); return res; });
+    }
+    function bajar(url, nombre) {
+      var a = document.createElement('a');
+      a.href = url; a.download = nombre; a.hidden = true;
+      document.body.appendChild(a); a.click();
+      setTimeout(function () { a.remove(); }, 1000);
+    }
+    function recordada(clave) { try { return localStorage.getItem(clave) === '1'; } catch (e) { return false; } }
+    function recordar(clave) { try { localStorage.setItem(clave, '1'); } catch (e) {} }
+    function link(caja, texto, clase) {
+      var a = document.createElement('a');
+      a.href = caja.dataset.archivo; a.download = caja.dataset.nombre; a.textContent = texto;
+      if (clase) a.className = clase;
+      return a;
+    }
+
+    [].slice.call(document.querySelectorAll('.descarga[data-descarga]')).forEach(function (caja) {
+      var clave = 'of_descarga_' + caja.dataset.descarga;
+      var form = caja.querySelector('.descarga-campos');
+      var input = caja.querySelector('input[type="tel"]');
+      var hint = caja.querySelector('.descarga-hint');
+      var err = caja.querySelector('.descarga-error');
+      var btn = caja.querySelector('.descarga-btn');
+      var listo = caja.querySelector('.descarga-listo');
+
+      function mostrarListo(repetida) {
+        form.hidden = true;
+        listo.textContent = '';
+        var t = document.createElement('strong');
+        var p = document.createElement('p');
+        if (repetida) {
+          t.textContent = 'Ya descargaste la ficha en esta computadora.';
+          var b = link(caja, 'Descargar de nuevo', 'descarga-btn');
+          b.addEventListener('click', function () { track(caja.dataset.evento, { descarga: caja.dataset.descarga, modo: 'repetida' }); });
+          listo.appendChild(t); listo.appendChild(b);
+          return;
+        }
+        t.textContent = '¡Listo!';
+        p.appendChild(document.createTextNode('Si no se bajó, '));
+        p.appendChild(link(caja, 'tocá acá'));
+        p.appendChild(document.createTextNode('.'));
+        listo.appendChild(t); listo.appendChild(p);
+      }
+
+      if (recordada(clave)) { mostrarListo(true); return; }
+
+      input.addEventListener('input', function () {
+        var p = parseWhatsApp(input.value);
+        input.removeAttribute('aria-invalid');
+        err.textContent = '';
+        hint.textContent = p.ok ? 'Se guarda como ' + p.display : HINT;
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var p = parseWhatsApp(input.value);
+        if (!p.ok) {
+          input.setAttribute('aria-invalid', 'true');
+          err.textContent = MSGS[p.motivo] || MSGS.largo;
+          input.focus();
+          return;
+        }
+        var trampa = (form.querySelector('.campo-extra') || {}).value || '';
+        btn.disabled = true; input.disabled = true;
+        btn.textContent = 'Preparando la descarga…';
+        enviar(armarPayload(p.digits, caja.dataset.origen, trampa)).then(function (res) {
+          // Si el lead no se guardó, igual se descarga: se mide el error, no se castiga al usuario
+          if (!res.ok) track('descarga_lead_error', { descarga: caja.dataset.descarga, tipo: res.tipo });
+          bajar(caja.dataset.archivo, caja.dataset.nombre);
+          track(caja.dataset.evento, { descarga: caja.dataset.descarga, modo: 'nueva', lead: res.ok ? 'guardado' : 'error' });
+          recordar(clave);
+          mostrarListo(false);
+        });
+      });
+    });
+  })();
+  </script>"""
+
+
+def bloque_descarga(clave, slug):
+    d = DESCARGAS[clave]
+    e = html.escape
+    uid = f'descarga-{clave}'
+    h = d['hoja']
+    fila = lambda cls, celdas: f'<div class="fila{cls}">' + ''.join(f'<span>{e(c)}</span>' for c in celdas) + '</div>'
+    hoja = (fila(' cab', h['cab']) + ''.join(fila('', f) for f in h['filas']) + fila(' total', h['total'])
+            + '<div class="pestanas">' + ''.join(('<span class="on">' if i == 0 else '<span>') + e(p) + '</span>'
+                                                 for i, p in enumerate(h['pestanas'])) + '</div>')
+    trae = ''.join(f'<li>{e(x)}</li>' for x in d['trae'])
+    icono = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" '
+             'stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>'
+             '<polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>')
+    return f"""<aside class="descarga" id="{uid}" aria-labelledby="{uid}-t" data-descarga="{e(clave)}" data-archivo="{e(d['archivo'])}" data-nombre="{e(d['nombre'])}" data-origen="guia-{e(slug)}-excel" data-evento="{e(d['evento'])}">
+      <div class="descarga-info">
+        <p class="descarga-tipo">{icono}{e(d['tipo'])}</p>
+        <h3 class="descarga-t" id="{uid}-t">{e(d['titulo'])}</h3>
+        <p class="descarga-linea">{e(d['linea'])}</p>
+        <div class="descarga-hoja" aria-hidden="true">{hoja}</div>
+        <ul class="descarga-trae" aria-label="Qué trae el archivo">{trae}</ul>
+      </div>
+      <div class="descarga-form">
+        <form class="descarga-campos" novalidate>
+          <label for="{uid}-wa">Tu WhatsApp</label>
+          <input type="tel" id="{uid}-wa" name="tel" autocomplete="tel" inputmode="tel" placeholder="221 555 0000" required aria-describedby="{uid}-hint {uid}-err">
+          <p class="descarga-hint" id="{uid}-hint">Código de área y número, sin el 0 ni el 15.</p>
+          <p class="descarga-error" id="{uid}-err" role="alert"></p>
+          <input class="campo-extra" type="text" name="campo_extra" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit" class="descarga-btn">Descargar gratis <span aria-hidden="true">↓</span></button>
+          <p class="descarga-priv">Te escribimos solo por temas de tu negocio. Nada de spam. <a href="/privacidad">Privacidad</a></p>
+        </form>
+        <div class="descarga-listo" aria-live="polite"></div>
+      </div>
+    </aside>"""
+
+
+def con_descarga(g):
+    """Inserta el bloque de descarga después de la sección de Excel. Devuelve (cuerpo, script)."""
+    cuerpo, clave = g['cuerpo'], g.get('descarga')
+    if not clave:
+        return cuerpo, ''
+    assert clave in DESCARGAS, f"{g['slug']}: descarga desconocida {clave}"
+    m = re.search(r'<h2>[^<]*Excel</h2>', cuerpo)
+    assert m, f"{g['slug']}: la descarga necesita una sección '...Excel</h2>'"
+    sig = cuerpo.find('<h2>', m.end())
+    pos = sig if sig > -1 else len(cuerpo)
+    return cuerpo[:pos] + bloque_descarga(clave, g['slug']) + '\n\n    ' + cuerpo[pos:], '\n' + DESCARGA_JS
 
 
 def plantilla_og(g, problema):
@@ -512,7 +768,8 @@ def main():
         if faq:
             faq_html = '\n    <h2>Preguntas frecuentes</h2>\n' + ''.join(
                 f'    <h3>{html.escape(x["q"])}</h3>\n    <p>{html.escape(x["a"])}</p>\n' for x in faq)
-        cuerpo_art, toc = con_ids(g['cuerpo'] + faq_html)
+        cuerpo_guia, descarga_js = con_descarga(g)
+        cuerpo_art, toc = con_ids(cuerpo_guia + faq_html)
         toc_html = ''.join(f'<li><a href="#{i}">{html.escape(t)}</a></li>' for i, t in toc)
         resumen = ''.join(f'<li>{html.escape(x)}</li>' for x in g.get('resumen', []))
         assert resumen, f"{g['slug']}: falta el resumen"
@@ -537,7 +794,7 @@ def main():
     </div>
     <nav class="indice-guia" aria-label="En esta guía"><p>En esta guía</p><ol>{toc_html}</ol></nav>
   </div>
-{SCROLLSPY}"""
+{SCROLLSPY}{descarga_js}"""
         ld = {"@context": "https://schema.org", "@graph": [
             {"@type": "Article", "@id": BASE + path + "#article", "headline": g['h1'], "description": g['description'],
              "image": BASE + f"/guias/og/{g['slug']}.png", "inLanguage": "es-AR", "datePublished": g['publicada'],

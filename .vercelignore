@@ -14,3 +14,5 @@ docs/
 tools/
 *.py
 *.xlsx
+# Excepcion: descargas publicas de las guias (ficha de costo por plato)
+!descargas/*.xlsx
