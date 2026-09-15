@@ -76,84 +76,88 @@ CSS = TOKENS + """
   .lista-guias li { border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-4) var(--s-5); margin-bottom: var(--s-3); }
   .lista-guias a { font-weight: 600; font-size: var(--fs-lead); text-decoration: none; line-height: 1.4; }
   .lista-guias p { margin-top: var(--s-2); font-size: var(--fs-sm); }
-  /* Bloques de color por eslabón: tokens admin.* del sistema de diseño; pares de texto con contraste AA verificado */
-  :root { --of-azul: #0C66E4; --of-verde: #1F845A; --of-turquesa: #00A3BF; --of-violeta: #6E5DC6; --ink: #172B4D; --accent-soft: #93C5FD; }
+  /* Paleta oficial de la home (14/09/2026): azul marca para acción, navy para fondos oscuros,
+     lima solo en toques chicos sobre fondos oscuros (nunca sobre claro ni en botones). */
+  :root { --navy-2: #143C8C; --secondary-dark: #A3ADC2; --lienzo-2: #F0F1F2; --seleccion-bg: #E9F2FF; --lima: #A3E635; --w-08: rgba(255,255,255,0.08); --w-18: rgba(255,255,255,0.18); --w-72: rgba(255,255,255,0.72); --w-88: rgba(255,255,255,0.88); }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   body:has(main.ancho) { background: var(--lienzo); }
   main.ancho { max-width: 1040px; }
-  .circulos { position: absolute; width: 320px; height: 320px; right: -80px; top: -90px; opacity: 0.14; pointer-events: none; }
-  .portada { position: relative; overflow: hidden; background: var(--navy-900); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); color: var(--w); }
-  .portada > :not(.circulos) { position: relative; }
-  .portada .migas, .portada .migas a { color: rgba(255,255,255,0.72); }
-  .portada .eyebrow { color: var(--accent-soft); }
-  .portada h1 { color: var(--w); max-width: 760px; }
-  .portada h1 em { font-style: normal; color: var(--accent-soft); }
-  .portada .bajada { color: rgba(255,255,255,0.9); max-width: 660px; }
-  .portada .autor { color: rgba(255,255,255,0.75); border-bottom-color: rgba(255,255,255,0.16); }
-  .portada .autor a { color: var(--w); }
-  .temas { display: flex; flex-wrap: wrap; gap: var(--s-2); }
-  .temas a { display: inline-flex; align-items: center; gap: var(--s-2); min-height: 44px; padding: 0 var(--s-4) 0 var(--s-3); border-radius: 999px; background: var(--bloque); color: var(--bloque-texto); font-size: var(--fs-sm); font-weight: 600; text-decoration: none; transition: box-shadow var(--t-instante); }
-  .temas a:hover { box-shadow: 0 0 0 3px rgba(255,255,255,0.35); }
-  .temas svg { width: 18px; height: 18px; }
-  .empeza { margin: var(--s-7) 0 0; }
-  .empeza > p { margin-bottom: var(--s-4); }
-  .pasos, .tarjetas { list-style: none; padding: 0; display: grid; gap: var(--s-3); }
-  .pasos { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-  .tarjetas { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
-  .pasos a, .tarjetas a { display: flex; flex-direction: column; gap: var(--s-2); height: 100%; padding: var(--s-5); background: var(--w); border: 1px solid var(--borde); border-top: 4px solid var(--bloque); border-radius: var(--r-lg); text-decoration: none; transition: border-color var(--t-instante), transform var(--t-instante); }
-  .pasos a:hover, .tarjetas a:hover { border-color: var(--bloque); transform: translateY(-2px); }
-  .paso { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 999px; background: var(--bloque); color: var(--bloque-texto); font-size: var(--fs-sm); font-weight: 600; }
-  .paso-eje { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--acento); }
-  .pasos strong, .tarjetas strong { color: var(--navy); font-size: var(--fs-lead); font-weight: 600; line-height: 1.35; }
-  .pasos a:hover strong, .tarjetas a:hover strong { color: var(--acento); }
-  .paso-txt, .tarjetas .desc { color: var(--tinta-2); font-size: var(--fs-sm); line-height: 1.55; }
-  .tema { margin-top: var(--s-7); }
-  .tema-cab { position: relative; overflow: hidden; display: flex; gap: var(--s-4); align-items: center; background: var(--bloque); color: var(--bloque-texto); border-radius: var(--r-lg); padding: var(--s-5); margin-bottom: var(--s-3); }
-  .tema-cab > :not(.circulos) { position: relative; }
-  .tema-cab .circulos { width: 240px; height: 240px; right: -60px; top: -80px; opacity: 0.18; }
-  .tema-cab .ico { width: 52px; height: 52px; border-radius: var(--r); border: 2px solid currentColor; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .tema-cab .ico svg { width: 26px; height: 26px; }
-  .tema-cab h2 { margin: 0 0 4px; color: inherit; scroll-margin-top: var(--s-5); }
-  .tema-cab p { color: inherit; }
-  .tema-num { margin-left: auto; font-size: var(--fs-sm); font-weight: 600; white-space: nowrap; }
+  .circulos { position: absolute; width: 320px; height: 320px; right: -80px; top: -90px; color: var(--w); opacity: 0.06; pointer-events: none; }
+  /* Fondos navy: portada del índice y cabecera de cada guía */
+  .portada, .guia-cab { position: relative; overflow: hidden; background: var(--navy); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); color: var(--w); }
+  .portada > :not(.circulos), .guia-cab > :not(.circulos) { position: relative; }
+  .portada .migas, .guia-cab .migas { color: var(--secondary-dark); }
+  .portada .migas a, .guia-cab .migas a { color: var(--w); }
+  .portada .eyebrow { display: inline-flex; align-items: center; gap: var(--s-2); color: var(--w-72); }
+  .punto { width: 6px; height: 6px; border-radius: 50%; background: var(--lima); flex-shrink: 0; }
+  .guia-cab .eyebrow { color: var(--lima); }
+  .portada h1, .guia-cab h1 { color: var(--w); max-width: 780px; }
+  .portada h1 em { font-style: normal; color: var(--lima); }
+  .portada .bajada, .guia-cab .bajada { color: var(--w-88); max-width: 700px; }
+  .portada .autor, .guia-cab .autor { color: var(--secondary-dark); border-bottom-color: var(--w-18); }
+  .portada .autor a, .guia-cab .autor a { color: var(--w); }
+  .guia-cab .autor { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
+  .guia-cab { margin-bottom: var(--s-6); }
+  /* Pastillas blancas translúcidas: atajos de la portada y chips de la cabecera */
+  .atajos-t { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--secondary-dark); margin-bottom: var(--s-2); }
+  .atajos { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+  .atajos a { display: inline-flex; align-items: center; gap: var(--s-2); min-height: 44px; padding: 0 var(--s-4) 0 7px; border-radius: 999px; background: var(--w-08); border: 1px solid var(--w-18); color: var(--w); font-size: var(--fs-sm); font-weight: 600; text-decoration: none; transition: background var(--t-instante); }
+  .atajos a:hover { background: var(--w-18); }
+  .atajos .n-mini { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 999px; background: var(--w-18); font-size: var(--fs-meta); }
+  .guia-cab .meta { margin-top: var(--s-3); }
+  .guia-cab .meta span { background: var(--w-08); border: 1px solid var(--w-18); color: var(--w); }
+  /* Índice: grupos por problema */
+  .problema { margin-top: var(--s-7); scroll-margin-top: var(--s-5); }
+  .problema-cab { display: flex; gap: var(--s-4); align-items: flex-start; margin-bottom: var(--s-4); }
+  .problema-num { font-size: 44px; font-weight: 600; line-height: 1; color: var(--marca); letter-spacing: -0.02em; min-width: 32px; }
+  .problema-cab h2 { margin: 2px 0 4px; color: var(--navy); }
+  .problema-cab p { color: var(--tinta-2); }
+  .tarjetas { list-style: none; padding: 0; display: grid; gap: var(--s-3); grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); }
+  .tarjetas a { display: flex; flex-direction: column; gap: var(--s-2); height: 100%; padding: var(--s-5); background: var(--w); border: 1px solid var(--borde); border-radius: var(--r-lg); text-decoration: none; transition: border-color var(--t-instante), transform var(--t-instante); }
+  .tarjetas a:hover { border-color: var(--marca); transform: translateY(-2px); }
+  .tarjetas .ico { width: 40px; height: 40px; border-radius: var(--r); background: var(--seleccion-bg); color: var(--marca); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 4px; }
+  .tarjetas .ico svg { width: 20px; height: 20px; }
+  .tarjetas strong { color: var(--navy); font-size: var(--fs-lead); font-weight: 600; line-height: 1.35; transition: color var(--t-instante); }
+  .tarjetas a:hover strong { color: var(--marca); }
+  .tarjetas .desc { color: var(--tinta-2); font-size: var(--fs-sm); line-height: 1.55; }
   .meta { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: auto; padding-top: var(--s-2); }
-  .meta span { font-size: var(--fs-meta); font-weight: 600; color: var(--tinta-3); background: var(--lienzo); border-radius: 999px; padding: 2px 10px; }
-  @media (max-width: 640px) { .tema-num { display: none; } .tema-cab { align-items: flex-start; } }
-  @media (prefers-reduced-motion: reduce) { .pasos a:hover, .tarjetas a:hover { transform: none; } }
-  /* Índice: cifras, buscador y tarjetas cortas */
-  .cifras { color: rgba(255,255,255,0.9); font-size: var(--fs-sm); margin-top: var(--s-2); }
+  .meta span { font-size: var(--fs-meta); font-weight: 600; color: var(--tinta-2); background: var(--lienzo-2); border-radius: 999px; padding: 2px 10px; }
+  @media (prefers-reduced-motion: reduce) { .tarjetas a:hover { transform: none; } }
+  @media (max-width: 640px) { .problema-num { font-size: 34px; min-width: 24px; } .problema-cab { gap: var(--s-3); } }
+  .cifras { color: var(--w-88); font-size: var(--fs-sm); margin-top: var(--s-2); }
   .cifras strong { color: var(--w); }
   .buscador { margin-top: var(--s-5); max-width: 560px; }
-  .buscador label { display: block; font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-soft); margin-bottom: var(--s-2); }
+  .buscador label { display: block; font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--secondary-dark); margin-bottom: var(--s-2); }
   .buscador input { width: 100%; min-height: 48px; padding: 0 var(--s-4); border: 0; border-radius: var(--r); font: inherit; font-size: var(--fs-base); color: var(--tinta); background: var(--w); }
-  .buscador input:focus-visible { outline: 3px solid var(--accent-soft); outline-offset: 2px; }
+  .buscador input:focus-visible { outline: 3px solid var(--w); outline-offset: 2px; }
   .sin-resultados { margin-top: var(--s-6); padding: var(--s-5); background: var(--w); border: 1px solid var(--borde); border-radius: var(--r-lg); }
-  .tema .tarjetas .paso-eje { display: none; }
-  .meta { flex-wrap: nowrap; overflow: hidden; }
+  /* Banda azul marca al cierre, como .cta-final de la home: título lima (26 px a 600, texto grande) y botón blanco */
+  .cta { background: var(--marca); }
+  .cta p { color: var(--w); }
+  .cta .cta-t { font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; color: var(--lima); }
+  .cta .btn { background: var(--w); color: var(--marca); }
+  .cta .btn:hover { background: var(--seleccion-bg); }
+  main.ancho .cta { text-align: center; padding: var(--s-7) var(--s-5); }
+  main.ancho .cta .cta-t { font-size: clamp(26px, 3vw, 34px); text-wrap: balance; }
   /* Página de guía */
   main.guia { max-width: 1080px; }
-  .guia-cab { position: relative; overflow: hidden; background: var(--bloque); color: var(--bloque-texto); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); margin-bottom: var(--s-6); }
-  .guia-cab > :not(.circulos) { position: relative; }
-  .guia-cab .migas, .guia-cab .migas a, .guia-cab .eyebrow, .guia-cab h1, .guia-cab .bajada, .guia-cab .autor, .guia-cab .autor a { color: inherit; }
-  .guia-cab h1 { max-width: 780px; }
-  .guia-cab .bajada { max-width: 700px; }
-  .guia-cab .autor { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
-  .guia-cab .meta { margin-top: var(--s-3); }
-  .guia-cab .meta span { background: transparent; color: inherit; border: 1px solid currentColor; }
   .guia-cuerpo { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: var(--s-7); align-items: start; }
   .guia-principal { min-width: 0; max-width: 720px; }
-  .indice-guia { position: sticky; top: var(--s-5); border-left: 3px solid var(--bloque); padding-left: var(--s-4); }
+  .indice-guia { position: sticky; top: var(--s-5); border-left: 1px solid var(--borde); }
   .indice-guia p, .resumen p { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: var(--s-2); }
-  .indice-guia p { color: var(--tinta-3); }
+  .indice-guia p { color: var(--tinta-3); padding-left: var(--s-4); }
   .indice-guia ol, .indice-movil ol { list-style: none; padding: 0; }
   .indice-guia li { margin-bottom: 6px; }
   .indice-guia a, .indice-movil a { color: var(--tinta-2); font-size: var(--fs-sm); line-height: 1.4; text-decoration: none; display: block; }
-  .indice-guia a:hover, .indice-movil a:hover { color: var(--acento); }
+  .indice-guia a { padding-left: var(--s-4); margin-left: -1px; border-left: 2px solid transparent; }
+  .indice-guia a:hover, .indice-movil a:hover { color: var(--marca); }
+  .indice-guia a.activo { color: var(--marca); border-left-color: var(--marca); font-weight: 600; }
   .indice-movil { display: none; }
-  .resumen { background: var(--lienzo); border-left: 4px solid var(--bloque); border-radius: var(--r); padding: var(--s-4) var(--s-5); margin-bottom: var(--s-6); }
-  .resumen p { color: var(--acento); }
+  .resumen { background: var(--lienzo); border-left: 4px solid var(--marca); border-radius: var(--r); padding: var(--s-4) var(--s-5); margin-bottom: var(--s-6); }
+  .resumen p { color: var(--marca); }
   .resumen ul { padding-left: var(--s-5); }
   .resumen li { color: var(--tinta); margin-bottom: 6px; }
-  main.guia .formula { border-left-color: var(--bloque); }
   article h2 { scroll-margin-top: var(--s-5); }
   .caja-autor { display: flex; gap: var(--s-4); align-items: center; border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-5); margin-top: var(--s-7); }
   .caja-autor img { width: 72px; height: 72px; border-radius: 999px; object-fit: cover; object-position: top; background: var(--lienzo); flex-shrink: 0; }
@@ -177,29 +181,58 @@ CSS = TOKENS + """
 """
 
 
-# Eslabones: id, token del bloque, token del texto sobre el bloque, token del acento sobre blanco, ícono.
-# Íconos: los de los pilares de la home. Colores: bloques por categoría del sistema de diseño (AA verificado).
-ESLABONES = {
-    'Costos y precios': ('costos-y-precios', 'of-azul', 'w', 'of-azul',
-                         '<path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>'),
-    'Resultado económico': ('resultado-economico', 'of-verde', 'w', 'of-verde',
-                            '<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>'),
-    'Flujo de caja': ('flujo-de-caja', 'of-turquesa', 'ink', 'ink', '<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>'),
-    'Indicadores de gestión': ('indicadores-de-gestion', 'of-violeta', 'w', 'of-violeta',
-                               '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>'),
+# Íconos por tema (los de los pilares de la home), en azul marca sobre caja --seleccion-bg.
+ICONOS = {
+    'Costos y precios': '<path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>',
+    'Resultado económico': '<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>',
+    'Flujo de caja': '<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>',
+    'Indicadores de gestión': '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
 }
 CIRCULOS = ('<svg class="circulos" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">'
             '<circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="66"/><circle cx="100" cy="100" r="36"/></svg>')
 
-
-def estilo_eslabon(eje):
-    _, bloque, texto, acento, _ = ESLABONES[eje]
-    return f'--bloque:var(--{bloque});--bloque-texto:var(--{texto});--acento:var(--{acento})'
+# Índice ordenado por el problema que resuelve cada guía, en la voz del dueño (14/09/2026).
+# 'corto' va en el eyebrow de la guía y de su imagen; 'atajo' en las pastillas de la portada.
+# 'pendientes': guías futuras; aparecen solas cuando exista tools/guias/<slug>.html.
+PROBLEMAS = [
+    {'id': 'no-se-cuanto-me-cuesta', 'titulo': 'No sé cuánto me cuesta lo que vendo', 'atajo': 'No sé cuánto me cuesta',
+     'corto': 'Costos', 'linea': 'Calculá el costo real de cada plato y de todo lo que vendés.',
+     'slugs': ['costo-de-un-plato', 'food-cost', 'costo-de-mercaderia-vendida', 'costos-fijos-y-variables']},
+    {'id': 'no-se-que-precio-poner', 'titulo': 'No sé qué precio poner', 'atajo': 'No sé qué precio poner',
+     'corto': 'Precios', 'linea': 'Poné precios que cubran todos tus costos y te dejen ganancia.',
+     'slugs': ['precio-de-venta-de-un-plato', 'precio-de-venta-de-un-producto', 'margen-de-ganancia']},
+    {'id': 'vendo-bien-pero-no-me-queda-plata', 'titulo': 'Vendo bien pero no me queda plata', 'atajo': 'No me queda plata',
+     'corto': 'Ganancia', 'linea': 'Mirá cuánto ganó de verdad el negocio y cuánto tenés que vender para no perder.',
+     'slugs': ['estado-de-resultados', 'punto-de-equilibrio', 'rentabilidad-de-un-negocio']},
+    {'id': 'nunca-llego-con-la-plata', 'titulo': 'Nunca llego con la plata para pagar', 'atajo': 'No llego a pagar',
+     'corto': 'Caja', 'linea': 'Sabé cuánta plata necesitás para pagar todo a tiempo mientras esperás cobrar.',
+     'slugs': ['capital-de-trabajo'], 'pendientes': ['flujo-de-caja']},
+]
 
 
 def svg_icono(eje):
     return ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" '
-            f'stroke-linejoin="round" aria-hidden="true">{ESLABONES[eje][4]}</svg>')
+            f'stroke-linejoin="round" aria-hidden="true">{ICONOS[eje]}</svg>')
+
+
+def grupos_con(guias):
+    """Cada guía en exactamente un problema; devuelve [(problema, [guías])] y el problema de cada slug."""
+    por_slug = {g['slug']: g for g in guias}
+    todos = [s for p in PROBLEMAS for s in p['slugs']]
+    repetidas = sorted({s for s in todos if todos.count(s) > 1})
+    assert not repetidas, f'Guías en más de un problema: {repetidas}'
+    faltan = [s for s in todos if s not in por_slug]
+    assert not faltan, f'Slugs del índice sin guía: {faltan}'
+    pendientes = [s for p in PROBLEMAS for s in p.get('pendientes', [])]
+    huerfanas = [g['slug'] for g in guias if g['slug'] not in todos and g['slug'] not in pendientes]
+    assert not huerfanas, f'Guías sin problema en el índice: {huerfanas}'
+    grupos, de = [], {}
+    for p in PROBLEMAS:
+        lista = [por_slug[s] for s in p['slugs'] + p.get('pendientes', []) if s in por_slug]
+        for g in lista:
+            de[g['slug']] = p
+        grupos.append((p, lista))
+    return grupos, de
 
 
 def minutos(g):
@@ -243,11 +276,12 @@ def con_ids(cuerpo):
     return re.sub(r'<h2>(.*?)</h2>', poner, cuerpo), toc
 
 
-def tarjeta(g):
+def tarjeta(g, problema=None):
     etiquetas = ''.join(f'<span>{x}</span>' for x in incluye(g))
-    claves = ' '.join(g.get('resumen', []) + [x['q'] for x in g.get('faq', [])] + [g['h1'], g['eje']])
-    return (f'      <li style="{estilo_eslabon(g["eje"])}" data-claves="{html.escape(claves)}">'
-            f'<a href="/guias/{g["slug"]}"><span class="paso-eje">{html.escape(g["eje"])}</span>'
+    claves = ' '.join(g.get('resumen', []) + [x['q'] for x in g.get('faq', [])] + [g['h1'], g['eje']]
+                      + ([problema['titulo']] if problema else []))
+    return (f'      <li data-claves="{html.escape(claves)}">'
+            f'<a href="/guias/{g["slug"]}"><span class="ico">{svg_icono(g["eje"])}</span>'
             f'<strong>{html.escape(g["miga"])}</strong>'
             f'<span class="desc">{html.escape(g["description"])}</span>'
             f'<span class="meta">{etiquetas}<span>{minutos(g)} min</span></span></a></li>\n')
@@ -255,35 +289,52 @@ def tarjeta(g):
 
 OG_DIR = ROOT / 'tools' / 'og'
 
+# Índice lateral de la guía: marca en azul la sección que se está leyendo.
+SCROLLSPY = """  <script>
+  (function () {
+    var links = [].slice.call(document.querySelectorAll('.indice-guia a'));
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var mapa = {};
+    links.forEach(function (a) { mapa[a.getAttribute('href').slice(1)] = a; });
+    var obs = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (!e.isIntersecting || !mapa[e.target.id]) return;
+        links.forEach(function (a) { a.classList.remove('activo'); });
+        mapa[e.target.id].classList.add('activo');
+      });
+    }, { rootMargin: '0px 0px -70% 0px' });
+    Object.keys(mapa).forEach(function (id) { var h = document.getElementById(id); if (h) obs.observe(h); });
+  })();
+  </script>"""
 
-def plantilla_og(g):
-    """HTML de 1200x630 para sacar la imagen de la guía con Chrome headless."""
-    _, bloque, texto, _, _ = ESLABONES[g['eje']]
+
+def plantilla_og(g, problema):
+    """HTML de 1200x630 para sacar la imagen de la guía con Chrome headless.
+    Fondo navy liso; un solo toque lima (el eyebrow)."""
     etiquetas = ' · '.join(incluye(g) + [f'{minutos(g)} min de lectura'])
     return f"""<!DOCTYPE html>
 <html lang="es-AR"><head><meta charset="UTF-8"><style>
 {TOKENS}
-  :root {{ --of-azul: #0C66E4; --of-verde: #1F845A; --of-turquesa: #00A3BF; --of-violeta: #6E5DC6; --ink: #172B4D; }}
+  :root {{ --lima: #A3E635; --secondary-dark: #A3ADC2; }}
   * {{ margin: 0; padding: 0; box-sizing: border-box; }}
   html, body {{ width: 1200px; height: 630px; overflow: hidden; }}
-  body {{ font-family: 'Inter', system-ui, sans-serif; background: var(--{bloque}); color: var(--{texto}); position: relative; }}
-  .circulos {{ position: absolute; right: -170px; top: -150px; width: 720px; height: 720px; opacity: 0.16; }}
+  body {{ font-family: 'Inter', system-ui, sans-serif; background: var(--navy); color: var(--w); position: relative; }}
   .marca {{ position: absolute; left: 80px; top: 72px; display: flex; align-items: center; gap: 16px; font-size: 34px; font-weight: 600; letter-spacing: -0.01em; }}
   .isotipo {{ width: 56px; height: 56px; border-radius: 12px; background: var(--w); display: flex; align-items: center; justify-content: center; }}
   .isotipo svg {{ width: 30px; height: 30px; }}
   .contenido {{ position: absolute; left: 80px; right: 150px; top: 200px; }}
-  .eyebrow {{ font-size: 22px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 22px; }}
+  .eyebrow {{ font-size: 22px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 22px; color: var(--lima); }}
   h1 {{ font-size: 64px; line-height: 1.08; font-weight: 600; letter-spacing: -0.02em; }}
   .pie {{ position: absolute; left: 80px; right: 80px; bottom: 64px; display: flex; justify-content: space-between; align-items: center; font-size: 24px; font-weight: 600; }}
-  .chip {{ border: 2px solid currentColor; border-radius: 999px; padding: 8px 20px; }}
+  .chip {{ background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.18); border-radius: 999px; padding: 8px 20px; }}
+  .url {{ color: var(--secondary-dark); }}
 </style></head><body>
-  <svg class="circulos" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="66"/><circle cx="100" cy="100" r="36"/></svg>
   <div class="marca"><span class="isotipo"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="7" stroke="#7DB1F4" stroke-width="4"/><circle cx="12" cy="12" r="7" stroke="#0C66E4" stroke-width="4" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/></svg></span>ordenfinanciero.</div>
   <div class="contenido">
-    <p class="eyebrow">Guía · {html.escape(g['eje'])}</p>
+    <p class="eyebrow">Guía · {html.escape(problema['corto'])}</p>
     <h1>{html.escape(g['title'])}</h1>
   </div>
-  <div class="pie"><span class="chip">{html.escape(etiquetas)}</span><span>ordenfinanciero.com/guias</span></div>
+  <div class="pie"><span class="chip">{html.escape(etiquetas)}</span><span class="url">ordenfinanciero.com/guias</span></div>
 </body></html>
 """
 
@@ -399,16 +450,17 @@ def main():
     autor = {"@type": "Person", "@id": BASE + "/#manuel", "name": "Manuel Alfano", "url": BASE + "/#manuel"}
 
     por_slug = {g['slug']: g for g in guias}
+    grupos, problema_de = grupos_con(guias)
     OG_DIR.mkdir(exist_ok=True)
     for g in guias:
-        (OG_DIR / f"{g['slug']}.html").write_text(plantilla_og(g), encoding='utf-8', newline='\n')
+        (OG_DIR / f"{g['slug']}.html").write_text(plantilla_og(g, problema_de[g['slug']]), encoding='utf-8', newline='\n')
         path = '/guias/' + g['slug']
         items = [("Inicio", "/"), ("Guías", "/guias"), (g['miga'], None)]
         rel = [por_slug[x] for x in g.get('relacionadas', []) if x in por_slug]
         rel_html = ''
         if rel:
             rel_html = ('\n      <section class="seguir"><h2>Seguí leyendo</h2><ul class="tarjetas">\n'
-                        + ''.join(tarjeta(x) for x in rel) + '      </ul></section>')
+                        + ''.join(tarjeta(x, problema_de[x['slug']]) for x in rel) + '      </ul></section>')
         faq = g.get('faq', [])
         faq_html = ''
         if faq:
@@ -419,17 +471,16 @@ def main():
         resumen = ''.join(f'<li>{html.escape(x)}</li>' for x in g.get('resumen', []))
         assert resumen, f"{g['slug']}: falta el resumen"
         etiquetas = ''.join(f'<span>{x}</span>' for x in incluye(g))
-        estilo = estilo_eslabon(g['eje'])
-        cuerpo = f"""  <section class="guia-cab" style="{estilo}">
+        cuerpo = f"""  <section class="guia-cab">
     {CIRCULOS}
 {migas(items)}
-    <p class="eyebrow">Guía · {html.escape(g['eje'])}</p>
+    <p class="eyebrow">Guía · {html.escape(problema_de[g['slug']]['corto'])}</p>
     <h1>{html.escape(g['h1'])}</h1>
     <p class="bajada">{html.escape(g['description'])}</p>
     <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · Actualizada el {fecha_larga(g['actualizada'])}</p>
     <div class="meta">{etiquetas}<span>{minutos(g)} min de lectura</span></div>
   </section>
-  <div class="guia-cuerpo" style="{estilo}">
+  <div class="guia-cuerpo">
     <div class="guia-principal">
       <aside class="resumen"><p>Lo más importante</p><ul>{resumen}</ul></aside>
       <details class="indice-movil"><summary>En esta guía</summary><ol>{toc_html}</ol></details>
@@ -439,7 +490,8 @@ def main():
       <aside class="caja-autor"><img src="/foto-manuel-cutout.webp" alt="Manuel Alfano" width="72" height="72" loading="lazy"><div><strong>Manuel Alfano</strong><p>Fundador de Orden Financiero. Más de 12 años en la gastronomía con negocio propio; hoy trabaja mano a mano con dueños de negocios para ordenar sus números.</p></div></aside>{rel_html}
     </div>
     <nav class="indice-guia" aria-label="En esta guía"><p>En esta guía</p><ol>{toc_html}</ol></nav>
-  </div>"""
+  </div>
+{SCROLLSPY}"""
         ld = {"@context": "https://schema.org", "@graph": [
             {"@type": "Article", "@id": BASE + path + "#article", "headline": g['h1'], "description": g['description'],
              "image": BASE + f"/guias/og/{g['slug']}.png", "inLanguage": "es-AR", "datePublished": g['publicada'],
@@ -459,68 +511,31 @@ def main():
     items = [("Inicio", "/"), ("Guías", None)]
     desc = ('Guías prácticas para dueños de negocio: precios, costos, márgenes y rentabilidad, '
             'con fórmulas y ejemplos en pesos. Con foco en gastronomía.')
-    lista = ''.join(f'    <li><a href="/guias/{g["slug"]}">{html.escape(g["h1"])}</a><p>{html.escape(g["description"])}</p></li>\n'
-                    for g in guias)
-    # Agrupadas por los cuatro eslabones del diagnóstico: un bloque de color entero por eslabón
-    # (tabla de bloques por categoría del sistema de diseño) y un "Empezá por acá" arriba.
-    temas = [
-        ('Costos y precios', 'El costo real y el precio correcto de cada cosa que se vende.',
-         ['costo-de-un-plato', 'food-cost', 'costo-de-mercaderia-vendida', 'costos-fijos-y-variables',
-          'precio-de-venta-de-un-plato', 'precio-de-venta-de-un-producto']),
-        ('Resultado económico', 'Un cierre por mes: cuánto ganó el negocio de verdad, con gastos e impuestos descontados.',
-         ['estado-de-resultados', 'margen-de-ganancia', 'punto-de-equilibrio', 'rentabilidad-de-un-negocio']),
-        ('Flujo de caja', 'Pagos, cobranzas y vencimientos a la vista, para que la plata esté cuando hace falta.',
-         ['capital-de-trabajo']),
-        ('Indicadores de gestión', 'Tres o cuatro números que se miran todos los meses antes de decidir.', []),
-    ]
-    empeza = [('costo-de-un-plato', 'Sabé cuánto te cuesta de verdad cada plato.'),
-              ('precio-de-venta-de-un-plato', 'Poné un precio que te deje plata.'),
-              ('estado-de-resultados', 'Mirá cuánto ganó el negocio en el mes.')]
-    por_slug = {g['slug']: g for g in guias}
-    asignadas = [slug for _, _, slugs in temas for slug in slugs]
-    sin_tema = [g['slug'] for g in guias if g['slug'] not in asignadas]
-    assert not sin_tema, f'Guías sin tema en el índice: {sin_tema}'
-    for nombre, _, slugs in temas:
-        for slug in slugs:
-            assert por_slug[slug]['eje'] == nombre, f'{slug}: su eje no coincide con la sección {nombre}'
-    visibles = [t for t in temas if t[2]]
-
-    botones = ''.join(
-        f'<a href="#{ESLABONES[n][0]}" style="{estilo_eslabon(n)}">{svg_icono(n)}{html.escape(n)}</a>'
-        for n, _, _ in visibles)
-    pasos = ''.join(
-        f'      <li style="{estilo_eslabon(por_slug[slug]["eje"])}"><a href="/guias/{slug}">'
-        f'<span class="paso" aria-hidden="true">{i + 1}</span>'
-        f'<span class="paso-eje">{html.escape(por_slug[slug]["eje"])}</span>'
-        f'<strong>{html.escape(por_slug[slug]["miga"])}</strong>'
-        f'<span class="paso-txt">{html.escape(texto)}</span></a></li>\n'
-        for i, (slug, texto) in enumerate(empeza))
-    secciones = ('  <section class="empeza" aria-labelledby="empeza">\n'
-                 '    <h2 id="empeza">Empezá por acá</h2>\n'
-                 '    <p>Si tenés un negocio gastronómico, este es el orden más útil para arrancar.</p>\n'
-                 f'    <ol class="pasos">\n{pasos}    </ol>\n'
-                 '  </section>\n')
-    for nombre, intro, slugs in visibles:
-        tid = ESLABONES[nombre][0]
-        cantidad = f'{len(slugs)} guía' + ('s' if len(slugs) != 1 else '')
-        secciones += (f'  <section class="tema" aria-labelledby="{tid}" style="{estilo_eslabon(nombre)}">\n'
-                      f'    <div class="tema-cab">{CIRCULOS}<span class="ico">{svg_icono(nombre)}</span>'
-                      f'<div><h2 id="{tid}">{html.escape(nombre)}</h2><p>{html.escape(intro)}</p></div>'
-                      f'<span class="tema-num">{cantidad}</span></div>\n'
+    # Agrupadas por el problema que resuelven (PROBLEMAS), en el orden en que le pasan al dueño.
+    visibles = [(i + 1, p, lista) for i, (p, lista) in enumerate(grupos) if lista]
+    atajos = ''.join(
+        f'<a href="#{p["id"]}"><span class="n-mini" aria-hidden="true">{n}</span>{html.escape(p["atajo"])}</a>'
+        for n, p, _ in visibles)
+    secciones = ''
+    for n, p, lista in visibles:
+        secciones += (f'  <section class="problema" id="{p["id"]}" aria-labelledby="{p["id"]}-t">\n'
+                      f'    <div class="problema-cab"><span class="problema-num" aria-hidden="true">{n}</span>'
+                      f'<div><h2 id="{p["id"]}-t">{html.escape(p["titulo"])}</h2><p>{html.escape(p["linea"])}</p></div></div>\n'
                       '    <ul class="tarjetas">\n'
-                      + ''.join(tarjeta(por_slug[slug]) for slug in slugs)
+                      + ''.join(tarjeta(g, p) for g in lista)
                       + '    </ul>\n  </section>\n')
-    guias = [por_slug[slug] for slug in asignadas]
+    guias = [g for _, _, lista in visibles for g in lista]
 
     cuerpo = f"""  <section class="portada">
     {CIRCULOS}
 {migas(items)}
-    <p class="eyebrow">Guías</p>
+    <p class="eyebrow"><span class="punto" aria-hidden="true"></span>Guías</p>
     <h1>Guías de finanzas para <em>dueños de negocio</em></h1>
     <p class="bajada">{desc}</p>
     <p class="cifras"><strong>{len(guias)} guías</strong> · fórmula, ejemplo en pesos y cómo armarlo en Excel en cada una</p>
     <p class="autor">Escritas por <a href="/#manuel">Manuel Alfano</a>, con más de 12 años en la gastronomía con negocio propio.</p>
-    <nav class="temas" aria-label="Temas de las guías">{botones}</nav>
+    <p class="atajos-t" id="atajos-t">¿Qué te pasa con los números?</p>
+    <nav class="atajos" aria-labelledby="atajos-t">{atajos}</nav>
     <div class="buscador"><label for="buscar-guia">Buscá una guía</label><input id="buscar-guia" type="search" placeholder="Ej.: precio, merma, IVA, punto de equilibrio" autocomplete="off"></div>
   </section>
   <p class="sin-resultados" id="sin-resultados" hidden>No encontramos guías con esa palabra. Probá con otra, o <a href="/?origen=guias-busqueda#diagnostico">hacé el diagnóstico</a> y te decimos por dónde empezar.</p>
@@ -529,18 +544,16 @@ def main():
     var campo = document.getElementById('buscar-guia');
     if (!campo) return;
     var norm = function (t) {{ return t.toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g, ''); }};
-    var tarjetas = [].slice.call(document.querySelectorAll('.tema .tarjetas li'));
+    var tarjetas = [].slice.call(document.querySelectorAll('.problema .tarjetas li'));
     tarjetas.forEach(function (li) {{ li._texto = norm(li.textContent + ' ' + (li.getAttribute('data-claves') || '')); }});
-    var temas = [].slice.call(document.querySelectorAll('.tema'));
-    var empeza = document.querySelector('.empeza');
+    var grupos = [].slice.call(document.querySelectorAll('.problema'));
     var nada = document.getElementById('sin-resultados');
     var espera;
     campo.addEventListener('input', function () {{
       var q = norm(campo.value.trim());
       var total = 0;
       tarjetas.forEach(function (li) {{ var ok = !q || li._texto.indexOf(q) > -1; li.hidden = !ok; if (ok) total++; }});
-      temas.forEach(function (t) {{ t.hidden = !t.querySelector('.tarjetas li:not([hidden])'); }});
-      if (empeza) empeza.hidden = !!q;
+      grupos.forEach(function (t) {{ t.hidden = !t.querySelector('.tarjetas li:not([hidden])'); }});
       nada.hidden = !(q && total === 0);
       clearTimeout(espera);
       if (q && window.gtag) espera = setTimeout(function () {{ gtag('event', 'guias_busqueda', {{ termino: q.slice(0, 40), resultados: total }}); }}, 900);

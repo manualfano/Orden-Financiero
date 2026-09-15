@@ -94,84 +94,88 @@ function gtag() { dataLayer.push(arguments); }
   .lista-guias li { border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-4) var(--s-5); margin-bottom: var(--s-3); }
   .lista-guias a { font-weight: 600; font-size: var(--fs-lead); text-decoration: none; line-height: 1.4; }
   .lista-guias p { margin-top: var(--s-2); font-size: var(--fs-sm); }
-  /* Bloques de color por eslabón: tokens admin.* del sistema de diseño; pares de texto con contraste AA verificado */
-  :root { --of-azul: #0C66E4; --of-verde: #1F845A; --of-turquesa: #00A3BF; --of-violeta: #6E5DC6; --ink: #172B4D; --accent-soft: #93C5FD; }
+  /* Paleta oficial de la home (14/09/2026): azul marca para acción, navy para fondos oscuros,
+     lima solo en toques chicos sobre fondos oscuros (nunca sobre claro ni en botones). */
+  :root { --navy-2: #143C8C; --secondary-dark: #A3ADC2; --lienzo-2: #F0F1F2; --seleccion-bg: #E9F2FF; --lima: #A3E635; --w-08: rgba(255,255,255,0.08); --w-18: rgba(255,255,255,0.18); --w-72: rgba(255,255,255,0.72); --w-88: rgba(255,255,255,0.88); }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   body:has(main.ancho) { background: var(--lienzo); }
   main.ancho { max-width: 1040px; }
-  .circulos { position: absolute; width: 320px; height: 320px; right: -80px; top: -90px; opacity: 0.14; pointer-events: none; }
-  .portada { position: relative; overflow: hidden; background: var(--navy-900); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); color: var(--w); }
-  .portada > :not(.circulos) { position: relative; }
-  .portada .migas, .portada .migas a { color: rgba(255,255,255,0.72); }
-  .portada .eyebrow { color: var(--accent-soft); }
-  .portada h1 { color: var(--w); max-width: 760px; }
-  .portada h1 em { font-style: normal; color: var(--accent-soft); }
-  .portada .bajada { color: rgba(255,255,255,0.9); max-width: 660px; }
-  .portada .autor { color: rgba(255,255,255,0.75); border-bottom-color: rgba(255,255,255,0.16); }
-  .portada .autor a { color: var(--w); }
-  .temas { display: flex; flex-wrap: wrap; gap: var(--s-2); }
-  .temas a { display: inline-flex; align-items: center; gap: var(--s-2); min-height: 44px; padding: 0 var(--s-4) 0 var(--s-3); border-radius: 999px; background: var(--bloque); color: var(--bloque-texto); font-size: var(--fs-sm); font-weight: 600; text-decoration: none; transition: box-shadow var(--t-instante); }
-  .temas a:hover { box-shadow: 0 0 0 3px rgba(255,255,255,0.35); }
-  .temas svg { width: 18px; height: 18px; }
-  .empeza { margin: var(--s-7) 0 0; }
-  .empeza > p { margin-bottom: var(--s-4); }
-  .pasos, .tarjetas { list-style: none; padding: 0; display: grid; gap: var(--s-3); }
-  .pasos { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-  .tarjetas { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
-  .pasos a, .tarjetas a { display: flex; flex-direction: column; gap: var(--s-2); height: 100%; padding: var(--s-5); background: var(--w); border: 1px solid var(--borde); border-top: 4px solid var(--bloque); border-radius: var(--r-lg); text-decoration: none; transition: border-color var(--t-instante), transform var(--t-instante); }
-  .pasos a:hover, .tarjetas a:hover { border-color: var(--bloque); transform: translateY(-2px); }
-  .paso { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 999px; background: var(--bloque); color: var(--bloque-texto); font-size: var(--fs-sm); font-weight: 600; }
-  .paso-eje { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--acento); }
-  .pasos strong, .tarjetas strong { color: var(--navy); font-size: var(--fs-lead); font-weight: 600; line-height: 1.35; }
-  .pasos a:hover strong, .tarjetas a:hover strong { color: var(--acento); }
-  .paso-txt, .tarjetas .desc { color: var(--tinta-2); font-size: var(--fs-sm); line-height: 1.55; }
-  .tema { margin-top: var(--s-7); }
-  .tema-cab { position: relative; overflow: hidden; display: flex; gap: var(--s-4); align-items: center; background: var(--bloque); color: var(--bloque-texto); border-radius: var(--r-lg); padding: var(--s-5); margin-bottom: var(--s-3); }
-  .tema-cab > :not(.circulos) { position: relative; }
-  .tema-cab .circulos { width: 240px; height: 240px; right: -60px; top: -80px; opacity: 0.18; }
-  .tema-cab .ico { width: 52px; height: 52px; border-radius: var(--r); border: 2px solid currentColor; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .tema-cab .ico svg { width: 26px; height: 26px; }
-  .tema-cab h2 { margin: 0 0 4px; color: inherit; scroll-margin-top: var(--s-5); }
-  .tema-cab p { color: inherit; }
-  .tema-num { margin-left: auto; font-size: var(--fs-sm); font-weight: 600; white-space: nowrap; }
+  .circulos { position: absolute; width: 320px; height: 320px; right: -80px; top: -90px; color: var(--w); opacity: 0.06; pointer-events: none; }
+  /* Fondos navy: portada del índice y cabecera de cada guía */
+  .portada, .guia-cab { position: relative; overflow: hidden; background: var(--navy); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); color: var(--w); }
+  .portada > :not(.circulos), .guia-cab > :not(.circulos) { position: relative; }
+  .portada .migas, .guia-cab .migas { color: var(--secondary-dark); }
+  .portada .migas a, .guia-cab .migas a { color: var(--w); }
+  .portada .eyebrow { display: inline-flex; align-items: center; gap: var(--s-2); color: var(--w-72); }
+  .punto { width: 6px; height: 6px; border-radius: 50%; background: var(--lima); flex-shrink: 0; }
+  .guia-cab .eyebrow { color: var(--lima); }
+  .portada h1, .guia-cab h1 { color: var(--w); max-width: 780px; }
+  .portada h1 em { font-style: normal; color: var(--lima); }
+  .portada .bajada, .guia-cab .bajada { color: var(--w-88); max-width: 700px; }
+  .portada .autor, .guia-cab .autor { color: var(--secondary-dark); border-bottom-color: var(--w-18); }
+  .portada .autor a, .guia-cab .autor a { color: var(--w); }
+  .guia-cab .autor { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
+  .guia-cab { margin-bottom: var(--s-6); }
+  /* Pastillas blancas translúcidas: atajos de la portada y chips de la cabecera */
+  .atajos-t { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--secondary-dark); margin-bottom: var(--s-2); }
+  .atajos { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+  .atajos a { display: inline-flex; align-items: center; gap: var(--s-2); min-height: 44px; padding: 0 var(--s-4) 0 7px; border-radius: 999px; background: var(--w-08); border: 1px solid var(--w-18); color: var(--w); font-size: var(--fs-sm); font-weight: 600; text-decoration: none; transition: background var(--t-instante); }
+  .atajos a:hover { background: var(--w-18); }
+  .atajos .n-mini { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 999px; background: var(--w-18); font-size: var(--fs-meta); }
+  .guia-cab .meta { margin-top: var(--s-3); }
+  .guia-cab .meta span { background: var(--w-08); border: 1px solid var(--w-18); color: var(--w); }
+  /* Índice: grupos por problema */
+  .problema { margin-top: var(--s-7); scroll-margin-top: var(--s-5); }
+  .problema-cab { display: flex; gap: var(--s-4); align-items: flex-start; margin-bottom: var(--s-4); }
+  .problema-num { font-size: 44px; font-weight: 600; line-height: 1; color: var(--marca); letter-spacing: -0.02em; min-width: 32px; }
+  .problema-cab h2 { margin: 2px 0 4px; color: var(--navy); }
+  .problema-cab p { color: var(--tinta-2); }
+  .tarjetas { list-style: none; padding: 0; display: grid; gap: var(--s-3); grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); }
+  .tarjetas a { display: flex; flex-direction: column; gap: var(--s-2); height: 100%; padding: var(--s-5); background: var(--w); border: 1px solid var(--borde); border-radius: var(--r-lg); text-decoration: none; transition: border-color var(--t-instante), transform var(--t-instante); }
+  .tarjetas a:hover { border-color: var(--marca); transform: translateY(-2px); }
+  .tarjetas .ico { width: 40px; height: 40px; border-radius: var(--r); background: var(--seleccion-bg); color: var(--marca); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 4px; }
+  .tarjetas .ico svg { width: 20px; height: 20px; }
+  .tarjetas strong { color: var(--navy); font-size: var(--fs-lead); font-weight: 600; line-height: 1.35; transition: color var(--t-instante); }
+  .tarjetas a:hover strong { color: var(--marca); }
+  .tarjetas .desc { color: var(--tinta-2); font-size: var(--fs-sm); line-height: 1.55; }
   .meta { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: auto; padding-top: var(--s-2); }
-  .meta span { font-size: var(--fs-meta); font-weight: 600; color: var(--tinta-3); background: var(--lienzo); border-radius: 999px; padding: 2px 10px; }
-  @media (max-width: 640px) { .tema-num { display: none; } .tema-cab { align-items: flex-start; } }
-  @media (prefers-reduced-motion: reduce) { .pasos a:hover, .tarjetas a:hover { transform: none; } }
-  /* Índice: cifras, buscador y tarjetas cortas */
-  .cifras { color: rgba(255,255,255,0.9); font-size: var(--fs-sm); margin-top: var(--s-2); }
+  .meta span { font-size: var(--fs-meta); font-weight: 600; color: var(--tinta-2); background: var(--lienzo-2); border-radius: 999px; padding: 2px 10px; }
+  @media (prefers-reduced-motion: reduce) { .tarjetas a:hover { transform: none; } }
+  @media (max-width: 640px) { .problema-num { font-size: 34px; min-width: 24px; } .problema-cab { gap: var(--s-3); } }
+  .cifras { color: var(--w-88); font-size: var(--fs-sm); margin-top: var(--s-2); }
   .cifras strong { color: var(--w); }
   .buscador { margin-top: var(--s-5); max-width: 560px; }
-  .buscador label { display: block; font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-soft); margin-bottom: var(--s-2); }
+  .buscador label { display: block; font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--secondary-dark); margin-bottom: var(--s-2); }
   .buscador input { width: 100%; min-height: 48px; padding: 0 var(--s-4); border: 0; border-radius: var(--r); font: inherit; font-size: var(--fs-base); color: var(--tinta); background: var(--w); }
-  .buscador input:focus-visible { outline: 3px solid var(--accent-soft); outline-offset: 2px; }
+  .buscador input:focus-visible { outline: 3px solid var(--w); outline-offset: 2px; }
   .sin-resultados { margin-top: var(--s-6); padding: var(--s-5); background: var(--w); border: 1px solid var(--borde); border-radius: var(--r-lg); }
-  .tema .tarjetas .paso-eje { display: none; }
-  .meta { flex-wrap: nowrap; overflow: hidden; }
+  /* Banda azul marca al cierre, como .cta-final de la home: título lima (26 px a 600, texto grande) y botón blanco */
+  .cta { background: var(--marca); }
+  .cta p { color: var(--w); }
+  .cta .cta-t { font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; color: var(--lima); }
+  .cta .btn { background: var(--w); color: var(--marca); }
+  .cta .btn:hover { background: var(--seleccion-bg); }
+  main.ancho .cta { text-align: center; padding: var(--s-7) var(--s-5); }
+  main.ancho .cta .cta-t { font-size: clamp(26px, 3vw, 34px); text-wrap: balance; }
   /* Página de guía */
   main.guia { max-width: 1080px; }
-  .guia-cab { position: relative; overflow: hidden; background: var(--bloque); color: var(--bloque-texto); border-radius: var(--r-lg); padding: var(--s-6) var(--s-5); margin-bottom: var(--s-6); }
-  .guia-cab > :not(.circulos) { position: relative; }
-  .guia-cab .migas, .guia-cab .migas a, .guia-cab .eyebrow, .guia-cab h1, .guia-cab .bajada, .guia-cab .autor, .guia-cab .autor a { color: inherit; }
-  .guia-cab h1 { max-width: 780px; }
-  .guia-cab .bajada { max-width: 700px; }
-  .guia-cab .autor { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
-  .guia-cab .meta { margin-top: var(--s-3); }
-  .guia-cab .meta span { background: transparent; color: inherit; border: 1px solid currentColor; }
   .guia-cuerpo { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: var(--s-7); align-items: start; }
   .guia-principal { min-width: 0; max-width: 720px; }
-  .indice-guia { position: sticky; top: var(--s-5); border-left: 3px solid var(--bloque); padding-left: var(--s-4); }
+  .indice-guia { position: sticky; top: var(--s-5); border-left: 1px solid var(--borde); }
   .indice-guia p, .resumen p { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: var(--s-2); }
-  .indice-guia p { color: var(--tinta-3); }
+  .indice-guia p { color: var(--tinta-3); padding-left: var(--s-4); }
   .indice-guia ol, .indice-movil ol { list-style: none; padding: 0; }
   .indice-guia li { margin-bottom: 6px; }
   .indice-guia a, .indice-movil a { color: var(--tinta-2); font-size: var(--fs-sm); line-height: 1.4; text-decoration: none; display: block; }
-  .indice-guia a:hover, .indice-movil a:hover { color: var(--acento); }
+  .indice-guia a { padding-left: var(--s-4); margin-left: -1px; border-left: 2px solid transparent; }
+  .indice-guia a:hover, .indice-movil a:hover { color: var(--marca); }
+  .indice-guia a.activo { color: var(--marca); border-left-color: var(--marca); font-weight: 600; }
   .indice-movil { display: none; }
-  .resumen { background: var(--lienzo); border-left: 4px solid var(--bloque); border-radius: var(--r); padding: var(--s-4) var(--s-5); margin-bottom: var(--s-6); }
-  .resumen p { color: var(--acento); }
+  .resumen { background: var(--lienzo); border-left: 4px solid var(--marca); border-radius: var(--r); padding: var(--s-4) var(--s-5); margin-bottom: var(--s-6); }
+  .resumen p { color: var(--marca); }
   .resumen ul { padding-left: var(--s-5); }
   .resumen li { color: var(--tinta); margin-bottom: 6px; }
-  main.guia .formula { border-left-color: var(--bloque); }
   article h2 { scroll-margin-top: var(--s-5); }
   .caja-autor { display: flex; gap: var(--s-4); align-items: center; border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-5); margin-top: var(--s-7); }
   .caja-autor img { width: 72px; height: 72px; border-radius: 999px; object-fit: cover; object-position: top; background: var(--lienzo); flex-shrink: 0; }
@@ -206,16 +210,16 @@ function gtag() { dataLayer.push(arguments); }
   </div>
 </header>
 <main class="guia">
-  <section class="guia-cab" style="--bloque:var(--of-azul);--bloque-texto:var(--w);--acento:var(--of-azul)">
+  <section class="guia-cab">
     <svg class="circulos" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="66"/><circle cx="100" cy="100" r="36"/></svg>
   <nav class="migas" aria-label="Ruta"><a href="/">Inicio</a> › <a href="/guias">Guías</a> › <span>Costo de mercadería vendida</span></nav>
-    <p class="eyebrow">Guía · Costos y precios</p>
+    <p class="eyebrow">Guía · Costos</p>
     <h1>Costo de mercadería vendida (CMV): qué es, fórmula y ejemplo</h1>
     <p class="bajada">Qué es el costo de mercadería vendida o CMV, la fórmula con inventario inicial, compras e inventario final, ejemplos en pesos y cómo calcularlo en Excel.</p>
     <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · Actualizada el 14 de septiembre de 2026</p>
     <div class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>5 min de lectura</span></div>
   </section>
-  <div class="guia-cuerpo" style="--bloque:var(--of-azul);--bloque-texto:var(--w);--acento:var(--of-azul)">
+  <div class="guia-cuerpo">
     <div class="guia-principal">
       <aside class="resumen"><p>Lo más importante</p><ul><li>El CMV es lo que costó la mercadería que vendiste, no lo que compraste.</li><li>CMV = inventario inicial + compras − inventario final.</li><li>Sin contar el stock, el resultado del mes sale mal: los meses de compra parecen malos y los de venta de stock, buenos.</li></ul></aside>
       <details class="indice-movil"><summary>En esta guía</summary><ol><li><a href="#que-es-el-costo-de-mercaderia-vendida-cmv">Qué es el costo de mercadería vendida (CMV)</a></li><li><a href="#la-formula-del-costo-de-mercaderia-vendida">La fórmula del costo de mercadería vendida</a></li><li><a href="#ejemplo-el-cmv-de-un-comercio">Ejemplo: el CMV de un comercio</a></li><li><a href="#el-cmv-en-el-estado-de-resultados">El CMV en el estado de resultados</a></li><li><a href="#como-calcular-el-costo-de-mercaderia-vendida-en-excel">Cómo calcular el costo de mercadería vendida en Excel</a></li><li><a href="#como-usar-el-cmv-en-tu-negocio">Cómo usar el CMV en tu negocio</a></li><li><a href="#errores-comunes">Errores comunes</a></li><li><a href="#preguntas-frecuentes">Preguntas frecuentes</a></li></ol></details>
@@ -310,13 +314,29 @@ function gtag() { dataLayer.push(arguments); }
       </article>
       <aside class="caja-autor"><img src="/foto-manuel-cutout.webp" alt="Manuel Alfano" width="72" height="72" loading="lazy"><div><strong>Manuel Alfano</strong><p>Fundador de Orden Financiero. Más de 12 años en la gastronomía con negocio propio; hoy trabaja mano a mano con dueños de negocios para ordenar sus números.</p></div></aside>
       <section class="seguir"><h2>Seguí leyendo</h2><ul class="tarjetas">
-      <li style="--bloque:var(--of-azul);--bloque-texto:var(--w);--acento:var(--of-azul)" data-claves="El food cost es el porcentaje de las ventas que se va en materia prima. Por plato: costo ÷ precio sin IVA. Por mes: (inventario inicial + compras − inventario final) ÷ ventas netas. Compará el de las fichas con el real del mes, sobre las mismas ventas netas: la diferencia es plata que se pierde. ¿Para qué sirve el food cost? ¿Cuál es la fórmula del food cost? ¿Food cost y costo de mercadería vendida son lo mismo? ¿Las bebidas entran en el food cost? ¿El food cost se calcula con o sin IVA? Food cost (costo de la materia prima): qué es, fórmula y cómo calcularlo Costos y precios"><a href="/guias/food-cost"><span class="paso-eje">Costos y precios</span><strong>Food cost</strong><span class="desc">Qué es el food cost o costo de la materia prima en gastronomía, la fórmula por plato y por mes, ejemplos en pesos, cómo calcularlo en Excel y qué porcentaje tomar.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>6 min</span></span></a></li>
-      <li style="--bloque:var(--of-verde);--bloque-texto:var(--w);--acento:var(--of-verde)" data-claves="Muestra si el negocio ganó o perdió en el mes: ventas netas − CMV − estructura − costos financieros − impuestos. Los porcentajes van sobre ventas netas, y cada mes se suma una parte del aguinaldo. No es lo mismo que la caja: un negocio puede ganar plata y quedarse sin efectivo. ¿Qué es un estado de resultados? ¿Cuál es la estructura del estado de resultados? ¿Qué diferencia hay entre el estado de resultados y el flujo de caja? ¿El estado de resultados y el balance son lo mismo? ¿Cada cuánto conviene hacer el estado de resultados? Estado de resultados: qué es, estructura, modelo y ejemplo Resultado económico"><a href="/guias/estado-de-resultados"><span class="paso-eje">Resultado económico</span><strong>Estado de resultados</strong><span class="desc">Qué es un estado de resultados, su estructura paso a paso, un modelo para un negocio en Argentina, un ejemplo completo en pesos y cómo armarlo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>7 min</span></span></a></li>
-      <li style="--bloque:var(--of-turquesa);--bloque-texto:var(--ink);--acento:var(--ink)" data-claves="Capital de trabajo = lo que tenés en caja, por cobrar y en stock − lo que debés en el corto plazo. Mirá la liquidez sin el stock: si da menos de 1, sin vender mercadería no llegás a pagar lo que vence. Si es negativo, la plata de la cuenta no es toda tuya: una parte ya es de proveedores y sueldos. ¿Qué es el capital de trabajo? ¿Cuál es la fórmula del capital de trabajo? ¿Qué significa tener capital de trabajo negativo? ¿Qué es un crédito para capital de trabajo? ¿Capital de trabajo y ganancia son lo mismo? Capital de trabajo: qué es, cómo se calcula y cuánto necesita tu negocio Flujo de caja"><a href="/guias/capital-de-trabajo"><span class="paso-eje">Flujo de caja</span><strong>Capital de trabajo</strong><span class="desc">Qué es el capital de trabajo, la fórmula, qué significa que sea negativo, el ciclo de caja, ejemplos en pesos de un comercio y un restaurante y cómo calcularlo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>7 min</span></span></a></li>
+      <li data-claves="El food cost es el porcentaje de las ventas que se va en materia prima. Por plato: costo ÷ precio sin IVA. Por mes: (inventario inicial + compras − inventario final) ÷ ventas netas. Compará el de las fichas con el real del mes, sobre las mismas ventas netas: la diferencia es plata que se pierde. ¿Para qué sirve el food cost? ¿Cuál es la fórmula del food cost? ¿Food cost y costo de mercadería vendida son lo mismo? ¿Las bebidas entran en el food cost? ¿El food cost se calcula con o sin IVA? Food cost (costo de la materia prima): qué es, fórmula y cómo calcularlo Costos y precios No sé cuánto me cuesta lo que vendo"><a href="/guias/food-cost"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span><strong>Food cost</strong><span class="desc">Qué es el food cost o costo de la materia prima en gastronomía, la fórmula por plato y por mes, ejemplos en pesos, cómo calcularlo en Excel y qué porcentaje tomar.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>6 min</span></span></a></li>
+      <li data-claves="Muestra si el negocio ganó o perdió en el mes: ventas netas − CMV − estructura − costos financieros − impuestos. Los porcentajes van sobre ventas netas, y cada mes se suma una parte del aguinaldo. No es lo mismo que la caja: un negocio puede ganar plata y quedarse sin efectivo. ¿Qué es un estado de resultados? ¿Cuál es la estructura del estado de resultados? ¿Qué diferencia hay entre el estado de resultados y el flujo de caja? ¿El estado de resultados y el balance son lo mismo? ¿Cada cuánto conviene hacer el estado de resultados? Estado de resultados: qué es, estructura, modelo y ejemplo Resultado económico Vendo bien pero no me queda plata"><a href="/guias/estado-de-resultados"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><strong>Estado de resultados</strong><span class="desc">Qué es un estado de resultados, su estructura paso a paso, un modelo para un negocio en Argentina, un ejemplo completo en pesos y cómo armarlo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>7 min</span></span></a></li>
+      <li data-claves="Capital de trabajo = lo que tenés en caja, por cobrar y en stock − lo que debés en el corto plazo. Mirá la liquidez sin el stock: si da menos de 1, sin vender mercadería no llegás a pagar lo que vence. Si es negativo, la plata de la cuenta no es toda tuya: una parte ya es de proveedores y sueldos. ¿Qué es el capital de trabajo? ¿Cuál es la fórmula del capital de trabajo? ¿Qué significa tener capital de trabajo negativo? ¿Qué es un crédito para capital de trabajo? ¿Capital de trabajo y ganancia son lo mismo? Capital de trabajo: qué es, cómo se calcula y cuánto necesita tu negocio Flujo de caja Nunca llego con la plata para pagar"><a href="/guias/capital-de-trabajo"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></span><strong>Capital de trabajo</strong><span class="desc">Qué es el capital de trabajo, la fórmula, qué significa que sea negativo, el ciclo de caja, ejemplos en pesos de un comercio y un restaurante y cómo calcularlo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>7 min</span></span></a></li>
       </ul></section>
     </div>
     <nav class="indice-guia" aria-label="En esta guía"><p>En esta guía</p><ol><li><a href="#que-es-el-costo-de-mercaderia-vendida-cmv">Qué es el costo de mercadería vendida (CMV)</a></li><li><a href="#la-formula-del-costo-de-mercaderia-vendida">La fórmula del costo de mercadería vendida</a></li><li><a href="#ejemplo-el-cmv-de-un-comercio">Ejemplo: el CMV de un comercio</a></li><li><a href="#el-cmv-en-el-estado-de-resultados">El CMV en el estado de resultados</a></li><li><a href="#como-calcular-el-costo-de-mercaderia-vendida-en-excel">Cómo calcular el costo de mercadería vendida en Excel</a></li><li><a href="#como-usar-el-cmv-en-tu-negocio">Cómo usar el CMV en tu negocio</a></li><li><a href="#errores-comunes">Errores comunes</a></li><li><a href="#preguntas-frecuentes">Preguntas frecuentes</a></li></ol></nav>
   </div>
+  <script>
+  (function () {
+    var links = [].slice.call(document.querySelectorAll('.indice-guia a'));
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var mapa = {};
+    links.forEach(function (a) { mapa[a.getAttribute('href').slice(1)] = a; });
+    var obs = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (!e.isIntersecting || !mapa[e.target.id]) return;
+        links.forEach(function (a) { a.classList.remove('activo'); });
+        mapa[e.target.id].classList.add('activo');
+      });
+    }, { rootMargin: '0px 0px -70% 0px' });
+    Object.keys(mapa).forEach(function (id) { var h = document.getElementById(id); if (h) obs.observe(h); });
+  })();
+  </script>
   <aside class="cta">
     <p class="cta-t">¿Tenés un negocio gastronómico?</p>
     <p>En 3 minutos sabés por dónde se le escapa la plata: 12 preguntas gratis y el puntaje de los cuatro eslabones al instante.</p>
