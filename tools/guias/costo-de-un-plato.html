@@ -38,7 +38,7 @@
   ],
   "resumen": [
     "El costo de un plato es lo que cuesta la materia prima de una porción, con la merma incluida.",
-    "Dividí el precio de compra por el rendimiento y multiplicalo por lo que lleva la porción.",
+    "Dividí el precio por kilo por el rendimiento, pasalo a gramos (÷ 1.000) y multiplicalo por los gramos de la porción.",
     "Actualizá la ficha cuando aumenta un insumo importante: tres o cuatro explican casi todo el costo."
   ]
 } -->
@@ -51,13 +51,8 @@
 
     <h2>La fórmula del costo de un plato</h2>
     <formula>
-    CR = PC / R
-    CI = CR × Q
-    CR: Costo real del insumo, ya limpio | pesos por kilo
-    PC: Precio de compra | pesos por kilo
-    R: Rendimiento | en decimales: 80 % es 0,80
-    CI: Costo del ingrediente | pesos por porción
-    Q: Cantidad que lleva la porción | kilos: 200 g es 0,2
+    Costo real por kilo = Precio por kilo / Rendimiento
+    Costo = Costo real por kilo / 1.000 × Gramos
     </formula>
     <p>El costo del plato es la suma de todos los ingredientes, más un porcentaje chico de <strong>varios</strong> para lo que no se pesa, como sal y condimentos.</p>
 
@@ -80,7 +75,7 @@
     <div class="tabla">
       <table>
         <thead>
-          <tr><th>Ingrediente</th><th class="n">Precio de compra</th><th class="n">Rendimiento</th><th class="n">Costo real</th><th class="n">Por porción</th><th class="n">Costo</th></tr>
+          <tr><th>Ingrediente</th><th class="n">Precio por kilo</th><th class="n">Rendimiento</th><th class="n">Costo real por kilo</th><th class="n">Gramos</th><th class="n">Costo</th></tr>
         </thead>
         <tbody>
           <tr><td>Nalga</td><td class="n">$12.000/kg</td><td class="n">80 %</td><td class="n">$15.000/kg</td><td class="n">200 g</td><td class="n">$3.000</td></tr>
@@ -114,15 +109,15 @@
         <thead><tr><th>Columna</th><th>Qué va</th><th>Fórmula (fila 2)</th></tr></thead>
         <tbody>
           <tr><td>A</td><td>Ingrediente</td><td>—</td></tr>
-          <tr><td>B</td><td>Precio de compra por kilo (o por unidad)</td><td>—</td></tr>
+          <tr><td>B</td><td>Precio por kilo</td><td>—</td></tr>
           <tr><td>C</td><td>Rendimiento, con formato % (escribí 80 %, no 80)</td><td>—</td></tr>
           <tr><td>D</td><td>Costo real por kilo</td><td><code>=B2/C2</code></td></tr>
-          <tr><td>E</td><td>Cantidad por porción, en kilos o unidades (200 g = 0,2)</td><td>—</td></tr>
-          <tr><td>F</td><td>Costo del ingrediente</td><td><code>=D2*E2</code></td></tr>
+          <tr><td>E</td><td>Gramos por porción</td><td>—</td></tr>
+          <tr><td>F</td><td>Costo del ingrediente</td><td><code>=D2/1000*E2</code></td></tr>
         </tbody>
       </table>
     </div>
-    <p>Donde no hay precio por kilo (manteca y leche, aceite), escribí el costo directo en F.</p>
+    <p>Donde no hay precio por kilo (huevo, manteca y leche, aceite), escribí el costo directo en F.</p>
     <p>Debajo: en F8 el subtotal con <code>=SUMA(F2:F7)</code>, en F9 los varios con <code>=F8*5%</code> y en F10 el costo del plato con <code>=F8+F9</code>. Cuando cambia un precio, lo cambiás en B y todo se recalcula. Si no querés armarla desde cero, usá nuestra <a href="/guias/planilla-de-costos">planilla de costos</a>.</p>
 
     <h3>Si la receta rinde varias porciones</h3>

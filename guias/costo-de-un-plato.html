@@ -340,7 +340,7 @@ function gtag() { dataLayer.push(arguments); }
   </section>
   <div class="guia-cuerpo">
     <div class="guia-principal">
-      <aside class="resumen"><p>Lo más importante</p><ul><li>El costo de un plato es lo que cuesta la materia prima de una porción, con la merma incluida.</li><li>Dividí el precio de compra por el rendimiento y multiplicalo por lo que lleva la porción.</li><li>Actualizá la ficha cuando aumenta un insumo importante: tres o cuatro explican casi todo el costo.</li></ul></aside>
+      <aside class="resumen"><p>Lo más importante</p><ul><li>El costo de un plato es lo que cuesta la materia prima de una porción, con la merma incluida.</li><li>Dividí el precio por kilo por el rendimiento, pasalo a gramos (÷ 1.000) y multiplicalo por los gramos de la porción.</li><li>Actualizá la ficha cuando aumenta un insumo importante: tres o cuatro explican casi todo el costo.</li></ul></aside>
       <details class="indice-movil"><summary>En esta guía</summary><ol><li><a href="#que-es-el-costo-de-un-plato">Qué es el costo de un plato</a></li><li><a href="#la-formula-del-costo-de-un-plato">La fórmula del costo de un plato</a></li><li><a href="#ejemplo-el-costo-de-una-milanesa-con-pure-paso-a-paso">Ejemplo: el costo de una milanesa con puré, paso a paso</a></li><li><a href="#como-armar-la-ficha-de-costo-en-excel">Cómo armar la ficha de costo en Excel</a></li><li><a href="#los-errores-mas-comunes">Los errores más comunes</a></li><li><a href="#como-usar-el-costo-del-plato-en-tu-negocio">Cómo usar el costo del plato en tu negocio</a></li><li><a href="#preguntas-frecuentes">Preguntas frecuentes</a></li></ol></details>
       <article>
 <p>Si no sabés cuánto te cuesta cada plato, no sabés cuánto te deja cuando lo vendés. Muchas cartas se arman mirando a la competencia o sumando "más o menos" la materia prima. A fin de mes se vendió bien y la plata no está.</p>
@@ -351,7 +351,7 @@ function gtag() { dataLayer.push(arguments); }
     <p><strong>Para empezar:</strong> no costees toda la carta. Elegí los 5 platos que más vendés y hacé su ficha primero.</p>
 
     <h2 id="la-formula-del-costo-de-un-plato">La fórmula del costo de un plato</h2>
-    <figure class="ecuacion"><div class="ec-linea"><span class="ec-v">CR</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-v">PC</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-v">R</span></span></span></div><div class="ec-linea"><span class="ec-v">CI</span><span class="ec-op">=</span><span class="ec-v">CR</span><span class="ec-op">×</span><span class="ec-v">Q</span></div><dl class="ec-ref"><div><dt>CR</dt><dd>Costo real del insumo, ya limpio <span class="ec-u">pesos por kilo</span></dd></div><div><dt>PC</dt><dd>Precio de compra <span class="ec-u">pesos por kilo</span></dd></div><div><dt>R</dt><dd>Rendimiento <span class="ec-u">en decimales: 80 % es 0,80</span></dd></div><div><dt>CI</dt><dd>Costo del ingrediente <span class="ec-u">pesos por porción</span></dd></div><div><dt>Q</dt><dd>Cantidad que lleva la porción <span class="ec-u">kilos: 200 g es 0,2</span></dd></div></dl></figure>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-v">Costo real por kilo</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-v">Precio por kilo</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-v">Rendimiento</span></span></span></div><div class="ec-linea"><span class="ec-v">Costo</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-v">Costo real por kilo</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-n">1.000</span></span></span><span class="ec-op">×</span><span class="ec-v">Gramos</span></div></figure>
     <p>El costo del plato es la suma de todos los ingredientes, más un porcentaje chico de <strong>varios</strong> para lo que no se pesa, como sal y condimentos.</p>
 
     <h2 id="ejemplo-el-costo-de-una-milanesa-con-pure-paso-a-paso">Ejemplo: el costo de una milanesa con puré, paso a paso</h2>
@@ -373,7 +373,7 @@ function gtag() { dataLayer.push(arguments); }
     <div class="tabla">
       <table>
         <thead>
-          <tr><th>Ingrediente</th><th class="n">Precio de compra</th><th class="n">Rendimiento</th><th class="n">Costo real</th><th class="n">Por porción</th><th class="n">Costo</th></tr>
+          <tr><th>Ingrediente</th><th class="n">Precio por kilo</th><th class="n">Rendimiento</th><th class="n">Costo real por kilo</th><th class="n">Gramos</th><th class="n">Costo</th></tr>
         </thead>
         <tbody>
           <tr><td>Nalga</td><td class="n">$12.000/kg</td><td class="n">80 %</td><td class="n">$15.000/kg</td><td class="n">200 g</td><td class="n">$3.000</td></tr>
@@ -407,15 +407,15 @@ function gtag() { dataLayer.push(arguments); }
         <thead><tr><th>Columna</th><th>Qué va</th><th>Fórmula (fila 2)</th></tr></thead>
         <tbody>
           <tr><td>A</td><td>Ingrediente</td><td>—</td></tr>
-          <tr><td>B</td><td>Precio de compra por kilo (o por unidad)</td><td>—</td></tr>
+          <tr><td>B</td><td>Precio por kilo</td><td>—</td></tr>
           <tr><td>C</td><td>Rendimiento, con formato % (escribí 80 %, no 80)</td><td>—</td></tr>
           <tr><td>D</td><td>Costo real por kilo</td><td><code>=B2/C2</code></td></tr>
-          <tr><td>E</td><td>Cantidad por porción, en kilos o unidades (200 g = 0,2)</td><td>—</td></tr>
-          <tr><td>F</td><td>Costo del ingrediente</td><td><code>=D2*E2</code></td></tr>
+          <tr><td>E</td><td>Gramos por porción</td><td>—</td></tr>
+          <tr><td>F</td><td>Costo del ingrediente</td><td><code>=D2/1000*E2</code></td></tr>
         </tbody>
       </table>
     </div>
-    <p>Donde no hay precio por kilo (manteca y leche, aceite), escribí el costo directo en F.</p>
+    <p>Donde no hay precio por kilo (huevo, manteca y leche, aceite), escribí el costo directo en F.</p>
     <p>Debajo: en F8 el subtotal con <code>=SUMA(F2:F7)</code>, en F9 los varios con <code>=F8*5%</code> y en F10 el costo del plato con <code>=F8+F9</code>. Cuando cambia un precio, lo cambiás en B y todo se recalcula. Si no querés armarla desde cero, usá nuestra <a href="/guias/planilla-de-costos">planilla de costos</a>.</p>
 
     <h3>Si la receta rinde varias porciones</h3>
