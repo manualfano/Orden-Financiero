@@ -408,7 +408,7 @@ DESCARGAS = {
         # Mermas reales de la hoja "Mermas por producto" (papa 15 %, lomo 20 %, salmón entero 50 %)
         'hoja': {'cab': ('Insumo', 'Merma', 'Para 200 g netos'),
                  'filas': [('Papa', '15 %', '235 g'), ('Lomo (vacuno)', '20 %', '250 g'), ('Salmón (entero)', '50 %', '400 g')],
-                 'total': ('Y 273 insumos más', '', ''),
+                 'total': ('Y 273 más', '', ''),
                  'pestanas': ['Insumos', 'Recetas', 'Márgenes', 'Mermas', 'Desperdicio']},
         'trae': ['276 insumos con la merma de referencia ya cargada.',
                  'Recetas con costo por porción: la merma se suma sola.',
