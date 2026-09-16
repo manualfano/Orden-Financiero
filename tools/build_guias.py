@@ -65,7 +65,10 @@ CSS = TOKENS + """
   .ec-op { padding-left: 0.1em; }
   .ec-p { font-style: normal; }
   .ec-frac { display: inline-flex; flex-direction: column; align-items: stretch; text-align: center; vertical-align: middle; }
-  .ec-num, .ec-den { display: flex; justify-content: center; align-items: center; column-gap: 0.28em; padding: 0.08em 0.3em; white-space: nowrap; }
+  .ec-w { font-family: 'Inter', system-ui, sans-serif; font-size: 0.8em; font-weight: 600; }
+  .ec-num, .ec-den { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; column-gap: 0.28em; padding: 0.08em 0.3em; }
+  .ec-frac { max-width: 100%; }
+  .ec-linea:has(.ec-w) { font-size: 1.3em; row-gap: 4px; }
   .ec-num { border-bottom: 1.5px solid currentColor; }
   .ec-frac .ec-frac { font-size: 0.85em; }
   .ec-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -412,7 +415,13 @@ def _html_nodo(n, suelto=False):
     tipo = n[0]
     if tipo == 'atomo':
         t = n[1]
-        clase = 'ec-v' if re.search(r'[A-Za-zÁÉÍÓÚáéíóúñÑ]', t) else 'ec-n'
+        # Siglas cortas (CF, CMV) en cursiva, como en un libro; nombres con palabras en letra normal.
+        if not re.search(r'[A-Za-zÁÉÍÓÚáéíóúñÑ]', t):
+            clase = 'ec-n'
+        elif ' ' in t or len(t) > 5:
+            clase = 'ec-w'
+        else:
+            clase = 'ec-v'
         return f'<span class="{clase}">{html.escape(t)}</span>'
     if tipo == 'op':
         return f'<span class="ec-op">{n[1]}</span>'

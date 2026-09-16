@@ -83,7 +83,10 @@ function gtag() { dataLayer.push(arguments); }
   .ec-op { padding-left: 0.1em; }
   .ec-p { font-style: normal; }
   .ec-frac { display: inline-flex; flex-direction: column; align-items: stretch; text-align: center; vertical-align: middle; }
-  .ec-num, .ec-den { display: flex; justify-content: center; align-items: center; column-gap: 0.28em; padding: 0.08em 0.3em; white-space: nowrap; }
+  .ec-w { font-family: 'Inter', system-ui, sans-serif; font-size: 0.8em; font-weight: 600; }
+  .ec-num, .ec-den { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; column-gap: 0.28em; padding: 0.08em 0.3em; }
+  .ec-frac { max-width: 100%; }
+  .ec-linea:has(.ec-w) { font-size: 1.3em; row-gap: 4px; }
   .ec-num { border-bottom: 1.5px solid currentColor; }
   .ec-frac .ec-frac { font-size: 0.85em; }
   .ec-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -343,22 +346,22 @@ function gtag() { dataLayer.push(arguments); }
       <aside class="resumen"><p>Lo más importante</p><ul><li>Rentabilidad sobre ventas (margen neto) = resultado neto ÷ ventas netas.</li><li>Sobre la inversión = resultado neto del año ÷ plata invertida a valores de hoy.</li><li>Incluí tu sueldo antes de calcularla; si no, sale inflada.</li></ul></aside>
       <details class="indice-movil"><summary>En esta guía</summary><ol><li><a href="#que-es-la-rentabilidad-de-un-negocio">Qué es la rentabilidad de un negocio</a></li><li><a href="#la-formula-de-la-rentabilidad">La fórmula de la rentabilidad</a></li><li><a href="#ejemplo-la-rentabilidad-de-un-restaurante">Ejemplo: la rentabilidad de un restaurante</a></li><li><a href="#que-rentabilidad-es-buena">Qué rentabilidad es buena</a></li><li><a href="#como-mejorar-la-rentabilidad">Cómo mejorar la rentabilidad</a></li><li><a href="#en-cuanto-tiempo-se-recupera-la-inversion">En cuánto tiempo se recupera la inversión</a></li><li><a href="#la-rentabilidad-de-un-producto">La rentabilidad de un producto</a></li><li><a href="#como-calcular-la-rentabilidad-en-excel">Cómo calcular la rentabilidad en Excel</a></li><li><a href="#errores-comunes">Errores comunes</a></li><li><a href="#preguntas-frecuentes">Preguntas frecuentes</a></li></ol></details>
       <article>
-<p>"Facturo mucho" no es lo mismo que "gano mucho". Y ganar mucho tampoco dice si valió la pena poner la plata en ese negocio. Para eso está la rentabilidad.</p>
+<p>La rentabilidad te dice si tu negocio te rinde. "Facturo mucho" no es lo mismo que "gano mucho". Y ganar mucho tampoco dice si valió la pena poner la plata ahí.</p>
 
     <h2 id="que-es-la-rentabilidad-de-un-negocio">Qué es la rentabilidad de un negocio</h2>
     <p>La <strong>rentabilidad</strong> es cuánto gana el negocio comparado con algo. Se mira de dos formas:</p>
     <ul>
       <li><strong>Rentabilidad sobre ventas:</strong> de cada $100 que vendés, cuántos te quedan. Es el <strong>margen neto</strong> (lo que queda de cada $100 vendidos después de pagar todo).</li>
-      <li><strong>Rentabilidad sobre la inversión:</strong> cuánto rinde por año la plata que pusiste para armar el negocio. También se la llama ROI.</li>
+      <li><strong>Rentabilidad sobre la inversión:</strong> cuánto rinde por año la plata que pusiste para armar el negocio. En inglés le dicen ROI.</li>
     </ul>
     <p>La primera te dice si el negocio funciona mes a mes. La segunda, si te conviene tener la plata ahí o en otro lado.</p>
 
     <h2 id="la-formula-de-la-rentabilidad">La fórmula de la rentabilidad</h2>
-    <figure class="ecuacion"><div class="ec-linea"><span class="ec-v">RV%</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-v">RN</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-v">VN</span></span></span><span class="ec-op">×</span><span class="ec-n">100</span></div><div class="ec-linea"><span class="ec-v">ROI%</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-v">RNa</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-v">I</span></span></span><span class="ec-op">×</span><span class="ec-n">100</span></div><div class="ec-linea"><span class="ec-v">Meses</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-v">I</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-v">RN</span></span></span></div><dl class="ec-ref"><div><dt>RV%</dt><dd>Rentabilidad sobre ventas <span class="ec-u">porcentaje</span></dd></div><div><dt>ROI%</dt><dd>Rentabilidad sobre la inversión <span class="ec-u">porcentaje por año</span></dd></div><div><dt>Meses</dt><dd>Tiempo para recuperar la inversión <span class="ec-u">meses</span></dd></div><div><dt>RN</dt><dd>Resultado neto del mes <span class="ec-u">pesos por mes</span></dd></div><div><dt>RNa</dt><dd>Resultado neto del año <span class="ec-u">pesos por año</span></dd></div><div><dt>VN</dt><dd>Ventas netas del mes <span class="ec-u">pesos por mes</span></dd></div><div><dt>I</dt><dd>Plata invertida <span class="ec-u">pesos, a valores de hoy</span></dd></div></dl></figure>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Rentabilidad sobre ventas %</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Resultado neto</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Ventas netas</span></span></span><span class="ec-op">×</span><span class="ec-n">100</span></div><div class="ec-linea"><span class="ec-w">Rentabilidad sobre la inversión %</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Resultado neto del año</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Plata invertida</span></span></span><span class="ec-op">×</span><span class="ec-n">100</span></div><div class="ec-linea"><span class="ec-w">Meses para recuperar la inversión</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Plata invertida</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Resultado neto del mes</span></span></span></div></figure>
     <ul>
-      <li><strong>Ventas netas:</strong> lo vendido sin IVA ni comisiones. Si sos monotributista, no hay IVA que sacar.</li>
+      <li><strong>Ventas netas:</strong> lo vendido sin IVA. Si sos monotributista, no hay IVA que sacar.</li>
       <li><strong>Resultado neto</strong> (lo que gana el negocio después de pagar todo): la última línea del <a href="/guias/estado-de-resultados">estado de resultados</a>.</li>
-      <li><strong>Plata invertida:</strong> obra, equipamiento, llave y la plata para arrancar. Tomala a valores de hoy: lo que te costaría armarlo ahora.</li>
+      <li><strong>Plata invertida:</strong> obra, máquinas, la llave del local y la plata para arrancar. Tomala a valores de hoy: lo que te costaría armarlo ahora.</li>
     </ul>
     <p>Si pagás impuesto a las ganancias, lo que te queda es algo menos. Preguntale a tu contador cuánto restar.</p>
 
@@ -377,25 +380,26 @@ function gtag() { dataLayer.push(arguments); }
         </tbody>
       </table>
     </div>
-    <p class="nota">Números de ejemplo, para mostrar el método. Muchos restaurantes ganan bastante menos: no lo tomes como referencia.</p>
+    <p class="nota">Números de ejemplo. Muchos restaurantes ganan bastante menos: no lo tomes como referencia.</p>
     <p>Leído simple: de cada $100 que vende, le quedan unos $15. Y la plata que puso vuelve en poco más de dos años, si el resultado se mantiene.</p>
 
     <h3>El sueldo del dueño</h3>
-    <p>Si trabajás en el negocio, poné tu sueldo en los gastos antes de calcular: lo que le pagarías a un encargado que haga tu trabajo. Si no, la rentabilidad sale inflada. Lo que retirás por encima de ese sueldo sale de la ganancia.</p>
+    <p>Si trabajás en el negocio, poné tu sueldo en los gastos antes de calcular. Contá lo que le pagarías a un encargado que haga tu trabajo. Si no, la rentabilidad sale inflada. Lo que retirás por encima de ese sueldo sale de la ganancia.</p>
 
     <h2 id="que-rentabilidad-es-buena">Qué rentabilidad es buena</h2>
-    <p>No hay un número único para todos los rubros. La comparación que sirve siempre: ¿el negocio rinde más que esa plata en un plazo fijo? Tiene que rendir bastante más, porque tiene más riesgo y te lleva más trabajo.</p>
-    <p>Qué hacer: una vez por año, calculá la rentabilidad sobre la inversión y ponela al lado de lo que te daría un plazo fijo en el mismo año.</p>
+    <p>El negocio tiene que rendir bastante más que un plazo fijo, porque tiene más riesgo y te lleva más trabajo. El número exacto depende del rubro.</p>
+    <p>Qué hacer: una vez por año, poné tu rentabilidad sobre la inversión al lado de lo que te habría dado un plazo fijo.</p>
 
     <h2 id="como-mejorar-la-rentabilidad">Cómo mejorar la rentabilidad</h2>
     <p>Hay dos caminos:</p>
     <ul>
-      <li><strong>Ganar más de cada venta:</strong> revisar precios, <a href="/guias/food-cost">food cost</a> y gastos fijos.</li>
-      <li><strong>Vender más con lo que ya tenés:</strong> más turnos, delivery, mejor uso del salón. Y no invertir en lo que no suma ventas.</li>
+      <li><strong>Ganar más de cada venta:</strong> revisar precios, lo que te cuesta la <a href="/guias/food-cost">mercadería</a> y gastos fijos.</li>
+      <li><strong>Vender más con lo que ya tenés:</strong> más horas abierto, delivery, mejor uso del local. Y no invertir en lo que no suma ventas.</li>
     </ul>
 
     <h2 id="en-cuanto-tiempo-se-recupera-la-inversion">En cuánto tiempo se recupera la inversión</h2>
-    <p>El <strong>recupero de la inversión</strong> (cuántos meses tarda el negocio en devolverte la plata que pusiste) sirve sobre todo para decidir inversiones nuevas. La regla: dividí por lo que <strong>esa inversión suma</strong> al resultado, no por todo lo que gana el negocio.</p>
+    <p>El <strong>recupero de la inversión</strong> (cuántos meses tarda el negocio en devolverte la plata que pusiste) sirve sobre todo para decidir una compra grande.</p>
+    <p>La regla: dividí por lo que <strong>esa compra suma</strong> al resultado, no por todo lo que gana el negocio. Un horno de $6.000.000 que te suma $500.000 por mes se paga en 12 meses.</p>
 
     <h3>Ejemplo: ¿conviene una reforma?</h3>
     <p>El restaurante piensa gastar $18.000.000 en ampliar el salón. Calcula que eso le suma $900.000 de resultado neto por mes. Al contrato de alquiler le quedan 24 meses.</p>
@@ -403,12 +407,13 @@ function gtag() { dataLayer.push(arguments); }
       <li>Rentabilidad sobre la inversión: $900.000 × 12 ÷ $18.000.000 = <strong>60 % por año</strong>.</li>
       <li>Recupero: $18.000.000 ÷ $900.000 = <strong>20 meses</strong>.</li>
     </ul>
-    <p>El 60 % parece muy bueno. Pero se recupera en 20 meses y el contrato vence en 24: si no renueva, casi no gana nada. Qué hacer: negociar la renovación antes de empezar la obra, o hacer una reforma más chica.</p>
+    <p>El 60 % parece muy bueno. Pero la plata vuelve recién en 20 meses, y el contrato vence en 24. Si no renueva, casi no gana nada. Qué hacer: negociar la renovación antes de empezar la obra, o hacer una reforma más chica.</p>
 
     <h2 id="la-rentabilidad-de-un-producto">La rentabilidad de un producto</h2>
-    <p>Para saber qué producto conviene más, mirá lo que deja cada uno: el <strong>margen de contribución</strong> (precio sin IVA menos lo que cuesta hacerlo, como la mercadería) por cuántos vendés.</p>
+    <p>Para saber qué producto conviene más, mirá cuántos pesos te trae en el mes: lo que deja cada uno por cuántos vendés.</p>
+    <p>Lo que deja cada uno es el <strong>margen de contribución</strong> (el precio sin IVA menos lo que cuesta hacerlo, como la mercadería).</p>
     <p>La milanesa deja <strong>$9.739 por plato</strong>. Si se venden 500 por mes, aporta $4.869.500. Un plato que deja $6.000 pero se vende 900 veces aporta $5.400.000: más pesos, aunque cada uno deje menos.</p>
-    <p>Qué hacer: ordená tus productos por pesos aportados en el mes. Promocioná los de arriba y revisá precio o costo de los que se venden mucho y dejan poco. La cuenta completa está en <a href="/guias/precio-de-venta">precio de venta</a> y <a href="/guias/margen-de-ganancia">margen de ganancia</a>.</p>
+    <p>Qué hacer: ordená tus productos por los pesos que traen en el mes. Promocioná los de arriba. A los que se venden mucho y dejan poco, revisales precio o costo. La cuenta completa está en <a href="/guias/precio-de-venta">precio de venta</a> y <a href="/guias/margen-de-ganancia">margen de ganancia</a>.</p>
 
     <h2 id="como-calcular-la-rentabilidad-en-excel">Cómo calcular la rentabilidad en Excel</h2>
     <div class="tabla">
@@ -424,14 +429,13 @@ function gtag() { dataLayer.push(arguments); }
         </tbody>
       </table>
     </div>
-    <p>Usá un mes normal, no uno de temporada alta ni uno flojo. Cargala todos los meses y mirá hacia dónde va.</p>
+    <p>Usá un mes normal, no uno de temporada alta ni uno flojo. Completala todos los meses y mirá si mejora.</p>
 
     <h2 id="errores-comunes">Errores comunes</h2>
     <ul>
       <li><strong>Confundir facturación con rentabilidad:</strong> vender más no sirve si cada venta deja menos.</li>
       <li><strong>No incluir el sueldo del dueño:</strong> la rentabilidad parece mucho mejor de lo que es.</li>
       <li><strong>Usar la inversión a valores viejos:</strong> con inflación, la rentabilidad sobre la inversión sale inflada.</li>
-      <li><strong>Calcular el recupero de una reforma con todo lo que gana el negocio:</strong> cualquier obra parece que se paga sola.</li>
       <li><strong>Confundir rentabilidad con plata en la cuenta:</strong> un negocio puede ganar y quedarse sin caja. Eso se mira con el <a href="/guias/capital-de-trabajo">capital de trabajo</a>.</li>
     </ul>
     <h2 id="preguntas-frecuentes">Preguntas frecuentes</h2>
@@ -449,9 +453,9 @@ function gtag() { dataLayer.push(arguments); }
       </article>
       <aside class="caja-autor"><img src="/foto-manuel-cutout.webp" alt="Manuel Alfano" width="72" height="72" loading="lazy"><div><strong>Manuel Alfano</strong><p>Fundador de Orden Financiero. Más de 12 años en la gastronomía con negocio propio; hoy trabaja mano a mano con dueños de negocios para ordenar sus números.</p></div></aside>
       <section class="seguir"><h2>Seguí leyendo</h2><ul class="tarjetas">
-      <li data-claves="Muestra si el negocio ganó o perdió en el mes: ventas netas − CMV − estructura − costos financieros − impuestos. Los porcentajes van sobre ventas netas, y cada mes se suma una parte del aguinaldo. No es lo mismo que la caja: un negocio puede ganar plata y quedarse sin efectivo. ¿Qué es un estado de resultados? ¿Cuál es la estructura del estado de resultados? ¿Qué diferencia hay entre el estado de resultados y el flujo de caja? ¿El estado de resultados y el balance son lo mismo? ¿Cada cuánto conviene hacer el estado de resultados? Estado de resultados: qué es, estructura, modelo y ejemplo Resultado económico Vendo bien pero no me queda plata"><a href="/guias/estado-de-resultados"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><strong>Estado de resultados</strong><span class="desc">Qué es un estado de resultados, su estructura paso a paso, un modelo para un negocio en Argentina, un ejemplo completo en pesos y cómo armarlo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>8 min</span></span></a></li>
-      <li data-claves="Margen: lo que te queda de cada venta, dividido por el precio sin IVA. Markup: lo mismo, dividido por el costo. Un 40 % de margen es un 66,7 % de markup: confundirlos es perder plata en cada venta. El margen bruto no alcanza: mirá el margen neto del mes y, para elegir qué productos empujar, los pesos que deja cada uno en el mes (margen de contribución). ¿Qué es el margen de ganancia? ¿Cómo se calcula el margen de ganancia de un producto? ¿Margen y markup son lo mismo? ¿Margen de ganancia y rentabilidad son lo mismo? ¿Qué margen de ganancia es bueno? Margen de ganancia: qué es, cómo se calcula y en qué se diferencia del markup Resultado económico No sé qué precio poner"><a href="/guias/margen-de-ganancia"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><strong>Margen de ganancia</strong><span class="desc">Qué es el margen de ganancia, la fórmula para calcularlo de un producto y de un negocio, la diferencia con el markup, ejemplos en pesos y cómo hacerlo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>6 min</span></span></a></li>
-      <li data-claves="Capital de trabajo = lo que tenés en caja, por cobrar y en stock − lo que debés en el corto plazo. Mirá la prueba ácida (lo mismo pero sin el stock): si da menos de 1, sin vender mercadería no llegás a pagar lo que vence. Si es negativo, la plata de la cuenta no es toda tuya: una parte ya es de proveedores y sueldos. ¿Qué es el capital de trabajo? ¿Cuál es la fórmula del capital de trabajo? ¿Qué significa tener capital de trabajo negativo? ¿Qué es un crédito para capital de trabajo? ¿Capital de trabajo y ganancia son lo mismo? Capital de trabajo: qué es, cómo se calcula y cuánto necesita tu negocio Flujo de caja Nunca llego con la plata para pagar"><a href="/guias/capital-de-trabajo"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></span><strong>Capital de trabajo</strong><span class="desc">Qué es el capital de trabajo, la fórmula, qué significa que sea negativo, el ciclo de caja, ejemplos en pesos de un comercio y un restaurante y cómo calcularlo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>8 min</span></span></a></li>
+      <li data-claves="Muestra si el negocio ganó o perdió en el mes: ventas netas − CMV − estructura − costos financieros − impuestos. Los porcentajes van sobre ventas netas. A los sueldos de cada mes se les suma su parte de aguinaldo. No es lo mismo que la caja: un negocio puede ganar plata y quedarse sin efectivo. ¿Qué es un estado de resultados? ¿Cuál es la estructura del estado de resultados? ¿Qué diferencia hay entre el estado de resultados y el flujo de caja? ¿El estado de resultados y el balance son lo mismo? ¿Cada cuánto conviene hacer el estado de resultados? Estado de resultados: qué es, estructura, modelo y ejemplo Resultado económico Vendo bien pero no me queda plata"><a href="/guias/estado-de-resultados"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><strong>Estado de resultados</strong><span class="desc">Qué es un estado de resultados, su estructura paso a paso, un modelo para un negocio en Argentina, un ejemplo completo en pesos y cómo armarlo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>7 min</span></span></a></li>
+      <li data-claves="Margen: lo que te queda de cada venta, dividido por el precio sin IVA. Markup: lo mismo, dividido por el costo. Un 40 % de margen es un 66,7 % de markup: confundirlos es perder plata en cada venta. El margen bruto no alcanza: mirá el margen neto del mes. Para elegir qué productos empujar, mirá los pesos que deja cada uno (margen de contribución). ¿Qué es el margen de ganancia? ¿Cómo se calcula el margen de ganancia de un producto? ¿Margen y markup son lo mismo? ¿Margen de ganancia y rentabilidad son lo mismo? ¿Qué margen de ganancia es bueno? Margen de ganancia: qué es, cómo se calcula y en qué se diferencia del markup Resultado económico No sé qué precio poner"><a href="/guias/margen-de-ganancia"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><strong>Margen de ganancia</strong><span class="desc">Qué es el margen de ganancia, la fórmula para calcularlo de un producto y de un negocio, la diferencia con el markup, ejemplos en pesos y cómo hacerlo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>6 min</span></span></a></li>
+      <li data-claves="Capital de trabajo = lo que tenés en caja, por cobrar y en stock − lo que debés en el corto plazo. Mirá la prueba ácida (lo mismo, pero sin contar el stock): si da menos de 1, no llegás a pagar lo que vence sin vender mercadería. Si es negativo, la plata de la cuenta no es toda tuya: una parte ya es de proveedores y sueldos. ¿Qué es el capital de trabajo? ¿Cuál es la fórmula del capital de trabajo? ¿Qué significa tener capital de trabajo negativo? ¿Qué es un crédito para capital de trabajo? ¿Capital de trabajo y ganancia son lo mismo? Capital de trabajo: qué es, cómo se calcula y cuánto necesita tu negocio Flujo de caja Nunca llego con la plata para pagar"><a href="/guias/capital-de-trabajo"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></span><strong>Capital de trabajo</strong><span class="desc">Qué es el capital de trabajo, la fórmula, qué significa que sea negativo, el ciclo de caja, ejemplos en pesos de un comercio y un restaurante y cómo calcularlo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>8 min</span></span></a></li>
       </ul></section>
     </div>
     <nav class="indice-guia" aria-label="En esta guía"><p>En esta guía</p><ol><li><a href="#que-es-la-rentabilidad-de-un-negocio">Qué es la rentabilidad de un negocio</a></li><li><a href="#la-formula-de-la-rentabilidad">La fórmula de la rentabilidad</a></li><li><a href="#ejemplo-la-rentabilidad-de-un-restaurante">Ejemplo: la rentabilidad de un restaurante</a></li><li><a href="#que-rentabilidad-es-buena">Qué rentabilidad es buena</a></li><li><a href="#como-mejorar-la-rentabilidad">Cómo mejorar la rentabilidad</a></li><li><a href="#en-cuanto-tiempo-se-recupera-la-inversion">En cuánto tiempo se recupera la inversión</a></li><li><a href="#la-rentabilidad-de-un-producto">La rentabilidad de un producto</a></li><li><a href="#como-calcular-la-rentabilidad-en-excel">Cómo calcular la rentabilidad en Excel</a></li><li><a href="#errores-comunes">Errores comunes</a></li><li><a href="#preguntas-frecuentes">Preguntas frecuentes</a></li></ol></nav>

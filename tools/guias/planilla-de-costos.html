@@ -16,11 +16,11 @@
   "faq": [
     {
       "q": "¿La planilla de costos es gratis?",
-      "a": "Sí. Dejás tu WhatsApp y se descarga al instante. No hay que pagar nada ni instalar ningún programa: es un archivo de Excel."
+      "a": "Sí. Dejás tu WhatsApp y se descarga al instante. No pagás nada ni instalás ningún programa: es un archivo de Excel."
     },
     {
       "q": "¿Cargo los precios de los insumos con o sin IVA?",
-      "a": "Si sos responsable inscripto, sin IVA: el neto de la factura. Si sos monotributista, con IVA: el total que pagaste. En la hoja Márgenes elegís tu condición y la planilla hace el resto."
+      "a": "Si sos responsable inscripto, sin IVA. Si sos monotributista, con IVA: el total que pagaste. En la hoja Márgenes elegís cuál sos y la planilla hace el resto."
     },
     {
       "q": "¿Qué hago si la merma de mi insumo es distinta a la de la planilla?",
@@ -36,25 +36,25 @@
     },
     {
       "q": "¿Una planilla de costos reemplaza a un sistema de gestión?",
-      "a": "No hace lo mismo. El sistema registra ventas y stock; la planilla te dice cuánto cuesta cada plato y cuánto te deja. Ese número es el que decide los precios."
+      "a": "No, hacen cosas distintas. El sistema anota ventas y stock. La planilla te dice cuánto cuesta cada producto y cuánto te deja, que es lo que necesitás para poner precios."
     }
   ],
   "resumen": [
     "La planilla calcula el costo de cada plato con la merma incluida: cargás el precio del insumo y lo que lleva la receta.",
-    "Muestra cuánto te deja cada producto sin IVA y cuántas veces el costo vendés, para ver qué precios hay que corregir.",
-    "Sirve si la actualizás: cambiá el precio del insumo cuando aumenta y todas las recetas se recalculan solas."
+    "Muestra cuánto te deja cada producto sin IVA y a cuántas veces su costo lo vendés, para ver qué precios hay que corregir.",
+    "Sirve si la actualizás: cuando un insumo aumenta, cambiás el precio y todas las recetas se recalculan solas."
   ]
 } -->
-    <p>Saber cuánto cuesta cada plato no debería llevarte una tarde con la calculadora. Con una planilla de costos cargás el precio de cada insumo una vez, y el costo de todas las recetas que lo usan se calcula solo. Acá te dejamos la nuestra, gratis, y te mostramos cómo usarla con un ejemplo.</p>
+    <p>Esta planilla de Excel te dice cuánto te cuesta hacer cada producto y cuánto te deja. Cargás el precio de cada insumo una vez y el costo de todas las recetas se calcula solo. Es gratis: acá te mostramos cómo usarla con un ejemplo.</p>
 
     <h2>Qué es una planilla de costos</h2>
     <p>Es un Excel donde anotás <strong>lo que pagás por cada insumo</strong> y <strong>lo que lleva cada receta</strong>. Con eso te dice cuánto te cuesta cada plato, cuánto te deja y cuánta plata se va en desperdicio.</p>
-    <p>Sirve para restaurantes, bares, cafeterías y para quien elabora lo que vende: viandas, pastelería, panificados. Si revendés sin transformar, te conviene la guía de <a href="/guias/margen-de-ganancia">margen de ganancia</a>.</p>
+    <p>Sirve para restaurantes, bares, cafeterías, panaderías y para quien elabora lo que vende. Si comprás y revendés sin elaborar, te conviene la guía de <a href="/guias/margen-de-ganancia">margen de ganancia</a>.</p>
     <p>La nuestra se llama <strong>Calculadora de costos y márgenes</strong> y tiene seis hojas:</p>
     <ul>
       <li><strong>Instrucciones:</strong> qué completar en cada hoja.</li>
-      <li><strong>Insumos:</strong> casi 300 insumos de gastronomía ya escritos. Vos ponés el costo del bulto y cuánto trae.</li>
-      <li><strong>Recetas:</strong> hasta 20. Cada una es una <strong>ficha de costo</strong> (la receta con lo que cuesta cada ingrediente) y termina en el <strong>costo por porción</strong> (lo que cuesta la materia prima de un plato servido).</li>
+      <li><strong>Insumos:</strong> casi 300 insumos ya escritos. Vos ponés el costo del bulto (la bolsa, la caja o el paquete, como viene en la factura) y cuánto trae.</li>
+      <li><strong>Recetas:</strong> hasta 20. Cada una es una <strong>ficha de costo</strong> (la receta con lo que cuesta cada ingrediente) y termina en el <strong>costo por porción</strong> (lo que cuestan los ingredientes de un plato servido).</li>
       <li><strong>Márgenes por producto:</strong> todas las recetas juntas, con lo que te deja cada una.</li>
       <li><strong>Mermas por producto:</strong> la <strong>merma</strong> (lo que se pierde al limpiar, pelar o cocinar) de cada insumo, ya cargada.</li>
       <li><strong>Control de desperdicio:</strong> lo que se tira, en pesos y por motivo.</li>
@@ -74,12 +74,13 @@
           <tr><td>Huevos</td><td class="n">30 unidades</td><td class="n">$7.500</td><td class="n">$250 c/u</td></tr>
           <tr><td>Manteca</td><td class="n">1.000 g</td><td class="n">$10.000</td><td class="n">$10 por g</td></tr>
           <tr><td>Aceite para freír</td><td class="n">5.000 ml</td><td class="n">$20.000</td><td class="n">$4 por ml</td></tr>
+          <tr><td>Queso rallado</td><td class="n">1.000 g</td><td class="n">$19.700</td><td class="n">$19,70 por g</td></tr>
         </tbody>
       </table>
     </div>
 
     <h3>2. Armá la receta</h3>
-    <p>En la hoja Recetas elegís cada insumo del desplegable y escribís el <strong>peso neto</strong> (lo que lleva el plato, ya limpio). La planilla trae la merma y calcula el <strong>peso bruto</strong> (lo que tenés que comprar) y el costo:</p>
+    <p>En la hoja Recetas elegís cada insumo de la lista y escribís el <strong>peso neto</strong> (lo que lleva el plato, ya limpio). La planilla le suma la merma y te da el <strong>peso bruto</strong> (lo que tenés que comprar) y el costo:</p>
     <div class="tabla">
       <table>
         <thead><tr><th>Insumo</th><th class="n">Peso neto</th><th class="n">Merma</th><th class="n">Peso bruto</th><th class="n">Costo</th></tr></thead>
@@ -90,24 +91,21 @@
           <tr><td>Huevos</td><td class="n">½ unidad</td><td class="n">—</td><td class="n">½ unidad</td><td class="n">$125</td></tr>
           <tr><td>Manteca</td><td class="n">15 g</td><td class="n">0 %</td><td class="n">15 g</td><td class="n">$150</td></tr>
           <tr><td>Aceite para freír</td><td class="n">50 ml</td><td class="n">0 %</td><td class="n">50 ml</td><td class="n">$200</td></tr>
-          <tr><td>Sal y condimentos</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">$197</td></tr>
+          <tr><td>Queso rallado</td><td class="n">10 g</td><td class="n">0 %</td><td class="n">10 g</td><td class="n">$197</td></tr>
           <tr class="total"><td>Costo por porción</td><td></td><td></td><td></td><td class="n">$4.145</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="nota">Precios de ejemplo: usá los de tus facturas. Las mermas son las medidas en esta cocina; la planilla trae otras de referencia.</p>
-    <p>La nalga muestra por qué importa la merma: para servir 200 g limpios comprás 250 g, porque el 20 % se va al limpiarla. Te queda un <strong>rendimiento</strong> (la parte que sí usás) del 80 %. La planilla hace esta cuenta sola:</p>
+    <p class="nota">Precios de ejemplo: usá los de tus facturas. Las mermas son las que pesamos en esta cocina; la planilla trae otras de referencia.</p>
+    <p>Mirá la nalga: para servir 200 g limpios comprás 250 g, porque el 20 % se va al limpiarla. Te queda un <strong>rendimiento</strong> (la parte que sí usás) del 80 %. La planilla hace esta cuenta sola:</p>
     <formula>
-    PB = PN / (1 − M)
-    PB: Peso bruto | gramos que comprás
-    PN: Peso neto | gramos que lleva el plato
-    M: Merma | en decimales: 20 % es 0,20
+    Gramos que comprás = Gramos que lleva el plato / Rendimiento
     </formula>
     <p>Esos 250 g a $12 son $3.000: la carne sola es el 72 % del plato.</p>
-    <p><strong>Pesá tu merma, no te quedes con la de referencia.</strong> Con el 16 % que trae la planilla para la nalga, el plato daría $4.002: $143 menos por plato que no estarías viendo. Pesá tus 3 o 4 insumos más caros antes y después de limpiarlos, y corregí la merma en la hoja Mermas.</p>
+    <p><strong>Pesá tu merma, no uses la de referencia.</strong> La planilla trae 16 % para la nalga. Con ese número el plato daría $4.002: $143 menos de lo que te cuesta de verdad. Pesá tus 3 o 4 insumos más caros antes y después de limpiarlos, y corregí la merma en la hoja Mermas.</p>
 
     <h3>3. Mirá el margen</h3>
-    <p>La milanesa está en la carta a $16.800. Si sos responsable inscripto, la planilla le saca el IVA, porque esa parte no es tuya. En la hoja Márgenes ves:</p>
+    <p>En la hoja Márgenes ves cuánto te deja cada plato. La milanesa está en la carta a $16.800. Si sos responsable inscripto, la planilla le saca el IVA, porque esa parte no es tuya:</p>
     <div class="tabla">
       <table>
         <thead><tr><th>Precio de carta</th><th class="n">Precio sin IVA</th><th class="n">Costo</th><th class="n">Ganancia por unidad</th><th class="n">Ventas/costos</th></tr></thead>
@@ -116,32 +114,32 @@
         </tbody>
       </table>
     </div>
-    <p>Ventas/costos 3,3 quiere decir que la vendés a 3,3 veces lo que te cuesta. Dicho de otra forma, la materia prima es el 29,9 % del precio sin IVA: ese es el <a href="/guias/food-cost">food cost</a> (el porcentaje del precio que se va en materia prima).</p>
-    <p>Esos $9.739 no son ganancia limpia: con esa plata todavía pagás sueldos, alquiler y el resto de los gastos.</p>
-    <p><strong>Qué hacer:</strong> en el rubro se busca un food cost de 25 % a 35 %. Si un plato tiene ventas/costos por debajo de 2,86, está arriba de 35 %: revisale el precio, la porción o el proveedor.</p>
+    <p>Ventas/costos 3,3 quiere decir que la vendés a 3,3 veces lo que te cuesta. O sea, los ingredientes son el 29,9 % del precio sin IVA. Eso es el <a href="/guias/food-cost">food cost</a> (la parte del precio que se va en ingredientes).</p>
+    <p>Esos $9.739 no quedan en tu bolsillo: con esa plata todavía pagás sueldos, alquiler y los demás gastos.</p>
+    <p><strong>Qué hacer:</strong> lo sano es un food cost de 25 % a 35 %. Si un plato se vende a menos de 2,86 veces su costo, se pasa del 35 %. Revisale el precio, la porción o el proveedor.</p>
     <p>Si querés ver el cálculo a mano, está en la guía de <a href="/guias/costo-de-un-plato">cómo calcular el costo de un plato</a>.</p>
 
     <h2>Cómo usar la planilla de costos en Excel</h2>
     <ol>
-      <li><strong>Elegí tu condición fiscal</strong> en la hoja Márgenes (celda L2): responsable inscripto o monotributista.</li>
-      <li><strong>Completá solo los insumos que usás.</strong> La cantidad del bulto va en gramos (una horma de 3,2 kg son 3.200 g), mililitros o unidades.</li>
-      <li><strong>Cargá tus recetas</strong>, empezando por los 5 platos que más vendés. Si una celda de costo se pone roja, a ese insumo le falta el precio.</li>
-      <li><strong>Corregí la merma</strong> de tus 3 o 4 insumos más caros con lo que pesás en tu cocina.</li>
+      <li><strong>Elegí si sos responsable inscripto o monotributista</strong> en la hoja Márgenes (celda L2).</li>
+      <li><strong>Completá solo los insumos que usás.</strong> Lo que trae el bulto va en gramos (una bolsa de harina de 25 kg son 25.000 g), mililitros o unidades.</li>
+      <li><strong>Cargá tus recetas</strong>, empezando por los 5 productos que más vendés. Si una celda de costo se pone roja, a ese insumo le falta el precio.</li>
+      <li><strong>Corregí la merma</strong> de tus 3 o 4 insumos más caros con lo que pesás vos.</li>
       <li><strong>Anotá lo que se tira</strong> cada día en Control de desperdicio: insumo, cantidad y motivo. La planilla lo pasa a pesos.</li>
     </ol>
 
     <h2>Cómo usarla en tu negocio</h2>
     <ul>
-      <li><strong>Cuando aumenta un proveedor,</strong> cambiá el costo del bulto en Insumos. Todas las recetas se recalculan y en Márgenes ves qué platos quedaron cortos.</li>
-      <li><strong>Revisá primero los platos que más vendés</strong> con ventas/costos bajo: pesan más que uno caro que sale poco. Para ponerles precio, seguí la guía de <a href="/guias/precio-de-venta">precio de venta de un plato</a>.</li>
-      <li><strong>Una vez por mes, mirá el desperdicio por motivo.</strong> Si lo que más plata suma es "no se vendió", el problema está en la compra o en la carta, no en la cocina.</li>
+      <li><strong>Cuando un proveedor aumenta,</strong> cambiá el precio en Insumos. Todas las recetas se recalculan y en Márgenes ves qué productos quedaron baratos.</li>
+      <li><strong>Revisá primero lo que más vendés</strong> si se vende a pocas veces su costo: pesa más que algo caro que sale poco. Para ponerle precio, seguí la guía de <a href="/guias/precio-de-venta">precio de venta de un plato</a>.</li>
+      <li><strong>Una vez por mes, mirá el desperdicio por motivo.</strong> Si lo que más plata suma es "no se vendió", estás comprando o produciendo de más.</li>
     </ul>
 
     <h2>Errores comunes</h2>
     <ul>
-      <li><strong>Poner el precio del kilo en un insumo que comprás por bulto:</strong> cargá el bulto como figura en la factura.</li>
-      <li><strong>Mezclar insumos con IVA y sin IVA:</strong> elegí un criterio y usalo en todos.</li>
-      <li><strong>Escribir el insumo a mano en la receta:</strong> elegilo del desplegable. Si el nombre no coincide, la planilla lo cuenta como $0.</li>
+      <li><strong>Poner el precio por kilo de algo que comprás por bulto:</strong> cargá el bulto como figura en la factura.</li>
+      <li><strong>Mezclar precios con IVA y sin IVA:</strong> cargalos todos igual.</li>
+      <li><strong>Escribir el insumo a mano en la receta:</strong> elegilo de la lista. Si el nombre no coincide, la planilla lo cuenta como $0.</li>
       <li><strong>No actualizar precios:</strong> con precios de hace tres meses, el costo que ves ya no es real.</li>
-      <li><strong>Olvidar lo que acompaña:</strong> guarnición, salsa, pan, envase del delivery. Todo lo que sale con el plato va en la receta.</li>
+      <li><strong>Olvidar lo que acompaña:</strong> guarnición, salsa, pan, envase del delivery. Todo lo que sale con el producto va en la receta.</li>
     </ul>
