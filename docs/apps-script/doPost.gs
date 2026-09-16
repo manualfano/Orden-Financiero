@@ -6,7 +6,7 @@
 //
 // CAMBIO 15/09/2026 (versión 2026-09-15-descargas)
 // Las descargas de Excel desde las guías llegan con tipo "descarga" y van a
-// una pestaña propia, "Descarga de Excel" (se crea sola con la primera
+// una pestaña propia, "Descargas WhatsApp" (se crea sola con la primera
 // descarga), con un mail corto "Descargó el Excel". No tocan Leads ni
 // Detalle y NO arman presentación. El diagnóstico funciona igual que antes.
 //
@@ -56,11 +56,11 @@
 //     versión anterior. Nada se borra.
 // ═══════════════════════════════════════════════════════════════
 
-const VERSION_SCRIPT = '2026-09-15-descargas';
+const VERSION_SCRIPT = '2026-09-16-descargas-whatsapp';
 
 // Descargas de material desde las guías (15/09/2026): van a su propia pestaña,
 // con un mail corto y SIN presentación. La web las marca con tipo "descarga".
-const HOJA_DESCARGAS = 'Descarga de Excel';
+const HOJA_DESCARGAS = 'Descargas WhatsApp';
 const DESCARGAS_HEADERS = ['Lead ID', 'Fecha', 'WhatsApp', 'Archivo', 'Origen',
   'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'Referrer'];
 
@@ -240,7 +240,7 @@ function guardarDescarga(data, leadId) {
         `UTM (source / medium / campaign / content): ${[d.utm_source, d.utm_medium, d.utm_campaign, d.utm_content].map(v => v || '-').join(' / ')}`,
         `Llegó desde: ${d.referrer || '-'}`,
         '',
-        'Queda en la pestaña "Descarga de Excel" del Sheet. No se arma presentación.'
+        'Queda en la pestaña "Descargas WhatsApp" del Sheet. No se arma presentación.'
       ].join('\n'));
   } catch (err) {
     console.error('Mail descarga ' + leadId + ': ' + err);
