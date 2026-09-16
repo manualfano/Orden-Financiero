@@ -239,7 +239,7 @@ CSS = TOKENS + """
   article .descarga-error { font-size: var(--fs-sm); color: var(--riesgo); font-weight: 600; margin: 6px 0 0; }
   article .descarga-error:empty { display: none; }
   .campo-extra { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-  .descarga-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2); width: 100%; min-height: 52px; margin-top: var(--s-4); padding: 0 var(--s-5); border: 0; border-radius: var(--r); background: var(--marca); color: var(--w); font: inherit; font-size: var(--fs-lead); font-weight: 600; text-decoration: none; cursor: pointer; transition: background var(--t-instante); }
+  .descarga-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2); width: 100%; min-height: 52px; margin-top: var(--s-4); padding: 0 var(--s-5); border: 0; border-radius: var(--r); background: var(--marca); color: var(--w); font: inherit; font-size: var(--fs-base); font-weight: 600; white-space: nowrap; text-decoration: none; cursor: pointer; transition: background var(--t-instante); }
   .descarga-btn:hover { background: var(--marca-hover); }
   .descarga-btn:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
   .descarga-btn[disabled] { opacity: 0.75; cursor: progress; }
