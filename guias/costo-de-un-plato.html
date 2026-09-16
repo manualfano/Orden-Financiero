@@ -383,13 +383,13 @@ function gtag() { dataLayer.push(arguments); }
     <h3>Si la receta rinde varias porciones</h3>
     <p>Salsas, masas, guarniciones y postres se cocinan en tandas. Calculá el costo de la receta completa y dividilo por las porciones que rinde: <strong>costo por porción = costo total de la receta ÷ porciones</strong>. Una salsa bolognesa que cuesta $18.000 y rinde 12 porciones cuesta $1.500 por porción, y ese número entra como un ingrediente más en la ficha del plato.</p>
 
-    <aside class="descarga" id="descarga-ficha-costo-plato" aria-labelledby="descarga-ficha-costo-plato-t" data-descarga="ficha-costo-plato" data-archivo="/descargas/ficha-de-costo-por-plato.xlsx" data-nombre="Ficha-de-costo-por-plato-Orden-Financiero.xlsx" data-origen="guia-costo-de-un-plato-excel" data-evento="ficha_excel_descarga">
+    <aside class="descarga" id="descarga-ficha-costo-plato" aria-labelledby="descarga-ficha-costo-plato-t" data-descarga="ficha-costo-plato" data-archivo="/descargas/calculadora-de-costos-y-margenes.xlsx" data-nombre="Calculadora-de-costos-y-margenes-Orden-Financiero.xlsx" data-origen="guia-costo-de-un-plato-excel" data-evento="calculadora_excel_descarga">
       <div class="descarga-info">
-        <p class="descarga-tipo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>Excel gratis · 3 hojas</p>
-        <h3 class="descarga-t" id="descarga-ficha-costo-plato-t">Descargá la ficha de costo en Excel</h3>
-        <p class="descarga-linea">Con merma, fórmulas listas y una hoja en blanco para tus platos.</p>
-        <div class="descarga-hoja" aria-hidden="true"><div class="fila cab"><span>Ingrediente</span><span>Merma</span><span>Costo</span></div><div class="fila"><span>Nalga</span><span>20 %</span><span>$3.000</span></div><div class="fila"><span>Papa</span><span>15 %</span><span>$353</span></div><div class="fila total"><span>Costo del plato</span><span></span><span>$4.145</span></div><div class="pestanas"><span class="on">Ejemplo milanesa</span><span>Plato nuevo</span><span>Cómo usarla</span></div></div>
-        <ul class="descarga-trae" aria-label="Qué trae el archivo"><li>El ejemplo de esta guía ya calculado, con merma y varios.</li><li>Una ficha en blanco: cargás precios y cantidades y calcula sola.</li><li>Cómo usarla, paso a paso.</li></ul>
+        <p class="descarga-tipo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>Excel gratis · 6 hojas</p>
+        <h3 class="descarga-t" id="descarga-ficha-costo-plato-t">Descargá la calculadora de costos en Excel</h3>
+        <p class="descarga-linea">Insumos con la merma ya cargada, recetas, márgenes sin IVA y control de desperdicio.</p>
+        <div class="descarga-hoja" aria-hidden="true"><div class="fila cab"><span>Insumo</span><span>Merma</span><span>Para 200 g netos</span></div><div class="fila"><span>Papa</span><span>15 %</span><span>235 g</span></div><div class="fila"><span>Lomo (vacuno)</span><span>20 %</span><span>250 g</span></div><div class="fila"><span>Salmón (entero)</span><span>50 %</span><span>400 g</span></div><div class="fila total"><span>276 insumos con merma cargada</span><span></span><span></span></div><div class="pestanas"><span class="on">Insumos</span><span>Recetas</span><span>Márgenes</span><span>Mermas</span><span>Desperdicio</span></div></div>
+        <ul class="descarga-trae" aria-label="Qué trae el archivo"><li>276 insumos con la merma de referencia ya cargada.</li><li>Recetas con costo por porción: la merma se suma sola.</li><li>Márgenes por producto sin IVA, si sos responsable inscripto o monotributista.</li><li>Control de desperdicio en pesos e instrucciones paso a paso.</li></ul>
       </div>
       <div class="descarga-form">
         <form class="descarga-campos" novalidate>
@@ -460,7 +460,7 @@ function gtag() { dataLayer.push(arguments); }
     var TIMEOUT_MS = 6000;
     var HINT = 'Código de área y número, sin el 0 ni el 15.';
     var MSGS = {
-      vacio: 'Escribí tu WhatsApp para descargar la ficha.',
+      vacio: 'Escribí tu WhatsApp para descargar la calculadora.',
       cero: 'Sacá el 0 del código de área: por ejemplo 221 555 0000.',
       quince: 'Sacá el 15 del número: por ejemplo 221 555 0000.',
       largo: 'Revisá el número: código de área y número, 10 dígitos en total (ej. 221 555 0000).'
@@ -545,7 +545,7 @@ function gtag() { dataLayer.push(arguments); }
         var t = document.createElement('strong');
         var p = document.createElement('p');
         if (repetida) {
-          t.textContent = 'Ya descargaste la ficha en esta computadora.';
+          t.textContent = 'Ya descargaste la calculadora en esta computadora.';
           var b = link(caja, 'Descargar de nuevo', 'descarga-btn');
           b.addEventListener('click', function () { track(caja.dataset.evento, { descarga: caja.dataset.descarga, modo: 'repetida' }); });
           listo.appendChild(t); listo.appendChild(b);

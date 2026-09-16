@@ -399,19 +399,21 @@ SCROLLSPY = """  <script>
 # El archivo queda en una URL pública: el WhatsApp se pide, pero no es un bloqueo real.
 DESCARGAS = {
     'ficha-costo-plato': {
-        'titulo': 'Descargá la ficha de costo en Excel',
-        'linea': 'Con merma, fórmulas listas y una hoja en blanco para tus platos.',
-        'archivo': '/descargas/ficha-de-costo-por-plato.xlsx',
-        'nombre': 'Ficha-de-costo-por-plato-Orden-Financiero.xlsx',
-        'evento': 'ficha_excel_descarga',
-        'tipo': 'Excel gratis · 3 hojas',
-        'hoja': {'cab': ('Ingrediente', 'Merma', 'Costo'),
-                 'filas': [('Nalga', '20 %', '$3.000'), ('Papa', '15 %', '$353')],
-                 'total': ('Costo del plato', '', '$4.145'),
-                 'pestanas': ['Ejemplo milanesa', 'Plato nuevo', 'Cómo usarla']},
-        'trae': ['El ejemplo de esta guía ya calculado, con merma y varios.',
-                 'Una ficha en blanco: cargás precios y cantidades y calcula sola.',
-                 'Cómo usarla, paso a paso.'],
+        'titulo': 'Descargá la calculadora de costos en Excel',
+        'linea': 'Insumos con la merma ya cargada, recetas, márgenes sin IVA y control de desperdicio.',
+        'archivo': '/descargas/calculadora-de-costos-y-margenes.xlsx',
+        'nombre': 'Calculadora-de-costos-y-margenes-Orden-Financiero.xlsx',
+        'evento': 'calculadora_excel_descarga',
+        'tipo': 'Excel gratis · 6 hojas',
+        # Mermas reales de la hoja "Mermas por producto" (papa 15 %, lomo 20 %, salmón entero 50 %)
+        'hoja': {'cab': ('Insumo', 'Merma', 'Para 200 g netos'),
+                 'filas': [('Papa', '15 %', '235 g'), ('Lomo (vacuno)', '20 %', '250 g'), ('Salmón (entero)', '50 %', '400 g')],
+                 'total': ('276 insumos con merma cargada', '', ''),
+                 'pestanas': ['Insumos', 'Recetas', 'Márgenes', 'Mermas', 'Desperdicio']},
+        'trae': ['276 insumos con la merma de referencia ya cargada.',
+                 'Recetas con costo por porción: la merma se suma sola.',
+                 'Márgenes por producto sin IVA, si sos responsable inscripto o monotributista.',
+                 'Control de desperdicio en pesos e instrucciones paso a paso.'],
     },
 }
 
@@ -424,7 +426,7 @@ DESCARGA_JS = r"""  <script>
     var TIMEOUT_MS = 6000;
     var HINT = 'Código de área y número, sin el 0 ni el 15.';
     var MSGS = {
-      vacio: 'Escribí tu WhatsApp para descargar la ficha.',
+      vacio: 'Escribí tu WhatsApp para descargar la calculadora.',
       cero: 'Sacá el 0 del código de área: por ejemplo 221 555 0000.',
       quince: 'Sacá el 15 del número: por ejemplo 221 555 0000.',
       largo: 'Revisá el número: código de área y número, 10 dígitos en total (ej. 221 555 0000).'
@@ -509,7 +511,7 @@ DESCARGA_JS = r"""  <script>
         var t = document.createElement('strong');
         var p = document.createElement('p');
         if (repetida) {
-          t.textContent = 'Ya descargaste la ficha en esta computadora.';
+          t.textContent = 'Ya descargaste la calculadora en esta computadora.';
           var b = link(caja, 'Descargar de nuevo', 'descarga-btn');
           b.addEventListener('click', function () { track(caja.dataset.evento, { descarga: caja.dataset.descarga, modo: 'repetida' }); });
           listo.appendChild(t); listo.appendChild(b);

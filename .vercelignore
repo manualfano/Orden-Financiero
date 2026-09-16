@@ -14,5 +14,5 @@ docs/
 tools/
 *.py
 *.xlsx
-# Excepcion: descargas publicas de las guias (ficha de costo por plato)
+# Excepcion: descargas publicas de las guias (calculadora de costos y margenes)
 !descargas/*.xlsx
