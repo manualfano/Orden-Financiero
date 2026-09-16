@@ -55,6 +55,26 @@ CSS = TOKENS + """
   .bajada { font-size: var(--fs-lead); }
   .autor { font-size: var(--fs-sm); color: var(--tinta-3); margin-top: var(--s-4); padding-bottom: var(--s-5); margin-bottom: var(--s-5); border-bottom: 1px solid var(--borde); }
   .formula { background: var(--lienzo); border-left: 3px solid var(--marca); border-radius: var(--r); padding: var(--s-3) var(--s-4); margin: var(--s-4) 0; font-weight: 600; color: var(--navy); }
+  /* Fórmula como en un libro (16/09/2026): ecuación con raya de fracción y siglas, referencias abajo */
+  .ecuacion { background: var(--lienzo); border-left: 3px solid var(--marca); border-radius: var(--r); padding: var(--s-4) var(--s-5); margin: var(--s-4) 0; }
+  .ec-t { font-size: var(--fs-sm); font-weight: 600; color: var(--navy); margin: var(--s-3) 0 0 !important; }
+  .ec-t:first-child { margin-top: 0 !important; }
+  .ec-linea { font-family: 'Cambria Math', Cambria, 'STIX Two Math', 'Times New Roman', Georgia, serif; font-size: 1.45em; line-height: 1.2; color: var(--navy); display: flex; flex-wrap: wrap; align-items: center; column-gap: 0.28em; row-gap: var(--s-2); margin: var(--s-2) 0 var(--s-3); overflow-x: auto; }
+  .ec-v { font-style: italic; white-space: nowrap; }
+  .ec-n { white-space: nowrap; }
+  .ec-op { padding-left: 0.1em; }
+  .ec-p { font-style: normal; }
+  .ec-frac { display: inline-flex; flex-direction: column; align-items: stretch; text-align: center; vertical-align: middle; }
+  .ec-num, .ec-den { display: flex; justify-content: center; align-items: center; column-gap: 0.28em; padding: 0.08em 0.3em; white-space: nowrap; }
+  .ec-num { border-bottom: 1.5px solid currentColor; }
+  .ec-frac .ec-frac { font-size: 0.85em; }
+  .ec-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .ec-ref { display: grid; grid-template-columns: max-content 1fr; column-gap: var(--s-4); row-gap: 4px; margin: 0; padding-top: var(--s-3); border-top: 1px solid var(--borde); font-size: var(--fs-sm); line-height: 1.45; }
+  .ec-ref > div { display: contents; }
+  .ec-ref dt { font-family: 'Cambria Math', Cambria, 'STIX Two Math', 'Times New Roman', Georgia, serif; font-style: italic; font-size: 1.1em; color: var(--navy); }
+  .ec-ref dd { margin: 0; color: var(--tinta-2); }
+  .ec-u { color: var(--tinta-3); }
+  .ec-u::before { content: "· "; }
   .tabla { overflow-x: auto; margin: var(--s-4) 0; }
   table { border-collapse: collapse; width: 100%; font-size: var(--fs-sm); }
   .tabla table:has(tr > :nth-child(4)) { min-width: 520px; }
@@ -334,6 +354,103 @@ def grupos_con(guias):
     return grupos, de
 
 
+# Fórmulas como en un libro (16/09/2026, pedido de Manu): siglas, fracción con raya y referencias
+# abajo que dicen qué es cada sigla y en qué se mide (unidades, pesos, %). En la fuente se escribe:
+#   <formula>
+#   > Título opcional de la fórmula que sigue
+#   PE = CF / (P − CVu)
+#   PE: Punto de equilibrio | unidades que tenés que vender por mes
+#   CF: Costos fijos | pesos por mes
+#   </formula>
+# Las líneas con "=" son ecuaciones; "/" o "÷" arman la fracción. Las líneas "SIGLA: texto | unidad" son referencias.
+_OPS = {'+': '+', '−': '−', '-': '−', '×': '×', '=': '='}
+
+
+def _tokens(s):
+    out, buf = [], ''
+    for ch in s:
+        if ch in '()/÷' or ch in _OPS:
+            if buf.strip():
+                out.append(buf.strip())
+            buf = ''
+            out.append('/' if ch == '÷' else ch)
+        else:
+            buf += ch
+    if buf.strip():
+        out.append(buf.strip())
+    return out
+
+
+def _expr(tk, i):
+    nodos = []
+    nodo, i = _termino(tk, i)
+    nodos.append(nodo)
+    while i < len(tk) and tk[i] in _OPS:
+        op = _OPS[tk[i]]
+        nodo, i = _termino(tk, i + 1)
+        nodos += [('op', op), nodo]
+    return ('seq', nodos), i
+
+
+def _termino(tk, i):
+    nodo, i = _factor(tk, i)
+    while i < len(tk) and tk[i] == '/':
+        den, i = _factor(tk, i + 1)
+        nodo = ('frac', nodo, den)
+    return nodo, i
+
+
+def _factor(tk, i):
+    if tk[i] == '(':
+        dentro, i = _expr(tk, i + 1)
+        assert i < len(tk) and tk[i] == ')', 'Fórmula con paréntesis sin cerrar'
+        return ('grupo', dentro), i + 1
+    return ('atomo', tk[i]), i + 1
+
+
+def _html_nodo(n, suelto=False):
+    tipo = n[0]
+    if tipo == 'atomo':
+        t = n[1]
+        clase = 'ec-v' if re.search(r'[A-Za-zÁÉÍÓÚáéíóúñÑ]', t) else 'ec-n'
+        return f'<span class="{clase}">{html.escape(t)}</span>'
+    if tipo == 'op':
+        return f'<span class="ec-op">{n[1]}</span>'
+    if tipo == 'seq':
+        return ''.join(_html_nodo(x) for x in n[1])
+    if tipo == 'grupo':
+        # Numerador y denominador no llevan paréntesis: la raya ya agrupa.
+        return _html_nodo(n[1]) if suelto else f'<span class="ec-p">(</span>{_html_nodo(n[1])}<span class="ec-p">)</span>'
+    if tipo == 'frac':
+        return (f'<span class="ec-frac"><span class="ec-num">{_html_nodo(n[1], True)}</span>'
+                f'<span class="ec-sr"> dividido por </span><span class="ec-den">{_html_nodo(n[2], True)}</span></span>')
+    raise ValueError(tipo)
+
+
+def formula_html(fuente):
+    lineas, refs = [], []
+    for linea in [x.strip() for x in fuente.strip().splitlines() if x.strip()]:
+        if linea.startswith('>'):
+            lineas.append(f'<p class="ec-t">{html.escape(linea[1:].strip())}</p>')
+        elif '=' in linea:
+            tk = _tokens(linea)
+            arbol, fin = _expr(tk, 0)
+            assert fin == len(tk), f'No pude leer la fórmula: {linea}'
+            lineas.append(f'<div class="ec-linea">{_html_nodo(arbol)}</div>')
+        else:
+            m = re.match(r'([^:]+):\s*(.+)', linea)
+            assert m, f'Línea de fórmula sin "=" ni "SIGLA: texto": {linea}'
+            texto, _, unidad = m.group(2).partition('|')
+            u = f' <span class="ec-u">{html.escape(unidad.strip())}</span>' if unidad.strip() else ''
+            refs.append(f'<div><dt>{html.escape(m.group(1).strip())}</dt><dd>{html.escape(texto.strip())}{u}</dd></div>')
+    dl = f'<dl class="ec-ref">{"".join(refs)}</dl>' if refs else ''
+    return f'<figure class="ecuacion">{"".join(lineas)}{dl}</figure>'
+
+
+def con_formulas(cuerpo):
+    return re.sub(r'<formula>(.*?)</formula>', lambda m: formula_html(m.group(1)), cuerpo, flags=re.S)
+
+
 def minutos(g):
     texto = re.sub(r'<[^>]+>', ' ', g['cuerpo']) + ' ' + ' '.join(x['q'] + ' ' + x['a'] for x in g.get('faq', []))
     return max(1, round(len(texto.split()) / 200))
@@ -342,7 +459,7 @@ def minutos(g):
 def incluye(g):
     c = g['cuerpo']
     out = []
-    if 'class="formula"' in c:
+    if 'class="formula"' in c or 'class="ecuacion"' in c:
         out.append('Fórmula')
     if re.search(r'<h[23]>Ejemplo', c):
         out.append('Ejemplo')
@@ -672,7 +789,7 @@ def leer_guias():
         texto = f.read_text(encoding='utf-8')
         meta = json.loads(re.match(r'<!--META\s*(\{.*?\})\s*-->', texto, re.S).group(1))
         meta['slug'] = f.stem
-        meta['cuerpo'] = texto.split('-->', 1)[1].strip()
+        meta['cuerpo'] = con_formulas(texto.split('-->', 1)[1].strip())
         guias.append(meta)
     guias.sort(key=lambda g: g['orden'])
     return guias
@@ -793,8 +910,10 @@ def main():
         faq = g.get('faq', [])
         faq_html = ''
         if faq:
+            # "formula" opcional: se dibuja debajo de la respuesta; el JSON-LD usa solo el texto.
             faq_html = '\n    <h2>Preguntas frecuentes</h2>\n' + ''.join(
-                f'    <h3>{html.escape(x["q"])}</h3>\n    <p>{html.escape(x["a"])}</p>\n' for x in faq)
+                f'    <h3>{html.escape(x["q"])}</h3>\n    <p>{html.escape(x["a"])}</p>\n'
+                + (f'    {formula_html(x["formula"])}\n' if x.get('formula') else '') for x in faq)
         cuerpo_guia, descarga_js = con_descarga(g)
         cuerpo_art, toc = con_ids(cuerpo_guia + faq_html)
         toc_html = ''.join(f'<li><a href="#{i}">{html.escape(t)}</a></li>' for i, t in toc)

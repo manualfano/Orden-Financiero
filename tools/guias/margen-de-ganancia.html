@@ -6,7 +6,7 @@
   "eje": "Resultado económico",
   "description": "Qué es el margen de ganancia, la fórmula para calcularlo de un producto y de un negocio, la diferencia con el markup, ejemplos en pesos y cómo hacerlo en Excel.",
   "publicada": "2026-09-14",
-  "actualizada": "2026-09-14",
+  "actualizada": "2026-09-16",
   "cta_general": true,
   "relacionadas": [
     "precio-de-venta",
@@ -16,11 +16,12 @@
   "faq": [
     {
       "q": "¿Qué es el margen de ganancia?",
-      "a": "Es el porcentaje del precio de venta que queda después de restar el costo del producto. Si vendés a $17.500 algo que te cuesta $10.500, te quedan $7.000, que son el 40 % del precio."
+      "a": "Es el porcentaje del precio de venta sin IVA que te queda después de restar el costo del producto. Si vendés a $17.500 sin IVA algo que te cuesta $10.500, te quedan $7.000, que son el 40 % del precio."
     },
     {
       "q": "¿Cómo se calcula el margen de ganancia de un producto?",
-      "a": "Margen % = (precio de venta sin IVA − costo) ÷ precio de venta sin IVA × 100. Siempre se divide por el precio, no por el costo."
+      "a": "Margen % = (precio de venta sin IVA − costo) ÷ precio de venta sin IVA × 100. Siempre se divide por el precio, no por el costo. Si sos monotributista, usá el precio que cobrás y el costo con el IVA que pagaste.",
+      "formula": "M% = (P − C) / P × 100\nM%: Margen de ganancia | porcentaje del precio\nP: Precio de venta | pesos por unidad, sin IVA\nC: Costo | pesos por unidad"
     },
     {
       "q": "¿Margen y markup son lo mismo?",
@@ -28,40 +29,58 @@
     },
     {
       "q": "¿Margen de ganancia y rentabilidad son lo mismo?",
-      "a": "No. El margen mide cuánto queda de cada venta. La rentabilidad mide cuánto gana el negocio en relación con lo que se invirtió en él. Un negocio puede tener buen margen y poca rentabilidad si vende poco o necesita mucho capital."
+      "a": "No. El margen mide cuánto queda de cada venta. La rentabilidad sobre la inversión mide cuánto rinde la plata que pusiste en el negocio. Un negocio puede tener buen margen y poca rentabilidad si vende poco o necesitó mucha inversión."
     },
     {
       "q": "¿Qué margen de ganancia es bueno?",
-      "a": "Depende del rubro y de la rotación: un producto que se vende todos los días puede funcionar con menos margen que uno que se vende una vez por mes. El margen bruto tiene que alcanzar para pagar todos los gastos del negocio y dejar ganancia."
+      "a": "No hay un número único: un comercio que revende suele trabajar con menos margen bruto que un restaurante. El bueno es el que paga todos los gastos y deja la ganancia que querés. Para saber el tuyo, sumá como porcentaje de tus ventas netas la estructura (sueldos, alquiler, servicios), los intereses, Ingresos Brutos y lo que querés ganar. En el restaurante del ejemplo: 47,7 % + 1,2 % + 3,7 % + 10 % = 62,6 % de margen bruto mínimo."
     }
   ],
   "resumen": [
     "Margen = (precio sin IVA − costo) ÷ precio. Markup = (precio − costo) ÷ costo.",
     "Un 40 % de margen es un 66,7 % de markup: confundirlos es perder plata en cada venta.",
-    "El margen bruto no alcanza: mirá el margen neto, después de todos los gastos."
+    "El margen bruto no alcanza: mirá el margen neto del mes y, para elegir qué productos empujar, los pesos que deja cada uno (margen de contribución)."
   ]
 } -->
-    <p>"Le gano un 40 %" puede querer decir dos cosas muy distintas, y la diferencia entre las dos es plata. Esta guía explica qué es el margen de ganancia, cómo se calcula y por qué no es lo mismo que el markup.</p>
+    <p>"Le gano un 40 %" puede querer decir dos cosas muy distintas, y la diferencia entre las dos es plata. Esta guía explica qué es el margen de ganancia, cómo se calcula, por qué no es lo mismo que el markup y qué margen mirar para decidir precios y productos.</p>
 
     <h2>Qué es el margen de ganancia</h2>
-    <p>El <strong>margen de ganancia</strong> es el porcentaje del <strong>precio de venta</strong> que queda después de restar el costo de lo que vendiste. Responde la pregunta: de cada $100 que cobro, ¿cuántos me quedan después de pagar el producto?</p>
+    <p>Si vendés a $17.500 sin IVA algo que te cuesta $10.500, te quedan $7.000. Esos $7.000 son el 40 % del precio.</p>
+    <p>Ese 40 % es el <strong>margen de ganancia</strong> (qué parte del <strong>precio de venta</strong> te queda después de pagar lo que vendiste). Responde una pregunta simple: de cada $100 que cobro, ¿cuántos me quedan después de pagar el producto?</p>
 
     <h2>La fórmula del margen de ganancia</h2>
-    <p class="formula">Ganancia bruta en pesos = precio de venta sin IVA − costo<br>Margen de ganancia % = ganancia bruta ÷ precio de venta sin IVA × 100</p>
-    <p>El precio va <strong>sin IVA</strong>: si sos responsable inscripto, el IVA lo cobrás para el fisco y no es parte de tu ganancia.</p>
+    <formula>
+    GB = P − C
+    M% = GB / P × 100
+    GB: Ganancia bruta | pesos por unidad
+    P: Precio de venta | pesos por unidad, sin IVA
+    C: Costo | pesos por unidad
+    M%: Margen de ganancia | porcentaje del precio
+    </formula>
+    <ul>
+      <li><strong>Precio sin IVA:</strong> si sos responsable inscripto, el IVA que cobrás es del fisco, no tuyo. Si una app o un medio de pago te cobra comisión, usá lo que te queda después de la comisión.</li>
+      <li><strong>Costo:</strong> todo lo que te cuesta tener el producto listo para vender, por unidad (compra, flete, envase). Si sos responsable inscripto, sin IVA; con factura C o sin factura, el total.</li>
+      <li><strong>Si sos monotributista:</strong> no hay IVA aparte. Usá el precio que cobrás y el costo con el IVA que pagaste.</li>
+    </ul>
 
     <h2>Ejemplo: el margen de un producto</h2>
-    <p>Un producto cuesta $10.500 y se vende a $17.500 sin IVA.</p>
+    <p>Un producto cuesta $10.500 y se vende a $17.500 sin IVA ($21.175 con IVA).</p>
     <ul>
       <li>Ganancia bruta: $17.500 − $10.500 = <strong>$7.000</strong></li>
       <li>Margen: $7.000 ÷ $17.500 = <strong>40 %</strong></li>
     </ul>
+    <p>Hacé esta cuenta mañana con los diez productos o platos que más vendés. Usá el <strong>costo de reposición</strong> (lo que te cuesta hoy volver a comprarlo), no lo que pagaste hace dos meses: con inflación, el margen calculado con costos viejos es más alto que el real.</p>
 
     <h2>Margen y markup: la diferencia</h2>
-    <p>El <strong>markup</strong> es el porcentaje que se le suma al <strong>costo</strong>. Usa la misma ganancia, pero divide por otro número:</p>
-    <p class="formula">Markup % = (precio de venta − costo) ÷ costo × 100</p>
-    <p>Con el mismo producto: $7.000 ÷ $10.500 = <strong>66,7 % de markup</strong>. Mismo producto, misma ganancia: 40 % de margen y 66,7 % de markup.</p>
-    <p>El problema aparece cuando alguien quiere "ganar 40 %" y le suma 40 % al costo: $10.500 × 1,40 = $14.700. Esa ganancia de $4.200 es un margen de apenas <strong>28,6 %</strong>.</p>
+    <p>El <strong>markup</strong> (el porcentaje que le sumás al costo) usa la misma ganancia, pero divide por el <strong>costo</strong> en lugar del precio:</p>
+    <formula>
+    MK% = (P − C) / C × 100
+    MK%: Markup | porcentaje sobre el costo
+    P: Precio de venta | pesos por unidad, sin IVA
+    C: Costo | pesos por unidad
+    </formula>
+    <p>Con el mismo producto: $7.000 ÷ $10.500 = <strong>66,7 % de markup</strong>. Misma ganancia: 40 % de margen y 66,7 % de markup.</p>
+    <p>El problema aparece cuando alguien quiere "ganar 40 %" y le suma 40 % al costo: $10.500 × 1,40 = $14.700. Esa ganancia de $4.200 es un margen de apenas <strong>28,6 %</strong>. En cada venta ganás $2.800 menos que con el precio de $17.500.</p>
     <h3>Tabla de equivalencias</h3>
     <div class="tabla">
       <table>
@@ -75,56 +94,103 @@
         </tbody>
       </table>
     </div>
-    <p class="formula">Markup = margen ÷ (1 − margen)<br>Margen = markup ÷ (1 + markup)</p>
-    <p class="nota">Los multiplicadores de la tabla están redondeados. Para el número exacto, dividí el costo por (1 − margen).</p>
+    <formula>
+    MK = M / (1 − M)
+    M = MK / (1 + MK)
+    MK: Markup | en decimales: 66,7 % es 0,667
+    M: Margen | en decimales: 40 % es 0,40
+    </formula>
+    <p class="nota">Algunos multiplicadores están redondeados. Para el número exacto, dividí el costo por (1 − margen): $10.500 ÷ 0,60 = $17.500.</p>
+    <p>Si tu sistema o tu lista de precios trabaja con markup, cargá la columna del medio: para ganar 40 % de margen, poné 66,7 %, no 40 %. Cómo llegar al precio final con IVA y comisiones está en la guía de <a href="/guias/precio-de-venta">precio de venta</a>.</p>
 
     <h2>Margen bruto y margen neto de un negocio</h2>
-    <p>El margen de un producto solo resta lo que cuesta el producto. Para saber cuánto gana el negocio hay que restar también los gastos:</p>
+    <p>El margen de un producto solo resta lo que cuesta el producto. Para saber cuánto gana el negocio hay que restar también los gastos. Los porcentajes se calculan sobre las <strong>ventas netas</strong> (lo vendido sin IVA y sin las comisiones de apps y tarjetas):</p>
+    <formula>
+    MB% = UB / VN × 100
+    MN% = RN / VN × 100
+    MB%: Margen bruto | porcentaje de las ventas netas
+    MN%: Margen neto | porcentaje de las ventas netas
+    UB: Utilidad bruta | pesos por mes
+    RN: Resultado neto | pesos por mes
+    VN: Ventas netas | pesos por mes, sin IVA ni comisiones
+    </formula>
+    <p>La <strong>utilidad bruta</strong> (lo que queda después de pagar la mercadería) paga los gastos. El <strong>resultado neto</strong> (lo que queda después de todo) es lo que el negocio ganó. Con el restaurante de la guía de estado de resultados:</p>
     <div class="tabla">
       <table>
+        <thead><tr><th>Concepto</th><th class="n">Pesos</th><th class="n">% sobre ventas netas</th></tr></thead>
         <tbody>
-          <tr><td>Ventas netas del mes (sin IVA ni comisiones)</td><td class="n">$20.000.000</td></tr>
-          <tr><td>− Costo de mercadería vendida (CMV)</td><td class="n">$12.000.000</td></tr>
-          <tr class="total"><td>= Utilidad bruta · margen bruto 40 %</td><td class="n">$8.000.000</td></tr>
-          <tr><td>− Estructura operativa (sueldos, alquiler, servicios)</td><td class="n">$4.500.000</td></tr>
-          <tr class="total"><td>= Resultado operativo · 17,5 %</td><td class="n">$3.500.000</td></tr>
-          <tr><td>− Costos financieros</td><td class="n">$300.000</td></tr>
-          <tr><td>− Impuestos</td><td class="n">$700.000</td></tr>
-          <tr class="total"><td>= Resultado neto · margen neto 12,5 %</td><td class="n">$2.500.000</td></tr>
+          <tr><td>Ventas brutas sin IVA</td><td class="n">$31.500.000</td><td class="n"></td></tr>
+          <tr><td>− Comisiones de apps, tarjetas y billeteras</td><td class="n">$1.500.000</td><td class="n">5,0 %</td></tr>
+          <tr class="total"><td>= Ventas netas</td><td class="n">$30.000.000</td><td class="n">100,0 %</td></tr>
+          <tr><td>− Costo de mercadería vendida (CMV)</td><td class="n">$9.700.000</td><td class="n">32,3 %</td></tr>
+          <tr class="total"><td>= Utilidad bruta · margen bruto</td><td class="n">$20.300.000</td><td class="n">67,7 %</td></tr>
+          <tr><td>− Estructura operativa (sueldos y cargas, alquiler, servicios, otros)</td><td class="n">$14.300.000</td><td class="n">47,7 %</td></tr>
+          <tr class="total"><td>= Resultado operativo</td><td class="n">$6.000.000</td><td class="n">20,0 %</td></tr>
+          <tr><td>− Intereses y gastos bancarios</td><td class="n">$350.000</td><td class="n">1,2 %</td></tr>
+          <tr class="total"><td>= Resultado antes de impuestos</td><td class="n">$5.650.000</td><td class="n">18,8 %</td></tr>
+          <tr><td>− Ingresos Brutos (3,5 % de las ventas brutas)</td><td class="n">$1.102.500</td><td class="n">3,7 %</td></tr>
+          <tr class="total"><td>= Resultado neto · margen neto</td><td class="n">$4.547.500</td><td class="n">15,2 %</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="nota">Números de ejemplo. Un margen bruto que parece bueno puede terminar en un margen neto chico si los gastos son altos.</p>
-    <p>Esa cuenta completa, línea por línea, es el <a href="/guias/estado-de-resultados">estado de resultados</a>. Y cuánto rinde la plata que pusiste en el negocio es la <a href="/guias/rentabilidad-de-un-negocio">rentabilidad</a>.</p>
+    <p class="nota">Números de ejemplo, con los porcentajes redondeados. La alícuota de Ingresos Brutos depende de la provincia y la actividad. Si tu negocio es una sociedad, restá también una estimación del impuesto a las ganancias; si sos monotributista, la cuota mensual.</p>
+    <p>Un margen bruto de 67,7 % parece mucho, pero termina en un margen neto de 15,2 %: la estructura se lleva casi la mitad de las ventas.</p>
+    <ul>
+      <li><strong>En gastronomía</strong>, el margen bruto es 100 % menos el <a href="/guias/food-cost">food cost</a>: con 32,3 % de food cost, 67,7 % de margen bruto.</li>
+      <li><strong>En un comercio que revende</strong>, la mercadería pesa más y el margen bruto es más bajo: en el ejemplo de la guía de CMV da 39,3 %. Por eso no compares tu margen con el de otro rubro.</li>
+    </ul>
+    <p>Qué hacer: armá esta cuenta con los números de tu último mes y ponela al lado del mes anterior. Si el margen neto bajó, buscá qué línea subió como porcentaje de las ventas. La cuenta completa está en el <a href="/guias/estado-de-resultados">estado de resultados</a>, y cuánto rinde la plata que pusiste, en <a href="/guias/rentabilidad-de-un-negocio">rentabilidad</a>.</p>
+
+    <h2>Margen de contribución: cuántos pesos deja cada venta</h2>
+    <p>Para decidir qué producto empujar, el margen bruto no alcanza: según cómo cobres, cada venta también paga una comisión. Lo que queda es el <strong>margen de contribución</strong> (los pesos que deja cada venta para pagar los gastos fijos y ganar):</p>
+    <formula>
+    MC = P − C − Com
+    MC: Margen de contribución | pesos por unidad
+    P: Precio de venta | pesos por unidad, sin IVA
+    C: Costo | pesos por unidad
+    Com: Comisión de la app, la tarjeta o Mercado Pago | pesos por unidad
+    </formula>
+    <p>Ingresos Brutos no va acá: va en impuestos, como en el estado de resultados. Con el producto de $17.500 sin IVA:</p>
+    <ul>
+      <li><strong>Cobrado en efectivo o transferencia:</strong> $17.500 − $10.500 = <strong>$7.000</strong>.</li>
+      <li><strong>Al mismo precio, por un canal que cobra 13 % sobre el precio con IVA:</strong> la comisión es $21.175 × 0,13 = $2.753, y te quedan <strong>$4.247</strong>. Es $2.753 menos por venta.</li>
+    </ul>
+    <p>Las cuotas sin interés y los descuentos por pago en efectivo funcionan igual: bajan lo que te queda de cada venta. Qué hacer: si un canal te deja mucho menos, subí el precio en ese canal (la cuenta está en <a href="/guias/precio-de-venta">precio de venta</a>) o decidí qué productos conviene vender por ahí. Con el margen de contribución también se calcula el <a href="/guias/punto-de-equilibrio">punto de equilibrio</a>.</p>
+    <p class="nota">Comisión de ejemplo: usá la de tu liquidación. Si sos responsable inscripto, el IVA de la comisión lo recuperás; si sos monotributista, la comisión va con IVA (× 1,21).</p>
 
     <h2>Cómo calcular el margen de ganancia en Excel</h2>
+    <p>Una fila por producto o plato:</p>
     <div class="tabla">
       <table>
         <thead><tr><th>Columna</th><th>Qué va</th><th>Fórmula (fila 2)</th></tr></thead>
         <tbody>
           <tr><td>A</td><td>Producto</td><td>—</td></tr>
           <tr><td>B</td><td>Precio de venta sin IVA</td><td>—</td></tr>
-          <tr><td>C</td><td>Costo por unidad</td><td>—</td></tr>
+          <tr><td>C</td><td>Costo por unidad (de reposición)</td><td>—</td></tr>
           <tr><td>D</td><td>Ganancia bruta en pesos</td><td><code>=B2-C2</code></td></tr>
           <tr><td>E</td><td>Margen (formato %)</td><td><code>=D2/B2</code></td></tr>
           <tr><td>F</td><td>Markup (formato %)</td><td><code>=D2/C2</code></td></tr>
+          <tr><td>G</td><td>Comisión por unidad, en pesos (0 si no hay)</td><td>ver abajo</td></tr>
+          <tr><td>H</td><td>Margen de contribución por unidad</td><td><code>=D2-G2</code></td></tr>
+          <tr><td>I</td><td>Unidades vendidas en el mes</td><td>—</td></tr>
+          <tr><td>J</td><td>Margen de contribución del mes</td><td><code>=H2*I2</code></td></tr>
         </tbody>
       </table>
     </div>
-    <p>Si sumás en la columna G las unidades vendidas en el mes y en la H <code>=D2*G2</code>, ves cuántos pesos aporta cada producto: es la mejor forma de decidir qué conviene empujar.</p>
+    <p>En G, con 13 % de comisión sobre el precio con IVA: <code>=B2*1,21*0,13</code>. Si no hay comisión, poné 0. Ordená la planilla por la columna J: arriba quedan los productos que más pesos le dejan al negocio.</p>
 
     <h2>Cómo usar el margen en tu negocio</h2>
     <ul>
-      <li><strong>Ordená tus productos por margen en pesos</strong>, no solo en porcentaje: los que más aportan son los que tienen que estar siempre en stock y bien exhibidos.</li>
-      <li><strong>Fijá un margen mínimo</strong> por producto y revisá el precio cuando el costo lo hace caer por debajo.</li>
-      <li><strong>Descontá las comisiones y los descuentos</strong> antes de calcular el margen: el que importa es el que te queda de verdad.</li>
-      <li><strong>Mirá el margen neto todos los meses:</strong> es el que dice si el negocio gana plata.</li>
+      <li><strong>Cuidá los productos de arriba de la columna J:</strong> que no falten en stock, que estén bien exhibidos y que el equipo los recomiende.</li>
+      <li><strong>Fijá un margen mínimo</strong> por producto. Cada vez que llega una lista nueva del proveedor, cambiá el costo en la planilla: si el margen queda por debajo, subí el precio o buscá otro proveedor.</li>
+      <li><strong>Mirá el margen neto todos los meses:</strong> es el que dice si el negocio gana plata. Si baja, el estado de resultados te dice en qué línea.</li>
     </ul>
 
     <h2>Errores comunes</h2>
     <ul>
       <li><strong>Dividir por el costo y llamarlo margen:</strong> eso es markup.</li>
-      <li><strong>Calcular con el precio con IVA:</strong> infla el margen.</li>
+      <li><strong>Calcular con el precio con IVA:</strong> infla el margen. Con $21.175 da 50,4 %, cuando el real es 40 %.</li>
       <li><strong>Usar costos viejos:</strong> con inflación, el margen real es menor que el calculado.</li>
+      <li><strong>Olvidar lo que se lleva cada venta:</strong> comisiones, cuotas sin interés y descuentos.</li>
       <li><strong>Mirar solo el margen bruto</strong> y no los gastos del negocio.</li>
     </ul>

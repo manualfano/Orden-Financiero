@@ -6,7 +6,7 @@
   "eje": "Resultado económico",
   "description": "Qué es un estado de resultados, su estructura paso a paso, un modelo para un negocio en Argentina, un ejemplo completo en pesos y cómo armarlo en Excel.",
   "publicada": "2026-09-14",
-  "actualizada": "2026-09-14",
+  "actualizada": "2026-09-16",
   "cta_general": true,
   "relacionadas": [
     "food-cost",
@@ -24,7 +24,7 @@
     },
     {
       "q": "¿Qué diferencia hay entre el estado de resultados y el flujo de caja?",
-      "a": "El estado de resultados registra las ventas y los gastos del mes en que ocurren, aunque se cobren o se paguen después. El flujo de caja registra cuándo entra y sale la plata. Un negocio puede ganar plata en el mes y quedarse sin caja."
+      "a": "El estado de resultados registra las ventas y los gastos del mes en que ocurren, aunque se cobren o se paguen después (tu contador le dice devengado). El flujo de caja registra cuándo entra y sale la plata (percibido). Un negocio puede ganar plata en el mes y quedarse sin caja."
     },
     {
       "q": "¿El estado de resultados y el balance son lo mismo?",
@@ -32,7 +32,7 @@
     },
     {
       "q": "¿Cada cuánto conviene hacer el estado de resultados?",
-      "a": "Todos los meses. El estado contable anual lo prepara el contador; el mensual es la herramienta del dueño para tomar decisiones a tiempo."
+      "a": "Todos los meses, antes del día 15 del mes siguiente. El estado contable anual lo prepara el contador; el mensual es la herramienta del dueño para corregir a tiempo."
     }
   ],
   "resumen": [
@@ -45,18 +45,42 @@
 
     <h2>Qué es un estado de resultados</h2>
     <p>El <strong>estado de resultados</strong> es el informe que muestra si el negocio <strong>ganó o perdió</strong> en un período. A las ventas se les resta lo que costó lo vendido y todos los gastos, y lo que queda es el resultado. También se lo llama <strong>cuadro de resultados</strong> o <strong>estado de pérdidas y ganancias</strong>.</p>
-    <p>El modelo de esta guía es el <strong>de gestión</strong>, pensado para que el dueño lo use todos los meses. El estado contable formal, con las normas profesionales argentinas, lo prepara el contador.</p>
+    <p>El modelo de esta guía es el <strong>de gestión</strong> (el que armás vos todos los meses para decidir). El estado contable formal, el del balance anual, lo prepara tu contador. Si al final del año los dos dan muy distinto, preguntale por qué.</p>
 
     <h2>La estructura del estado de resultados</h2>
-    <p class="formula">Ventas brutas (sin IVA)<br>− Comisiones de apps y tarjetas<br>= Ventas netas<br>− Costo de mercadería vendida (CMV)<br>= Utilidad bruta<br>− Estructura operativa<br>= Resultado operativo<br>− Costos financieros<br>= Resultado antes de impuestos<br>− Impuestos<br>= Resultado neto</p>
+    <formula>
+    VN = VB − Com
+    UB = VN − CMV
+    RO = UB − EO
+    RAI = RO − CFin
+    RN = RAI − Imp
+    VB: Ventas brutas | pesos por mes, sin IVA
+    Com: Comisiones de apps y tarjetas | pesos por mes
+    VN: Ventas netas | pesos por mes
+    CMV: Costo de mercadería vendida | pesos por mes
+    UB: Utilidad bruta | pesos por mes
+    EO: Estructura operativa: sueldos, alquiler, servicios | pesos por mes
+    RO: Resultado operativo | pesos por mes
+    CFin: Costos financieros: intereses y gastos bancarios | pesos por mes
+    RAI: Resultado antes de impuestos | pesos por mes
+    Imp: Impuestos: Ingresos Brutos y tasas | pesos por mes
+    RN: Resultado neto | pesos por mes
+    </formula>
     <ul>
-      <li><strong>Ventas brutas:</strong> lo facturado sin IVA, descontando devoluciones y descuentos.</li>
-      <li><strong>Comisiones de apps y tarjetas:</strong> se restan primero, porque es plata de la venta que nunca llega al negocio (si sos responsable inscripto, cargalas sin IVA). Lo que queda son las <strong>ventas netas</strong>, y todos los porcentajes se calculan sobre ellas.</li>
-      <li><strong>Costo de mercadería vendida:</strong> lo que costó lo que se vendió, no lo que se compró. Se calcula con el inventario; está explicado en <a href="/guias/food-cost">costo de mercadería vendida (CMV)</a>.</li>
-      <li><strong>Estructura operativa:</strong> sueldos y cargas sociales (incluido el del dueño si trabaja en el negocio), alquiler, servicios y otros gastos, como honorarios, sistemas, publicidad y el desgaste del equipamiento. Sumá cada mes la parte proporcional del aguinaldo y las vacaciones: si no, junio y diciembre dan pérdida y el resto del año parece mejor.</li>
-      <li><strong>Costos financieros:</strong> intereses de préstamos, descubiertos y costos bancarios. La cuota de un préstamo no va entera: solo los intereses.</li>
-      <li><strong>Impuestos:</strong> Ingresos Brutos y las tasas sobre la actividad. Ingresos Brutos se paga sobre lo que vendés, ganes o pierdas: para calcular precios y el punto de equilibrio, tratalo como un costo más de cada venta. Si tu negocio es una sociedad, restá también una estimación del impuesto a las ganancias; si sos monotributista, acá va la cuota mensual.</li>
+      <li><strong>Ventas brutas:</strong> todo lo que vendiste en el mes, ya descontadas devoluciones y descuentos. Si sos responsable inscripto, sin IVA. Si sos monotributista, el total, porque no cobrás IVA aparte.</li>
+      <li><strong>Comisiones de apps y tarjetas:</strong> lo que te descuentan las apps de delivery, las tarjetas y las billeteras; está en sus liquidaciones. Si sos responsable inscripto, cargalas sin IVA. Lo que queda son las <strong>ventas netas</strong> (lo que de verdad te queda de lo que vendiste), y todos los porcentajes se calculan sobre ellas.</li>
+      <li><strong>Costo de mercadería vendida (CMV):</strong> lo que costó la mercadería que vendiste, no la que compraste. Se calcula así: inventario inicial + compras del mes − inventario final. Contá el stock el último día del mes (más en <a href="/guias/food-cost">costo de mercadería vendida (CMV)</a>). Lo que queda es la <strong>utilidad bruta</strong> (lo que te queda después de pagar la mercadería).</li>
+      <li><strong>Estructura operativa:</strong> los gastos de tener el negocio funcionando. Sueldos y cargas sociales (incluido el del dueño si trabaja en el negocio), alquiler, servicios y otros gastos, como honorarios, sistemas, publicidad y las amortizaciones (el desgaste del equipamiento). Lo que queda es el <strong>resultado operativo</strong> (lo que gana el negocio con su actividad, antes de préstamos e impuestos).</li>
+      <li><strong>Costos financieros:</strong> lo que te cuestan el banco y la plata prestada. Intereses de préstamos y descubiertos, mantenimiento de cuenta y el impuesto al cheque (a los débitos y créditos bancarios). Lo que queda es el <strong>resultado antes de impuestos</strong>.</li>
+      <li><strong>Impuestos:</strong> Ingresos Brutos y la tasa municipal, cuando se calcula sobre las ventas (en muchos municipios, Seguridad e Higiene). Lo que queda es el <strong>resultado neto</strong> (lo que ganaste o perdiste de verdad en el mes).</li>
     </ul>
+    <h3>Tres cuentas que casi todos hacen mal</h3>
+    <ul>
+      <li><strong>Aguinaldo:</strong> cada mes, sumá a los sueldos un doceavo de lo que pagás por mes de sueldos y cargas, y la parte proporcional de las vacaciones. Si no, junio y diciembre dan pérdida y el resto del año parece mejor.</li>
+      <li><strong>Equipamiento:</strong> un horno de $6.000.000 que dura 5 años no es gasto del mes de compra: son $100.000 por mes de amortización.</li>
+      <li><strong>Ingresos Brutos</strong> se paga sobre lo que vendés, ganes o pierdas. Va en impuestos, pero tus precios y tu meta de ventas tienen que alcanzar para pagarlo.</li>
+    </ul>
+    <p>Si sos monotributista, en impuestos va la cuota mensual (en muchas provincias ya incluye Ingresos Brutos). Si el negocio es una sociedad, restá también una estimación del impuesto a las ganancias; si no, pedile a tu contador cuánto apartar por mes.</p>
 
     <h2>Ejemplo: el estado de resultados de un restaurante</h2>
     <div class="tabla">
@@ -69,7 +93,7 @@
           <tr class="total"><td>= Ventas netas</td><td class="n">$30.000.000</td><td class="n">100,0 %</td></tr>
           <tr><td>− Costo de mercadería vendida (CMV)</td><td class="n">$9.700.000</td><td class="n">32,3 %</td></tr>
           <tr class="total"><td>= Utilidad bruta</td><td class="n">$20.300.000</td><td class="n">67,7 %</td></tr>
-          <tr><td>− Sueldos y cargas sociales</td><td class="n">$9.500.000</td><td class="n">31,7 %</td></tr>
+          <tr><td>− Sueldos y cargas sociales (con la parte del aguinaldo de cada mes)</td><td class="n">$9.500.000</td><td class="n">31,7 %</td></tr>
           <tr><td>− Alquiler</td><td class="n">$2.500.000</td><td class="n">8,3 %</td></tr>
           <tr><td>− Servicios (luz, gas, agua, internet)</td><td class="n">$1.200.000</td><td class="n">4,0 %</td></tr>
           <tr><td>− Otros (honorarios, sistemas, publicidad)</td><td class="n">$1.100.000</td><td class="n">3,7 %</td></tr>
@@ -81,24 +105,32 @@
         </tbody>
       </table>
     </div>
-    <p class="nota">Números de ejemplo, con los porcentajes redondeados. La alícuota de Ingresos Brutos depende de la provincia y la actividad. Muchos restaurantes trabajan con bastante menos resultado: tomalo como ejemplo del método, no como referencia.</p>
+    <p class="nota">Números de ejemplo de un restaurante responsable inscripto, con los porcentajes redondeados. La alícuota de Ingresos Brutos depende de la provincia y la actividad. El resultado neto no descuenta el impuesto a las ganancias. Muchos restaurantes trabajan con bastante menos resultado: tomalo como ejemplo del método, no como referencia.</p>
     <p>Leído en una línea: de cada $100 de ventas netas, $32 se van en mercadería, $48 en la estructura, $5 en costos financieros e impuestos, y quedan <strong>$15 de resultado neto</strong>.</p>
+    <p>Si el restaurante paga $950.000 de cuota del préstamo y gastos bancarios, y $600.000 son devolución de capital, al estado de resultados van solo los $350.000 restantes. En un comercio el cuadro es igual.</p>
 
     <h2>Los números para mirar todos los meses</h2>
     <div class="tabla">
       <table>
         <thead><tr><th>Número</th><th>Cómo se calcula</th><th class="n">En el ejemplo</th></tr></thead>
         <tbody>
-          <tr><td>Food cost</td><td>CMV ÷ ventas netas</td><td class="n">32,3 %</td></tr>
+          <tr><td>Food cost (en un comercio, CMV sobre ventas)</td><td>CMV ÷ ventas netas</td><td class="n">32,3 %</td></tr>
           <tr><td>Costo del personal</td><td>sueldos y cargas ÷ ventas netas</td><td class="n">31,7 %</td></tr>
           <tr><td>Mercadería + personal (prime cost)</td><td>(CMV + sueldos y cargas) ÷ ventas netas</td><td class="n">64,0 %</td></tr>
           <tr><td>Alquiler</td><td>alquiler ÷ ventas netas</td><td class="n">8,3 %</td></tr>
+          <tr><td>Margen operativo</td><td>resultado operativo ÷ ventas netas</td><td class="n">20,0 %</td></tr>
         </tbody>
       </table>
     </div>
-    <p>En gastronomía se suele mirar que mercadería más personal no pase de 60 % a 65 % de las ventas netas. Más útil que cualquier referencia es tu propia evolución: si un número sube dos meses seguidos sin que suban las ventas, buscá la causa.</p>
+    <p>En gastronomía se suele mirar que mercadería más personal no pase de 60 % a 65 % de las ventas netas. El ejemplo está en el límite. Si un número se mueve:</p>
+    <ul>
+      <li><strong>Si sube el food cost:</strong> buscá aumentos de proveedores que no pasaste a la carta; después, porciones y mermas (ver <a href="/guias/food-cost">food cost</a>).</li>
+      <li><strong>Si sube el costo del personal:</strong> compará horas pagadas con ventas por turno; suele sobrar gente en los horarios flojos.</li>
+      <li><strong>Si baja el margen operativo</strong> dos meses seguidos sin que bajen las ventas, buscá qué línea creció más que las ventas y empezá por esa.</li>
+    </ul>
 
     <h2>Cómo armar el estado de resultados en Excel</h2>
+    <p>Antes de cargar, juntá: el reporte de ventas del sistema, las liquidaciones de apps y tarjetas, el conteo de stock y las facturas de compras, los recibos de sueldo con las cargas sociales, las facturas de gastos, el resumen del banco y lo pagado de Ingresos Brutos o monotributo.</p>
     <div class="tabla">
       <table>
         <thead><tr><th>Fila</th><th>Concepto (columna A)</th><th>Pesos (columna B)</th></tr></thead>
@@ -118,17 +150,18 @@
         </tbody>
       </table>
     </div>
-    <p>En la columna C, el porcentaje sobre ventas netas: <code>=B3/$B$4</code> en C3 y copiado hacia abajo. Con una columna por mes ves de un vistazo qué gasto creció más que las ventas.</p>
+    <p>En la columna C, el porcentaje sobre ventas netas: <code>=B3/B$4</code> en C3, copiado hacia abajo. Para cada mes nuevo, copiá las columnas B y C a la derecha: así ves de un vistazo qué gasto creció más que las ventas.</p>
 
     <h2>Estado de resultados y flujo de caja no son lo mismo</h2>
-    <p>El estado de resultados cuenta una venta en el mes en que se hizo, aunque se cobre con tarjeta en cuotas. Cuenta un gasto en el mes en que corresponde, aunque se pague a 30 días. El <a href="/guias/flujo-de-caja">flujo de caja</a>, en cambio, mira cuándo entra y sale la plata. Por eso un negocio puede <strong>ganar plata y quedarse sin caja</strong>, y hacen falta los dos. La plata que necesitás para sostener esa diferencia es el <a href="/guias/capital-de-trabajo">capital de trabajo</a>.</p>
+    <p>El estado de resultados usa lo <strong>devengado</strong> (cuenta cada venta y cada gasto en el mes en que pasan, aunque se cobren o se paguen después). El <a href="/guias/flujo-de-caja">flujo de caja</a> usa lo <strong>percibido</strong> (cuenta la plata el día que entra o sale). Por eso un negocio puede <strong>ganar plata y quedarse sin caja</strong>, y hacen falta los dos.</p>
+    <p>Si el mes dio ganancia y no tenés plata, revisá cuatro cosas: tarjetas y apps por cobrar, stock que creció, cuotas de capital de préstamos y retiros del dueño. La plata que necesitás para sostener esa diferencia es el <a href="/guias/capital-de-trabajo">capital de trabajo</a>.</p>
 
     <h2>Cómo usar el estado de resultados en tu negocio</h2>
     <ul>
       <li><strong>Hacelo todos los meses</strong>, antes del día 15 del mes siguiente: un resultado que llega tarde no sirve para corregir.</li>
-      <li><strong>Mirá los porcentajes, no solo los pesos:</strong> con inflación, los pesos siempre suben; el porcentaje sobre ventas muestra qué gasto se está comiendo el margen.</li>
-      <li><strong>Compará contra el punto de equilibrio:</strong> con los costos fijos y el margen del estado de resultados se calcula el <a href="/guias/punto-de-equilibrio">punto de equilibrio</a>.</li>
-      <li><strong>Decidí con el resultado operativo:</strong> es lo que genera el negocio, antes de cómo se financia.</li>
+      <li><strong>Mirá los porcentajes, no solo los pesos:</strong> con inflación, los pesos siempre suben. Si el alquiler pasa de $2.500.000 a $3.000.000 y las ventas netas crecen en la misma proporción, sigue en 8,3 %: el problema no está ahí.</li>
+      <li><strong>Calculá tu punto de equilibrio</strong> (lo que tenés que vender para no perder): costos fijos ÷ (1 − costos variables ÷ ventas netas). En el ejemplo: estructura e intereses ÷ (1 − 32,3 % de mercadería) = $14.650.000 ÷ 0,6767 = unos $21.650.000, y arriba de eso hay que cubrir Ingresos Brutos (más en <a href="/guias/punto-de-equilibrio">punto de equilibrio</a>).</li>
+      <li><strong>Decidí con el resultado operativo:</strong> es lo que genera el negocio, antes de cómo se financia. Si da negativo, el problema está en precios, mercadería o estructura, y refinanciar una deuda no lo arregla.</li>
       <li><strong>Compará contra algo:</strong> al lado del mes, poné el mes anterior y lo que esperabas. Para cada línea que se desvía más de 2 puntos, anotá la causa y qué vas a hacer.</li>
     </ul>
 
@@ -136,8 +169,8 @@
     <ul>
       <li><strong>Usar las compras en lugar del costo de lo vendido:</strong> el mes que se compra stock parece malo y el siguiente parece bueno.</li>
       <li><strong>Mezclar gastos personales</strong> con los del negocio.</li>
-      <li><strong>No poner el sueldo del dueño:</strong> el negocio parece ganar más de lo que gana.</li>
-      <li><strong>Incluir el IVA</strong> en ventas y compras siendo responsable inscripto.</li>
+      <li><strong>No poner el sueldo del dueño:</strong> el negocio parece ganar más de lo que gana. Los retiros del dueño no son gasto: salen del resultado.</li>
+      <li><strong>Equivocarse con el IVA:</strong> si sos responsable inscripto, ventas y compras van sin IVA. Si sos monotributista, el IVA que pagás en las compras es costo.</li>
       <li><strong>Poner la cuota entera de un préstamo como gasto:</strong> solo los intereses son gasto; el capital es devolución de deuda.</li>
-      <li><strong>Cargar como gasto las retenciones</strong> que te hacen el banco, las tarjetas o las apps: son pagos a cuenta de tus impuestos, no gastos.</li>
+      <li><strong>Cargar como gasto las retenciones</strong> que te hacen el banco, las tarjetas o las apps: son pagos a cuenta de tus impuestos, no gastos. Si ese saldo a favor crece mes a mes y no lo usás, hablalo con tu contador.</li>
     </ul>

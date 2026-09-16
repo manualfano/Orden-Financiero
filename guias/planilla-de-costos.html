@@ -73,6 +73,26 @@ function gtag() { dataLayer.push(arguments); }
   .bajada { font-size: var(--fs-lead); }
   .autor { font-size: var(--fs-sm); color: var(--tinta-3); margin-top: var(--s-4); padding-bottom: var(--s-5); margin-bottom: var(--s-5); border-bottom: 1px solid var(--borde); }
   .formula { background: var(--lienzo); border-left: 3px solid var(--marca); border-radius: var(--r); padding: var(--s-3) var(--s-4); margin: var(--s-4) 0; font-weight: 600; color: var(--navy); }
+  /* Fórmula como en un libro (16/09/2026): ecuación con raya de fracción y siglas, referencias abajo */
+  .ecuacion { background: var(--lienzo); border-left: 3px solid var(--marca); border-radius: var(--r); padding: var(--s-4) var(--s-5); margin: var(--s-4) 0; }
+  .ec-t { font-size: var(--fs-sm); font-weight: 600; color: var(--navy); margin: var(--s-3) 0 0 !important; }
+  .ec-t:first-child { margin-top: 0 !important; }
+  .ec-linea { font-family: 'Cambria Math', Cambria, 'STIX Two Math', 'Times New Roman', Georgia, serif; font-size: 1.45em; line-height: 1.2; color: var(--navy); display: flex; flex-wrap: wrap; align-items: center; column-gap: 0.28em; row-gap: var(--s-2); margin: var(--s-2) 0 var(--s-3); overflow-x: auto; }
+  .ec-v { font-style: italic; white-space: nowrap; }
+  .ec-n { white-space: nowrap; }
+  .ec-op { padding-left: 0.1em; }
+  .ec-p { font-style: normal; }
+  .ec-frac { display: inline-flex; flex-direction: column; align-items: stretch; text-align: center; vertical-align: middle; }
+  .ec-num, .ec-den { display: flex; justify-content: center; align-items: center; column-gap: 0.28em; padding: 0.08em 0.3em; white-space: nowrap; }
+  .ec-num { border-bottom: 1.5px solid currentColor; }
+  .ec-frac .ec-frac { font-size: 0.85em; }
+  .ec-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .ec-ref { display: grid; grid-template-columns: max-content 1fr; column-gap: var(--s-4); row-gap: 4px; margin: 0; padding-top: var(--s-3); border-top: 1px solid var(--borde); font-size: var(--fs-sm); line-height: 1.45; }
+  .ec-ref > div { display: contents; }
+  .ec-ref dt { font-family: 'Cambria Math', Cambria, 'STIX Two Math', 'Times New Roman', Georgia, serif; font-style: italic; font-size: 1.1em; color: var(--navy); }
+  .ec-ref dd { margin: 0; color: var(--tinta-2); }
+  .ec-u { color: var(--tinta-3); }
+  .ec-u::before { content: "· "; }
   .tabla { overflow-x: auto; margin: var(--s-4) 0; }
   table { border-collapse: collapse; width: 100%; font-size: var(--fs-sm); }
   .tabla table:has(tr > :nth-child(4)) { min-width: 520px; }
@@ -316,7 +336,7 @@ function gtag() { dataLayer.push(arguments); }
     <h1>Planilla de costos en Excel gratis para tu negocio gastronómico</h1>
     <p class="bajada">Descargá gratis la planilla de costos en Excel con casi 300 insumos y su merma cargada: costo por plato, margen sin IVA y desperdicio en pesos. Con un ejemplo paso a paso.</p>
     <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · Actualizada el 16 de septiembre de 2026</p>
-    <div class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>7 min de lectura</span></div>
+    <div class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>9 min de lectura</span></div>
   </section>
   <div class="guia-cuerpo">
     <div class="guia-principal">
@@ -327,26 +347,29 @@ function gtag() { dataLayer.push(arguments); }
 
     <h2 id="que-es-una-planilla-de-costos">Qué es una planilla de costos</h2>
     <p>Es un Excel donde anotás <strong>lo que pagás por cada insumo</strong> y <strong>lo que lleva cada receta</strong>. Con eso responde tres preguntas: cuánto te cuesta cada plato, cuánto te deja cuando lo vendés y cuánta plata se va en desperdicio.</p>
+    <p>Sirve para restaurantes, bares, cafeterías y emprendedores que elaboran lo que venden: viandas, pastelería, panificados. Si tenés un comercio que revende sin transformar, no necesitás recetas: tu costo es el precio de compra, y te conviene la guía de <a href="/guias/margen-de-ganancia">margen de ganancia</a>.</p>
     <p>La nuestra se llama <strong>Calculadora de costos y márgenes</strong> y tiene seis hojas:</p>
     <ul>
       <li><strong>Instrucciones:</strong> qué completar y qué no en cada hoja, y cómo cargar el IVA.</li>
       <li><strong>Insumos:</strong> casi 300 insumos de gastronomía ya escritos. Vos completás el costo del bulto y cuánto trae.</li>
-      <li><strong>Recetas:</strong> hasta 20 recetas, con el costo por porción.</li>
+      <li><strong>Recetas:</strong> hasta 20 recetas. Cada una es una <strong>ficha de costo</strong> (la receta con el costo de cada ingrediente) y termina en el <strong>costo por porción</strong> (lo que cuesta la materia prima de un plato servido).</li>
       <li><strong>Márgenes por producto:</strong> todas las recetas juntas, con la ganancia sin IVA de cada una.</li>
-      <li><strong>Mermas por producto:</strong> la merma de referencia de cada insumo, que la receta usa sola.</li>
+      <li><strong>Mermas por producto:</strong> la merma (lo que se pierde al limpiar, pelar o cocinar) de referencia de cada insumo, que la receta usa sola.</li>
       <li><strong>Control de desperdicio:</strong> lo que se tira, en pesos y por motivo.</li>
     </ul>
 
     <h2 id="las-formulas-que-usa-la-planilla">Las fórmulas que usa la planilla</h2>
-    <p class="formula">Costo por gramo = costo del bulto ÷ gramos que trae<br>Peso bruto = peso neto ÷ (1 − merma)<br>Costo del ingrediente = peso bruto × costo por gramo<br>Costo por porción = costo de la receta ÷ porciones</p>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-v">CG</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-v">CB</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-v">G</span></span></span></div><div class="ec-linea"><span class="ec-v">PB</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-v">PN</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-n">1</span><span class="ec-op">−</span><span class="ec-v">M</span></span></span></div><div class="ec-linea"><span class="ec-v">CI</span><span class="ec-op">=</span><span class="ec-v">PB</span><span class="ec-op">×</span><span class="ec-v">CG</span></div><div class="ec-linea"><span class="ec-v">CPo</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-v">CR</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-v">N</span></span></span></div><dl class="ec-ref"><div><dt>CG</dt><dd>Costo por gramo <span class="ec-u">pesos por gramo</span></dd></div><div><dt>CB</dt><dd>Costo del bulto <span class="ec-u">pesos</span></dd></div><div><dt>G</dt><dd>Gramos que trae el bulto <span class="ec-u">gramos</span></dd></div><div><dt>PB</dt><dd>Peso bruto <span class="ec-u">gramos que tenés que comprar</span></dd></div><div><dt>PN</dt><dd>Peso neto <span class="ec-u">gramos que lleva el plato, ya limpio</span></dd></div><div><dt>M</dt><dd>Merma <span class="ec-u">en decimales: 16 % es 0,16</span></dd></div><div><dt>CI</dt><dd>Costo del ingrediente <span class="ec-u">pesos</span></dd></div><div><dt>CPo</dt><dd>Costo por porción <span class="ec-u">pesos</span></dd></div><div><dt>CR</dt><dd>Costo de la receta <span class="ec-u">pesos</span></dd></div><div><dt>N</dt><dd>Porciones que salen <span class="ec-u">porciones</span></dd></div></dl></figure>
     <ul>
       <li><strong>Peso neto:</strong> lo que lleva el plato, ya limpio o pelado. Es lo único que cargás en la receta.</li>
       <li><strong>Peso bruto:</strong> lo que tenés que comprar para que te quede ese peso neto. Lo calcula la planilla con la merma.</li>
       <li><strong>Merma:</strong> lo que se pierde al limpiar, pelar o cocinar. Si no la contás, el plato parece más barato de lo que es.</li>
+      <li><strong>Rendimiento:</strong> lo que queda para usar, o sea 1 − merma. Con 16 % de merma, el rendimiento es 84 %.</li>
     </ul>
+    <p>Pesá la porción siempre en el mismo estado en que medís la merma: si la merma es la de limpieza, el peso neto es crudo y limpio.</p>
     <p>Para el margen usa dos cuentas más:</p>
-    <p class="formula">Ganancia por unidad = precio sin IVA − costo<br>Ventas/costos = precio sin IVA ÷ costo</p>
-    <p>Si sos responsable inscripto, la planilla le saca el 21 % de IVA al precio de la carta, porque ese IVA no es tuyo. Si sos monotributista, usa el precio entero.</p>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-v">GU</span><span class="ec-op">=</span><span class="ec-v">P</span><span class="ec-op">−</span><span class="ec-v">C</span></div><div class="ec-linea"><span class="ec-v">VC</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-v">P</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-v">C</span></span></span></div><dl class="ec-ref"><div><dt>GU</dt><dd>Ganancia por unidad <span class="ec-u">pesos</span></dd></div><div><dt>VC</dt><dd>Ventas/costos <span class="ec-u">veces</span></dd></div><div><dt>P</dt><dd>Precio de venta <span class="ec-u">pesos, sin IVA</span></dd></div><div><dt>C</dt><dd>Costo por porción <span class="ec-u">pesos</span></dd></div></dl></figure>
+    <p>Si sos responsable inscripto, la planilla divide el precio de la carta por 1,21 para sacarle el IVA, porque ese IVA no es tuyo: se lo pagás a ARCA (ex AFIP). Si sos monotributista, usa el precio entero.</p>
 
     <h2 id="ejemplo-una-milanesa-con-pure-en-la-planilla">Ejemplo: una milanesa con puré en la planilla</h2>
 
@@ -372,19 +395,21 @@ function gtag() { dataLayer.push(arguments); }
       <table>
         <thead><tr><th>Insumo</th><th class="n">Peso neto</th><th class="n">Merma</th><th class="n">Peso bruto</th><th class="n">Costo</th></tr></thead>
         <tbody>
-          <tr><td>Vacuno (nalga)</td><td class="n">200 g</td><td class="n">16 %</td><td class="n">238 g</td><td class="n">$2.857</td></tr>
+          <tr><td>Vacuno (nalga)</td><td class="n">200 g</td><td class="n">20 %</td><td class="n">250 g</td><td class="n">$3.000</td></tr>
           <tr><td>Papa</td><td class="n">250 g</td><td class="n">15 %</td><td class="n">294 g</td><td class="n">$353</td></tr>
           <tr><td>Pan rallado</td><td class="n">40 g</td><td class="n">0 %</td><td class="n">40 g</td><td class="n">$120</td></tr>
           <tr><td>Huevos</td><td class="n">½ unidad</td><td class="n">—</td><td class="n">½ unidad</td><td class="n">$125</td></tr>
-          <tr><td>Manteca</td><td class="n">15 g</td><td class="n">2 %</td><td class="n">15 g</td><td class="n">$153</td></tr>
-          <tr><td>Aceite para freír</td><td class="n">50 ml</td><td class="n">5 %</td><td class="n">53 ml</td><td class="n">$211</td></tr>
-          <tr class="total"><td>Costo por porción</td><td></td><td></td><td></td><td class="n">$3.819</td></tr>
+          <tr><td>Manteca</td><td class="n">15 g</td><td class="n">0 %</td><td class="n">15 g</td><td class="n">$150</td></tr>
+          <tr><td>Aceite para freír</td><td class="n">50 ml</td><td class="n">0 %</td><td class="n">50 ml</td><td class="n">$200</td></tr>
+          <tr><td>Sal y condimentos</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">$197</td></tr>
+          <tr class="total"><td>Costo por porción</td><td></td><td></td><td></td><td class="n">$4.145</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="nota">Precios de ejemplo, para mostrar el método. Usá los de tus facturas.</p>
-    <p>La nalga, por ejemplo: 200 g ÷ (1 − 16 %) = 238 g, y 238 g × $12 = $2.857. La carne sola es el 75 % del costo del plato: es el insumo a seguir de cerca.</p>
-    <p><strong>La merma de referencia no es la de tu cocina.</strong> Si en tu cocina la nalga pierde 20 % al limpiarla, cambiá el 16 % en la hoja Mermas y el plato pasa a costar $3.962. Son $143 más por plato que no estabas viendo.</p>
+    <p class="nota">Precios de ejemplo, para mostrar el método. Usá los de tus facturas. Las mermas son las medidas en esta cocina: nalga 20 %, y manteca y aceite sin merma (la planilla trae 16 %, 2 % y 5 % de referencia).</p>
+    <p>La nalga, por ejemplo: 200 g ÷ (1 − 20 %) = 250 g, y 250 g × $12 = $3.000. La carne sola es el 72 % del costo del plato: es el insumo a seguir de cerca.</p>
+    <p><strong>La merma de referencia no es la de tu cocina.</strong> Con el 16 % que trae la planilla, la nalga costaría $2.857 y el plato $4.002: $143 menos por plato que no estarías viendo. Pesá tus 3 o 4 insumos más caros antes y después de limpiarlos, y cambiá la merma en la hoja Mermas.</p>
+    <p>Es la misma milanesa de la guía de <a href="/guias/costo-de-un-plato">costo de un plato</a>, donde está el cálculo paso a paso a mano.</p>
 
     <h3>3. Mirá el margen</h3>
     <p>La milanesa está en la carta a $16.800. En la hoja Márgenes, si sos responsable inscripto:</p>
@@ -392,11 +417,13 @@ function gtag() { dataLayer.push(arguments); }
       <table>
         <thead><tr><th>Precio de carta</th><th class="n">Precio sin IVA</th><th class="n">Costo</th><th class="n">Ganancia por unidad</th><th class="n">Ventas/costos</th></tr></thead>
         <tbody>
-          <tr><td>$16.800</td><td class="n">$13.884</td><td class="n">$3.819</td><td class="n">$10.065</td><td class="n">3,6</td></tr>
+          <tr><td>$16.800</td><td class="n">$13.884</td><td class="n">$4.145</td><td class="n">$9.739</td><td class="n">3,3</td></tr>
         </tbody>
       </table>
     </div>
-    <p>Ventas/costos 3,6 quiere decir que vendés la milanesa a 3,6 veces lo que te cuesta. Dicho al revés, la materia prima es el 27,5 % del precio sin IVA: ese número es el <a href="/guias/food-cost">food cost</a>. Ojo: la ganancia por unidad todavía tiene que pagar sueldos, alquiler, comisiones e impuestos.</p>
+    <p>Ventas/costos 3,3 quiere decir que vendés la milanesa a 3,3 veces lo que te cuesta. Dicho al revés, la materia prima es el 29,9 % del precio sin IVA: ese número es el <a href="/guias/food-cost">food cost</a> (el porcentaje del precio que se va en materia prima).</p>
+    <p>Ojo: la ganancia por unidad es en realidad un <strong>margen bruto</strong> (lo que queda después de pagar la materia prima). Con esa plata todavía se pagan Ingresos Brutos, comisiones de tarjeta o de apps, sueldos y alquiler.</p>
+    <p><strong>Qué mirar:</strong> en el rubro se toma como referencia un food cost de 25 % a 35 %. Un plato con ventas/costos por debajo de 2,86 está arriba de 35 %: revisale el precio, la porción o el proveedor.</p>
 
     <h2 id="como-usar-la-planilla-de-costos-en-excel">Cómo usar la planilla de costos en Excel</h2>
     <ol>
@@ -404,7 +431,7 @@ function gtag() { dataLayer.push(arguments); }
       <li><strong>Completá los insumos que usás.</strong> No hace falta llenar los casi 300: solo los de tus recetas. Cuidá que la cantidad del bulto esté en gramos (una horma de 3,2 kg son 3.200 g) o en unidades si comprás por unidad.</li>
       <li><strong>Cargá tus recetas</strong>, empezando por los platos que más vendés. Si una celda de costo se pone roja, a ese insumo le falta el precio en la hoja Insumos.</li>
       <li><strong>Revisá las mermas</strong> de tus 3 o 4 insumos más caros y corregilas con lo que pesás en tu cocina.</li>
-      <li><strong>Anotá el desperdicio</strong> cada día: fecha, insumo, cantidad y motivo (vencido, mal estado, no se vendió, error de producción o sobrante de mise en place). La planilla lo pasa a pesos.</li>
+      <li><strong>Anotá el desperdicio</strong> cada día: fecha, insumo, cantidad y motivo (vencido, mal estado, no se vendió, error de producción o sobrante de mise en place, es decir, lo que se dejó preparado antes del servicio). La planilla lo pasa a pesos.</li>
     </ol>
 
     <aside class="descarga" id="descarga-ficha-costo-plato" aria-labelledby="descarga-ficha-costo-plato-t" data-descarga="ficha-costo-plato" data-archivo="/descargas/calculadora-de-costos-y-margenes.xlsx" data-nombre="Calculadora-de-costos-y-margenes-Orden-Financiero.xlsx" data-origen="guia-planilla-de-costos-excel" data-evento="calculadora_excel_descarga">
@@ -436,9 +463,9 @@ function gtag() { dataLayer.push(arguments); }
     <h2 id="como-usarla-en-tu-negocio">Cómo usarla en tu negocio</h2>
     <ul>
       <li><strong>Cuando aumenta un proveedor,</strong> cambiá el costo del bulto en Insumos. Todas las recetas que lo usan se recalculan, y en Márgenes ves qué platos quedaron con poca ganancia.</li>
-      <li><strong>Buscá en la hoja Márgenes los platos con ventas/costos más bajo.</strong> Los que además venden mucho son los primeros para revisar precio, porción o receta. Para ponerles precio, seguí la guía de <a href="/guias/precio-de-venta">precio de venta de un plato</a>.</li>
+      <li><strong>Buscá en la hoja Márgenes los platos con ventas/costos más bajo.</strong> Los que además venden mucho son los primeros para revisar precio, porción o receta: un plato que se vende todos los días pesa más que uno caro que sale poco. Para ponerles precio, seguí la guía de <a href="/guias/precio-de-venta">precio de venta de un plato</a>.</li>
       <li><strong>Mirá el desperdicio por motivo</strong> una vez por mes. Si el motivo que más plata suma es "no se vendió", el problema está en la compra o en la carta, no en la cocina.</li>
-      <li><strong>Usá el costo para el cierre del mes:</strong> es la base para calcular el <a href="/guias/food-cost">costo de mercadería vendida</a> y compararlo con lo que dicen las compras.</li>
+      <li><strong>Usá el costo para el cierre del mes:</strong> multiplicá el costo por porción de cada plato por las unidades vendidas y sumá todo. Eso es lo que tendrías que haber gastado en materia prima (el costo teórico). Comparalo con el <a href="/guias/food-cost">costo de mercadería vendida</a> real, que sale del stock y las compras. Si el real da bastante más, se pierde mercadería en la cocina o el depósito.</li>
     </ul>
     <p>Si querés entender cada paso del cálculo a mano, está explicado en la guía de <a href="/guias/costo-de-un-plato">cómo calcular el costo de un plato</a>.</p>
 
@@ -467,9 +494,9 @@ function gtag() { dataLayer.push(arguments); }
       </article>
       <aside class="caja-autor"><img src="/foto-manuel-cutout.webp" alt="Manuel Alfano" width="72" height="72" loading="lazy"><div><strong>Manuel Alfano</strong><p>Fundador de Orden Financiero. Más de 12 años en la gastronomía con negocio propio; hoy trabaja mano a mano con dueños de negocios para ordenar sus números.</p></div></aside>
       <section class="seguir"><h2>Seguí leyendo</h2><ul class="tarjetas">
-      <li data-claves="El costo de un plato es lo que cuesta la materia prima de una porción, con la merma incluida. Costo real por kilo = precio de compra ÷ rendimiento; después se multiplica por la cantidad de la porción. Actualizá la ficha cuando aumenta un insumo importante: tres o cuatro explican casi todo el costo. ¿Qué es la ficha de costo de un plato? ¿Cómo se calcula la merma? ¿Cómo saco el costo de una receta que rinde varias porciones? ¿Qué porcentaje del precio debería ser el costo de un plato? ¿Cada cuánto hay que actualizar el costo de un plato? Cómo calcular el costo de un plato: fórmula, ejemplo y ficha de costo Costos y precios No sé cuánto me cuesta lo que vendo"><a href="/guias/costo-de-un-plato"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span><strong>Costo de un plato</strong><span class="desc">Qué es el costo de un plato, la fórmula con la merma incluida, un ejemplo completo en pesos y cómo armar la ficha de costo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>7 min</span></span></a></li>
+      <li data-claves="El costo de un plato es lo que cuesta la materia prima de una porción, con la merma incluida. Costo real por kilo = precio de compra ÷ rendimiento; después se multiplica por la cantidad de la porción. Actualizá la ficha cuando aumenta un insumo importante: tres o cuatro explican casi todo el costo. ¿Qué es la ficha de costo de un plato? ¿Cómo se calcula la merma? ¿Cómo saco el costo de una receta que rinde varias porciones? ¿Qué porcentaje del precio debería ser el costo de un plato? ¿Cada cuánto hay que actualizar el costo de un plato? Cómo calcular el costo de un plato: fórmula, ejemplo y ficha de costo Costos y precios No sé cuánto me cuesta lo que vendo"><a href="/guias/costo-de-un-plato"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span><strong>Costo de un plato</strong><span class="desc">Qué es el costo de un plato, la fórmula con la merma incluida, un ejemplo completo en pesos y cómo armar la ficha de costo en Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>10 min</span></span></a></li>
       <li data-claves="El CMV es lo que costó la mercadería que vendiste, no lo que compraste: inventario inicial + compras − inventario final. El food cost es ese costo como porcentaje de las ventas: por plato, costo ÷ precio sin IVA; por mes, CMV ÷ ventas netas. Compará lo que debería haber costado lo vendido con lo que costó de verdad: la diferencia es plata que se pierde. ¿Qué es el CMV? ¿Cuál es la fórmula del costo de mercadería vendida? ¿Cuál es la fórmula del food cost? ¿Food cost y costo de mercadería vendida son lo mismo? ¿El CMV y el food cost se calculan con o sin IVA? ¿Las bebidas entran en el food cost? ¿Qué pasa si no hago inventario? Costo de mercadería vendida (CMV) y food cost: qué son, fórmula y cómo calcularlos Costos y precios No sé cuánto me cuesta lo que vendo"><a href="/guias/food-cost"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span><strong>Costo de mercadería vendida (CMV) y food cost</strong><span class="desc">Qué es el costo de mercadería vendida o CMV y el food cost o costo de la materia prima, la fórmula con inventario, por plato y por mes, ejemplos en pesos y Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>11 min</span></span></a></li>
-      <li data-claves="Precio sin IVA = costo ÷ (1 − margen). En gastronomía es lo mismo dicho con el food cost: costo del plato ÷ food cost objetivo. Sumarle un porcentaje al costo no es ganar ese porcentaje. Si Mercado Pago, la tarjeta o una app de delivery te cobran comisión, calculá lo que necesitás recibir y después agrandalo por la comisión. ¿Cuál es la fórmula para calcular el precio de venta? ¿Cuál es la fórmula del precio de venta de un plato? ¿Cuánto cobrar por un plato de comida? ¿Cómo calculo el precio de venta con IVA y cómo le saco el IVA? ¿Cómo calculo el precio de venta de un producto para revender? ¿Es lo mismo sumar un 40 % al costo que ganar un 40 %? ¿Qué es el multiplicador de un plato? ¿Qué margen de ganancia tengo que poner? Cómo calcular el precio de venta de un producto o de un plato: fórmula y ejemplos Costos y precios No sé qué precio poner"><a href="/guias/precio-de-venta"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span><strong>Precio de venta de un producto o un plato</strong><span class="desc">Cómo calcular el precio de venta de un producto o de un plato: la fórmula con margen, markup y food cost, cómo sumar el IVA y las comisiones, ejemplos en pesos y Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>11 min</span></span></a></li>
+      <li data-claves="Precio sin IVA = costo ÷ (1 − margen). En gastronomía es lo mismo dicho con el food cost: costo del plato ÷ food cost objetivo. Sumarle un porcentaje al costo no es ganar ese porcentaje. Si Mercado Pago, la tarjeta o una app de delivery te cobran comisión, calculá lo que necesitás recibir y después agrandalo por la comisión. ¿Cuál es la fórmula para calcular el precio de venta? ¿Cuál es la fórmula del precio de venta de un plato? ¿Cuánto cobrar por un plato de comida? ¿Cómo calculo el precio de venta con IVA y cómo le saco el IVA? ¿Cómo calculo el precio de venta de un producto para revender? ¿Es lo mismo sumar un 40 % al costo que ganar un 40 %? ¿Qué es el multiplicador de un plato? ¿Qué margen de ganancia tengo que poner? Cómo calcular el precio de venta de un producto o de un plato: fórmula y ejemplos Costos y precios No sé qué precio poner"><a href="/guias/precio-de-venta"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span><strong>Precio de venta de un producto o un plato</strong><span class="desc">Cómo calcular el precio de venta de un producto o de un plato: la fórmula con margen, markup y food cost, cómo sumar el IVA y las comisiones, ejemplos en pesos y Excel.</span><span class="meta"><span>Fórmula</span><span>Ejemplo</span><span>Excel</span><span>12 min</span></span></a></li>
       </ul></section>
     </div>
     <nav class="indice-guia" aria-label="En esta guía"><p>En esta guía</p><ol><li><a href="#que-es-una-planilla-de-costos">Qué es una planilla de costos</a></li><li><a href="#las-formulas-que-usa-la-planilla">Las fórmulas que usa la planilla</a></li><li><a href="#ejemplo-una-milanesa-con-pure-en-la-planilla">Ejemplo: una milanesa con puré en la planilla</a></li><li><a href="#como-usar-la-planilla-de-costos-en-excel">Cómo usar la planilla de costos en Excel</a></li><li><a href="#como-usarla-en-tu-negocio">Cómo usarla en tu negocio</a></li><li><a href="#errores-comunes">Errores comunes</a></li><li><a href="#preguntas-frecuentes">Preguntas frecuentes</a></li></ol></nav>

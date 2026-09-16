@@ -20,11 +20,13 @@
     },
     {
       "q": "¿Cuál es la fórmula del costo de mercadería vendida?",
-      "a": "CMV = inventario inicial + compras del período − inventario final. Con un inventario inicial de $3.000.000, compras por $8.000.000 y un inventario final de $2.500.000, el CMV es $8.500.000."
+      "a": "CMV = inventario inicial + compras del período − inventario final. Con un inventario inicial de $3.000.000, compras por $8.000.000 y un inventario final de $2.500.000, el CMV es $8.500.000.",
+      "formula": "CMV = II + C − IF\nCMV: Costo de mercadería vendida | pesos por mes\nII: Inventario inicial | pesos\nC: Compras del período | pesos\nIF: Inventario final | pesos"
     },
     {
       "q": "¿Cuál es la fórmula del food cost?",
-      "a": "Food cost = costo de la materia prima ÷ ventas sin IVA × 100. Por plato se usa el costo de la ficha y el precio de carta sin IVA; por mes, el CMV (inventario inicial + compras − inventario final) y las ventas netas del mes, sin IVA ni comisiones."
+      "a": "Food cost = costo de la materia prima ÷ ventas sin IVA × 100. Por plato se usa el costo de la ficha y el precio de carta sin IVA; por mes, el CMV (inventario inicial + compras − inventario final) y las ventas netas del mes, sin IVA ni comisiones.",
+      "formula": "FCp = CP / P × 100\nFCm = CMV / VN × 100\nFCp: Food cost de un plato | porcentaje del precio\nFCm: Food cost del mes | porcentaje de las ventas netas\nCP: Costo del plato | pesos por porción\nP: Precio de venta | pesos, sin IVA\nCMV: Costo de mercadería vendida | pesos por mes\nVN: Ventas netas | pesos por mes, sin IVA ni comisiones"
     },
     {
       "q": "¿Food cost y costo de mercadería vendida son lo mismo?",
@@ -32,7 +34,7 @@
     },
     {
       "q": "¿El CMV y el food cost se calculan con o sin IVA?",
-      "a": "Sin IVA si sos responsable inscripto: el IVA de las compras lo recuperás y el de las ventas es del fisco. Si sos monotributista no discriminás IVA: usá lo que pagaste y lo que cobraste, y consultá con tu contador cómo impactan tus impuestos."
+      "a": "Sin IVA si sos responsable inscripto: el IVA de las compras es crédito fiscal (lo recuperás) y el débito fiscal (el IVA de las ventas) es del fisco. Si sos monotributista no discriminás IVA: usá lo que pagaste y lo que cobraste, y consultá con tu contador cómo impactan tus impuestos."
     },
     {
       "q": "¿Las bebidas entran en el food cost?",
@@ -55,18 +57,31 @@
     <p>El <strong>costo de mercadería vendida</strong>, o <strong>CMV</strong>, es lo que le costó al negocio la mercadería que <strong>efectivamente vendió</strong> en un período, por ejemplo un mes. No es lo que compró: parte de lo comprado puede seguir en el depósito, y parte de lo vendido puede venir del stock del mes anterior. También se lo llama <strong>costo de ventas</strong> o <strong>costo de lo vendido</strong>.</p>
 
     <h2>Qué es el food cost</h2>
-    <p>El <strong>food cost</strong>, en castellano <strong>costo de la materia prima</strong> o costo de la comida, es qué parte de las ventas se va en materia prima. Es el número más usado en gastronomía y se calcula de dos formas que sirven para cosas distintas: <strong>por plato</strong>, para armar la carta, y <strong>por mes</strong>, con el CMV, para saber qué pasó de verdad.</p>
+    <p>El <strong>food cost</strong>, en castellano <strong>costo de la materia prima</strong> o costo de la comida, es qué parte de las ventas se va en materia prima. Es el indicador más usado en gastronomía y se calcula de dos formas que sirven para cosas distintas: <strong>por plato</strong>, para armar la carta, y <strong>por mes</strong>, con el CMV, para saber qué pasó de verdad.</p>
 
     <h2>La fórmula del costo de mercadería vendida y del food cost</h2>
-    <p class="formula">CMV = inventario inicial + compras del período − inventario final<br>Food cost de un plato = costo del plato ÷ precio de venta sin IVA × 100<br>Food cost del mes = CMV ÷ ventas netas del mes × 100</p>
+    <formula>
+    CMV = II + C − IF
+    FCp = CP / P × 100
+    FCm = CMV / VN × 100
+    CMV: Costo de mercadería vendida | pesos por mes
+    II: Inventario inicial | pesos
+    C: Compras del período | pesos
+    IF: Inventario final | pesos
+    FCp: Food cost de un plato | porcentaje del precio
+    CP: Costo del plato | pesos por porción
+    P: Precio de venta | pesos, sin IVA
+    FCm: Food cost del mes | porcentaje de las ventas netas
+    VN: Ventas netas | pesos por mes, sin IVA ni comisiones
+    </formula>
     <ul>
       <li><strong>Inventario inicial:</strong> lo que valía la mercadería que había al empezar el período.</li>
       <li><strong>Compras:</strong> lo que entró en el período (por remito o factura), no lo que pagaste. Descontá devoluciones y bonificaciones, y sumá los fletes de compra.</li>
       <li><strong>Inventario final:</strong> lo que valía la mercadería que quedó al cerrar el período, incluidas las preparaciones hechas y no vendidas (en gastronomía: salsas, masas, milanesas armadas).</li>
       <li><strong>Ventas netas:</strong> lo que vendiste sin IVA y sin las comisiones de apps y tarjetas.</li>
     </ul>
-    <p>Si sos responsable inscripto, todo va <strong>sin IVA</strong>: el IVA de las compras lo recuperás (es crédito fiscal), así que no es costo. Ojo: si te hacen factura C o no te dan factura, no recuperás nada y va el total. Si sos monotributista, no cobrás IVA aparte ni lo recuperás en las compras: usá los precios que pagaste con IVA y el precio que cobrás.</p>
-    <p>Poné precio al stock siempre con el mismo criterio: el último precio de compra de cada producto. Con inflación, el stock que te quedó vale más a fin de mes solo por los aumentos, y eso baja el CMV. Una parte de un mes que parece mejor es eso, y no es plata: reponer ese stock te va a costar lo mismo.</p>
+    <p>Si sos responsable inscripto, todo va <strong>sin IVA</strong>: el IVA de las compras es crédito fiscal (lo descontás del IVA que le pagás al fisco), así que no es costo. Ojo: si te hacen factura C o no te dan factura, no recuperás nada y va el total. Si sos monotributista, no cobrás IVA aparte ni lo recuperás en las compras: usá los precios que pagaste con IVA y el precio que cobrás.</p>
+    <p>Valorizá el stock (ponele precio) siempre con el mismo criterio: el último precio de compra de cada producto. Con inflación, el stock que te quedó vale más a fin de mes solo por los aumentos, y eso baja el CMV. Una parte de un mes que parece mejor es eso, y no es plata: reponer ese stock te va a costar lo mismo.</p>
 
     <h2>Ejemplo: el CMV de un comercio</h2>
     <div class="tabla">
@@ -89,8 +104,16 @@
     <p>Si no contás el stock y tomás lo que compraste en el mes como costo, el costo da $8.000.000 y el margen bruto <strong>sube a 42,9 %</strong>. El mes parece mejor de lo que fue, porque en realidad también vendiste $500.000 de mercadería que ya tenías en el depósito. Pasa al revés el mes que comprás para stock: las compras superan a lo vendido y el mes parece peor de lo que fue. Contar el inventario todos los meses corrige las dos cosas.</p>
 
     <h2>El CMV en el estado de resultados</h2>
-    <p>La <strong>utilidad bruta</strong> es lo que te queda de las ventas después de pagar la mercadería. Con ella se pagan los gastos del negocio:</p>
-    <p class="formula">Ventas netas − costo de mercadería vendida = utilidad bruta<br>Utilidad bruta − estructura operativa (sueldos, alquiler, servicios) = resultado operativo</p>
+    <p>La <strong>utilidad bruta</strong> (lo que te queda después de pagar la mercadería) es la plata con la que se pagan los gastos del negocio:</p>
+    <formula>
+    UB = VN − CMV
+    RO = UB − EO
+    UB: Utilidad bruta | pesos por mes
+    VN: Ventas netas | pesos por mes
+    CMV: Costo de mercadería vendida | pesos por mes
+    RO: Resultado operativo | pesos por mes
+    EO: Estructura operativa: sueldos, alquiler, servicios | pesos por mes
+    </formula>
     <p>Por eso un CMV mal calculado arrastra el error hasta la última línea del <a href="/guias/estado-de-resultados">estado de resultados</a>. Con la utilidad bruta se calcula el margen bruto del negocio; está explicado en la guía de <a href="/guias/margen-de-ganancia">margen de ganancia</a>.</p>
 
     <h2>Ejemplo: el food cost de un plato</h2>
@@ -137,7 +160,14 @@
     </ul>
     <h3>Cómo sacar tu food cost (o tu CMV) objetivo</h3>
     <p>Partí de tu <a href="/guias/estado-de-resultados">estado de resultados</a>, con cada gasto como porcentaje de las ventas netas:</p>
-    <p class="formula">Objetivo = 100 % − estructura % (sueldos, alquiler, servicios) − intereses y gastos bancarios % − Ingresos Brutos y tasas % − lo que querés ganar %</p>
+    <formula>
+    FC% = 100 % − EO% − CFin% − Imp% − G%
+    FC%: Food cost (o CMV) objetivo | porcentaje de las ventas netas
+    EO%: Estructura operativa: sueldos, alquiler, servicios | porcentaje
+    CFin%: Costos financieros: intereses y gastos bancarios | porcentaje
+    Imp%: Impuestos: Ingresos Brutos y tasas | porcentaje
+    G%: Lo que querés ganar | porcentaje
+    </formula>
     <p>Con el restaurante de la guía de estado de resultados, queriendo ganar 15 %: 100 % − 47,7 % − 1,2 % − 3,7 % − 15 % = <strong>32,4 % de las ventas netas</strong>. Si vendés más, los gastos fijos pesan menos y ese número se afloja; si vendés menos, se achica.</p>
     <p>Para la carta, ojo: ese 32,4 % es sobre lo que te queda después de comisiones, y el food cost de cada plato se mide sobre el precio de carta, que todavía las incluye. En ese restaurante equivale a <strong>30,9 %</strong> del precio sin IVA ($30.000.000 de ventas netas sobre $31.500.000 de ventas). Usá ese número para calcular el <a href="/guias/precio-de-venta">precio de venta de cada plato</a>.</p>
 
@@ -178,7 +208,7 @@
     <ol>
       <li>Durante el mes, anotá lo que se tira y la comida del personal.</li>
       <li>El último día, después del cierre, contá el stock con la misma planilla de siempre, incluidas las preparaciones hechas. Mejor si cuentan dos personas.</li>
-      <li>Poné precio a cada producto con su último precio de compra (sin IVA si sos responsable inscripto).</li>
+      <li>Valorizá cada producto (ponele precio) con su último precio de compra (sin IVA si sos responsable inscripto).</li>
       <li>Calculá el CMV y el food cost real, y comparalos con el teórico. Si el real lo supera por más de 1 o 2 puntos, primero actualizá los precios de las fichas. Si la diferencia sigue, revisá los 5 insumos o productos que más pesan: el problema suele estar en la cocina o el depósito, no en los precios de venta.</li>
       <li>Ajustá lo que depende de vos (porciones, receta, proveedores, compras) y recién después <a href="/guias/precio-de-venta">revisá los precios</a>.</li>
     </ol>
@@ -187,7 +217,7 @@
     <ul>
       <li><strong>Tomar las compras como costo</strong> sin contar el inventario.</li>
       <li><strong>Tomar lo que pagaste a proveedores como compras del mes:</strong> con cheques o cuenta corriente, no coincide con lo que entró.</li>
-      <li><strong>Ponerle precio al stock con criterios distintos</strong> cada mes: elegí uno (por ejemplo, el último precio de compra) y mantenelo.</li>
+      <li><strong>Valorizar el stock (ponerle precio) con criterios distintos</strong> cada mes: elegí uno (por ejemplo, el último precio de compra) y mantenelo.</li>
       <li><strong>Incluir el IVA</strong> de las compras o de las ventas siendo responsable inscripto.</li>
       <li><strong>Meter gastos que no son mercadería</strong>, como alquiler, sueldos o servicios: esos van en la estructura operativa.</li>
     </ul>

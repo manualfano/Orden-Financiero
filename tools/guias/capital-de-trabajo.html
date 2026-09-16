@@ -6,7 +6,7 @@
   "eje": "Flujo de caja",
   "description": "Qué es el capital de trabajo, la fórmula, qué significa que sea negativo, el ciclo de caja, ejemplos en pesos de un comercio y un restaurante y cómo calcularlo en Excel.",
   "publicada": "2026-09-14",
-  "actualizada": "2026-09-14",
+  "actualizada": "2026-09-16",
   "cta_general": true,
   "relacionadas": [
     "flujo-de-caja",
@@ -20,15 +20,16 @@
     },
     {
       "q": "¿Cuál es la fórmula del capital de trabajo?",
-      "a": "Capital de trabajo = activo corriente − pasivo corriente. Con $11.500.000 entre caja, cobros pendientes y stock, y $8.500.000 de deudas de corto plazo, el capital de trabajo es $3.000.000."
+      "a": "Capital de trabajo = activo corriente − pasivo corriente. Con $11.500.000 entre caja, cobros pendientes y stock, y $8.500.000 de deudas de corto plazo, el capital de trabajo es $3.000.000.",
+      "formula": "CT = AC − PC\nCT: Capital de trabajo | pesos\nAC: Activo corriente: caja, cobros pendientes y stock | pesos\nPC: Pasivo corriente: deudas de menos de un año | pesos"
     },
     {
       "q": "¿Qué significa tener capital de trabajo negativo?",
-      "a": "Que las deudas de corto plazo superan a lo que el negocio tiene en caja, por cobrar y en stock. Es común en gastronomía, que cobra rápido y paga a proveedores a 30 días. No es necesariamente malo, pero deja al negocio muy expuesto si las ventas caen."
+      "a": "Que las deudas de corto plazo superan a lo que el negocio tiene en caja, por cobrar y en stock. Es común en gastronomía, que cobra rápido y les paga a los proveedores más tarde. No es necesariamente malo, pero deja al negocio muy expuesto si las ventas caen."
     },
     {
       "q": "¿Qué es un crédito para capital de trabajo?",
-      "a": "Es un préstamo de corto plazo para financiar el stock o la diferencia entre lo que tardás en cobrar y lo que tardás en pagar. Conviene cuando su costo es menor que lo que te deja vender más o comprar mejor; si se usa para tapar pérdidas, agranda el problema."
+      "a": "Es un préstamo de corto plazo para financiar el stock o la diferencia entre lo que tardás en cobrar y lo que tardás en pagar. Conviene cuando su costo es menor que lo que te deja vender más o comprar mejor: compará siempre el costo financiero total (CFT). Si se usa para tapar pérdidas, agranda el problema."
     },
     {
       "q": "¿Capital de trabajo y ganancia son lo mismo?",
@@ -37,22 +38,38 @@
   ],
   "resumen": [
     "Capital de trabajo = lo que tenés en caja, por cobrar y en stock − lo que debés en el corto plazo.",
-    "Mirá la liquidez sin el stock: si da menos de 1, sin vender mercadería no llegás a pagar lo que vence.",
+    "Mirá la prueba ácida (la liquidez sin el stock): si da menos de 1, sin vender mercadería no llegás a pagar lo que vence.",
     "Si es negativo, la plata de la cuenta no es toda tuya: una parte ya es de proveedores y sueldos."
   ]
 } -->
     <p>Hay negocios que venden bien, dan ganancia y aun así viven con la cuenta en rojo. Casi siempre el problema no está en el resultado, sino en el capital de trabajo: la plata queda atrapada en stock, en tarjetas por cobrar o se va en pagos que vencen antes de cobrar.</p>
 
     <h2>Qué es el capital de trabajo</h2>
-    <p>El <strong>capital de trabajo</strong> es lo que el negocio tiene para funcionar en el día a día: lo que tiene <strong>en caja, por cobrar y en stock</strong>, menos lo que <strong>debe pagar en el corto plazo</strong>. Responde una pregunta simple: si hoy tuvieras que pagar todo lo que vence en los próximos meses, ¿te alcanza con lo que tenés?</p>
+    <p>El <strong>capital de trabajo</strong> es lo que el negocio tiene para funcionar en el día a día: lo que tiene <strong>en caja, por cobrar y en stock</strong>, menos lo que <strong>debe pagar en el corto plazo</strong>. Responde una pregunta simple: si tuvieras que pagar todo lo que vence en los próximos 12 meses, ¿te alcanza con lo que tenés?</p>
+    <p>Calculalo con los saldos del último día de cada mes. Así podés comparar un mes con otro.</p>
 
     <h2>La fórmula del capital de trabajo</h2>
-    <p class="formula">Capital de trabajo = activo corriente − pasivo corriente</p>
+    <formula>
+    CT = AC − PC
+    CT: Capital de trabajo | pesos
+    AC: Activo corriente | pesos
+    PC: Pasivo corriente | pesos
+    </formula>
     <ul>
-      <li><strong>Activo corriente:</strong> lo que es plata o se convierte en plata en menos de un año. Caja y bancos, ventas con tarjeta por acreditar, cuentas de clientes y stock.</li>
-      <li><strong>Pasivo corriente:</strong> lo que hay que pagar en menos de un año. Proveedores, sueldos y cargas sociales a pagar, impuestos a pagar, planes de pago, cheques diferidos que emitiste y lo que vence de préstamos en los próximos 12 meses.</li>
+      <li><strong>Activo corriente</strong> (lo que es plata o se convierte en plata en menos de un año): caja, bancos y Mercado Pago; ventas con tarjeta y apps de delivery por acreditar; cheques y e-cheq a cobrar; cuentas de clientes; saldos a favor de IVA o Ingresos Brutos que vas a usar pronto (por ejemplo, por retenciones de tarjetas y bancos), y el stock, a precio de costo.</li>
+      <li><strong>Pasivo corriente</strong> (lo que hay que pagar en menos de un año): proveedores; sueldos y cargas sociales a pagar; impuestos a pagar; cheques y e-cheq diferidos que emitiste; el descubierto; señas que cobraste por pedidos o eventos que todavía no entregaste, y las cuotas de préstamos y planes de pago que vencen en los próximos 12 meses.</li>
     </ul>
-    <p>Con los mismos números se calcula la <strong>liquidez</strong>: activo corriente ÷ pasivo corriente. Si da más de 1, lo que tenés cubre lo que debés, <strong>siempre que puedas vender el stock a tiempo</strong>. Por eso conviene mirar también la cuenta <strong>sin el stock</strong>: (activo corriente − stock) ÷ pasivo corriente. Si da menos de 1, sin vender mercadería no llegás a pagar lo que vence.</p>
+    <p>Con los mismos números se calcula la <strong>liquidez corriente</strong>: activo corriente ÷ pasivo corriente. Si da más de 1, lo que tenés cubre lo que debés, <strong>siempre que puedas vender el stock a tiempo</strong>.</p>
+    <p>Por eso mirá también la <strong>prueba ácida</strong> (la liquidez sin el stock): (activo corriente − stock) ÷ pasivo corriente. Si da menos de 1, sin vender mercadería no llegás a pagar lo que vence. En un comercio con mucho stock es común; entonces lo que tenés que vigilar es que ese stock se venda rápido.</p>
+    <formula>
+    LC = AC / PC
+    PA = (AC − S) / PC
+    LC: Liquidez corriente | veces: más de 1 quiere decir que lo que tenés cubre lo que debés
+    PA: Prueba ácida | veces, sin contar el stock
+    AC: Activo corriente | pesos
+    PC: Pasivo corriente | pesos
+    S: Stock | pesos, a precio de costo
+    </formula>
 
     <h2>Ejemplo 1: el capital de trabajo de un comercio</h2>
     <div class="tabla">
@@ -68,41 +85,61 @@
           <tr><td>Cuotas de préstamos de los próximos 12 meses</td><td class="n">$1.000.000</td></tr>
           <tr class="total"><td>Pasivo corriente</td><td class="n">$8.500.000</td></tr>
           <tr class="total"><td>Capital de trabajo</td><td class="n">$3.000.000</td></tr>
-          <tr><td>Liquidez: $11.500.000 ÷ $8.500.000</td><td class="n">1,35</td></tr>
-          <tr><td>Liquidez sin stock: ($11.500.000 − $6.000.000) ÷ $8.500.000</td><td class="n">0,65</td></tr>
+          <tr><td>Liquidez corriente: $11.500.000 ÷ $8.500.000</td><td class="n">1,35</td></tr>
+          <tr><td>Prueba ácida: ($11.500.000 − $6.000.000) ÷ $8.500.000</td><td class="n">0,65</td></tr>
         </tbody>
       </table>
     </div>
+    <p class="nota">Números de ejemplo, para mostrar el método. Lo que tenés que cobrar y pagar va con IVA, porque es lo que va a entrar y salir; el stock, a costo sin IVA si sos responsable inscripto.</p>
+    <p>El capital de trabajo da positivo y la liquidez corriente, 1,35. Pero la prueba ácida da 0,65: de los $11.500.000, $6.000.000 están en la góndola y solo $2.000.000 en la cuenta. Para pagar lo que vence, este comercio <strong>necesita vender el stock</strong>. Antes de volver a comprar, mirá cuántos días de stock tenés (más abajo te mostramos cómo).</p>
 
     <h2>Ejemplo 2: un restaurante con capital de trabajo negativo</h2>
+    <p>Un restaurante chico, con los saldos del último día del mes, antes de pagar los sueldos:</p>
     <div class="tabla">
       <table>
         <tbody>
-          <tr><td>Caja, bancos y tarjetas por acreditar</td><td class="n">$2.200.000</td></tr>
-          <tr><td>Stock de materia prima y bebidas</td><td class="n">$1.500.000</td></tr>
-          <tr class="total"><td>Activo corriente</td><td class="n">$3.700.000</td></tr>
-          <tr><td>Proveedores</td><td class="n">$3.000.000</td></tr>
+          <tr><td>Caja y bancos</td><td class="n">$1.300.000</td></tr>
+          <tr><td>Tarjetas y apps de delivery por acreditar</td><td class="n">$2.000.000</td></tr>
+          <tr><td>Stock de materia prima y bebidas</td><td class="n">$700.000</td></tr>
+          <tr class="total"><td>Activo corriente</td><td class="n">$4.000.000</td></tr>
+          <tr><td>Proveedores</td><td class="n">$3.500.000</td></tr>
           <tr><td>Sueldos y cargas sociales a pagar</td><td class="n">$2.500.000</td></tr>
-          <tr><td>Impuestos a pagar</td><td class="n">$600.000</td></tr>
-          <tr class="total"><td>Pasivo corriente</td><td class="n">$6.100.000</td></tr>
-          <tr class="total"><td>Capital de trabajo</td><td class="n">−$2.400.000</td></tr>
+          <tr><td>Impuestos a pagar (IVA e Ingresos Brutos)</td><td class="n">$1.200.000</td></tr>
+          <tr class="total"><td>Pasivo corriente</td><td class="n">$7.200.000</td></tr>
+          <tr class="total"><td>Capital de trabajo</td><td class="n">−$3.200.000</td></tr>
+          <tr><td>Liquidez corriente: $4.000.000 ÷ $7.200.000</td><td class="n">0,56</td></tr>
         </tbody>
       </table>
     </div>
     <p class="nota">Números de ejemplo, para mostrar el método.</p>
-    <p>En gastronomía es común: se cobra en el momento o en pocos días, casi no hay stock y a los proveedores se les paga a 30 días. En los hechos, <strong>los proveedores financian el negocio</strong>. Funciona mientras las ventas se sostienen; si caen, la plata para pagar lo ya comprado no aparece.</p>
-    <p>Por eso, en un negocio así, <strong>la plata que ves en la cuenta no es toda tuya</strong>: una parte ya es de proveedores, sueldos e impuestos que vencen. Antes de retirar o invertir, restá lo que vence en los próximos 30 días. Para verlo semana a semana, armá un <a href="/guias/flujo-de-caja">flujo de caja</a>.</p>
+    <p>En gastronomía es común: se cobra en el momento o en pocos días, el stock dura alrededor de una semana y este restaurante les paga a sus proveedores a 30 días. En los hechos, <strong>los proveedores financian el negocio</strong>. Funciona mientras las ventas se sostienen; si caen, la plata para pagar lo ya comprado no aparece.</p>
+    <p>Por eso, en un negocio así, <strong>la plata que ves en la cuenta no es toda tuya</strong>: acá hay $1.300.000 en el banco, pero en los primeros días del mes vencen $2.500.000 de sueldos y cargas. Antes de retirar o invertir, restá lo que vence en los próximos 30 días. Para verlo semana a semana, armá un <a href="/guias/flujo-de-caja">flujo de caja</a>.</p>
 
     <h2>El ciclo de caja: cuánta plata necesita tu negocio</h2>
-    <p>La plata que necesita un negocio para funcionar depende de cuántos días pasan entre que paga y que cobra:</p>
-    <p class="formula">Ciclo de caja = días de stock + días de cobro − días de pago a proveedores<br>Plata necesaria para funcionar ≈ costo diario de lo que vendés × ciclo de caja</p>
-    <p>Cada plazo se calcula con los saldos de fin de mes:</p>
-    <ul>
-      <li><strong>Días de stock</strong> = stock ÷ costo de lo vendido en el mes × 30</li>
-      <li><strong>Días de cobro</strong> = tarjetas y clientes por cobrar ÷ ventas del mes con IVA × 30</li>
-      <li><strong>Días de pago</strong> = deuda con proveedores ÷ compras del mes con IVA × 30</li>
-    </ul>
-    <p>El comercio del ejemplo 1 vende $14.000.000 por mes sin IVA ($16.940.000 con IVA), compra $9.000.000 sin IVA ($10.890.000 con IVA) y el costo de lo que vende es $8.500.000:</p>
+    <p>El <strong>ciclo de caja</strong> (cuántos días pasan desde que le pagás al proveedor hasta que cobrás la venta) muestra cuánta plata queda metida en el negocio para que funcione:</p>
+    <formula>
+    CC = DS + DC − DP
+    PM = S + Cob − Prov
+    DS = S / CMV × 30
+    DC = Cob / V × 30
+    DP = Prov / Comp × 30
+    CC: Ciclo de caja | días
+    PM: Plata metida en el ciclo | pesos
+    DS: Días de stock | días
+    DC: Días de cobro | días
+    DP: Días de pago a proveedores | días
+    S: Stock a fin de mes | pesos, a precio de costo
+    Cob: Por cobrar: tarjetas, apps, cheques y clientes | pesos, con IVA
+    Prov: Deuda con proveedores | pesos, con IVA
+    CMV: Costo de mercadería vendida del mes | pesos
+    V: Ventas del mes | pesos, con IVA
+    Comp: Compras del mes | pesos, con IVA
+    </formula>
+    <p>Cada plazo se calcula con los saldos de fin de mes. El CMV (lo que te costó la mercadería que vendiste) está explicado en <a href="/guias/food-cost">costo de mercadería vendida</a>.</p>
+    <p>Si sos monotributista, usá los montos tal cual figuran en las facturas: no separás el IVA.</p>
+
+    <h3>Ejemplo: los días del comercio y del restaurante</h3>
+    <p>El comercio del ejemplo 1 vende $14.000.000 por mes sin IVA ($16.940.000 con IVA), compra $9.000.000 sin IVA ($10.890.000 con IVA) y su CMV es $8.500.000:</p>
     <div class="tabla">
       <table>
         <tbody>
@@ -110,42 +147,54 @@
           <tr><td>Días de cobro: $3.500.000 ÷ $16.940.000 × 30</td><td class="n">6 días</td></tr>
           <tr><td>Días de pago: $4.500.000 ÷ $10.890.000 × 30</td><td class="n">12 días</td></tr>
           <tr class="total"><td>Ciclo de caja: 21 + 6 − 12</td><td class="n">15 días</td></tr>
-          <tr class="total"><td>Plata necesaria: $283.333 por día × 15 días</td><td class="n">$4.250.000</td></tr>
+          <tr class="total"><td>Plata metida en el ciclo: $6.000.000 + $3.500.000 − $4.500.000</td><td class="n">$5.000.000</td></tr>
         </tbody>
       </table>
     </div>
-    <p>Ese comercio tiene $3.000.000 de capital de trabajo y necesita unos $4.250.000: le faltan cerca de <strong>$1.250.000</strong>. Por eso anda justo de plata aunque gane. Y es un mínimo: sumale un colchón para los gastos fijos de al menos 15 días.</p>
-    <p>En el restaurante del ejemplo 2 pasa lo contrario: con unos 7 días de stock, 5 de cobro y 30 de pago a proveedores, el ciclo da <strong>−18 días</strong>. Cobra antes de pagar, y por eso puede funcionar con capital de trabajo negativo.</p>
-    <p>Medí estos plazos todos los meses: si los días de stock o de cobro suben, o los de pago bajan, vas a necesitar más plata aunque vendas lo mismo.</p>
+    <p>El comercio tiene <strong>$5.000.000 metidos en el ciclo</strong>: plata que ya puso y todavía no volvió. Por eso anda justo aunque gane.</p>
+    <p>Ese número crece con las ventas: si vende 20 % más con los mismos plazos, necesita $1.000.000 más. Con inflación pasa lo mismo, aunque venda las mismas unidades.</p>
+    <p>Para decidir, pasá los días a pesos. Cada día de stock vale $283.333 ($8.500.000 ÷ 30): si baja de 21 a 14 días, libera unos $2.000.000. Cada día más de plazo con proveedores vale $363.000 ($10.890.000 ÷ 30).</p>
+    <p>En el restaurante del ejemplo 2 pasa lo contrario. Vende $10.000.000 por mes sin IVA ($12.100.000 con IVA), compra $3.500.000 con IVA y su CMV es $3.000.000: 7 días de stock, 5 de cobro y 30 de pago. El ciclo da <strong>−18 días</strong> y la plata metida en el ciclo, −$800.000 ($700.000 + $2.000.000 − $3.500.000): cobra antes de pagar, y los proveedores le financian $800.000. Por eso puede funcionar con capital de trabajo negativo.</p>
+    <p>Medí estos plazos todos los meses: si los días de stock o de cobro suben, o los de pago bajan, vas a necesitar más plata aunque vendas lo mismo. Y dejá aparte un colchón de, como mínimo, 2 semanas de gastos fijos.</p>
 
     <h2>Cómo calcular el capital de trabajo en Excel</h2>
+    <p>Poné los conceptos en la columna A y los saldos del último día del mes en la B:</p>
     <div class="tabla">
       <table>
         <thead><tr><th>Celda</th><th>Qué va</th><th>Fórmula</th></tr></thead>
         <tbody>
-          <tr><td>B2</td><td>Caja y bancos</td><td>—</td></tr>
-          <tr><td>B3</td><td>Cobros pendientes (tarjetas, clientes)</td><td>—</td></tr>
+          <tr><td>B2</td><td>Caja, bancos y Mercado Pago</td><td>—</td></tr>
+          <tr><td>B3</td><td>Cobros pendientes (tarjetas, apps, cheques, clientes)</td><td>—</td></tr>
           <tr><td>B4</td><td>Stock</td><td>—</td></tr>
           <tr><td>B5</td><td>Activo corriente</td><td><code>=SUMA(B2:B4)</code></td></tr>
           <tr><td>B6</td><td>Proveedores</td><td>—</td></tr>
           <tr><td>B7</td><td>Sueldos y cargas a pagar</td><td>—</td></tr>
           <tr><td>B8</td><td>Impuestos a pagar</td><td>—</td></tr>
-          <tr><td>B9</td><td>Deudas de los próximos 12 meses</td><td>—</td></tr>
+          <tr><td>B9</td><td>Cuotas de préstamos y planes de pago de los próximos 12 meses</td><td>—</td></tr>
           <tr><td>B10</td><td>Pasivo corriente</td><td><code>=SUMA(B6:B9)</code></td></tr>
           <tr><td>B11</td><td>Capital de trabajo</td><td><code>=B5-B10</code></td></tr>
-          <tr><td>B12</td><td>Liquidez</td><td><code>=B5/B10</code></td></tr>
-          <tr><td>B13</td><td>Liquidez sin stock</td><td><code>=(B5-B4)/B10</code></td></tr>
+          <tr><td>B12</td><td>Liquidez corriente</td><td><code>=B5/B10</code></td></tr>
+          <tr><td>B13</td><td>Prueba ácida</td><td><code>=(B5-B4)/B10</code></td></tr>
+          <tr><td>B14</td><td>CMV del mes</td><td>—</td></tr>
+          <tr><td>B15</td><td>Ventas del mes con IVA</td><td>—</td></tr>
+          <tr><td>B16</td><td>Compras del mes con IVA</td><td>—</td></tr>
+          <tr><td>B17</td><td>Días de stock</td><td><code>=B4/B14*30</code></td></tr>
+          <tr><td>B18</td><td>Días de cobro</td><td><code>=B3/B15*30</code></td></tr>
+          <tr><td>B19</td><td>Días de pago</td><td><code>=B6/B16*30</code></td></tr>
+          <tr><td>B20</td><td>Ciclo de caja</td><td><code>=B17+B18-B19</code></td></tr>
+          <tr><td>B21</td><td>Plata metida en el ciclo</td><td><code>=B3+B4-B6</code></td></tr>
         </tbody>
       </table>
     </div>
+    <p>Copiá la columna B a la C el mes siguiente y compará: lo que más te tiene que importar es hacia dónde se mueven los días.</p>
 
     <h2>Cómo mejorar el capital de trabajo de tu negocio</h2>
     <ul>
-      <li><strong>Cobrá antes:</strong> revisá plazos de acreditación de tarjetas y billeteras, y cuánto te cuesta adelantarlos.</li>
+      <li><strong>Cobrá antes:</strong> revisá en tus liquidaciones a cuántos días te acreditan las tarjetas, Mercado Pago y las apps, y cuánto cuesta adelantarlo. Con inflación, cada día que esperás la plata vale menos.</li>
+      <li><strong>Hacé la cuenta de las cuotas sin interés:</strong> el interés lo pagás vos, con un descuento sobre la venta. Sumalo a tus costos antes de ofrecerlas.</li>
       <li><strong>Comprá mejor:</strong> para cada insumo importante, definí un stock mínimo (lo que consumís mientras llega el pedido, más un margen) y pedí cuando llegás ahí. Lo que pasa 30 días sin moverse es plata parada que se puede vencer o quedar vieja.</li>
-      <li><strong>Cuidá la plata que tardás en cobrar:</strong> con inflación, una venta en cuotas sin interés o una tarjeta que se acredita tarde vale menos cada día que esperás.</li>
-      <li><strong>Negociá plazos con proveedores</strong>, cuidando no pagar de más por financiarte con ellos.</li>
-      <li><strong>Separá la plata del negocio de la personal:</strong> los retiros sin control son la forma más rápida de quedarse sin capital de trabajo.</li>
+      <li><strong>Negociá plazos con proveedores</strong>, pero hacé la cuenta: si te dan 5 % de descuento por pagar contado en vez de a 30 días, financiarte con ellos te cuesta más de 5 % por mes. Comparalo con lo que te cobra el banco.</li>
+      <li><strong>Separá la plata del negocio de la personal:</strong> fijate un retiro por mes. Los retiros sin control son la forma más rápida de quedarse sin capital de trabajo.</li>
       <li><strong>Miralo junto con el resultado:</strong> el <a href="/guias/estado-de-resultados">estado de resultados</a> dice si ganás; el capital de trabajo, si llegás a fin de mes; y el <a href="/guias/flujo-de-caja">flujo de caja</a>, en qué semana te va a faltar plata.</li>
     </ul>
 
@@ -153,6 +202,6 @@
     <ul>
       <li><strong>Confundirlo con la ganancia:</strong> un buen mes de ventas no garantiza caja.</li>
       <li><strong>Contar deudas de largo plazo enteras:</strong> en el pasivo corriente van solo las cuotas de los próximos 12 meses.</li>
-      <li><strong>Valorizar stock que no se vende</strong> como si fuera plata.</li>
-      <li><strong>Olvidar las tarjetas por acreditar</strong> o los sueldos y cargas devengados que todavía no se pagaron.</li>
+      <li><strong>Valuar el stock a precio de venta</strong>, o contar mercadería que no se vende como si fuera plata.</li>
+      <li><strong>Olvidar las tarjetas por acreditar</strong> o los sueldos y cargas devengados (lo que tus empleados ya trabajaron y todavía no les pagaste, incluida la parte del aguinaldo que se va acumulando).</li>
     </ul>

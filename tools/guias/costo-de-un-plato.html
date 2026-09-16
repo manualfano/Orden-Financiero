@@ -7,7 +7,7 @@
   "descarga": "ficha-costo-plato",
   "description": "Qué es el costo de un plato, la fórmula con la merma incluida, un ejemplo completo en pesos y cómo armar la ficha de costo en Excel.",
   "publicada": "2026-09-14",
-  "actualizada": "2026-09-14",
+  "actualizada": "2026-09-16",
   "relacionadas": [
     "food-cost",
     "precio-de-venta",
@@ -20,19 +20,20 @@
     },
     {
       "q": "¿Cómo se calcula la merma?",
-      "a": "Pesá el insumo tal como llega y otra vez listo para usar. Merma % = (peso comprado − peso limpio) ÷ peso comprado × 100. Si de 1 kilo quedan 800 gramos, la merma es 20 % y el rendimiento, 80 %."
+      "a": "Pesá el insumo tal como llega y otra vez listo para usar. Merma % = (peso comprado − peso limpio) ÷ peso comprado × 100. Si de 1 kilo quedan 800 gramos, la merma es 20 % y el rendimiento, 80 %.",
+      "formula": "M% = (PCo − PL) / PCo × 100\nR% = 100 % − M%\nM%: Merma | porcentaje del peso comprado\nPCo: Peso comprado, como llega | gramos\nPL: Peso limpio, listo para usar | gramos\nR%: Rendimiento | porcentaje del peso comprado"
     },
     {
       "q": "¿Cómo saco el costo de una receta que rinde varias porciones?",
-      "a": "Calculá el costo de la receta completa y dividilo por la cantidad de porciones que rinde. Una salsa que cuesta $18.000 y rinde 12 porciones cuesta $1.500 por porción."
+      "a": "Calculá el costo de la receta completa y dividilo por la cantidad de porciones que rinde de verdad. Una salsa que cuesta $18.000 y rinde 12 porciones cuesta $1.500 por porción."
     },
     {
       "q": "¿Qué porcentaje del precio debería ser el costo de un plato?",
-      "a": "Ese porcentaje es el food cost. En el rubro se suele tomar como referencia entre 25 % y 35 % del precio sin IVA, pero depende del tipo de negocio y de la carta."
+      "a": "Ese porcentaje es el food cost. En el rubro se suele tomar como referencia entre 25 % y 35 % del precio sin IVA (si sos monotributista, del precio que cobrás), pero depende del tipo de negocio y de la carta."
     },
     {
       "q": "¿Cada cuánto hay que actualizar el costo de un plato?",
-      "a": "Cada vez que aumenta un insumo importante, y la ficha completa al menos una vez por mes. En casi todos los platos, tres o cuatro insumos explican la mayor parte del costo."
+      "a": "Cada vez que un insumo importante aumenta más de 5 %, y la ficha completa al menos una vez por mes. En casi todos los platos, tres o cuatro insumos explican la mayor parte del costo."
     }
   ],
   "resumen": [
@@ -44,29 +45,48 @@
     <p>Si no sabés cuánto te cuesta cada plato, no sabés cuánto te deja cuando lo vendés. En muchos negocios gastronómicos el precio de la carta se arma mirando a la competencia o sumando "más o menos" lo que sale la materia prima. El problema aparece a fin de mes: se vendió bien y la plata no está.</p>
 
     <h2>Qué es el costo de un plato</h2>
-    <p>Es lo que cuesta la materia prima de <strong>una porción</strong>, tal como sale de la cocina: los ingredientes, la guarnición, la salsa y lo que se usa para terminar el plato, <strong>con la merma incluida</strong>. Se calcula en la <strong>ficha de costo</strong>, también llamada receta estándar costeada.</p>
+    <p>Es lo que cuesta la materia prima de <strong>una porción</strong>, tal como sale de la cocina: los ingredientes, la guarnición, la salsa y lo que se usa para terminar el plato, <strong>con la merma incluida</strong> (lo que se pierde al limpiar, cortar o cocinar).</p>
+    <p>Se calcula en la <strong>ficha de costo</strong> (la receta de una porción con el precio de cada ingrediente), también llamada receta estándar costeada.</p>
+    <p>No incluye sueldos, alquiler ni servicios: esos son <a href="/guias/costos-fijos-y-variables">costos fijos</a> y se pagan con lo que deja cada plato.</p>
+    <p><strong>Para empezar:</strong> no costees toda la carta de una vez. Elegí los 5 platos que más vendés y hacé su ficha primero.</p>
 
     <h2>La fórmula del costo de un plato</h2>
-    <p class="formula">Costo real por kilo = precio de compra por kilo ÷ rendimiento<br>Costo de cada ingrediente = costo real × cantidad de la porción<br>Costo del plato = suma de los ingredientes + varios</p>
+    <formula>
+    CR = PC / R
+    CI = CR × Q
+    CP = ΣCI + V
+    CR: Costo real del insumo, ya limpio | pesos por kilo
+    PC: Precio de compra | pesos por kilo
+    R: Rendimiento | en decimales: 80 % es 0,80
+    CI: Costo de cada ingrediente | pesos por porción
+    Q: Cantidad que lleva la porción | kilos: 200 g es 0,2
+    ΣCI: Suma de todos los ingredientes | pesos por porción
+    V: Varios, como sal y condimentos | pesos por porción
+    CP: Costo del plato | pesos por porción
+    </formula>
     <ul>
-      <li><strong>Rendimiento:</strong> el porcentaje del insumo que queda listo para usar, en el mismo estado en que pesás la porción (por ejemplo, limpia y cruda).</li>
+      <li><strong>Rendimiento:</strong> el porcentaje del insumo que queda listo para usar (100 % menos la merma), en el mismo estado en que pesás la porción (por ejemplo, limpia y cruda).</li>
       <li><strong>Cantidad de la porción:</strong> lo que lleva el plato, en la misma unidad que el precio (kilos, litros o unidades).</li>
-      <li><strong>Varios:</strong> un porcentaje chico para lo que no se pesa, como sal, aceite de la plancha y condimentos.</li>
+      <li><strong>Varios:</strong> un porcentaje chico para lo que no se pesa, como sal y condimentos.</li>
     </ul>
 
     <h2>Ejemplo: el costo de una milanesa con puré, paso a paso</h2>
 
     <h3>1. Escribí la receta estándar</h3>
     <p>La ficha arranca por la receta, con las cantidades <strong>por porción</strong>. Si cada cocinero sirve una porción distinta, el costo cambia en cada plato y ningún cálculo va a cerrar.</p>
+    <p>Hacé la prueba: pesá la carne de tres platos armados por distintos cocineros. En este ejemplo, cada 20 g de nalga de más son $300 por plato; en 1.000 milanesas al mes, $300.000. Si hay diferencias, fijá el gramaje, poné una balanza en la línea y dejá la receta a la vista.</p>
 
     <h3>2. Anotá el precio de compra de cada insumo</h3>
-    <p>Usá el <strong>precio al que lo volverías a comprar hoy</strong>: la última factura si es reciente, o la lista nueva si el proveedor ya avisó un aumento. Con precios que cambian seguido, un costo viejo es un costo equivocado.</p>
-    <p><strong>¿Con o sin IVA?</strong> Si sos responsable inscripto, anotá el precio <strong>sin IVA</strong> (el neto de la factura): el IVA y las percepciones que te agrega el proveedor los recuperás, no son costo. Si sos monotributista, anotá el <strong>total que pagaste</strong>, con IVA.</p>
+    <p>Usá el <strong>costo de reposición</strong> (el precio al que lo volverías a comprar hoy): la última factura si es reciente, o la lista nueva si el proveedor ya avisó un aumento. Aunque tengas mercadería comprada más barata, la ficha va con el precio de hoy, porque es lo que vas a pagar para reponerla.</p>
+    <p><strong>¿Con o sin IVA?</strong> Si sos responsable inscripto, anotá el precio <strong>sin IVA</strong> (el neto de la factura). El IVA de la compra es crédito fiscal (lo descontás del IVA que cobrás en tus ventas), así que no es costo. Tomá el neto que dice la factura en vez de dividir todo por 1,21: la carne y la verdura, por ejemplo, llevan 10,5 %.</p>
+    <p>Las percepciones (adelantos de IVA o de Ingresos Brutos que el proveedor suma en la factura) tampoco son costo: se descuentan de esos impuestos. Si se te acumulan sin poder usarlas, consultalo con tu contador.</p>
+    <p>Si sos monotributista, o si el proveedor te hace factura C o no te da factura, anotá el <strong>total que pagaste</strong>: ahí no hay IVA para recuperar.</p>
 
     <h3>3. Medí el rendimiento: acá está la merma</h3>
-    <p>Casi ningún insumo se usa entero. La carne se limpia, la verdura se pela, el pescado pierde espinas y piel. Lo que se descarta es la <strong>merma</strong>, y si no la contás, el costo que calculás queda más bajo que el real.</p>
+    <p>Casi ningún insumo se usa entero. La carne se limpia, la verdura se pela, el pescado pierde espinas y piel. Si no contás la merma, el costo que calculás queda más bajo que el real.</p>
     <p>Pesá el insumo tal como llega y volvé a pesarlo listo para usar. Si comprás nalga a $12.000 el kilo y después de limpiarla quedan 800 gramos de cada kilo, el rendimiento es 80 % y el kilo que de verdad usás cuesta $12.000 ÷ 0,80 = <strong>$15.000</strong>, no $12.000.</p>
-    <p>Pesá la porción siempre en el mismo estado. Si en tu cocina se pesa ya cocida, sumá también lo que se pierde al cocinar: por ejemplo, 80 % de limpieza × 70 % de cocción = 56 % de rendimiento.</p>
+    <p>Pesá la porción siempre en el mismo estado. Si en tu cocina se pesa ya cocida, multiplicá también lo que queda después de cocinar: por ejemplo, 80 % de limpieza × 70 % de cocción = 56 % de rendimiento.</p>
+    <p><strong>Usalo para comparar proveedores.</strong> Una nalga a $11.000 que rinde 70 % te cuesta $11.000 ÷ 0,70 = $15.714 el kilo limpio: más cara que la de $12.000 que rinde 80 %. Medí dos o tres compras de cada proveedor y usá el promedio.</p>
 
     <h3>4. Calculá el costo de cada ingrediente</h3>
     <div class="tabla">
@@ -88,12 +108,16 @@
       </table>
     </div>
     <p class="nota">Los precios son de ejemplo, para mostrar el método. Usá los de tus facturas.</p>
+    <p>Lo que no se compra por porción se saca por tanda. <strong>Aceite de fritura:</strong> lo que gastás en aceite por semana ÷ platos fritos de la semana; por ejemplo, $100.000 ÷ 500 = $200. <strong>Pan rallado y huevo:</strong> lo que usás para rebozar una tanda ÷ milanesas que salieron, contando lo que sobra en la bandeja y se tira.</p>
+    <p>Después mirá la última columna: la nalga sola es $3.000 de $4.145, el 72 % del plato. Ahí conviene negociar el precio, cuidar la limpieza y controlar el gramaje.</p>
 
     <h3>5. Sumá lo que no se pesa</h3>
-    <p>En el ejemplo sumamos 5 % sobre el subtotal para sal y condimentos. Lo importante es que ese número exista y que el criterio sea siempre el mismo. Si vendés por delivery, el plato también lleva <strong>envase, bolsa y cubiertos descartables</strong>: van en una ficha aparte para el plato de delivery.</p>
+    <p>En el ejemplo sumamos 5 % sobre el subtotal para sal y condimentos. Lo importante es que ese número exista y que el criterio sea siempre el mismo.</p>
+    <p>Si vendés por delivery, el plato también lleva <strong>envase, bolsa y cubiertos descartables</strong>: hacé una ficha aparte para el plato de delivery. Con un envase de $600, la milanesa para delivery cuesta $4.745. La comisión de la app no va en la ficha: se cubre con el <a href="/guias/precio-de-venta">precio de venta</a>.</p>
 
     <h3>6. Actualizala cuando cambian los precios</h3>
-    <p>Cada vez que un proveedor aumenta, el costo del plato cambia. No hace falta rehacer todo cada semana: en casi todos los platos, <strong>tres o cuatro insumos explican la mayor parte del costo</strong> (en el ejemplo, la carne sola es más del 70 %). Seguí esos de cerca y revisá la ficha completa al menos una vez por mes.</p>
+    <p>Cada vez que un proveedor aumenta, el costo del plato cambia. No hace falta rehacer todo cada semana: en casi todos los platos, <strong>tres o cuatro insumos explican la mayor parte del costo</strong> (en el ejemplo, la carne). Seguí esos de cerca y revisá la ficha completa al menos una vez por mes.</p>
+    <p>Una regla simple: el mismo día que uno de esos insumos aumenta más de 5 %, actualizás la ficha. Si la nalga pasa de $12.000 a $13.200 (10 %), la milanesa pasa de $4.145 a <strong>$4.460</strong>, y con el mismo precio de carta el food cost sube de 29,9 % a 32,1 %.</p>
 
     <h2>Cómo armar la ficha de costo en Excel</h2>
     <p>Una fila por ingrediente y estas columnas:</p>
@@ -110,10 +134,19 @@
         </tbody>
       </table>
     </div>
+    <p>En las filas que no tienen precio por kilo (la manteca y leche, el aceite), escribí el costo directo en F y dejá vacías B a E.</p>
     <p>Debajo de los ingredientes: en F8 el subtotal con <code>=SUMA(F2:F7)</code>, en F9 los varios con <code>=F8*5%</code> y en F10 el costo del plato con <code>=F8+F9</code>. Cuando cambia un precio, lo cambiás en la columna B y todo se recalcula solo. Si preferís no armarla desde cero, usá nuestra <a href="/guias/planilla-de-costos">planilla de costos</a>, que ya trae los insumos y su merma.</p>
 
     <h3>Si la receta rinde varias porciones</h3>
-    <p>Salsas, masas, guarniciones y postres se cocinan en tandas. Calculá el costo de la receta completa y dividilo por las porciones que rinde: <strong>costo por porción = costo total de la receta ÷ porciones</strong>. Una salsa bolognesa que cuesta $18.000 y rinde 12 porciones cuesta $1.500 por porción, y ese número entra como un ingrediente más en la ficha del plato.</p>
+    <p>Salsas, masas, guarniciones y postres se cocinan en tandas. Calculá el costo de la receta completa y dividilo por las porciones que rinde:</p>
+    <formula>
+    CPo = CR / N
+    CPo: Costo por porción | pesos
+    CR: Costo total de la receta | pesos
+    N: Porciones que rinde | porciones
+    </formula>
+    <p>Una salsa bolognesa que cuesta $18.000 y rinde 12 porciones cuesta $1.500 por porción, y ese número entra como un ingrediente más en la ficha del plato.</p>
+    <p>Contá las porciones que salen de verdad, no las que dice la receta: lo que queda en la olla también es merma.</p>
 
     <h2>Los errores más comunes</h2>
     <ul>
@@ -121,8 +154,13 @@
       <li><strong>Olvidar lo que acompaña</strong>: guarnición, salsa, pan de la panera, el aderezo que va en la mesa.</li>
       <li><strong>Usar precios viejos</strong>: la ficha queda linda y dice un número que ya no es.</li>
       <li><strong>Porciones que cambian</strong> según quién cocina: sin receta estándar, la ficha no describe lo que sale de la cocina.</li>
-      <li><strong>Hacerla y no usarla</strong>: el costo sirve para decidir precios, porciones y proveedores. Definí quién la actualiza y cuándo: por ejemplo, el mismo día que uno de los insumos principales aumenta más de 5 %.</li>
+      <li><strong>Hacerla y no usarla</strong>: el costo sirve para decidir precios, porciones y proveedores. Definí quién la actualiza y con qué regla.</li>
     </ul>
 
     <h2>Cómo usar el costo del plato en tu negocio</h2>
-    <p>Con el costo en la mano podés responder las dos preguntas que definen la rentabilidad de la carta: <a href="/guias/food-cost">qué porcentaje del precio se va en materia prima</a> (el food cost) y <a href="/guias/precio-de-venta">a qué precio conviene vender cada plato</a>.</p>
+    <p>Con el costo en la mano, hacé estas tres cuentas para cada plato:</p>
+    <ol>
+      <li><strong>Food cost</strong> (qué parte del precio se va en materia prima) = costo ÷ precio sin IVA. La milanesa sale $16.800 en la carta: $16.800 ÷ 1,21 = $13.884 sin IVA, y $4.145 ÷ $13.884 = <strong>29,9 %</strong>. Si sos monotributista, dividí por el precio de carta entero. Más detalle en la guía de <a href="/guias/food-cost">food cost</a>.</li>
+      <li><strong>Lo que deja el plato:</strong> $13.884 − $4.145 = $9.739. Si a eso le restás las comisiones de tarjeta o de la app, tenés el margen de contribución (lo que el plato aporta para pagar los gastos fijos y ganar).</li>
+      <li><strong>La decisión:</strong> si el food cost quedó arriba de tu objetivo, revisá <a href="/guias/precio-de-venta">a qué precio conviene vender el plato</a>, la porción o el proveedor.</li>
+    </ol>

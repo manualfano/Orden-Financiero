@@ -16,11 +16,13 @@
   "faq": [
     {
       "q": "¿Cuál es la fórmula para calcular el precio de venta?",
-      "a": "Precio de venta sin IVA = costo ÷ (1 − margen deseado). Con un costo de $10.500 y un margen de 40 %, el precio sin IVA es $10.500 ÷ 0,60 = $17.500."
+      "a": "Precio de venta sin IVA = costo ÷ (1 − margen deseado). Con un costo de $10.500 y un margen de 40 %, el precio sin IVA es $10.500 ÷ 0,60 = $17.500.",
+      "formula": "P = C / (1 − M)\nP: Precio de venta | pesos por unidad, sin IVA\nC: Costo | pesos por unidad\nM: Margen que querés | en decimales: 40 % es 0,40"
     },
     {
       "q": "¿Cuál es la fórmula del precio de venta de un plato?",
-      "a": "Precio sin IVA = costo del plato ÷ food cost objetivo. Precio de carta = precio sin IVA × 1,21 si sos responsable inscripto. Con un costo de $4.145 y un food cost objetivo de 30 %, el precio sin IVA es $13.817 y con IVA, $16.718."
+      "a": "Precio sin IVA = costo del plato ÷ food cost objetivo. Precio de carta = precio sin IVA × 1,21 si sos responsable inscripto. Con un costo de $4.145 y un food cost objetivo de 30 %, el precio sin IVA es $13.817 y con IVA, $16.718.",
+      "formula": "P = CP / FC\nPC = P × 1,21\nP: Precio de venta | pesos por plato, sin IVA\nCP: Costo del plato | pesos por plato\nFC: Food cost objetivo | en decimales: 30 % es 0,30\nPC: Precio de carta | pesos, con IVA, si sos responsable inscripto"
     },
     {
       "q": "¿Cuánto cobrar por un plato de comida?",
@@ -44,7 +46,8 @@
     },
     {
       "q": "¿Qué margen de ganancia tengo que poner?",
-      "a": "Sumá lo que se llevan tus gastos, como porcentaje de tus ventas: sueldos, alquiler y servicios; intereses; Ingresos Brutos; y lo que querés ganar. Por ejemplo, 20 % + 1 % + 4 % + 10 % = 35 %: ese es el margen promedio que necesitás. Las comisiones se suman aparte, con la fórmula de comisiones."
+      "a": "Sumá, como porcentaje de tus ventas netas: la estructura operativa (sueldos, alquiler y servicios), los costos financieros (intereses), los impuestos (Ingresos Brutos) y lo que querés ganar. Por ejemplo, 20 % + 1 % + 4 % + 10 % = 35 %: ese es el margen promedio que necesitás. Las comisiones se suman aparte, con la fórmula de comisiones.",
+      "formula": "M% = EO% + CFin% + Imp% + G%\nM%: Margen promedio que necesitás | porcentaje de las ventas netas\nEO%: Estructura operativa: sueldos, alquiler, servicios | porcentaje\nCFin%: Costos financieros: intereses | porcentaje\nImp%: Impuestos: Ingresos Brutos | porcentaje\nG%: Lo que querés ganar | porcentaje"
     }
   ],
   "resumen": [
@@ -60,16 +63,35 @@
 
     <h2>La fórmula del precio de venta</h2>
     <p>Hay dos formas de calcularlo, y confundirlas es uno de los errores más caros:</p>
-    <p class="formula">Con margen sobre el precio: precio sin IVA = costo ÷ (1 − margen)<br>Con markup sobre el costo: precio sin IVA = costo × (1 + markup)<br>Precio final con IVA = precio sin IVA × 1,21 (si sos responsable inscripto)</p>
+    <formula>
+    > Con margen sobre el precio
+    P = C / (1 − M)
+    > Con markup sobre el costo
+    P = C × (1 + MK)
+    > Precio final, si sos responsable inscripto
+    PF = P × 1,21
+    P: Precio de venta | pesos por unidad, sin IVA
+    C: Costo | pesos por unidad
+    M: Margen | en decimales: 40 % es 0,40
+    MK: Markup | en decimales: 66,7 % es 0,667
+    PF: Precio final | pesos por unidad, con IVA
+    </formula>
     <ul>
-      <li><strong>Costo:</strong> todo lo que cuesta tener el producto listo para vender, por unidad. Si sos responsable inscripto, sin el IVA que recuperás (si te hacen factura C o no te dan factura, va el total). Si sos monotributista, con el IVA que pagaste.</li>
+      <li><strong>Costo:</strong> todo lo que cuesta tener el producto listo para vender, por unidad. Si sos responsable inscripto, sin IVA, porque el IVA de las compras es crédito fiscal (lo recuperás). Si te hacen factura C o no te dan factura, no hay crédito fiscal y va el total. Si sos monotributista, con el IVA que pagaste.</li>
       <li><strong>Margen:</strong> qué parte del <em>precio</em> querés que te quede después de pagar el costo.</li>
       <li><strong>Markup:</strong> el porcentaje que le sumás al <em>costo</em>.</li>
     </ul>
 
     <h3>La fórmula del precio de venta de un plato</h3>
     <p>En gastronomía se usa la misma cuenta, pero dicha con el <a href="/guias/food-cost">food cost</a>: qué parte del precio querés que se vaya en materia prima.</p>
-    <p class="formula">Precio sin IVA = costo del plato ÷ food cost objetivo<br>Precio de carta = precio sin IVA × 1,21 (si sos responsable inscripto, aunque hagas factura B)</p>
+    <formula>
+    P = CP / FC
+    PC = P × 1,21
+    P: Precio de venta | pesos por plato, sin IVA
+    CP: Costo del plato | pesos por plato
+    FC: Food cost objetivo | en decimales: 30 % es 0,30
+    PC: Precio de carta | pesos, con IVA, si sos responsable inscripto (aunque hagas factura B)
+    </formula>
     <p>Es la fórmula de arriba con otro nombre. Un food cost de 30 % es lo mismo que un margen de 70 %: lo que queda del precio después de pagar la materia prima. Dividir por 0,30 es dividir por (1 − 0,70).</p>
 
     <h2>Ejemplo 1: un producto para revender</h2>
@@ -111,19 +133,35 @@
 
     <h2>El precio con comisiones: Mercado Pago, tarjetas y apps de delivery</h2>
     <p>Si una plataforma o un medio de pago te cobra un porcentaje de cada venta, esa comisión tiene que estar en el precio. Primero calculá lo que necesitás recibir y después agrandalo por la comisión:</p>
-    <p class="formula">Lo que necesitás recibir sin IVA = costo ÷ (1 − margen)<br>Precio final con IVA = lo que necesitás recibir ÷ (1 ÷ 1,21 − comisión)</p>
+    <formula>
+    R = C / (1 − M)
+    PF = R / (1 / 1,21 − Com)
+    > Si sos monotributista (la comisión con su IVA es costo)
+    PF = R / (1 − Com × 1,21)
+    R: Lo que necesitás recibir | pesos por unidad, sin IVA
+    C: Costo | pesos por unidad
+    M: Margen | en decimales: 40 % es 0,40
+    PF: Precio final | pesos por unidad, con IVA
+    Com: Comisión | en decimales: 13 % es 0,13
+    </formula>
     <p>El 1 ÷ 1,21 (unos 0,83) está porque las plataformas suelen cobrar la comisión sobre el precio final, con el IVA adentro.</p>
     <ul>
       <li><strong>Un producto con 13 % de comisión:</strong> con el costo de $10.500 y 40 % de margen necesitás recibir $17.500. Precio final: $17.500 ÷ (1 ÷ 1,21 − 0,13) = <strong>$25.128</strong>. Comprobación: sin IVA son $20.767; la comisión es $3.267 y te quedan $17.500.</li>
       <li><strong>Un plato en una app de delivery que cobra 25 %:</strong> para que por la milanesa te entre lo mismo que en el salón ($13.884 sin IVA): $13.884 ÷ (1 ÷ 1,21 − 0,25) = <strong>$24.086</strong>, unos $24.100 en la app. Sumá el envase, y los descuentos o envíos gratis que la app te hace pagar. Si el precio queda muy arriba del salón, elegí qué platos conviene tener en la app.</li>
     </ul>
-    <p class="nota">Las comisiones del ejemplo son ilustrativas: usá la de tu contrato (en Mercado Pago cambia según en cuántos días cobrás) y fijate en tu liquidación sobre qué la cobran. Si sos monotributista, la comisión con su IVA es costo y el precio queda = lo que necesitás recibir ÷ (1 − comisión × 1,21). Las retenciones que te hace la plataforma en principio no son costo: las descontás después de tus impuestos. Pero te bajan la plata que entra en el mes, y si se te acumulan a favor mes a mes, consultá con tu contador.</p>
+    <p class="nota">Las comisiones del ejemplo son ilustrativas: usá la de tu contrato (en Mercado Pago cambia según en cuántos días cobrás) y fijate en tu liquidación sobre qué la cobran. Las retenciones que te hace la plataforma en principio no son costo: las descontás después de tus impuestos. Pero te bajan la plata que entra en el mes, y si se te acumulan a favor mes a mes, consultá con tu contador.</p>
 
     <h2>Cuántos pesos deja cada venta: margen de contribución</h2>
     <p>El porcentaje no lo dice todo. Un producto o un plato con food cost bajo pero precio bajo puede dejar menos pesos que uno con food cost más alto. Por eso conviene mirar también el <strong>margen de contribución</strong>: los pesos que te quedan de cada venta, después de pagar lo que se lleva esa venta, para cubrir los gastos fijos y ganar.</p>
-    <p class="formula">Margen de contribución = precio sin IVA − costo − lo que se lleva cada venta (Ingresos Brutos y comisiones)</p>
-    <p>Con la milanesa a $16.800, vendida en el salón y en efectivo: precio sin IVA $13.884 − costo $4.145 − Ingresos Brutos $486 (3,5 %) = <strong>$9.253 por plato</strong>. Si el negocio tiene $14.650.000 de gastos fijos en el mes y todos los platos dejaran lo mismo, habría que vender $14.650.000 ÷ $9.253 = <strong>1.584 platos</strong> solo para cubrirlos: ese número es el <a href="/guias/punto-de-equilibrio">punto de equilibrio</a>.</p>
-    <p class="nota">Si cobrás con tarjeta o por apps, restá también la comisión y el margen baja. En la realidad cada plato deja un margen distinto: el cálculo se hace con el promedio de lo que se vende. La alícuota de Ingresos Brutos depende de tu provincia y tu actividad. Números de ejemplo.</p>
+    <formula>
+    MC = P − C − Com
+    MC: Margen de contribución | pesos por unidad
+    P: Precio de venta | pesos por unidad, sin IVA
+    C: Costo | pesos por unidad
+    Com: Comisión de la app o la tarjeta | pesos por unidad (0 si cobrás en efectivo)
+    </formula>
+    <p>Con la milanesa a $16.800, vendida en el salón y en efectivo: precio sin IVA $13.884 − costo $4.145 = <strong>$9.739 por plato</strong>. Si el negocio tiene $14.650.000 de gastos fijos en el mes y todos los platos dejaran lo mismo, habría que vender $14.650.000 ÷ $9.739 = <strong>1.505 platos</strong> solo para cubrirlos: ese número es el <a href="/guias/punto-de-equilibrio">punto de equilibrio</a>.</p>
+    <p class="nota">Si cobrás con tarjeta o por apps, restá también la comisión y el margen baja. Ingresos Brutos no va acá: va en impuestos, así que arriba de esos platos tenés que cubrirlo. En la realidad cada plato deja un margen distinto: el cálculo se hace con el promedio de lo que se vende. Números de ejemplo.</p>
 
     <h2>Cómo calcular el precio de venta en Excel</h2>
     <p>Una fila por producto o por plato:</p>
@@ -145,9 +183,9 @@
 
     <h2>Cómo usarlo en tu negocio</h2>
     <ul>
-      <li><strong>Calculá con el costo de reposición:</strong> lo que te va a costar volver a comprar la mercadería. Con inflación, el precio tiene que alcanzar para reponerla, no para pagar lo que costó hace dos meses.</li>
+      <li><strong>Calculá con el costo de reposición</strong> (lo que te va a costar volver a comprar la mercadería). Con inflación, el precio tiene que alcanzar para reponerla, no para pagar lo que costó hace dos meses.</li>
       <li><strong>Contrastá con el mercado.</strong> Si tu precio queda muy arriba, revisá el costo (proveedor, flete, porción, receta) antes de resignar margen. Si queda abajo, probablemente tengas lugar para subirlo: hacelo de a un producto y mirá que la plata total que deja no baje.</li>
-      <li><strong>Revisá cuando cambia algo:</strong> el costo, la comisión, el IVA o Ingresos Brutos. Con la planilla armada, es cambiar un número. En un plato, poné una alarma: que el food cost no pase tu objetivo más dos puntos.</li>
+      <li><strong>Revisá cuando cambia algo:</strong> el costo, la comisión o la alícuota (el porcentaje) de IVA o de Ingresos Brutos. Con la planilla armada, es cambiar un número. En un plato, poné una alarma: que el food cost no pase tu objetivo más dos puntos.</li>
       <li><strong>Cuidá lo que más se vende:</strong> actualizalo cuando suben los costos, pero no le cargues aumentos de más para tapar lo que pierden otros productos.</li>
     </ul>
 
@@ -164,7 +202,7 @@
     <ul>
       <li><strong>Confundir margen con markup:</strong> sumar 40 % al costo no es ganar 40 %.</li>
       <li><strong>Olvidar costos por unidad:</strong> flete, envase, merma (lo que se rompe, se vence o se tira al preparar).</li>
-      <li><strong>Olvidar lo que se lleva cada venta:</strong> comisiones, Ingresos Brutos, el costo de las cuotas sin interés y los descuentos por pago en efectivo. O los cubre tu margen, o los sumás al precio como la comisión.</li>
+      <li><strong>Olvidar lo que se lleva cada venta:</strong> comisiones, el costo de las cuotas sin interés y los descuentos por pago en efectivo. O los cubre tu margen, o los sumás al precio como la comisión.</li>
       <li><strong>Calcular el margen o el food cost sobre el precio con IVA:</strong> el IVA no es plata del negocio.</li>
       <li><strong>Usar el mismo precio en el salón y en la app de delivery:</strong> con la comisión adentro, el plato te deja menos.</li>
       <li><strong>Copiar el precio de la competencia</strong> sin saber qué margen te deja a vos.</li>
