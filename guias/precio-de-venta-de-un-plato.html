@@ -220,30 +220,33 @@ function gtag() { dataLayer.push(arguments); }
   /* Caja de descarga (16/09/2026, rediseño pedido por Manu: "le falta diseño"). Navy como la
      portada, etiqueta en lima, vista previa con aspecto de planilla de Excel y formulario en
      tarjeta blanca. Lima solo sobre navy; el botón sigue en azul marca. */
-  .descarga { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: var(--s-6); align-items: center; background: var(--navy); color: var(--w); border-radius: var(--r-lg); padding: var(--s-6); margin: var(--s-7) 0; }
-  @media (max-width: 860px) { .descarga { grid-template-columns: 1fr; gap: var(--s-5); padding: var(--s-5); } }
+  .descarga { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); grid-template-areas: 'arriba form' 'abajo form'; column-gap: var(--s-6); row-gap: var(--s-4); align-items: start; background: var(--navy); color: var(--w); border-radius: var(--r-lg); padding: var(--s-6); margin: var(--s-7) 0; }
+  .descarga-arriba { grid-area: arriba; min-width: 0; }
+  .descarga-abajo { grid-area: abajo; min-width: 0; }
+  .descarga-form { grid-area: form; align-self: center; min-width: 0; }
+  @media (max-width: 860px) { .descarga { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'arriba' 'form' 'abajo'; row-gap: var(--s-5); padding: var(--s-5); } }
   .descarga-tipo { display: inline-flex; align-items: center; gap: var(--s-2); font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #A3E635; margin-bottom: var(--s-2); }
   .descarga-tipo svg { width: 16px; height: 16px; }
   article .descarga .descarga-t { font-size: clamp(22px, 2.4vw, 28px); line-height: 1.2; color: var(--w); margin: 0 0 var(--s-2); letter-spacing: -0.01em; }
-  article .descarga .descarga-linea { color: rgba(255,255,255,0.82); margin-bottom: var(--s-4); }
-  .descarga-hoja { background: var(--w); border-radius: var(--r); overflow: hidden; font-size: var(--fs-meta); line-height: 1.4; font-variant-numeric: tabular-nums; box-shadow: 0 10px 28px rgba(0,0,0,0.28); color: var(--tinta); }
+  article .descarga .descarga-linea { color: rgba(255,255,255,0.82); margin-bottom: 0; }
+  .descarga-hoja { background: var(--w); border-radius: var(--r); overflow: hidden; font-size: var(--fs-meta); line-height: 1.4; font-variant-numeric: tabular-nums; box-shadow: 0 2px 8px rgba(0,0,0,0.18); color: var(--tinta); }
   .descarga-hoja .barra { display: flex; align-items: center; gap: 6px; background: #1E6C41; color: var(--w); padding: 6px 10px; font-size: 11.5px; font-weight: 600; }
   .descarga-hoja .barra i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.38); flex-shrink: 0; }
   .descarga-hoja .barra span { margin-left: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .descarga-hoja .fila { display: grid; grid-template-columns: 26px minmax(0, 1fr) 62px 112px; }
-  .descarga-hoja .fila span { padding: 5px 8px; border-bottom: 1px solid #E1E1E1; border-left: 1px solid #E1E1E1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--tinta); }
+  .descarga-hoja .fila span { padding: 5px 8px; border-bottom: 1px solid var(--borde); border-left: 1px solid var(--borde); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--tinta); }
   .descarga-hoja .fila span:nth-child(n+3) { text-align: right; }
-  .descarga-hoja .fila span:first-child { border-left: 0; background: #F3F3F3; color: #777; text-align: center; padding: 5px 0; }
-  .descarga-hoja .letras span { background: #F3F3F3; color: #777; text-align: center !important; padding: 3px 8px; }
+  .descarga-hoja .fila span:first-child { border-left: 0; background: var(--lienzo-2); color: var(--tinta-3); text-align: center; padding: 5px 0; }
+  .descarga-hoja .letras span { background: var(--lienzo-2); color: var(--tinta-3); text-align: center !important; padding: 3px 8px; }
   .descarga-hoja .cab span:not(:first-child) { background: var(--navy); color: var(--w); font-weight: 600; }
   .descarga-hoja .total span:not(:first-child) { color: var(--navy); font-weight: 600; background: #E9F2FF; }
-  .descarga-hoja .pestanas { display: flex; padding: 0 6px; background: #F3F3F3; border-top: 1px solid #D6D6D6; overflow: hidden; }
-  .descarga-hoja .pestanas span { padding: 5px 10px; color: #555; white-space: nowrap; border-right: 1px solid #DDD; }
+  .descarga-hoja .pestanas { display: flex; padding: 0 6px; background: var(--lienzo-2); border-top: 1px solid var(--borde); overflow: hidden; }
+  .descarga-hoja .pestanas span { padding: 5px 10px; color: var(--tinta-2); white-space: nowrap; border-right: 1px solid var(--borde); }
   .descarga-hoja .pestanas .on { background: var(--w); color: #1E6C41; font-weight: 600; box-shadow: inset 0 -2px 0 #1E6C41; }
   article ul.descarga-trae { list-style: none; padding: 0; margin: var(--s-4) 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 6px var(--s-4); }
   article .descarga .descarga-trae li { font-size: var(--fs-sm); line-height: 1.45; margin: 0; padding-left: 22px; position: relative; color: rgba(255,255,255,0.88); }
   .descarga-trae li::before { content: ""; position: absolute; left: 2px; top: 5px; width: 12px; height: 7px; border-left: 2px solid #93C5FD; border-bottom: 2px solid #93C5FD; transform: rotate(-45deg); }
-  .descarga-form { background: var(--w); color: var(--tinta); border-radius: var(--r-lg); padding: var(--s-5); box-shadow: 0 12px 32px rgba(0,0,0,0.25); }
+  .descarga-form { background: var(--w); color: var(--tinta); border-radius: var(--r-lg); padding: var(--s-5); }
   article .descarga .form-t { font-size: var(--fs-lead); font-weight: 600; color: var(--navy); margin: 0 0 4px; }
   article .descarga .form-sub { font-size: var(--fs-sm); color: var(--tinta-2); margin: 0 0 var(--s-4); }
   .descarga-form label { display: block; font-size: var(--fs-sm); font-weight: 600; color: var(--navy); margin-bottom: 6px; }

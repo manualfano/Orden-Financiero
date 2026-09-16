@@ -220,30 +220,33 @@ function gtag() { dataLayer.push(arguments); }
   /* Caja de descarga (16/09/2026, rediseño pedido por Manu: "le falta diseño"). Navy como la
      portada, etiqueta en lima, vista previa con aspecto de planilla de Excel y formulario en
      tarjeta blanca. Lima solo sobre navy; el botón sigue en azul marca. */
-  .descarga { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: var(--s-6); align-items: center; background: var(--navy); color: var(--w); border-radius: var(--r-lg); padding: var(--s-6); margin: var(--s-7) 0; }
-  @media (max-width: 860px) { .descarga { grid-template-columns: 1fr; gap: var(--s-5); padding: var(--s-5); } }
+  .descarga { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); grid-template-areas: 'arriba form' 'abajo form'; column-gap: var(--s-6); row-gap: var(--s-4); align-items: start; background: var(--navy); color: var(--w); border-radius: var(--r-lg); padding: var(--s-6); margin: var(--s-7) 0; }
+  .descarga-arriba { grid-area: arriba; min-width: 0; }
+  .descarga-abajo { grid-area: abajo; min-width: 0; }
+  .descarga-form { grid-area: form; align-self: center; min-width: 0; }
+  @media (max-width: 860px) { .descarga { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'arriba' 'form' 'abajo'; row-gap: var(--s-5); padding: var(--s-5); } }
   .descarga-tipo { display: inline-flex; align-items: center; gap: var(--s-2); font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #A3E635; margin-bottom: var(--s-2); }
   .descarga-tipo svg { width: 16px; height: 16px; }
   article .descarga .descarga-t { font-size: clamp(22px, 2.4vw, 28px); line-height: 1.2; color: var(--w); margin: 0 0 var(--s-2); letter-spacing: -0.01em; }
-  article .descarga .descarga-linea { color: rgba(255,255,255,0.82); margin-bottom: var(--s-4); }
-  .descarga-hoja { background: var(--w); border-radius: var(--r); overflow: hidden; font-size: var(--fs-meta); line-height: 1.4; font-variant-numeric: tabular-nums; box-shadow: 0 10px 28px rgba(0,0,0,0.28); color: var(--tinta); }
+  article .descarga .descarga-linea { color: rgba(255,255,255,0.82); margin-bottom: 0; }
+  .descarga-hoja { background: var(--w); border-radius: var(--r); overflow: hidden; font-size: var(--fs-meta); line-height: 1.4; font-variant-numeric: tabular-nums; box-shadow: 0 2px 8px rgba(0,0,0,0.18); color: var(--tinta); }
   .descarga-hoja .barra { display: flex; align-items: center; gap: 6px; background: #1E6C41; color: var(--w); padding: 6px 10px; font-size: 11.5px; font-weight: 600; }
   .descarga-hoja .barra i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.38); flex-shrink: 0; }
   .descarga-hoja .barra span { margin-left: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .descarga-hoja .fila { display: grid; grid-template-columns: 26px minmax(0, 1fr) 62px 112px; }
-  .descarga-hoja .fila span { padding: 5px 8px; border-bottom: 1px solid #E1E1E1; border-left: 1px solid #E1E1E1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--tinta); }
+  .descarga-hoja .fila span { padding: 5px 8px; border-bottom: 1px solid var(--borde); border-left: 1px solid var(--borde); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--tinta); }
   .descarga-hoja .fila span:nth-child(n+3) { text-align: right; }
-  .descarga-hoja .fila span:first-child { border-left: 0; background: #F3F3F3; color: #777; text-align: center; padding: 5px 0; }
-  .descarga-hoja .letras span { background: #F3F3F3; color: #777; text-align: center !important; padding: 3px 8px; }
+  .descarga-hoja .fila span:first-child { border-left: 0; background: var(--lienzo-2); color: var(--tinta-3); text-align: center; padding: 5px 0; }
+  .descarga-hoja .letras span { background: var(--lienzo-2); color: var(--tinta-3); text-align: center !important; padding: 3px 8px; }
   .descarga-hoja .cab span:not(:first-child) { background: var(--navy); color: var(--w); font-weight: 600; }
   .descarga-hoja .total span:not(:first-child) { color: var(--navy); font-weight: 600; background: #E9F2FF; }
-  .descarga-hoja .pestanas { display: flex; padding: 0 6px; background: #F3F3F3; border-top: 1px solid #D6D6D6; overflow: hidden; }
-  .descarga-hoja .pestanas span { padding: 5px 10px; color: #555; white-space: nowrap; border-right: 1px solid #DDD; }
+  .descarga-hoja .pestanas { display: flex; padding: 0 6px; background: var(--lienzo-2); border-top: 1px solid var(--borde); overflow: hidden; }
+  .descarga-hoja .pestanas span { padding: 5px 10px; color: var(--tinta-2); white-space: nowrap; border-right: 1px solid var(--borde); }
   .descarga-hoja .pestanas .on { background: var(--w); color: #1E6C41; font-weight: 600; box-shadow: inset 0 -2px 0 #1E6C41; }
   article ul.descarga-trae { list-style: none; padding: 0; margin: var(--s-4) 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 6px var(--s-4); }
   article .descarga .descarga-trae li { font-size: var(--fs-sm); line-height: 1.45; margin: 0; padding-left: 22px; position: relative; color: rgba(255,255,255,0.88); }
   .descarga-trae li::before { content: ""; position: absolute; left: 2px; top: 5px; width: 12px; height: 7px; border-left: 2px solid #93C5FD; border-bottom: 2px solid #93C5FD; transform: rotate(-45deg); }
-  .descarga-form { background: var(--w); color: var(--tinta); border-radius: var(--r-lg); padding: var(--s-5); box-shadow: 0 12px 32px rgba(0,0,0,0.25); }
+  .descarga-form { background: var(--w); color: var(--tinta); border-radius: var(--r-lg); padding: var(--s-5); }
   article .descarga .form-t { font-size: var(--fs-lead); font-weight: 600; color: var(--navy); margin: 0 0 4px; }
   article .descarga .form-sub { font-size: var(--fs-sm); color: var(--tinta-2); margin: 0 0 var(--s-4); }
   .descarga-form label { display: block; font-size: var(--fs-sm); font-weight: 600; color: var(--navy); margin-bottom: 6px; }
@@ -395,23 +398,25 @@ function gtag() { dataLayer.push(arguments); }
     <p>Salsas, masas, guarniciones y postres se cocinan en tandas. Calculá el costo de la receta completa y dividilo por las porciones que rinde: <strong>costo por porción = costo total de la receta ÷ porciones</strong>. Una salsa bolognesa que cuesta $18.000 y rinde 12 porciones cuesta $1.500 por porción, y ese número entra como un ingrediente más en la ficha del plato.</p>
 
     <aside class="descarga" id="descarga-ficha-costo-plato" aria-labelledby="descarga-ficha-costo-plato-t" data-descarga="ficha-costo-plato" data-archivo="/descargas/calculadora-de-costos-y-margenes.xlsx" data-nombre="Calculadora-de-costos-y-margenes-Orden-Financiero.xlsx" data-origen="guia-costo-de-un-plato-excel" data-evento="calculadora_excel_descarga">
-      <div class="descarga-info">
+      <div class="descarga-arriba">
         <p class="descarga-tipo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>Excel gratis · 6 hojas</p>
         <h3 class="descarga-t" id="descarga-ficha-costo-plato-t">Descargá la calculadora de costos en Excel</h3>
         <p class="descarga-linea">Insumos con la merma ya cargada, recetas, márgenes sin IVA y control de desperdicio.</p>
+      </div>
+      <div class="descarga-abajo">
         <div class="descarga-hoja" aria-hidden="true"><div class="barra"><i></i><i></i><i></i><span>Calculadora-de-costos-y-margenes-Orden-Financiero.xlsx</span></div><div class="fila letras"><span></span><span>A</span><span>B</span><span>C</span></div><div class="fila cab"><span>1</span><span>Insumo</span><span>Merma</span><span>Para 200 g</span></div><div class="fila"><span>2</span><span>Papa</span><span>15 %</span><span>235 g</span></div><div class="fila"><span>3</span><span>Lomo (vacuno)</span><span>20 %</span><span>250 g</span></div><div class="fila"><span>4</span><span>Salmón (entero)</span><span>50 %</span><span>400 g</span></div><div class="fila total"><span>5</span><span>Y 273 más</span><span></span><span></span></div><div class="pestanas"><span class="on">Insumos</span><span>Recetas</span><span>Márgenes</span><span>Mermas</span><span>Desperdicio</span></div></div>
         <ul class="descarga-trae" aria-label="Qué trae el archivo"><li>276 insumos con la merma de referencia ya cargada.</li><li>Recetas con costo por porción: la merma se suma sola.</li><li>Márgenes por producto sin IVA, si sos responsable inscripto o monotributista.</li><li>Control de desperdicio en pesos e instrucciones paso a paso.</li></ul>
       </div>
       <div class="descarga-form">
         <form class="descarga-campos" novalidate>
-          <p class="form-t">Bajala gratis</p>
+          <p class="form-t">Bajala ahora</p>
           <p class="form-sub">Dejanos tu WhatsApp y se descarga al instante.</p>
           <label for="descarga-ficha-costo-plato-wa">Tu WhatsApp</label>
           <input type="tel" id="descarga-ficha-costo-plato-wa" name="tel" autocomplete="tel" inputmode="tel" placeholder="221 555 0000" required aria-describedby="descarga-ficha-costo-plato-hint descarga-ficha-costo-plato-err">
           <p class="descarga-hint" id="descarga-ficha-costo-plato-hint">Código de área y número, sin el 0 ni el 15.</p>
           <p class="descarga-error" id="descarga-ficha-costo-plato-err" role="alert"></p>
           <input class="campo-extra" type="text" name="campo_extra" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <button type="submit" class="descarga-btn">Descargar gratis <span aria-hidden="true">↓</span></button>
+          <button type="submit" class="descarga-btn">Descargar Excel gratis <span aria-hidden="true">↓</span></button>
           <p class="descarga-priv">Te escribimos solo por temas de tu negocio. Nada de spam. <a href="/privacidad">Privacidad</a></p>
         </form>
         <div class="descarga-listo" aria-live="polite"></div>
