@@ -114,6 +114,7 @@ function gtag() { dataLayer.push(arguments); }
   .ec-v { font-style: italic; white-space: nowrap; }
   .ec-n { white-space: nowrap; }
   .ec-op { padding-left: 0.1em; }
+  .ec-g { display: inline-flex; align-items: center; column-gap: 0.28em; min-width: 0; }
   .ec-p { font-style: normal; }
   .ec-frac { display: inline-flex; flex-direction: column; align-items: stretch; text-align: center; vertical-align: middle; }
   .ec-w { font-family: 'Inter', system-ui, sans-serif; font-size: 0.8em; font-weight: 600; }
@@ -431,7 +432,7 @@ function gtag() { dataLayer.push(arguments); }
 
     <h2 id="la-formula-del-flujo-de-caja">La fórmula del flujo de caja</h2>
     <p>Cada semana hacés una sola cuenta para saber cuánta plata te queda:</p>
-    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Saldo final</span><span class="ec-op">=</span><span class="ec-w">Saldo inicial</span><span class="ec-op">+</span><span class="ec-w">Entradas</span><span class="ec-op">−</span><span class="ec-w">Salidas</span></div></figure>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Saldo final</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-w">Saldo inicial</span></span><span class="ec-op">+</span><span class="ec-w">Entradas</span><span class="ec-op">−</span><span class="ec-w">Salidas</span></div></figure>
     <ul>
       <li><strong>Saldo inicial</strong> (la plata que tenés al empezar la semana): banco, Mercado Pago y efectivo.</li>
       <li><strong>Entradas</strong> (lo que cobrás): efectivo, transferencias y lo que te depositan tarjetas, Mercado Pago y apps.</li>
@@ -460,6 +461,7 @@ function gtag() { dataLayer.push(arguments); }
       </table>
     </div>
     <p class="nota">Números de ejemplo, con IVA incluido. Las fechas de tus impuestos te las da tu contador.</p>
+    <figure class="ecuacion"><p class="ec-t">La cuenta de la semana 1</p><div class="ec-linea"><span class="ec-w">Saldo final</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">$3.500.000</span></span><span class="ec-op">+</span><span class="ec-n">$9.000.000</span><span class="ec-op">−</span><span class="ec-n">$14.000.000</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">−$1.500.000</span></span></div></figure>
     <ul>
       <li><strong>La semana 1 termina en −$1.500.000.</strong> Si no lo ves venir, quedás en descubierto (en rojo en el banco).</li>
       <li><strong>El mes cierra bien igual:</strong> entran $36.000.000 y salen $34.500.000. La caja pasa de $3.500.000 a $5.000.000.</li>
@@ -540,7 +542,7 @@ function gtag() { dataLayer.push(arguments); }
     <p>Es la lista de la plata que entra y sale del negocio, y en qué semana. Te avisa antes en qué semana te va a faltar. También se lo llama flujo de fondos o cash flow.</p>
     <h3>¿Cuál es la fórmula del flujo de caja?</h3>
     <p>Saldo inicial + entradas − salidas = saldo final. En el ejemplo del restaurante: $3.500.000 al empezar el mes, + $36.000.000 que entran, − $34.500.000 que salen, = $5.000.000 al terminar el mes.</p>
-    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Saldo final</span><span class="ec-op">=</span><span class="ec-w">Saldo inicial</span><span class="ec-op">+</span><span class="ec-w">Entradas</span><span class="ec-op">−</span><span class="ec-w">Salidas</span></div></figure>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Saldo final</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-w">Saldo inicial</span></span><span class="ec-op">+</span><span class="ec-w">Entradas</span><span class="ec-op">−</span><span class="ec-w">Salidas</span></div></figure>
     <h3>¿Qué diferencia hay entre el flujo de caja y el estado de resultados?</h3>
     <p>El estado de resultados dice si el negocio gana: cuenta la venta el día que vendés. El flujo de caja dice si te alcanza la plata: la cuenta el día que entra a tu cuenta.</p>
     <h3>¿Flujo de caja, flujo de fondos y cash flow son lo mismo?</h3>

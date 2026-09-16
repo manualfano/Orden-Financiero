@@ -114,6 +114,7 @@ function gtag() { dataLayer.push(arguments); }
   .ec-v { font-style: italic; white-space: nowrap; }
   .ec-n { white-space: nowrap; }
   .ec-op { padding-left: 0.1em; }
+  .ec-g { display: inline-flex; align-items: center; column-gap: 0.28em; min-width: 0; }
   .ec-p { font-style: normal; }
   .ec-frac { display: inline-flex; flex-direction: column; align-items: stretch; text-align: center; vertical-align: middle; }
   .ec-w { font-family: 'Inter', system-ui, sans-serif; font-size: 0.8em; font-weight: 600; }
@@ -423,7 +424,7 @@ function gtag() { dataLayer.push(arguments); }
     <p>Ese 40 % es el <strong>margen de ganancia</strong> (la parte del precio que te queda después de pagar el producto). Responde a esto: de cada $100 que cobro, ¿cuántos me quedan?</p>
 
     <h2 id="la-formula-del-margen-de-ganancia">La fórmula del margen de ganancia</h2>
-    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Margen %</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Precio sin IVA</span><span class="ec-op">−</span><span class="ec-v">Costo</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Precio sin IVA</span></span></span><span class="ec-op">×</span><span class="ec-n">100</span></div></figure>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Margen %</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Precio sin IVA</span><span class="ec-op">−</span><span class="ec-v">Costo</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Precio sin IVA</span></span></span></span><span class="ec-op">×</span><span class="ec-n">100</span></div></figure>
     <ul>
       <li><strong>Precio sin IVA:</strong> el IVA que cobrás no es tuyo. Si sos monotributista, usá el precio que cobrás y el costo con IVA.</li>
       <li><strong>Costo:</strong> lo que te cuesta tener el producto listo para vender (mercadería o ingredientes, flete, envase).</li>
@@ -431,20 +432,19 @@ function gtag() { dataLayer.push(arguments); }
     <p>Con la calculadora, para un kilo de pan que te cuesta $900 y vendés a $3.000: 3.000 − 900 = 2.100, y 2.100 ÷ 3.000 = 0,70. Es un margen de 70 %.</p>
 
     <h2 id="ejemplo-el-margen-de-un-producto">Ejemplo: el margen de un producto</h2>
-    <p>Un producto cuesta $10.500 y se vende a $17.500 sin IVA ($21.175 con IVA).</p>
-    <ul>
-      <li>Te queda: $17.500 − $10.500 = <strong>$7.000</strong></li>
-      <li>Margen: $7.000 ÷ $17.500 = <strong>40 %</strong></li>
-    </ul>
+    <p>Un producto cuesta $10.500 y se vende a $17.500 sin IVA ($21.175 con IVA). De cada venta te quedan <strong>$7.000</strong>.</p>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Margen %</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-n">$17.500</span><span class="ec-op">−</span><span class="ec-n">$10.500</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-n">$17.500</span></span></span></span><span class="ec-op">×</span><span class="ec-n">100</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">40 %</span></span></div></figure>
     <p>Qué hacer: mañana hacé esta cuenta con los diez productos que más vendés.</p>
     <p>Usá el <strong>costo de reposición</strong> (lo que te cuesta hoy volver a comprarlo), no lo que pagaste hace dos meses. Con inflación, el costo viejo te muestra un margen que no tenés.</p>
 
     <h2 id="margen-y-markup-la-diferencia">Margen y markup: la diferencia</h2>
     <p>El <strong>markup</strong> (el porcentaje que le sumás al costo) usa la misma ganancia, pero la divide por el costo y no por el precio:</p>
-    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Markup %</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Precio sin IVA</span><span class="ec-op">−</span><span class="ec-v">Costo</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-v">Costo</span></span></span><span class="ec-op">×</span><span class="ec-n">100</span></div></figure>
-    <p>Con el mismo producto: $7.000 ÷ $10.500 = <strong>66,7 % de markup</strong>.</p>
-    <p>El error típico: querés ganar 40 % y le sumás 40 % al costo: vendés a $10.500 × 1,40 = $14.700.</p>
-    <p>Te quedan $4.200: un margen de <strong>28,6 %</strong>, no 40 %. Son $2.800 menos en cada venta.</p>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Markup %</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Precio sin IVA</span><span class="ec-op">−</span><span class="ec-v">Costo</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-v">Costo</span></span></span></span><span class="ec-op">×</span><span class="ec-n">100</span></div></figure>
+    <p>Con el mismo producto:</p>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Markup %</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-n">$17.500</span><span class="ec-op">−</span><span class="ec-n">$10.500</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-n">$10.500</span></span></span></span><span class="ec-op">×</span><span class="ec-n">100</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">66,7 %</span></span></div></figure>
+    <p>El error típico: querés ganar 40 % y le sumás 40 % al costo: vendés a $10.500 × 1,40 = $14.700. Te quedan $4.200:</p>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Margen %</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-n">$14.700</span><span class="ec-op">−</span><span class="ec-n">$10.500</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-n">$14.700</span></span></span></span><span class="ec-op">×</span><span class="ec-n">100</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">28,6 %</span></span></div></figure>
+    <p>Es un margen de <strong>28,6 %</strong>, no 40 %. Son $2.800 menos en cada venta.</p>
     <h3>Tabla de equivalencias</h3>
     <div class="tabla">
       <table>
@@ -487,8 +487,10 @@ function gtag() { dataLayer.push(arguments); }
     <h2 id="margen-de-contribucion-cuantos-pesos-deja-cada-producto">Margen de contribución: cuántos pesos deja cada producto</h2>
     <p>Para elegir qué productos empujar, mirá los pesos, no solo el porcentaje.</p>
     <p>El <strong>margen de contribución</strong> (los pesos que deja cada venta para pagar los gastos fijos y ganar) es el precio sin IVA menos el costo:</p>
-    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Margen de contribución</span><span class="ec-op">=</span><span class="ec-w">Precio sin IVA</span><span class="ec-op">−</span><span class="ec-v">Costo</span></div></figure>
-    <p>En el ejemplo, $7.000 por unidad. Si vendés 300 en el mes, ese producto deja $2.100.000.</p>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Margen de contribución</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-w">Precio sin IVA</span></span><span class="ec-op">−</span><span class="ec-v">Costo</span></div></figure>
+    <p>En el ejemplo:</p>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Margen de contribución</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">$17.500</span></span><span class="ec-op">−</span><span class="ec-n">$10.500</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-w">$7.000 por unidad</span></span></div></figure>
+    <p>Si vendés 300 en el mes, ese producto deja $2.100.000.</p>
     <p>Por eso un producto de poco margen que se vende mucho puede dejarte más plata que uno de mucho margen que casi no sale.</p>
     <p>Qué hacer: armá la planilla de abajo y ordená tus productos por los pesos que dejan en el mes. Con este número también se calcula el <a href="/guias/punto-de-equilibrio">punto de equilibrio</a>.</p>
 
@@ -529,7 +531,7 @@ function gtag() { dataLayer.push(arguments); }
     <p>Es el porcentaje del precio de venta sin IVA que te queda después de restar el costo del producto. Si vendés a $17.500 sin IVA algo que te cuesta $10.500, te quedan $7.000, que son el 40 % del precio.</p>
     <h3>¿Cómo se calcula el margen de ganancia de un producto?</h3>
     <p>Al precio de venta sin IVA le restás el costo y dividís lo que queda por el precio. Siempre por el precio, no por el costo. Con $17.500 de precio y $10.500 de costo: $7.000 ÷ $17.500 = 40 %.</p>
-    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Margen %</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Precio sin IVA</span><span class="ec-op">−</span><span class="ec-v">Costo</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Precio sin IVA</span></span></span><span class="ec-op">×</span><span class="ec-n">100</span></div></figure>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Margen %</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Precio sin IVA</span><span class="ec-op">−</span><span class="ec-v">Costo</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Precio sin IVA</span></span></span></span><span class="ec-op">×</span><span class="ec-n">100</span></div></figure>
     <h3>¿Margen y markup son lo mismo?</h3>
     <p>No. El margen se calcula sobre el precio de venta y el markup sobre el costo. Un producto que cuesta $10.500 y se vende a $17.500 tiene 40 % de margen y 66,7 % de markup.</p>
     <h3>¿Margen de ganancia y rentabilidad son lo mismo?</h3>

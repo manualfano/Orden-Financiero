@@ -114,6 +114,7 @@ function gtag() { dataLayer.push(arguments); }
   .ec-v { font-style: italic; white-space: nowrap; }
   .ec-n { white-space: nowrap; }
   .ec-op { padding-left: 0.1em; }
+  .ec-g { display: inline-flex; align-items: center; column-gap: 0.28em; min-width: 0; }
   .ec-p { font-style: normal; }
   .ec-frac { display: inline-flex; flex-direction: column; align-items: stretch; text-align: center; vertical-align: middle; }
   .ec-w { font-family: 'Inter', system-ui, sans-serif; font-size: 0.8em; font-weight: 600; }
@@ -429,7 +430,7 @@ function gtag() { dataLayer.push(arguments); }
 
     <h2 id="la-formula-del-precio-de-venta">La fórmula del precio de venta</h2>
     <p>Primero calculá el piso, con tu costo y el margen que necesitás:</p>
-    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Precio sin IVA</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-v">Costo</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-n">1</span><span class="ec-op">−</span><span class="ec-w">Margen que querés</span></span></span></div></figure>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Precio sin IVA</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-v">Costo</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-n">1</span><span class="ec-op">−</span><span class="ec-w">Margen que querés</span></span></span></span></div></figure>
     <p class="nota">El margen va en decimales: 40 % es 0,40. Entonces dividís por 1 − 0,40 = 0,60.</p>
     <ul>
       <li><strong>Costo:</strong> todo lo que pagás por cada unidad hasta tenerla lista para vender: compra, flete, envase. Si lo fabricás, también los materiales y la mano de obra de cada unidad.</li>
@@ -440,16 +441,13 @@ function gtag() { dataLayer.push(arguments); }
 
     <h3>La fórmula del precio de venta de un plato</h3>
     <p>En gastronomía es la misma cuenta, con el <a href="/guias/food-cost">food cost</a> (la parte del precio que se va en ingredientes):</p>
-    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Precio sin IVA</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Costo del plato</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Food cost que querés</span></span></span></div><div class="ec-linea"><span class="ec-w">Precio de carta</span><span class="ec-op">=</span><span class="ec-w">Precio sin IVA</span><span class="ec-op">×</span><span class="ec-n">1,21</span></div></figure>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Precio sin IVA</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Costo del plato</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Food cost que querés</span></span></span></span></div><div class="ec-linea"><span class="ec-w">Precio de carta</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-w">Precio sin IVA</span></span><span class="ec-op">×</span><span class="ec-n">1,21</span></div></figure>
     <p>Un food cost de 30 % es lo mismo que un margen de 70 %.</p>
 
     <h2 id="ejemplo-1-un-producto-para-revender">Ejemplo 1: un producto para revender</h2>
     <p>Una panadería le compra tortas a un pastelero a $10.000 cada una, paga $500 de envío por torta y quiere un <strong>margen de 40 %</strong>.</p>
-    <ul>
-      <li>Costo por unidad: $10.000 + $500 = <strong>$10.500</strong></li>
-      <li>Precio sin IVA: $10.500 ÷ (1 − 0,40) = <strong>$17.500</strong></li>
-      <li>Precio con IVA: $17.500 × 1,21 = $21.175, redondeado a <strong>$21.200</strong></li>
-    </ul>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-v">Costo</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">$10.000</span></span><span class="ec-op">+</span><span class="ec-n">$500</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">$10.500</span></span></div><div class="ec-linea"><span class="ec-w">Precio sin IVA</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-n">$10.500</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-n">1</span><span class="ec-op">−</span><span class="ec-n">0,40</span></span></span></span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">$17.500</span></span></div><div class="ec-linea"><span class="ec-w">Precio con IVA</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">$17.500</span></span><span class="ec-op">×</span><span class="ec-n">1,21</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">$21.175</span></span></div></figure>
+    <p>Redondeado: <strong>$21.200</strong>.</p>
 
     <h3>El error de "sumarle el 40 %"</h3>
     <p>Sumarle 40 % al costo es un <strong>markup</strong> (un porcentaje que se calcula sobre el costo), no un margen. Da $10.500 × 1,40 = $14.700 sin IVA.</p>
@@ -457,11 +455,8 @@ function gtag() { dataLayer.push(arguments); }
 
     <h2 id="ejemplo-2-el-precio-de-venta-de-un-plato">Ejemplo 2: el precio de venta de un plato</h2>
     <p>Una milanesa con puré cuesta <strong>$4.145</strong> en ingredientes (sale de la <a href="/guias/costo-de-un-plato">ficha de costo del plato</a>). Con un food cost de 30 %:</p>
-    <ul>
-      <li>Precio sin IVA: $4.145 ÷ 0,30 = <strong>$13.817</strong></li>
-      <li>Con IVA: $13.817 × 1,21 = <strong>$16.718</strong></li>
-      <li>Redondeado para la carta, para arriba: <strong>$16.800</strong></li>
-    </ul>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Precio sin IVA</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-n">$4.145</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-n">0,30</span></span></span></span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">$13.817</span></span></div><div class="ec-linea"><span class="ec-w">Precio de carta</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">$13.817</span></span><span class="ec-op">×</span><span class="ec-n">1,21</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">$16.718</span></span></div></figure>
+    <p>Redondeado para la carta, para arriba: <strong>$16.800</strong>.</p>
     <p>Ese es tu piso. Falta mirar afuera.</p>
 
     <h2 id="mira-a-la-competencia">Mirá a la competencia</h2>
@@ -502,8 +497,9 @@ function gtag() { dataLayer.push(arguments); }
 
     <h2 id="cuantos-pesos-deja-cada-venta-margen-de-contribucion">Cuántos pesos deja cada venta: margen de contribución</h2>
     <p>El porcentaje no alcanza: los gastos se pagan con pesos. Mirá también el <strong>margen de contribución</strong> (los pesos que te deja cada venta para pagar los gastos fijos y ganar):</p>
-    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Margen de contribución</span><span class="ec-op">=</span><span class="ec-w">Precio sin IVA</span><span class="ec-op">−</span><span class="ec-v">Costo</span></div></figure>
-    <p>La milanesa a $16.800 ($13.884 sin IVA) deja $13.884 − $4.145 = <strong>$9.739 por plato</strong>.</p>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Margen de contribución</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-w">Precio sin IVA</span></span><span class="ec-op">−</span><span class="ec-v">Costo</span></div></figure>
+    <p>La milanesa a $16.800 ($13.884 sin IVA):</p>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Margen de contribución</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">$13.884</span></span><span class="ec-op">−</span><span class="ec-n">$4.145</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-w">$9.739 por plato</span></span></div></figure>
     <p>Supongamos $14.650.000 de gastos fijos por mes (alquiler, sueldos, luz: lo que pagás vendas o no) y que todos los platos dejan lo mismo. Para cubrirlos necesitás vender <strong>1.505 platos</strong>: ese es tu <a href="/guias/punto-de-equilibrio">punto de equilibrio</a>. A $19.500, alcanza con 1.224.</p>
 
     <h2 id="como-calcular-el-precio-de-venta-en-excel">Cómo calcular el precio de venta en Excel</h2>

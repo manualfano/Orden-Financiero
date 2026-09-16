@@ -114,6 +114,7 @@ function gtag() { dataLayer.push(arguments); }
   .ec-v { font-style: italic; white-space: nowrap; }
   .ec-n { white-space: nowrap; }
   .ec-op { padding-left: 0.1em; }
+  .ec-g { display: inline-flex; align-items: center; column-gap: 0.28em; min-width: 0; }
   .ec-p { font-style: normal; }
   .ec-frac { display: inline-flex; flex-direction: column; align-items: stretch; text-align: center; vertical-align: middle; }
   .ec-w { font-family: 'Inter', system-ui, sans-serif; font-size: 0.8em; font-weight: 600; }
@@ -427,7 +428,7 @@ function gtag() { dataLayer.push(arguments); }
     <p>La primera te dice si el negocio funciona mes a mes. La segunda, si te conviene tener la plata ahí o en otro lado.</p>
 
     <h2 id="la-formula-de-la-rentabilidad">La fórmula de la rentabilidad</h2>
-    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Rentabilidad sobre ventas %</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Resultado neto</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Ventas netas</span></span></span><span class="ec-op">×</span><span class="ec-n">100</span></div><div class="ec-linea"><span class="ec-w">Rentabilidad sobre la inversión %</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Resultado neto del año</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Plata invertida</span></span></span><span class="ec-op">×</span><span class="ec-n">100</span></div><div class="ec-linea"><span class="ec-w">Meses para recuperar la inversión</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Plata invertida</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Resultado neto del mes</span></span></span></div></figure>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Rentabilidad sobre ventas %</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Resultado neto</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Ventas netas</span></span></span></span><span class="ec-op">×</span><span class="ec-n">100</span></div><div class="ec-linea"><span class="ec-w">Rentabilidad sobre la inversión %</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Resultado neto del año</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Plata invertida</span></span></span></span><span class="ec-op">×</span><span class="ec-n">100</span></div><div class="ec-linea"><span class="ec-w">Meses para recuperar la inversión</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Plata invertida</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Resultado neto del mes</span></span></span></span></div></figure>
     <ul>
       <li><strong>Ventas netas:</strong> lo vendido sin IVA. Si sos monotributista, no hay IVA que sacar.</li>
       <li><strong>Resultado neto</strong> (lo que gana el negocio después de pagar todo): la última línea del <a href="/guias/estado-de-resultados">estado de resultados</a>.</li>
@@ -442,15 +443,13 @@ function gtag() { dataLayer.push(arguments); }
         <tbody>
           <tr><td>Ventas netas del mes</td><td class="n">$30.000.000</td></tr>
           <tr><td>Resultado neto del mes</td><td class="n">$4.547.500</td></tr>
-          <tr class="total"><td>Rentabilidad sobre ventas: $4.547.500 ÷ $30.000.000</td><td class="n">15,2 %</td></tr>
           <tr><td>Resultado neto del año: $4.547.500 × 12</td><td class="n">$54.570.000</td></tr>
           <tr><td>Plata invertida</td><td class="n">$120.000.000</td></tr>
-          <tr class="total"><td>Rentabilidad sobre la inversión: $54.570.000 ÷ $120.000.000</td><td class="n">45,5 % por año</td></tr>
-          <tr class="total"><td>Recupero de la inversión: $120.000.000 ÷ $4.547.500</td><td class="n">unos 26 meses</td></tr>
         </tbody>
       </table>
     </div>
     <p class="nota">Números de ejemplo. Muchos restaurantes ganan bastante menos: no lo tomes como referencia.</p>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Rentabilidad sobre ventas %</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-n">$4.547.500</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-n">$30.000.000</span></span></span></span><span class="ec-op">×</span><span class="ec-n">100</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">15,2 %</span></span></div><div class="ec-linea"><span class="ec-w">Rentabilidad sobre la inversión %</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-n">$54.570.000</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-n">$120.000.000</span></span></span></span><span class="ec-op">×</span><span class="ec-n">100</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-w">45,5 % por año</span></span></div><div class="ec-linea"><span class="ec-w">Meses para recuperar la inversión</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-n">$120.000.000</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-n">$4.547.500</span></span></span></span><span class="ec-g"><span class="ec-op">=</span><span class="ec-w">unos 26 meses</span></span></div></figure>
     <p>Leído simple: de cada $100 que vende, le quedan unos $15. Y la plata que puso vuelve en poco más de dos años, si el resultado se mantiene.</p>
 
     <h3>El sueldo del dueño</h3>
@@ -473,10 +472,7 @@ function gtag() { dataLayer.push(arguments); }
 
     <h3>Ejemplo: ¿conviene una reforma?</h3>
     <p>El restaurante piensa gastar $18.000.000 en ampliar el salón. Calcula que eso le suma $900.000 de resultado neto por mes. Al contrato de alquiler le quedan 24 meses.</p>
-    <ul>
-      <li>Rentabilidad sobre la inversión: $900.000 × 12 ÷ $18.000.000 = <strong>60 % por año</strong>.</li>
-      <li>Recupero: $18.000.000 ÷ $900.000 = <strong>20 meses</strong>.</li>
-    </ul>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Rentabilidad sobre la inversión %</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-n">$900.000</span><span class="ec-op">×</span><span class="ec-n">12</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-n">$18.000.000</span></span></span></span><span class="ec-op">×</span><span class="ec-n">100</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-w">60 % por año</span></span></div><div class="ec-linea"><span class="ec-w">Meses para recuperar la inversión</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-n">$18.000.000</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-n">$900.000</span></span></span></span><span class="ec-g"><span class="ec-op">=</span><span class="ec-w">20 meses</span></span></div></figure>
     <p>El 60 % parece muy bueno. Pero la plata vuelve recién en 20 meses, y el contrato vence en 24. Si no renueva, casi no gana nada. Qué hacer: negociar la renovación antes de empezar la obra, o hacer una reforma más chica.</p>
 
     <h2 id="la-rentabilidad-de-un-producto">La rentabilidad de un producto</h2>

@@ -114,6 +114,7 @@ function gtag() { dataLayer.push(arguments); }
   .ec-v { font-style: italic; white-space: nowrap; }
   .ec-n { white-space: nowrap; }
   .ec-op { padding-left: 0.1em; }
+  .ec-g { display: inline-flex; align-items: center; column-gap: 0.28em; min-width: 0; }
   .ec-p { font-style: normal; }
   .ec-frac { display: inline-flex; flex-direction: column; align-items: stretch; text-align: center; vertical-align: middle; }
   .ec-w { font-family: 'Inter', system-ui, sans-serif; font-size: 0.8em; font-weight: 600; }
@@ -425,7 +426,7 @@ function gtag() { dataLayer.push(arguments); }
 
     <h2 id="la-formula-del-costo-de-un-plato">La fórmula del costo de un plato</h2>
     <p>Dos cuentas por ingrediente, con la calculadora. El <strong>rendimiento</strong> es lo que queda después de limpiar: si de 1 kilo quedan 800 gramos, es 80 %.</p>
-    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Costo real por kilo</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Precio por kilo</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Rendimiento</span></span></span></div><div class="ec-linea"><span class="ec-v">Costo</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Costo real por kilo</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-n">1.000</span></span></span><span class="ec-op">×</span><span class="ec-w">Gramos</span></div></figure>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Costo real por kilo</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Precio por kilo</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Rendimiento</span></span></span></span></div><div class="ec-linea"><span class="ec-v">Costo</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Costo real por kilo</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-n">1.000</span></span></span></span><span class="ec-op">×</span><span class="ec-w">Gramos</span></div></figure>
     <p>Dividir por 1.000 pasa el precio del kilo a precio por gramo. Al final sumás todos los ingredientes.</p>
 
     <h2 id="ejemplo-el-costo-de-una-milanesa-con-pure-paso-a-paso">Ejemplo: el costo de una milanesa con puré, paso a paso</h2>
@@ -439,11 +440,15 @@ function gtag() { dataLayer.push(arguments); }
     <p><strong>¿Con o sin IVA?</strong> Si sos responsable inscripto, anotá el precio <strong>sin IVA</strong> de la factura. Si sos monotributista, o no te dan factura A, anotá <strong>lo que pagaste</strong>. Ante la duda, preguntale a tu contador.</p>
 
     <h3>3. Pesá cuánto se tira al limpiar</h3>
-    <p>Pesá el ingrediente como llega y otra vez limpio. Si de un kilo de nalga de $12.000 quedan 800 gramos, rinde 80 %. El kilo limpio te cuesta $12.000 ÷ 0,80 = <strong>$15.000</strong>.</p>
+    <p>Pesá el ingrediente como llega y otra vez limpio. Si de un kilo de nalga de $12.000 quedan 800 gramos, rinde 80 %. El kilo limpio te cuesta:</p>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Costo real por kilo</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-n">$12.000</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-n">0,80</span></span></span></span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">$15.000</span></span></div></figure>
     <p>Los gramos de la porción, anotalos también limpios y crudos.</p>
     <p><strong>Sirve para comparar proveedores.</strong> Una nalga a $11.000 que rinde 70 % te cuesta $15.714 el kilo limpio. Sale más cara que la de $12.000 que rinde 80 %.</p>
 
     <h3>4. Calculá el costo de cada ingrediente</h3>
+    <p>La porción lleva 200 g de nalga:</p>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-v">Costo</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-n">$15.000</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-n">1.000</span></span></span></span><span class="ec-op">×</span><span class="ec-n">200</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">$3.000</span></span></div></figure>
+    <p>Con el resto de los ingredientes, la misma cuenta:</p>
     <div class="tabla">
       <table>
         <thead>
@@ -543,7 +548,7 @@ function gtag() { dataLayer.push(arguments); }
     <p>Es la receta de una porción con lo que cuesta cada ingrediente. La suma de todos da el costo del plato.</p>
     <h3>¿Cómo se calcula la merma?</h3>
     <p>Pesá el ingrediente como llega y otra vez limpio. Si de 1 kilo quedan 800 gramos, la merma (lo que se tira) es 20 % y el rendimiento, 80 %.</p>
-    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Merma %</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Peso como llega</span><span class="ec-op">−</span><span class="ec-w">Peso limpio</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Peso como llega</span></span></span><span class="ec-op">×</span><span class="ec-n">100</span></div><div class="ec-linea"><span class="ec-w">Rendimiento %</span><span class="ec-op">=</span><span class="ec-n">100 %</span><span class="ec-op">−</span><span class="ec-w">Merma %</span></div></figure>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Merma %</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Peso como llega</span><span class="ec-op">−</span><span class="ec-w">Peso limpio</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Peso como llega</span></span></span></span><span class="ec-op">×</span><span class="ec-n">100</span></div><div class="ec-linea"><span class="ec-w">Rendimiento %</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">100 %</span></span><span class="ec-op">−</span><span class="ec-w">Merma %</span></div></figure>
     <h3>¿Cómo saco el costo de una receta que rinde varias porciones?</h3>
     <p>Calculá el costo de la tanda entera y dividilo por las porciones que salen de verdad. Una salsa que cuesta $18.000 y rinde 12 porciones cuesta $1.500 por porción.</p>
     <h3>¿Qué porcentaje del precio debería ser el costo de un plato?</h3>

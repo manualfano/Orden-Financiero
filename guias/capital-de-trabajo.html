@@ -114,6 +114,7 @@ function gtag() { dataLayer.push(arguments); }
   .ec-v { font-style: italic; white-space: nowrap; }
   .ec-n { white-space: nowrap; }
   .ec-op { padding-left: 0.1em; }
+  .ec-g { display: inline-flex; align-items: center; column-gap: 0.28em; min-width: 0; }
   .ec-p { font-style: normal; }
   .ec-frac { display: inline-flex; flex-direction: column; align-items: stretch; text-align: center; vertical-align: middle; }
   .ec-w { font-family: 'Inter', system-ui, sans-serif; font-size: 0.8em; font-weight: 600; }
@@ -424,13 +425,13 @@ function gtag() { dataLayer.push(arguments); }
     <p>Es una resta: lo que tenés <strong>en caja, por cobrar y en stock</strong>, menos lo que <strong>debés pagar en menos de un año</strong>. Hacela con los números del último día de cada mes.</p>
 
     <h2 id="la-formula-del-capital-de-trabajo">La fórmula del capital de trabajo</h2>
-    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Capital de trabajo</span><span class="ec-op">=</span><span class="ec-w">Activo corriente</span><span class="ec-op">−</span><span class="ec-w">Pasivo corriente</span></div></figure>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Capital de trabajo</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-w">Activo corriente</span></span><span class="ec-op">−</span><span class="ec-w">Pasivo corriente</span></div></figure>
     <ul>
       <li><strong>Activo corriente</strong> (lo que es plata o se convierte en plata en menos de un año): caja, bancos y Mercado Pago; lo que tenés por cobrar (tarjetas, apps, cheques, clientes); y el stock, a lo que te costó.</li>
       <li><strong>Pasivo corriente</strong> (lo que tenés que pagar en menos de un año): proveedores, sueldos y cargas sociales, impuestos, cheques que diste, el descubierto del banco y las cuotas de préstamos de los próximos 12 meses.</li>
     </ul>
     <p>Mirá también la <strong>prueba ácida</strong>: cuánto tenés por cada $1 que debés, sin contar el stock. Si da menos de 1, no llegás a pagar lo que vence sin vender mercadería.</p>
-    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Prueba ácida</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Activo corriente</span><span class="ec-op">−</span><span class="ec-v">Stock</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Pasivo corriente</span></span></span></div></figure>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Prueba ácida</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Activo corriente</span><span class="ec-op">−</span><span class="ec-v">Stock</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Pasivo corriente</span></span></span></span></div></figure>
 
     <h2 id="ejemplo-1-el-capital-de-trabajo-de-una-panaderia">Ejemplo 1: el capital de trabajo de una panadería</h2>
     <p>Una panadería que compró harina de más para ganarle a un aumento, el último día del mes:</p>
@@ -446,12 +447,11 @@ function gtag() { dataLayer.push(arguments); }
           <tr><td>Impuestos a pagar</td><td class="n">$800.000</td></tr>
           <tr><td>Cuotas de préstamos de los próximos 12 meses</td><td class="n">$1.000.000</td></tr>
           <tr class="total"><td>Pasivo corriente</td><td class="n">$8.500.000</td></tr>
-          <tr class="total"><td>Capital de trabajo</td><td class="n">$3.000.000</td></tr>
-          <tr><td>Prueba ácida: ($11.500.000 − $6.000.000) ÷ $8.500.000</td><td class="n">0,65</td></tr>
         </tbody>
       </table>
     </div>
     <p class="nota">Números de ejemplo, para mostrar el método.</p>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Capital de trabajo</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">$11.500.000</span></span><span class="ec-op">−</span><span class="ec-n">$8.500.000</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">$3.000.000</span></span></div><div class="ec-linea"><span class="ec-w">Prueba ácida</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-n">$11.500.000</span><span class="ec-op">−</span><span class="ec-n">$6.000.000</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-n">$8.500.000</span></span></span></span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">0,65</span></span></div></figure>
     <p>El capital de trabajo da positivo, pero la prueba ácida da 0,65: por cada $1 que debe, tiene 65 centavos sin contar el stock. Hay $6.000.000 en harina y mercadería en el depósito y solo $2.000.000 en la cuenta.</p>
     <p>Esta panadería <strong>necesita vender el stock para pagar</strong>. Qué hacer: antes de volver a comprar, mirá los días de stock (abajo te mostramos cómo).</p>
 
@@ -468,35 +468,27 @@ function gtag() { dataLayer.push(arguments); }
           <tr><td>Sueldos y cargas sociales a pagar</td><td class="n">$2.500.000</td></tr>
           <tr><td>Impuestos a pagar</td><td class="n">$1.200.000</td></tr>
           <tr class="total"><td>Pasivo corriente</td><td class="n">$7.200.000</td></tr>
-          <tr class="total"><td>Capital de trabajo</td><td class="n">−$3.200.000</td></tr>
         </tbody>
       </table>
     </div>
     <p class="nota">Números de ejemplo, para mostrar el método.</p>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Capital de trabajo</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">$4.000.000</span></span><span class="ec-op">−</span><span class="ec-n">$7.200.000</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">−$3.200.000</span></span></div></figure>
     <p>En gastronomía es común: se cobra en pocos días, la mercadería dura una semana y a los proveedores se les paga a 30 días. O sea, <strong>el restaurante trabaja con la plata de los proveedores</strong>. Anda mientras se vende bien. Si las ventas caen, no aparece la plata para pagar lo que ya compraste.</p>
     <p>Por eso <strong>la plata que ves en la cuenta no es toda tuya</strong>: hay $1.300.000 en el banco, pero en los primeros días del mes vencen $2.500.000 de sueldos. Antes de retirar o invertir, restá lo que vence en los próximos 30 días. Para verlo semana a semana, armá un <a href="/guias/flujo-de-caja">flujo de caja</a>.</p>
 
     <h2 id="el-ciclo-de-caja-cuanta-plata-necesita-tu-negocio">El ciclo de caja: cuánta plata necesita tu negocio</h2>
     <p>El <strong>ciclo de caja</strong> son los días que pasan desde que le pagás al proveedor hasta que cobrás la venta. Cuantos más días, más plata tuya queda metida. Se calcula así, con los números de fin de mes:</p>
-    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Ciclo de caja en días</span><span class="ec-op">=</span><span class="ec-w">Días de stock</span><span class="ec-op">+</span><span class="ec-w">Días de cobro</span><span class="ec-op">−</span><span class="ec-w">Días de pago</span></div><div class="ec-linea"><span class="ec-w">Días de stock</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-v">Stock</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">CMV del mes</span></span></span><span class="ec-op">×</span><span class="ec-n">30</span></div><div class="ec-linea"><span class="ec-w">Días de cobro</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Lo que tenés por cobrar</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Ventas del mes con IVA</span></span></span><span class="ec-op">×</span><span class="ec-n">30</span></div><div class="ec-linea"><span class="ec-w">Días de pago</span><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Deuda con proveedores</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Compras del mes con IVA</span></span></span><span class="ec-op">×</span><span class="ec-n">30</span></div><div class="ec-linea"><span class="ec-w">Plata metida en el ciclo</span><span class="ec-op">=</span><span class="ec-v">Stock</span><span class="ec-op">+</span><span class="ec-w">Lo que tenés por cobrar</span><span class="ec-op">−</span><span class="ec-w">Deuda con proveedores</span></div></figure>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Ciclo de caja en días</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-w">Días de stock</span></span><span class="ec-op">+</span><span class="ec-w">Días de cobro</span><span class="ec-op">−</span><span class="ec-w">Días de pago</span></div><div class="ec-linea"><span class="ec-w">Días de stock</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-v">Stock</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">CMV del mes</span></span></span></span><span class="ec-op">×</span><span class="ec-n">30</span></div><div class="ec-linea"><span class="ec-w">Días de cobro</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Lo que tenés por cobrar</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Ventas del mes con IVA</span></span></span></span><span class="ec-op">×</span><span class="ec-n">30</span></div><div class="ec-linea"><span class="ec-w">Días de pago</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Deuda con proveedores</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Compras del mes con IVA</span></span></span></span><span class="ec-op">×</span><span class="ec-n">30</span></div><div class="ec-linea"><span class="ec-w">Plata metida en el ciclo</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-v">Stock</span></span><span class="ec-op">+</span><span class="ec-w">Lo que tenés por cobrar</span><span class="ec-op">−</span><span class="ec-w">Deuda con proveedores</span></div></figure>
     <p>El CMV (lo que te costó la mercadería que vendiste) está explicado en <a href="/guias/food-cost">food cost</a>.</p>
 
     <h3>Ejemplo: los días de la panadería y del restaurante</h3>
     <p>La panadería del ejemplo 1 vende $16.940.000 por mes, compra $10.890.000 (los dos con IVA) y su CMV es $8.500.000:</p>
-    <div class="tabla">
-      <table>
-        <tbody>
-          <tr><td>Días de stock: $6.000.000 ÷ $8.500.000 × 30</td><td class="n">21 días</td></tr>
-          <tr><td>Días de cobro: $3.500.000 ÷ $16.940.000 × 30</td><td class="n">6 días</td></tr>
-          <tr><td>Días de pago: $4.500.000 ÷ $10.890.000 × 30</td><td class="n">12 días</td></tr>
-          <tr class="total"><td>Ciclo de caja: 21 + 6 − 12</td><td class="n">15 días</td></tr>
-          <tr class="total"><td>Plata metida en el ciclo: $6.000.000 + $3.500.000 − $4.500.000</td><td class="n">$5.000.000</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Días de stock</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-n">$6.000.000</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-n">$8.500.000</span></span></span></span><span class="ec-op">×</span><span class="ec-n">30</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-w">21 días</span></span></div><div class="ec-linea"><span class="ec-w">Días de cobro</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-n">$3.500.000</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-n">$16.940.000</span></span></span></span><span class="ec-op">×</span><span class="ec-n">30</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-w">6 días</span></span></div><div class="ec-linea"><span class="ec-w">Días de pago</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-n">$4.500.000</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-n">$10.890.000</span></span></span></span><span class="ec-op">×</span><span class="ec-n">30</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-w">12 días</span></span></div><div class="ec-linea"><span class="ec-w">Ciclo de caja en días</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">21</span></span><span class="ec-op">+</span><span class="ec-n">6</span><span class="ec-op">−</span><span class="ec-n">12</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-w">15 días</span></span></div><div class="ec-linea"><span class="ec-w">Plata metida en el ciclo</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">$6.000.000</span></span><span class="ec-op">+</span><span class="ec-n">$3.500.000</span><span class="ec-op">−</span><span class="ec-n">$4.500.000</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">$5.000.000</span></span></div></figure>
     <p>La panadería tiene <strong>$5.000.000 metidos en el ciclo</strong>: plata que ya puso y todavía no volvió. Por eso anda justo aunque gane.</p>
     <p>Si vende 20 % más con los mismos plazos, necesita $1.000.000 más. Si baja el stock de 21 a 14 días, recupera unos $2.000.000.</p>
-    <p>El restaurante del ejemplo 2 tiene 7 días de stock, 5 de cobro y 30 de pago: 7 + 5 − 30 = <strong>−18 días</strong>. Cobra antes de pagar: por eso aguanta el capital de trabajo negativo.</p>
+    <p>El restaurante del ejemplo 2 tiene 7 días de stock, 5 de cobro y 30 de pago:</p>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Ciclo de caja en días</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-n">7</span></span><span class="ec-op">+</span><span class="ec-n">5</span><span class="ec-op">−</span><span class="ec-n">30</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-w">−18 días</span></span></div></figure>
+    <p>Cobra antes de pagar: por eso aguanta el capital de trabajo negativo.</p>
     <p>Qué hacer: medí estos días todos los meses. Si los de stock o de cobro suben, o los de pago bajan, vas a necesitar más plata aunque vendas lo mismo.</p>
     <p>Y guardá un colchón de al menos 2 semanas de gastos fijos.</p>
 
@@ -549,7 +541,7 @@ function gtag() { dataLayer.push(arguments); }
     <p>Es lo que el negocio tiene en caja, por cobrar y en stock, menos lo que debe pagar en el corto plazo. No es lo mismo que la plata en la cuenta: el stock y las tarjetas por acreditar todavía no son efectivo.</p>
     <h3>¿Cuál es la fórmula del capital de trabajo?</h3>
     <p>Capital de trabajo = activo corriente − pasivo corriente. Con $11.500.000 entre caja, cobros pendientes y stock, y $8.500.000 de deudas de corto plazo, el capital de trabajo es $3.000.000.</p>
-    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Capital de trabajo</span><span class="ec-op">=</span><span class="ec-w">Activo corriente</span><span class="ec-op">−</span><span class="ec-w">Pasivo corriente</span></div></figure>
+    <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Capital de trabajo</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-w">Activo corriente</span></span><span class="ec-op">−</span><span class="ec-w">Pasivo corriente</span></div></figure>
     <h3>¿Qué significa tener capital de trabajo negativo?</h3>
     <p>Que debés en el corto plazo más de lo que tenés en caja, por cobrar y en stock. Es común en gastronomía, que cobra rápido y les paga a los proveedores más tarde. Funciona mientras las ventas se sostienen; si caen, te quedás sin plata para pagar.</p>
     <h3>¿Qué es un crédito para capital de trabajo?</h3>

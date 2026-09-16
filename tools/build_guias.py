@@ -98,6 +98,7 @@ CSS = TOKENS + """
   .ec-v { font-style: italic; white-space: nowrap; }
   .ec-n { white-space: nowrap; }
   .ec-op { padding-left: 0.1em; }
+  .ec-g { display: inline-flex; align-items: center; column-gap: 0.28em; min-width: 0; }
   .ec-p { font-style: normal; }
   .ec-frac { display: inline-flex; flex-direction: column; align-items: stretch; text-align: center; vertical-align: middle; }
   .ec-w { font-family: 'Inter', system-ui, sans-serif; font-size: 0.8em; font-weight: 600; }
@@ -443,6 +444,12 @@ def _factor(tk, i):
         dentro, i = _expr(tk, i + 1)
         assert i < len(tk) and tk[i] == ')', 'Fórmula con paréntesis sin cerrar'
         return ('grupo', dentro), i + 1
+    if tk[i] in ('−', '-'):
+        # Signo negativo de un resultado (−$3.200.000, −18 días): va pegado al número.
+        nodo, i = _factor(tk, i + 1)
+        if nodo[0] == 'atomo':
+            return ('atomo', '−' + nodo[1]), i
+        return ('seq', [('op', '−'), nodo]), i
     return ('atomo', tk[i]), i + 1
 
 
@@ -461,7 +468,14 @@ def _html_nodo(n, suelto=False):
     if tipo == 'op':
         return f'<span class="ec-op">{n[1]}</span>'
     if tipo == 'seq':
-        return ''.join(_html_nodo(x) for x in n[1])
+        # El "=" viaja pegado a lo que sigue: si la línea no entra, no queda colgado al final del renglón.
+        partes, xs = [], n[1]
+        for k, x in enumerate(xs):
+            if k and xs[k - 1] == ('op', '='):
+                partes[-1] = f'<span class="ec-g">{partes[-1]}{_html_nodo(x)}</span>'
+            else:
+                partes.append(_html_nodo(x))
+        return ''.join(partes)
     if tipo == 'grupo':
         # Numerador y denominador no llevan paréntesis: la raya ya agrupa.
         return _html_nodo(n[1]) if suelto else f'<span class="ec-p">(</span>{_html_nodo(n[1])}<span class="ec-p">)</span>'
