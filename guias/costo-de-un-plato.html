@@ -53,10 +53,35 @@ function gtag() { dataLayer.push(arguments); }
   .brand-mark { width: 34px; height: 34px; border-radius: var(--r); background: var(--marca); display: inline-flex; align-items: center; justify-content: center; }
   .brand-mark svg { width: 18px; height: 18px; }
   .dot { color: var(--marca); }
-  .head-nav { display: flex; align-items: center; gap: var(--s-4); }
+  /* Barra igual a la de la home (16/09/2026, pedido del dueño): mismos links; en celular, menú de tres líneas */
+  header { position: relative; z-index: 20; }
+  .head-nav { display: flex; align-items: center; gap: var(--s-2); }
   .head-nav a { color: var(--w); text-decoration: none; font-size: var(--fs-sm); font-weight: 500; min-height: 44px; display: inline-flex; align-items: center; }
-  .head-nav .head-cta { background: var(--marca); padding: 0 var(--s-4); border-radius: var(--r); font-weight: 600; }
+  .head-nav .head-link { padding: 0 var(--s-3); border-radius: var(--r); color: rgba(255,255,255,0.92); }
+  .head-nav .head-link:hover { color: var(--w); background: rgba(255,255,255,0.10); }
+  .head-nav .head-link[aria-current] { color: var(--w); background: rgba(255,255,255,0.10); }
+  .head-nav .head-cta { background: var(--marca); padding: 0 var(--s-4); border-radius: var(--r); font-weight: 600; margin-left: var(--s-2); }
   .head-nav .head-cta:hover { background: var(--marca-hover); }
+  .head-burger { display: none; }
+  .head-menu[hidden] { display: none; }
+  @media (max-width: 1023px) {
+    .head-nav .head-link { display: none; }
+    .head-burger { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border: 1.5px solid rgba(255,255,255,0.20); border-radius: var(--r); background: transparent; color: var(--w); cursor: pointer; }
+    .head-burger:hover { background: rgba(255,255,255,0.10); }
+    .head-burger svg { width: 22px; height: 22px; }
+    .head-burger .ico-cerrar { display: none; }
+    .head-burger[aria-expanded="true"] .ico-abrir { display: none; }
+    .head-burger[aria-expanded="true"] .ico-cerrar { display: block; }
+    .head-menu { position: absolute; top: 100%; left: 0; right: 0; display: flex; flex-direction: column; padding: var(--s-2) var(--s-4) var(--s-4); background: var(--navy-900); border-top: 1px solid rgba(255,255,255,0.10); box-shadow: 0 12px 24px rgba(0,0,0,0.25); }
+    .head-menu a { display: flex; align-items: center; min-height: 48px; padding: 0 var(--s-2); border-bottom: 1px solid rgba(255,255,255,0.10); color: rgba(255,255,255,0.92); font-size: var(--fs-lead); font-weight: 500; text-decoration: none; }
+    .head-menu a:last-child { border-bottom: 0; }
+    .head-menu a:hover, .head-menu a[aria-current] { color: var(--w); background: rgba(255,255,255,0.10); }
+  }
+  @media (max-width: 420px) {
+    .head-in { flex-wrap: nowrap; gap: var(--s-2); }
+    .brand { font-size: var(--fs-base); }
+    .head-nav .head-cta { padding: 0 var(--s-3); margin-left: 0; font-size: 13px; }
+  }
   main { max-width: 720px; margin: 0 auto; padding: var(--s-6) var(--s-5) var(--s-7); }
   .migas { font-size: var(--fs-sm); color: var(--tinta-3); margin-bottom: var(--s-5); }
   .migas a { color: var(--tinta-3); }
@@ -326,10 +351,45 @@ function gtag() { dataLayer.push(arguments); }
   <div class="head-in">
     <a href="/" class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7" stroke="#7DB1F4" stroke-width="4"/><circle cx="12" cy="12" r="7" stroke="#ffffff" stroke-width="4" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/></svg></span>ordenfinanciero<span class="dot">.</span></a>
     <nav class="head-nav" aria-label="Principal">
-      <a href="/guias">Guías</a>
+      <a class="head-link" href="/#que-analizamos">El diagnóstico</a>
+      <a class="head-link" href="/#metodo">El programa</a>
+      <a class="head-link" href="/#manuel">Quién está detrás</a>
+      <a class="head-link" href="/guias" aria-current="true">Guías</a>
       <a class="head-cta" href="/?origen=guia-costo-de-un-plato#diagnostico">Hacer el diagnóstico</a>
+      <button class="head-burger" id="head-burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="head-menu">
+        <svg class="ico-abrir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        <svg class="ico-cerrar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+      </button>
     </nav>
   </div>
+  <div class="head-menu" id="head-menu" hidden>
+    <a href="/#que-analizamos">El diagnóstico</a>
+    <a href="/#metodo">El programa</a>
+    <a href="/#manuel">Quién está detrás</a>
+    <a href="/guias" aria-current="true">Guías</a>
+  </div>
+<script>
+(function () {
+  var boton = document.getElementById('head-burger'), menu = document.getElementById('head-menu');
+  if (!boton || !menu) return;
+  function track(ev, props) { try { if (typeof gtag === 'function') gtag('event', ev, props || {}); } catch (e) {} }
+  function cerrar() { if (menu.hidden) return; menu.hidden = true; boton.setAttribute('aria-expanded', 'false'); boton.setAttribute('aria-label', 'Abrir menú'); }
+  boton.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var abrir = menu.hidden;
+    menu.hidden = !abrir;
+    boton.setAttribute('aria-expanded', String(abrir));
+    boton.setAttribute('aria-label', abrir ? 'Cerrar menú' : 'Abrir menú');
+    if (abrir) track('nav_menu_open', { desde: 'guias' });
+  });
+  document.addEventListener('click', function (e) { if (!e.target.closest('header')) cerrar(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') cerrar(); });
+  window.addEventListener('resize', function () { if (window.innerWidth > 1023) cerrar(); });
+  [].slice.call(document.querySelectorAll('header a[href^="/#"]')).forEach(function (a) {
+    a.addEventListener('click', function () { track('nav_home_desde_guias', { destino: a.getAttribute('href') }); });
+  });
+})();
+</script>
 </header>
 <main class="guia">
   <section class="guia-cab">
