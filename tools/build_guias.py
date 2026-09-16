@@ -296,10 +296,10 @@ CIRCULOS = ('<svg class="circulos" viewBox="0 0 200 200" fill="none" stroke="cur
 PROBLEMAS = [
     {'id': 'no-se-cuanto-me-cuesta', 'titulo': 'No sé cuánto me cuesta lo que vendo', 'atajo': 'No sé cuánto me cuesta',
      'corto': 'Costos', 'linea': 'Calculá el costo real de cada plato y de todo lo que vendés.',
-     'slugs': ['costo-de-un-plato', 'planilla-de-costos', 'food-cost', 'costo-de-mercaderia-vendida', 'costos-fijos-y-variables']},
+     'slugs': ['costo-de-un-plato', 'planilla-de-costos', 'food-cost', 'costos-fijos-y-variables']},
     {'id': 'no-se-que-precio-poner', 'titulo': 'No sé qué precio poner', 'atajo': 'No sé qué precio poner',
      'corto': 'Precios', 'linea': 'Poné precios que cubran todos tus costos y te dejen ganancia.',
-     'slugs': ['precio-de-venta-de-un-plato', 'precio-de-venta-de-un-producto', 'margen-de-ganancia']},
+     'slugs': ['precio-de-venta', 'margen-de-ganancia']},
     {'id': 'vendo-bien-pero-no-me-queda-plata', 'titulo': 'Vendo bien pero no me queda plata', 'atajo': 'No me queda plata',
      'corto': 'Ganancia', 'linea': 'Mirá cuánto ganó de verdad el negocio y cuánto tenés que vender para no perder.',
      'slugs': ['estado-de-resultados', 'punto-de-equilibrio', 'rentabilidad-de-un-negocio']},

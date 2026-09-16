@@ -23,6 +23,21 @@
       ],
       "destination": "https://ordenfinanciero.com/:path*",
       "permanent": true
+    },
+    {
+      "source": "/guias/precio-de-venta-de-un-plato",
+      "destination": "/guias/precio-de-venta",
+      "permanent": true
+    },
+    {
+      "source": "/guias/precio-de-venta-de-un-producto",
+      "destination": "/guias/precio-de-venta",
+      "permanent": true
+    },
+    {
+      "source": "/guias/costo-de-mercaderia-vendida",
+      "destination": "/guias/food-cost",
+      "permanent": true
     }
   ],
   "headers": [
