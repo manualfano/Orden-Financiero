@@ -489,8 +489,15 @@ def breadcrumb_ld(items):
         for i, (n, p) in enumerate(items)]}
 
 
+MAX_MINUTOS = 15  # regla del dueño (16/09/2026): ninguna guía puede pasar de 15 min de lectura
+
+
 def main():
     guias = leer_guias()
+    for g in guias:
+        n = minutos(g)
+        if n > MAX_MINUTOS:
+            raise SystemExit(f"La guía {g['slug']} marca {n} min: el máximo es {MAX_MINUTOS}. Recortala antes de generar.")
     OUT.mkdir(exist_ok=True)
     org = {"@id": BASE + "/#organization"}
     autor = {"@type": "Person", "@id": BASE + "/#manuel", "name": "Manuel Alfano", "url": BASE + "/#manuel"}
