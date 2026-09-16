@@ -1018,7 +1018,7 @@ def main():
       <article>
 {cuerpo_art}
       </article>
-      <aside class="caja-autor"><img src="/foto-manuel-cutout.webp" alt="Manuel Alfano" width="72" height="72" loading="lazy"><div><strong>Manuel Alfano</strong><p>Fundador de Orden Financiero. Más de 12 años en la gastronomía con negocio propio; hoy trabaja mano a mano con dueños de negocios para ordenar sus números.</p></div></aside>{rel_html}
+      <aside class="caja-autor"><img src="/foto-manuel-cutout.webp" alt="Manuel Alfano" width="72" height="72" loading="lazy"><div><strong>Manuel Alfano</strong><p>Fundador de Orden Financiero. Más de 12 años en la gastronomía con negocio propio; hoy trabaja mano a mano con dueños de negocios gastronómicos para ordenar sus números.</p></div></aside>{rel_html}
     </div>
     <nav class="indice-guia" aria-label="En esta guía"><p>En esta guía</p><ol>{toc_html}</ol></nav>
   </div>
@@ -1040,8 +1040,9 @@ def main():
 
     # Indice /guias
     items = [("Inicio", "/"), ("Guías", None)]
-    desc = ('Guías prácticas para dueños de negocio: precios, costos, márgenes y rentabilidad, '
-            'con fórmulas y ejemplos en pesos. Con foco en gastronomía.')
+    # 16/09/2026, pedido del dueño: el público es el dueño de negocio gastronómico
+    desc = ('Guías prácticas para dueños de negocio gastronómico: precios, costos, márgenes y rentabilidad, '
+            'con fórmulas y ejemplos en pesos.')
     # Agrupadas por el problema que resuelven (PROBLEMAS), en el orden en que le pasan al dueño.
     visibles = [(i + 1, p, lista) for i, (p, lista) in enumerate(grupos) if lista]
     # Atajos del panel derecho de la portada: la frase completa del problema y una flecha.
@@ -1065,7 +1066,7 @@ def main():
     <div class="portada-grid">
       <div class="portada-texto">
         <p class="eyebrow"><span class="punto" aria-hidden="true"></span>Guías</p>
-        <h1>Guías de finanzas para <em>dueños de negocio</em></h1>
+        <h1>Guías de finanzas para <em>dueños de negocio gastronómico</em></h1>
         <p class="bajada">{desc}</p>
         <p class="cifras"><strong>{len(guias)} guías</strong> · fórmula, ejemplo en pesos y cómo armarlo en Excel en cada una</p>
         <p class="autor">Escritas por <a href="/#manuel">Manuel Alfano</a>, con más de 12 años en la gastronomía con negocio propio.</p>
@@ -1101,14 +1102,14 @@ def main():
   </script>"""
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "CollectionPage", "@id": BASE + "/guias#coleccion", "url": BASE + "/guias",
-         "name": "Guías de finanzas para dueños de negocio", "description": desc, "inLanguage": "es-AR",
+         "name": "Guías de finanzas para dueños de negocio gastronómico", "description": desc, "inLanguage": "es-AR",
          "isPartOf": {"@id": BASE + "/#website"}, "publisher": org,
          "mainEntity": {"@type": "ItemList", "itemListElement": [
              {"@type": "ListItem", "position": i + 1, "url": BASE + "/guias/" + g['slug'], "name": g['h1']}
              for i, g in enumerate(guias)]}},
         breadcrumb_ld(items)]}
     (OUT / 'index.html').write_text(pagina(
-        title='Guías de finanzas para dueños de negocio · Orden Financiero', description=desc, path='/guias',
+        title='Guías de finanzas para dueños de negocio gastronómico · Orden Financiero', description=desc, path='/guias',
         og_type='website', ld=ld, cuerpo=cuerpo, cta_origen='guias', main_clase='ancho'), encoding='utf-8', newline='\n')
 
     # sitemap.xml completo
