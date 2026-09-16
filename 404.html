@@ -28,6 +28,39 @@ function gtag() { dataLayer.push(arguments); }
   if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
 })();
 </script>
+<!-- Medicion: Pixel de Meta (16/09/2026). Mismas reglas que GA4: solo en
+     ordenfinanciero.com y sus subdominios; en un preview de Vercel, con ?ga_debug=1.
+     fbevents.js baja con la primera interaccion o a los 4 s del load (ver abajo);
+     los eventos anteriores esperan en la cola de fbq.
+     Eventos: PageView (todas las paginas), ViewContent (guia de punto de
+     equilibrio) y Lead (el Apps Script confirmo el WhatsApp). Nunca datos personales. -->
+<script>
+(function () {
+  var h = location.hostname;
+  var real = h === 'ordenfinanciero.com' || h.endsWith('.ordenfinanciero.com');
+  var prueba = /\.vercel\.app$/.test(h) && /[?&]ga_debug=1(&|$)/.test(location.search);
+  if ((!real && !prueba) || window.fbq) return;
+  var n = window.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+  if (!window._fbq) window._fbq = n;
+  n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+  fbq('init', '2039349903687118');
+  fbq('track', 'PageView');
+  // fbevents.js ocupa 150-300 ms del procesador del celular: bajarlo en el load le
+  // sacaba ~9 puntos de Lighthouse mobile a la home. Baja con la primera interaccion
+  // (toque, scroll, tecla) o a los 4 s del load, lo que pase antes.
+  var listo = false, gestos = ['pointerdown', 'touchstart', 'scroll', 'keydown'];
+  function cargar() {
+    if (listo) return; listo = true;
+    gestos.forEach(function (g) { window.removeEventListener(g, cargar); });
+    var sc = document.createElement('script'); sc.async = true; sc.src = 'https://connect.facebook.net/en_US/fbevents.js'; document.head.appendChild(sc);
+  }
+  function esperar() {
+    gestos.forEach(function (g) { window.addEventListener(g, cargar, { once: true, passive: true }); });
+    setTimeout(cargar, 4000);
+  }
+  if (document.readyState === 'complete') esperar(); else window.addEventListener('load', esperar, { once: true });
+})();
+</script>
 <style>
   @font-face { font-family: 'Inter'; font-weight: 100 900; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
   :root { --marca: #0C66E4; --marca-hover: #0055CC; --navy: #0D2B6B; --navy-900: #0D2B6B; --tinta-2: #505258; --w: #fff; --w-70: rgba(255,255,255,0.7); --r: 8px; --fs-sm: 14px; --fs-base: 15px; --fs-lead: 17px; --fs-h2: clamp(28px, 3.4vw, 42px); --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px; --t-instante: 120ms; }
@@ -51,6 +84,7 @@ function gtag() { dataLayer.push(arguments); }
 </style>
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2039349903687118&amp;ev=PageView&amp;noscript=1"></noscript>
 <header>
   <a href="/" class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7" stroke="#7DB1F4" stroke-width="4"/><circle cx="12" cy="12" r="7" stroke="#ffffff" stroke-width="4" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/></svg></span>ordenfinanciero<span class="dot">.</span></a>
 </header>

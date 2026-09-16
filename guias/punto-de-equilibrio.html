@@ -41,6 +41,40 @@ function gtag() { dataLayer.push(arguments); }
   if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
 })();
 </script>
+<!-- Medicion: Pixel de Meta (16/09/2026). Mismas reglas que GA4: solo en
+     ordenfinanciero.com y sus subdominios; en un preview de Vercel, con ?ga_debug=1.
+     fbevents.js baja con la primera interaccion o a los 4 s del load (ver abajo);
+     los eventos anteriores esperan en la cola de fbq.
+     Eventos: PageView (todas las paginas), ViewContent (guia de punto de
+     equilibrio) y Lead (el Apps Script confirmo el WhatsApp). Nunca datos personales. -->
+<script>
+(function () {
+  var h = location.hostname;
+  var real = h === 'ordenfinanciero.com' || h.endsWith('.ordenfinanciero.com');
+  var prueba = /\.vercel\.app$/.test(h) && /[?&]ga_debug=1(&|$)/.test(location.search);
+  if ((!real && !prueba) || window.fbq) return;
+  var n = window.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+  if (!window._fbq) window._fbq = n;
+  n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+  fbq('init', '2039349903687118');
+  fbq('track', 'PageView');
+  // fbevents.js ocupa 150-300 ms del procesador del celular: bajarlo en el load le
+  // sacaba ~9 puntos de Lighthouse mobile a la home. Baja con la primera interaccion
+  // (toque, scroll, tecla) o a los 4 s del load, lo que pase antes.
+  var listo = false, gestos = ['pointerdown', 'touchstart', 'scroll', 'keydown'];
+  function cargar() {
+    if (listo) return; listo = true;
+    gestos.forEach(function (g) { window.removeEventListener(g, cargar); });
+    var sc = document.createElement('script'); sc.async = true; sc.src = 'https://connect.facebook.net/en_US/fbevents.js'; document.head.appendChild(sc);
+  }
+  function esperar() {
+    gestos.forEach(function (g) { window.addEventListener(g, cargar, { once: true, passive: true }); });
+    setTimeout(cargar, 4000);
+  }
+  if (document.readyState === 'complete') esperar(); else window.addEventListener('load', esperar, { once: true });
+})();
+</script>
+<script>if (typeof fbq === 'function') fbq('track', 'ViewContent', { content_name: 'guia_punto_equilibrio' });</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://ordenfinanciero.com/guias/punto-de-equilibrio#article", "headline": "Punto de equilibrio: qué es, fórmula y cómo calcularlo en tu negocio", "description": "Qué es el punto de equilibrio de una empresa, la fórmula en unidades y en pesos, el gráfico, ejemplos de una panadería y de un restaurante y cómo calcularlo en Excel.", "image": "https://ordenfinanciero.com/guias/og/punto-de-equilibrio.png", "inLanguage": "es-AR", "datePublished": "2026-09-14", "dateModified": "2026-09-16", "author": {"@type": "Person", "@id": "https://ordenfinanciero.com/#manuel", "name": "Manuel Alfano", "url": "https://ordenfinanciero.com/#manuel"}, "publisher": {"@id": "https://ordenfinanciero.com/#organization"}, "mainEntityOfPage": "https://ordenfinanciero.com/guias/punto-de-equilibrio", "isPartOf": {"@id": "https://ordenfinanciero.com/guias#coleccion"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ordenfinanciero.com/"}, {"@type": "ListItem", "position": 2, "name": "Guías", "item": "https://ordenfinanciero.com/guias"}, {"@type": "ListItem", "position": 3, "name": "Punto de equilibrio"}]}, {"@type": "FAQPage", "@id": "https://ordenfinanciero.com/guias/punto-de-equilibrio#faq", "mainEntity": [{"@type": "Question", "name": "¿Qué es el punto de equilibrio en una empresa?", "acceptedAnswer": {"@type": "Answer", "text": "Es lo que tenés que vender en el mes para no ganar ni perder. Con eso pagás justo los costos fijos y los variables. Si vendés menos, perdés; si vendés más, ganás."}}, {"@type": "Question", "name": "¿Cuál es la fórmula del punto de equilibrio?", "acceptedAnswer": {"@type": "Answer", "text": "En unidades: costos fijos ÷ (precio − costo variable por unidad). En pesos: costos fijos ÷ margen de contribución en porcentaje (40 % se escribe 0,40). Ejemplo: con $6.000.000 de costos fijos, un precio de $15.000 sin IVA y $9.000 de costo variable, da 1.000 unidades o $15.000.000 de ventas."}}, {"@type": "Question", "name": "¿Cómo se calcula el punto de equilibrio si vendo muchos productos?", "acceptedAnswer": {"@type": "Answer", "text": "En pesos, con los totales del mes. Sumá las ventas sin IVA y los costos variables. Sacá el margen de contribución en porcentaje y dividí los costos fijos por ese número."}}, {"@type": "Question", "name": "¿El punto de equilibrio es una meta de ventas?", "acceptedAnswer": {"@type": "Answer", "text": "No: es el piso. Vender justo eso es trabajar todo el mes para no ganar nada. Para la meta, sumá a los costos fijos la ganancia que querés. La meta también tiene que cubrir los impuestos, como Ingresos Brutos."}}]}]}</script>
 <style>
 @font-face { font-family: 'Inter'; font-weight: 100 900; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
@@ -355,6 +389,7 @@ function gtag() { dataLayer.push(arguments); }
 </style>
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2039349903687118&amp;ev=PageView&amp;noscript=1"></noscript>
 <!-- Generado por tools/build_guias.py: editar la fuente en tools/guias/, no este archivo -->
 <header>
   <div class="head-in">
