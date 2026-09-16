@@ -205,7 +205,7 @@ CSS = TOKENS + """
   article .descarga-t { font-size: var(--fs-h3); line-height: 1.25; margin: 0 0 var(--s-2); }
   article .descarga-linea { color: var(--tinta); margin-bottom: var(--s-4); }
   .descarga-hoja { background: var(--w); border: 1px solid rgba(12,102,228,0.18); border-radius: var(--r); overflow: hidden; font-size: var(--fs-meta); line-height: 1.4; font-variant-numeric: tabular-nums; }
-  .descarga-hoja .fila { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; }
+  .descarga-hoja .fila { display: grid; grid-template-columns: minmax(0, 1fr) 72px 124px; }
   .descarga-hoja .fila span { padding: 6px 10px; min-width: 68px; border-bottom: 1px solid var(--borde); color: var(--tinta-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .descarga-hoja .fila span + span { text-align: right; border-left: 1px solid var(--borde); }
   .descarga-hoja .cab span { background: var(--lienzo); color: var(--navy); font-weight: 600; }
@@ -408,7 +408,7 @@ DESCARGAS = {
         # Mermas reales de la hoja "Mermas por producto" (papa 15 %, lomo 20 %, salmón entero 50 %)
         'hoja': {'cab': ('Insumo', 'Merma', 'Para 200 g netos'),
                  'filas': [('Papa', '15 %', '235 g'), ('Lomo (vacuno)', '20 %', '250 g'), ('Salmón (entero)', '50 %', '400 g')],
-                 'total': ('276 insumos con merma cargada', '', ''),
+                 'total': ('Y 273 insumos más', '', ''),
                  'pestanas': ['Insumos', 'Recetas', 'Márgenes', 'Mermas', 'Desperdicio']},
         'trae': ['276 insumos con la merma de referencia ya cargada.',
                  'Recetas con costo por porción: la merma se suma sola.',
