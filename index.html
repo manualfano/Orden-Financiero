@@ -4785,6 +4785,7 @@ function track(evento, props) {
   try {
     if (typeof gtag === 'function') gtag('event', evento, props || {});
   } catch (e) { /* la medicion nunca rompe la pagina */ }
+  if (evento === 'cta_calendar_click') metaAgendarClick();
 }
 
 // ── ATRIBUCION: primer contacto de la sesion (Fase 1, C) ─────────
@@ -5729,6 +5730,17 @@ function metaLead() {
     if (typeof fbq !== 'function' || !state.leadId || metaLeadEnviado === state.leadId) return;
     metaLeadEnviado = state.leadId;
     fbq('track', 'Lead');
+  } catch (e) { /* la medicion nunca rompe la pagina */ }
+}
+
+// Pixel de Meta: tocar "Agendar llamada" (16/09/2026). No es la reserva, que se
+// confirma en Google Calendar y el pixel no ve: es la senal mas cercana. Una vez por visita.
+let metaAgendarEnviado = false;
+function metaAgendarClick() {
+  try {
+    if (typeof fbq !== 'function' || metaAgendarEnviado) return;
+    metaAgendarEnviado = true;
+    fbq('trackCustom', 'ClicAgendarLlamada');
   } catch (e) { /* la medicion nunca rompe la pagina */ }
 }
 
