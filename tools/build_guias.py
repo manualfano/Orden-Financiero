@@ -22,7 +22,12 @@ MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto
 
 # Mismo codigo de GA4 y mismos tokens que privacidad.html: una sola fuente.
 PRIV = (ROOT / 'privacidad.html').read_text(encoding='utf-8')
-GA = re.search(r'(?s)<!-- Medicion:.*?</script>', PRIV).group(0)
+GA = re.search(r'(?s)<!-- Medicion: Google.*?</script>', PRIV).group(0)
+# Pixel de Meta (16/09/2026): el codigo base y el noscript tambien salen de privacidad.html.
+PIXEL = re.search(r'(?s)<!-- Medicion: Pixel de Meta.*?</script>', PRIV).group(0)
+PIXEL_NOSCRIPT = re.search(r'<noscript><img[^>]*facebook\.com/tr[^>]*></noscript>', PRIV).group(0)
+# Eventos ViewContent del pixel por guia: slug -> content_name.
+VIEW_CONTENT = {'punto-de-equilibrio': 'guia_punto_equilibrio'}
 TOKENS = re.search(r'(?s)<style>\s*(@font-face.*?:root \{.*?\})', PRIV).group(1)
 BRAND = re.search(r'(?s)<a href="/" class="brand">.*?</a>', PRIV).group(0)
 BRAND = BRAND.replace('</span>ordenfinanciero<span class="dot">.</span></a>', '</span><span class="brand-name">ordenfinanciero<span class="dot">.</span></span></a>')
@@ -839,10 +844,13 @@ def leer_guias():
     return guias
 
 
-def pagina(*, title, description, path, og_type, ld, cuerpo, cta_origen, cta_general=False, main_clase='', og_image=None):
+def pagina(*, title, description, path, og_type, ld, cuerpo, cta_origen, cta_general=False, main_clase='', og_image=None, view_content=None):
     url = BASE + path
     e = html.escape
     og = BASE + (og_image or '/og-image.png')
+    pixel = PIXEL
+    if view_content:
+        pixel += f"\n<script>if (typeof fbq === 'function') fbq('track', 'ViewContent', {{ content_name: '{view_content}' }});</script>"
     main_attr = f' class="{main_clase}"' if main_clase else ''
     guias_actual = ' aria-current="page"' if path == '/guias' else ' aria-current="true"'
     # La oferta es gastronomica (decision del dueño, 14/09): las guias generales lo dicen en el cierre.
@@ -877,11 +885,13 @@ def pagina(*, title, description, path, og_type, ld, cuerpo, cta_origen, cta_gen
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 {GA}
+{pixel}
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 <style>
 {CSS}</style>
 </head>
 <body>
+{PIXEL_NOSCRIPT}
 <!-- Generado por tools/build_guias.py: editar la fuente en tools/guias/, no este archivo -->
 <header>
   <div class="head-in">
@@ -1035,7 +1045,7 @@ def main():
         (OUT / f"{g['slug']}.html").write_text(pagina(
             title=g['title'] + ' · Orden Financiero', description=g['description'], path=path,
             og_type='article', ld=ld, cuerpo=cuerpo, cta_origen='guia-' + g['slug'], main_clase='guia',
-            og_image=f"/guias/og/{g['slug']}.png",
+            og_image=f"/guias/og/{g['slug']}.png", view_content=VIEW_CONTENT.get(g['slug']),
             cta_general=g.get('cta_general', False)), encoding='utf-8', newline='\n')
 
     # Indice /guias

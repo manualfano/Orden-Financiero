@@ -41,6 +41,27 @@ function gtag() { dataLayer.push(arguments); }
   if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
 })();
 </script>
+<!-- Medicion: Pixel de Meta (16/09/2026). Mismas reglas que GA4: solo en
+     ordenfinanciero.com y sus subdominios; en un preview de Vercel, con ?ga_debug=1.
+     fbevents.js (~100 KiB) baja despues del evento load, igual que gtag, para no
+     empeorar el LCP mobile; los eventos anteriores esperan en la cola de fbq.
+     Eventos: PageView (todas las paginas), ViewContent (guia de punto de
+     equilibrio) y Lead (el Apps Script confirmo el WhatsApp). Nunca datos personales. -->
+<script>
+(function () {
+  var h = location.hostname;
+  var real = h === 'ordenfinanciero.com' || h.endsWith('.ordenfinanciero.com');
+  var prueba = /\.vercel\.app$/.test(h) && /[?&]ga_debug=1(&|$)/.test(location.search);
+  if ((!real && !prueba) || window.fbq) return;
+  var n = window.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+  if (!window._fbq) window._fbq = n;
+  n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+  fbq('init', '2039349903687118');
+  fbq('track', 'PageView');
+  function cargar() { var sc = document.createElement('script'); sc.async = true; sc.src = 'https://connect.facebook.net/en_US/fbevents.js'; document.head.appendChild(sc); }
+  if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
+})();
+</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://ordenfinanciero.com/guias/estado-de-resultados#article", "headline": "Estado de resultados: qué es, estructura, modelo y ejemplo", "description": "Qué es un estado de resultados, su estructura paso a paso, un modelo para un negocio en Argentina, un ejemplo completo en pesos y cómo armarlo en Excel.", "image": "https://ordenfinanciero.com/guias/og/estado-de-resultados.png", "inLanguage": "es-AR", "datePublished": "2026-09-14", "dateModified": "2026-09-16", "author": {"@type": "Person", "@id": "https://ordenfinanciero.com/#manuel", "name": "Manuel Alfano", "url": "https://ordenfinanciero.com/#manuel"}, "publisher": {"@id": "https://ordenfinanciero.com/#organization"}, "mainEntityOfPage": "https://ordenfinanciero.com/guias/estado-de-resultados", "isPartOf": {"@id": "https://ordenfinanciero.com/guias#coleccion"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ordenfinanciero.com/"}, {"@type": "ListItem", "position": 2, "name": "Guías", "item": "https://ordenfinanciero.com/guias"}, {"@type": "ListItem", "position": 3, "name": "Estado de resultados"}]}, {"@type": "FAQPage", "@id": "https://ordenfinanciero.com/guias/estado-de-resultados#faq", "mainEntity": [{"@type": "Question", "name": "¿Qué es un estado de resultados?", "acceptedAnswer": {"@type": "Answer", "text": "Es el informe que muestra si un negocio ganó o perdió plata en un período, por ejemplo un mes. A las ventas se les resta lo que costó lo vendido y los gastos, y lo que queda es el resultado. También se lo llama cuadro de resultados o estado de pérdidas y ganancias."}}, {"@type": "Question", "name": "¿Cuál es la estructura del estado de resultados?", "acceptedAnswer": {"@type": "Answer", "text": "Ventas brutas menos comisiones de apps y tarjetas: ventas netas. Menos costo de mercadería vendida: utilidad bruta. Menos estructura operativa (sueldos, alquiler, servicios): resultado operativo. Menos costos financieros: resultado antes de impuestos. Menos impuestos: resultado neto. Los porcentajes se calculan sobre las ventas netas."}}, {"@type": "Question", "name": "¿Qué diferencia hay entre el estado de resultados y el flujo de caja?", "acceptedAnswer": {"@type": "Answer", "text": "El estado de resultados cuenta las ventas y los gastos en el mes en que pasan, aunque se cobren o se paguen después. El flujo de caja cuenta la plata el día que entra o sale. Por eso un negocio puede ganar plata en el mes y quedarse sin caja."}}, {"@type": "Question", "name": "¿El estado de resultados y el balance son lo mismo?", "acceptedAnswer": {"@type": "Answer", "text": "No. El balance muestra lo que el negocio tiene y lo que debe en una fecha. El estado de resultados muestra lo que pasó en un período: cuánto se vendió, cuánto costó y cuánto quedó."}}, {"@type": "Question", "name": "¿Cada cuánto conviene hacer el estado de resultados?", "acceptedAnswer": {"@type": "Answer", "text": "Todos los meses, antes del día 15 del mes siguiente. El del año lo hace el contador. El del mes lo hacés vos, para corregir a tiempo."}}]}]}</script>
 <style>
 @font-face { font-family: 'Inter'; font-weight: 100 900; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
@@ -354,6 +375,7 @@ function gtag() { dataLayer.push(arguments); }
 </style>
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2039349903687118&amp;ev=PageView&amp;noscript=1"></noscript>
 <!-- Generado por tools/build_guias.py: editar la fuente en tools/guias/, no este archivo -->
 <header>
   <div class="head-in">

@@ -41,6 +41,27 @@ function gtag() { dataLayer.push(arguments); }
   if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
 })();
 </script>
+<!-- Medicion: Pixel de Meta (16/09/2026). Mismas reglas que GA4: solo en
+     ordenfinanciero.com y sus subdominios; en un preview de Vercel, con ?ga_debug=1.
+     fbevents.js (~100 KiB) baja despues del evento load, igual que gtag, para no
+     empeorar el LCP mobile; los eventos anteriores esperan en la cola de fbq.
+     Eventos: PageView (todas las paginas), ViewContent (guia de punto de
+     equilibrio) y Lead (el Apps Script confirmo el WhatsApp). Nunca datos personales. -->
+<script>
+(function () {
+  var h = location.hostname;
+  var real = h === 'ordenfinanciero.com' || h.endsWith('.ordenfinanciero.com');
+  var prueba = /\.vercel\.app$/.test(h) && /[?&]ga_debug=1(&|$)/.test(location.search);
+  if ((!real && !prueba) || window.fbq) return;
+  var n = window.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+  if (!window._fbq) window._fbq = n;
+  n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+  fbq('init', '2039349903687118');
+  fbq('track', 'PageView');
+  function cargar() { var sc = document.createElement('script'); sc.async = true; sc.src = 'https://connect.facebook.net/en_US/fbevents.js'; document.head.appendChild(sc); }
+  if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
+})();
+</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "CollectionPage", "@id": "https://ordenfinanciero.com/guias#coleccion", "url": "https://ordenfinanciero.com/guias", "name": "Guías de finanzas para dueños de negocio gastronómico", "description": "Guías prácticas para dueños de negocio gastronómico: precios, costos, márgenes y rentabilidad, con fórmulas y ejemplos en pesos.", "inLanguage": "es-AR", "isPartOf": {"@id": "https://ordenfinanciero.com/#website"}, "publisher": {"@id": "https://ordenfinanciero.com/#organization"}, "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://ordenfinanciero.com/guias/costo-de-un-plato", "name": "Cómo calcular el costo de un plato: fórmula, ejemplo y ficha de costo"}, {"@type": "ListItem", "position": 2, "url": "https://ordenfinanciero.com/guias/planilla-de-costos", "name": "Planilla de costos en Excel gratis para tu negocio gastronómico"}, {"@type": "ListItem", "position": 3, "url": "https://ordenfinanciero.com/guias/food-cost", "name": "Costo de mercadería vendida (CMV) y food cost: qué son, fórmula y cómo calcularlos"}, {"@type": "ListItem", "position": 4, "url": "https://ordenfinanciero.com/guias/costos-fijos-y-variables", "name": "Costos fijos y variables: qué son, diferencias y ejemplos"}, {"@type": "ListItem", "position": 5, "url": "https://ordenfinanciero.com/guias/precio-de-venta", "name": "Cómo calcular el precio de venta de un producto o de un plato: fórmula y ejemplos"}, {"@type": "ListItem", "position": 6, "url": "https://ordenfinanciero.com/guias/margen-de-ganancia", "name": "Margen de ganancia: qué es, cómo se calcula y en qué se diferencia del markup"}, {"@type": "ListItem", "position": 7, "url": "https://ordenfinanciero.com/guias/estado-de-resultados", "name": "Estado de resultados: qué es, estructura, modelo y ejemplo"}, {"@type": "ListItem", "position": 8, "url": "https://ordenfinanciero.com/guias/punto-de-equilibrio", "name": "Punto de equilibrio: qué es, fórmula y cómo calcularlo en tu negocio"}, {"@type": "ListItem", "position": 9, "url": "https://ordenfinanciero.com/guias/rentabilidad-de-un-negocio", "name": "Rentabilidad de un negocio: qué es, fórmula y cómo calcularla"}, {"@type": "ListItem", "position": 10, "url": "https://ordenfinanciero.com/guias/flujo-de-caja", "name": "Flujo de caja: qué es, cómo armarlo en Excel y ejemplo de un restaurante"}, {"@type": "ListItem", "position": 11, "url": "https://ordenfinanciero.com/guias/capital-de-trabajo", "name": "Capital de trabajo: qué es, cómo se calcula y cuánto necesita tu negocio"}]}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ordenfinanciero.com/"}, {"@type": "ListItem", "position": 2, "name": "Guías"}]}]}</script>
 <style>
 @font-face { font-family: 'Inter'; font-weight: 100 900; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
@@ -354,6 +375,7 @@ function gtag() { dataLayer.push(arguments); }
 </style>
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2039349903687118&amp;ev=PageView&amp;noscript=1"></noscript>
 <!-- Generado por tools/build_guias.py: editar la fuente en tools/guias/, no este archivo -->
 <header>
   <div class="head-in">

@@ -41,6 +41,27 @@ function gtag() { dataLayer.push(arguments); }
   if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
 })();
 </script>
+<!-- Medicion: Pixel de Meta (16/09/2026). Mismas reglas que GA4: solo en
+     ordenfinanciero.com y sus subdominios; en un preview de Vercel, con ?ga_debug=1.
+     fbevents.js (~100 KiB) baja despues del evento load, igual que gtag, para no
+     empeorar el LCP mobile; los eventos anteriores esperan en la cola de fbq.
+     Eventos: PageView (todas las paginas), ViewContent (guia de punto de
+     equilibrio) y Lead (el Apps Script confirmo el WhatsApp). Nunca datos personales. -->
+<script>
+(function () {
+  var h = location.hostname;
+  var real = h === 'ordenfinanciero.com' || h.endsWith('.ordenfinanciero.com');
+  var prueba = /\.vercel\.app$/.test(h) && /[?&]ga_debug=1(&|$)/.test(location.search);
+  if ((!real && !prueba) || window.fbq) return;
+  var n = window.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+  if (!window._fbq) window._fbq = n;
+  n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+  fbq('init', '2039349903687118');
+  fbq('track', 'PageView');
+  function cargar() { var sc = document.createElement('script'); sc.async = true; sc.src = 'https://connect.facebook.net/en_US/fbevents.js'; document.head.appendChild(sc); }
+  if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
+})();
+</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://ordenfinanciero.com/guias/precio-de-venta#article", "headline": "Cómo calcular el precio de venta de un producto o de un plato: fórmula y ejemplos", "description": "Cómo calcular el precio de venta de un producto o de un plato: la fórmula con margen y food cost, cómo mirar a la competencia y decidir tu posicionamiento, ejemplos en pesos y Excel.", "image": "https://ordenfinanciero.com/guias/og/precio-de-venta.png", "inLanguage": "es-AR", "datePublished": "2026-09-14", "dateModified": "2026-09-16", "author": {"@type": "Person", "@id": "https://ordenfinanciero.com/#manuel", "name": "Manuel Alfano", "url": "https://ordenfinanciero.com/#manuel"}, "publisher": {"@id": "https://ordenfinanciero.com/#organization"}, "mainEntityOfPage": "https://ordenfinanciero.com/guias/precio-de-venta", "isPartOf": {"@id": "https://ordenfinanciero.com/guias#coleccion"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ordenfinanciero.com/"}, {"@type": "ListItem", "position": 2, "name": "Guías", "item": "https://ordenfinanciero.com/guias"}, {"@type": "ListItem", "position": 3, "name": "Precio de venta de un producto o un plato"}]}, {"@type": "FAQPage", "@id": "https://ordenfinanciero.com/guias/precio-de-venta#faq", "mainEntity": [{"@type": "Question", "name": "¿Cuál es la fórmula para calcular el precio de venta?", "acceptedAnswer": {"@type": "Answer", "text": "Precio sin IVA = costo ÷ (1 − margen que querés). Con un costo de $10.500 y un margen de 40 %, el precio sin IVA es $10.500 ÷ 0,60 = $17.500. Ese es tu piso. Después lo comparás con la competencia y decidís dónde te ubicás."}}, {"@type": "Question", "name": "¿Cuál es la fórmula del precio de venta de un plato?", "acceptedAnswer": {"@type": "Answer", "text": "Precio sin IVA = costo del plato ÷ food cost que querés (la parte del precio que se va en ingredientes). Si sos responsable inscripto, el precio de carta es el precio sin IVA × 1,21. Con un costo de $4.145 y un food cost de 30 %, el precio sin IVA es $13.817 y con IVA, $16.718."}}, {"@type": "Question", "name": "¿Cuánto cobrar por un plato de comida?", "acceptedAnswer": {"@type": "Answer", "text": "Dividí el costo del plato por el food cost que querés (0,30 para un 30 %) y sumá el IVA si corresponde. Ese es tu piso. Después mirá cuánto cobran otros lugares por un plato parecido y decidí si te ubicás por debajo, en línea o por arriba."}}, {"@type": "Question", "name": "¿Cómo calculo el precio de venta con IVA y cómo le saco el IVA?", "acceptedAnswer": {"@type": "Answer", "text": "Si sos responsable inscripto, calculá primero el precio sin IVA y multiplicalo por 1,21 (o por 1,105 si tu producto lleva 10,5 %): $17.500 × 1,21 = $21.175. Para sacarle el IVA a un precio que ya lo tiene, dividí por 1,21. Si sos monotributista, no sumás IVA: el precio que calculás es el final, y el costo va con el IVA que pagaste."}}, {"@type": "Question", "name": "¿Cómo calculo el precio de venta de un producto para revender?", "acceptedAnswer": {"@type": "Answer", "text": "Sumá lo que te cobra hoy el proveedor, el flete y cualquier otro gasto por unidad. Aplicale a ese costo la fórmula con el margen que querés y compará el resultado con lo que cobra la competencia por el mismo producto."}}]}]}</script>
 <style>
 @font-face { font-family: 'Inter'; font-weight: 100 900; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
@@ -354,6 +375,7 @@ function gtag() { dataLayer.push(arguments); }
 </style>
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2039349903687118&amp;ev=PageView&amp;noscript=1"></noscript>
 <!-- Generado por tools/build_guias.py: editar la fuente en tools/guias/, no este archivo -->
 <header>
   <div class="head-in">

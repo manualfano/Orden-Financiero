@@ -41,6 +41,27 @@ function gtag() { dataLayer.push(arguments); }
   if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
 })();
 </script>
+<!-- Medicion: Pixel de Meta (16/09/2026). Mismas reglas que GA4: solo en
+     ordenfinanciero.com y sus subdominios; en un preview de Vercel, con ?ga_debug=1.
+     fbevents.js (~100 KiB) baja despues del evento load, igual que gtag, para no
+     empeorar el LCP mobile; los eventos anteriores esperan en la cola de fbq.
+     Eventos: PageView (todas las paginas), ViewContent (guia de punto de
+     equilibrio) y Lead (el Apps Script confirmo el WhatsApp). Nunca datos personales. -->
+<script>
+(function () {
+  var h = location.hostname;
+  var real = h === 'ordenfinanciero.com' || h.endsWith('.ordenfinanciero.com');
+  var prueba = /\.vercel\.app$/.test(h) && /[?&]ga_debug=1(&|$)/.test(location.search);
+  if ((!real && !prueba) || window.fbq) return;
+  var n = window.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+  if (!window._fbq) window._fbq = n;
+  n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+  fbq('init', '2039349903687118');
+  fbq('track', 'PageView');
+  function cargar() { var sc = document.createElement('script'); sc.async = true; sc.src = 'https://connect.facebook.net/en_US/fbevents.js'; document.head.appendChild(sc); }
+  if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
+})();
+</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://ordenfinanciero.com/guias/costos-fijos-y-variables#article", "headline": "Costos fijos y variables: qué son, diferencias y ejemplos", "description": "Qué son los costos fijos y los costos variables, en qué se diferencian, ejemplos de un restaurante y de un café, cómo separarlos en Excel y para qué sirve.", "image": "https://ordenfinanciero.com/guias/og/costos-fijos-y-variables.png", "inLanguage": "es-AR", "datePublished": "2026-09-14", "dateModified": "2026-09-16", "author": {"@type": "Person", "@id": "https://ordenfinanciero.com/#manuel", "name": "Manuel Alfano", "url": "https://ordenfinanciero.com/#manuel"}, "publisher": {"@id": "https://ordenfinanciero.com/#organization"}, "mainEntityOfPage": "https://ordenfinanciero.com/guias/costos-fijos-y-variables", "isPartOf": {"@id": "https://ordenfinanciero.com/guias#coleccion"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ordenfinanciero.com/"}, {"@type": "ListItem", "position": 2, "name": "Guías", "item": "https://ordenfinanciero.com/guias"}, {"@type": "ListItem", "position": 3, "name": "Costos fijos y variables"}]}, {"@type": "FAQPage", "@id": "https://ordenfinanciero.com/guias/costos-fijos-y-variables#faq", "mainEntity": [{"@type": "Question", "name": "¿Qué son los costos fijos?", "acceptedAnswer": {"@type": "Answer", "text": "Son los que pagás igual aunque ese mes vendas poco: alquiler, sueldos del personal estable, internet, el contador, el seguro."}}, {"@type": "Question", "name": "¿Qué son los costos variables?", "acceptedAnswer": {"@type": "Answer", "text": "Son los que suben y bajan con lo que vendés: mercadería o materia prima, envases y envíos. Si no vendés, no existen. Ingresos Brutos no va acá: va en impuestos."}}, {"@type": "Question", "name": "¿Cuál es la diferencia entre costos fijos y variables?", "acceptedAnswer": {"@type": "Answer", "text": "El costo fijo no depende de cuánto vendés; el variable sí. Si este mes vendés el doble, el alquiler es el mismo, pero gastás el doble de mercadería."}}, {"@type": "Question", "name": "¿Los sueldos son un costo fijo o variable?", "acceptedAnswer": {"@type": "Answer", "text": "El sueldo del personal estable es fijo, con cargas, aguinaldo y vacaciones. Los extras que sumás solo en los días fuertes son variables."}}, {"@type": "Question", "name": "¿La luz y el gas son fijos o variables?", "acceptedAnswer": {"@type": "Answer", "text": "Tienen de los dos: una parte la pagás siempre y otra sube cuando producís más. Si pesan poco en tus gastos, ponelos enteros como fijos."}}]}]}</script>
 <style>
 @font-face { font-family: 'Inter'; font-weight: 100 900; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
@@ -354,6 +375,7 @@ function gtag() { dataLayer.push(arguments); }
 </style>
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2039349903687118&amp;ev=PageView&amp;noscript=1"></noscript>
 <!-- Generado por tools/build_guias.py: editar la fuente en tools/guias/, no este archivo -->
 <header>
   <div class="head-in">

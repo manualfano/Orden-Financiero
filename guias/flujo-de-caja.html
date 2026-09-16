@@ -41,6 +41,27 @@ function gtag() { dataLayer.push(arguments); }
   if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
 })();
 </script>
+<!-- Medicion: Pixel de Meta (16/09/2026). Mismas reglas que GA4: solo en
+     ordenfinanciero.com y sus subdominios; en un preview de Vercel, con ?ga_debug=1.
+     fbevents.js (~100 KiB) baja despues del evento load, igual que gtag, para no
+     empeorar el LCP mobile; los eventos anteriores esperan en la cola de fbq.
+     Eventos: PageView (todas las paginas), ViewContent (guia de punto de
+     equilibrio) y Lead (el Apps Script confirmo el WhatsApp). Nunca datos personales. -->
+<script>
+(function () {
+  var h = location.hostname;
+  var real = h === 'ordenfinanciero.com' || h.endsWith('.ordenfinanciero.com');
+  var prueba = /\.vercel\.app$/.test(h) && /[?&]ga_debug=1(&|$)/.test(location.search);
+  if ((!real && !prueba) || window.fbq) return;
+  var n = window.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+  if (!window._fbq) window._fbq = n;
+  n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+  fbq('init', '2039349903687118');
+  fbq('track', 'PageView');
+  function cargar() { var sc = document.createElement('script'); sc.async = true; sc.src = 'https://connect.facebook.net/en_US/fbevents.js'; document.head.appendChild(sc); }
+  if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
+})();
+</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://ordenfinanciero.com/guias/flujo-de-caja#article", "headline": "Flujo de caja: qué es, cómo armarlo en Excel y ejemplo de un restaurante", "description": "Qué es el flujo de caja (o flujo de fondos), en qué se diferencia de la ganancia, un ejemplo semana a semana de un restaurante, el proyectado, el flujo de caja libre y cómo armarlo en Excel.", "image": "https://ordenfinanciero.com/guias/og/flujo-de-caja.png", "inLanguage": "es-AR", "datePublished": "2026-09-15", "dateModified": "2026-09-16", "author": {"@type": "Person", "@id": "https://ordenfinanciero.com/#manuel", "name": "Manuel Alfano", "url": "https://ordenfinanciero.com/#manuel"}, "publisher": {"@id": "https://ordenfinanciero.com/#organization"}, "mainEntityOfPage": "https://ordenfinanciero.com/guias/flujo-de-caja", "isPartOf": {"@id": "https://ordenfinanciero.com/guias#coleccion"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ordenfinanciero.com/"}, {"@type": "ListItem", "position": 2, "name": "Guías", "item": "https://ordenfinanciero.com/guias"}, {"@type": "ListItem", "position": 3, "name": "Flujo de caja"}]}, {"@type": "FAQPage", "@id": "https://ordenfinanciero.com/guias/flujo-de-caja#faq", "mainEntity": [{"@type": "Question", "name": "¿Qué es el flujo de caja?", "acceptedAnswer": {"@type": "Answer", "text": "Es la lista de la plata que entra y sale del negocio, y en qué semana. Te avisa antes en qué semana te va a faltar. También se lo llama flujo de fondos o cash flow."}}, {"@type": "Question", "name": "¿Cuál es la fórmula del flujo de caja?", "acceptedAnswer": {"@type": "Answer", "text": "Saldo inicial + entradas − salidas = saldo final. En el ejemplo del restaurante: $3.500.000 al empezar el mes, + $36.000.000 que entran, − $34.500.000 que salen, = $5.000.000 al terminar el mes."}}, {"@type": "Question", "name": "¿Qué diferencia hay entre el flujo de caja y el estado de resultados?", "acceptedAnswer": {"@type": "Answer", "text": "El estado de resultados dice si el negocio gana: cuenta la venta el día que vendés. El flujo de caja dice si te alcanza la plata: la cuenta el día que entra a tu cuenta."}}, {"@type": "Question", "name": "¿Flujo de caja, flujo de fondos y cash flow son lo mismo?", "acceptedAnswer": {"@type": "Answer", "text": "Para el día a día de un negocio, sí. \"Flujo de fondos\" también se usa para ver si conviene una inversión, como abrir un local nuevo."}}, {"@type": "Question", "name": "¿Cómo se hace un flujo de caja proyectado?", "acceptedAnswer": {"@type": "Answer", "text": "Anotá lo que esperás cobrar y pagar en los próximos meses. No te olvides del aguinaldo ni de los meses flojos. Cada semana, reemplazá lo proyectado por lo real."}}, {"@type": "Question", "name": "¿Qué es el flujo de caja libre?", "acceptedAnswer": {"@type": "Answer", "text": "Es la plata que deja el negocio después de pagar todo lo del mes y las compras que duran años, como un horno. Es lo que podés retirar o usar para devolver préstamos."}}, {"@type": "Question", "name": "¿Cuándo se acreditan las ventas con tarjeta?", "acceptedAnswer": {"@type": "Answer", "text": "Con débito, al día siguiente. Con crédito en 1 pago, unas 2 semanas después. La fecha exacta figura en tus liquidaciones."}}, {"@type": "Question", "name": "¿El retiro del dueño es un gasto?", "acceptedAnswer": {"@type": "Answer", "text": "No, no baja la ganancia. Pero saca plata de la caja: anotalo como una salida más."}}, {"@type": "Question", "name": "¿Qué cambia si soy monotributista?", "acceptedAnswer": {"@type": "Answer", "text": "No pagás IVA aparte: en impuestos anotás la cuota del monotributo, que vence el 20 de cada mes. El resto del flujo de caja se arma igual."}}, {"@type": "Question", "name": "¿Qué hago si el flujo de caja me da negativo?", "acceptedAnswer": {"@type": "Answer", "text": "Actuá con tiempo. Mové fechas con los proveedores, bajá tu retiro y frená compras que pueden esperar. El banco, al final. No dejes de pagar impuestos ni cargas sociales."}}]}]}</script>
 <style>
 @font-face { font-family: 'Inter'; font-weight: 100 900; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
@@ -354,6 +375,7 @@ function gtag() { dataLayer.push(arguments); }
 </style>
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2039349903687118&amp;ev=PageView&amp;noscript=1"></noscript>
 <!-- Generado por tools/build_guias.py: editar la fuente en tools/guias/, no este archivo -->
 <header>
   <div class="head-in">

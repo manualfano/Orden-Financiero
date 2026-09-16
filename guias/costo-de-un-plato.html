@@ -41,6 +41,27 @@ function gtag() { dataLayer.push(arguments); }
   if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
 })();
 </script>
+<!-- Medicion: Pixel de Meta (16/09/2026). Mismas reglas que GA4: solo en
+     ordenfinanciero.com y sus subdominios; en un preview de Vercel, con ?ga_debug=1.
+     fbevents.js (~100 KiB) baja despues del evento load, igual que gtag, para no
+     empeorar el LCP mobile; los eventos anteriores esperan en la cola de fbq.
+     Eventos: PageView (todas las paginas), ViewContent (guia de punto de
+     equilibrio) y Lead (el Apps Script confirmo el WhatsApp). Nunca datos personales. -->
+<script>
+(function () {
+  var h = location.hostname;
+  var real = h === 'ordenfinanciero.com' || h.endsWith('.ordenfinanciero.com');
+  var prueba = /\.vercel\.app$/.test(h) && /[?&]ga_debug=1(&|$)/.test(location.search);
+  if ((!real && !prueba) || window.fbq) return;
+  var n = window.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+  if (!window._fbq) window._fbq = n;
+  n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+  fbq('init', '2039349903687118');
+  fbq('track', 'PageView');
+  function cargar() { var sc = document.createElement('script'); sc.async = true; sc.src = 'https://connect.facebook.net/en_US/fbevents.js'; document.head.appendChild(sc); }
+  if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
+})();
+</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://ordenfinanciero.com/guias/costo-de-un-plato#article", "headline": "Cómo calcular el costo de un plato: fórmula, ejemplo y ficha de costo", "description": "Qué es el costo de un plato, la fórmula con la merma incluida, un ejemplo completo en pesos y cómo armar la ficha de costo en Excel.", "image": "https://ordenfinanciero.com/guias/og/costo-de-un-plato.png", "inLanguage": "es-AR", "datePublished": "2026-09-14", "dateModified": "2026-09-16", "author": {"@type": "Person", "@id": "https://ordenfinanciero.com/#manuel", "name": "Manuel Alfano", "url": "https://ordenfinanciero.com/#manuel"}, "publisher": {"@id": "https://ordenfinanciero.com/#organization"}, "mainEntityOfPage": "https://ordenfinanciero.com/guias/costo-de-un-plato", "isPartOf": {"@id": "https://ordenfinanciero.com/guias#coleccion"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ordenfinanciero.com/"}, {"@type": "ListItem", "position": 2, "name": "Guías", "item": "https://ordenfinanciero.com/guias"}, {"@type": "ListItem", "position": 3, "name": "Costo de un plato"}]}, {"@type": "FAQPage", "@id": "https://ordenfinanciero.com/guias/costo-de-un-plato#faq", "mainEntity": [{"@type": "Question", "name": "¿Qué es la ficha de costo de un plato?", "acceptedAnswer": {"@type": "Answer", "text": "Es la receta de una porción con lo que cuesta cada ingrediente. La suma de todos da el costo del plato."}}, {"@type": "Question", "name": "¿Cómo se calcula la merma?", "acceptedAnswer": {"@type": "Answer", "text": "Pesá el ingrediente como llega y otra vez limpio. Si de 1 kilo quedan 800 gramos, la merma (lo que se tira) es 20 % y el rendimiento, 80 %."}}, {"@type": "Question", "name": "¿Cómo saco el costo de una receta que rinde varias porciones?", "acceptedAnswer": {"@type": "Answer", "text": "Calculá el costo de la tanda entera y dividilo por las porciones que salen de verdad. Una salsa que cuesta $18.000 y rinde 12 porciones cuesta $1.500 por porción."}}, {"@type": "Question", "name": "¿Qué porcentaje del precio debería ser el costo de un plato?", "acceptedAnswer": {"@type": "Answer", "text": "Ese porcentaje se llama food cost (qué parte del precio se va en ingredientes). Como referencia, entre 25 % y 35 % del precio sin IVA, según el negocio."}}, {"@type": "Question", "name": "¿Cada cuánto hay que actualizar el costo de un plato?", "acceptedAnswer": {"@type": "Answer", "text": "Si un ingrediente importante aumenta más de 5 %, actualizala ese día. Y revisala completa una vez por mes."}}]}]}</script>
 <style>
 @font-face { font-family: 'Inter'; font-weight: 100 900; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
@@ -354,6 +375,7 @@ function gtag() { dataLayer.push(arguments); }
 </style>
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2039349903687118&amp;ev=PageView&amp;noscript=1"></noscript>
 <!-- Generado por tools/build_guias.py: editar la fuente en tools/guias/, no este archivo -->
 <header>
   <div class="head-in">

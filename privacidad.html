@@ -37,6 +37,27 @@ function gtag() { dataLayer.push(arguments); }
   if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
 })();
 </script>
+<!-- Medicion: Pixel de Meta (16/09/2026). Mismas reglas que GA4: solo en
+     ordenfinanciero.com y sus subdominios; en un preview de Vercel, con ?ga_debug=1.
+     fbevents.js (~100 KiB) baja despues del evento load, igual que gtag, para no
+     empeorar el LCP mobile; los eventos anteriores esperan en la cola de fbq.
+     Eventos: PageView (todas las paginas), ViewContent (guia de punto de
+     equilibrio) y Lead (el Apps Script confirmo el WhatsApp). Nunca datos personales. -->
+<script>
+(function () {
+  var h = location.hostname;
+  var real = h === 'ordenfinanciero.com' || h.endsWith('.ordenfinanciero.com');
+  var prueba = /\.vercel\.app$/.test(h) && /[?&]ga_debug=1(&|$)/.test(location.search);
+  if ((!real && !prueba) || window.fbq) return;
+  var n = window.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+  if (!window._fbq) window._fbq = n;
+  n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+  fbq('init', '2039349903687118');
+  fbq('track', 'PageView');
+  function cargar() { var sc = document.createElement('script'); sc.async = true; sc.src = 'https://connect.facebook.net/en_US/fbevents.js'; document.head.appendChild(sc); }
+  if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
+})();
+</script>
 <style>
   @font-face { font-family: 'Inter'; font-weight: 100 900; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
   :root { --marca: #0C66E4; --marca-hover: #0055CC; --navy: #0D2B6B; --navy-900: #0D2B6B; --tinta: #292A2E; --tinta-2: #505258; --tinta-3: #6B6E76; --bg: #fff; --lienzo: #F8F8F8; --borde: rgba(11,18,14,0.14); --w: #fff; --r: 8px; --r-lg: 12px; --fs-meta: 12px; --fs-sm: 14px; --fs-base: 15px; --fs-lead: 17px; --fs-h3: 21px; --fs-h2: clamp(28px, 3.4vw, 42px); --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px; --s-7: 48px; --t-instante: 120ms; }
@@ -61,13 +82,14 @@ function gtag() { dataLayer.push(arguments); }
 </style>
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2039349903687118&amp;ev=PageView&amp;noscript=1"></noscript>
 <header>
   <a href="/" class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7" stroke="#7DB1F4" stroke-width="4"/><circle cx="12" cy="12" r="7" stroke="#ffffff" stroke-width="4" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/></svg></span>ordenfinanciero<span class="dot">.</span></a>
 </header>
 <main>
   <p class="eyebrow">Privacidad</p>
   <h1>Qué datos pide esta web y para qué</h1>
-  <p>Última actualización: 11 de septiembre de 2026.</p>
+  <p>Última actualización: 16 de septiembre de 2026.</p>
   <p>Esta página describe, en lenguaje llano, qué información se recolecta en ordenfinanciero.com y qué se hace con ella.</p>
 
   <!-- A18 (07/09/2026), actualizada en la Fase 1 (11/09/2026, textos aprobados por el dueño): GA4 con cookies, datos en servicios de Google y agenda en Google Calendar. Describe lo que la web hace; sin promesas adicionales. -->
@@ -80,6 +102,7 @@ function gtag() { dataLayer.push(arguments); }
 
   <h2>Medición</h2>
   <p>Para saber cómo se usa la web (cuántas personas abren el diagnóstico, en qué pregunta lo dejan y desde dónde llegan) usamos Google Analytics, que guarda cookies en tu navegador. Google Analytics no recibe tu WhatsApp. Podés bloquear o borrar esas cookies desde la configuración de tu navegador.</p>
+  <p>También usamos el píxel de Meta (la empresa de Facebook e Instagram), que guarda cookies en tu navegador, para saber si nuestros anuncios traen visitas y diagnósticos. Meta registra que se abrió una página o que se completó el diagnóstico, pero no recibe tu WhatsApp ni tus respuestas.</p>
 
   <h2>La llamada</h2>
   <p>Si reservás la llamada con Manuel, el turno se agenda en Google Calendar, con los datos que cargues ahí.</p>

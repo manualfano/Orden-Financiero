@@ -41,6 +41,27 @@ function gtag() { dataLayer.push(arguments); }
   if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
 })();
 </script>
+<!-- Medicion: Pixel de Meta (16/09/2026). Mismas reglas que GA4: solo en
+     ordenfinanciero.com y sus subdominios; en un preview de Vercel, con ?ga_debug=1.
+     fbevents.js (~100 KiB) baja despues del evento load, igual que gtag, para no
+     empeorar el LCP mobile; los eventos anteriores esperan en la cola de fbq.
+     Eventos: PageView (todas las paginas), ViewContent (guia de punto de
+     equilibrio) y Lead (el Apps Script confirmo el WhatsApp). Nunca datos personales. -->
+<script>
+(function () {
+  var h = location.hostname;
+  var real = h === 'ordenfinanciero.com' || h.endsWith('.ordenfinanciero.com');
+  var prueba = /\.vercel\.app$/.test(h) && /[?&]ga_debug=1(&|$)/.test(location.search);
+  if ((!real && !prueba) || window.fbq) return;
+  var n = window.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+  if (!window._fbq) window._fbq = n;
+  n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+  fbq('init', '2039349903687118');
+  fbq('track', 'PageView');
+  function cargar() { var sc = document.createElement('script'); sc.async = true; sc.src = 'https://connect.facebook.net/en_US/fbevents.js'; document.head.appendChild(sc); }
+  if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
+})();
+</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://ordenfinanciero.com/guias/margen-de-ganancia#article", "headline": "Margen de ganancia: qué es, cómo se calcula y en qué se diferencia del markup", "description": "Qué es el margen de ganancia, la fórmula para calcularlo de un producto y de un negocio, la diferencia con el markup, ejemplos en pesos y cómo hacerlo en Excel.", "image": "https://ordenfinanciero.com/guias/og/margen-de-ganancia.png", "inLanguage": "es-AR", "datePublished": "2026-09-14", "dateModified": "2026-09-16", "author": {"@type": "Person", "@id": "https://ordenfinanciero.com/#manuel", "name": "Manuel Alfano", "url": "https://ordenfinanciero.com/#manuel"}, "publisher": {"@id": "https://ordenfinanciero.com/#organization"}, "mainEntityOfPage": "https://ordenfinanciero.com/guias/margen-de-ganancia", "isPartOf": {"@id": "https://ordenfinanciero.com/guias#coleccion"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ordenfinanciero.com/"}, {"@type": "ListItem", "position": 2, "name": "Guías", "item": "https://ordenfinanciero.com/guias"}, {"@type": "ListItem", "position": 3, "name": "Margen de ganancia"}]}, {"@type": "FAQPage", "@id": "https://ordenfinanciero.com/guias/margen-de-ganancia#faq", "mainEntity": [{"@type": "Question", "name": "¿Qué es el margen de ganancia?", "acceptedAnswer": {"@type": "Answer", "text": "Es el porcentaje del precio de venta sin IVA que te queda después de restar el costo del producto. Si vendés a $17.500 sin IVA algo que te cuesta $10.500, te quedan $7.000, que son el 40 % del precio."}}, {"@type": "Question", "name": "¿Cómo se calcula el margen de ganancia de un producto?", "acceptedAnswer": {"@type": "Answer", "text": "Al precio de venta sin IVA le restás el costo y dividís lo que queda por el precio. Siempre por el precio, no por el costo. Con $17.500 de precio y $10.500 de costo: $7.000 ÷ $17.500 = 40 %."}}, {"@type": "Question", "name": "¿Margen y markup son lo mismo?", "acceptedAnswer": {"@type": "Answer", "text": "No. El margen se calcula sobre el precio de venta y el markup sobre el costo. Un producto que cuesta $10.500 y se vende a $17.500 tiene 40 % de margen y 66,7 % de markup."}}, {"@type": "Question", "name": "¿Margen de ganancia y rentabilidad son lo mismo?", "acceptedAnswer": {"@type": "Answer", "text": "No. El margen mide cuánto queda de cada venta. La rentabilidad mide cuánto rinde la plata que pusiste en el negocio. Podés tener buen margen y poca rentabilidad si vendés poco."}}, {"@type": "Question", "name": "¿Qué margen de ganancia es bueno?", "acceptedAnswer": {"@type": "Answer", "text": "Depende del rubro. El bueno es el que paga todos los gastos y deja la ganancia que querés. Para saber el tuyo, fijate qué porcentaje de tus ventas netas se llevan los sueldos, alquiler y servicios, los intereses y los impuestos. Sumales lo que querés ganar. En el restaurante del ejemplo: 47,7 % + 1,2 % + 3,7 % + 10 % = 62,6 % de margen bruto mínimo."}}]}]}</script>
 <style>
 @font-face { font-family: 'Inter'; font-weight: 100 900; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
@@ -354,6 +375,7 @@ function gtag() { dataLayer.push(arguments); }
 </style>
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2039349903687118&amp;ev=PageView&amp;noscript=1"></noscript>
 <!-- Generado por tools/build_guias.py: editar la fuente en tools/guias/, no este archivo -->
 <header>
   <div class="head-in">

@@ -44,6 +44,27 @@ function gtag() { dataLayer.push(arguments); }
   if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
 })();
 </script>
+<!-- Medicion: Pixel de Meta (16/09/2026). Mismas reglas que GA4: solo en
+     ordenfinanciero.com y sus subdominios; en un preview de Vercel, con ?ga_debug=1.
+     fbevents.js (~100 KiB) baja despues del evento load, igual que gtag, para no
+     empeorar el LCP mobile; los eventos anteriores esperan en la cola de fbq.
+     Eventos: PageView (todas las paginas), ViewContent (guia de punto de
+     equilibrio) y Lead (el Apps Script confirmo el WhatsApp). Nunca datos personales. -->
+<script>
+(function () {
+  var h = location.hostname;
+  var real = h === 'ordenfinanciero.com' || h.endsWith('.ordenfinanciero.com');
+  var prueba = /\.vercel\.app$/.test(h) && /[?&]ga_debug=1(&|$)/.test(location.search);
+  if ((!real && !prueba) || window.fbq) return;
+  var n = window.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+  if (!window._fbq) window._fbq = n;
+  n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+  fbq('init', '2039349903687118');
+  fbq('track', 'PageView');
+  function cargar() { var sc = document.createElement('script'); sc.async = true; sc.src = 'https://connect.facebook.net/en_US/fbevents.js'; document.head.appendChild(sc); }
+  if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
+})();
+</script>
 <!-- A17 (cerrada 07/09/2026): LocalBusiness con ciudad La Plata, sin calle ni telefono.
      SEO Fase 4 (08/09/2026): @graph con Organization (@id, alternateName = wordmark) y WebSite
      (inLanguage es-AR). sameAs: Instagram + pagina de empresa de LinkedIn (ID 106909356, URL dada por el dueño 08/09).
@@ -4001,6 +4022,7 @@ nav.scrolled { background: var(--navy-2); }
 </style>
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2039349903687118&amp;ev=PageView&amp;noscript=1"></noscript>
 
 <!-- ── NAV ── -->
 <nav id="site-nav">
@@ -5687,6 +5709,17 @@ function urlWhatsApp(mensaje) {
   });
 })();
 
+// Pixel de Meta: Lead solo cuando el Apps Script confirmo que guardo el WhatsApp
+// (no al cargar ni al tocar el boton), una vez por leadId. Sin datos personales.
+let metaLeadEnviado = null;
+function metaLead() {
+  try {
+    if (typeof fbq !== 'function' || !state.leadId || metaLeadEnviado === state.leadId) return;
+    metaLeadEnviado = state.leadId;
+    fbq('track', 'Lead');
+  } catch (e) { /* la medicion nunca rompe la pagina */ }
+}
+
 function submitLead(e) {
   if (e && e.preventDefault) e.preventDefault();
   const input = document.getElementById('lead-wa');
@@ -5720,6 +5753,7 @@ function submitLead(e) {
 
   sendLeadToSheet().then(res => {
     track('diag_lead_submit', { ok: res.ok ? 'true' : 'false' });
+    if (res.ok) metaLead();
     state.leadGuardado = res.ok;
     // El analisis se muestra igual: si no se guardo, con aviso, Reintentar y WhatsApp
     state.leadOk = true;
@@ -5734,6 +5768,7 @@ function reintentarLead(btn) {
   if (btn) { btn.disabled = true; btn.textContent = 'Guardando…'; }
   sendLeadToSheet().then(res => {
     track('diag_lead_submit', { ok: res.ok ? 'true' : 'false' });
+    if (res.ok) metaLead();
     state.leadGuardado = res.ok;
     saveState();
     mostrarAvisoLead(res.ok ? 'ok' : 'error');

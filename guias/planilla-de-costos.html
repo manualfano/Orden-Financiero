@@ -41,6 +41,27 @@ function gtag() { dataLayer.push(arguments); }
   if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
 })();
 </script>
+<!-- Medicion: Pixel de Meta (16/09/2026). Mismas reglas que GA4: solo en
+     ordenfinanciero.com y sus subdominios; en un preview de Vercel, con ?ga_debug=1.
+     fbevents.js (~100 KiB) baja despues del evento load, igual que gtag, para no
+     empeorar el LCP mobile; los eventos anteriores esperan en la cola de fbq.
+     Eventos: PageView (todas las paginas), ViewContent (guia de punto de
+     equilibrio) y Lead (el Apps Script confirmo el WhatsApp). Nunca datos personales. -->
+<script>
+(function () {
+  var h = location.hostname;
+  var real = h === 'ordenfinanciero.com' || h.endsWith('.ordenfinanciero.com');
+  var prueba = /\.vercel\.app$/.test(h) && /[?&]ga_debug=1(&|$)/.test(location.search);
+  if ((!real && !prueba) || window.fbq) return;
+  var n = window.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+  if (!window._fbq) window._fbq = n;
+  n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+  fbq('init', '2039349903687118');
+  fbq('track', 'PageView');
+  function cargar() { var sc = document.createElement('script'); sc.async = true; sc.src = 'https://connect.facebook.net/en_US/fbevents.js'; document.head.appendChild(sc); }
+  if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
+})();
+</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://ordenfinanciero.com/guias/planilla-de-costos#article", "headline": "Planilla de costos en Excel gratis para tu negocio gastronómico", "description": "Descargá gratis la planilla de costos en Excel con casi 300 insumos y su merma cargada: costo por plato, margen sin IVA y desperdicio en pesos. Con un ejemplo paso a paso.", "image": "https://ordenfinanciero.com/guias/og/planilla-de-costos.png", "inLanguage": "es-AR", "datePublished": "2026-09-16", "dateModified": "2026-09-16", "author": {"@type": "Person", "@id": "https://ordenfinanciero.com/#manuel", "name": "Manuel Alfano", "url": "https://ordenfinanciero.com/#manuel"}, "publisher": {"@id": "https://ordenfinanciero.com/#organization"}, "mainEntityOfPage": "https://ordenfinanciero.com/guias/planilla-de-costos", "isPartOf": {"@id": "https://ordenfinanciero.com/guias#coleccion"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ordenfinanciero.com/"}, {"@type": "ListItem", "position": 2, "name": "Guías", "item": "https://ordenfinanciero.com/guias"}, {"@type": "ListItem", "position": 3, "name": "Planilla de costos"}]}, {"@type": "FAQPage", "@id": "https://ordenfinanciero.com/guias/planilla-de-costos#faq", "mainEntity": [{"@type": "Question", "name": "¿La planilla de costos es gratis?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Dejás tu WhatsApp y se descarga al instante. No pagás nada ni instalás ningún programa: es un archivo de Excel."}}, {"@type": "Question", "name": "¿Cargo los precios de los insumos con o sin IVA?", "acceptedAnswer": {"@type": "Answer", "text": "Si sos responsable inscripto, sin IVA. Si sos monotributista, con IVA: el total que pagaste. En la hoja Márgenes elegís cuál sos y la planilla hace el resto."}}, {"@type": "Question", "name": "¿Qué hago si la merma de mi insumo es distinta a la de la planilla?", "acceptedAnswer": {"@type": "Answer", "text": "Cambiala en la hoja \"Mermas por producto\". Las que trae son de referencia. Pesá el insumo como llega y después de limpiarlo: la diferencia es tu merma."}}, {"@type": "Question", "name": "¿Puedo agregar insumos que no están en la lista?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Agregalos al final de la hoja Insumos, sin cambiar el orden de los que ya están. Si no cargás su merma, la planilla la toma como 0 %."}}, {"@type": "Question", "name": "¿Sirve para bebidas, cafetería o pastelería?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Cada insumo se carga en gramos, mililitros o unidades, así que sirve para un café, un trago o una torta."}}, {"@type": "Question", "name": "¿Una planilla de costos reemplaza a un sistema de gestión?", "acceptedAnswer": {"@type": "Answer", "text": "No, hacen cosas distintas. El sistema anota ventas y stock. La planilla te dice cuánto cuesta cada producto y cuánto te deja, que es lo que necesitás para poner precios."}}]}]}</script>
 <style>
 @font-face { font-family: 'Inter'; font-weight: 100 900; font-display: swap; src: url('/fonts/inter-latin.woff2') format('woff2'); }
@@ -354,6 +375,7 @@ function gtag() { dataLayer.push(arguments); }
 </style>
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2039349903687118&amp;ev=PageView&amp;noscript=1"></noscript>
 <!-- Generado por tools/build_guias.py: editar la fuente en tools/guias/, no este archivo -->
 <header>
   <div class="head-in">
