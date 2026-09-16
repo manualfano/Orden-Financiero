@@ -4,9 +4,9 @@
   "h1": "Flujo de caja: qué es, cómo armarlo en Excel y ejemplo de un restaurante",
   "miga": "Flujo de caja",
   "eje": "Flujo de caja",
-  "description": "Qué es el flujo de caja (o flujo de fondos), en qué se diferencia de la ganancia, un ejemplo semana a semana de un restaurante, el flujo de caja proyectado y cómo armarlo en Excel.",
-  "publicada": "2026-09-14",
-  "actualizada": "2026-09-14",
+  "description": "Qué es el flujo de caja (o flujo de fondos), en qué se diferencia de la ganancia, un ejemplo semana a semana de un restaurante, el proyectado, el flujo de caja libre y cómo armarlo en Excel.",
+  "publicada": "2026-09-15",
+  "actualizada": "2026-09-16",
   "cta_general": true,
   "relacionadas": [
     "capital-de-trabajo",
@@ -33,6 +33,10 @@
     {
       "q": "¿Cómo se hace un flujo de caja proyectado?",
       "a": "Anotá lo que esperás cobrar y pagar en los próximos meses, con las fechas reales. Sumá los pagos que no son de todos los meses: el aguinaldo, las vacaciones (se pagan antes de que el empleado salga) o el impuesto a las ganancias del año. Bajá las ventas de los meses flojos. Cada semana, reemplazá lo proyectado por lo real."
+    },
+    {
+      "q": "¿Qué es el flujo de caja libre?",
+      "a": "Es la plata que deja el negocio funcionando, menos lo que invertiste en cosas que duran años: un horno, una cámara de frío, una reforma. Es lo que realmente podés usar para retirar o para devolver préstamos sin quedarte corto."
     },
     {
       "q": "¿Cuándo se acreditan las ventas con tarjeta?",
@@ -137,7 +141,7 @@
         </tbody>
       </table>
     </div>
-    <p class="nota">Números de ejemplo, con IVA. Para no complicar: meses de 4 semanas iguales, alquiler y gastos bancarios sin IVA, sin retenciones ni impuesto al cheque, y el aguinaldo en el ejemplo 2. Los vencimientos dependen de tu CUIT y tu provincia.</p>
+    <p class="nota">Números de ejemplo, con IVA. Para no complicar: meses de 4 semanas iguales, alquiler y gastos bancarios sin IVA, sin retenciones ni impuesto al cheque. Los $9.500.000 de sueldos no incluyen el aguinaldo: en el estado de resultados se reparte un poco cada mes, pero de la caja sale todo junto en junio y diciembre (lo ves en el ejemplo 2). Los vencimientos dependen de tu CUIT y tu provincia.</p>
     <p>Qué muestra la tabla:</p>
     <ul>
       <li><strong>La semana 1 termina en −$1.831.000.</strong> Sueldos, alquiler y proveedores caen juntos, y las tarjetas de esa semana llegan recién en la semana 3. Si no lo ves venir, terminás en descubierto o pagándole tarde a alguien.</li>
@@ -168,6 +172,11 @@
     <p class="nota">Números de ejemplo, sin vacaciones. Arranca con el saldo final del ejemplo 1. Una parte de lo que se vende a fin de mes se cobra el mes siguiente.</p>
     <p>En diciembre la cuenta llega a $6.688.750 y dan ganas de retirar más. Pero <strong>a fin de febrero faltan $5.304.750</strong>, aun sin gastar nada de diciembre. Si lo ves en octubre, tenés tiempo: más abajo, qué hacer.</p>
 
+    <h2>Qué es el flujo de caja libre</h2>
+    <p class="formula">Flujo de caja libre = lo que deja el negocio funcionando − inversiones</p>
+    <p><strong>Lo que deja el negocio funcionando</strong> es lo que entra menos lo que sale, sin contar tu retiro ni lo que devolvés de préstamos. Las <strong>inversiones</strong> son compras que duran años: un horno, una cámara de frío, una reforma. Lo que queda es la plata que realmente podés usar para retirar o devolver deuda.</p>
+    <p>En el ejemplo 1, el negocio funcionando deja $4.547.500 en el mes. Si ese mes compra una cámara de frío de $2.000.000, el flujo libre es <strong>$2.547.500</strong>. Pero el dueño retira $3.000.000 y devuelve $600.000 del préstamo: $3.600.000. Faltan $1.052.500, y la caja baja en lugar de subir.</p>
+
     <h2>Cómo armar el flujo de caja en Excel</h2>
     <p>Una hoja con los conceptos en la columna A, una columna por semana (B a E) y el total del mes en la F:</p>
     <div class="tabla">
@@ -185,7 +194,7 @@
       </table>
     </div>
     <p>En la columna F: <code>=SUMA(B3:E3)</code> en F3, copiado hasta F17; en F2, <code>=B2</code>, y en F18, <code>=F2+F7-F17</code>, que tiene que dar igual que E18. Hacé que la fila 18 se pinte de rojo cuando dé menos de 0 (en Excel: Inicio, Formato condicional, Reglas para resaltar celdas, Es menor que): esa es la semana a mirar.</p>
-    <p>Para proyectar varios meses, usá una columna por mes. Y guardá al lado lo que pasó de verdad: comparar te enseña a proyectar mejor.</p>
+    <p>Para proyectar varios meses, usá una columna por mes. Si la caja está justa, mejor <strong>13 columnas de semanas</strong> (tres meses): un mes puede cerrar bien y tener una semana en rojo, como la semana 1 del ejemplo. Y guardá al lado lo que pasó de verdad: comparar te enseña a proyectar mejor.</p>
 
     <h2>Cómo usar el flujo de caja en tu negocio</h2>
     <ul>
@@ -193,6 +202,7 @@
       <li><strong>Decidí el retiro con el saldo proyectado</strong>, no con lo que ves hoy en la cuenta: una parte ya es de proveedores, sueldos e impuestos. Lo explicamos en <a href="/guias/capital-de-trabajo">capital de trabajo</a>.</li>
       <li><strong>Guardá cada mes para el aguinaldo:</strong> lo que pagás por mes de sueldos y cargas, dividido por 12. En el ejemplo, unos $800.000 por mes.</li>
       <li><strong>Armá un colchón:</strong> apuntá a tener, como mínimo, lo que salen 2 semanas de gastos fijos.</li>
+      <li><strong>Fijate si falta caja o falta ganancia:</strong> si el flujo da mal pero el <a href="/guias/estado-de-resultados">estado de resultados</a> da ganancia, es un problema de fechas y se arregla moviéndolas. Si los dos dan mal, el problema son los precios o los costos: mirá el <a href="/guias/punto-de-equilibrio">punto de equilibrio</a>. Un préstamo tapa un problema de fechas, pero a uno de ganancia lo agranda.</li>
     </ul>
     <h3>Qué hacer si la proyección da negativo</h3>
     <p>Con semanas de anticipación hay salidas baratas. Probá en este orden:</p>
