@@ -47,40 +47,48 @@ function gtag() { dataLayer.push(arguments); }
   :root { --marca: #0C66E4; --marca-hover: #0055CC; --navy: #0D2B6B; --navy-900: #0D2B6B; --tinta: #292A2E; --tinta-2: #505258; --tinta-3: #6B6E76; --bg: #fff; --lienzo: #F8F8F8; --borde: rgba(11,18,14,0.14); --w: #fff; --r: 8px; --r-lg: 12px; --fs-meta: 12px; --fs-sm: 14px; --fs-base: 15px; --fs-lead: 17px; --fs-h3: 21px; --fs-h2: clamp(28px, 3.4vw, 42px); --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px; --s-7: 48px; --t-instante: 120ms; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Inter', system-ui, sans-serif; font-size: var(--fs-base); line-height: 1.7; color: var(--tinta); background: var(--bg); }
-  header { background: var(--navy-900); padding: var(--s-3) var(--s-5); }
-  .head-in { max-width: calc(var(--ancho) - 2 * var(--s-5)); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
-  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--w); font-weight: 600; font-size: var(--fs-lead); letter-spacing: -0.01em; min-height: 44px; }
-  .brand-mark { width: 34px; height: 34px; border-radius: var(--r); background: var(--marca); display: inline-flex; align-items: center; justify-content: center; }
-  .brand-mark svg { width: 18px; height: 18px; }
+  /* Barra copiada de la home (index.html, 16/09/2026, pedido del dueño): tira navy-2 de 76 px fija arriba,
+     marca | links centrados | botón; hasta 1099 px los links van a un menú de tres líneas. */
+  header { position: sticky; top: 0; z-index: 100; background: #143C8C; height: 76px; display: flex; align-items: center; }
+  .head-in { width: 100%; max-width: max(1120px, var(--ancho)); margin: 0 auto; padding: 0 var(--s-5); display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--s-6); }
+  .brand { display: inline-flex; align-items: center; gap: var(--s-3); text-decoration: none; }
+  .brand-mark { width: 42px; height: 42px; border-radius: var(--r-lg); background: var(--marca); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .brand-mark svg { width: 22px; height: 22px; display: block; }
+  .brand-name { font-size: var(--fs-h3); font-weight: 600; letter-spacing: -0.01em; color: var(--w); line-height: 1; }
   .dot { color: var(--marca); }
-  /* Barra igual a la de la home (16/09/2026, pedido del dueño): mismos links; en celular, menú de tres líneas */
-  header { position: relative; z-index: 20; }
-  .head-nav { display: flex; align-items: center; gap: var(--s-2); }
-  .head-nav a { color: var(--w); text-decoration: none; font-size: var(--fs-sm); font-weight: 500; min-height: 44px; display: inline-flex; align-items: center; }
-  .head-nav .head-link { padding: 0 var(--s-3); border-radius: var(--r); color: rgba(255,255,255,0.92); }
-  .head-nav .head-link:hover { color: var(--w); background: rgba(255,255,255,0.10); }
-  .head-nav .head-link[aria-current] { color: var(--w); background: rgba(255,255,255,0.10); }
-  .head-nav .head-cta { background: var(--marca); padding: 0 var(--s-4); border-radius: var(--r); font-weight: 600; margin-left: var(--s-2); }
-  .head-nav .head-cta:hover { background: var(--marca-hover); }
+  .head-links { display: flex; align-items: center; justify-content: center; gap: var(--s-2); }
+  .head-links a { font-size: var(--fs-base); font-weight: 500; padding: var(--s-2) var(--s-3); border-radius: var(--r); color: rgba(255,255,255,0.92); text-decoration: none; transition: background var(--t-instante); }
+  .head-links a:hover { color: var(--w); background: rgba(255,255,255,0.10); }
+  .head-right { display: flex; align-items: center; justify-content: flex-end; gap: var(--s-2); }
+  .head-cta { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: var(--s-3) var(--s-5); border-radius: var(--r); border: 1.5px solid var(--marca); background: var(--marca); color: var(--w); font-size: var(--fs-base); font-weight: 600; text-decoration: none; white-space: nowrap; transition: background var(--t-instante); }
+  .head-cta:hover { background: var(--marca-hover); border-color: var(--marca-hover); }
   .head-burger { display: none; }
   .head-menu[hidden] { display: none; }
-  @media (max-width: 1023px) {
-    .head-nav .head-link { display: none; }
+  @media (max-width: 1099px) {
+    .head-in { grid-template-columns: auto auto; justify-content: space-between; }
+    .head-links { display: none; }
     .head-burger { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border: 1.5px solid rgba(255,255,255,0.20); border-radius: var(--r); background: transparent; color: var(--w); cursor: pointer; }
-    .head-burger:hover { background: rgba(255,255,255,0.10); }
+    .head-burger:hover { background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.92); }
     .head-burger svg { width: 22px; height: 22px; }
     .head-burger .ico-cerrar { display: none; }
     .head-burger[aria-expanded="true"] .ico-abrir { display: none; }
     .head-burger[aria-expanded="true"] .ico-cerrar { display: block; }
-    .head-menu { position: absolute; top: 100%; left: 0; right: 0; display: flex; flex-direction: column; padding: var(--s-2) var(--s-4) var(--s-4); background: var(--navy-900); border-top: 1px solid rgba(255,255,255,0.10); box-shadow: 0 12px 24px rgba(0,0,0,0.25); }
+    .head-menu { position: absolute; top: 100%; left: 0; right: 0; display: flex; flex-direction: column; padding: var(--s-2) var(--s-4) var(--s-4); background: #143C8C; border-top: 1px solid rgba(255,255,255,0.10); box-shadow: 0 12px 24px rgba(0,0,0,0.25); }
     .head-menu a { display: flex; align-items: center; min-height: 48px; padding: 0 var(--s-2); border-bottom: 1px solid rgba(255,255,255,0.10); color: rgba(255,255,255,0.92); font-size: var(--fs-lead); font-weight: 500; text-decoration: none; }
     .head-menu a:last-child { border-bottom: 0; }
-    .head-menu a:hover, .head-menu a[aria-current] { color: var(--w); background: rgba(255,255,255,0.10); }
+    .head-menu a:hover { color: var(--w); background: rgba(255,255,255,0.10); }
   }
-  @media (max-width: 420px) {
-    .head-in { flex-wrap: nowrap; gap: var(--s-2); }
-    .brand { font-size: var(--fs-base); }
-    .head-nav .head-cta { padding: 0 var(--s-3); margin-left: 0; font-size: 13px; }
+  @media (max-width: 960px) {
+    header { height: 64px; }
+    .brand-mark { width: 36px; height: 36px; border-radius: var(--r); }
+    .brand-mark svg { width: 18px; height: 18px; }
+    .brand-name { font-size: var(--fs-lead); }
+    .head-cta { min-height: 44px; padding: var(--s-2) var(--s-4); font-size: var(--fs-sm); }
+  }
+  @media (max-width: 640px) {
+    .brand-name { display: none; }
+    .head-in { padding: 0 var(--s-3); gap: var(--s-2); }
+    .head-cta { padding: var(--s-2) var(--s-3); }
   }
   main { max-width: 720px; margin: 0 auto; padding: var(--s-6) var(--s-5) var(--s-7); }
   .migas { font-size: var(--fs-sm); color: var(--tinta-3); margin-bottom: var(--s-5); }
@@ -174,7 +182,7 @@ function gtag() { dataLayer.push(arguments); }
   .guia-cab .meta { margin-top: var(--s-3); }
   .guia-cab .meta span { background: var(--w-08); border: 1px solid var(--w-18); color: var(--w); }
   /* Índice: grupos por problema */
-  .problema { margin-top: var(--s-7); scroll-margin-top: var(--s-5); }
+  .problema { margin-top: var(--s-7); scroll-margin-top: calc(76px + var(--s-5)); }
   .problema-cab { display: flex; gap: var(--s-4); align-items: flex-start; margin-bottom: var(--s-4); }
   .problema-num { font-size: 44px; font-weight: 600; line-height: 1; color: var(--marca); letter-spacing: -0.02em; min-width: 32px; }
   .problema-cab h2 { margin: 2px 0 4px; color: var(--navy); }
@@ -228,7 +236,7 @@ function gtag() { dataLayer.push(arguments); }
   main.guia { max-width: var(--ancho); }
   .guia-cuerpo { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: var(--s-7); align-items: start; }
   .guia-principal { min-width: 0; max-width: var(--lectura); }
-  .indice-guia { position: sticky; top: var(--s-5); border-left: 1px solid var(--borde); }
+  .indice-guia { position: sticky; top: calc(76px + var(--s-5)); border-left: 1px solid var(--borde); }
   .indice-guia p, .resumen p { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: var(--s-2); }
   .indice-guia p { color: var(--tinta-3); padding-left: var(--s-4); }
   .indice-guia ol, .indice-movil ol { list-style: none; padding: 0; }
@@ -242,7 +250,7 @@ function gtag() { dataLayer.push(arguments); }
   .resumen p { color: var(--marca); }
   .resumen ul { padding-left: var(--s-5); }
   .resumen li { color: var(--tinta); margin-bottom: 6px; }
-  article h2 { scroll-margin-top: var(--s-5); }
+  article h2 { scroll-margin-top: calc(76px + var(--s-5)); }
   .caja-autor { display: flex; gap: var(--s-4); align-items: center; border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-5); margin-top: var(--s-7); }
   .caja-autor img { width: 72px; height: 72px; border-radius: 999px; object-fit: cover; object-position: top; background: var(--lienzo); flex-shrink: 0; }
   .caja-autor strong { color: var(--navy); display: block; }
@@ -349,18 +357,20 @@ function gtag() { dataLayer.push(arguments); }
 <!-- Generado por tools/build_guias.py: editar la fuente en tools/guias/, no este archivo -->
 <header>
   <div class="head-in">
-    <a href="/" class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7" stroke="#7DB1F4" stroke-width="4"/><circle cx="12" cy="12" r="7" stroke="#ffffff" stroke-width="4" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/></svg></span>ordenfinanciero<span class="dot">.</span></a>
-    <nav class="head-nav" aria-label="Principal">
-      <a class="head-link" href="/#que-analizamos">El diagnóstico</a>
-      <a class="head-link" href="/#metodo">El programa</a>
-      <a class="head-link" href="/#manuel">Quién está detrás</a>
-      <a class="head-link" href="/guias" aria-current="true">Guías</a>
-      <a class="head-cta" href="/?origen=guia-planilla-de-costos#diagnostico">Hacer el diagnóstico</a>
+    <a href="/" class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7" stroke="#7DB1F4" stroke-width="4"/><circle cx="12" cy="12" r="7" stroke="#ffffff" stroke-width="4" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/></svg></span><span class="brand-name">ordenfinanciero<span class="dot">.</span></span></a>
+    <nav class="head-links" aria-label="Principal">
+      <a href="/#que-analizamos">El diagnóstico</a>
+      <a href="/#metodo">El programa</a>
+      <a href="/#manuel">Quién está detrás</a>
+      <a href="/guias" aria-current="true">Guías</a>
+    </nav>
+    <div class="head-right">
+      <a class="head-cta" href="/?origen=guia-planilla-de-costos#diagnostico">Hacer el diagnóstico · 3 min</a>
       <button class="head-burger" id="head-burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="head-menu">
         <svg class="ico-abrir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
         <svg class="ico-cerrar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
       </button>
-    </nav>
+    </div>
   </div>
   <div class="head-menu" id="head-menu" hidden>
     <a href="/#que-analizamos">El diagnóstico</a>
@@ -384,7 +394,7 @@ function gtag() { dataLayer.push(arguments); }
   });
   document.addEventListener('click', function (e) { if (!e.target.closest('header')) cerrar(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') cerrar(); });
-  window.addEventListener('resize', function () { if (window.innerWidth > 1023) cerrar(); });
+  window.addEventListener('resize', function () { if (window.innerWidth > 1099) cerrar(); });
   [].slice.call(document.querySelectorAll('header a[href^="/#"]')).forEach(function (a) {
     a.addEventListener('click', function () { track('nav_home_desde_guias', { destino: a.getAttribute('href') }); });
   });
