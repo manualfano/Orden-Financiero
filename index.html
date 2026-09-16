@@ -46,8 +46,8 @@ function gtag() { dataLayer.push(arguments); }
 </script>
 <!-- Medicion: Pixel de Meta (16/09/2026). Mismas reglas que GA4: solo en
      ordenfinanciero.com y sus subdominios; en un preview de Vercel, con ?ga_debug=1.
-     fbevents.js (~100 KiB) baja despues del evento load, igual que gtag, para no
-     empeorar el LCP mobile; los eventos anteriores esperan en la cola de fbq.
+     fbevents.js baja con la primera interaccion o a los 4 s del load (ver abajo);
+     los eventos anteriores esperan en la cola de fbq.
      Eventos: PageView (todas las paginas), ViewContent (guia de punto de
      equilibrio) y Lead (el Apps Script confirmo el WhatsApp). Nunca datos personales. -->
 <script>
@@ -61,8 +61,20 @@ function gtag() { dataLayer.push(arguments); }
   n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
   fbq('init', '2039349903687118');
   fbq('track', 'PageView');
-  function cargar() { var sc = document.createElement('script'); sc.async = true; sc.src = 'https://connect.facebook.net/en_US/fbevents.js'; document.head.appendChild(sc); }
-  if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
+  // fbevents.js ocupa 150-300 ms del procesador del celular: bajarlo en el load le
+  // sacaba ~9 puntos de Lighthouse mobile a la home. Baja con la primera interaccion
+  // (toque, scroll, tecla) o a los 4 s del load, lo que pase antes.
+  var listo = false, gestos = ['pointerdown', 'touchstart', 'scroll', 'keydown'];
+  function cargar() {
+    if (listo) return; listo = true;
+    gestos.forEach(function (g) { window.removeEventListener(g, cargar); });
+    var sc = document.createElement('script'); sc.async = true; sc.src = 'https://connect.facebook.net/en_US/fbevents.js'; document.head.appendChild(sc);
+  }
+  function esperar() {
+    gestos.forEach(function (g) { window.addEventListener(g, cargar, { once: true, passive: true }); });
+    setTimeout(cargar, 4000);
+  }
+  if (document.readyState === 'complete') esperar(); else window.addEventListener('load', esperar, { once: true });
 })();
 </script>
 <!-- A17 (cerrada 07/09/2026): LocalBusiness con ciudad La Plata, sin calle ni telefono.

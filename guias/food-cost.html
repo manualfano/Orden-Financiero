@@ -43,8 +43,8 @@ function gtag() { dataLayer.push(arguments); }
 </script>
 <!-- Medicion: Pixel de Meta (16/09/2026). Mismas reglas que GA4: solo en
      ordenfinanciero.com y sus subdominios; en un preview de Vercel, con ?ga_debug=1.
-     fbevents.js (~100 KiB) baja despues del evento load, igual que gtag, para no
-     empeorar el LCP mobile; los eventos anteriores esperan en la cola de fbq.
+     fbevents.js baja con la primera interaccion o a los 4 s del load (ver abajo);
+     los eventos anteriores esperan en la cola de fbq.
      Eventos: PageView (todas las paginas), ViewContent (guia de punto de
      equilibrio) y Lead (el Apps Script confirmo el WhatsApp). Nunca datos personales. -->
 <script>
@@ -58,8 +58,20 @@ function gtag() { dataLayer.push(arguments); }
   n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
   fbq('init', '2039349903687118');
   fbq('track', 'PageView');
-  function cargar() { var sc = document.createElement('script'); sc.async = true; sc.src = 'https://connect.facebook.net/en_US/fbevents.js'; document.head.appendChild(sc); }
-  if (document.readyState === 'complete') cargar(); else window.addEventListener('load', cargar, { once: true });
+  // fbevents.js ocupa 150-300 ms del procesador del celular: bajarlo en el load le
+  // sacaba ~9 puntos de Lighthouse mobile a la home. Baja con la primera interaccion
+  // (toque, scroll, tecla) o a los 4 s del load, lo que pase antes.
+  var listo = false, gestos = ['pointerdown', 'touchstart', 'scroll', 'keydown'];
+  function cargar() {
+    if (listo) return; listo = true;
+    gestos.forEach(function (g) { window.removeEventListener(g, cargar); });
+    var sc = document.createElement('script'); sc.async = true; sc.src = 'https://connect.facebook.net/en_US/fbevents.js'; document.head.appendChild(sc);
+  }
+  function esperar() {
+    gestos.forEach(function (g) { window.addEventListener(g, cargar, { once: true, passive: true }); });
+    setTimeout(cargar, 4000);
+  }
+  if (document.readyState === 'complete') esperar(); else window.addEventListener('load', esperar, { once: true });
 })();
 </script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://ordenfinanciero.com/guias/food-cost#article", "headline": "Costo de mercadería vendida (CMV) y food cost: qué son, fórmula y cómo calcularlos", "description": "Qué es el costo de mercadería vendida o CMV y el food cost o costo de la materia prima, la fórmula con inventario, por plato y por mes, ejemplos en pesos y Excel.", "image": "https://ordenfinanciero.com/guias/og/food-cost.png", "inLanguage": "es-AR", "datePublished": "2026-09-14", "dateModified": "2026-09-16", "author": {"@type": "Person", "@id": "https://ordenfinanciero.com/#manuel", "name": "Manuel Alfano", "url": "https://ordenfinanciero.com/#manuel"}, "publisher": {"@id": "https://ordenfinanciero.com/#organization"}, "mainEntityOfPage": "https://ordenfinanciero.com/guias/food-cost", "isPartOf": {"@id": "https://ordenfinanciero.com/guias#coleccion"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ordenfinanciero.com/"}, {"@type": "ListItem", "position": 2, "name": "Guías", "item": "https://ordenfinanciero.com/guias"}, {"@type": "ListItem", "position": 3, "name": "Costo de mercadería vendida (CMV) y food cost"}]}, {"@type": "FAQPage", "@id": "https://ordenfinanciero.com/guias/food-cost#faq", "mainEntity": [{"@type": "Question", "name": "¿Qué es el CMV?", "acceptedAnswer": {"@type": "Answer", "text": "CMV quiere decir costo de mercadería vendida: lo que te costó la mercadería que vendiste en el mes. No es lo que compraste, sino lo que salió del stock."}}, {"@type": "Question", "name": "¿Cuál es la fórmula del costo de mercadería vendida?", "acceptedAnswer": {"@type": "Answer", "text": "Stock al empezar el mes + compras − stock al cerrar. Con $3.000.000 de stock al empezar, $8.000.000 de compras y $2.500.000 al cerrar, el CMV es $8.500.000."}}, {"@type": "Question", "name": "¿Cuál es la fórmula del food cost?", "acceptedAnswer": {"@type": "Answer", "text": "Por plato: costo del plato ÷ precio de carta sin IVA × 100. Por mes: CMV ÷ ventas netas × 100."}}, {"@type": "Question", "name": "¿Food cost y costo de mercadería vendida son lo mismo?", "acceptedAnswer": {"@type": "Answer", "text": "No. El CMV es un monto en pesos. El food cost es ese monto como porcentaje de las ventas, y es el nombre que se usa en gastronomía."}}, {"@type": "Question", "name": "¿El CMV y el food cost se calculan con o sin IVA?", "acceptedAnswer": {"@type": "Answer", "text": "Sin IVA si sos responsable inscripto, porque el IVA de las compras lo recuperás. Si sos monotributista, usá lo que pagaste y lo que cobraste. Ante la duda, consultalo con tu contador."}}, {"@type": "Question", "name": "¿Las bebidas entran en el food cost?", "acceptedAnswer": {"@type": "Answer", "text": "En el estado de resultados va todo junto. Para controlar, miralas aparte: dejan una ganancia muy distinta a la de la comida."}}, {"@type": "Question", "name": "¿Qué pasa si no hago inventario?", "acceptedAnswer": {"@type": "Answer", "text": "Tomás lo que compraste como costo y el mes sale mal. El mes que comprás para guardar parece peor; el mes que usás ese stock parece mejor. Contá el stock una vez por mes, siempre el mismo día."}}]}]}</script>
