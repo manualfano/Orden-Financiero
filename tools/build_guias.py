@@ -296,7 +296,7 @@ CIRCULOS = ('<svg class="circulos" viewBox="0 0 200 200" fill="none" stroke="cur
 PROBLEMAS = [
     {'id': 'no-se-cuanto-me-cuesta', 'titulo': 'No sé cuánto me cuesta lo que vendo', 'atajo': 'No sé cuánto me cuesta',
      'corto': 'Costos', 'linea': 'Calculá el costo real de cada plato y de todo lo que vendés.',
-     'slugs': ['costo-de-un-plato', 'food-cost', 'costo-de-mercaderia-vendida', 'costos-fijos-y-variables']},
+     'slugs': ['costo-de-un-plato', 'planilla-de-costos', 'food-cost', 'costo-de-mercaderia-vendida', 'costos-fijos-y-variables']},
     {'id': 'no-se-que-precio-poner', 'titulo': 'No sé qué precio poner', 'atajo': 'No sé qué precio poner',
      'corto': 'Precios', 'linea': 'Poné precios que cubran todos tus costos y te dejen ganancia.',
      'slugs': ['precio-de-venta-de-un-plato', 'precio-de-venta-de-un-producto', 'margen-de-ganancia']},
