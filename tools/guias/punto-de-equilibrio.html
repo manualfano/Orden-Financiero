@@ -16,47 +16,42 @@
   "faq": [
     {
       "q": "¿Qué es el punto de equilibrio en una empresa?",
-      "a": "Es el nivel de ventas en el que el negocio no gana ni pierde: lo que entra por ventas alcanza justo para pagar los costos variables y los costos fijos. Por debajo hay pérdida; por encima, ganancia."
+      "a": "Es el nivel de ventas en el que el negocio no gana ni pierde: lo que entra alcanza justo para pagar los costos variables y los costos fijos. Por debajo hay pérdida; por encima, ganancia."
     },
     {
       "q": "¿Cuál es la fórmula del punto de equilibrio?",
-      "a": "En unidades: costos fijos ÷ (precio de venta − costo variable por unidad). En pesos: costos fijos ÷ margen de contribución en porcentaje, escrito en decimales (40 % es 0,40). Con $6.000.000 de costos fijos, un precio de $15.000 sin IVA y un costo variable de $9.000 (mercadería, envase y comisión), el punto de equilibrio es 1.000 unidades, o $15.000.000 de ventas.",
-      "formula": "> En unidades\nPEu = CF / (P − CVu)\n> En pesos\nPE$ = CF / MC%\nPEu: Punto de equilibrio en unidades | unidades que tenés que vender por mes\nPE$: Punto de equilibrio en pesos | ventas del mes, sin IVA\nCF: Costos fijos | pesos por mes\nP: Precio de venta | pesos por unidad, sin IVA\nCVu: Costo variable | pesos por unidad\nMC%: Margen de contribución | en decimales: 40 % es 0,40"
+      "a": "En unidades: costos fijos ÷ (precio de venta − costo variable por unidad). En pesos: costos fijos ÷ margen de contribución en porcentaje, escrito en decimales (40 % es 0,40). Con $6.000.000 de costos fijos, un precio de $15.000 sin IVA y $9.000 de costo variable, el punto de equilibrio es 1.000 unidades, o $15.000.000 de ventas."
     },
     {
       "q": "¿Cómo se calcula el punto de equilibrio si vendo muchos productos?",
-      "a": "Se calcula en pesos, con los totales del mes. Sumá las ventas sin IVA y los costos variables (mercadería y comisiones de apps y tarjetas), sacá el margen de contribución en porcentaje y dividí los costos fijos por ese porcentaje. Si usás las ventas netas, que ya tienen descontadas las comisiones, no las vuelvas a sumar en los costos variables.",
-      "formula": "PE$ = CF / (1 − CV / V)\nPE$: Punto de equilibrio | ventas del mes en pesos, sin IVA\nCF: Costos fijos | pesos por mes\nCV: Costos variables del mes | pesos (mercadería y comisiones)\nV: Ventas del mes | pesos, sin IVA"
-    },
-    {
-      "q": "¿Qué diferencia hay entre el punto de equilibrio económico y el financiero?",
-      "a": "El económico usa todos los costos fijos, incluidas las amortizaciones (el desgaste del equipamiento), que no son salidas de plata. El financiero mira la caja: saca las amortizaciones y suma la parte de capital de las cuotas de préstamos y planes de pago. Si tenés deudas, calculá los dos: el financiero te dice cuánto vender para que no te falte plata."
+      "a": "En pesos, con los totales del mes. Sumá las ventas sin IVA y los costos variables, sacá el margen de contribución en porcentaje y dividí los costos fijos por ese porcentaje.",
+      "formula": "MC% = 1 − CV / V\nPE$ = CF / MC%\nMC%: Margen de contribución | en decimales: 40 % es 0,40\nCV: Costos variables del mes | pesos\nV: Ventas del mes | pesos, sin IVA\nPE$: Punto de equilibrio en pesos | ventas del mes, sin IVA\nCF: Costos fijos | pesos por mes"
     },
     {
       "q": "¿El punto de equilibrio es una meta de ventas?",
-      "a": "No: es el piso. Vender justo el punto de equilibrio significa trabajar un mes entero para no ganar nada, y todavía te faltan los impuestos. La meta tiene que sumar a los costos fijos los impuestos del mes (como Ingresos Brutos) y la ganancia que querés.",
-      "formula": "Meta = (CF + I + G) / (P − CVu)\nMeta: Meta de ventas | unidades por mes\nCF: Costos fijos | pesos por mes\nI: Impuestos del mes, como Ingresos Brutos | pesos\nG: Ganancia que querés | pesos por mes\nP: Precio de venta | pesos por unidad, sin IVA\nCVu: Costo variable | pesos por unidad"
+      "a": "No: es el piso. Vender justo eso es trabajar un mes entero para no ganar nada. La meta suma a los costos fijos la ganancia que querés, y también tiene que cubrir los impuestos, como Ingresos Brutos.",
+      "formula": "Meta = (CF + G) / (P − CVu)\nMeta: Meta de ventas | unidades por mes\nCF: Costos fijos | pesos por mes\nG: Ganancia que querés | pesos por mes\nP: Precio de venta | pesos por unidad, sin IVA\nCVu: Costo variable | pesos por unidad"
     }
   ],
   "resumen": [
     "Es cuánto tenés que vender en el mes para no ganar ni perder.",
-    "En pesos: costos fijos ÷ margen de contribución en %. Las comisiones son costos variables; Ingresos Brutos va en impuestos.",
+    "En pesos: costos fijos ÷ margen de contribución en %.",
     "Es el piso, no la meta: bajalo a ventas o cubiertos por día y compará con lo que entra en tu local."
   ]
 } -->
-    <p>"¿Cuánto tengo que vender para no perder plata?" Es de las preguntas más importantes que se hace un dueño, y tiene una respuesta concreta: el punto de equilibrio. Acá lo calculás con tus números y lo bajás a una meta por día.</p>
+    <p>"¿Cuánto tengo que vender para no perder plata?" Tiene una respuesta concreta: el punto de equilibrio. Acá lo calculás con tus números y lo bajás a una meta por día.</p>
 
     <h2>Qué es el punto de equilibrio</h2>
-    <p>El <strong>punto de equilibrio</strong> es el nivel de ventas en el que el negocio <strong>no gana ni pierde</strong>: lo que entra alcanza justo para pagar los costos. Por debajo de ese número, el mes da pérdida; por encima, ganancia.</p>
-    <p>Para calcularlo hay que separar los costos en dos grupos (lo explicamos en detalle en <a href="/guias/costos-fijos-y-variables">costos fijos y variables</a>):</p>
+    <p>El <strong>punto de equilibrio</strong> es el nivel de ventas en el que el negocio <strong>no gana ni pierde</strong>. Por debajo de ese número, el mes da pérdida; por encima, ganancia.</p>
+    <p>Para calcularlo, separá los costos en dos grupos (más detalle en <a href="/guias/costos-fijos-y-variables">costos fijos y variables</a>):</p>
     <ul>
-      <li><strong>Costos variables</strong> (los que se lleva cada venta): mercadería o materia prima, envases y las comisiones de apps, tarjetas y Mercado Pago (si no las descontaste antes de las ventas).</li>
-      <li><strong>Costos fijos</strong> (los que pagás igual aunque vendas poco): alquiler, sueldos (con la parte proporcional del aguinaldo y las vacaciones), servicios, honorarios, sistemas, intereses de préstamos y el desgaste del equipamiento. También el sueldo del dueño, si trabaja en el negocio.</li>
+      <li><strong>Costos variables</strong> (los que se lleva cada venta): mercadería, envases y comisiones de tarjetas y apps.</li>
+      <li><strong>Costos fijos</strong> (los que pagás aunque vendas poco): alquiler, sueldos con aguinaldo, servicios, honorarios, sistemas, intereses de préstamos y tu propio sueldo si trabajás en el negocio.</li>
     </ul>
     <p>Primer paso: agarrá los gastos del último mes y anotá al lado de cada uno si es fijo o variable.</p>
 
     <h2>La fórmula del punto de equilibrio</h2>
-    <p>Todo sale del <strong>margen de contribución</strong> (los pesos que te quedan de cada venta, después de pagar sus costos variables, para cubrir los costos fijos):</p>
+    <p>Todo sale del <strong>margen de contribución</strong> (lo que te queda de cada venta, después de sus costos variables, para pagar los costos fijos):</p>
     <formula>
     > En unidades
     PEu = CF / (P − CVu)
@@ -70,12 +65,10 @@
     CVu: Costo variable | pesos por unidad
     MC%: Margen de contribución en porcentaje | en decimales: 40 % es 0,40
     </formula>
-    <p>Para dividir por un porcentaje, escribilo en decimales: 40 % es 0,40. Si vendés muchos productos, el porcentaje sale de los totales del mes: 1 − (costos variables ÷ ventas).</p>
-    <p>Ingresos Brutos no va en los costos variables: va en impuestos, como en el <a href="/guias/estado-de-resultados">estado de resultados</a>. Por eso, en el punto de equilibrio todavía te falta pagar los impuestos: tu meta tiene que cubrirlos.</p>
-    <p>Si sos monotributista, usá el precio final y los costos con el IVA que pagaste. La cuota del monotributo va en costos fijos.</p>
+    <p>Ojo: el punto de equilibrio no incluye los impuestos, como Ingresos Brutos. Tu meta tiene que cubrirlos. Si sos monotributista, usá precios y costos con IVA.</p>
 
     <h2>Ejemplo 1: un comercio con un producto</h2>
-    <p>Un negocio tiene <strong>$6.000.000</strong> de costos fijos por mes. Vende un producto a <strong>$15.000</strong> sin IVA ($18.150 con IVA). Cada venta se lleva $8.000 de mercadería, $455 de envase y $545 de comisión de la tarjeta (3 % del precio con IVA): <strong>$9.000</strong> de costo variable.</p>
+    <p>Un negocio tiene <strong>$6.000.000</strong> de costos fijos por mes. Vende un producto a <strong>$15.000</strong> sin IVA. Cada venta se lleva <strong>$9.000</strong> de costo variable (mercadería, envase y la comisión de la tarjeta).</p>
     <ul>
       <li>Margen de contribución: $15.000 − $9.000 = <strong>$6.000 por unidad</strong> (40 % del precio)</li>
       <li>Punto de equilibrio en unidades: $6.000.000 ÷ $6.000 = <strong>1.000 unidades por mes</strong></li>
@@ -107,31 +100,27 @@
         <text x="560" y="345" font-size="12" fill="#6B6E76" text-anchor="middle">2.000</text>
       </svg>
     </figure>
-    <p>La línea de <strong>ingresos</strong> arranca en cero. La de <strong>costos totales</strong> arranca en los costos fijos y sube con cada unidad. Donde se cruzan está el punto de equilibrio.</p>
-    <p>Si suben los costos fijos o baja el margen de contribución (un descuento, una comisión nueva), el cruce se corre a la derecha: necesitás vender más para no perder.</p>
+    <p>Los <strong>ingresos</strong> arrancan en cero. Los <strong>costos totales</strong> arrancan en los costos fijos y suben con cada unidad. Donde se cruzan está el punto de equilibrio. Si suben los costos fijos o baja el margen, el cruce se corre a la derecha: tenés que vender más.</p>
 
     <h2>Ejemplo 2: un restaurante con muchos productos</h2>
-    <p>Cuando se venden decenas de productos, como en un restaurante o un almacén, el punto de equilibrio se calcula <strong>en pesos</strong>, con los totales del mes. Usamos el mismo restaurante del <a href="/guias/estado-de-resultados">estado de resultados</a>, sobre sus ventas netas (lo facturado sin IVA, menos las comisiones de apps y tarjetas):</p>
+    <p>Cuando vendés decenas de productos, el punto de equilibrio se calcula <strong>en pesos</strong>, con los totales del mes. Usamos el restaurante del <a href="/guias/estado-de-resultados">estado de resultados</a>, sobre sus ventas netas (sin IVA y ya descontadas las comisiones):</p>
     <div class="tabla">
       <table>
         <tbody>
-          <tr><td>Ventas netas del mes (sin IVA ni comisiones)</td><td class="n">$30.000.000</td></tr>
+          <tr><td>Ventas netas del mes</td><td class="n">$30.000.000</td></tr>
           <tr><td>Costos variables: costo de mercadería vendida (CMV)</td><td class="n">$9.700.000</td></tr>
           <tr class="total"><td>Margen de contribución: 1 − ($9.700.000 ÷ $30.000.000)</td><td class="n">67,7 %</td></tr>
-          <tr><td>Costos fijos: estructura operativa e intereses</td><td class="n">$14.650.000</td></tr>
+          <tr><td>Costos fijos del mes</td><td class="n">$14.650.000</td></tr>
           <tr class="total"><td>Punto de equilibrio: $14.650.000 ÷ 0,6767</td><td class="n">$21.650.000</td></tr>
         </tbody>
       </table>
     </div>
-    <p>Ahora pasalo a lo que muestra tu sistema de caja:</p>
+    <p>Ahora bajalo al día:</p>
     <ol>
-      <li>Sumale las comisiones: $21.650.000 × 1,05 (ventas brutas ÷ ventas netas: $31.500.000 ÷ $30.000.000) = <strong>$22.733.000</strong> de ventas sin IVA.</li>
-      <li>Sumale el IVA: × 1,21 = $27.506.000 por mes.</li>
-      <li>Dividilo por los días que abrís: ÷ 26 = <strong>$1.058.000 por día con IVA</strong>.</li>
-      <li>Dividilo por el gasto promedio: con $20.000 por cubierto (con IVA), son unos <strong>53 cubiertos o pedidos por día</strong>.</li>
+      <li>Sumale el IVA y dividilo por los días que abrís: $21.650.000 × 1,21 ÷ 26 = <strong>unos $1.007.500 por día con IVA</strong>.</li>
+      <li>Dividilo por el gasto promedio: con $20.000 por cubierto, son unos <strong>50 cubiertos o pedidos por día</strong>.</li>
     </ol>
-    <p>Compará ese número con lo que entra en tu local: sillas × vueltas por turno × turnos, más los pedidos de delivery. Si para no perder tenés que llenarlo todos los días, vender más no alcanza: hay que revisar los costos fijos o los precios.</p>
-    <p class="nota">Números de ejemplo, con porcentajes redondeados. Ingresos Brutos ($1.102.500 en este restaurante) no está en los costos variables: se paga aparte, en impuestos, y la meta tiene que cubrirlo.</p>
+    <p>Está calculado con las ventas netas: en tu caja vas a ver un poco más, por las comisiones. Compará ese número con lo que entra en tu local: sillas × vueltas × turnos, más el delivery. Si para no perder tenés que llenarlo todos los días, revisá los costos fijos o los precios.</p>
 
     <h2>Cómo calcular el punto de equilibrio en Excel</h2>
     <p><strong>Con un producto:</strong></p>
@@ -141,7 +130,7 @@
         <tbody>
           <tr><td>B2</td><td>Costos fijos del mes</td><td>—</td></tr>
           <tr><td>B3</td><td>Precio de venta sin IVA</td><td>—</td></tr>
-          <tr><td>B4</td><td>Costo variable por unidad (mercadería, envase y comisión)</td><td>—</td></tr>
+          <tr><td>B4</td><td>Costo variable por unidad</td><td>—</td></tr>
           <tr><td>B5</td><td>Margen de contribución por unidad</td><td><code>=B3-B4</code></td></tr>
           <tr><td>B6</td><td>Punto de equilibrio en unidades</td><td><code>=B2/B5</code></td></tr>
           <tr><td>B7</td><td>Punto de equilibrio en pesos</td><td><code>=B6*B3</code></td></tr>
@@ -150,7 +139,7 @@
         </tbody>
       </table>
     </div>
-    <p><strong>Con muchos productos:</strong> costos fijos en B2, ventas del mes sin IVA en B3 (lo facturado, antes de comisiones), costos variables del mes en B4 (mercadería y comisiones), margen de contribución en B5 con <code>=1-B4/B3</code> y punto de equilibrio en pesos en B6 con <code>=B2/B5</code>. En B7, la venta por día con IVA: <code>=B6*1,21/26</code> (cambiá 26 por los días que abrís; si sos monotributista, sacá el 1,21). Con los números del restaurante da el mismo $1.058.000 por día.</p>
+    <p><strong>Con muchos productos:</strong> costos fijos en B2, ventas del mes sin IVA en B3, costos variables del mes en B4. Margen de contribución en B5: <code>=1-B4/B3</code>. Punto de equilibrio en pesos en B6: <code>=B2/B5</code>. Venta por día con IVA en B7: <code>=B6*1,21/26</code> (cambiá 26 por los días que abrís).</p>
 
     <h2>Cómo usar el punto de equilibrio en tu negocio</h2>
     <ul>
@@ -161,19 +150,17 @@
       V: Ventas del mes | pesos, sin IVA
       PE$: Punto de equilibrio | pesos, sin IVA
       </formula>
-      En el restaurante del ejemplo es ($30.000.000 − $21.650.000) ÷ $30.000.000 = 27,8 %: si las ventas caen más que eso, el mes da pérdida.</li>
-      <li><strong>Probá decisiones antes de tomarlas:</strong> cada peso de costo fijo nuevo hay que venderlo dividido por el margen de contribución. En el restaurante, tomar a alguien que cuesta $1.200.000 por mes con cargas y aguinaldo sube el punto de equilibrio $1.200.000 ÷ 0,6767 = <strong>$1.773.000 de ventas netas por mes</strong>. Una comisión nueva o más venta por apps baja el margen de contribución y también lo sube. Para bajarlo, mirá el <a href="/guias/food-cost">food cost</a> (qué parte de la venta se va en mercadería) y el <a href="/guias/precio-de-venta">precio de cada plato o producto</a>.</li>
-      <li><strong>Bajalo a una meta diaria y seguila:</strong> anotá cada día lo vendido en el mes. El día que pasás el punto de equilibrio, empezás a ganar. Si a mitad de mes no llegaste a la mitad, todavía estás a tiempo de reaccionar.</li>
-      <li><strong>Recalculalo todos los meses:</strong> con inflación cambian los costos fijos (alquiler, aumentos de sueldos) y el margen de contribución (precios, costo de reposición de la mercadería, comisiones). Usá los números de este mes, no los de hace tres.</li>
+      En el restaurante es ($30.000.000 − $21.650.000) ÷ $30.000.000 = 27,8 %: si las ventas caen más que eso, el mes da pérdida.</li>
+      <li><strong>Probá decisiones antes de tomarlas:</strong> en el restaurante, tomar a alguien que cuesta $1.200.000 por mes sube el punto de equilibrio $1.200.000 ÷ 0,6767 = <strong>$1.773.000 de ventas netas por mes</strong>. Para bajarlo, mirá el <a href="/guias/food-cost">food cost</a> y el <a href="/guias/precio-de-venta">precio de venta</a>.</li>
+      <li><strong>Seguí la meta día a día:</strong> anotá lo vendido en el mes. Si a mitad de mes no llegaste a la mitad, todavía estás a tiempo de reaccionar.</li>
+      <li><strong>Recalculalo todos los meses:</strong> con inflación cambian los costos y los precios. Usá los números de este mes.</li>
     </ul>
 
     <h2>Errores comunes</h2>
     <ul>
       <li><strong>Mezclar fijos y variables:</strong> las comisiones y los envases son variables, aunque se paguen a fin de mes.</li>
-      <li><strong>Olvidar el sueldo del dueño</strong> en los costos fijos: el punto de equilibrio sale más bajo de lo que es.</li>
-      <li><strong>Dejar afuera el aguinaldo:</strong> existe aunque no lo pagues todos los meses, y sin él el punto de equilibrio sale más bajo.</li>
-      <li><strong>Olvidar los impuestos en la meta:</strong> Ingresos Brutos no está en el punto de equilibrio; si vendés justo eso, el mes da pérdida cuando lo pagás.</li>
+      <li><strong>Olvidar tu sueldo o el aguinaldo</strong> en los costos fijos: el punto de equilibrio sale más bajo de lo que es.</li>
       <li><strong>Calcular con precios con IVA siendo responsable inscripto:</strong> infla el margen de contribución.</li>
-      <li><strong>Usar el margen de un solo producto cuando vendés muchos:</strong> si tu producto estrella deja más que el promedio, el punto de equilibrio te sale más bajo de lo que es. Usá los totales del mes.</li>
-      <li><strong>Tomarlo como meta:</strong> es el piso, no el objetivo.</li>
+      <li><strong>Usar el margen de un solo producto cuando vendés muchos:</strong> usá los totales del mes.</li>
+      <li><strong>Tomarlo como meta:</strong> es el piso. Todavía faltan los impuestos y tu ganancia.</li>
     </ul>
