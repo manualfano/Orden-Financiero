@@ -247,10 +247,27 @@ CSS = TOKENS + """
   .resumen ul { padding-left: var(--s-5); }
   .resumen li { color: var(--tinta); margin-bottom: 6px; }
   article h2 { scroll-margin-top: calc(76px + var(--s-5)); }
-  .caja-autor { display: flex; gap: var(--s-4); align-items: center; border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-5); margin-top: var(--s-7); }
-  .caja-autor img { width: 72px; height: 72px; border-radius: 999px; object-fit: cover; object-position: top; background: var(--lienzo); flex-shrink: 0; }
+  .caja-autor { display: flex; gap: var(--s-4); align-items: flex-start; border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-5); margin-top: var(--s-7); }
+  .caja-autor > div { flex: 1; min-width: 0; }
+  .caja-autor > img { width: 72px; height: 72px; border-radius: 999px; object-fit: cover; object-position: top; background: var(--lienzo); flex-shrink: 0; }
   .caja-autor strong { color: var(--navy); display: block; }
   .caja-autor p { font-size: var(--fs-sm); margin-top: 4px; }
+  .formacion { margin-top: var(--s-3); padding-top: var(--s-3); border-top: 1px solid var(--borde-soft); }
+  .caja-autor .formacion-titulo { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tinta-3); margin: 0 0 var(--s-2); }
+  .formacion ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-3); }
+  .formacion li { display: flex; flex-direction: column; gap: 4px; }
+  .formacion .logo { height: 17px; display: flex; align-items: center; }
+  .formacion .logo img { width: auto; max-width: 100%; opacity: 0.9; }
+  .formacion li > span:last-child { font-size: 10px; line-height: 1.35; color: var(--tinta-3); }
+  @media (max-width: 640px) {
+    .caja-autor { display: grid; grid-template-columns: 56px 1fr; column-gap: var(--s-3); padding: var(--s-4); }
+    .caja-autor > img { width: 56px; height: 56px; }
+    .caja-autor > div { display: contents; }
+    .caja-autor strong { align-self: center; }
+    .caja-autor p, .formacion { grid-column: 1 / -1; }
+    .caja-autor > div > p { margin-top: 4px; }
+    .formacion ul { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3); }
+  }
   .seguir { margin-top: var(--s-7); }
   .seguir h2 { margin: 0 0 var(--s-3); }
   @media (max-width: 900px) {
@@ -994,6 +1011,17 @@ def breadcrumb_ld(items):
         for i, (n, p) in enumerate(items)]}
 
 
+# Formación de Manuel: logos en /logos/formacion (caja del autor y alumniOf del JSON-LD)
+FORMACION = [
+    {"logo": "unlp.png", "ancho": 36, "alto": 17, "institucion": "Universidad Nacional de La Plata", "titulo": "Licenciatura en Administración", "web": "https://unlp.edu.ar"},
+    {"logo": "ditella.svg", "ancho": 17, "alto": 17, "institucion": "Universidad Torcuato Di Tella", "titulo": "Gestión de restaurantes", "web": "https://www.utdt.edu"},
+    {"logo": "iae.png", "ancho": 17, "alto": 17, "institucion": "IAE Business School", "titulo": "Presupuesto y tablero de control", "web": "https://www.iae.edu.ar"},
+    {"logo": "coderhouse.svg", "ancho": 58, "alto": 7, "institucion": "Coderhouse", "titulo": "Análisis de datos", "web": "https://www.coderhouse.com"},
+]
+FORMACION_HTML = '<div class="formacion"><p class="formacion-titulo">Formación</p><ul>' + ''.join(
+    f'<li><span class="logo"><img src="/logos/formacion/{f["logo"]}" alt="{f["institucion"]}" width="{f["ancho"]}" height="{f["alto"]}" loading="lazy"></span><span>{f["titulo"]}</span></li>'
+    for f in FORMACION) + '</ul></div>'
+
 MAX_MINUTOS = 15  # regla del dueño (16/09/2026): ninguna guía puede pasar de 15 min de lectura
 
 
@@ -1005,7 +1033,8 @@ def main():
             raise SystemExit(f"La guía {g['slug']} marca {n} min: el máximo es {MAX_MINUTOS}. Recortala antes de generar.")
     OUT.mkdir(exist_ok=True)
     org = {"@id": BASE + "/#organization"}
-    autor = {"@type": "Person", "@id": BASE + "/#manuel", "name": "Manuel Alfano", "url": BASE + "/#manuel"}
+    autor = {"@type": "Person", "@id": BASE + "/#manuel", "name": "Manuel Alfano", "url": BASE + "/#manuel",
+             "alumniOf": [{"@type": "EducationalOrganization", "name": f["institucion"], "url": f["web"]} for f in FORMACION]}
 
     por_slug = {g['slug']: g for g in guias}
     grupos, problema_de = grupos_con(guias)
@@ -1048,7 +1077,7 @@ def main():
       <article>
 {cuerpo_art}
       </article>
-      <aside class="caja-autor"><img src="/foto-manuel-cutout.webp" alt="Manuel Alfano" width="72" height="72" loading="lazy"><div><strong>Manuel Alfano</strong><p>Fundador de Orden Financiero. Más de 12 años en la gastronomía con negocio propio; hoy trabaja mano a mano con dueños de negocios gastronómicos para ordenar sus números.</p></div></aside>{rel_html}
+      <aside class="caja-autor"><img src="/foto-manuel-cutout.webp" alt="Manuel Alfano" width="72" height="72" loading="lazy"><div><strong>Manuel Alfano</strong><p>Fundador de Orden Financiero. Licenciado en Administración (UNLP) y más de 12 años en la gastronomía con negocio propio; hoy trabaja mano a mano con dueños de negocios gastronómicos para hacerlos más rentables.</p>{FORMACION_HTML}</div></aside>{rel_html}
     </div>
     <nav class="indice-guia" aria-label="En esta guía"><p>En esta guía</p><ol>{toc_html}</ol></nav>
   </div>

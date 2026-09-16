@@ -291,10 +291,27 @@ function gtag() { dataLayer.push(arguments); }
   .resumen ul { padding-left: var(--s-5); }
   .resumen li { color: var(--tinta); margin-bottom: 6px; }
   article h2 { scroll-margin-top: calc(76px + var(--s-5)); }
-  .caja-autor { display: flex; gap: var(--s-4); align-items: center; border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-5); margin-top: var(--s-7); }
-  .caja-autor img { width: 72px; height: 72px; border-radius: 999px; object-fit: cover; object-position: top; background: var(--lienzo); flex-shrink: 0; }
+  .caja-autor { display: flex; gap: var(--s-4); align-items: flex-start; border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-5); margin-top: var(--s-7); }
+  .caja-autor > div { flex: 1; min-width: 0; }
+  .caja-autor > img { width: 72px; height: 72px; border-radius: 999px; object-fit: cover; object-position: top; background: var(--lienzo); flex-shrink: 0; }
   .caja-autor strong { color: var(--navy); display: block; }
   .caja-autor p { font-size: var(--fs-sm); margin-top: 4px; }
+  .formacion { margin-top: var(--s-3); padding-top: var(--s-3); border-top: 1px solid var(--borde-soft); }
+  .caja-autor .formacion-titulo { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tinta-3); margin: 0 0 var(--s-2); }
+  .formacion ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-3); }
+  .formacion li { display: flex; flex-direction: column; gap: 4px; }
+  .formacion .logo { height: 17px; display: flex; align-items: center; }
+  .formacion .logo img { width: auto; max-width: 100%; opacity: 0.9; }
+  .formacion li > span:last-child { font-size: 10px; line-height: 1.35; color: var(--tinta-3); }
+  @media (max-width: 640px) {
+    .caja-autor { display: grid; grid-template-columns: 56px 1fr; column-gap: var(--s-3); padding: var(--s-4); }
+    .caja-autor > img { width: 56px; height: 56px; }
+    .caja-autor > div { display: contents; }
+    .caja-autor strong { align-self: center; }
+    .caja-autor p, .formacion { grid-column: 1 / -1; }
+    .caja-autor > div > p { margin-top: 4px; }
+    .formacion ul { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3); }
+  }
   .seguir { margin-top: var(--s-7); }
   .seguir h2 { margin: 0 0 var(--s-3); }
   @media (max-width: 900px) {
