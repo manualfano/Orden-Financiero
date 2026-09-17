@@ -1858,6 +1858,12 @@ footer {
   flex-shrink: 0;
 }
 
+/* prueba social en la bio, igual a la del hero pero sobre blanco (Manu, 16/09/2026) */
+.founder-proof { display: flex; align-items: center; gap: var(--s-3); margin-top: var(--s-4); text-decoration: none; color: var(--tinta-2); font-size: var(--fs-sm); line-height: 1.4; min-height: 44px; width: fit-content; }
+.founder-proof strong { color: var(--navy); font-weight: 600; }
+.founder-proof:hover strong { color: var(--marca); }
+.founder-proof .hero-proof-avatars img { border-color: var(--w); box-shadow: 0 0 0 1px var(--borde); }
+
 /* formacion de la bio: chica y sutil, igual que la caja del autor de las guias */
 
 .founder-formacion {
@@ -4526,6 +4532,10 @@ nav.scrolled { background: var(--navy-2); }
             <li><span class="formacion-logo"><img src="logos/formacion/coderhouse.svg" alt="Coderhouse" width="74" height="9" loading="lazy" decoding="async"></span><span>Análisis de datos</span></li>
           </ul>
         </div>
+        <a class="founder-proof" href="#logos" aria-label="Ver negocios que ya trabajan con Orden Financiero">
+          <span class="hero-proof-avatars" aria-hidden="true"><img src="logos/cortez.jpg" alt="" width="150" height="150" loading="lazy"><img src="logos/byehenry.jpg" alt="" width="150" height="150" loading="lazy"><img src="logos/sao.jpg" alt="" width="150" height="150" loading="lazy"><img src="logos/mollica.jpg" alt="" width="150" height="150" loading="lazy"></span>
+          <span><strong>Más de 100 negocios acompañados</strong> con el programa</span>
+        </a>
         <div class="founder-cta-row">
           <button class="btn btn-blue" onclick="openDiagnostico('manuel')">Hacer el diagnóstico · 3 min <span class="arrow" aria-hidden="true">→</span></button>
         </div>
