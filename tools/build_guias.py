@@ -1028,6 +1028,13 @@ FORMACION_HTML = '<div class="formacion"><p class="formacion-titulo">Formación<
 
 MAX_MINUTOS = 15  # regla del dueño (16/09/2026): ninguna guía puede pasar de 15 min de lectura
 
+# Lo que Google llega a mostrar antes de cortar con "…" (17/09/2026). El title
+# apunta a 60; 65 es el techo, y solo se gasta cuando el título lleva las dos
+# búsquedas de una guía unida ("un tema, una guía"). La description se lee
+# también como bajada abajo del h1, así que corta corta sirve dos veces.
+MAX_TITULO = 65
+MAX_DESCRIPCION = 160
+
 
 def main():
     guias = leer_guias()
@@ -1035,6 +1042,12 @@ def main():
         n = minutos(g)
         if n > MAX_MINUTOS:
             raise SystemExit(f"La guía {g['slug']} marca {n} min: el máximo es {MAX_MINUTOS}. Recortala antes de generar.")
+        if len(g['title']) > MAX_TITULO:
+            raise SystemExit(f"El title de {g['slug']} tiene {len(g['title'])} caracteres: el máximo es "
+                             f"{MAX_TITULO}. Google se lo corta. Recortalo antes de generar.")
+        if len(g['description']) > MAX_DESCRIPCION:
+            raise SystemExit(f"La description de {g['slug']} tiene {len(g['description'])} caracteres: el máximo "
+                             f"es {MAX_DESCRIPCION}. Google se la corta. Recortala antes de generar.")
     OUT.mkdir(exist_ok=True)
     org = {"@id": BASE + "/#organization"}
     autor = {"@type": "Person", "@id": BASE + "/#manuel", "name": "Manuel Alfano", "url": BASE + "/#manuel",
@@ -1095,8 +1108,11 @@ def main():
         if faq:
             ld['@graph'].append({"@type": "FAQPage", "@id": BASE + path + "#faq", "mainEntity": [
                 {"@type": "Question", "name": x['q'], "acceptedAnswer": {"@type": "Answer", "text": x['a']}} for x in faq]})
+        # El title va sin "· Orden Financiero" (17/09): el sufijo se comia 19 de
+        # los ~60 caracteres que Google muestra y le cortaba la cola al titulo.
+        # La marca igual aparece en el resultado por og:site_name y el WebSite.
         (OUT / f"{g['slug']}.html").write_text(pagina(
-            title=g['title'] + ' · Orden Financiero', description=g['description'], path=path,
+            title=g['title'], description=g['description'], path=path,
             og_type='article', ld=ld, cuerpo=cuerpo, cta_origen='guia-' + g['slug'], main_clase='guia',
             og_image=f"/guias/og/{g['slug']}.png", view_content=VIEW_CONTENT.get(g['slug']),
             cta_general=g.get('cta_general', False)), encoding='utf-8', newline='\n')
@@ -1172,7 +1188,7 @@ def main():
              for i, g in enumerate(guias)]}},
         breadcrumb_ld(items)]}
     (OUT / 'index.html').write_text(pagina(
-        title='Guías de finanzas para dueños de negocio gastronómico · Orden Financiero', description=desc, path='/guias',
+        title='Guías de finanzas para dueños de negocio gastronómico', description=desc, path='/guias',
         og_type='website', ld=ld, cuerpo=cuerpo, cta_origen='guias', main_clase='ancho'), encoding='utf-8', newline='\n')
 
     # sitemap.xml completo
