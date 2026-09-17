@@ -4068,6 +4068,10 @@ nav.scrolled { background: var(--navy-2); }
 /* Titulo de la banda azul final (Manu, 14/09/2026). Lima sobre #0C66E4 da
    3,4:1: pasa AA solo para texto grande, y este titulo es h2 a 600. */
 .cta-final-title { color: var(--lima); }
+/* Palabras clave en lima (Manu, 16/09/2026): "negocio ordenado" sobre navy y
+   "salud financiera" sobre el gris claro. Esta segunda la eligio viendo que se
+   lee menos que un resaltador; es excepcion pedida por el dueño. */
+.section-title .titulo-lima { font-style: normal; color: var(--lima); }
 </style>
 </head>
 <body>
@@ -4267,7 +4271,7 @@ nav.scrolled { background: var(--navy-2); }
   <div class="container">
     <div class="section-head reveal">
       <p class="section-eyebrow label-meta">El diagnóstico · paso 1 del programa</p>
-      <h2 class="section-title">Cuatro eslabones que definen la salud financiera de tu negocio</h2>
+      <h2 class="section-title">Cuatro eslabones que definen la <em class="titulo-lima">salud financiera</em> de tu negocio</h2>
       <p class="section-sub">12 preguntas, tres por eslabón, sobre cómo se maneja el negocio hoy. El diagnóstico recorre la cadena completa: dónde nace la ganancia, dónde se mide, dónde se convierte en plata y cómo se usa para decidir. El eslabón más débil es el que manda, y es por donde arranca el programa.</p>
     </div>
 
@@ -4333,7 +4337,7 @@ nav.scrolled { background: var(--navy-2); }
   <div class="method-inner">
     <div class="section-head reveal">
       <p class="section-eyebrow label-meta">El programa</p>
-      <h2 class="section-title">Del diagnóstico al negocio ordenado, en tres meses</h2>
+      <h2 class="section-title">Del diagnóstico al <em class="titulo-lima">negocio ordenado</em>, en tres meses</h2>
       <p class="section-sub">El diagnóstico es el paso 1. Después, el programa trabaja con los datos del negocio: lo que se vende, lo que se compra, lo que se paga y lo que se cobra. Salís con un sistema funcionando y con tus propios números a mano, no con un informe.</p>
     </div>
 
@@ -4588,7 +4592,6 @@ nav.scrolled { background: var(--navy-2); }
     <h2 class="cta-final-title">¿Por dónde se le escapa la plata a tu negocio?</h2>
     <p class="cta-final-sub">12 preguntas, 3 minutos, gratis. El paso 1 del programa.</p>
     <button class="btn btn-white" onclick="openDiagnostico('cta-final')">Hacer el diagnóstico · 3 min <span class="arrow" aria-hidden="true">→</span></button>
-    <p class="cta-final-note">Sin planillas · Sin compromiso</p>
   </div>
 </section>
 
