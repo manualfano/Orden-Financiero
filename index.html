@@ -1344,6 +1344,9 @@ footer {
 /* el portal es acceso para clientes, no parte del embudo: apartado y con icono de salida */
 .footer-link-portal { display: inline-flex; align-items: center; gap: var(--s-1); }
 .footer-link-portal svg { width: 12px; height: 12px; opacity: 0.7; }
+/* Instagram (Manu, 16/09/2026): en el pie, lejos de los CTA del diagnostico */
+.footer-link.footer-link-ig { display: inline-flex; align-items: center; gap: 6px; }
+.footer-link-ig svg { width: 16px; height: 16px; }
 
 .footer-copy {
   font-size: var(--fs-meta);
@@ -4640,6 +4643,8 @@ nav.scrolled { background: var(--navy-2); }
       <a class="footer-link" href="#manuel">Quién está detrás</a>
       <a class="footer-link" href="/guias">Guías</a>
       <a class="footer-link" href="/privacidad">Privacidad</a>
+      <a class="footer-link footer-link-ig" href="https://www.instagram.com/orden.financiero/" target="_blank" rel="noopener" onclick="track('cta_instagram', { desde: 'footer' })"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>Instagram</a>
+      <a class="footer-link footer-link-ig" href="https://www.linkedin.com/company/106909356/" target="_blank" rel="noopener" onclick="track('cta_linkedin', { desde: 'footer' })"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
     <!-- Fase 1 (11/09/2026): el unico acceso al portal es este, en el footer, y va al dominio propio (ahi funcionan las passkeys) -->
       <a class="footer-link footer-link-portal" href="https://portal.ordenfinanciero.com/login" rel="noopener" onclick="track('cta_portal', { desde: 'footer' })">Portal de clientes <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
     </div>
