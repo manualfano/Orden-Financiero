@@ -1175,6 +1175,8 @@ nav.scrolled {
 }
 
 .founder-copy p + p { margin-top: var(--s-3); }
+/* Manu, 16/09/2026: texto justificado al ancho de la linea de "Formacion" */
+@media (min-width: 768px) { .founder-copy p { text-align: justify; } }
 
 .founder-cta-row {
   display: flex;
@@ -4013,7 +4015,6 @@ nav.scrolled { background: var(--navy-2); }
   /* Al ensanchar la columna, estos dos parrafos se estiraban de 62 a 87
      caracteres por linea. Se acotan para que la medida de lectura se mantenga;
      el resto del cuerpo ya tiene su propio ancho y no hizo falta tocarlo. */
-  .founder-copy p { max-width: 62ch; }
   .mirror-bridge p { max-width: 78ch; }
 }
 
@@ -4429,7 +4430,7 @@ nav.scrolled { background: var(--navy-2); }
   <div class="container">
     <div class="section-head reveal">
       <p class="section-eyebrow label-meta">Qué te llevás</p>
-      <h2 class="section-title">Los módulos que quedan funcionando en tu negocio</h2>
+      <h2 class="section-title">Los <em class="titulo-lima">módulos que quedan funcionando</em> en tu negocio</h2>
       <p class="section-sub">Cada módulo trabaja con un dato concreto del negocio y queda en tus manos cuando termina el programa.</p>
     </div>
 
