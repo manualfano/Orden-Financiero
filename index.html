@@ -1434,6 +1434,13 @@ footer {
 
 .mirror-card:nth-child(2) .mirror-foot svg { color: var(--dato-azul); }
 
+/* respuesta de Orden Financiero a cada frase (Manu, 16/09/2026): la frase ya
+   no estira la tarjeta; lo hace la respuesta, asi los pies quedan alineados */
+.mirror-card .mirror-quote { flex: 0 0 auto; }
+.mirror-answer { flex: 1; margin-top: var(--s-3); font-size: var(--fs-base); line-height: 1.6; color: var(--tinta-2); }
+.mirror-card:nth-child(2) .mirror-answer { color: var(--w-70); }
+@media (min-width: 768px) { .mirror-answer { text-align: justify; } }
+
 .mirror-bridge {
   display: flex;
   align-items: center;
@@ -2190,9 +2197,9 @@ footer { padding: var(--s-6) 0; }
   footer { padding: var(--s-6) 0; }
   .footer-inner { gap: var(--s-3); }
   .footer-copy { margin-top: 0; }
-  /* dolor: 2x2 compacto */
+  /* dolor: una por fila desde que llevan la respuesta de OF (16/09/2026) */
   .mirror-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: var(--s-2);
   }
   .mirror-card { padding: var(--s-6) var(--s-3) var(--s-3); }
@@ -2200,6 +2207,7 @@ footer { padding: var(--s-6) 0; }
     font-size: var(--fs-base);
     line-height: 1.4;
   }
+  .mirror-answer { font-size: var(--fs-sm); line-height: 1.5; margin-top: var(--s-2); }
   .mirror-foot {
     margin-top: var(--s-3);
     padding-top: var(--s-2);
@@ -4244,18 +4252,22 @@ nav.scrolled { background: var(--navy-2); }
     <div class="mirror-grid reveal">
       <div class="mirror-card">
         <p class="mirror-quote">“Facturo un montón y no veo un peso.”</p>
+        <p class="mirror-answer">Vender mucho no es lo mismo que ganar. Armamos el resultado de tu mes para que veas exactamente cuánto te queda después de pagar todo, y en qué se te va el resto.</p>
         <span class="mirror-foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Eslabón: Resultado económico</span>
       </div>
       <div class="mirror-card">
         <p class="mirror-quote">“Los costos los llevo a ojo.”</p>
+        <p class="mirror-answer">Calculamos cuánto te cuesta de verdad cada cosa que vendés, con merma incluida, para que sepas cuánto ganás en cada venta y si tu precio alcanza para que seas rentable.</p>
         <span class="mirror-foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>Eslabón: Costos y precios</span>
       </div>
       <div class="mirror-card">
         <p class="mirror-quote">“Siempre estamos al límite.”</p>
+        <p class="mirror-answer">Ordenamos cuándo entra y cuándo sale la plata, semana por semana, para que veas venir los pagos antes de que lleguen y dejes de apagar incendios.</p>
         <span class="mirror-foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>Eslabón: Flujo de caja</span>
       </div>
       <div class="mirror-card">
         <p class="mirror-quote">“Mi contador me dice que está todo bien&hellip; y yo sigo sin entender cuánto gano.”</p>
+        <p class="mirror-answer">Tu contador mira los impuestos y liquida sueldos; vos necesitás ordenar y mirar los números de tu negocio. Te dejamos los números claros para revisar cada mes y tomar decisiones con datos. Eso va a hacer crecer tu negocio.</p>
         <span class="mirror-foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>Eslabón: Indicadores de gestión</span>
       </div>
     </div>
