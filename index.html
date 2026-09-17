@@ -2121,6 +2121,67 @@ footer {
 
 }
 
+/* guias en la home: misma caja que .modulo, pero como enlace. El hover es el
+   de .faq-item y .rubro-card (solo el borde), no el de los botones: es una
+   seccion secundaria y no compite con el CTA del cierre. */
+
+.guias-home {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s-3);
+}
+
+.guia-card {
+  display: block;
+  background: var(--bg);
+  border: 1px solid var(--borde);
+  border-radius: var(--r-lg);
+  padding: var(--s-4);
+  text-decoration: none;
+  transition: border-color 0.15s ease;
+}
+
+.guia-card:hover { border-color: var(--marca-border); }
+
+.guia-card-t {
+  display: block;
+  font-size: var(--fs-lead);
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: var(--s-1);
+}
+
+.guia-card:hover .guia-card-t { color: var(--marca); }
+
+.guia-card-d {
+  display: block;
+  font-size: var(--fs-sm);
+  color: var(--tinta-2);
+  line-height: 1.6;
+}
+
+.guias-home-todas {
+  margin: var(--s-4) 0 0;
+  text-align: center;
+}
+
+.guias-home-todas a {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--marca);
+  text-decoration: none;
+}
+
+.guias-home-todas a:hover { color: var(--marca-hover); }
+
+@media (max-width: 640px) {
+
+  .guias-home { grid-template-columns: 1fr; gap: var(--s-2); }
+
+  .guia-card { padding: var(--s-3); }
+
+}
+
 /* nav: un solo texto de CTA con el tiempo; entra a 390 */
 
 @media (max-width: 640px) {
@@ -4611,6 +4672,52 @@ nav.scrolled { background: var(--navy-2); }
         <div class="faq-body">Para asegurar la calidad de la consultoría y del acompañamiento. Cada negocio tiene consultas por WhatsApp 24/7 y una reunión por semana; una de esas reuniones, cada mes, se usa para hacer el cierre y tomar decisiones. El trabajo se hace sobre sus números reales. Con más de tres negocios nuevos por mes, ese nivel de acompañamiento no se puede sostener sin bajar la calidad.</div>
       </details>
     </div>
+  </div>
+</section>
+
+<!-- ── GUIAS ── Va despues de las preguntas frecuentes y antes del cierre a
+     proposito (17/09/2026): el lector ya paso por todas las oportunidades de
+     hacer el diagnostico. El que no lo hizo se va a ir igual, y estas seis
+     guias son la salida que lo deja adentro del sitio en vez de afuera. El
+     unico CTA de la pagina sigue siendo el de abajo.
+     Ademas es lo que le faltaba al SEO: hasta hoy la home no enlazaba a
+     ninguna guia, y las guias no tenian de donde recibir autoridad. -->
+<section class="section soft" id="guias-home">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="section-eyebrow label-meta">Guías gratis</p>
+      <h2 class="section-title">Si todavía no querés hablar, <em class="titulo-lima">empezá por las guías</em></h2>
+      <p class="section-sub">Once guías con la fórmula, un ejemplo en pesos y cómo armarlo en Excel. Se leen gratis y sin registrarte.</p>
+    </div>
+
+    <div class="guias-home reveal">
+      <a class="guia-card" href="/guias/costo-de-un-plato">
+        <span class="guia-card-t">Cómo calcular el costo de un plato</span>
+        <span class="guia-card-d">La ficha de costo con la merma incluida, para saber qué te deja cada plato.</span>
+      </a>
+      <a class="guia-card" href="/guias/precio-de-venta">
+        <span class="guia-card-t">Cómo calcular el precio de venta</span>
+        <span class="guia-card-d">Los costos marcan el piso; la competencia y tu posicionamiento deciden el resto.</span>
+      </a>
+      <a class="guia-card" href="/guias/food-cost">
+        <span class="guia-card-t">Costo de mercadería vendida y food cost</span>
+        <span class="guia-card-d">Cuánto se te va en mercadería cada mes y qué porcentaje de las ventas es.</span>
+      </a>
+      <a class="guia-card" href="/guias/punto-de-equilibrio">
+        <span class="guia-card-t">Punto de equilibrio</span>
+        <span class="guia-card-d">Cuánto tenés que vender para no perder plata, en unidades y en pesos.</span>
+      </a>
+      <a class="guia-card" href="/guias/estado-de-resultados">
+        <span class="guia-card-t">Estado de resultados</span>
+        <span class="guia-card-d">La estructura que muestra, línea por línea, en qué se convierte cada venta.</span>
+      </a>
+      <a class="guia-card" href="/guias/flujo-de-caja">
+        <span class="guia-card-t">Flujo de caja</span>
+        <span class="guia-card-d">Por qué el negocio gana plata en el papel y no llega a fin de mes.</span>
+      </a>
+    </div>
+
+    <p class="guias-home-todas reveal"><a href="/guias">Ver las once guías <span aria-hidden="true">→</span></a></p>
   </div>
 </section>
 
