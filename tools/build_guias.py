@@ -646,72 +646,308 @@ def con_manana(cuerpo):
     return re.sub(r'<manana>(.*?)</manana>', lambda m: manana_html(m.group(1)), cuerpo, flags=re.S)
 
 
-# Calculadoras dentro de la guía (21/09/2026). Una guía la activa con "calculadora": "<clave>" en su
-# META y va justo después del resumen, en la segunda pantalla del celular. El resultado usa las mismas
-# fórmulas de la guía; el botón lleva al diagnóstico con origen guia-<slug>-calculadora.
-CALC_PE = """      <section class="calc" id="calculadora" aria-labelledby="calc-t">
-        <div class="calc-in">
-          <h2 class="calc-t" id="calc-t">Calculá tu punto de equilibrio</h2>
-          <p class="calc-sub">Con los números de tu último mes. No se guarda ni se envía nada.</p>
-          <form class="calc-campos" novalidate>
-            <div class="calc-campo calc-ancho">
-              <label for="calc-fijos">Gastos fijos del mes</label>
-              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-fijos" type="text" inputmode="numeric" autocomplete="off" placeholder="6.000.000" aria-describedby="calc-fijos-a"></div>
-              <p class="calc-ayuda" id="calc-fijos-a">Alquiler, sueldos con aguinaldo, servicios, contador, intereses de préstamos y tu propio sueldo.</p>
+# Calculadoras dentro de la guía (21/09/2026, Manu: "tiene que estar accionable antes"). Una guía la
+# activa con "calculadora": "<clave>" en su META y va justo después del resumen, en la segunda pantalla
+# del celular, con su botón al diagnóstico (origen guia-<slug>-calculadora). Cada calculadora es una
+# receta: los campos y la cuenta, que es la misma fórmula que explica la guía. El motor (CALC_JS) es
+# uno solo: formatea los pesos, muestra el resultado y mide el uso.
+#   campo: id, label, tipo (pesos | pct | num), ayuda (puede llevar <a>), ph, valor, sufijo,
+#          opc (opcional), ancho (False = media columna), req (dispara la bajada en celular)
+#   calculo: función JS (v, ri, h) -> {estado: 'vacio' | 'error' | 'lleno', error, t, grande, unidad, filas, piso}
+#            v = valores (NaN si está vacío); ri = responsable inscripto; h = ayudantes de formato.
+CTA_CALC = ('¿No estás seguro de alguno de estos números? El diagnóstico te muestra en 3 minutos '
+            'cuáles tenés claros y cuáles no. Son 12 preguntas, gratis.')
+SUB_CALC = 'Con los números de tu último mes. No se guarda ni se envía nada.'
+
+CALCULADORAS = {
+    'punto-de-equilibrio': {
+        'titulo': 'Calculá tu punto de equilibrio',
+        'campos': [
+            {'id': 'fijos', 'label': 'Gastos fijos del mes', 'tipo': 'pesos', 'ph': '6.000.000', 'req': True,
+             'ayuda': 'Alquiler, sueldos con aguinaldo, servicios, contador, intereses de préstamos y tu propio sueldo.'},
+            {'id': 'var', 'label': 'De cada $100 que vendés, ¿cuánto se te va en mercadería y envases?', 'tipo': 'pct',
+             'pre': '$', 'sufijo': 'de cada $100', 'ph': '35', 'req': True,
+             'ayuda': 'Si no lo sabés, en la guía de <a href="/guias/food-cost">food cost</a> ves cómo sacarlo.'},
+            {'id': 'dias', 'label': 'Días que abrís por mes', 'tipo': 'num', 'valor': '26', 'sufijo': 'días', 'ancho': False},
+            {'id': 'ticket', 'label': 'Gasto por cliente', 'tipo': 'pesos', 'ph': '20.000', 'opc': True, 'ancho': False,
+             'ayuda': 'En promedio, lo que ves en la caja.'},
+        ],
+        'iva': 'Poné los gastos sin IVA. El resultado ya te lo da con IVA, como lo ves en la caja.',
+        'vacio': 'Completá tus gastos fijos y cuánto se te va en mercadería y acá aparece cuánto tenés que vender.',
+        'calculo': """function (v, ri, h) {
+      if (!(v.fijos > 0) || isNaN(v.var)) return { estado: 'vacio' };
+      if (v.var >= 100) return { estado: 'error', error: 'Si la mercadería se lleva $100 o más de cada $100 que vendés, no hay venta que alcance: cada venta te hace perder. Primero revisá tus precios.' };
+      if (!(v.dias >= 1 && v.dias <= 31)) return { estado: 'error', error: 'Poné cuántos días abrís por mes: un número entre 1 y 31.' };
+      // Punto de equilibrio en pesos = costos fijos / margen de contribución %. Con IVA si es responsable inscripto.
+      var mes = v.fijos / (1 - v.var / 100) * (ri ? 1.21 : 1), dia = mes / v.dias;
+      var filas = [h.B(h.P(mes)) + ' por mes'];
+      if (v.ticket > 0) filas.push('unos ' + h.B(h.N(Math.ceil(dia / v.ticket))) + ' clientes por día');
+      return { estado: 'lleno', t: 'Para no perder plata tenés que vender', grande: h.P(dia), unidad: 'por día', filas: filas,
+               piso: 'Es el piso, no la meta: vendiendo eso no ganás nada. Tu ganancia y los impuestos, como Ingresos Brutos, van arriba de este número.' };
+    }""",
+    },
+    'costo-ingrediente': {
+        'titulo': 'Calculá cuánto te cuesta un ingrediente en el plato',
+        'sub': 'Con el precio que pagás hoy. No se guarda ni se envía nada.',
+        'campos': [
+            {'id': 'kilo', 'label': 'Precio por kilo del ingrediente', 'tipo': 'pesos', 'ph': '12.000', 'req': True,
+             'ayuda': 'Lo que pagás hoy. Sin IVA si sos responsable inscripto.'},
+            {'id': 'rinde', 'label': 'De cada kilo que comprás, ¿cuánto te queda limpio para usar?', 'tipo': 'pct',
+             'sufijo': '%', 'ph': '80', 'req': True,
+             'ayuda': 'Si de 1 kilo de nalga te quedan 800 g limpios, poné 80.'},
+            {'id': 'gramos', 'label': 'Gramos limpios en el plato', 'tipo': 'num', 'ph': '200', 'sufijo': 'g', 'req': True},
+        ],
+        'vacio': 'Completá el precio, cuánto te queda limpio y los gramos, y acá aparece lo que te cuesta ese ingrediente en cada plato.',
+        'calculo': """function (v, ri, h) {
+      if (!(v.kilo > 0) || !(v.rinde > 0) || !(v.gramos > 0)) return { estado: 'vacio' };
+      if (v.rinde > 100) return { estado: 'error', error: 'No te puede quedar más de lo que compraste: poné 100 o menos.' };
+      // Costo real por kilo = precio por kilo / rendimiento; costo = costo real por kilo / 1.000 × gramos
+      var real = v.kilo / (v.rinde / 100), costo = real / 1000 * v.gramos, compra = v.gramos / (v.rinde / 100);
+      return { estado: 'lleno', t: 'Ese ingrediente te cuesta', grande: h.P(costo), unidad: 'por plato',
+               filas: [h.B(h.P(real)) + ' el kilo limpio', 'Tenés que comprar ' + h.B(h.N(Math.round(compra)) + ' g') + ' por plato'],
+               piso: 'Hacé la misma cuenta con cada ingrediente del plato y sumalos: ese es el costo del plato.' };
+    }""",
+    },
+    'food-cost': {
+        'titulo': 'Calculá el food cost de un plato',
+        'sub': 'Con lo que te cuesta hoy. No se guarda ni se envía nada.',
+        'campos': [
+            {'id': 'costo', 'label': '¿Cuánto te cuesta hacer el plato?', 'tipo': 'pesos', 'ph': '4.200', 'req': True,
+             'ayuda': 'Si no lo sabés, sacalo con la guía de <a href="/guias/costo-de-un-plato">costo de un plato</a>.'},
+            {'id': 'precio', 'label': 'Precio de carta', 'tipo': 'pesos', 'ph': '16.800', 'req': True,
+             'ayuda': 'Lo que cobrás por el plato.'},
+        ],
+        'iva': 'Poné el costo sin IVA y el precio de carta con IVA, como lo cobrás.',
+        'vacio': 'Completá el costo y el precio del plato y acá aparece su food cost.',
+        'calculo': """function (v, ri, h) {
+      if (!(v.costo > 0) || !(v.precio > 0)) return { estado: 'vacio' };
+      // Food cost del plato % = costo del plato / precio sin IVA × 100
+      var sin = ri ? v.precio / 1.21 : v.precio, fc = v.costo / sin * 100;
+      if (fc >= 100) return { estado: 'error', error: 'El plato te cuesta lo mismo o más de lo que cobrás por él: perdés plata en cada uno. Revisá el precio o la receta.' };
+      var filas = ['Te quedan ' + h.B(h.P(sin - v.costo)) + ' de cada plato para pagar sueldos, alquiler y el resto'];
+      if (ri) filas.push('Precio sin IVA: ' + h.B(h.P(sin)));
+      return { estado: 'lleno', t: 'El food cost de ese plato es', grande: h.pct(fc), filas: filas,
+               piso: 'En gastronomía se toma como referencia entre 25 % y 35 %. Te sirve más fijar tu objetivo y mirar cómo se mueve mes a mes.' };
+    }""",
+    },
+    'precio': {
+        'titulo': 'Calculá el precio de un plato o un producto',
+        'sub': 'Con lo que te cuesta hoy. No se guarda ni se envía nada.',
+        'campos': [
+            {'id': 'costo', 'label': '¿Cuánto te cuesta el plato o el producto?', 'tipo': 'pesos', 'ph': '4.200', 'req': True,
+             'ayuda': 'Si no lo sabés, sacalo con la guía de <a href="/guias/costo-de-un-plato">costo de un plato</a>.'},
+            {'id': 'fc', 'label': 'De cada $100 que cobrás, ¿cuánto querés que sea costo?', 'tipo': 'pct',
+             'pre': '$', 'sufijo': 'de cada $100', 'ph': '30', 'req': True,
+             'ayuda': 'En gastronomía se toma como referencia entre $25 y $35 de cada $100.'},
+        ],
+        'iva': 'Poné el costo sin IVA. El precio de carta te lo damos con IVA.',
+        'vacio': 'Completá el costo y cuánto querés que sea costo de cada $100, y acá aparece el precio.',
+        'calculo': """function (v, ri, h) {
+      if (!(v.costo > 0) || isNaN(v.fc)) return { estado: 'vacio' };
+      if (!(v.fc > 0 && v.fc < 100)) return { estado: 'error', error: 'Poné un número mayor que 0 y menor que 100.' };
+      // Precio sin IVA = costo / food cost que querés; precio de carta = precio sin IVA × 1,21
+      var sin = v.costo / (v.fc / 100), carta = ri ? sin * 1.21 : sin;
+      var filas = ['Te deja ' + h.B(h.P(sin - v.costo)) + ' por venta para pagar los gastos fijos'];
+      if (ri) filas.push('Sin IVA: ' + h.B(h.P(sin)));
+      return { estado: 'lleno', t: 'Con ese costo, el precio de carta es', grande: h.P(carta), filas: filas,
+               piso: 'Es el punto de partida, no el precio final: comparalo con lo que cobra tu competencia y con cómo querés que te vean.' };
+    }""",
+    },
+    'margen': {
+        'titulo': 'Calculá el margen de un producto',
+        'sub': 'Con lo que te cuesta hoy. No se guarda ni se envía nada.',
+        'campos': [
+            {'id': 'precio', 'label': '¿A cuánto lo vendés?', 'tipo': 'pesos', 'ph': '17.500', 'req': True,
+             'ayuda': 'El precio que cobrás.'},
+            {'id': 'costo', 'label': '¿Cuánto te cuesta?', 'tipo': 'pesos', 'ph': '10.500', 'req': True,
+             'ayuda': 'Lo que te sale volver a comprarlo o hacerlo hoy, no lo que pagaste hace dos meses.'},
+        ],
+        'iva': 'Poné el costo sin IVA y el precio con IVA, como lo cobrás.',
+        'vacio': 'Completá el precio y el costo y acá aparece tu margen.',
+        'calculo': """function (v, ri, h) {
+      if (!(v.precio > 0) || !(v.costo > 0)) return { estado: 'vacio' };
+      // Margen % = (precio sin IVA − costo) / precio sin IVA × 100; markup % = (precio sin IVA − costo) / costo × 100
+      var sin = ri ? v.precio / 1.21 : v.precio, gan = sin - v.costo;
+      if (gan <= 0) return { estado: 'error', error: 'Lo vendés a lo mismo o a menos de lo que te cuesta: en cada venta perdés ' + h.P(-gan) + '. Revisá el precio.' };
+      return { estado: 'lleno', t: 'Tu margen es', grande: h.pct(gan / sin * 100),
+               filas: ['Te quedan ' + h.B(h.P(gan)) + ' por venta', 'Markup: ' + h.B(h.pct(gan / v.costo * 100)) + ' (lo que le sumás al costo)'],
+               piso: 'Hacé esta cuenta con los 10 productos que más vendés.' };
+    }""",
+    },
+    'eerr': {
+        'titulo': 'Calculá cuánto te dejó el mes',
+        'campos': [
+            {'id': 'ventas', 'label': 'Lo que vendiste el mes pasado', 'tipo': 'pesos', 'ph': '30.000.000', 'req': True,
+             'ayuda': 'Sin IVA si sos responsable inscripto.'},
+            {'id': 'com', 'label': 'Comisiones de tarjetas y apps', 'tipo': 'pesos', 'ph': '1.200.000', 'opc': True},
+            {'id': 'cmv', 'label': 'Mercadería que usaste', 'tipo': 'pesos', 'ph': '9.700.000', 'req': True,
+             'ayuda': 'Si no lo sabés, en la guía de <a href="/guias/food-cost">CMV</a> ves cómo sacarlo.'},
+            {'id': 'gastos', 'label': 'Sueldos, alquiler, servicios y demás gastos del mes', 'tipo': 'pesos', 'ph': '14.650.000', 'req': True,
+             'ayuda': 'Con tu propio sueldo, si trabajás en el negocio.'},
+        ],
+        'vacio': 'Completá las ventas, la mercadería y los gastos del mes y acá aparece cuánto te dejó.',
+        'calculo': """function (v, ri, h) {
+      if (!(v.ventas > 0) || isNaN(v.cmv) || isNaN(v.gastos)) return { estado: 'vacio' };
+      // Ventas netas = ventas − comisiones; utilidad bruta = netas − CMV; resultado operativo = bruta − estructura
+      var netas = v.ventas - (v.com || 0);
+      if (!(netas > 0)) return { estado: 'error', error: 'Las comisiones no pueden ser más que lo que vendiste: revisá los números.' };
+      var bruta = netas - v.cmv, res = bruta - v.gastos, cada = h.d1(Math.abs(res) / netas * 100);
+      var filas = [(res >= 0 ? 'De cada $100 que vendiste te quedaron ' : 'De cada $100 que vendiste perdiste ') + h.B('$' + cada),
+                   'Después de pagar la mercadería: ' + h.B(h.P(bruta))];
+      return { estado: 'lleno', t: res >= 0 ? 'El mes te dejó' : 'El mes te hizo perder', grande: h.P(Math.abs(res)), filas: filas,
+               piso: 'Todavía faltan los intereses de préstamos y los impuestos, como Ingresos Brutos.' };
+    }""",
+    },
+    'rentabilidad': {
+        'titulo': 'Calculá la rentabilidad de tu negocio',
+        'campos': [
+            {'id': 'ventas', 'label': 'Lo que vendiste en el mes', 'tipo': 'pesos', 'ph': '30.000.000', 'req': True,
+             'ayuda': 'Sin IVA si sos responsable inscripto.'},
+            {'id': 'res', 'label': 'Lo que te quedó en el mes', 'tipo': 'pesos', 'ph': '4.547.500', 'req': True,
+             'ayuda': 'Ventas menos todos los gastos, con tu sueldo incluido. Si no lo tenés, sacalo con el <a href="/guias/estado-de-resultados">estado de resultados</a>.'},
+            {'id': 'inv', 'label': 'Plata que pusiste en el negocio', 'tipo': 'pesos', 'ph': '120.000.000', 'opc': True,
+             'ayuda': 'Local, equipamiento y reformas, a valores de hoy.'},
+        ],
+        'vacio': 'Completá lo que vendiste y lo que te quedó en el mes y acá aparece tu rentabilidad.',
+        'calculo': """function (v, ri, h) {
+      if (!(v.ventas > 0) || isNaN(v.res)) return { estado: 'vacio' };
+      // Rentabilidad sobre ventas % = resultado neto / ventas netas × 100
+      var rs = v.res / v.ventas * 100, filas = ['De cada $100 que vendés te quedan ' + h.B('$' + h.d1(rs))];
+      if (v.inv > 0 && v.res > 0) {
+        filas.push('Sobre lo que invertiste: ' + h.B(h.pct(v.res * 12 / v.inv * 100)) + ' por año');
+        filas.push('Recuperás la inversión en unos ' + h.B(h.N(Math.round(v.inv / v.res))) + ' meses');
+      }
+      return { estado: 'lleno', t: 'Tu rentabilidad sobre ventas es', grande: h.pct(rs), filas: filas,
+               piso: 'La prueba simple: el negocio tiene que rendir bastante más que esa plata en un plazo fijo, porque tiene más riesgo y más trabajo.' };
+    }""",
+    },
+    'flujo': {
+        'titulo': 'Calculá si esta semana te alcanza la plata',
+        'sub': 'Con lo que tenés hoy. No se guarda ni se envía nada.',
+        'campos': [
+            {'id': 'saldo', 'label': 'Plata que tenés hoy', 'tipo': 'pesos', 'ph': '3.500.000', 'req': True,
+             'ayuda': 'Banco, Mercado Pago y efectivo.'},
+            {'id': 'ent', 'label': 'Lo que vas a cobrar esta semana', 'tipo': 'pesos', 'ph': '9.000.000', 'req': True,
+             'ayuda': 'Lo que vendés y lo que te acreditan las tarjetas y las apps en estos 7 días.'},
+            {'id': 'sal', 'label': 'Lo que tenés que pagar esta semana', 'tipo': 'pesos', 'ph': '14.000.000', 'req': True,
+             'ayuda': 'Proveedores, sueldos, alquiler, impuestos y cuotas.'},
+        ],
+        'vacio': 'Completá lo que tenés, lo que vas a cobrar y lo que tenés que pagar, y acá aparece cómo terminás la semana.',
+        'calculo': """function (v, ri, h) {
+      if (isNaN(v.saldo) || isNaN(v.ent) || isNaN(v.sal)) return { estado: 'vacio' };
+      // Saldo final = saldo inicial + entradas − salidas
+      var fin = v.saldo + v.ent - v.sal, filas = ['Entran ' + h.B(h.P(v.ent)) + ' y salen ' + h.B(h.P(v.sal))];
+      if (fin >= 0) return { estado: 'lleno', t: 'Terminás la semana con', grande: h.P(fin), filas: filas,
+               piso: 'Hacé la misma cuenta para las próximas semanas: así ves venir la semana corta antes de que llegue.' };
+      return { estado: 'lleno', t: 'Esta semana te faltan', grande: h.P(-fin), filas: filas,
+               piso: 'Resolvelo ahora, no el día del pago: adelantá un cobro o hablá con el proveedor para correr un pago.' };
+    }""",
+    },
+    'capital': {
+        'titulo': 'Calculá tu capital de trabajo',
+        'sub': 'Con lo que tenés hoy. No se guarda ni se envía nada.',
+        'campos': [
+            {'id': 'caja', 'label': 'Plata que tenés hoy', 'tipo': 'pesos', 'ph': '1.300.000', 'req': True,
+             'ayuda': 'Banco, Mercado Pago y efectivo.'},
+            {'id': 'cobrar', 'label': 'Lo que te tienen que pagar', 'tipo': 'pesos', 'ph': '2.000.000', 'opc': True, 'ancho': False,
+             'ayuda': 'Tarjetas y apps por acreditar, cheques y clientes.'},
+            {'id': 'stock', 'label': 'Mercadería en stock', 'tipo': 'pesos', 'ph': '700.000', 'opc': True, 'ancho': False,
+             'ayuda': 'A lo que te costó.'},
+            {'id': 'deudas', 'label': 'Lo que tenés que pagar en el año', 'tipo': 'pesos', 'ph': '7.200.000', 'req': True,
+             'ayuda': 'Proveedores, sueldos y cargas, impuestos y cuotas de préstamos.'},
+        ],
+        'vacio': 'Completá la plata que tenés y lo que tenés que pagar, y acá aparece tu capital de trabajo.',
+        'calculo': """function (v, ri, h) {
+      if (isNaN(v.caja) || !(v.deudas > 0)) return { estado: 'vacio' };
+      // Capital de trabajo = activo corriente − pasivo corriente; prueba ácida = (activo corriente − stock) / pasivo corriente
+      var stock = v.stock || 0, ac = v.caja + (v.cobrar || 0) + stock, ct = ac - v.deudas;
+      var filas = ['Por cada $1 que debés tenés ' + h.B('$' + h.d2(ac / v.deudas))];
+      if (stock > 0) filas.push('Sin contar el stock: ' + h.B('$' + h.d2((ac - stock) / v.deudas)));
+      return { estado: 'lleno', t: ct >= 0 ? 'Tu capital de trabajo es' : 'Tu capital de trabajo es negativo', grande: h.P(ct), filas: filas,
+               piso: ct >= 0 ? 'Antes de retirar o invertir, restá lo que vence en los próximos 30 días.'
+                             : 'En gastronomía es común: se cobra rápido y a los proveedores se les paga a 30 días. Anda mientras se vende bien; si las ventas caen, no aparece la plata para pagar.' };
+    }""",
+    },
+}
+
+
+def calc_html_de(clave, slug):
+    c = CALCULADORAS[clave]
+    e = html.escape
+    campos = ''
+    for f in c['campos']:
+        fid = f"calc-{f['id']}"
+        pre = f'<span aria-hidden="true">{e(f.get("pre", "$" if f["tipo"] == "pesos" else ""))}</span>' if f.get('pre') or f['tipo'] == 'pesos' else ''
+        suf = f'<span aria-hidden="true">{e(f["sufijo"])}</span>' if f.get('sufijo') else ''
+        modo = 'decimal' if f['tipo'] == 'pct' else 'numeric'
+        largo = {'pct': 5, 'num': 4}.get(f['tipo'])
+        attrs = (f' placeholder="{e(f["ph"])}"' if f.get('ph') else '') + (f' value="{e(f["valor"])}"' if f.get('valor') else '') \
+            + (f' maxlength="{largo}"' if largo else '') + (f' aria-describedby="{fid}-a"' if f.get('ayuda') else '') \
+            + (' data-req' if f.get('req') else '')
+        opc = ' <span class="calc-opc">(opcional)</span>' if f.get('opc') else ''
+        ayuda = f'\n              <p class="calc-ayuda" id="{fid}-a">{f["ayuda"]}</p>' if f.get('ayuda') else ''
+        clase = 'calc-campo calc-ancho' if f.get('ancho', True) else 'calc-campo'
+        campos += f"""            <div class="{clase}">
+              <label for="{fid}">{e(f['label'])}{opc}</label>
+              <div class="calc-caja">{pre}<input id="{fid}" type="text" inputmode="{modo}" autocomplete="off" data-tipo="{f['tipo']}"{attrs}>{suf}</div>{ayuda}
             </div>
-            <div class="calc-campo calc-ancho">
-              <label for="calc-var">De cada $100 que vendés, ¿cuánto se te va en mercadería y envases?</label>
-              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-var" type="text" inputmode="decimal" autocomplete="off" placeholder="35" maxlength="5" aria-describedby="calc-var-a"><span aria-hidden="true">de cada $100</span></div>
-              <p class="calc-ayuda" id="calc-var-a">Si no lo sabés, en la guía de <a href="/guias/food-cost">food cost</a> ves cómo sacarlo.</p>
-            </div>
-            <div class="calc-campo">
-              <label for="calc-dias">Días que abrís por mes</label>
-              <div class="calc-caja"><input id="calc-dias" type="text" inputmode="numeric" autocomplete="off" value="26" maxlength="2"><span aria-hidden="true">días</span></div>
-            </div>
-            <div class="calc-campo">
-              <label for="calc-ticket">Gasto por cliente <span class="calc-opc">(opcional)</span></label>
-              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-ticket" type="text" inputmode="numeric" autocomplete="off" placeholder="20.000" aria-describedby="calc-ticket-a"></div>
-              <p class="calc-ayuda" id="calc-ticket-a">En promedio, lo que ves en la caja.</p>
-            </div>
-            <fieldset class="calc-campo calc-ancho">
+"""
+    if c.get('iva'):
+        campos += f"""            <fieldset class="calc-campo calc-ancho">
               <legend>¿Cómo facturás?</legend>
               <div class="calc-seg">
                 <label><input type="radio" name="calc-iva" value="mono" checked><span>Monotributo</span></label>
                 <label><input type="radio" name="calc-iva" value="ri"><span>Responsable inscripto</span></label>
               </div>
-              <p class="calc-ayuda" id="calc-iva-a" hidden>Poné los gastos sin IVA. El resultado ya te lo da con IVA, como lo ves en la caja.</p>
+              <p class="calc-ayuda" id="calc-iva-a" hidden>{e(c['iva'])}</p>
             </fieldset>
-          </form>
+"""
+    return f"""      <section class="calc" id="calculadora" aria-labelledby="calc-t" data-calc="{e(clave)}">
+        <div class="calc-in">
+          <h2 class="calc-t" id="calc-t">{e(c['titulo'])}</h2>
+          <p class="calc-sub">{e(c.get('sub', SUB_CALC))}</p>
+          <form class="calc-campos" novalidate>
+{campos}          </form>
         </div>
         <div class="calc-res">
-          <p class="calc-vacio" id="calc-vacio">Completá tus gastos fijos y cuánto se te va en mercadería y acá aparece cuánto tenés que vender.</p>
+          <p class="calc-vacio" id="calc-vacio">{e(c['vacio'])}</p>
           <p class="calc-error" id="calc-error" hidden></p>
           <div id="calc-lleno" hidden>
-            <p class="calc-res-t">Para no perder plata tenés que vender</p>
-            <p class="calc-grande"><span id="calc-dia"></span> <span class="calc-u">por día</span></p>
-            <ul class="calc-filas">
-              <li><strong id="calc-mes"></strong> por mes</li>
-              <li id="calc-cli-li" hidden>unos <strong id="calc-cli"></strong> clientes por día</li>
-            </ul>
-            <p class="calc-piso">Es el piso, no la meta: vendiendo eso no ganás nada. Tu ganancia y los impuestos, como Ingresos Brutos, van arriba de este número.</p>
+            <p class="calc-res-t" id="calc-res-t"></p>
+            <p class="calc-grande"><span id="calc-grande"></span> <span class="calc-u" id="calc-u"></span></p>
+            <ul class="calc-filas" id="calc-filas"></ul>
+            <p class="calc-piso" id="calc-piso"></p>
           </div>
           <p class="ec-sr" id="calc-sr" aria-live="polite"></p>
           <div class="calc-cta">
-            <p>¿No estás seguro de alguno de estos números? El diagnóstico te muestra en 3 minutos cuáles tenés claros y cuáles no. Son 12 preguntas, gratis.</p>
-            <a class="btn" href="/?origen=guia-{slug}-calculadora#diagnostico">Hacer el diagnóstico <span aria-hidden="true">→</span></a>
+            <p>{e(c.get('cta', CTA_CALC))}</p>
+            <a class="btn" href="/?origen=guia-{e(slug)}-calculadora#diagnostico">Hacer el diagnóstico <span aria-hidden="true">→</span></a>
           </div>
         </div>
       </section>
 """
 
-CALC_PE_JS = r"""  <script>
+
+# Motor de las calculadoras. /*CALCULO*/ se reemplaza por la función de la receta.
+CALC_JS = r"""  <script>
   (function () {
     var caja = document.getElementById('calculadora');
     if (!caja) return;
     var $ = function (id) { return document.getElementById(id); };
-    var fijos = $('calc-fijos'), vari = $('calc-var'), dias = $('calc-dias'), ticket = $('calc-ticket');
     var fmt = new Intl.NumberFormat('es-AR', { maximumFractionDigits: 0 });
-    var pesos = function (x) { return '$' + fmt.format(x); };
+    var fmt1 = new Intl.NumberFormat('es-AR', { maximumFractionDigits: 1 });
+    var fmt2 = new Intl.NumberFormat('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    function redondo(x) { return Math.abs(x) >= 100000 ? Math.round(x / 1000) * 1000 : Math.round(x); }
+    var h = {
+      P: function (x) { var r = redondo(x); return (r < 0 ? '−$' : '$') + fmt.format(Math.abs(r)); },
+      N: function (x) { return fmt.format(x); },
+      pct: function (x) { return fmt1.format(x) + ' %'; },
+      d1: function (x) { return fmt1.format(x); },
+      d2: function (x) { return fmt2.format(x); },
+      B: function (s) { return '<strong>' + s + '</strong>'; }
+    };
+    var calculo = /*CALCULO*/;
+    var inputs = [].slice.call(caja.querySelectorAll('input[data-tipo]'));
     function num(v) {
       var d = String(v || '').replace(/\./g, '').replace(',', '.').replace(/[^\d.]/g, '');
       return d ? parseFloat(d) : NaN;
@@ -727,52 +963,54 @@ CALC_PE_JS = r"""  <script>
       while (i < nuevo.length && c < antes) { if (/\d/.test(nuevo.charAt(i))) c++; i++; }
       try { input.setSelectionRange(i, i); } catch (e) {}
     }
-    function redondo(x) { return x >= 100000 ? Math.round(x / 1000) * 1000 : Math.round(x); }
-    var medido = false, espera;
-    function mostrar(estado, texto) {
-      $('calc-vacio').hidden = estado !== 'vacio';
-      $('calc-lleno').hidden = estado !== 'lleno';
-      $('calc-error').hidden = estado !== 'error';
-      if (estado === 'error') $('calc-error').textContent = texto;
+    function leer() {
+      var v = {};
+      inputs.forEach(function (i) { v[i.id.slice(5)] = i.value.trim() === '' ? NaN : num(i.value); });
+      return v;
     }
+    var medido = false, espera;
     function calcular() {
-      var ri = caja.querySelector('input[name="calc-iva"]:checked').value === 'ri';
-      $('calc-iva-a').hidden = !ri;
-      var F = num(fijos.value), V = num(vari.value), D = num(dias.value), T = num(ticket.value);
+      var iva = caja.querySelector('input[name="calc-iva"]:checked'), ri = !!iva && iva.value === 'ri';
+      if ($('calc-iva-a')) $('calc-iva-a').hidden = !ri;
       clearTimeout(espera);
-      if (!(F > 0) || vari.value.trim() === '' || isNaN(V)) { mostrar('vacio'); $('calc-sr').textContent = ''; return; }
-      if (V >= 100) { mostrar('error', 'Si la mercadería se lleva $100 o más de cada $100 que vendés, no hay venta que alcance: cada venta te hace perder. Primero revisá tus precios.'); return; }
-      if (!(D >= 1 && D <= 31)) { mostrar('error', 'Poné cuántos días abrís por mes: un número entre 1 y 31.'); return; }
-      // Punto de equilibrio en pesos = costos fijos / margen de contribución %. Con IVA si es responsable inscripto.
-      var mes = F / (1 - V / 100) * (ri ? 1.21 : 1);
-      var dia = mes / D;
-      $('calc-dia').textContent = pesos(redondo(dia));
-      $('calc-mes').textContent = pesos(redondo(mes));
-      var conTicket = T > 0;
-      $('calc-cli-li').hidden = !conTicket;
-      if (conTicket) $('calc-cli').textContent = fmt.format(Math.ceil(dia / T));
-      mostrar('lleno');
+      var r = calculo(leer(), ri, h) || { estado: 'vacio' };
+      $('calc-vacio').hidden = r.estado !== 'vacio';
+      $('calc-lleno').hidden = r.estado !== 'lleno';
+      $('calc-error').hidden = r.estado !== 'error';
+      if (r.estado === 'error') $('calc-error').textContent = r.error;
+      if (r.estado !== 'lleno') { $('calc-sr').textContent = r.estado === 'error' ? r.error : ''; return; }
+      $('calc-res-t').textContent = r.t;
+      $('calc-grande').textContent = r.grande;
+      $('calc-u').textContent = r.unidad || '';
+      $('calc-filas').innerHTML = (r.filas || []).map(function (f) { return '<li>' + f + '</li>'; }).join('');
+      $('calc-piso').textContent = r.piso || '';
+      $('calc-piso').hidden = !r.piso;
       espera = setTimeout(function () {
-        $('calc-sr').textContent = 'Para no perder plata tenés que vender ' + pesos(redondo(dia)) + ' por día, ' + pesos(redondo(mes)) + ' por mes.';
+        $('calc-sr').textContent = r.t + ' ' + r.grande + (r.unidad ? ' ' + r.unidad : '') + '.';
         if (!medido) {
           medido = true;
-          try { if (typeof gtag === 'function') gtag('event', 'calculadora_uso', { calculadora: 'punto_equilibrio', iva: ri ? 'ri' : 'mono', con_ticket: conTicket }); } catch (e) {}
+          try { if (typeof gtag === 'function') gtag('event', 'calculadora_uso', { calculadora: caja.dataset.calc, iva: iva ? (ri ? 'ri' : 'mono') : 'no_aplica' }); } catch (e) {}
         }
       }, 1200);
     }
-    [fijos, ticket].forEach(function (i) { i.addEventListener('input', function () { miles(i); calcular(); }); });
-    vari.addEventListener('input', function () { vari.value = vari.value.replace(/[^\d,]/g, ''); calcular(); });
-    dias.addEventListener('input', function () { dias.value = dias.value.replace(/\D/g, ''); calcular(); });
+    inputs.forEach(function (i) {
+      i.addEventListener('input', function () {
+        if (i.dataset.tipo === 'pesos') miles(i);
+        else if (i.dataset.tipo === 'pct') i.value = i.value.replace(/[^\d,]/g, '');
+        else i.value = i.value.replace(/\D/g, '');
+        calcular();
+      });
+    });
     [].slice.call(caja.querySelectorAll('input[name="calc-iva"]')).forEach(function (r) { r.addEventListener('change', calcular); });
     [].slice.call(caja.querySelectorAll('.calc-caja')).forEach(function (c) { c.addEventListener('click', function () { c.querySelector('input').focus(); }); });
     caja.querySelector('form').addEventListener('submit', function (e) { e.preventDefault(); });
-    // En celular el resultado queda debajo de los campos: la primera vez que aparece, al salir del
-    // campo, la página baja sola lo justo para mostrarlo (una sola vez, para no pelear con quien sigue escribiendo).
+    // En celular el resultado queda debajo de los campos: la primera vez que aparece, al salir de un
+    // campo necesario, la página baja sola lo justo para mostrarlo (una sola vez, para no pelear con quien sigue).
     var mostrado = false;
-    [fijos, vari].forEach(function (i) {
+    [].slice.call(caja.querySelectorAll('input[data-req]')).forEach(function (i) {
       i.addEventListener('change', function () {
         if (mostrado || $('calc-lleno').hidden || window.innerWidth >= 768) return;
-        var res = caja.querySelector('.calc-res'), r = res.getBoundingClientRect();
+        var r = caja.querySelector('.calc-res').getBoundingClientRect();
         if (r.top < window.innerHeight - 160) return;
         mostrado = true;
         var quieto = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -784,7 +1022,9 @@ CALC_PE_JS = r"""  <script>
   })();
   </script>"""
 
-CALCULADORAS = {'punto-de-equilibrio': (CALC_PE, CALC_PE_JS)}
+
+def calc_js(clave):
+    return '\n' + CALC_JS.replace('/*CALCULO*/', CALCULADORAS[clave]['calculo'])
 
 
 # Barra fija abajo (celular y tablet). Se muestra al pasar la cabecera de la guía y se esconde
@@ -1369,11 +1609,10 @@ def main():
         toc_html = ''.join(f'<li><a href="#{i}">{html.escape(t)}</a></li>' for i, t in toc)
         resumen = ''.join(f'<li>{html.escape(x)}</li>' for x in g.get('resumen', []))
         assert resumen, f"{g['slug']}: falta el resumen"
-        calc_html, calc_js = '', ''
+        calc_html, calc_js_g = '', ''
         if g.get('calculadora'):
             assert g['calculadora'] in CALCULADORAS, f"{g['slug']}: calculadora desconocida {g['calculadora']}"
-            calc_html, calc_js = CALCULADORAS[g['calculadora']]
-            calc_html, calc_js = calc_html.replace('{slug}', g['slug']), '\n' + calc_js
+            calc_html, calc_js_g = calc_html_de(g['calculadora'], g['slug']), calc_js(g['calculadora'])
         cuerpo = f"""  <section class="guia-cab">
     {CIRCULOS}
 {migas(items)}
@@ -1393,7 +1632,7 @@ def main():
     </div>
     <nav class="indice-guia" aria-label="En esta guía"><p>En esta guía</p><ol>{toc_html}</ol></nav>
   </div>
-{SCROLLSPY}{descarga_js}{calc_js}"""
+{SCROLLSPY}{descarga_js}{calc_js_g}"""
         ld = {"@context": "https://schema.org", "@graph": [
             {"@type": "Article", "@id": BASE + path + "#article", "headline": g['h1'], "description": g['description'],
              "image": BASE + f"/guias/og/{g['slug']}.png", "inLanguage": "es-AR", "datePublished": g['publicada'],

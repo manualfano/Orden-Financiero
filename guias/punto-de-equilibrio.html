@@ -560,28 +560,28 @@ function gtag() { dataLayer.push(arguments); }
   <div class="guia-cuerpo">
     <div class="guia-principal">
       <aside class="resumen"><p>Lo más importante</p><ul><li>Es cuánto tenés que vender en el mes para no ganar ni perder.</li><li>En pesos: costos fijos ÷ margen de contribución en %.</li><li>Es el piso, no la meta: bajalo a ventas por día y compará con lo que puede vender tu local.</li></ul></aside>
-      <section class="calc" id="calculadora" aria-labelledby="calc-t">
+      <section class="calc" id="calculadora" aria-labelledby="calc-t" data-calc="punto-de-equilibrio">
         <div class="calc-in">
           <h2 class="calc-t" id="calc-t">Calculá tu punto de equilibrio</h2>
           <p class="calc-sub">Con los números de tu último mes. No se guarda ni se envía nada.</p>
           <form class="calc-campos" novalidate>
             <div class="calc-campo calc-ancho">
               <label for="calc-fijos">Gastos fijos del mes</label>
-              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-fijos" type="text" inputmode="numeric" autocomplete="off" placeholder="6.000.000" aria-describedby="calc-fijos-a"></div>
+              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-fijos" type="text" inputmode="numeric" autocomplete="off" data-tipo="pesos" placeholder="6.000.000" aria-describedby="calc-fijos-a" data-req></div>
               <p class="calc-ayuda" id="calc-fijos-a">Alquiler, sueldos con aguinaldo, servicios, contador, intereses de préstamos y tu propio sueldo.</p>
             </div>
             <div class="calc-campo calc-ancho">
               <label for="calc-var">De cada $100 que vendés, ¿cuánto se te va en mercadería y envases?</label>
-              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-var" type="text" inputmode="decimal" autocomplete="off" placeholder="35" maxlength="5" aria-describedby="calc-var-a"><span aria-hidden="true">de cada $100</span></div>
+              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-var" type="text" inputmode="decimal" autocomplete="off" data-tipo="pct" placeholder="35" maxlength="5" aria-describedby="calc-var-a" data-req><span aria-hidden="true">de cada $100</span></div>
               <p class="calc-ayuda" id="calc-var-a">Si no lo sabés, en la guía de <a href="/guias/food-cost">food cost</a> ves cómo sacarlo.</p>
             </div>
             <div class="calc-campo">
               <label for="calc-dias">Días que abrís por mes</label>
-              <div class="calc-caja"><input id="calc-dias" type="text" inputmode="numeric" autocomplete="off" value="26" maxlength="2"><span aria-hidden="true">días</span></div>
+              <div class="calc-caja"><input id="calc-dias" type="text" inputmode="numeric" autocomplete="off" data-tipo="num" value="26" maxlength="4"><span aria-hidden="true">días</span></div>
             </div>
             <div class="calc-campo">
               <label for="calc-ticket">Gasto por cliente <span class="calc-opc">(opcional)</span></label>
-              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-ticket" type="text" inputmode="numeric" autocomplete="off" placeholder="20.000" aria-describedby="calc-ticket-a"></div>
+              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-ticket" type="text" inputmode="numeric" autocomplete="off" data-tipo="pesos" placeholder="20.000" aria-describedby="calc-ticket-a"></div>
               <p class="calc-ayuda" id="calc-ticket-a">En promedio, lo que ves en la caja.</p>
             </div>
             <fieldset class="calc-campo calc-ancho">
@@ -598,13 +598,10 @@ function gtag() { dataLayer.push(arguments); }
           <p class="calc-vacio" id="calc-vacio">Completá tus gastos fijos y cuánto se te va en mercadería y acá aparece cuánto tenés que vender.</p>
           <p class="calc-error" id="calc-error" hidden></p>
           <div id="calc-lleno" hidden>
-            <p class="calc-res-t">Para no perder plata tenés que vender</p>
-            <p class="calc-grande"><span id="calc-dia"></span> <span class="calc-u">por día</span></p>
-            <ul class="calc-filas">
-              <li><strong id="calc-mes"></strong> por mes</li>
-              <li id="calc-cli-li" hidden>unos <strong id="calc-cli"></strong> clientes por día</li>
-            </ul>
-            <p class="calc-piso">Es el piso, no la meta: vendiendo eso no ganás nada. Tu ganancia y los impuestos, como Ingresos Brutos, van arriba de este número.</p>
+            <p class="calc-res-t" id="calc-res-t"></p>
+            <p class="calc-grande"><span id="calc-grande"></span> <span class="calc-u" id="calc-u"></span></p>
+            <ul class="calc-filas" id="calc-filas"></ul>
+            <p class="calc-piso" id="calc-piso"></p>
           </div>
           <p class="ec-sr" id="calc-sr" aria-live="polite"></p>
           <div class="calc-cta">
@@ -781,9 +778,30 @@ function gtag() { dataLayer.push(arguments); }
     var caja = document.getElementById('calculadora');
     if (!caja) return;
     var $ = function (id) { return document.getElementById(id); };
-    var fijos = $('calc-fijos'), vari = $('calc-var'), dias = $('calc-dias'), ticket = $('calc-ticket');
     var fmt = new Intl.NumberFormat('es-AR', { maximumFractionDigits: 0 });
-    var pesos = function (x) { return '$' + fmt.format(x); };
+    var fmt1 = new Intl.NumberFormat('es-AR', { maximumFractionDigits: 1 });
+    var fmt2 = new Intl.NumberFormat('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    function redondo(x) { return Math.abs(x) >= 100000 ? Math.round(x / 1000) * 1000 : Math.round(x); }
+    var h = {
+      P: function (x) { var r = redondo(x); return (r < 0 ? '−$' : '$') + fmt.format(Math.abs(r)); },
+      N: function (x) { return fmt.format(x); },
+      pct: function (x) { return fmt1.format(x) + ' %'; },
+      d1: function (x) { return fmt1.format(x); },
+      d2: function (x) { return fmt2.format(x); },
+      B: function (s) { return '<strong>' + s + '</strong>'; }
+    };
+    var calculo = function (v, ri, h) {
+      if (!(v.fijos > 0) || isNaN(v.var)) return { estado: 'vacio' };
+      if (v.var >= 100) return { estado: 'error', error: 'Si la mercadería se lleva $100 o más de cada $100 que vendés, no hay venta que alcance: cada venta te hace perder. Primero revisá tus precios.' };
+      if (!(v.dias >= 1 && v.dias <= 31)) return { estado: 'error', error: 'Poné cuántos días abrís por mes: un número entre 1 y 31.' };
+      // Punto de equilibrio en pesos = costos fijos / margen de contribución %. Con IVA si es responsable inscripto.
+      var mes = v.fijos / (1 - v.var / 100) * (ri ? 1.21 : 1), dia = mes / v.dias;
+      var filas = [h.B(h.P(mes)) + ' por mes'];
+      if (v.ticket > 0) filas.push('unos ' + h.B(h.N(Math.ceil(dia / v.ticket))) + ' clientes por día');
+      return { estado: 'lleno', t: 'Para no perder plata tenés que vender', grande: h.P(dia), unidad: 'por día', filas: filas,
+               piso: 'Es el piso, no la meta: vendiendo eso no ganás nada. Tu ganancia y los impuestos, como Ingresos Brutos, van arriba de este número.' };
+    };
+    var inputs = [].slice.call(caja.querySelectorAll('input[data-tipo]'));
     function num(v) {
       var d = String(v || '').replace(/\./g, '').replace(',', '.').replace(/[^\d.]/g, '');
       return d ? parseFloat(d) : NaN;
@@ -799,52 +817,54 @@ function gtag() { dataLayer.push(arguments); }
       while (i < nuevo.length && c < antes) { if (/\d/.test(nuevo.charAt(i))) c++; i++; }
       try { input.setSelectionRange(i, i); } catch (e) {}
     }
-    function redondo(x) { return x >= 100000 ? Math.round(x / 1000) * 1000 : Math.round(x); }
-    var medido = false, espera;
-    function mostrar(estado, texto) {
-      $('calc-vacio').hidden = estado !== 'vacio';
-      $('calc-lleno').hidden = estado !== 'lleno';
-      $('calc-error').hidden = estado !== 'error';
-      if (estado === 'error') $('calc-error').textContent = texto;
+    function leer() {
+      var v = {};
+      inputs.forEach(function (i) { v[i.id.slice(5)] = i.value.trim() === '' ? NaN : num(i.value); });
+      return v;
     }
+    var medido = false, espera;
     function calcular() {
-      var ri = caja.querySelector('input[name="calc-iva"]:checked').value === 'ri';
-      $('calc-iva-a').hidden = !ri;
-      var F = num(fijos.value), V = num(vari.value), D = num(dias.value), T = num(ticket.value);
+      var iva = caja.querySelector('input[name="calc-iva"]:checked'), ri = !!iva && iva.value === 'ri';
+      if ($('calc-iva-a')) $('calc-iva-a').hidden = !ri;
       clearTimeout(espera);
-      if (!(F > 0) || vari.value.trim() === '' || isNaN(V)) { mostrar('vacio'); $('calc-sr').textContent = ''; return; }
-      if (V >= 100) { mostrar('error', 'Si la mercadería se lleva $100 o más de cada $100 que vendés, no hay venta que alcance: cada venta te hace perder. Primero revisá tus precios.'); return; }
-      if (!(D >= 1 && D <= 31)) { mostrar('error', 'Poné cuántos días abrís por mes: un número entre 1 y 31.'); return; }
-      // Punto de equilibrio en pesos = costos fijos / margen de contribución %. Con IVA si es responsable inscripto.
-      var mes = F / (1 - V / 100) * (ri ? 1.21 : 1);
-      var dia = mes / D;
-      $('calc-dia').textContent = pesos(redondo(dia));
-      $('calc-mes').textContent = pesos(redondo(mes));
-      var conTicket = T > 0;
-      $('calc-cli-li').hidden = !conTicket;
-      if (conTicket) $('calc-cli').textContent = fmt.format(Math.ceil(dia / T));
-      mostrar('lleno');
+      var r = calculo(leer(), ri, h) || { estado: 'vacio' };
+      $('calc-vacio').hidden = r.estado !== 'vacio';
+      $('calc-lleno').hidden = r.estado !== 'lleno';
+      $('calc-error').hidden = r.estado !== 'error';
+      if (r.estado === 'error') $('calc-error').textContent = r.error;
+      if (r.estado !== 'lleno') { $('calc-sr').textContent = r.estado === 'error' ? r.error : ''; return; }
+      $('calc-res-t').textContent = r.t;
+      $('calc-grande').textContent = r.grande;
+      $('calc-u').textContent = r.unidad || '';
+      $('calc-filas').innerHTML = (r.filas || []).map(function (f) { return '<li>' + f + '</li>'; }).join('');
+      $('calc-piso').textContent = r.piso || '';
+      $('calc-piso').hidden = !r.piso;
       espera = setTimeout(function () {
-        $('calc-sr').textContent = 'Para no perder plata tenés que vender ' + pesos(redondo(dia)) + ' por día, ' + pesos(redondo(mes)) + ' por mes.';
+        $('calc-sr').textContent = r.t + ' ' + r.grande + (r.unidad ? ' ' + r.unidad : '') + '.';
         if (!medido) {
           medido = true;
-          try { if (typeof gtag === 'function') gtag('event', 'calculadora_uso', { calculadora: 'punto_equilibrio', iva: ri ? 'ri' : 'mono', con_ticket: conTicket }); } catch (e) {}
+          try { if (typeof gtag === 'function') gtag('event', 'calculadora_uso', { calculadora: caja.dataset.calc, iva: iva ? (ri ? 'ri' : 'mono') : 'no_aplica' }); } catch (e) {}
         }
       }, 1200);
     }
-    [fijos, ticket].forEach(function (i) { i.addEventListener('input', function () { miles(i); calcular(); }); });
-    vari.addEventListener('input', function () { vari.value = vari.value.replace(/[^\d,]/g, ''); calcular(); });
-    dias.addEventListener('input', function () { dias.value = dias.value.replace(/\D/g, ''); calcular(); });
+    inputs.forEach(function (i) {
+      i.addEventListener('input', function () {
+        if (i.dataset.tipo === 'pesos') miles(i);
+        else if (i.dataset.tipo === 'pct') i.value = i.value.replace(/[^\d,]/g, '');
+        else i.value = i.value.replace(/\D/g, '');
+        calcular();
+      });
+    });
     [].slice.call(caja.querySelectorAll('input[name="calc-iva"]')).forEach(function (r) { r.addEventListener('change', calcular); });
     [].slice.call(caja.querySelectorAll('.calc-caja')).forEach(function (c) { c.addEventListener('click', function () { c.querySelector('input').focus(); }); });
     caja.querySelector('form').addEventListener('submit', function (e) { e.preventDefault(); });
-    // En celular el resultado queda debajo de los campos: la primera vez que aparece, al salir del
-    // campo, la página baja sola lo justo para mostrarlo (una sola vez, para no pelear con quien sigue escribiendo).
+    // En celular el resultado queda debajo de los campos: la primera vez que aparece, al salir de un
+    // campo necesario, la página baja sola lo justo para mostrarlo (una sola vez, para no pelear con quien sigue).
     var mostrado = false;
-    [fijos, vari].forEach(function (i) {
+    [].slice.call(caja.querySelectorAll('input[data-req]')).forEach(function (i) {
       i.addEventListener('change', function () {
         if (mostrado || $('calc-lleno').hidden || window.innerWidth >= 768) return;
-        var res = caja.querySelector('.calc-res'), r = res.getBoundingClientRect();
+        var r = caja.querySelector('.calc-res').getBoundingClientRect();
         if (r.top < window.innerHeight - 160) return;
         mostrado = true;
         var quieto = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
