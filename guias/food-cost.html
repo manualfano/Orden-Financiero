@@ -465,6 +465,7 @@ function gtag() { dataLayer.push(arguments); }
   .calc-piso { font-size: var(--fs-sm); }
   .calc-cta { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid rgba(12,102,228,0.18); }
   .calc-cta p { font-size: var(--fs-sm); }
+  .calc-cta .calc-cta-t { font-size: var(--fs-lead); font-weight: 600; line-height: 1.35; color: var(--navy); margin-bottom: 4px; }
   .calc-cta .btn { margin-top: var(--s-3); }
   /* Desde tablet, campos a la izquierda y resultado a la derecha (21/09/2026, Manu no encontraba
      el resultado): el número cambia a la vista mientras se escribe. */
@@ -595,8 +596,9 @@ function gtag() { dataLayer.push(arguments); }
           </div>
           <p class="ec-sr" id="calc-sr" aria-live="polite"></p>
           <div class="calc-cta">
-            <p>¿No estás seguro de alguno de estos números? El diagnóstico te muestra en 3 minutos cuáles tenés claros y cuáles no. Son 12 preguntas, gratis.</p>
-            <a class="btn" href="/?origen=guia-food-cost-calculadora#diagnostico">Hacer el diagnóstico <span aria-hidden="true">→</span></a>
+            <p class="calc-cta-t" id="calc-cta-t" hidden></p>
+            <p id="calc-cta-p">¿No estás seguro de alguno de estos números? El diagnóstico te muestra en 3 minutos cuáles tenés claros y cuáles no. Son 12 preguntas, gratis.</p>
+            <a class="btn" id="calc-cta-btn" href="/?origen=guia-food-cost-calculadora#diagnostico" data-base="guia-food-cost-calculadora">Hacer el diagnóstico <span aria-hidden="true">→</span></a>
           </div>
         </div>
       </section>
@@ -801,7 +803,10 @@ function gtag() { dataLayer.push(arguments); }
       if (fc >= 100) return { estado: 'error', error: 'El plato te cuesta lo mismo o más de lo que cobrás por él: perdés plata en cada uno. Revisá el precio o la receta.' };
       var filas = ['Te quedan ' + h.B(h.P(sin - v.costo)) + ' de cada plato para pagar sueldos, alquiler y el resto'];
       if (ri) filas.push('Precio sin IVA: ' + h.B(h.P(sin)));
-      return { estado: 'lleno', t: 'El food cost de ese plato es', grande: h.pct(fc), filas: filas,
+      var cta = fc > 35
+        ? { t: 'Ese plato se lleva ' + h.pct(fc) + ' en mercadería: está arriba de lo habitual.', p: 'Casi siempre son aumentos de proveedores que no pasaste al precio. El diagnóstico te muestra si pasa lo mismo en el resto del negocio.', tag: 'fc-alto' }
+        : { t: 'Ese plato está en ' + h.pct(fc) + '. ¿Y el resto de la carta?', p: 'Que un plato esté bien no quiere decir que el negocio gane. El diagnóstico revisa los cuatro eslabones de tu negocio.', tag: 'fc-ok' };
+      return { estado: 'lleno', t: 'El food cost de ese plato es', grande: h.pct(fc), filas: filas, cta: cta,
                piso: 'En gastronomía se toma como referencia entre 25 % y 35 %. Te sirve más fijar tu objetivo y mirar cómo se mueve mes a mes.' };
     };
     var inputs = [].slice.call(caja.querySelectorAll('input[data-tipo]'));
@@ -825,6 +830,16 @@ function gtag() { dataLayer.push(arguments); }
       inputs.forEach(function (i) { v[i.id.slice(5)] = i.value.trim() === '' ? NaN : num(i.value); });
       return v;
     }
+    // El llamado al diagnóstico habla del número que la persona acaba de sacar, y el origen del lead
+    // lleva qué le dio (ej. guia-flujo-de-caja-calculadora-caja-falta): Manuel lo ve antes de la llamada.
+    // Nunca el número en la URL: solo la etiqueta del caso.
+    var ctaP = $('calc-cta-p'), ctaBase = ctaP.textContent, btn = $('calc-cta-btn');
+    function ctaDe(c) {
+      $('calc-cta-t').hidden = !c;
+      $('calc-cta-t').textContent = c ? c.t : '';
+      ctaP.textContent = c ? c.p + ' Son 3 minutos y 12 preguntas, gratis.' : ctaBase;
+      btn.href = '/?origen=' + btn.dataset.base + (c ? '-' + c.tag : '') + '#diagnostico';
+    }
     var medido = false, espera;
     function calcular() {
       var iva = caja.querySelector('input[name="calc-iva"]:checked'), ri = !!iva && iva.value === 'ri';
@@ -835,6 +850,7 @@ function gtag() { dataLayer.push(arguments); }
       $('calc-lleno').hidden = r.estado !== 'lleno';
       $('calc-error').hidden = r.estado !== 'error';
       if (r.estado === 'error') $('calc-error').textContent = r.error;
+      ctaDe(r.estado === 'lleno' ? r.cta : null);
       if (r.estado !== 'lleno') { $('calc-sr').textContent = r.estado === 'error' ? r.error : ''; return; }
       $('calc-res-t').textContent = r.t;
       $('calc-grande').textContent = r.grande;
@@ -846,7 +862,7 @@ function gtag() { dataLayer.push(arguments); }
         $('calc-sr').textContent = r.t + ' ' + r.grande + (r.unidad ? ' ' + r.unidad : '') + '.';
         if (!medido) {
           medido = true;
-          try { if (typeof gtag === 'function') gtag('event', 'calculadora_uso', { calculadora: caja.dataset.calc, iva: iva ? (ri ? 'ri' : 'mono') : 'no_aplica' }); } catch (e) {}
+          try { if (typeof gtag === 'function') gtag('event', 'calculadora_uso', { calculadora: caja.dataset.calc, caso: (r.cta && r.cta.tag) || '', iva: iva ? (ri ? 'ri' : 'mono') : 'no_aplica' }); } catch (e) {}
         }
       }, 1200);
     }

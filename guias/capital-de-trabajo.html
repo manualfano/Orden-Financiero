@@ -465,6 +465,7 @@ function gtag() { dataLayer.push(arguments); }
   .calc-piso { font-size: var(--fs-sm); }
   .calc-cta { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid rgba(12,102,228,0.18); }
   .calc-cta p { font-size: var(--fs-sm); }
+  .calc-cta .calc-cta-t { font-size: var(--fs-lead); font-weight: 600; line-height: 1.35; color: var(--navy); margin-bottom: 4px; }
   .calc-cta .btn { margin-top: var(--s-3); }
   /* Desde tablet, campos a la izquierda y resultado a la derecha (21/09/2026, Manu no encontraba
      el resultado): el número cambia a la vista mientras se escribe. */
@@ -597,8 +598,9 @@ function gtag() { dataLayer.push(arguments); }
           </div>
           <p class="ec-sr" id="calc-sr" aria-live="polite"></p>
           <div class="calc-cta">
-            <p>¿No estás seguro de alguno de estos números? El diagnóstico te muestra en 3 minutos cuáles tenés claros y cuáles no. Son 12 preguntas, gratis.</p>
-            <a class="btn" href="/?origen=guia-capital-de-trabajo-calculadora#diagnostico">Hacer el diagnóstico <span aria-hidden="true">→</span></a>
+            <p class="calc-cta-t" id="calc-cta-t" hidden></p>
+            <p id="calc-cta-p">¿No estás seguro de alguno de estos números? El diagnóstico te muestra en 3 minutos cuáles tenés claros y cuáles no. Son 12 preguntas, gratis.</p>
+            <a class="btn" id="calc-cta-btn" href="/?origen=guia-capital-de-trabajo-calculadora#diagnostico" data-base="guia-capital-de-trabajo-calculadora">Hacer el diagnóstico <span aria-hidden="true">→</span></a>
           </div>
         </div>
       </section>
@@ -791,7 +793,10 @@ function gtag() { dataLayer.push(arguments); }
       var stock = v.stock || 0, ac = v.caja + (v.cobrar || 0) + stock, ct = ac - v.deudas;
       var filas = ['Por cada $1 que debés tenés ' + h.B('$' + h.d2(ac / v.deudas))];
       if (stock > 0) filas.push('Sin contar el stock: ' + h.B('$' + h.d2((ac - stock) / v.deudas)));
-      return { estado: 'lleno', t: ct >= 0 ? 'Tu capital de trabajo es' : 'Tu capital de trabajo es negativo', grande: h.P(ct), filas: filas,
+      var cta = ct < 0
+        ? { t: 'Te faltan ' + h.P(-ct) + ' para cubrir lo que debés.', p: 'Anda mientras se vende bien. El diagnóstico te muestra qué tan expuesto está tu negocio si las ventas bajan.', tag: 'capital-negativo' }
+        : { t: 'Tenés ' + h.P(ct) + ' a favor. ¿Sabés cuánto te dura?', p: 'El diagnóstico te muestra si tu caja está ordenada o si esa plata ya tiene dueño.', tag: 'capital-ok' };
+      return { estado: 'lleno', t: ct >= 0 ? 'Tu capital de trabajo es' : 'Tu capital de trabajo es negativo', grande: h.P(ct), filas: filas, cta: cta,
                piso: ct >= 0 ? 'Antes de retirar o invertir, restá lo que vence en los próximos 30 días.'
                              : 'En gastronomía es común: se cobra rápido y a los proveedores se les paga a 30 días. Anda mientras se vende bien; si las ventas caen, no aparece la plata para pagar.' };
     };
@@ -816,6 +821,16 @@ function gtag() { dataLayer.push(arguments); }
       inputs.forEach(function (i) { v[i.id.slice(5)] = i.value.trim() === '' ? NaN : num(i.value); });
       return v;
     }
+    // El llamado al diagnóstico habla del número que la persona acaba de sacar, y el origen del lead
+    // lleva qué le dio (ej. guia-flujo-de-caja-calculadora-caja-falta): Manuel lo ve antes de la llamada.
+    // Nunca el número en la URL: solo la etiqueta del caso.
+    var ctaP = $('calc-cta-p'), ctaBase = ctaP.textContent, btn = $('calc-cta-btn');
+    function ctaDe(c) {
+      $('calc-cta-t').hidden = !c;
+      $('calc-cta-t').textContent = c ? c.t : '';
+      ctaP.textContent = c ? c.p + ' Son 3 minutos y 12 preguntas, gratis.' : ctaBase;
+      btn.href = '/?origen=' + btn.dataset.base + (c ? '-' + c.tag : '') + '#diagnostico';
+    }
     var medido = false, espera;
     function calcular() {
       var iva = caja.querySelector('input[name="calc-iva"]:checked'), ri = !!iva && iva.value === 'ri';
@@ -826,6 +841,7 @@ function gtag() { dataLayer.push(arguments); }
       $('calc-lleno').hidden = r.estado !== 'lleno';
       $('calc-error').hidden = r.estado !== 'error';
       if (r.estado === 'error') $('calc-error').textContent = r.error;
+      ctaDe(r.estado === 'lleno' ? r.cta : null);
       if (r.estado !== 'lleno') { $('calc-sr').textContent = r.estado === 'error' ? r.error : ''; return; }
       $('calc-res-t').textContent = r.t;
       $('calc-grande').textContent = r.grande;
@@ -837,7 +853,7 @@ function gtag() { dataLayer.push(arguments); }
         $('calc-sr').textContent = r.t + ' ' + r.grande + (r.unidad ? ' ' + r.unidad : '') + '.';
         if (!medido) {
           medido = true;
-          try { if (typeof gtag === 'function') gtag('event', 'calculadora_uso', { calculadora: caja.dataset.calc, iva: iva ? (ri ? 'ri' : 'mono') : 'no_aplica' }); } catch (e) {}
+          try { if (typeof gtag === 'function') gtag('event', 'calculadora_uso', { calculadora: caja.dataset.calc, caso: (r.cta && r.cta.tag) || '', iva: iva ? (ri ? 'ri' : 'mono') : 'no_aplica' }); } catch (e) {}
         }
       }, 1200);
     }

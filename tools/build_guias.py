@@ -421,6 +421,7 @@ CSS = TOKENS + """
   .calc-piso { font-size: var(--fs-sm); }
   .calc-cta { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid rgba(12,102,228,0.18); }
   .calc-cta p { font-size: var(--fs-sm); }
+  .calc-cta .calc-cta-t { font-size: var(--fs-lead); font-weight: 600; line-height: 1.35; color: var(--navy); margin-bottom: 4px; }
   .calc-cta .btn { margin-top: var(--s-3); }
   /* Desde tablet, campos a la izquierda y resultado a la derecha (21/09/2026, Manu no encontraba
      el resultado): el número cambia a la vista mientras se escribe. */
@@ -683,6 +684,7 @@ CALCULADORAS = {
       var filas = [h.B(h.P(mes)) + ' por mes'];
       if (v.ticket > 0) filas.push('unos ' + h.B(h.N(Math.ceil(dia / v.ticket))) + ' clientes por día');
       return { estado: 'lleno', t: 'Para no perder plata tenés que vender', grande: h.P(dia), unidad: 'por día', filas: filas,
+               cta: { t: '¿Hoy vendés ' + h.P(dia) + ' por día?', p: 'Si no estás seguro, el problema suele estar en los costos o en los precios. El diagnóstico te muestra cuál de los dos es.', tag: 'pe' },
                piso: 'Es el piso, no la meta: vendiendo eso no ganás nada. Tu ganancia y los impuestos, como Ingresos Brutos, van arriba de este número.' };
     }""",
     },
@@ -704,6 +706,7 @@ CALCULADORAS = {
       // Costo real por kilo = precio por kilo / rendimiento; costo = costo real por kilo / 1.000 × gramos
       var real = v.kilo / (v.rinde / 100), costo = real / 1000 * v.gramos, compra = v.gramos / (v.rinde / 100);
       return { estado: 'lleno', t: 'Ese ingrediente te cuesta', grande: h.P(costo), unidad: 'por plato',
+               cta: { t: '¿Tenés el costo de todos tus platos al día?', p: 'Con la inflación, un plato que ayer dejaba plata hoy puede hacerte perder. El diagnóstico te muestra si tus costos y tus precios están al día.', tag: 'costo' },
                filas: [h.B(h.P(real)) + ' el kilo limpio', 'Tenés que comprar ' + h.B(h.N(Math.round(compra)) + ' g') + ' por plato'],
                piso: 'Hacé la misma cuenta con cada ingrediente del plato y sumalos: ese es el costo del plato.' };
     }""",
@@ -726,7 +729,10 @@ CALCULADORAS = {
       if (fc >= 100) return { estado: 'error', error: 'El plato te cuesta lo mismo o más de lo que cobrás por él: perdés plata en cada uno. Revisá el precio o la receta.' };
       var filas = ['Te quedan ' + h.B(h.P(sin - v.costo)) + ' de cada plato para pagar sueldos, alquiler y el resto'];
       if (ri) filas.push('Precio sin IVA: ' + h.B(h.P(sin)));
-      return { estado: 'lleno', t: 'El food cost de ese plato es', grande: h.pct(fc), filas: filas,
+      var cta = fc > 35
+        ? { t: 'Ese plato se lleva ' + h.pct(fc) + ' en mercadería: está arriba de lo habitual.', p: 'Casi siempre son aumentos de proveedores que no pasaste al precio. El diagnóstico te muestra si pasa lo mismo en el resto del negocio.', tag: 'fc-alto' }
+        : { t: 'Ese plato está en ' + h.pct(fc) + '. ¿Y el resto de la carta?', p: 'Que un plato esté bien no quiere decir que el negocio gane. El diagnóstico revisa los cuatro eslabones de tu negocio.', tag: 'fc-ok' };
+      return { estado: 'lleno', t: 'El food cost de ese plato es', grande: h.pct(fc), filas: filas, cta: cta,
                piso: 'En gastronomía se toma como referencia entre 25 % y 35 %. Te sirve más fijar tu objetivo y mirar cómo se mueve mes a mes.' };
     }""",
     },
@@ -750,6 +756,7 @@ CALCULADORAS = {
       var filas = ['Te deja ' + h.B(h.P(sin - v.costo)) + ' por venta para pagar los gastos fijos'];
       if (ri) filas.push('Sin IVA: ' + h.B(h.P(sin)));
       return { estado: 'lleno', t: 'Con ese costo, el precio de carta es', grande: h.P(carta), filas: filas,
+               cta: { t: '¿Hoy cobrás ' + h.P(carta) + ' o menos?', p: 'Si cobrás menos, cada venta te deja menos de lo que pensás. El diagnóstico te muestra si tus precios cubren tus costos.', tag: 'precio' },
                piso: 'Es el punto de partida, no el precio final: comparalo con lo que cobra tu competencia y con cómo querés que te vean.' };
     }""",
     },
@@ -770,6 +777,7 @@ CALCULADORAS = {
       var sin = ri ? v.precio / 1.21 : v.precio, gan = sin - v.costo;
       if (gan <= 0) return { estado: 'error', error: 'Lo vendés a lo mismo o a menos de lo que te cuesta: en cada venta perdés ' + h.P(-gan) + '. Revisá el precio.' };
       return { estado: 'lleno', t: 'Tu margen es', grande: h.pct(gan / sin * 100),
+               cta: { t: 'Te quedan ' + h.P(gan) + ' por venta. ¿Te alcanza para pagar el mes?', p: 'El margen de un producto no te dice si el negocio gana. El diagnóstico te muestra por dónde se te escapa la plata.', tag: 'margen' },
                filas: ['Te quedan ' + h.B(h.P(gan)) + ' por venta', 'Markup: ' + h.B(h.pct(gan / v.costo * 100)) + ' (lo que le sumás al costo)'],
                piso: 'Hacé esta cuenta con los 10 productos que más vendés.' };
     }""",
@@ -794,7 +802,10 @@ CALCULADORAS = {
       var bruta = netas - v.cmv, res = bruta - v.gastos, cada = h.d1(Math.abs(res) / netas * 100);
       var filas = [(res >= 0 ? 'De cada $100 que vendiste te quedaron ' : 'De cada $100 que vendiste perdiste ') + h.B('$' + cada),
                    'Después de pagar la mercadería: ' + h.B(h.P(bruta))];
-      return { estado: 'lleno', t: res >= 0 ? 'El mes te dejó' : 'El mes te hizo perder', grande: h.P(Math.abs(res)), filas: filas,
+      var cta = res < 0
+        ? { t: '¿Sabés por dónde se te fue?', p: 'El diagnóstico te muestra dónde está la pérdida: en los costos, en los precios, en la caja o en cómo se decide.', tag: 'eerr-perdida' }
+        : { t: 'El mes te dejó ' + h.P(res) + '. ¿Es lo que esperabas?', p: 'Si sentís que vendés bien pero no te queda plata, el diagnóstico te muestra por dónde se escapa.', tag: 'eerr-ganancia' };
+      return { estado: 'lleno', t: res >= 0 ? 'El mes te dejó' : 'El mes te hizo perder', grande: h.P(Math.abs(res)), filas: filas, cta: cta,
                piso: 'Todavía faltan los intereses de préstamos y los impuestos, como Ingresos Brutos.' };
     }""",
     },
@@ -818,6 +829,7 @@ CALCULADORAS = {
         filas.push('Recuperás la inversión en unos ' + h.B(h.N(Math.round(v.inv / v.res))) + ' meses');
       }
       return { estado: 'lleno', t: 'Tu rentabilidad sobre ventas es', grande: h.pct(rs), filas: filas,
+               cta: { t: 'De cada $100 que vendés te quedan $' + h.d1(rs) + '. ¿Te alcanza?', p: 'El diagnóstico te muestra cuál de los cuatro eslabones de tu negocio es el que más te frena la ganancia.', tag: 'rentabilidad' },
                piso: 'La prueba simple: el negocio tiene que rendir bastante más que esa plata en un plazo fijo, porque tiene más riesgo y más trabajo.' };
     }""",
     },
@@ -838,8 +850,10 @@ CALCULADORAS = {
       // Saldo final = saldo inicial + entradas − salidas
       var fin = v.saldo + v.ent - v.sal, filas = ['Entran ' + h.B(h.P(v.ent)) + ' y salen ' + h.B(h.P(v.sal))];
       if (fin >= 0) return { estado: 'lleno', t: 'Terminás la semana con', grande: h.P(fin), filas: filas,
+               cta: { t: 'Esta semana llegás. ¿Y el mes que viene?', p: 'El diagnóstico te muestra si tu caja está ordenada o si vivís apagando incendios.', tag: 'caja-ok' },
                piso: 'Hacé la misma cuenta para las próximas semanas: así ves venir la semana corta antes de que llegue.' };
       return { estado: 'lleno', t: 'Esta semana te faltan', grande: h.P(-fin), filas: filas,
+               cta: { t: '¿Te pasa seguido?', p: 'Si la plata no te alcanza semana por medio, no es mala suerte: algo en la caja está mal armado. El diagnóstico te muestra qué es.', tag: 'caja-falta' },
                piso: 'Resolvelo ahora, no el día del pago: adelantá un cobro o hablá con el proveedor para correr un pago.' };
     }""",
     },
@@ -863,7 +877,10 @@ CALCULADORAS = {
       var stock = v.stock || 0, ac = v.caja + (v.cobrar || 0) + stock, ct = ac - v.deudas;
       var filas = ['Por cada $1 que debés tenés ' + h.B('$' + h.d2(ac / v.deudas))];
       if (stock > 0) filas.push('Sin contar el stock: ' + h.B('$' + h.d2((ac - stock) / v.deudas)));
-      return { estado: 'lleno', t: ct >= 0 ? 'Tu capital de trabajo es' : 'Tu capital de trabajo es negativo', grande: h.P(ct), filas: filas,
+      var cta = ct < 0
+        ? { t: 'Te faltan ' + h.P(-ct) + ' para cubrir lo que debés.', p: 'Anda mientras se vende bien. El diagnóstico te muestra qué tan expuesto está tu negocio si las ventas bajan.', tag: 'capital-negativo' }
+        : { t: 'Tenés ' + h.P(ct) + ' a favor. ¿Sabés cuánto te dura?', p: 'El diagnóstico te muestra si tu caja está ordenada o si esa plata ya tiene dueño.', tag: 'capital-ok' };
+      return { estado: 'lleno', t: ct >= 0 ? 'Tu capital de trabajo es' : 'Tu capital de trabajo es negativo', grande: h.P(ct), filas: filas, cta: cta,
                piso: ct >= 0 ? 'Antes de retirar o invertir, restá lo que vence en los próximos 30 días.'
                              : 'En gastronomía es común: se cobra rápido y a los proveedores se les paga a 30 días. Anda mientras se vende bien; si las ventas caen, no aparece la plata para pagar.' };
     }""",
@@ -920,8 +937,9 @@ def calc_html_de(clave, slug):
           </div>
           <p class="ec-sr" id="calc-sr" aria-live="polite"></p>
           <div class="calc-cta">
-            <p>{e(c.get('cta', CTA_CALC))}</p>
-            <a class="btn" href="/?origen=guia-{e(slug)}-calculadora#diagnostico">Hacer el diagnóstico <span aria-hidden="true">→</span></a>
+            <p class="calc-cta-t" id="calc-cta-t" hidden></p>
+            <p id="calc-cta-p">{e(c.get('cta', CTA_CALC))}</p>
+            <a class="btn" id="calc-cta-btn" href="/?origen=guia-{e(slug)}-calculadora#diagnostico" data-base="guia-{e(slug)}-calculadora">Hacer el diagnóstico <span aria-hidden="true">→</span></a>
           </div>
         </div>
       </section>
@@ -968,6 +986,16 @@ CALC_JS = r"""  <script>
       inputs.forEach(function (i) { v[i.id.slice(5)] = i.value.trim() === '' ? NaN : num(i.value); });
       return v;
     }
+    // El llamado al diagnóstico habla del número que la persona acaba de sacar, y el origen del lead
+    // lleva qué le dio (ej. guia-flujo-de-caja-calculadora-caja-falta): Manuel lo ve antes de la llamada.
+    // Nunca el número en la URL: solo la etiqueta del caso.
+    var ctaP = $('calc-cta-p'), ctaBase = ctaP.textContent, btn = $('calc-cta-btn');
+    function ctaDe(c) {
+      $('calc-cta-t').hidden = !c;
+      $('calc-cta-t').textContent = c ? c.t : '';
+      ctaP.textContent = c ? c.p + ' Son 3 minutos y 12 preguntas, gratis.' : ctaBase;
+      btn.href = '/?origen=' + btn.dataset.base + (c ? '-' + c.tag : '') + '#diagnostico';
+    }
     var medido = false, espera;
     function calcular() {
       var iva = caja.querySelector('input[name="calc-iva"]:checked'), ri = !!iva && iva.value === 'ri';
@@ -978,6 +1006,7 @@ CALC_JS = r"""  <script>
       $('calc-lleno').hidden = r.estado !== 'lleno';
       $('calc-error').hidden = r.estado !== 'error';
       if (r.estado === 'error') $('calc-error').textContent = r.error;
+      ctaDe(r.estado === 'lleno' ? r.cta : null);
       if (r.estado !== 'lleno') { $('calc-sr').textContent = r.estado === 'error' ? r.error : ''; return; }
       $('calc-res-t').textContent = r.t;
       $('calc-grande').textContent = r.grande;
@@ -989,7 +1018,7 @@ CALC_JS = r"""  <script>
         $('calc-sr').textContent = r.t + ' ' + r.grande + (r.unidad ? ' ' + r.unidad : '') + '.';
         if (!medido) {
           medido = true;
-          try { if (typeof gtag === 'function') gtag('event', 'calculadora_uso', { calculadora: caja.dataset.calc, iva: iva ? (ri ? 'ri' : 'mono') : 'no_aplica' }); } catch (e) {}
+          try { if (typeof gtag === 'function') gtag('event', 'calculadora_uso', { calculadora: caja.dataset.calc, caso: (r.cta && r.cta.tag) || '', iva: iva ? (ri ? 'ri' : 'mono') : 'no_aplica' }); } catch (e) {}
         }
       }, 1200);
     }
