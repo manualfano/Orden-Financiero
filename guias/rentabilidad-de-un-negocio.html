@@ -466,6 +466,15 @@ function gtag() { dataLayer.push(arguments); }
   .calc-cta { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid rgba(12,102,228,0.18); }
   .calc-cta p { font-size: var(--fs-sm); }
   .calc-cta .btn { margin-top: var(--s-3); }
+  /* Desde tablet, campos a la izquierda y resultado a la derecha (21/09/2026, Manu no encontraba
+     el resultado): el número cambia a la vista mientras se escribe. */
+  @media (min-width: 768px) {
+    .calc { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); }
+    .calc-res { display: flex; flex-direction: column; }
+    .calc-cta { margin-top: auto; }
+    .calc-grande { font-size: 36px; }
+    .calc-filas { flex-direction: column; }
+  }
   @media (max-width: 640px) {
     .calc-in, .calc-res { padding: var(--s-4); }
     .calc-campos { column-gap: var(--s-3); }

@@ -467,6 +467,15 @@ function gtag() { dataLayer.push(arguments); }
   .calc-cta { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid rgba(12,102,228,0.18); }
   .calc-cta p { font-size: var(--fs-sm); }
   .calc-cta .btn { margin-top: var(--s-3); }
+  /* Desde tablet, campos a la izquierda y resultado a la derecha (21/09/2026, Manu no encontraba
+     el resultado): el número cambia a la vista mientras se escribe. */
+  @media (min-width: 768px) {
+    .calc { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); }
+    .calc-res { display: flex; flex-direction: column; }
+    .calc-cta { margin-top: auto; }
+    .calc-grande { font-size: 36px; }
+    .calc-filas { flex-direction: column; }
+  }
   @media (max-width: 640px) {
     .calc-in, .calc-res { padding: var(--s-4); }
     .calc-campos { column-gap: var(--s-3); }
@@ -600,7 +609,7 @@ function gtag() { dataLayer.push(arguments); }
           <p class="ec-sr" id="calc-sr" aria-live="polite"></p>
           <div class="calc-cta">
             <p>¿No estás seguro de alguno de estos números? El diagnóstico te muestra en 3 minutos cuáles tenés claros y cuáles no. Son 12 preguntas, gratis.</p>
-            <a class="btn" href="/?origen=guia-punto-de-equilibrio-calculadora#diagnostico">Hacer el diagnóstico · 3 min <span aria-hidden="true">→</span></a>
+            <a class="btn" href="/?origen=guia-punto-de-equilibrio-calculadora#diagnostico">Hacer el diagnóstico <span aria-hidden="true">→</span></a>
           </div>
         </div>
       </section>
@@ -829,6 +838,20 @@ function gtag() { dataLayer.push(arguments); }
     [].slice.call(caja.querySelectorAll('input[name="calc-iva"]')).forEach(function (r) { r.addEventListener('change', calcular); });
     [].slice.call(caja.querySelectorAll('.calc-caja')).forEach(function (c) { c.addEventListener('click', function () { c.querySelector('input').focus(); }); });
     caja.querySelector('form').addEventListener('submit', function (e) { e.preventDefault(); });
+    // En celular el resultado queda debajo de los campos: la primera vez que aparece, al salir del
+    // campo, la página baja sola lo justo para mostrarlo (una sola vez, para no pelear con quien sigue escribiendo).
+    var mostrado = false;
+    [fijos, vari].forEach(function (i) {
+      i.addEventListener('change', function () {
+        if (mostrado || $('calc-lleno').hidden || window.innerWidth >= 768) return;
+        var res = caja.querySelector('.calc-res'), r = res.getBoundingClientRect();
+        if (r.top < window.innerHeight - 160) return;
+        mostrado = true;
+        var quieto = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // Solo lo justo para que asome el número grande abajo: el campo que sigue queda a la vista.
+        window.scrollTo({ top: window.scrollY + r.top - (window.innerHeight - 170), behavior: quieto ? 'auto' : 'smooth' });
+      });
+    });
     calcular();
   })();
   </script>
