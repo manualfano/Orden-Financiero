@@ -366,6 +366,83 @@ CSS = TOKENS + """
     .portada .bajada, .guia-cab .bajada { max-width: 860px; }
     .buscador { max-width: 700px; }
   }
+  /* Guías más accionables (21/09/2026, Manu: "tiene que scrollear mucho para llegar al CTA").
+     Cabecera más chica: en celular ocupaba casi toda la primera pantalla. Los minutos van en la
+     línea del autor; sin las pastillas y, en celular, sin la bajada (repite el título). */
+  .guia-cab .autor .min { white-space: nowrap; }
+  @media (max-width: 640px) {
+    .guia-cab { padding: var(--s-5) var(--s-4); margin-bottom: var(--s-5); }
+    .guia-cab .migas { margin-bottom: var(--s-3); }
+    .guia-cab .bajada { display: none; }
+    .guia-cab h1 { margin-bottom: 0; }
+    .guia-cab .autor { margin-top: var(--s-3); }
+  }
+  /* "Hacé esto mañana": 2 o 3 pasos concretos al cierre de un ejemplo. Caja blanca con borde,
+     para no confundirse con el resumen (gris con raya azul) ni con los llamados (celeste). */
+  .manana { border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-4) var(--s-5); margin: var(--s-5) 0; }
+  article .manana-t { display: flex; align-items: center; gap: var(--s-2); font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--marca); margin-bottom: var(--s-3); }
+  .manana-t svg { width: 16px; height: 16px; flex-shrink: 0; }
+  article .manana ol { list-style: none; padding: 0; margin: 0; counter-reset: paso; }
+  article .manana li { counter-increment: paso; position: relative; padding-left: 36px; color: var(--tinta); margin-bottom: var(--s-2); }
+  article .manana li:last-child { margin-bottom: 0; }
+  .manana li::before { content: counter(paso); position: absolute; left: 0; top: 1px; width: 24px; height: 24px; border-radius: 999px; background: var(--seleccion-bg); color: var(--marca); font-size: var(--fs-meta); font-weight: 600; display: flex; align-items: center; justify-content: center; }
+  /* Calculadora (CALCULADORAS): arriba de todo, apenas pasa el resumen. Campos como los de la
+     descarga (borde 0.28, letra de 17 px para que el celular no haga zoom); resultado en celeste. */
+  .calc { border: 1px solid var(--borde); border-radius: var(--r-lg); background: var(--w); margin-bottom: var(--s-6); overflow: hidden; scroll-margin-top: calc(76px + var(--s-4)); }
+  .calc-in { padding: var(--s-5); }
+  .calc .calc-t { font-size: var(--fs-h3); font-weight: 600; color: var(--navy); line-height: 1.3; margin: 0; }
+  .calc-sub { font-size: var(--fs-sm); color: var(--tinta-2); margin: 4px 0 var(--s-5); }
+  .calc-campos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-4) var(--s-5); border: 0; }
+  .calc-ancho { grid-column: 1 / -1; }
+  .calc-campo { min-width: 0; border: 0; }
+  .calc-campo label, .calc-campo legend { display: block; font-size: var(--fs-sm); font-weight: 600; color: var(--navy); line-height: 1.35; margin-bottom: 6px; }
+  .calc-opc { font-weight: 400; color: var(--tinta-3); }
+  .calc-caja { display: flex; align-items: center; min-height: 48px; padding: 0 var(--s-3); border: 1px solid rgba(11,18,14,0.28); border-radius: var(--r); background: var(--w); cursor: text; }
+  .calc-caja:focus-within { outline: 2px solid var(--marca); outline-offset: 1px; border-color: var(--marca); }
+  .calc-caja span { color: var(--tinta-3); font-weight: 600; white-space: nowrap; }
+  .calc-caja input { flex: 1; min-width: 0; height: 46px; border: 0; outline: 0; padding: 0 6px; font: inherit; font-size: 17px; color: var(--tinta); background: transparent; font-variant-numeric: tabular-nums; }
+  .calc-ayuda { font-size: var(--fs-meta); color: var(--tinta-3); line-height: 1.45; margin-top: 4px; }
+  .calc-seg { display: flex; gap: 4px; padding: 4px; background: var(--lienzo-2); border-radius: var(--r); }
+  .calc-seg label { flex: 1; margin: 0; }
+  .calc-seg input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .calc-seg span { display: flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 var(--s-2); border-radius: 6px; font-size: var(--fs-sm); font-weight: 600; color: var(--tinta-2); text-align: center; line-height: 1.2; cursor: pointer; transition: background var(--t-instante); }
+  .calc-seg input:checked + span { background: var(--w); color: var(--navy); box-shadow: 0 0 0 1px var(--borde); }
+  .calc-seg input:focus-visible + span { outline: 2px solid var(--marca); outline-offset: 1px; }
+  .calc-res { background: var(--seleccion-bg); padding: var(--s-5); }
+  .calc-res p { color: var(--tinta); }
+  .calc-vacio { font-size: var(--fs-sm); color: var(--tinta-2) !important; }
+  .calc-error { font-size: var(--fs-sm); font-weight: 600; color: var(--riesgo) !important; }
+  .calc-res-t { font-size: var(--fs-sm); color: var(--tinta-2) !important; }
+  .calc-grande { font-size: clamp(30px, 7vw, 40px); font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; color: var(--navy) !important; font-variant-numeric: tabular-nums; margin: 4px 0 var(--s-3); }
+  .calc-grande .calc-u { font-size: var(--fs-lead); font-weight: 600; letter-spacing: 0; color: var(--tinta-2); }
+  .calc-filas { list-style: none; padding: 0; margin: 0 0 var(--s-3); display: flex; flex-wrap: wrap; gap: 4px var(--s-5); }
+  .calc-filas li { font-size: var(--fs-sm); color: var(--tinta-2); margin: 0; }
+  .calc-filas strong { font-variant-numeric: tabular-nums; color: var(--navy); }
+  .calc-piso { font-size: var(--fs-sm); }
+  .calc-cta { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid rgba(12,102,228,0.18); }
+  .calc-cta p { font-size: var(--fs-sm); }
+  .calc-cta .btn { margin-top: var(--s-3); }
+  @media (max-width: 640px) {
+    .calc-in, .calc-res { padding: var(--s-4); }
+    .calc-campos { column-gap: var(--s-3); }
+    .calc-caja { padding: 0 var(--s-2); }
+  }
+  /* Barra fija abajo en celular y tablet: aparece al pasar la cabecera y se esconde cuando ya
+     se ve otro llamado al diagnóstico. Mientras está, el botón de la barra de arriba se apaga
+     para que no haya dos botones iguales en pantalla. */
+  .barra-dx { display: none; }
+  @media (max-width: 900px) {
+    .barra-dx { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 90; align-items: center; justify-content: space-between; gap: var(--s-3); padding: var(--s-3) var(--s-4) calc(var(--s-3) + env(safe-area-inset-bottom)); background: var(--navy); border-top: 1px solid var(--w-18); transform: translateY(110%); transition: transform 200ms ease; }
+    .barra-dx.on { transform: none; }
+    .barra-dx p { display: flex; flex-direction: column; min-width: 0; line-height: 1.3; }
+    .barra-dx strong { color: var(--w); font-size: var(--fs-sm); }
+    .barra-dx span { color: var(--secondary-dark); font-size: var(--fs-meta); }
+    .barra-dx .btn { margin: 0; flex-shrink: 0; white-space: nowrap; }
+    body:has(.barra-dx) footer { padding-bottom: calc(var(--s-6) + 76px); }
+    .head-cta { transition: opacity var(--t-instante); }
+    body.barra-visible .head-cta { opacity: 0; pointer-events: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .barra-dx { transition: none; } }
 """
 
 
@@ -537,6 +614,181 @@ def formula_html(fuente):
 
 def con_formulas(cuerpo):
     return re.sub(r'<formula>(.*?)</formula>', lambda m: formula_html(m.group(1)), cuerpo, flags=re.S)
+
+
+# "Hacé esto mañana" (21/09/2026): pasos concretos al cierre de un ejemplo. En la fuente:
+#   <manana>
+#   Primer paso (puede llevar <strong> o <a>)
+#   Segundo paso
+#   </manana>
+# Cada línea es un paso. Máximo 3: si hacen falta más, la guía está pidiendo demasiado para mañana.
+MANANA_ICONO = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" '
+                'stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>')
+
+
+def manana_html(fuente):
+    pasos = [x.strip() for x in fuente.strip().splitlines() if x.strip()]
+    assert 1 <= len(pasos) <= 3, f'"Hacé esto mañana" con {len(pasos)} pasos: van de 1 a 3'
+    return (f'<aside class="manana"><p class="manana-t">{MANANA_ICONO}Hacé esto mañana</p>'
+            f'<ol>{"".join(f"<li>{p}</li>" for p in pasos)}</ol></aside>')
+
+
+def con_manana(cuerpo):
+    return re.sub(r'<manana>(.*?)</manana>', lambda m: manana_html(m.group(1)), cuerpo, flags=re.S)
+
+
+# Calculadoras dentro de la guía (21/09/2026). Una guía la activa con "calculadora": "<clave>" en su
+# META y va justo después del resumen, en la segunda pantalla del celular. El resultado usa las mismas
+# fórmulas de la guía; el botón lleva al diagnóstico con origen guia-<slug>-calculadora.
+CALC_PE = """      <section class="calc" id="calculadora" aria-labelledby="calc-t">
+        <div class="calc-in">
+          <h2 class="calc-t" id="calc-t">Calculá tu punto de equilibrio</h2>
+          <p class="calc-sub">Con los números de tu último mes. No se guarda ni se envía nada.</p>
+          <form class="calc-campos" novalidate>
+            <div class="calc-campo calc-ancho">
+              <label for="calc-fijos">Gastos fijos del mes</label>
+              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-fijos" type="text" inputmode="numeric" autocomplete="off" placeholder="6.000.000" aria-describedby="calc-fijos-a"></div>
+              <p class="calc-ayuda" id="calc-fijos-a">Alquiler, sueldos con aguinaldo, servicios, contador, intereses de préstamos y tu propio sueldo.</p>
+            </div>
+            <div class="calc-campo calc-ancho">
+              <label for="calc-var">De cada $100 que vendés, ¿cuánto se te va en mercadería y envases?</label>
+              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-var" type="text" inputmode="decimal" autocomplete="off" placeholder="35" maxlength="5" aria-describedby="calc-var-a"><span aria-hidden="true">de cada $100</span></div>
+              <p class="calc-ayuda" id="calc-var-a">Si no lo sabés, en la guía de <a href="/guias/food-cost">food cost</a> ves cómo sacarlo.</p>
+            </div>
+            <div class="calc-campo">
+              <label for="calc-dias">Días que abrís por mes</label>
+              <div class="calc-caja"><input id="calc-dias" type="text" inputmode="numeric" autocomplete="off" value="26" maxlength="2"><span aria-hidden="true">días</span></div>
+            </div>
+            <div class="calc-campo">
+              <label for="calc-ticket">Gasto por cliente <span class="calc-opc">(opcional)</span></label>
+              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-ticket" type="text" inputmode="numeric" autocomplete="off" placeholder="20.000" aria-describedby="calc-ticket-a"></div>
+              <p class="calc-ayuda" id="calc-ticket-a">En promedio, lo que ves en la caja.</p>
+            </div>
+            <fieldset class="calc-campo calc-ancho">
+              <legend>¿Cómo facturás?</legend>
+              <div class="calc-seg">
+                <label><input type="radio" name="calc-iva" value="mono" checked><span>Monotributo</span></label>
+                <label><input type="radio" name="calc-iva" value="ri"><span>Responsable inscripto</span></label>
+              </div>
+              <p class="calc-ayuda" id="calc-iva-a" hidden>Poné los gastos sin IVA. El resultado ya te lo da con IVA, como lo ves en la caja.</p>
+            </fieldset>
+          </form>
+        </div>
+        <div class="calc-res">
+          <p class="calc-vacio" id="calc-vacio">Completá tus gastos fijos y cuánto se te va en mercadería y acá aparece cuánto tenés que vender.</p>
+          <p class="calc-error" id="calc-error" hidden></p>
+          <div id="calc-lleno" hidden>
+            <p class="calc-res-t">Para no perder plata tenés que vender</p>
+            <p class="calc-grande"><span id="calc-dia"></span> <span class="calc-u">por día</span></p>
+            <ul class="calc-filas">
+              <li><strong id="calc-mes"></strong> por mes</li>
+              <li id="calc-cli-li" hidden>unos <strong id="calc-cli"></strong> clientes por día</li>
+            </ul>
+            <p class="calc-piso">Es el piso, no la meta: vendiendo eso no ganás nada. Tu ganancia y los impuestos, como Ingresos Brutos, van arriba de este número.</p>
+          </div>
+          <p class="ec-sr" id="calc-sr" aria-live="polite"></p>
+          <div class="calc-cta">
+            <p>¿No estás seguro de alguno de estos números? El diagnóstico te muestra en 3 minutos cuáles tenés claros y cuáles no. Son 12 preguntas, gratis.</p>
+            <a class="btn" href="/?origen=guia-{slug}-calculadora#diagnostico">Hacer el diagnóstico · 3 min <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </section>
+"""
+
+CALC_PE_JS = r"""  <script>
+  (function () {
+    var caja = document.getElementById('calculadora');
+    if (!caja) return;
+    var $ = function (id) { return document.getElementById(id); };
+    var fijos = $('calc-fijos'), vari = $('calc-var'), dias = $('calc-dias'), ticket = $('calc-ticket');
+    var fmt = new Intl.NumberFormat('es-AR', { maximumFractionDigits: 0 });
+    var pesos = function (x) { return '$' + fmt.format(x); };
+    function num(v) {
+      var d = String(v || '').replace(/\./g, '').replace(',', '.').replace(/[^\d.]/g, '');
+      return d ? parseFloat(d) : NaN;
+    }
+    // Puntos de miles mientras se escribe, sin que el cursor salte al final
+    function miles(input) {
+      var v = input.value, pos = input.selectionStart || 0;
+      var antes = v.slice(0, pos).replace(/\D/g, '').length;
+      var d = v.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 12);
+      var nuevo = d ? fmt.format(+d) : '';
+      input.value = nuevo;
+      var i = 0, c = 0;
+      while (i < nuevo.length && c < antes) { if (/\d/.test(nuevo.charAt(i))) c++; i++; }
+      try { input.setSelectionRange(i, i); } catch (e) {}
+    }
+    function redondo(x) { return x >= 100000 ? Math.round(x / 1000) * 1000 : Math.round(x); }
+    var medido = false, espera;
+    function mostrar(estado, texto) {
+      $('calc-vacio').hidden = estado !== 'vacio';
+      $('calc-lleno').hidden = estado !== 'lleno';
+      $('calc-error').hidden = estado !== 'error';
+      if (estado === 'error') $('calc-error').textContent = texto;
+    }
+    function calcular() {
+      var ri = caja.querySelector('input[name="calc-iva"]:checked').value === 'ri';
+      $('calc-iva-a').hidden = !ri;
+      var F = num(fijos.value), V = num(vari.value), D = num(dias.value), T = num(ticket.value);
+      clearTimeout(espera);
+      if (!(F > 0) || vari.value.trim() === '' || isNaN(V)) { mostrar('vacio'); $('calc-sr').textContent = ''; return; }
+      if (V >= 100) { mostrar('error', 'Si la mercadería se lleva $100 o más de cada $100 que vendés, no hay venta que alcance: cada venta te hace perder. Primero revisá tus precios.'); return; }
+      if (!(D >= 1 && D <= 31)) { mostrar('error', 'Poné cuántos días abrís por mes: un número entre 1 y 31.'); return; }
+      // Punto de equilibrio en pesos = costos fijos / margen de contribución %. Con IVA si es responsable inscripto.
+      var mes = F / (1 - V / 100) * (ri ? 1.21 : 1);
+      var dia = mes / D;
+      $('calc-dia').textContent = pesos(redondo(dia));
+      $('calc-mes').textContent = pesos(redondo(mes));
+      var conTicket = T > 0;
+      $('calc-cli-li').hidden = !conTicket;
+      if (conTicket) $('calc-cli').textContent = fmt.format(Math.ceil(dia / T));
+      mostrar('lleno');
+      espera = setTimeout(function () {
+        $('calc-sr').textContent = 'Para no perder plata tenés que vender ' + pesos(redondo(dia)) + ' por día, ' + pesos(redondo(mes)) + ' por mes.';
+        if (!medido) {
+          medido = true;
+          try { if (typeof gtag === 'function') gtag('event', 'calculadora_uso', { calculadora: 'punto_equilibrio', iva: ri ? 'ri' : 'mono', con_ticket: conTicket }); } catch (e) {}
+        }
+      }, 1200);
+    }
+    [fijos, ticket].forEach(function (i) { i.addEventListener('input', function () { miles(i); calcular(); }); });
+    vari.addEventListener('input', function () { vari.value = vari.value.replace(/[^\d,]/g, ''); calcular(); });
+    dias.addEventListener('input', function () { dias.value = dias.value.replace(/\D/g, ''); calcular(); });
+    [].slice.call(caja.querySelectorAll('input[name="calc-iva"]')).forEach(function (r) { r.addEventListener('change', calcular); });
+    [].slice.call(caja.querySelectorAll('.calc-caja')).forEach(function (c) { c.addEventListener('click', function () { c.querySelector('input').focus(); }); });
+    caja.querySelector('form').addEventListener('submit', function (e) { e.preventDefault(); });
+    calcular();
+  })();
+  </script>"""
+
+CALCULADORAS = {'punto-de-equilibrio': (CALC_PE, CALC_PE_JS)}
+
+
+# Barra fija abajo (celular y tablet). Se muestra al pasar la cabecera de la guía y se esconde
+# mientras se ve la calculadora u otro llamado al diagnóstico (llamado del medio o banda final).
+BARRA_JS = """  <script>
+  (function () {
+    var barra = document.getElementById('barra-dx'), cab = document.querySelector('.guia-cab');
+    if (!barra || !cab || !('IntersectionObserver' in window)) return;
+    var pasoCab = false, otros = new Set();
+    function pintar() {
+      var on = pasoCab && otros.size === 0;
+      barra.classList.toggle('on', on);
+      document.body.classList.toggle('barra-visible', on);
+      barra.setAttribute('aria-hidden', on ? 'false' : 'true');
+      barra.querySelector('a').tabIndex = on ? 0 : -1;
+    }
+    new IntersectionObserver(function (e) {
+      pasoCab = !e[0].isIntersecting && e[0].boundingClientRect.top < 0; pintar();
+    }).observe(cab);
+    var obs = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) otros.add(e.target); else otros.delete(e.target); });
+      pintar();
+    });
+    [].slice.call(document.querySelectorAll('.calc, .cta-medio, main .cta')).forEach(function (el) { obs.observe(el); });
+    pintar();
+  })();
+  </script>"""
 
 
 def minutos(g):
@@ -877,13 +1129,38 @@ def leer_guias():
         texto = f.read_text(encoding='utf-8')
         meta = json.loads(re.match(r'<!--META\s*(\{.*?\})\s*-->', texto, re.S).group(1))
         meta['slug'] = f.stem
-        meta['cuerpo'] = con_formulas(texto.split('-->', 1)[1].strip())
+        meta['cuerpo'] = con_manana(con_formulas(texto.split('-->', 1)[1].strip()))
         guias.append(meta)
     guias.sort(key=lambda g: g['orden'])
     return guias
 
 
-def pagina(*, title, description, path, og_type, ld, cuerpo, cta_origen, cta_general=False, main_clase='', og_image=None, view_content=None):
+def cta_final(origen, general=False):
+    """Banda azul del diagnóstico. En las guías va antes de las preguntas frecuentes (21/09/2026):
+    al fondo de la página, después de la FAQ y de "Seguí leyendo", casi nadie llegaba."""
+    # La oferta es gastronomica (decision del dueño, 14/09): las guias generales lo dicen en el cierre.
+    if general:
+        t = '¿Tenés un negocio gastronómico?'
+        p = 'En 3 minutos sabés por dónde se le escapa la plata: 12 preguntas gratis y el puntaje de los cuatro eslabones al instante.'
+    else:
+        t = '¿Por dónde se le escapa la plata a tu negocio?'
+        p = 'Hacé el diagnóstico gratis: 12 preguntas, 3 minutos y el puntaje de los cuatro eslabones al instante.'
+    return f"""  <aside class="cta">
+    <p class="cta-t">{t}</p>
+    <p>{p}</p>
+    <a class="btn" href="/?origen={origen}#diagnostico">Hacer el diagnóstico · 3 min <span aria-hidden="true">→</span></a>
+  </aside>
+"""
+
+
+def barra_html(slug):
+    return (f'<div class="barra-dx" id="barra-dx" aria-hidden="true"><p><strong>Diagnóstico gratis</strong>'
+            f'<span>12 preguntas · 3 min</span></p>'
+            f'<a class="btn" href="/?origen=guia-{slug}-barra#diagnostico" tabindex="-1">Hacerlo ahora <span aria-hidden="true">→</span></a></div>\n'
+            + BARRA_JS + '\n')
+
+
+def pagina(*, title, description, path, og_type, ld, cuerpo, cta_origen, cta_general=False, main_clase='', og_image=None, view_content=None, cta_abajo=True, barra=''):
     url = BASE + path
     e = html.escape
     og = BASE + (og_image or '/og-image.png')
@@ -892,13 +1169,7 @@ def pagina(*, title, description, path, og_type, ld, cuerpo, cta_origen, cta_gen
         pixel += f"\n<script>if (typeof fbq === 'function') fbq('track', 'ViewContent', {{ content_name: '{view_content}' }});</script>"
     main_attr = f' class="{main_clase}"' if main_clase else ''
     guias_actual = ' aria-current="page"' if path == '/guias' else ' aria-current="true"'
-    # La oferta es gastronomica (decision del dueño, 14/09): las guias generales lo dicen en el cierre.
-    if cta_general:
-        cta_t = '¿Tenés un negocio gastronómico?'
-        cta_p = 'En 3 minutos sabés por dónde se le escapa la plata: 12 preguntas gratis y el puntaje de los cuatro eslabones al instante.'
-    else:
-        cta_t = '¿Por dónde se le escapa la plata a tu negocio?'
-        cta_p = 'Hacé el diagnóstico gratis: 12 preguntas, 3 minutos y el puntaje de los cuatro eslabones al instante.'
+    cta = cta_final(cta_origen, cta_general) if cta_abajo else ''
     return f"""<!DOCTYPE html>
 <html lang="es-AR">
 <head>
@@ -980,12 +1251,8 @@ def pagina(*, title, description, path, og_type, ld, cuerpo, cta_origen, cta_gen
 </header>
 <main{main_attr}>
 {cuerpo}
-  <aside class="cta">
-    <p class="cta-t">{cta_t}</p>
-    <p>{cta_p}</p>
-    <a class="btn" href="/?origen={cta_origen}#diagnostico">Hacer el diagnóstico · 3 min <span aria-hidden="true">→</span></a>
-  </aside>
-</main>
+{cta}</main>
+{barra}
 <footer>
   <div class="foot-in">
     <nav aria-label="Pie">
@@ -1073,24 +1340,29 @@ def main():
                 f'    <h3>{html.escape(x["q"])}</h3>\n    <p>{html.escape(x["a"])}</p>\n'
                 + (f'    {formula_html(x["formula"])}\n' if x.get('formula') else '') for x in faq)
         cuerpo_guia, descarga_js = con_descarga(g)
-        cuerpo_art, toc = con_ids(cuerpo_guia + faq_html)
+        # La banda del diagnóstico va antes de las preguntas frecuentes (o al final del artículo si no hay).
+        banda = '\n' + cta_final('guia-' + g['slug'], g.get('cta_general', False)).replace('\n  ', '\n    ')
+        cuerpo_art, toc = con_ids(cuerpo_guia + banda + faq_html)
         toc_html = ''.join(f'<li><a href="#{i}">{html.escape(t)}</a></li>' for i, t in toc)
         resumen = ''.join(f'<li>{html.escape(x)}</li>' for x in g.get('resumen', []))
         assert resumen, f"{g['slug']}: falta el resumen"
-        etiquetas = ''.join(f'<span>{x}</span>' for x in incluye(g))
+        calc_html, calc_js = '', ''
+        if g.get('calculadora'):
+            assert g['calculadora'] in CALCULADORAS, f"{g['slug']}: calculadora desconocida {g['calculadora']}"
+            calc_html, calc_js = CALCULADORAS[g['calculadora']]
+            calc_html, calc_js = calc_html.replace('{slug}', g['slug']), '\n' + calc_js
         cuerpo = f"""  <section class="guia-cab">
     {CIRCULOS}
 {migas(items)}
     <p class="eyebrow">Guía · {html.escape(problema_de[g['slug']]['corto'])}</p>
     <h1>{html.escape(g['h1'])}</h1>
     <p class="bajada">{html.escape(g['description'])}</p>
-    <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · Actualizada el {fecha_larga(g['actualizada'])}</p>
-    <div class="meta">{etiquetas}<span>{minutos(g)} min de lectura</span></div>
+    <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · <span class="min">{minutos(g)} min de lectura</span> · Actualizada el {fecha_larga(g['actualizada'])}</p>
   </section>
   <div class="guia-cuerpo">
     <div class="guia-principal">
       <aside class="resumen"><p>Lo más importante</p><ul>{resumen}</ul></aside>
-      <details class="indice-movil"><summary>En esta guía</summary><ol>{toc_html}</ol></details>
+{calc_html}      <details class="indice-movil"><summary>En esta guía</summary><ol>{toc_html}</ol></details>
       <article>
 {cuerpo_art}
       </article>
@@ -1098,7 +1370,7 @@ def main():
     </div>
     <nav class="indice-guia" aria-label="En esta guía"><p>En esta guía</p><ol>{toc_html}</ol></nav>
   </div>
-{SCROLLSPY}{descarga_js}"""
+{SCROLLSPY}{descarga_js}{calc_js}"""
         ld = {"@context": "https://schema.org", "@graph": [
             {"@type": "Article", "@id": BASE + path + "#article", "headline": g['h1'], "description": g['description'],
              "image": BASE + f"/guias/og/{g['slug']}.png", "inLanguage": "es-AR", "datePublished": g['publicada'],
@@ -1115,7 +1387,7 @@ def main():
             title=g['title'], description=g['description'], path=path,
             og_type='article', ld=ld, cuerpo=cuerpo, cta_origen='guia-' + g['slug'], main_clase='guia',
             og_image=f"/guias/og/{g['slug']}.png", view_content=VIEW_CONTENT.get(g['slug']),
-            cta_general=g.get('cta_general', False)), encoding='utf-8', newline='\n')
+            cta_abajo=False, barra=barra_html(g['slug'])), encoding='utf-8', newline='\n')
 
     # Indice /guias
     items = [("Inicio", "/"), ("Guías", None)]
