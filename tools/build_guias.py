@@ -366,6 +366,152 @@ CSS = TOKENS + """
     .portada .bajada, .guia-cab .bajada { max-width: 860px; }
     .buscador { max-width: 700px; }
   }
+  /* Guías más accionables (21/09/2026, Manu: "tiene que scrollear mucho para llegar al CTA").
+     Cabecera más chica: en celular ocupaba casi toda la primera pantalla. Los minutos van en la
+     línea del autor; sin las pastillas y, en celular, sin la bajada (repite el título). */
+  .guia-cab .autor .min { white-space: nowrap; }
+  @media (max-width: 640px) {
+    .guia-cab { padding: var(--s-5) var(--s-4); margin-bottom: var(--s-5); }
+    .guia-cab .migas { margin-bottom: var(--s-3); }
+    .guia-cab .bajada { display: none; }
+    .guia-cab h1 { margin-bottom: 0; }
+    .guia-cab .autor { margin-top: var(--s-3); }
+  }
+  /* "Hacé esto mañana": 2 o 3 pasos concretos al cierre de un ejemplo. Caja blanca con borde,
+     para no confundirse con el resumen (gris con raya azul) ni con los llamados (celeste). */
+  .manana { border: 1px solid var(--borde); border-radius: var(--r-lg); padding: var(--s-4) var(--s-5); margin: var(--s-5) 0; }
+  article .manana-t { display: flex; align-items: center; gap: var(--s-2); font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--marca); margin-bottom: var(--s-3); }
+  .manana-t svg { width: 16px; height: 16px; flex-shrink: 0; }
+  article .manana ol { list-style: none; padding: 0; margin: 0; counter-reset: paso; }
+  article .manana li { counter-increment: paso; position: relative; padding-left: 36px; color: var(--tinta); margin-bottom: var(--s-2); }
+  article .manana li:last-child { margin-bottom: 0; }
+  .manana li::before { content: counter(paso); position: absolute; left: 0; top: 1px; width: 24px; height: 24px; border-radius: 999px; background: var(--seleccion-bg); color: var(--marca); font-size: var(--fs-meta); font-weight: 600; display: flex; align-items: center; justify-content: center; }
+  /* Calculadora (CALCULADORAS): arriba de todo, apenas pasa el resumen. Campos como los de la
+     descarga (borde 0.28, letra de 17 px para que el celular no haga zoom); resultado en celeste. */
+  .calc { border: 1px solid var(--borde); border-radius: var(--r-lg); background: var(--w); margin-bottom: var(--s-6); overflow: hidden; scroll-margin-top: calc(76px + var(--s-4)); }
+  .calc-in { padding: var(--s-5); }
+  .calc .calc-t { font-size: var(--fs-h3); font-weight: 600; color: var(--navy); line-height: 1.3; margin: 0; }
+  .calc-sub { font-size: var(--fs-sm); color: var(--tinta-2); margin: 4px 0 var(--s-5); }
+  .calc-campos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-4) var(--s-5); border: 0; }
+  .calc-ancho { grid-column: 1 / -1; }
+  .calc-campo { min-width: 0; border: 0; }
+  .calc-campo label, .calc-campo legend { display: block; font-size: var(--fs-sm); font-weight: 600; color: var(--navy); line-height: 1.35; margin-bottom: 6px; }
+  .calc-opc { font-weight: 400; color: var(--tinta-3); }
+  .calc-caja { display: flex; align-items: center; min-height: 48px; padding: 0 var(--s-3); border: 1px solid rgba(11,18,14,0.28); border-radius: var(--r); background: var(--w); cursor: text; }
+  .calc-caja:focus-within { outline: 2px solid var(--marca); outline-offset: 1px; border-color: var(--marca); }
+  .calc-caja span { color: var(--tinta-3); font-weight: 600; white-space: nowrap; }
+  .calc-caja input { flex: 1; min-width: 0; height: 46px; border: 0; outline: 0; padding: 0 6px; font: inherit; font-size: 17px; color: var(--tinta); background: transparent; font-variant-numeric: tabular-nums; }
+  .calc-ayuda { font-size: var(--fs-meta); color: var(--tinta-3); line-height: 1.45; margin-top: 4px; }
+  .calc-seg { display: flex; gap: 4px; padding: 4px; background: var(--lienzo-2); border-radius: var(--r); }
+  .calc-seg label { flex: 1; margin: 0; }
+  .calc-seg input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .calc-seg span { display: flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 var(--s-2); border-radius: 6px; font-size: var(--fs-sm); font-weight: 600; color: var(--tinta-2); text-align: center; line-height: 1.2; cursor: pointer; transition: background var(--t-instante); }
+  .calc-seg input:checked + span { background: var(--w); color: var(--navy); box-shadow: 0 0 0 1px var(--borde); }
+  .calc-seg input:focus-visible + span { outline: 2px solid var(--marca); outline-offset: 1px; }
+  .calc-res { background: var(--seleccion-bg); padding: var(--s-5); }
+  .calc-res p { color: var(--tinta); }
+  .calc-vacio { font-size: var(--fs-sm); color: var(--tinta-2) !important; }
+  .calc-error { font-size: var(--fs-sm); font-weight: 600; color: var(--riesgo) !important; }
+  .calc-res-t { font-size: var(--fs-sm); color: var(--tinta-2) !important; }
+  .calc-grande { font-size: clamp(30px, 7vw, 40px); font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; color: var(--navy) !important; font-variant-numeric: tabular-nums; margin: 4px 0 var(--s-3); }
+  .calc-grande .calc-u { font-size: var(--fs-lead); font-weight: 600; letter-spacing: 0; color: var(--tinta-2); }
+  .calc-filas { list-style: none; padding: 0; margin: 0 0 var(--s-3); display: flex; flex-wrap: wrap; gap: 4px var(--s-5); }
+  .calc-filas li { font-size: var(--fs-sm); color: var(--tinta-2); margin: 0; }
+  .calc-filas strong { font-variant-numeric: tabular-nums; color: var(--navy); }
+  .calc-piso { font-size: var(--fs-sm); }
+  .calc-cta { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid rgba(12,102,228,0.18); }
+  .calc-cta p { font-size: var(--fs-sm); }
+  .calc-cta .calc-cta-t { font-size: var(--fs-lead); font-weight: 600; line-height: 1.35; color: var(--navy); margin-bottom: 4px; }
+  /* Preguntas frecuentes desplegables: una fila por pregunta, flecha a la derecha que gira al abrir */
+  .faq { border-top: 1px solid var(--borde); margin-top: var(--s-3); }
+  .faq details { border-bottom: 1px solid var(--borde); }
+  .faq summary { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); min-height: 56px; padding: var(--s-3) 0; cursor: pointer; list-style: none; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary h3 { margin: 0; font-size: var(--fs-base); line-height: 1.4; transition: color var(--t-instante); }
+  .faq summary:hover h3 { color: var(--marca); }
+  .faq summary:focus-visible { outline: 2px solid var(--marca); outline-offset: 2px; border-radius: 4px; }
+  .faq .chevron { width: 20px; height: 20px; flex-shrink: 0; color: var(--tinta-3); transition: transform 200ms ease; }
+  .faq details[open] .chevron { transform: rotate(180deg); color: var(--marca); }
+  .faq-r { padding: 0 var(--s-6) var(--s-4) 0; }
+  .faq-r p:last-child { margin-bottom: 0; }
+  @media (prefers-reduced-motion: reduce) { .faq .chevron { transition: none; } }
+  /* Ejemplo precargado: aviso gris arriba de los campos y chip en el resultado */
+  .calc-ej { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--s-3); margin: calc(-1 * var(--s-3)) 0 var(--s-4); padding: 4px var(--s-3); background: var(--lienzo); border-radius: var(--r); font-size: var(--fs-sm); color: var(--tinta-2); }
+  .calc-ej[hidden], .calc-chip[hidden] { display: none; }
+  .calc-ej strong { color: var(--tinta); }
+  .calc-ej-btn { min-height: 36px; padding: 0; border: 0; background: none; font: inherit; font-weight: 600; color: var(--marca); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .calc-res .calc-chip { display: inline-block; margin-bottom: var(--s-2); padding: 2px 10px; border-radius: 999px; background: var(--w); font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--marca); }
+  /* Dibujos del resultado, sobre tarjeta blanca. Costo en gris, lo que queda en azul marca, pérdida en rojo. */
+  .calc-viz { margin: 0 0 var(--s-4); padding: var(--s-3) var(--s-4); background: var(--w); border-radius: var(--r); }
+  .calc-res .vz-titulo { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tinta-3); margin-bottom: var(--s-2); }
+  .vz-barra { display: flex; height: 14px; border-radius: 999px; overflow: hidden; background: var(--lienzo-2); }
+  .vz-barra i { display: block; height: 100%; }
+  .c-costo { background: var(--secondary-dark); }
+  .c-queda { background: var(--marca); }
+  .c-base { background: var(--navy); }
+  .c-suma { background: #7DB1F4; }
+  .c-neg { background: var(--riesgo); }
+  .vz-refpista { position: relative; height: 6px; margin-top: 3px; }
+  .vz-ref { position: absolute; top: 0; height: 4px; border-radius: 2px; background: var(--navy); }
+  .calc-res ul.vz-ley { list-style: none; padding: 0; margin: var(--s-2) 0 0; display: flex; flex-wrap: wrap; gap: 2px var(--s-4); }
+  .calc-res .vz-ley li { display: flex; align-items: center; gap: 6px; margin: 0; font-size: var(--fs-sm); color: var(--tinta-2); }
+  .vz-ley li i { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+  .vz-ley li i.vz-guion { height: 0; border-radius: 0; border-top: 2px dashed var(--tinta-3); }
+  .vz-ley strong { color: var(--navy); font-variant-numeric: tabular-nums; }
+  .calc-res .vz-nota { font-size: var(--fs-meta); color: var(--tinta-3); margin-top: 4px; }
+  .vz-cas { display: grid; gap: var(--s-2); }
+  .vz-f { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--s-3); row-gap: 3px; align-items: baseline; }
+  .vz-t { font-size: var(--fs-sm); color: var(--tinta-2); line-height: 1.3; }
+  .vz-n { font-size: var(--fs-sm); font-weight: 600; color: var(--navy); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .vz-pista { grid-column: 1 / -1; position: relative; height: 10px; border-radius: 3px; background: var(--lienzo-2); }
+  .vz-pista i { position: absolute; top: 0; bottom: 0; border-radius: 3px; }
+  .vz-cero { position: absolute; top: -3px; bottom: -3px; width: 2px; margin-left: -1px; background: var(--tinta-2); }
+  .vz-tot { padding-top: var(--s-2); border-top: 1px solid var(--borde); }
+  .vz-tot .vz-t { font-weight: 600; color: var(--navy); }
+  .vz-rojo .vz-n, .vz-rojo .vz-t { color: var(--riesgo); }
+  .vz-pe { display: block; width: 100%; height: auto; font-family: 'Inter', system-ui, sans-serif; overflow: visible; }
+  .vz-pe line { fill: none; }
+  .vz-pe .l-eje { stroke: var(--tinta-3); stroke-width: 1; }
+  .vz-pe .l-fijos { stroke: var(--tinta-3); stroke-width: 1.5; stroke-dasharray: 4 4; }
+  .vz-pe .l-cost { stroke: var(--navy); stroke-width: 2.5; }
+  .vz-pe .l-ing { stroke: var(--marca); stroke-width: 2.5; }
+  .vz-pe .l-guia { stroke: var(--marca); stroke-width: 1; stroke-dasharray: 2 3; }
+  .vz-pe .p-pe { fill: var(--marca); stroke: var(--w); stroke-width: 2; }
+  .vz-pe text { font-size: 11px; fill: var(--tinta-2); }
+  .vz-pe .t-pe { font-size: 12px; font-weight: 600; fill: var(--navy); }
+  .vz-pe .t-ing { font-weight: 600; fill: var(--marca); }
+  .vz-pe .t-cost { font-weight: 600; fill: var(--navy); }
+  .calc-cta .btn { margin-top: var(--s-3); }
+  /* Desde tablet, campos a la izquierda y resultado a la derecha (21/09/2026, Manu no encontraba
+     el resultado): el número cambia a la vista mientras se escribe. */
+  @media (min-width: 768px) {
+    .calc { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); }
+    .calc-res { display: flex; flex-direction: column; }
+    .calc-cta { margin-top: auto; }
+    .calc-grande { font-size: 36px; }
+    .calc-filas { flex-direction: column; }
+  }
+  @media (max-width: 640px) {
+    .calc-in, .calc-res { padding: var(--s-4); }
+    .calc-campos { column-gap: var(--s-3); }
+    .calc-caja { padding: 0 var(--s-2); }
+  }
+  /* Barra fija abajo en celular y tablet: aparece al pasar la cabecera y se esconde cuando ya
+     se ve otro llamado al diagnóstico. Mientras está, el botón de la barra de arriba se apaga
+     para que no haya dos botones iguales en pantalla. */
+  .barra-dx { display: none; }
+  @media (max-width: 900px) {
+    .barra-dx { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 90; align-items: center; justify-content: space-between; gap: var(--s-3); padding: var(--s-3) var(--s-4) calc(var(--s-3) + env(safe-area-inset-bottom)); background: var(--navy); border-top: 1px solid var(--w-18); transform: translateY(110%); transition: transform 200ms ease; }
+    .barra-dx.on { transform: none; }
+    .barra-dx p { display: flex; flex-direction: column; min-width: 0; line-height: 1.3; }
+    .barra-dx strong { color: var(--w); font-size: var(--fs-sm); }
+    .barra-dx span { color: var(--secondary-dark); font-size: var(--fs-meta); }
+    .barra-dx .btn { margin: 0; flex-shrink: 0; white-space: nowrap; }
+    body:has(.barra-dx) footer { padding-bottom: calc(var(--s-6) + 76px); }
+    .head-cta { transition: opacity var(--t-instante); }
+    body.barra-visible .head-cta { opacity: 0; pointer-events: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .barra-dx { transition: none; } }
 """
 
 
@@ -376,6 +522,8 @@ ICONOS = {
     'Flujo de caja': '<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>',
     'Indicadores de gestión': '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
 }
+CHEVRON = ('<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" '
+           'stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>')
 CIRCULOS = ('<svg class="circulos" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">'
             '<circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="66"/><circle cx="100" cy="100" r="36"/></svg>')
 
@@ -537,6 +685,573 @@ def formula_html(fuente):
 
 def con_formulas(cuerpo):
     return re.sub(r'<formula>(.*?)</formula>', lambda m: formula_html(m.group(1)), cuerpo, flags=re.S)
+
+
+# "Hacé esto mañana" (21/09/2026): pasos concretos al cierre de un ejemplo. En la fuente:
+#   <manana>
+#   Primer paso (puede llevar <strong> o <a>)
+#   Segundo paso
+#   </manana>
+# Cada línea es un paso. Máximo 3: si hacen falta más, la guía está pidiendo demasiado para mañana.
+MANANA_ICONO = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" '
+                'stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>')
+
+
+def manana_html(fuente):
+    pasos = [x.strip() for x in fuente.strip().splitlines() if x.strip()]
+    assert 1 <= len(pasos) <= 3, f'"Hacé esto mañana" con {len(pasos)} pasos: van de 1 a 3'
+    return (f'<aside class="manana"><p class="manana-t">{MANANA_ICONO}Hacé esto mañana</p>'
+            f'<ol>{"".join(f"<li>{p}</li>" for p in pasos)}</ol></aside>')
+
+
+def con_manana(cuerpo):
+    return re.sub(r'<manana>(.*?)</manana>', lambda m: manana_html(m.group(1)), cuerpo, flags=re.S)
+
+
+# Calculadoras dentro de la guía (21/09/2026, Manu: "tiene que estar accionable antes"). Una guía la
+# activa con "calculadora": "<clave>" en su META y va justo después del resumen, en la segunda pantalla
+# del celular, con su botón al diagnóstico (origen guia-<slug>-calculadora). Cada calculadora es una
+# receta: los campos y la cuenta, que es la misma fórmula que explica la guía. El motor (CALC_JS) es
+# uno solo: formatea los pesos, muestra el resultado y mide el uso.
+#   campo: id, label, tipo (pesos | pct | num), ayuda (puede llevar <a>), ph, valor, sufijo,
+#          opc (opcional), ancho (False = media columna), req (dispara la bajada en celular)
+#   calculo: función JS (v, ri, h) -> {estado: 'vacio' | 'error' | 'lleno', error, t, grande, unidad, filas, piso}
+#            v = valores (NaN si está vacío); ri = responsable inscripto; h = ayudantes de formato.
+CTA_CALC = ('¿No estás seguro de alguno de estos números? El diagnóstico te muestra en 3 minutos '
+            'cuáles tenés claros y cuáles no. Son 12 preguntas, gratis.')
+SUB_CALC = 'Con los números de tu último mes. Tus números no se guardan ni se envían.'
+
+CALCULADORAS = {
+    'punto-de-equilibrio': {
+        'titulo': 'Calculá tu punto de equilibrio',
+        'campos': [
+            {'id': 'fijos', 'label': 'Gastos fijos del mes', 'tipo': 'pesos', 'ph': '6.000.000', 'req': True,
+             'ayuda': 'Alquiler, sueldos con aguinaldo, servicios, contador, intereses de préstamos y tu propio sueldo.'},
+            {'id': 'var', 'label': 'De cada $100 que vendés, ¿cuánto se te va en mercadería y envases?', 'tipo': 'pct',
+             'pre': '$', 'sufijo': 'de cada $100', 'ph': '35', 'req': True,
+             'ayuda': 'Si no lo sabés, en la guía de <a href="/guias/food-cost">food cost</a> ves cómo sacarlo.'},
+            {'id': 'dias', 'label': 'Días que abrís por mes', 'tipo': 'num', 'valor': '26', 'sufijo': 'días', 'ancho': False},
+            {'id': 'ticket', 'label': 'Gasto por cliente', 'tipo': 'pesos', 'ph': '20.000', 'opc': True, 'ancho': False,
+             'ayuda': 'En promedio, lo que ves en la caja.'},
+        ],
+        'iva': 'Poné los gastos sin IVA. El resultado ya te lo da con IVA, como lo ves en la caja.',
+        'vacio': 'Completá tus gastos fijos y cuánto se te va en mercadería y acá aparece cuánto tenés que vender.',
+        'calculo': """function (v, ri, h) {
+      if (!(v.fijos > 0) || isNaN(v.var)) return { estado: 'vacio' };
+      if (v.var >= 100) return { estado: 'error', error: 'Si la mercadería se lleva $100 o más de cada $100 que vendés, no hay venta que alcance: cada venta te hace perder. Primero revisá tus precios.' };
+      if (!(v.dias >= 1 && v.dias <= 31)) return { estado: 'error', error: 'Poné cuántos días abrís por mes: un número entre 1 y 31.' };
+      // Punto de equilibrio en pesos = costos fijos / margen de contribución %. Con IVA si es responsable inscripto.
+      var mes = v.fijos / (1 - v.var / 100) * (ri ? 1.21 : 1), dia = mes / v.dias;
+      var filas = [h.B(h.P(mes)) + ' por mes'];
+      if (v.ticket > 0) filas.push('unos ' + h.B(h.N(Math.ceil(dia / v.ticket))) + ' clientes por día');
+      return { estado: 'lleno', t: 'Para no perder plata tenés que vender', grande: h.P(dia), unidad: 'por día', filas: filas,
+               viz: { tipo: 'pe', F: v.fijos, cv: v.var / 100, etiqueta: h.P(mes) + ' por mes' },
+               cta: { t: '¿Hoy vendés ' + h.P(dia) + ' por día?', p: 'Si no estás seguro, el problema suele estar en los costos o en los precios. El diagnóstico te muestra cuál de los dos es.', tag: 'pe' },
+               piso: 'Es el piso, no la meta: vendiendo eso no ganás nada. Tu ganancia y los impuestos, como Ingresos Brutos, van arriba de este número.' };
+    }""",
+    },
+    'costo-ingrediente': {
+        'titulo': 'Calculá cuánto te cuesta un ingrediente en el plato',
+        'sub': 'Con el precio que pagás hoy. Tus números no se guardan ni se envían.',
+        'campos': [
+            {'id': 'kilo', 'label': 'Precio por kilo del ingrediente', 'tipo': 'pesos', 'ph': '12.000', 'req': True,
+             'ayuda': 'Lo que pagás hoy. Sin IVA si sos responsable inscripto.'},
+            {'id': 'rinde', 'label': 'De cada kilo que comprás, ¿cuánto te queda limpio para usar?', 'tipo': 'pct',
+             'sufijo': '%', 'ph': '80', 'req': True,
+             'ayuda': 'Si de 1 kilo de nalga te quedan 800 g limpios, poné 80.'},
+            {'id': 'gramos', 'label': 'Gramos limpios en el plato', 'tipo': 'num', 'ph': '200', 'sufijo': 'g', 'req': True},
+        ],
+        'vacio': 'Completá el precio, cuánto te queda limpio y los gramos, y acá aparece lo que te cuesta ese ingrediente en cada plato.',
+        'calculo': """function (v, ri, h) {
+      if (!(v.kilo > 0) || !(v.rinde > 0) || !(v.gramos > 0)) return { estado: 'vacio' };
+      if (v.rinde > 100) return { estado: 'error', error: 'No te puede quedar más de lo que compraste: poné 100 o menos.' };
+      // Costo real por kilo = precio por kilo / rendimiento; costo = costo real por kilo / 1.000 × gramos
+      var real = v.kilo / (v.rinde / 100), costo = real / 1000 * v.gramos, compra = v.gramos / (v.rinde / 100);
+      return { estado: 'lleno', t: 'Ese ingrediente te cuesta', grande: h.P(costo), unidad: 'por plato',
+               viz: { tipo: 'barra', titulo: 'De cada kilo que comprás', u: 'g', partes: [{ t: 'Lo que usás', v: v.rinde, c: 'queda' }, { t: 'Lo que se pierde al limpiar', v: 100 - v.rinde, c: 'costo' }] },
+               cta: { t: '¿Tenés el costo de todos tus platos al día?', p: 'Con la inflación, un plato que ayer dejaba plata hoy puede hacerte perder. El diagnóstico te muestra si tus costos y tus precios están al día.', tag: 'costo' },
+               filas: [h.B(h.P(real)) + ' el kilo limpio', 'Tenés que comprar ' + h.B(h.N(Math.round(compra)) + ' g') + ' por plato'],
+               piso: 'Hacé la misma cuenta con cada ingrediente del plato y sumalos: ese es el costo del plato.' };
+    }""",
+    },
+    'food-cost': {
+        'titulo': 'Calculá el food cost de un plato',
+        'sub': 'Con lo que te cuesta hoy. Tus números no se guardan ni se envían.',
+        'campos': [
+            {'id': 'costo', 'label': '¿Cuánto te cuesta hacer el plato?', 'tipo': 'pesos', 'ph': '4.200', 'req': True,
+             'ayuda': 'Si no lo sabés, sacalo con la guía de <a href="/guias/costo-de-un-plato">costo de un plato</a>.'},
+            {'id': 'precio', 'label': 'Precio de carta', 'tipo': 'pesos', 'ph': '16.800', 'req': True,
+             'ayuda': 'Lo que cobrás por el plato.'},
+        ],
+        'iva': 'Poné el costo sin IVA y el precio de carta con IVA, como lo cobrás.',
+        'vacio': 'Completá el costo y el precio del plato y acá aparece su food cost.',
+        'calculo': """function (v, ri, h) {
+      if (!(v.costo > 0) || !(v.precio > 0)) return { estado: 'vacio' };
+      // Food cost del plato % = costo del plato / precio sin IVA × 100
+      var sin = ri ? v.precio / 1.21 : v.precio, fc = v.costo / sin * 100;
+      if (fc >= 100) return { estado: 'error', error: 'El plato te cuesta lo mismo o más de lo que cobrás por él: perdés plata en cada uno. Revisá el precio o la receta.' };
+      var filas = ['Te quedan ' + h.B(h.P(sin - v.costo)) + ' de cada plato para pagar sueldos, alquiler y el resto'];
+      if (ri) filas.push('Precio sin IVA: ' + h.B(h.P(sin)));
+      var cta = fc > 35
+        ? { t: 'Ese plato se lleva ' + h.pct(fc) + ' en mercadería: está arriba de lo habitual.', p: 'Casi siempre son aumentos de proveedores que no pasaste al precio. El diagnóstico te muestra si pasa lo mismo en el resto del negocio.', tag: 'fc-alto' }
+        : { t: 'Ese plato está en ' + h.pct(fc) + '. ¿Y el resto de la carta?', p: 'Que un plato esté bien no quiere decir que el negocio gane. El diagnóstico revisa los cuatro eslabones de tu negocio.', tag: 'fc-ok' };
+      return { estado: 'lleno', t: 'El food cost de ese plato es', grande: h.pct(fc), filas: filas, cta: cta,
+               viz: { tipo: 'barra', titulo: 'De cada $100 que cobrás por el plato, sin IVA', ref: [25, 35], partes: [{ t: 'Mercadería', v: fc, c: 'costo' }, { t: 'Te queda', v: 100 - fc, c: 'queda' }] },
+               piso: 'Más que la referencia, te sirve fijar tu objetivo y mirar cómo se mueve mes a mes.' };
+    }""",
+    },
+    'precio': {
+        'titulo': 'Calculá el precio de un plato o un producto',
+        'sub': 'Con lo que te cuesta hoy. Tus números no se guardan ni se envían.',
+        'campos': [
+            {'id': 'costo', 'label': '¿Cuánto te cuesta el plato o el producto?', 'tipo': 'pesos', 'ph': '4.200', 'req': True,
+             'ayuda': 'Si no lo sabés, sacalo con la guía de <a href="/guias/costo-de-un-plato">costo de un plato</a>.'},
+            {'id': 'fc', 'label': 'De cada $100 que cobrás, ¿cuánto querés que sea costo?', 'tipo': 'pct',
+             'pre': '$', 'sufijo': 'de cada $100', 'ph': '30', 'req': True,
+             'ayuda': 'En gastronomía se toma como referencia entre $25 y $35 de cada $100.'},
+        ],
+        'iva': 'Poné el costo sin IVA. El precio de carta te lo damos con IVA.',
+        'vacio': 'Completá el costo y cuánto querés que sea costo de cada $100, y acá aparece el precio.',
+        'calculo': """function (v, ri, h) {
+      if (!(v.costo > 0) || isNaN(v.fc)) return { estado: 'vacio' };
+      if (!(v.fc > 0 && v.fc < 100)) return { estado: 'error', error: 'Poné un número mayor que 0 y menor que 100.' };
+      // Precio sin IVA = costo / food cost que querés; precio de carta = precio sin IVA × 1,21
+      var sin = v.costo / (v.fc / 100), carta = ri ? sin * 1.21 : sin;
+      var filas = ['Te deja ' + h.B(h.P(sin - v.costo)) + ' por venta para pagar los gastos fijos'];
+      if (ri) filas.push('Sin IVA: ' + h.B(h.P(sin)));
+      return { estado: 'lleno', t: 'Con ese costo, el precio de carta es', grande: h.P(carta), filas: filas,
+               viz: { tipo: 'barra', titulo: 'De cada $100 del precio, sin IVA', ref: [25, 35], partes: [{ t: 'Costo', v: v.fc, c: 'costo' }, { t: 'Te deja', v: 100 - v.fc, c: 'queda' }] },
+               cta: { t: '¿Hoy cobrás ' + h.P(carta) + ' o menos?', p: 'Si cobrás menos, cada venta te deja menos de lo que pensás. El diagnóstico te muestra si tus precios cubren tus costos.', tag: 'precio' },
+               piso: 'Es el punto de partida, no el precio final: comparalo con lo que cobra tu competencia y con cómo querés que te vean.' };
+    }""",
+    },
+    'margen': {
+        'titulo': 'Calculá el margen de un producto',
+        'sub': 'Con lo que te cuesta hoy. Tus números no se guardan ni se envían.',
+        'campos': [
+            {'id': 'precio', 'label': '¿A cuánto lo vendés?', 'tipo': 'pesos', 'ph': '17.500', 'req': True,
+             'ayuda': 'El precio que cobrás.'},
+            {'id': 'costo', 'label': '¿Cuánto te cuesta?', 'tipo': 'pesos', 'ph': '10.500', 'req': True,
+             'ayuda': 'Lo que te sale volver a comprarlo o hacerlo hoy, no lo que pagaste hace dos meses.'},
+        ],
+        'iva': 'Poné el costo sin IVA y el precio con IVA, como lo cobrás.',
+        'vacio': 'Completá el precio y el costo y acá aparece tu margen.',
+        'calculo': """function (v, ri, h) {
+      if (!(v.precio > 0) || !(v.costo > 0)) return { estado: 'vacio' };
+      // Margen % = (precio sin IVA − costo) / precio sin IVA × 100; markup % = (precio sin IVA − costo) / costo × 100
+      var sin = ri ? v.precio / 1.21 : v.precio, gan = sin - v.costo;
+      if (gan <= 0) return { estado: 'error', error: 'Lo vendés a lo mismo o a menos de lo que te cuesta: en cada venta perdés ' + h.P(-gan) + '. Revisá el precio.' };
+      return { estado: 'lleno', t: 'Tu margen es', grande: h.pct(gan / sin * 100),
+               viz: { tipo: 'barra', titulo: 'De cada $100 que cobrás, sin IVA', partes: [{ t: 'Costo', v: v.costo / sin * 100, c: 'costo' }, { t: 'Te queda', v: gan / sin * 100, c: 'queda' }] },
+               cta: { t: 'Te quedan ' + h.P(gan) + ' por venta. ¿Te alcanza para pagar el mes?', p: 'El margen de un producto no te dice si el negocio gana. El diagnóstico te muestra por dónde se te escapa la plata.', tag: 'margen' },
+               filas: ['Te quedan ' + h.B(h.P(gan)) + ' por venta', 'Markup: ' + h.B(h.pct(gan / v.costo * 100)) + ' (lo que le sumás al costo)'],
+               piso: 'Hacé esta cuenta con los 10 productos que más vendés.' };
+    }""",
+    },
+    'eerr': {
+        'titulo': 'Calculá cuánto te dejó el mes',
+        'campos': [
+            {'id': 'ventas', 'label': 'Lo que vendiste el mes pasado', 'tipo': 'pesos', 'ph': '30.000.000', 'req': True,
+             'ayuda': 'Sin IVA si sos responsable inscripto.'},
+            {'id': 'com', 'label': 'Comisiones de tarjetas y apps', 'tipo': 'pesos', 'ph': '1.200.000', 'opc': True},
+            {'id': 'cmv', 'label': 'Mercadería que usaste', 'tipo': 'pesos', 'ph': '9.700.000', 'req': True,
+             'ayuda': 'Si no lo sabés, en la guía de <a href="/guias/food-cost">CMV</a> ves cómo sacarlo.'},
+            {'id': 'gastos', 'label': 'Sueldos, alquiler, servicios y demás gastos del mes', 'tipo': 'pesos', 'ph': '14.650.000', 'req': True,
+             'ayuda': 'Con tu propio sueldo, si trabajás en el negocio.'},
+        ],
+        'vacio': 'Completá las ventas, la mercadería y los gastos del mes y acá aparece cuánto te dejó.',
+        'calculo': """function (v, ri, h) {
+      if (!(v.ventas > 0) || isNaN(v.cmv) || isNaN(v.gastos)) return { estado: 'vacio' };
+      // Ventas netas = ventas − comisiones; utilidad bruta = netas − CMV; resultado operativo = bruta − estructura
+      var netas = v.ventas - (v.com || 0);
+      if (!(netas > 0)) return { estado: 'error', error: 'Las comisiones no pueden ser más que lo que vendiste: revisá los números.' };
+      var bruta = netas - v.cmv, res = bruta - v.gastos, cada = h.d1(Math.abs(res) / netas * 100);
+      var filas = [(res >= 0 ? 'De cada $100 que vendiste te quedaron ' : 'De cada $100 que vendiste perdiste ') + h.B('$' + cada)];
+      var cta = res < 0
+        ? { t: '¿Sabés por dónde se te fue?', p: 'El diagnóstico te muestra dónde está la pérdida: en los costos, en los precios, en la caja o en cómo se decide.', tag: 'eerr-perdida' }
+        : { t: 'El mes te dejó ' + h.P(res) + '. ¿Es lo que esperabas?', p: 'Si sentís que vendés bien pero no te queda plata, el diagnóstico te muestra por dónde se escapa.', tag: 'eerr-ganancia' };
+      var pasos = [{ t: 'Vendiste', v: v.ventas, tipo: 'base' }];
+      if (v.com > 0) pasos.push({ t: 'Comisiones', v: -v.com });
+      pasos.push({ t: 'Mercadería', v: -v.cmv }, { t: 'Sueldos, alquiler y gastos', v: -v.gastos }, { t: res >= 0 ? 'Te quedó' : 'Perdiste', tipo: 'total' });
+      return { estado: 'lleno', t: res >= 0 ? 'El mes te dejó' : 'El mes te hizo perder', grande: h.P(Math.abs(res)), filas: filas, cta: cta,
+               viz: { tipo: 'cascada', pasos: pasos },
+               piso: 'Todavía faltan los intereses de préstamos y los impuestos, como Ingresos Brutos.' };
+    }""",
+    },
+    'rentabilidad': {
+        'titulo': 'Calculá la rentabilidad de tu negocio',
+        'campos': [
+            {'id': 'ventas', 'label': 'Lo que vendiste en el mes', 'tipo': 'pesos', 'ph': '30.000.000', 'req': True,
+             'ayuda': 'Sin IVA si sos responsable inscripto.'},
+            {'id': 'res', 'label': 'Lo que te quedó en el mes', 'tipo': 'pesos', 'ph': '4.547.500', 'req': True,
+             'ayuda': 'Ventas menos todos los gastos, con tu sueldo incluido. Si no lo tenés, sacalo con el <a href="/guias/estado-de-resultados">estado de resultados</a>.'},
+            {'id': 'inv', 'label': 'Plata que pusiste en el negocio', 'tipo': 'pesos', 'ph': '120.000.000', 'opc': True,
+             'ayuda': 'Local, equipamiento y reformas, a valores de hoy.'},
+        ],
+        'vacio': 'Completá lo que vendiste y lo que te quedó en el mes y acá aparece tu rentabilidad.',
+        'calculo': """function (v, ri, h) {
+      if (!(v.ventas > 0) || isNaN(v.res)) return { estado: 'vacio' };
+      // Rentabilidad sobre ventas % = resultado neto / ventas netas × 100
+      var rs = v.res / v.ventas * 100, filas = ['De cada $100 que vendés te quedan ' + h.B('$' + h.d1(rs))];
+      if (v.inv > 0 && v.res > 0) {
+        filas.push('Sobre lo que invertiste: ' + h.B(h.pct(v.res * 12 / v.inv * 100)) + ' por año');
+        filas.push('Recuperás la inversión en unos ' + h.B(h.N(Math.round(v.inv / v.res))) + ' meses');
+      }
+      return { estado: 'lleno', t: 'Tu rentabilidad sobre ventas es', grande: h.pct(rs), filas: filas,
+               viz: rs > 0 && rs < 100 ? { tipo: 'barra', titulo: 'De cada $100 que vendés', partes: [{ t: 'Gastos', v: 100 - rs, c: 'costo' }, { t: 'Te queda', v: rs, c: 'queda' }] } : null,
+               cta: { t: 'De cada $100 que vendés te quedan $' + h.d1(rs) + '. ¿Te alcanza?', p: 'El diagnóstico te muestra cuál de los cuatro eslabones de tu negocio es el que más te frena la ganancia.', tag: 'rentabilidad' },
+               piso: 'La prueba simple: el negocio tiene que rendir bastante más que esa plata en un plazo fijo, porque tiene más riesgo y más trabajo.' };
+    }""",
+    },
+    'flujo': {
+        'titulo': 'Calculá si esta semana te alcanza la plata',
+        'sub': 'Con lo que tenés hoy. Tus números no se guardan ni se envían.',
+        'campos': [
+            {'id': 'saldo', 'label': 'Plata que tenés hoy', 'tipo': 'pesos', 'ph': '3.500.000', 'req': True,
+             'ayuda': 'Banco, Mercado Pago y efectivo.'},
+            {'id': 'ent', 'label': 'Lo que vas a cobrar esta semana', 'tipo': 'pesos', 'ph': '9.000.000', 'req': True,
+             'ayuda': 'Lo que vendés y lo que te acreditan las tarjetas y las apps en estos 7 días.'},
+            {'id': 'sal', 'label': 'Lo que tenés que pagar esta semana', 'tipo': 'pesos', 'ph': '14.000.000', 'req': True,
+             'ayuda': 'Proveedores, sueldos, alquiler, impuestos y cuotas.'},
+        ],
+        'vacio': 'Completá lo que tenés, lo que vas a cobrar y lo que tenés que pagar, y acá aparece cómo terminás la semana.',
+        'calculo': """function (v, ri, h) {
+      if (isNaN(v.saldo) || isNaN(v.ent) || isNaN(v.sal)) return { estado: 'vacio' };
+      // Saldo final = saldo inicial + entradas − salidas
+      var fin = v.saldo + v.ent - v.sal, filas = ['Entran ' + h.B(h.P(v.ent)) + ' y salen ' + h.B(h.P(v.sal))];
+      var viz = { tipo: 'cascada', pasos: [{ t: 'Tenés hoy', v: v.saldo, tipo: 'base' }, { t: 'Entra', v: v.ent }, { t: 'Sale', v: -v.sal }, { t: fin >= 0 ? 'Terminás la semana con' : 'Te faltan', tipo: 'total' }] };
+      if (fin >= 0) return { estado: 'lleno', t: 'Terminás la semana con', grande: h.P(fin), filas: filas, viz: viz,
+               cta: { t: 'Esta semana llegás. ¿Y el mes que viene?', p: 'El diagnóstico te muestra si tu caja está ordenada o si vivís apagando incendios.', tag: 'caja-ok' },
+               piso: 'Hacé la misma cuenta para las próximas semanas: así ves venir la semana corta antes de que llegue.' };
+      return { estado: 'lleno', t: 'Esta semana te faltan', grande: h.P(-fin), filas: filas, viz: viz,
+               cta: { t: '¿Te pasa seguido?', p: 'Si la plata no te alcanza semana por medio, no es mala suerte: algo en la caja está mal armado. El diagnóstico te muestra qué es.', tag: 'caja-falta' },
+               piso: 'Resolvelo ahora, no el día del pago: adelantá un cobro o hablá con el proveedor para correr un pago.' };
+    }""",
+    },
+    'capital': {
+        'titulo': 'Calculá tu capital de trabajo',
+        'sub': 'Con lo que tenés hoy. Tus números no se guardan ni se envían.',
+        'campos': [
+            {'id': 'caja', 'label': 'Plata que tenés hoy', 'tipo': 'pesos', 'ph': '1.300.000', 'req': True,
+             'ayuda': 'Banco, Mercado Pago y efectivo.'},
+            {'id': 'cobrar', 'label': 'Lo que te tienen que pagar', 'tipo': 'pesos', 'ph': '2.000.000', 'opc': True, 'ancho': False,
+             'ayuda': 'Tarjetas y apps por acreditar, cheques y clientes.'},
+            {'id': 'stock', 'label': 'Mercadería en stock', 'tipo': 'pesos', 'ph': '700.000', 'opc': True, 'ancho': False,
+             'ayuda': 'A lo que te costó.'},
+            {'id': 'deudas', 'label': 'Lo que tenés que pagar en el año', 'tipo': 'pesos', 'ph': '7.200.000', 'req': True,
+             'ayuda': 'Proveedores, sueldos y cargas, impuestos y cuotas de préstamos.'},
+        ],
+        'vacio': 'Completá la plata que tenés y lo que tenés que pagar, y acá aparece tu capital de trabajo.',
+        'calculo': """function (v, ri, h) {
+      if (isNaN(v.caja) || !(v.deudas > 0)) return { estado: 'vacio' };
+      // Capital de trabajo = activo corriente − pasivo corriente; prueba ácida = (activo corriente − stock) / pasivo corriente
+      var stock = v.stock || 0, ac = v.caja + (v.cobrar || 0) + stock, ct = ac - v.deudas;
+      var filas = ['Por cada $1 que debés tenés ' + h.B('$' + h.d2(ac / v.deudas))];
+      if (stock > 0) filas.push('Sin contar el stock: ' + h.B('$' + h.d2((ac - stock) / v.deudas)));
+      var cta = ct < 0
+        ? { t: 'Te faltan ' + h.P(-ct) + ' para cubrir lo que debés.', p: 'Anda mientras se vende bien. El diagnóstico te muestra qué tan expuesto está tu negocio si las ventas bajan.', tag: 'capital-negativo' }
+        : { t: 'Tenés ' + h.P(ct) + ' a favor. ¿Sabés cuánto te dura?', p: 'El diagnóstico te muestra si tu caja está ordenada o si esa plata ya tiene dueño.', tag: 'capital-ok' };
+      var pasos = [{ t: 'Plata que tenés', v: v.caja, tipo: 'base' }];
+      if (v.cobrar > 0) pasos.push({ t: 'Te tienen que pagar', v: v.cobrar });
+      if (stock > 0) pasos.push({ t: 'Mercadería en stock', v: stock });
+      pasos.push({ t: 'Lo que debés', v: -v.deudas }, { t: 'Capital de trabajo', tipo: 'total' });
+      return { estado: 'lleno', t: ct >= 0 ? 'Tu capital de trabajo es' : 'Tu capital de trabajo es negativo', grande: h.P(ct), filas: filas, cta: cta,
+               viz: { tipo: 'cascada', pasos: pasos },
+               piso: ct >= 0 ? 'Antes de retirar o invertir, restá lo que vence en los próximos 30 días.'
+                             : 'En gastronomía es común: se cobra rápido y a los proveedores se les paga a 30 días. Anda mientras se vende bien; si las ventas caen, no aparece la plata para pagar.' };
+    }""",
+    },
+}
+
+
+# Ejemplo precargado (21/09/2026): la calculadora arranca con el caso de la guía, así el resultado se ve
+# desde el primer segundo. Mientras sean los números del ejemplo, el llamado queda genérico y no se mide.
+EJEMPLOS = {
+    'punto-de-equilibrio': ('una panadería', {'fijos': '6000000', 'var': '60', 'dias': '25'}, None),
+    'costo-ingrediente': ('la nalga de una milanesa', {'kilo': '12000', 'rinde': '80', 'gramos': '200'}, None),
+    'food-cost': ('una milanesa con puré', {'costo': '4145', 'precio': '16800'}, 'ri'),
+    'precio': ('una milanesa con puré', {'costo': '4145', 'fc': '30'}, 'ri'),
+    'margen': ('un producto que revendés', {'precio': '17500', 'costo': '10500'}, None),
+    'eerr': ('un restaurante', {'ventas': '31500000', 'com': '1500000', 'cmv': '9700000', 'gastos': '14300000'}, None),
+    'rentabilidad': ('un restaurante', {'ventas': '30000000', 'res': '4547500', 'inv': '120000000'}, None),
+    'flujo': ('una semana de un restaurante', {'saldo': '3500000', 'ent': '9000000', 'sal': '14000000'}, None),
+    'capital': ('un restaurante', {'caja': '1300000', 'cobrar': '2000000', 'stock': '700000', 'deudas': '7200000'}, None),
+}
+
+
+def valor_ej(tipo, x):
+    return f'{int(x):,}'.replace(',', '.') if tipo == 'pesos' else x
+
+
+def calc_html_de(clave, slug):
+    c = CALCULADORAS[clave]
+    e = html.escape
+    ej_t, ej, ej_iva = EJEMPLOS[clave]
+    assert set(ej) <= {f['id'] for f in c['campos']}, f'{clave}: el ejemplo tiene campos que no existen'
+    campos = ''
+    for f in c['campos']:
+        fid = f"calc-{f['id']}"
+        pre = f'<span aria-hidden="true">{e(f.get("pre", "$" if f["tipo"] == "pesos" else ""))}</span>' if f.get('pre') or f['tipo'] == 'pesos' else ''
+        suf = f'<span aria-hidden="true">{e(f["sufijo"])}</span>' if f.get('sufijo') else ''
+        modo = 'decimal' if f['tipo'] == 'pct' else 'numeric'
+        largo = {'pct': 5, 'num': 4}.get(f['tipo'])
+        valor = valor_ej(f['tipo'], ej[f['id']]) if f['id'] in ej else f.get('valor', '')
+        attrs = (f' placeholder="{e(f["ph"])}"' if f.get('ph') else '') + (f' value="{e(valor)}"' if valor else '') \
+            + (f' data-def="{e(f["valor"])}"' if f.get('valor') else '') \
+            + (f' maxlength="{largo}"' if largo else '') + (f' aria-describedby="{fid}-a"' if f.get('ayuda') else '') \
+            + (' data-req' if f.get('req') else '')
+        opc = ' <span class="calc-opc">(opcional)</span>' if f.get('opc') else ''
+        ayuda = f'\n              <p class="calc-ayuda" id="{fid}-a">{f["ayuda"]}</p>' if f.get('ayuda') else ''
+        clase = 'calc-campo calc-ancho' if f.get('ancho', True) else 'calc-campo'
+        campos += f"""            <div class="{clase}">
+              <label for="{fid}">{e(f['label'])}{opc}</label>
+              <div class="calc-caja">{pre}<input id="{fid}" type="text" inputmode="{modo}" autocomplete="off" data-tipo="{f['tipo']}"{attrs}>{suf}</div>{ayuda}
+            </div>
+"""
+    if c.get('iva'):
+        campos += f"""            <fieldset class="calc-campo calc-ancho">
+              <legend>¿Cómo facturás?</legend>
+              <div class="calc-seg">
+                <label><input type="radio" name="calc-iva" value="mono"{'' if ej_iva == 'ri' else ' checked'}><span>Monotributo</span></label>
+                <label><input type="radio" name="calc-iva" value="ri"{' checked' if ej_iva == 'ri' else ''}><span>Responsable inscripto</span></label>
+              </div>
+              <p class="calc-ayuda" id="calc-iva-a"{'' if ej_iva == 'ri' else ' hidden'}>{e(c['iva'])}</p>
+            </fieldset>
+"""
+    return f"""      <section class="calc" id="calculadora" aria-labelledby="calc-t" data-calc="{e(clave)}">
+        <div class="calc-in">
+          <h2 class="calc-t" id="calc-t">{e(c['titulo'])}</h2>
+          <p class="calc-sub">{e(c.get('sub', SUB_CALC))}</p>
+          <div class="calc-ej" id="calc-ej"><span>Estos son los números de ejemplo de <strong>{e(ej_t)}</strong>.</span><button type="button" class="calc-ej-btn" id="calc-limpiar">Poner los míos</button></div>
+          <form class="calc-campos" novalidate>
+{campos}          </form>
+        </div>
+        <div class="calc-res">
+          <p class="calc-vacio" id="calc-vacio">{e(c['vacio'])}</p>
+          <p class="calc-error" id="calc-error" hidden></p>
+          <div id="calc-lleno" hidden>
+            <p class="calc-chip" id="calc-chip">Ejemplo</p>
+            <p class="calc-res-t" id="calc-res-t"></p>
+            <p class="calc-grande"><span id="calc-grande"></span> <span class="calc-u" id="calc-u"></span></p>
+            <ul class="calc-filas" id="calc-filas"></ul>
+            <div class="calc-viz" id="calc-viz" hidden></div>
+            <p class="calc-piso" id="calc-piso"></p>
+          </div>
+          <p class="ec-sr" id="calc-sr" aria-live="polite"></p>
+          <div class="calc-cta">
+            <p class="calc-cta-t" id="calc-cta-t" hidden></p>
+            <p id="calc-cta-p">{e(c.get('cta', CTA_CALC))}</p>
+            <a class="btn" id="calc-cta-btn" href="/?origen=guia-{e(slug)}-calculadora#diagnostico" data-base="guia-{e(slug)}-calculadora">Hacer el diagnóstico <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </section>
+"""
+
+
+# Motor de las calculadoras. /*CALCULO*/ se reemplaza por la función de la receta.
+CALC_JS = r"""  <script>
+  (function () {
+    var caja = document.getElementById('calculadora');
+    if (!caja) return;
+    var $ = function (id) { return document.getElementById(id); };
+    var fmt = new Intl.NumberFormat('es-AR', { maximumFractionDigits: 0 });
+    var fmt1 = new Intl.NumberFormat('es-AR', { maximumFractionDigits: 1 });
+    var fmt2 = new Intl.NumberFormat('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    function redondo(x) { return Math.abs(x) >= 100000 ? Math.round(x / 1000) * 1000 : Math.round(x); }
+    var h = {
+      P: function (x) { var r = redondo(x); return (r < 0 ? '−$' : '$') + fmt.format(Math.abs(r)); },
+      N: function (x) { return fmt.format(x); },
+      pct: function (x) { return fmt1.format(x) + ' %'; },
+      d1: function (x) { return fmt1.format(x); },
+      d2: function (x) { return fmt2.format(x); },
+      B: function (s) { return '<strong>' + s + '</strong>'; }
+    };
+    var calculo = /*CALCULO*/;
+    // Dibujos del resultado: barra de cada $100, cascada (vendiste − costos = te quedó) y el cruce del punto de equilibrio.
+    function dibujar(z) {
+      if (z.tipo === 'barra') {
+        var val = function (p) { return z.u === 'g' ? h.N(Math.round(p.v * 10)) + ' g' : '$' + h.d1(p.v); };
+        var ref = z.ref ? '<div class="vz-refpista"><i class="vz-ref" style="left:' + z.ref[0] + '%;width:' + (z.ref[1] - z.ref[0]) + '%"></i></div>' : '';
+        return '<p class="vz-titulo">' + z.titulo + '</p><div class="vz-barra">'
+          + z.partes.map(function (p) { return '<i class="c-' + p.c + '" style="width:' + Math.max(0, Math.min(100, p.v)).toFixed(2) + '%"></i>'; }).join('')
+          + '</div>' + ref + '<ul class="vz-ley">'
+          + z.partes.map(function (p) { return '<li><i class="c-' + p.c + '"></i>' + p.t + ' <strong>' + val(p) + '</strong></li>'; }).join('') + '</ul>'
+          + (z.ref ? '<p class="vz-nota">La rayita es la referencia de gastronomía: $' + z.ref[0] + ' a $' + z.ref[1] + ' de cada $100.</p>' : '');
+      }
+      if (z.tipo === 'cascada') {
+        var run = 0, lo = 0, hi = 0;
+        z.pasos.forEach(function (p) {
+          var a, b;
+          if (p.tipo === 'base') { a = 0; b = p.v; run = p.v; }
+          else if (p.tipo === 'total') { a = 0; b = run; p.v = run; }
+          else { a = run; b = run + p.v; run = b; }
+          p.a = Math.min(a, b); p.b = Math.max(a, b);
+          lo = Math.min(lo, p.a); hi = Math.max(hi, p.b);
+        });
+        var span = hi - lo || 1, pos = function (x) { return ((x - lo) / span * 100).toFixed(2); };
+        return '<div class="vz-cas">' + z.pasos.map(function (p) {
+          var tot = p.tipo === 'total', neg = p.v < 0;
+          var c = p.tipo === 'base' ? 'base' : tot ? (neg ? 'neg' : 'queda') : (neg ? 'costo' : 'suma');
+          var n = tot || p.tipo === 'base' ? h.P(p.v) : (neg ? '−' : '+') + h.P(Math.abs(p.v));
+          return '<div class="vz-f' + (tot ? ' vz-tot' : '') + (tot && neg ? ' vz-rojo' : '') + '"><span class="vz-t">' + p.t + '</span><span class="vz-n">' + n + '</span>'
+            + '<span class="vz-pista"><i class="c-' + c + '" style="left:' + pos(p.a) + '%;width:' + Math.max(0.8, (p.b - p.a) / span * 100).toFixed(2) + '%"></i>'
+            + (lo < 0 ? '<b class="vz-cero" style="left:' + pos(0) + '%"></b>' : '') + '</span></div>';
+        }).join('') + '</div>';
+      }
+      if (z.tipo === 'pe') {
+        var x0 = 6, y0 = 142, w = 308, hh = 128, pe = z.F / (1 - z.cv), max = 2 * pe;
+        var X = function (s) { return +(x0 + s / max * w).toFixed(1); }, Y = function (s) { return +(y0 - s / max * hh).toFixed(1); };
+        var L = function (cl, a, b, c, d) { return '<line class="' + cl + '" x1="' + a + '" y1="' + b + '" x2="' + c + '" y2="' + d + '"/>'; };
+        var T = function (cl, x, y, s, an) { return '<text class="' + cl + '" x="' + x + '" y="' + y + '"' + (an ? ' text-anchor="' + an + '"' : '') + '>' + s + '</text>'; };
+        return '<p class="vz-titulo">Dónde se cruzan lo que vendés y lo que gastás en el mes</p>'
+          + '<svg class="vz-pe" viewBox="0 0 320 166" role="img" aria-label="Gráfico: la línea de lo que vendés cruza la de tus costos en ' + z.etiqueta + '">'
+          + L('l-eje', x0, y0, x0 + w, y0) + L('l-fijos', X(0), Y(z.F), X(max), Y(z.F))
+          + L('l-cost', X(0), Y(z.F), X(max), Y(z.F + z.cv * max)) + L('l-ing', X(0), Y(0), X(max), Y(max))
+          + L('l-guia', X(pe), Y(pe), X(pe), y0) + '<circle class="p-pe" cx="' + X(pe) + '" cy="' + Y(pe) + '" r="5"/>'
+          + T('t-pe', X(pe) + 10, Y(pe) + 20, z.etiqueta)
+          + T('t-zona', X(pe) - 8, y0 + 16, '← perdés', 'end') + T('t-zona', X(pe) + 8, y0 + 16, 'ganás →') + '</svg>'
+          + '<ul class="vz-ley"><li><i class="c-queda"></i>Lo que vendés</li><li><i class="c-base"></i>Tus costos</li><li><i class="vz-guion"></i>Gastos fijos</li></ul>';
+      }
+      return '';
+    }
+    var inputs = [].slice.call(caja.querySelectorAll('input[data-tipo]'));
+    function num(v) {
+      var d = String(v || '').replace(/\./g, '').replace(',', '.').replace(/[^\d.]/g, '');
+      return d ? parseFloat(d) : NaN;
+    }
+    // Puntos de miles mientras se escribe, sin que el cursor salte al final
+    function miles(input) {
+      var v = input.value, pos = input.selectionStart || 0;
+      var antes = v.slice(0, pos).replace(/\D/g, '').length;
+      var d = v.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 12);
+      var nuevo = d ? fmt.format(+d) : '';
+      input.value = nuevo;
+      var i = 0, c = 0;
+      while (i < nuevo.length && c < antes) { if (/\d/.test(nuevo.charAt(i))) c++; i++; }
+      try { input.setSelectionRange(i, i); } catch (e) {}
+    }
+    function leer() {
+      var v = {};
+      inputs.forEach(function (i) { v[i.id.slice(5)] = i.value.trim() === '' ? NaN : num(i.value); });
+      return v;
+    }
+    // El llamado al diagnóstico habla del número que la persona acaba de sacar, y el origen del lead
+    // lleva qué le dio (ej. guia-flujo-de-caja-calculadora-caja-falta): Manuel lo ve antes de la llamada.
+    // Nunca el número en la URL: solo la etiqueta del caso.
+    var ctaP = $('calc-cta-p'), ctaBase = ctaP.textContent, btn = $('calc-cta-btn');
+    function ctaDe(c) {
+      $('calc-cta-t').hidden = !c;
+      $('calc-cta-t').textContent = c ? c.t : '';
+      ctaP.textContent = c ? c.p + ' Son 3 minutos y 12 preguntas, gratis.' : ctaBase;
+      btn.href = '/?origen=' + btn.dataset.base + (c ? '-' + c.tag : '') + '#diagnostico';
+    }
+    // Mientras estén los números del ejemplo: chip "Ejemplo", llamado genérico y sin medir el uso.
+    var ejemplo = !!$('calc-ej');
+    function propios() {
+      if (!ejemplo) return;
+      ejemplo = false;
+      $('calc-ej').hidden = true;
+    }
+    var medido = false, espera;
+    function calcular() {
+      var iva = caja.querySelector('input[name="calc-iva"]:checked'), ri = !!iva && iva.value === 'ri';
+      if ($('calc-iva-a')) $('calc-iva-a').hidden = !ri;
+      clearTimeout(espera);
+      var r = calculo(leer(), ri, h) || { estado: 'vacio' };
+      $('calc-vacio').hidden = r.estado !== 'vacio';
+      $('calc-lleno').hidden = r.estado !== 'lleno';
+      $('calc-error').hidden = r.estado !== 'error';
+      if (r.estado === 'error') $('calc-error').textContent = r.error;
+      ctaDe(r.estado === 'lleno' && !ejemplo ? r.cta : null);
+      $('calc-chip').hidden = !ejemplo;
+      if (r.estado !== 'lleno') { $('calc-sr').textContent = r.estado === 'error' ? r.error : ''; return; }
+      $('calc-res-t').textContent = r.t;
+      $('calc-grande').textContent = r.grande;
+      $('calc-u').textContent = r.unidad || '';
+      $('calc-filas').innerHTML = (r.filas || []).map(function (f) { return '<li>' + f + '</li>'; }).join('');
+      $('calc-piso').textContent = r.piso || '';
+      $('calc-piso').hidden = !r.piso;
+      $('calc-viz').innerHTML = r.viz ? dibujar(r.viz) : '';
+      $('calc-viz').hidden = !r.viz;
+      if (ejemplo) return;
+      espera = setTimeout(function () {
+        $('calc-sr').textContent = r.t + ' ' + r.grande + (r.unidad ? ' ' + r.unidad : '') + '.';
+        if (!medido) {
+          medido = true;
+          try { if (typeof gtag === 'function') gtag('event', 'calculadora_uso', { calculadora: caja.dataset.calc, caso: (r.cta && r.cta.tag) || '', iva: iva ? (ri ? 'ri' : 'mono') : 'no_aplica' }); } catch (e) {}
+        }
+      }, 1200);
+    }
+    inputs.forEach(function (i) {
+      // Con el ejemplo cargado, al tocar un campo se selecciona el número: lo que escribas lo reemplaza.
+      i.addEventListener('focus', function () { if (ejemplo) setTimeout(function () { try { i.select(); } catch (e) {} }, 0); });
+      i.addEventListener('input', function () {
+        propios();
+        if (i.dataset.tipo === 'pesos') miles(i);
+        else if (i.dataset.tipo === 'pct') i.value = i.value.replace(/[^\d,]/g, '');
+        else i.value = i.value.replace(/\D/g, '');
+        calcular();
+      });
+    });
+    [].slice.call(caja.querySelectorAll('input[name="calc-iva"]')).forEach(function (r) { r.addEventListener('change', function () { propios(); calcular(); }); });
+    if ($('calc-limpiar')) $('calc-limpiar').addEventListener('click', function () {
+      inputs.forEach(function (i) { i.value = i.dataset.def || ''; });
+      var mono = caja.querySelector('input[name="calc-iva"][value="mono"]');
+      if (mono) mono.checked = true;
+      propios();
+      calcular();
+      inputs[0].focus();
+    });
+    [].slice.call(caja.querySelectorAll('.calc-caja')).forEach(function (c) { c.addEventListener('click', function () { c.querySelector('input').focus(); }); });
+    caja.querySelector('form').addEventListener('submit', function (e) { e.preventDefault(); });
+    // En celular el resultado queda debajo de los campos: la primera vez que aparece, al salir de un
+    // campo necesario, la página baja sola lo justo para mostrarlo (una sola vez, para no pelear con quien sigue).
+    var mostrado = false;
+    [].slice.call(caja.querySelectorAll('input[data-req]')).forEach(function (i) {
+      i.addEventListener('change', function () {
+        if (mostrado || $('calc-lleno').hidden || window.innerWidth >= 768) return;
+        var r = caja.querySelector('.calc-res').getBoundingClientRect();
+        if (r.top < window.innerHeight - 160) return;
+        mostrado = true;
+        var quieto = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // Solo lo justo para que asome el número grande abajo: el campo que sigue queda a la vista.
+        window.scrollTo({ top: window.scrollY + r.top - (window.innerHeight - 170), behavior: quieto ? 'auto' : 'smooth' });
+      });
+    });
+    calcular();
+  })();
+  </script>"""
+
+
+def calc_js(clave):
+    return '\n' + CALC_JS.replace('/*CALCULO*/', CALCULADORAS[clave]['calculo'])
+
+
+# Barra fija abajo (celular y tablet). Se muestra al pasar la cabecera de la guía y se esconde
+# mientras se ve la calculadora u otro llamado al diagnóstico (llamado del medio o banda final).
+BARRA_JS = """  <script>
+  (function () {
+    var barra = document.getElementById('barra-dx'), cab = document.querySelector('.guia-cab');
+    if (!barra || !cab || !('IntersectionObserver' in window)) return;
+    var pasoCab = false, otros = new Set();
+    function pintar() {
+      var on = pasoCab && otros.size === 0;
+      barra.classList.toggle('on', on);
+      document.body.classList.toggle('barra-visible', on);
+      barra.setAttribute('aria-hidden', on ? 'false' : 'true');
+      barra.querySelector('a').tabIndex = on ? 0 : -1;
+    }
+    new IntersectionObserver(function (e) {
+      pasoCab = !e[0].isIntersecting && e[0].boundingClientRect.top < 0; pintar();
+    }).observe(cab);
+    var obs = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) otros.add(e.target); else otros.delete(e.target); });
+      pintar();
+    });
+    [].slice.call(document.querySelectorAll('.calc, .cta-medio, main .cta')).forEach(function (el) { obs.observe(el); });
+    pintar();
+  })();
+  </script>"""
 
 
 def minutos(g):
@@ -877,13 +1592,38 @@ def leer_guias():
         texto = f.read_text(encoding='utf-8')
         meta = json.loads(re.match(r'<!--META\s*(\{.*?\})\s*-->', texto, re.S).group(1))
         meta['slug'] = f.stem
-        meta['cuerpo'] = con_formulas(texto.split('-->', 1)[1].strip())
+        meta['cuerpo'] = con_manana(con_formulas(texto.split('-->', 1)[1].strip()))
         guias.append(meta)
     guias.sort(key=lambda g: g['orden'])
     return guias
 
 
-def pagina(*, title, description, path, og_type, ld, cuerpo, cta_origen, cta_general=False, main_clase='', og_image=None, view_content=None):
+def cta_final(origen, general=False):
+    """Banda azul del diagnóstico. En las guías va antes de las preguntas frecuentes (21/09/2026):
+    al fondo de la página, después de la FAQ y de "Seguí leyendo", casi nadie llegaba."""
+    # La oferta es gastronomica (decision del dueño, 14/09): las guias generales lo dicen en el cierre.
+    if general:
+        t = '¿Tenés un negocio gastronómico?'
+        p = 'En 3 minutos sabés por dónde se le escapa la plata: 12 preguntas gratis y el puntaje de los cuatro eslabones al instante.'
+    else:
+        t = '¿Por dónde se le escapa la plata a tu negocio?'
+        p = 'Hacé el diagnóstico gratis: 12 preguntas, 3 minutos y el puntaje de los cuatro eslabones al instante.'
+    return f"""  <aside class="cta">
+    <p class="cta-t">{t}</p>
+    <p>{p}</p>
+    <a class="btn" href="/?origen={origen}#diagnostico">Hacer el diagnóstico · 3 min <span aria-hidden="true">→</span></a>
+  </aside>
+"""
+
+
+def barra_html(slug):
+    return (f'<div class="barra-dx" id="barra-dx" aria-hidden="true"><p><strong>Diagnóstico gratis</strong>'
+            f'<span>12 preguntas · 3 min</span></p>'
+            f'<a class="btn" href="/?origen=guia-{slug}-barra#diagnostico" tabindex="-1">Hacerlo ahora <span aria-hidden="true">→</span></a></div>\n'
+            + BARRA_JS + '\n')
+
+
+def pagina(*, title, description, path, og_type, ld, cuerpo, cta_origen, cta_general=False, main_clase='', og_image=None, view_content=None, cta_abajo=True, barra=''):
     url = BASE + path
     e = html.escape
     og = BASE + (og_image or '/og-image.png')
@@ -892,13 +1632,7 @@ def pagina(*, title, description, path, og_type, ld, cuerpo, cta_origen, cta_gen
         pixel += f"\n<script>if (typeof fbq === 'function') fbq('track', 'ViewContent', {{ content_name: '{view_content}' }});</script>"
     main_attr = f' class="{main_clase}"' if main_clase else ''
     guias_actual = ' aria-current="page"' if path == '/guias' else ' aria-current="true"'
-    # La oferta es gastronomica (decision del dueño, 14/09): las guias generales lo dicen en el cierre.
-    if cta_general:
-        cta_t = '¿Tenés un negocio gastronómico?'
-        cta_p = 'En 3 minutos sabés por dónde se le escapa la plata: 12 preguntas gratis y el puntaje de los cuatro eslabones al instante.'
-    else:
-        cta_t = '¿Por dónde se le escapa la plata a tu negocio?'
-        cta_p = 'Hacé el diagnóstico gratis: 12 preguntas, 3 minutos y el puntaje de los cuatro eslabones al instante.'
+    cta = cta_final(cta_origen, cta_general) if cta_abajo else ''
     return f"""<!DOCTYPE html>
 <html lang="es-AR">
 <head>
@@ -980,12 +1714,8 @@ def pagina(*, title, description, path, og_type, ld, cuerpo, cta_origen, cta_gen
 </header>
 <main{main_attr}>
 {cuerpo}
-  <aside class="cta">
-    <p class="cta-t">{cta_t}</p>
-    <p>{cta_p}</p>
-    <a class="btn" href="/?origen={cta_origen}#diagnostico">Hacer el diagnóstico · 3 min <span aria-hidden="true">→</span></a>
-  </aside>
-</main>
+{cta}</main>
+{barra}
 <footer>
   <div class="foot-in">
     <nav aria-label="Pie">
@@ -1069,28 +1799,35 @@ def main():
         faq_html = ''
         if faq:
             # "formula" opcional: se dibuja debajo de la respuesta; el JSON-LD usa solo el texto.
-            faq_html = '\n    <h2>Preguntas frecuentes</h2>\n' + ''.join(
-                f'    <h3>{html.escape(x["q"])}</h3>\n    <p>{html.escape(x["a"])}</p>\n'
-                + (f'    {formula_html(x["formula"])}\n' if x.get('formula') else '') for x in faq)
+            # Desplegables (21/09/2026, pedido de Manu): la pregunta con una flecha y la respuesta
+            # adentro. Google lee igual la respuesta cerrada, y el FAQPage del JSON-LD no cambia.
+            faq_html = '\n    <h2>Preguntas frecuentes</h2>\n    <div class="faq">\n' + ''.join(
+                f'    <details><summary><h3>{html.escape(x["q"])}</h3>{CHEVRON}</summary><div class="faq-r">\n'
+                f'    <p>{html.escape(x["a"])}</p>\n'
+                + (f'    {formula_html(x["formula"])}\n' if x.get('formula') else '') + '    </div></details>\n' for x in faq) + '    </div>\n'
         cuerpo_guia, descarga_js = con_descarga(g)
-        cuerpo_art, toc = con_ids(cuerpo_guia + faq_html)
+        # La banda del diagnóstico va antes de las preguntas frecuentes (o al final del artículo si no hay).
+        banda = '\n' + cta_final('guia-' + g['slug'], g.get('cta_general', False)).replace('\n  ', '\n    ')
+        cuerpo_art, toc = con_ids(cuerpo_guia + banda + faq_html)
         toc_html = ''.join(f'<li><a href="#{i}">{html.escape(t)}</a></li>' for i, t in toc)
         resumen = ''.join(f'<li>{html.escape(x)}</li>' for x in g.get('resumen', []))
         assert resumen, f"{g['slug']}: falta el resumen"
-        etiquetas = ''.join(f'<span>{x}</span>' for x in incluye(g))
+        calc_html, calc_js_g = '', ''
+        if g.get('calculadora'):
+            assert g['calculadora'] in CALCULADORAS, f"{g['slug']}: calculadora desconocida {g['calculadora']}"
+            calc_html, calc_js_g = calc_html_de(g['calculadora'], g['slug']), calc_js(g['calculadora'])
         cuerpo = f"""  <section class="guia-cab">
     {CIRCULOS}
 {migas(items)}
     <p class="eyebrow">Guía · {html.escape(problema_de[g['slug']]['corto'])}</p>
     <h1>{html.escape(g['h1'])}</h1>
     <p class="bajada">{html.escape(g['description'])}</p>
-    <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · Actualizada el {fecha_larga(g['actualizada'])}</p>
-    <div class="meta">{etiquetas}<span>{minutos(g)} min de lectura</span></div>
+    <p class="autor">Por <a href="/#manuel">Manuel Alfano</a>, fundador de Orden Financiero · <span class="min">{minutos(g)} min de lectura</span> · Actualizada el {fecha_larga(g['actualizada'])}</p>
   </section>
   <div class="guia-cuerpo">
     <div class="guia-principal">
       <aside class="resumen"><p>Lo más importante</p><ul>{resumen}</ul></aside>
-      <details class="indice-movil"><summary>En esta guía</summary><ol>{toc_html}</ol></details>
+{calc_html}      <details class="indice-movil"><summary>En esta guía</summary><ol>{toc_html}</ol></details>
       <article>
 {cuerpo_art}
       </article>
@@ -1098,7 +1835,7 @@ def main():
     </div>
     <nav class="indice-guia" aria-label="En esta guía"><p>En esta guía</p><ol>{toc_html}</ol></nav>
   </div>
-{SCROLLSPY}{descarga_js}"""
+{SCROLLSPY}{descarga_js}{calc_js_g}"""
         ld = {"@context": "https://schema.org", "@graph": [
             {"@type": "Article", "@id": BASE + path + "#article", "headline": g['h1'], "description": g['description'],
              "image": BASE + f"/guias/og/{g['slug']}.png", "inLanguage": "es-AR", "datePublished": g['publicada'],
@@ -1115,7 +1852,7 @@ def main():
             title=g['title'], description=g['description'], path=path,
             og_type='article', ld=ld, cuerpo=cuerpo, cta_origen='guia-' + g['slug'], main_clase='guia',
             og_image=f"/guias/og/{g['slug']}.png", view_content=VIEW_CONTENT.get(g['slug']),
-            cta_general=g.get('cta_general', False)), encoding='utf-8', newline='\n')
+            cta_abajo=False, barra=barra_html(g['slug'])), encoding='utf-8', newline='\n')
 
     # Indice /guias
     items = [("Inicio", "/"), ("Guías", None)]

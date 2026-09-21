@@ -4979,9 +4979,17 @@ function track(evento, props) {
 // vez por pestaña y no se pisan: viajan al Sheet con el lead.
 const atribucion = (function () {
   const KEY = 'of_atrib_v1';
-  try { const a = JSON.parse(sessionStorage.getItem(KEY) || 'null'); if (a) return a; } catch (e) {}
   const q = new URLSearchParams(location.search);
   const limpio = v => (v || '').trim().slice(0, 100);
+  // Primer contacto gana, salvo que no haya traído origen: si antes bajó el Excel en una guía (que guarda
+  // la atribución sin origen) y después llega desde el botón de una guía, el origen de ese botón se guarda.
+  try {
+    const a = JSON.parse(sessionStorage.getItem(KEY) || 'null');
+    if (a) {
+      if (!a.origen && q.get('origen')) { a.origen = limpio(q.get('origen')); sessionStorage.setItem(KEY, JSON.stringify(a)); }
+      return a;
+    }
+  } catch (e) {}
   let referrer = '';
   try { if (document.referrer) { const u = new URL(document.referrer); if (u.hostname !== location.hostname) referrer = u.origin; } } catch (e) {}
   const a = {
