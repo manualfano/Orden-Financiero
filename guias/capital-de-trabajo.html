@@ -466,6 +466,65 @@ function gtag() { dataLayer.push(arguments); }
   .calc-cta { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid rgba(12,102,228,0.18); }
   .calc-cta p { font-size: var(--fs-sm); }
   .calc-cta .calc-cta-t { font-size: var(--fs-lead); font-weight: 600; line-height: 1.35; color: var(--navy); margin-bottom: 4px; }
+  /* Preguntas frecuentes desplegables: una fila por pregunta, flecha a la derecha que gira al abrir */
+  .faq { border-top: 1px solid var(--borde); margin-top: var(--s-3); }
+  .faq details { border-bottom: 1px solid var(--borde); }
+  .faq summary { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); min-height: 56px; padding: var(--s-3) 0; cursor: pointer; list-style: none; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary h3 { margin: 0; font-size: var(--fs-base); line-height: 1.4; transition: color var(--t-instante); }
+  .faq summary:hover h3 { color: var(--marca); }
+  .faq summary:focus-visible { outline: 2px solid var(--marca); outline-offset: 2px; border-radius: 4px; }
+  .faq .chevron { width: 20px; height: 20px; flex-shrink: 0; color: var(--tinta-3); transition: transform 200ms ease; }
+  .faq details[open] .chevron { transform: rotate(180deg); color: var(--marca); }
+  .faq-r { padding: 0 var(--s-6) var(--s-4) 0; }
+  .faq-r p:last-child { margin-bottom: 0; }
+  @media (prefers-reduced-motion: reduce) { .faq .chevron { transition: none; } }
+  /* Ejemplo precargado: aviso gris arriba de los campos y chip en el resultado */
+  .calc-ej { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--s-3); margin: calc(-1 * var(--s-3)) 0 var(--s-4); padding: 4px var(--s-3); background: var(--lienzo); border-radius: var(--r); font-size: var(--fs-sm); color: var(--tinta-2); }
+  .calc-ej[hidden], .calc-chip[hidden] { display: none; }
+  .calc-ej strong { color: var(--tinta); }
+  .calc-ej-btn { min-height: 36px; padding: 0; border: 0; background: none; font: inherit; font-weight: 600; color: var(--marca); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .calc-res .calc-chip { display: inline-block; margin-bottom: var(--s-2); padding: 2px 10px; border-radius: 999px; background: var(--w); font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--marca); }
+  /* Dibujos del resultado, sobre tarjeta blanca. Costo en gris, lo que queda en azul marca, pérdida en rojo. */
+  .calc-viz { margin: 0 0 var(--s-4); padding: var(--s-3) var(--s-4); background: var(--w); border-radius: var(--r); }
+  .calc-res .vz-titulo { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tinta-3); margin-bottom: var(--s-2); }
+  .vz-barra { display: flex; height: 14px; border-radius: 999px; overflow: hidden; background: var(--lienzo-2); }
+  .vz-barra i { display: block; height: 100%; }
+  .c-costo { background: var(--secondary-dark); }
+  .c-queda { background: var(--marca); }
+  .c-base { background: var(--navy); }
+  .c-suma { background: #7DB1F4; }
+  .c-neg { background: var(--riesgo); }
+  .vz-refpista { position: relative; height: 6px; margin-top: 3px; }
+  .vz-ref { position: absolute; top: 0; height: 4px; border-radius: 2px; background: var(--navy); }
+  .calc-res ul.vz-ley { list-style: none; padding: 0; margin: var(--s-2) 0 0; display: flex; flex-wrap: wrap; gap: 2px var(--s-4); }
+  .calc-res .vz-ley li { display: flex; align-items: center; gap: 6px; margin: 0; font-size: var(--fs-sm); color: var(--tinta-2); }
+  .vz-ley li i { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+  .vz-ley li i.vz-guion { height: 0; border-radius: 0; border-top: 2px dashed var(--tinta-3); }
+  .vz-ley strong { color: var(--navy); font-variant-numeric: tabular-nums; }
+  .calc-res .vz-nota { font-size: var(--fs-meta); color: var(--tinta-3); margin-top: 4px; }
+  .vz-cas { display: grid; gap: var(--s-2); }
+  .vz-f { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--s-3); row-gap: 3px; align-items: baseline; }
+  .vz-t { font-size: var(--fs-sm); color: var(--tinta-2); line-height: 1.3; }
+  .vz-n { font-size: var(--fs-sm); font-weight: 600; color: var(--navy); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .vz-pista { grid-column: 1 / -1; position: relative; height: 10px; border-radius: 3px; background: var(--lienzo-2); }
+  .vz-pista i { position: absolute; top: 0; bottom: 0; border-radius: 3px; }
+  .vz-cero { position: absolute; top: -3px; bottom: -3px; width: 2px; margin-left: -1px; background: var(--tinta-2); }
+  .vz-tot { padding-top: var(--s-2); border-top: 1px solid var(--borde); }
+  .vz-tot .vz-t { font-weight: 600; color: var(--navy); }
+  .vz-rojo .vz-n, .vz-rojo .vz-t { color: var(--riesgo); }
+  .vz-pe { display: block; width: 100%; height: auto; font-family: 'Inter', system-ui, sans-serif; overflow: visible; }
+  .vz-pe line { fill: none; }
+  .vz-pe .l-eje { stroke: var(--tinta-3); stroke-width: 1; }
+  .vz-pe .l-fijos { stroke: var(--tinta-3); stroke-width: 1.5; stroke-dasharray: 4 4; }
+  .vz-pe .l-cost { stroke: var(--navy); stroke-width: 2.5; }
+  .vz-pe .l-ing { stroke: var(--marca); stroke-width: 2.5; }
+  .vz-pe .l-guia { stroke: var(--marca); stroke-width: 1; stroke-dasharray: 2 3; }
+  .vz-pe .p-pe { fill: var(--marca); stroke: var(--w); stroke-width: 2; }
+  .vz-pe text { font-size: 11px; fill: var(--tinta-2); }
+  .vz-pe .t-pe { font-size: 12px; font-weight: 600; fill: var(--navy); }
+  .vz-pe .t-ing { font-weight: 600; fill: var(--marca); }
+  .vz-pe .t-cost { font-weight: 600; fill: var(--navy); }
   .calc-cta .btn { margin-top: var(--s-3); }
   /* Desde tablet, campos a la izquierda y resultado a la derecha (21/09/2026, Manu no encontraba
      el resultado): el número cambia a la vista mientras se escribe. */
@@ -564,25 +623,26 @@ function gtag() { dataLayer.push(arguments); }
         <div class="calc-in">
           <h2 class="calc-t" id="calc-t">Calculá tu capital de trabajo</h2>
           <p class="calc-sub">Con lo que tenés hoy. No se guarda ni se envía nada.</p>
+          <div class="calc-ej" id="calc-ej"><span>Estos son los números de ejemplo de <strong>un restaurante</strong>.</span><button type="button" class="calc-ej-btn" id="calc-limpiar">Poner los míos</button></div>
           <form class="calc-campos" novalidate>
             <div class="calc-campo calc-ancho">
               <label for="calc-caja">Plata que tenés hoy</label>
-              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-caja" type="text" inputmode="numeric" autocomplete="off" data-tipo="pesos" placeholder="1.300.000" aria-describedby="calc-caja-a" data-req></div>
+              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-caja" type="text" inputmode="numeric" autocomplete="off" data-tipo="pesos" placeholder="1.300.000" value="1.300.000" aria-describedby="calc-caja-a" data-req></div>
               <p class="calc-ayuda" id="calc-caja-a">Banco, Mercado Pago y efectivo.</p>
             </div>
             <div class="calc-campo">
               <label for="calc-cobrar">Lo que te tienen que pagar <span class="calc-opc">(opcional)</span></label>
-              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-cobrar" type="text" inputmode="numeric" autocomplete="off" data-tipo="pesos" placeholder="2.000.000" aria-describedby="calc-cobrar-a"></div>
+              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-cobrar" type="text" inputmode="numeric" autocomplete="off" data-tipo="pesos" placeholder="2.000.000" value="2.000.000" aria-describedby="calc-cobrar-a"></div>
               <p class="calc-ayuda" id="calc-cobrar-a">Tarjetas y apps por acreditar, cheques y clientes.</p>
             </div>
             <div class="calc-campo">
               <label for="calc-stock">Mercadería en stock <span class="calc-opc">(opcional)</span></label>
-              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-stock" type="text" inputmode="numeric" autocomplete="off" data-tipo="pesos" placeholder="700.000" aria-describedby="calc-stock-a"></div>
+              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-stock" type="text" inputmode="numeric" autocomplete="off" data-tipo="pesos" placeholder="700.000" value="700.000" aria-describedby="calc-stock-a"></div>
               <p class="calc-ayuda" id="calc-stock-a">A lo que te costó.</p>
             </div>
             <div class="calc-campo calc-ancho">
               <label for="calc-deudas">Lo que tenés que pagar en el año</label>
-              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-deudas" type="text" inputmode="numeric" autocomplete="off" data-tipo="pesos" placeholder="7.200.000" aria-describedby="calc-deudas-a" data-req></div>
+              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-deudas" type="text" inputmode="numeric" autocomplete="off" data-tipo="pesos" placeholder="7.200.000" value="7.200.000" aria-describedby="calc-deudas-a" data-req></div>
               <p class="calc-ayuda" id="calc-deudas-a">Proveedores, sueldos y cargas, impuestos y cuotas de préstamos.</p>
             </div>
           </form>
@@ -591,9 +651,11 @@ function gtag() { dataLayer.push(arguments); }
           <p class="calc-vacio" id="calc-vacio">Completá la plata que tenés y lo que tenés que pagar, y acá aparece tu capital de trabajo.</p>
           <p class="calc-error" id="calc-error" hidden></p>
           <div id="calc-lleno" hidden>
+            <p class="calc-chip" id="calc-chip">Ejemplo</p>
             <p class="calc-res-t" id="calc-res-t"></p>
             <p class="calc-grande"><span id="calc-grande"></span> <span class="calc-u" id="calc-u"></span></p>
             <ul class="calc-filas" id="calc-filas"></ul>
+            <div class="calc-viz" id="calc-viz" hidden></div>
             <p class="calc-piso" id="calc-piso"></p>
           </div>
           <p class="ec-sr" id="calc-sr" aria-live="polite"></p>
@@ -732,17 +794,24 @@ function gtag() { dataLayer.push(arguments); }
     </aside>
 
     <h2 id="preguntas-frecuentes">Preguntas frecuentes</h2>
-    <h3>¿Qué es el capital de trabajo?</h3>
+    <div class="faq">
+    <details><summary><h3>¿Qué es el capital de trabajo?</h3><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-r">
     <p>Es lo que el negocio tiene en caja, por cobrar y en stock, menos lo que debe pagar en el corto plazo. No es lo mismo que la plata en la cuenta: el stock y las tarjetas por acreditar todavía no son efectivo.</p>
-    <h3>¿Cuál es la fórmula del capital de trabajo?</h3>
+    </div></details>
+    <details><summary><h3>¿Cuál es la fórmula del capital de trabajo?</h3><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-r">
     <p>Capital de trabajo = activo corriente − pasivo corriente. Con $11.500.000 entre caja, cobros pendientes y stock, y $8.500.000 de deudas de corto plazo, el capital de trabajo es $3.000.000.</p>
     <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Capital de trabajo</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-w">Activo corriente</span></span><span class="ec-op">−</span><span class="ec-w">Pasivo corriente</span></div></figure>
-    <h3>¿Qué significa tener capital de trabajo negativo?</h3>
+    </div></details>
+    <details><summary><h3>¿Qué significa tener capital de trabajo negativo?</h3><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-r">
     <p>Que debés en el corto plazo más de lo que tenés en caja, por cobrar y en stock. Es común en gastronomía, que cobra rápido y les paga a los proveedores más tarde. Funciona mientras las ventas se sostienen; si caen, te quedás sin plata para pagar.</p>
-    <h3>¿Qué es un crédito para capital de trabajo?</h3>
+    </div></details>
+    <details><summary><h3>¿Qué es un crédito para capital de trabajo?</h3><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-r">
     <p>Un préstamo de corto plazo para comprar stock o cubrir los días entre que pagás y cobrás. Conviene si te deja vender más o comprar mejor. Antes de tomarlo, mirá el costo financiero total (lo que pagás con intereses y gastos). Si lo usás para tapar pérdidas, agranda el problema.</p>
-    <h3>¿Capital de trabajo y ganancia son lo mismo?</h3>
+    </div></details>
+    <details><summary><h3>¿Capital de trabajo y ganancia son lo mismo?</h3><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-r">
     <p>No. La ganancia dice si el negocio gana plata. El capital de trabajo dice si tiene con qué pagar lo que vence. Podés ganar y aun así quedarte sin capital de trabajo.</p>
+    </div></details>
+    </div>
 
       </article>
       <aside class="caja-autor"><img src="/foto-manuel-cutout.webp" alt="Manuel Alfano" width="72" height="72" loading="lazy"><div><strong>Manuel Alfano</strong><p>Fundador de Orden Financiero. Licenciado en Administración (UNLP) y más de 12 años en la gastronomía con negocio propio; hoy trabaja mano a mano con dueños de negocios gastronómicos para hacerlos más rentables.</p><div class="formacion"><p class="formacion-titulo">Formación</p><ul><li><span class="logo"><img src="/logos/formacion/unlp.png" alt="Universidad Nacional de La Plata" width="36" height="17" loading="lazy"></span><span>Licenciatura en Administración</span></li><li><span class="logo"><img src="/logos/formacion/ditella.svg" alt="Universidad Torcuato Di Tella" width="17" height="17" loading="lazy"></span><span>Gestión de restaurantes</span></li><li><span class="logo"><img src="/logos/formacion/iae.png" alt="IAE Business School" width="17" height="17" loading="lazy"></span><span>Presupuesto y tablero de control</span></li><li><span class="logo"><img src="/logos/formacion/coderhouse.svg" alt="Coderhouse" width="58" height="7" loading="lazy"></span><span>Análisis de datos</span></li></ul></div></div></aside>
@@ -796,10 +865,62 @@ function gtag() { dataLayer.push(arguments); }
       var cta = ct < 0
         ? { t: 'Te faltan ' + h.P(-ct) + ' para cubrir lo que debés.', p: 'Anda mientras se vende bien. El diagnóstico te muestra qué tan expuesto está tu negocio si las ventas bajan.', tag: 'capital-negativo' }
         : { t: 'Tenés ' + h.P(ct) + ' a favor. ¿Sabés cuánto te dura?', p: 'El diagnóstico te muestra si tu caja está ordenada o si esa plata ya tiene dueño.', tag: 'capital-ok' };
+      var pasos = [{ t: 'Plata que tenés', v: v.caja, tipo: 'base' }];
+      if (v.cobrar > 0) pasos.push({ t: 'Te tienen que pagar', v: v.cobrar });
+      if (stock > 0) pasos.push({ t: 'Mercadería en stock', v: stock });
+      pasos.push({ t: 'Lo que debés', v: -v.deudas }, { t: 'Capital de trabajo', tipo: 'total' });
       return { estado: 'lleno', t: ct >= 0 ? 'Tu capital de trabajo es' : 'Tu capital de trabajo es negativo', grande: h.P(ct), filas: filas, cta: cta,
+               viz: { tipo: 'cascada', pasos: pasos },
                piso: ct >= 0 ? 'Antes de retirar o invertir, restá lo que vence en los próximos 30 días.'
                              : 'En gastronomía es común: se cobra rápido y a los proveedores se les paga a 30 días. Anda mientras se vende bien; si las ventas caen, no aparece la plata para pagar.' };
     };
+    // Dibujos del resultado: barra de cada $100, cascada (vendiste − costos = te quedó) y el cruce del punto de equilibrio.
+    function dibujar(z) {
+      if (z.tipo === 'barra') {
+        var val = function (p) { return z.u === 'g' ? h.N(Math.round(p.v * 10)) + ' g' : '$' + h.d1(p.v); };
+        var ref = z.ref ? '<div class="vz-refpista"><i class="vz-ref" style="left:' + z.ref[0] + '%;width:' + (z.ref[1] - z.ref[0]) + '%"></i></div>' : '';
+        return '<p class="vz-titulo">' + z.titulo + '</p><div class="vz-barra">'
+          + z.partes.map(function (p) { return '<i class="c-' + p.c + '" style="width:' + Math.max(0, Math.min(100, p.v)).toFixed(2) + '%"></i>'; }).join('')
+          + '</div>' + ref + '<ul class="vz-ley">'
+          + z.partes.map(function (p) { return '<li><i class="c-' + p.c + '"></i>' + p.t + ' <strong>' + val(p) + '</strong></li>'; }).join('') + '</ul>'
+          + (z.ref ? '<p class="vz-nota">La rayita es la referencia de gastronomía: $' + z.ref[0] + ' a $' + z.ref[1] + ' de cada $100.</p>' : '');
+      }
+      if (z.tipo === 'cascada') {
+        var run = 0, lo = 0, hi = 0;
+        z.pasos.forEach(function (p) {
+          var a, b;
+          if (p.tipo === 'base') { a = 0; b = p.v; run = p.v; }
+          else if (p.tipo === 'total') { a = 0; b = run; p.v = run; }
+          else { a = run; b = run + p.v; run = b; }
+          p.a = Math.min(a, b); p.b = Math.max(a, b);
+          lo = Math.min(lo, p.a); hi = Math.max(hi, p.b);
+        });
+        var span = hi - lo || 1, pos = function (x) { return ((x - lo) / span * 100).toFixed(2); };
+        return '<div class="vz-cas">' + z.pasos.map(function (p) {
+          var tot = p.tipo === 'total', neg = p.v < 0;
+          var c = p.tipo === 'base' ? 'base' : tot ? (neg ? 'neg' : 'queda') : (neg ? 'costo' : 'suma');
+          var n = tot || p.tipo === 'base' ? h.P(p.v) : (neg ? '−' : '+') + h.P(Math.abs(p.v));
+          return '<div class="vz-f' + (tot ? ' vz-tot' : '') + (tot && neg ? ' vz-rojo' : '') + '"><span class="vz-t">' + p.t + '</span><span class="vz-n">' + n + '</span>'
+            + '<span class="vz-pista"><i class="c-' + c + '" style="left:' + pos(p.a) + '%;width:' + Math.max(0.8, (p.b - p.a) / span * 100).toFixed(2) + '%"></i>'
+            + (lo < 0 ? '<b class="vz-cero" style="left:' + pos(0) + '%"></b>' : '') + '</span></div>';
+        }).join('') + '</div>';
+      }
+      if (z.tipo === 'pe') {
+        var x0 = 6, y0 = 142, w = 308, hh = 128, pe = z.F / (1 - z.cv), max = 2 * pe;
+        var X = function (s) { return +(x0 + s / max * w).toFixed(1); }, Y = function (s) { return +(y0 - s / max * hh).toFixed(1); };
+        var L = function (cl, a, b, c, d) { return '<line class="' + cl + '" x1="' + a + '" y1="' + b + '" x2="' + c + '" y2="' + d + '"/>'; };
+        var T = function (cl, x, y, s, an) { return '<text class="' + cl + '" x="' + x + '" y="' + y + '"' + (an ? ' text-anchor="' + an + '"' : '') + '>' + s + '</text>'; };
+        return '<p class="vz-titulo">Dónde se cruzan lo que vendés y lo que gastás en el mes</p>'
+          + '<svg class="vz-pe" viewBox="0 0 320 166" role="img" aria-label="Gráfico: la línea de lo que vendés cruza la de tus costos en ' + z.etiqueta + '">'
+          + L('l-eje', x0, y0, x0 + w, y0) + L('l-fijos', X(0), Y(z.F), X(max), Y(z.F))
+          + L('l-cost', X(0), Y(z.F), X(max), Y(z.F + z.cv * max)) + L('l-ing', X(0), Y(0), X(max), Y(max))
+          + L('l-guia', X(pe), Y(pe), X(pe), y0) + '<circle class="p-pe" cx="' + X(pe) + '" cy="' + Y(pe) + '" r="5"/>'
+          + T('t-pe', X(pe) + 10, Y(pe) + 20, z.etiqueta)
+          + T('t-zona', X(pe) - 8, y0 + 16, '← perdés', 'end') + T('t-zona', X(pe) + 8, y0 + 16, 'ganás →') + '</svg>'
+          + '<ul class="vz-ley"><li><i class="c-queda"></i>Lo que vendés</li><li><i class="c-base"></i>Tus costos</li><li><i class="vz-guion"></i>Gastos fijos</li></ul>';
+      }
+      return '';
+    }
     var inputs = [].slice.call(caja.querySelectorAll('input[data-tipo]'));
     function num(v) {
       var d = String(v || '').replace(/\./g, '').replace(',', '.').replace(/[^\d.]/g, '');
@@ -831,6 +952,13 @@ function gtag() { dataLayer.push(arguments); }
       ctaP.textContent = c ? c.p + ' Son 3 minutos y 12 preguntas, gratis.' : ctaBase;
       btn.href = '/?origen=' + btn.dataset.base + (c ? '-' + c.tag : '') + '#diagnostico';
     }
+    // Mientras estén los números del ejemplo: chip "Ejemplo", llamado genérico y sin medir el uso.
+    var ejemplo = !!$('calc-ej');
+    function propios() {
+      if (!ejemplo) return;
+      ejemplo = false;
+      $('calc-ej').hidden = true;
+    }
     var medido = false, espera;
     function calcular() {
       var iva = caja.querySelector('input[name="calc-iva"]:checked'), ri = !!iva && iva.value === 'ri';
@@ -841,7 +969,8 @@ function gtag() { dataLayer.push(arguments); }
       $('calc-lleno').hidden = r.estado !== 'lleno';
       $('calc-error').hidden = r.estado !== 'error';
       if (r.estado === 'error') $('calc-error').textContent = r.error;
-      ctaDe(r.estado === 'lleno' ? r.cta : null);
+      ctaDe(r.estado === 'lleno' && !ejemplo ? r.cta : null);
+      $('calc-chip').hidden = !ejemplo;
       if (r.estado !== 'lleno') { $('calc-sr').textContent = r.estado === 'error' ? r.error : ''; return; }
       $('calc-res-t').textContent = r.t;
       $('calc-grande').textContent = r.grande;
@@ -849,6 +978,9 @@ function gtag() { dataLayer.push(arguments); }
       $('calc-filas').innerHTML = (r.filas || []).map(function (f) { return '<li>' + f + '</li>'; }).join('');
       $('calc-piso').textContent = r.piso || '';
       $('calc-piso').hidden = !r.piso;
+      $('calc-viz').innerHTML = r.viz ? dibujar(r.viz) : '';
+      $('calc-viz').hidden = !r.viz;
+      if (ejemplo) return;
       espera = setTimeout(function () {
         $('calc-sr').textContent = r.t + ' ' + r.grande + (r.unidad ? ' ' + r.unidad : '') + '.';
         if (!medido) {
@@ -858,14 +990,25 @@ function gtag() { dataLayer.push(arguments); }
       }, 1200);
     }
     inputs.forEach(function (i) {
+      // Con el ejemplo cargado, al tocar un campo se selecciona el número: lo que escribas lo reemplaza.
+      i.addEventListener('focus', function () { if (ejemplo) setTimeout(function () { try { i.select(); } catch (e) {} }, 0); });
       i.addEventListener('input', function () {
+        propios();
         if (i.dataset.tipo === 'pesos') miles(i);
         else if (i.dataset.tipo === 'pct') i.value = i.value.replace(/[^\d,]/g, '');
         else i.value = i.value.replace(/\D/g, '');
         calcular();
       });
     });
-    [].slice.call(caja.querySelectorAll('input[name="calc-iva"]')).forEach(function (r) { r.addEventListener('change', calcular); });
+    [].slice.call(caja.querySelectorAll('input[name="calc-iva"]')).forEach(function (r) { r.addEventListener('change', function () { propios(); calcular(); }); });
+    if ($('calc-limpiar')) $('calc-limpiar').addEventListener('click', function () {
+      inputs.forEach(function (i) { i.value = i.dataset.def || ''; });
+      var mono = caja.querySelector('input[name="calc-iva"][value="mono"]');
+      if (mono) mono.checked = true;
+      propios();
+      calcular();
+      inputs[0].focus();
+    });
     [].slice.call(caja.querySelectorAll('.calc-caja')).forEach(function (c) { c.addEventListener('click', function () { c.querySelector('input').focus(); }); });
     caja.querySelector('form').addEventListener('submit', function (e) { e.preventDefault(); });
     // En celular el resultado queda debajo de los campos: la primera vez que aparece, al salir de un

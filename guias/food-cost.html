@@ -466,6 +466,65 @@ function gtag() { dataLayer.push(arguments); }
   .calc-cta { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid rgba(12,102,228,0.18); }
   .calc-cta p { font-size: var(--fs-sm); }
   .calc-cta .calc-cta-t { font-size: var(--fs-lead); font-weight: 600; line-height: 1.35; color: var(--navy); margin-bottom: 4px; }
+  /* Preguntas frecuentes desplegables: una fila por pregunta, flecha a la derecha que gira al abrir */
+  .faq { border-top: 1px solid var(--borde); margin-top: var(--s-3); }
+  .faq details { border-bottom: 1px solid var(--borde); }
+  .faq summary { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); min-height: 56px; padding: var(--s-3) 0; cursor: pointer; list-style: none; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary h3 { margin: 0; font-size: var(--fs-base); line-height: 1.4; transition: color var(--t-instante); }
+  .faq summary:hover h3 { color: var(--marca); }
+  .faq summary:focus-visible { outline: 2px solid var(--marca); outline-offset: 2px; border-radius: 4px; }
+  .faq .chevron { width: 20px; height: 20px; flex-shrink: 0; color: var(--tinta-3); transition: transform 200ms ease; }
+  .faq details[open] .chevron { transform: rotate(180deg); color: var(--marca); }
+  .faq-r { padding: 0 var(--s-6) var(--s-4) 0; }
+  .faq-r p:last-child { margin-bottom: 0; }
+  @media (prefers-reduced-motion: reduce) { .faq .chevron { transition: none; } }
+  /* Ejemplo precargado: aviso gris arriba de los campos y chip en el resultado */
+  .calc-ej { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--s-3); margin: calc(-1 * var(--s-3)) 0 var(--s-4); padding: 4px var(--s-3); background: var(--lienzo); border-radius: var(--r); font-size: var(--fs-sm); color: var(--tinta-2); }
+  .calc-ej[hidden], .calc-chip[hidden] { display: none; }
+  .calc-ej strong { color: var(--tinta); }
+  .calc-ej-btn { min-height: 36px; padding: 0; border: 0; background: none; font: inherit; font-weight: 600; color: var(--marca); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .calc-res .calc-chip { display: inline-block; margin-bottom: var(--s-2); padding: 2px 10px; border-radius: 999px; background: var(--w); font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--marca); }
+  /* Dibujos del resultado, sobre tarjeta blanca. Costo en gris, lo que queda en azul marca, pérdida en rojo. */
+  .calc-viz { margin: 0 0 var(--s-4); padding: var(--s-3) var(--s-4); background: var(--w); border-radius: var(--r); }
+  .calc-res .vz-titulo { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tinta-3); margin-bottom: var(--s-2); }
+  .vz-barra { display: flex; height: 14px; border-radius: 999px; overflow: hidden; background: var(--lienzo-2); }
+  .vz-barra i { display: block; height: 100%; }
+  .c-costo { background: var(--secondary-dark); }
+  .c-queda { background: var(--marca); }
+  .c-base { background: var(--navy); }
+  .c-suma { background: #7DB1F4; }
+  .c-neg { background: var(--riesgo); }
+  .vz-refpista { position: relative; height: 6px; margin-top: 3px; }
+  .vz-ref { position: absolute; top: 0; height: 4px; border-radius: 2px; background: var(--navy); }
+  .calc-res ul.vz-ley { list-style: none; padding: 0; margin: var(--s-2) 0 0; display: flex; flex-wrap: wrap; gap: 2px var(--s-4); }
+  .calc-res .vz-ley li { display: flex; align-items: center; gap: 6px; margin: 0; font-size: var(--fs-sm); color: var(--tinta-2); }
+  .vz-ley li i { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+  .vz-ley li i.vz-guion { height: 0; border-radius: 0; border-top: 2px dashed var(--tinta-3); }
+  .vz-ley strong { color: var(--navy); font-variant-numeric: tabular-nums; }
+  .calc-res .vz-nota { font-size: var(--fs-meta); color: var(--tinta-3); margin-top: 4px; }
+  .vz-cas { display: grid; gap: var(--s-2); }
+  .vz-f { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--s-3); row-gap: 3px; align-items: baseline; }
+  .vz-t { font-size: var(--fs-sm); color: var(--tinta-2); line-height: 1.3; }
+  .vz-n { font-size: var(--fs-sm); font-weight: 600; color: var(--navy); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .vz-pista { grid-column: 1 / -1; position: relative; height: 10px; border-radius: 3px; background: var(--lienzo-2); }
+  .vz-pista i { position: absolute; top: 0; bottom: 0; border-radius: 3px; }
+  .vz-cero { position: absolute; top: -3px; bottom: -3px; width: 2px; margin-left: -1px; background: var(--tinta-2); }
+  .vz-tot { padding-top: var(--s-2); border-top: 1px solid var(--borde); }
+  .vz-tot .vz-t { font-weight: 600; color: var(--navy); }
+  .vz-rojo .vz-n, .vz-rojo .vz-t { color: var(--riesgo); }
+  .vz-pe { display: block; width: 100%; height: auto; font-family: 'Inter', system-ui, sans-serif; overflow: visible; }
+  .vz-pe line { fill: none; }
+  .vz-pe .l-eje { stroke: var(--tinta-3); stroke-width: 1; }
+  .vz-pe .l-fijos { stroke: var(--tinta-3); stroke-width: 1.5; stroke-dasharray: 4 4; }
+  .vz-pe .l-cost { stroke: var(--navy); stroke-width: 2.5; }
+  .vz-pe .l-ing { stroke: var(--marca); stroke-width: 2.5; }
+  .vz-pe .l-guia { stroke: var(--marca); stroke-width: 1; stroke-dasharray: 2 3; }
+  .vz-pe .p-pe { fill: var(--marca); stroke: var(--w); stroke-width: 2; }
+  .vz-pe text { font-size: 11px; fill: var(--tinta-2); }
+  .vz-pe .t-pe { font-size: 12px; font-weight: 600; fill: var(--navy); }
+  .vz-pe .t-ing { font-weight: 600; fill: var(--marca); }
+  .vz-pe .t-cost { font-weight: 600; fill: var(--navy); }
   .calc-cta .btn { margin-top: var(--s-3); }
   /* Desde tablet, campos a la izquierda y resultado a la derecha (21/09/2026, Manu no encontraba
      el resultado): el número cambia a la vista mientras se escribe. */
@@ -564,24 +623,25 @@ function gtag() { dataLayer.push(arguments); }
         <div class="calc-in">
           <h2 class="calc-t" id="calc-t">Calculá el food cost de un plato</h2>
           <p class="calc-sub">Con lo que te cuesta hoy. No se guarda ni se envía nada.</p>
+          <div class="calc-ej" id="calc-ej"><span>Estos son los números de ejemplo de <strong>una milanesa con puré</strong>.</span><button type="button" class="calc-ej-btn" id="calc-limpiar">Poner los míos</button></div>
           <form class="calc-campos" novalidate>
             <div class="calc-campo calc-ancho">
               <label for="calc-costo">¿Cuánto te cuesta hacer el plato?</label>
-              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-costo" type="text" inputmode="numeric" autocomplete="off" data-tipo="pesos" placeholder="4.200" aria-describedby="calc-costo-a" data-req></div>
+              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-costo" type="text" inputmode="numeric" autocomplete="off" data-tipo="pesos" placeholder="4.200" value="4.145" aria-describedby="calc-costo-a" data-req></div>
               <p class="calc-ayuda" id="calc-costo-a">Si no lo sabés, sacalo con la guía de <a href="/guias/costo-de-un-plato">costo de un plato</a>.</p>
             </div>
             <div class="calc-campo calc-ancho">
               <label for="calc-precio">Precio de carta</label>
-              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-precio" type="text" inputmode="numeric" autocomplete="off" data-tipo="pesos" placeholder="16.800" aria-describedby="calc-precio-a" data-req></div>
+              <div class="calc-caja"><span aria-hidden="true">$</span><input id="calc-precio" type="text" inputmode="numeric" autocomplete="off" data-tipo="pesos" placeholder="16.800" value="16.800" aria-describedby="calc-precio-a" data-req></div>
               <p class="calc-ayuda" id="calc-precio-a">Lo que cobrás por el plato.</p>
             </div>
             <fieldset class="calc-campo calc-ancho">
               <legend>¿Cómo facturás?</legend>
               <div class="calc-seg">
-                <label><input type="radio" name="calc-iva" value="mono" checked><span>Monotributo</span></label>
-                <label><input type="radio" name="calc-iva" value="ri"><span>Responsable inscripto</span></label>
+                <label><input type="radio" name="calc-iva" value="mono"><span>Monotributo</span></label>
+                <label><input type="radio" name="calc-iva" value="ri" checked><span>Responsable inscripto</span></label>
               </div>
-              <p class="calc-ayuda" id="calc-iva-a" hidden>Poné el costo sin IVA y el precio de carta con IVA, como lo cobrás.</p>
+              <p class="calc-ayuda" id="calc-iva-a">Poné el costo sin IVA y el precio de carta con IVA, como lo cobrás.</p>
             </fieldset>
           </form>
         </div>
@@ -589,9 +649,11 @@ function gtag() { dataLayer.push(arguments); }
           <p class="calc-vacio" id="calc-vacio">Completá el costo y el precio del plato y acá aparece su food cost.</p>
           <p class="calc-error" id="calc-error" hidden></p>
           <div id="calc-lleno" hidden>
+            <p class="calc-chip" id="calc-chip">Ejemplo</p>
             <p class="calc-res-t" id="calc-res-t"></p>
             <p class="calc-grande"><span id="calc-grande"></span> <span class="calc-u" id="calc-u"></span></p>
             <ul class="calc-filas" id="calc-filas"></ul>
+            <div class="calc-viz" id="calc-viz" hidden></div>
             <p class="calc-piso" id="calc-piso"></p>
           </div>
           <p class="ec-sr" id="calc-sr" aria-live="polite"></p>
@@ -736,22 +798,31 @@ function gtag() { dataLayer.push(arguments); }
     </aside>
 
     <h2 id="preguntas-frecuentes">Preguntas frecuentes</h2>
-    <h3>¿Qué es el CMV?</h3>
+    <div class="faq">
+    <details><summary><h3>¿Qué es el CMV?</h3><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-r">
     <p>CMV quiere decir costo de mercadería vendida: lo que te costó la mercadería que vendiste en el mes. No es lo que compraste, sino lo que salió del stock.</p>
-    <h3>¿Cuál es la fórmula del costo de mercadería vendida?</h3>
+    </div></details>
+    <details><summary><h3>¿Cuál es la fórmula del costo de mercadería vendida?</h3><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-r">
     <p>Stock al empezar el mes + compras − stock al cerrar. Con $3.000.000 de stock al empezar, $8.000.000 de compras y $2.500.000 al cerrar, el CMV es $8.500.000.</p>
     <figure class="ecuacion"><div class="ec-linea"><span class="ec-v">CMV</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-w">Inventario inicial</span></span><span class="ec-op">+</span><span class="ec-w">Compras</span><span class="ec-op">−</span><span class="ec-w">Inventario final</span></div></figure>
-    <h3>¿Cuál es la fórmula del food cost?</h3>
+    </div></details>
+    <details><summary><h3>¿Cuál es la fórmula del food cost?</h3><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-r">
     <p>Por plato: costo del plato ÷ precio de carta sin IVA × 100. Por mes: CMV ÷ ventas netas × 100.</p>
     <figure class="ecuacion"><div class="ec-linea"><span class="ec-w">Food cost del plato %</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-w">Costo del plato</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Precio sin IVA</span></span></span></span><span class="ec-op">×</span><span class="ec-n">100</span></div><div class="ec-linea"><span class="ec-w">Food cost del mes %</span><span class="ec-g"><span class="ec-op">=</span><span class="ec-frac"><span class="ec-num"><span class="ec-v">CMV</span></span><span class="ec-sr"> dividido por </span><span class="ec-den"><span class="ec-w">Ventas netas</span></span></span></span><span class="ec-op">×</span><span class="ec-n">100</span></div></figure>
-    <h3>¿Food cost y costo de mercadería vendida son lo mismo?</h3>
+    </div></details>
+    <details><summary><h3>¿Food cost y costo de mercadería vendida son lo mismo?</h3><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-r">
     <p>No. El CMV es un monto en pesos. El food cost es ese monto como porcentaje de las ventas, y es el nombre que se usa en gastronomía.</p>
-    <h3>¿El CMV y el food cost se calculan con o sin IVA?</h3>
+    </div></details>
+    <details><summary><h3>¿El CMV y el food cost se calculan con o sin IVA?</h3><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-r">
     <p>Sin IVA si sos responsable inscripto, porque el IVA de las compras lo recuperás. Si sos monotributista, usá lo que pagaste y lo que cobraste. Ante la duda, consultalo con tu contador.</p>
-    <h3>¿Las bebidas entran en el food cost?</h3>
+    </div></details>
+    <details><summary><h3>¿Las bebidas entran en el food cost?</h3><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-r">
     <p>En el estado de resultados va todo junto. Para controlar, miralas aparte: dejan una ganancia muy distinta a la de la comida.</p>
-    <h3>¿Qué pasa si no hago inventario?</h3>
+    </div></details>
+    <details><summary><h3>¿Qué pasa si no hago inventario?</h3><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-r">
     <p>Tomás lo que compraste como costo y el mes sale mal. El mes que comprás para guardar parece peor; el mes que usás ese stock parece mejor. Contá el stock una vez por mes, siempre el mismo día.</p>
+    </div></details>
+    </div>
 
       </article>
       <aside class="caja-autor"><img src="/foto-manuel-cutout.webp" alt="Manuel Alfano" width="72" height="72" loading="lazy"><div><strong>Manuel Alfano</strong><p>Fundador de Orden Financiero. Licenciado en Administración (UNLP) y más de 12 años en la gastronomía con negocio propio; hoy trabaja mano a mano con dueños de negocios gastronómicos para hacerlos más rentables.</p><div class="formacion"><p class="formacion-titulo">Formación</p><ul><li><span class="logo"><img src="/logos/formacion/unlp.png" alt="Universidad Nacional de La Plata" width="36" height="17" loading="lazy"></span><span>Licenciatura en Administración</span></li><li><span class="logo"><img src="/logos/formacion/ditella.svg" alt="Universidad Torcuato Di Tella" width="17" height="17" loading="lazy"></span><span>Gestión de restaurantes</span></li><li><span class="logo"><img src="/logos/formacion/iae.png" alt="IAE Business School" width="17" height="17" loading="lazy"></span><span>Presupuesto y tablero de control</span></li><li><span class="logo"><img src="/logos/formacion/coderhouse.svg" alt="Coderhouse" width="58" height="7" loading="lazy"></span><span>Análisis de datos</span></li></ul></div></div></aside>
@@ -807,8 +878,56 @@ function gtag() { dataLayer.push(arguments); }
         ? { t: 'Ese plato se lleva ' + h.pct(fc) + ' en mercadería: está arriba de lo habitual.', p: 'Casi siempre son aumentos de proveedores que no pasaste al precio. El diagnóstico te muestra si pasa lo mismo en el resto del negocio.', tag: 'fc-alto' }
         : { t: 'Ese plato está en ' + h.pct(fc) + '. ¿Y el resto de la carta?', p: 'Que un plato esté bien no quiere decir que el negocio gane. El diagnóstico revisa los cuatro eslabones de tu negocio.', tag: 'fc-ok' };
       return { estado: 'lleno', t: 'El food cost de ese plato es', grande: h.pct(fc), filas: filas, cta: cta,
-               piso: 'En gastronomía se toma como referencia entre 25 % y 35 %. Te sirve más fijar tu objetivo y mirar cómo se mueve mes a mes.' };
+               viz: { tipo: 'barra', titulo: 'De cada $100 que cobrás por el plato, sin IVA', ref: [25, 35], partes: [{ t: 'Mercadería', v: fc, c: 'costo' }, { t: 'Te queda', v: 100 - fc, c: 'queda' }] },
+               piso: 'Más que la referencia, te sirve fijar tu objetivo y mirar cómo se mueve mes a mes.' };
     };
+    // Dibujos del resultado: barra de cada $100, cascada (vendiste − costos = te quedó) y el cruce del punto de equilibrio.
+    function dibujar(z) {
+      if (z.tipo === 'barra') {
+        var val = function (p) { return z.u === 'g' ? h.N(Math.round(p.v * 10)) + ' g' : '$' + h.d1(p.v); };
+        var ref = z.ref ? '<div class="vz-refpista"><i class="vz-ref" style="left:' + z.ref[0] + '%;width:' + (z.ref[1] - z.ref[0]) + '%"></i></div>' : '';
+        return '<p class="vz-titulo">' + z.titulo + '</p><div class="vz-barra">'
+          + z.partes.map(function (p) { return '<i class="c-' + p.c + '" style="width:' + Math.max(0, Math.min(100, p.v)).toFixed(2) + '%"></i>'; }).join('')
+          + '</div>' + ref + '<ul class="vz-ley">'
+          + z.partes.map(function (p) { return '<li><i class="c-' + p.c + '"></i>' + p.t + ' <strong>' + val(p) + '</strong></li>'; }).join('') + '</ul>'
+          + (z.ref ? '<p class="vz-nota">La rayita es la referencia de gastronomía: $' + z.ref[0] + ' a $' + z.ref[1] + ' de cada $100.</p>' : '');
+      }
+      if (z.tipo === 'cascada') {
+        var run = 0, lo = 0, hi = 0;
+        z.pasos.forEach(function (p) {
+          var a, b;
+          if (p.tipo === 'base') { a = 0; b = p.v; run = p.v; }
+          else if (p.tipo === 'total') { a = 0; b = run; p.v = run; }
+          else { a = run; b = run + p.v; run = b; }
+          p.a = Math.min(a, b); p.b = Math.max(a, b);
+          lo = Math.min(lo, p.a); hi = Math.max(hi, p.b);
+        });
+        var span = hi - lo || 1, pos = function (x) { return ((x - lo) / span * 100).toFixed(2); };
+        return '<div class="vz-cas">' + z.pasos.map(function (p) {
+          var tot = p.tipo === 'total', neg = p.v < 0;
+          var c = p.tipo === 'base' ? 'base' : tot ? (neg ? 'neg' : 'queda') : (neg ? 'costo' : 'suma');
+          var n = tot || p.tipo === 'base' ? h.P(p.v) : (neg ? '−' : '+') + h.P(Math.abs(p.v));
+          return '<div class="vz-f' + (tot ? ' vz-tot' : '') + (tot && neg ? ' vz-rojo' : '') + '"><span class="vz-t">' + p.t + '</span><span class="vz-n">' + n + '</span>'
+            + '<span class="vz-pista"><i class="c-' + c + '" style="left:' + pos(p.a) + '%;width:' + Math.max(0.8, (p.b - p.a) / span * 100).toFixed(2) + '%"></i>'
+            + (lo < 0 ? '<b class="vz-cero" style="left:' + pos(0) + '%"></b>' : '') + '</span></div>';
+        }).join('') + '</div>';
+      }
+      if (z.tipo === 'pe') {
+        var x0 = 6, y0 = 142, w = 308, hh = 128, pe = z.F / (1 - z.cv), max = 2 * pe;
+        var X = function (s) { return +(x0 + s / max * w).toFixed(1); }, Y = function (s) { return +(y0 - s / max * hh).toFixed(1); };
+        var L = function (cl, a, b, c, d) { return '<line class="' + cl + '" x1="' + a + '" y1="' + b + '" x2="' + c + '" y2="' + d + '"/>'; };
+        var T = function (cl, x, y, s, an) { return '<text class="' + cl + '" x="' + x + '" y="' + y + '"' + (an ? ' text-anchor="' + an + '"' : '') + '>' + s + '</text>'; };
+        return '<p class="vz-titulo">Dónde se cruzan lo que vendés y lo que gastás en el mes</p>'
+          + '<svg class="vz-pe" viewBox="0 0 320 166" role="img" aria-label="Gráfico: la línea de lo que vendés cruza la de tus costos en ' + z.etiqueta + '">'
+          + L('l-eje', x0, y0, x0 + w, y0) + L('l-fijos', X(0), Y(z.F), X(max), Y(z.F))
+          + L('l-cost', X(0), Y(z.F), X(max), Y(z.F + z.cv * max)) + L('l-ing', X(0), Y(0), X(max), Y(max))
+          + L('l-guia', X(pe), Y(pe), X(pe), y0) + '<circle class="p-pe" cx="' + X(pe) + '" cy="' + Y(pe) + '" r="5"/>'
+          + T('t-pe', X(pe) + 10, Y(pe) + 20, z.etiqueta)
+          + T('t-zona', X(pe) - 8, y0 + 16, '← perdés', 'end') + T('t-zona', X(pe) + 8, y0 + 16, 'ganás →') + '</svg>'
+          + '<ul class="vz-ley"><li><i class="c-queda"></i>Lo que vendés</li><li><i class="c-base"></i>Tus costos</li><li><i class="vz-guion"></i>Gastos fijos</li></ul>';
+      }
+      return '';
+    }
     var inputs = [].slice.call(caja.querySelectorAll('input[data-tipo]'));
     function num(v) {
       var d = String(v || '').replace(/\./g, '').replace(',', '.').replace(/[^\d.]/g, '');
@@ -840,6 +959,13 @@ function gtag() { dataLayer.push(arguments); }
       ctaP.textContent = c ? c.p + ' Son 3 minutos y 12 preguntas, gratis.' : ctaBase;
       btn.href = '/?origen=' + btn.dataset.base + (c ? '-' + c.tag : '') + '#diagnostico';
     }
+    // Mientras estén los números del ejemplo: chip "Ejemplo", llamado genérico y sin medir el uso.
+    var ejemplo = !!$('calc-ej');
+    function propios() {
+      if (!ejemplo) return;
+      ejemplo = false;
+      $('calc-ej').hidden = true;
+    }
     var medido = false, espera;
     function calcular() {
       var iva = caja.querySelector('input[name="calc-iva"]:checked'), ri = !!iva && iva.value === 'ri';
@@ -850,7 +976,8 @@ function gtag() { dataLayer.push(arguments); }
       $('calc-lleno').hidden = r.estado !== 'lleno';
       $('calc-error').hidden = r.estado !== 'error';
       if (r.estado === 'error') $('calc-error').textContent = r.error;
-      ctaDe(r.estado === 'lleno' ? r.cta : null);
+      ctaDe(r.estado === 'lleno' && !ejemplo ? r.cta : null);
+      $('calc-chip').hidden = !ejemplo;
       if (r.estado !== 'lleno') { $('calc-sr').textContent = r.estado === 'error' ? r.error : ''; return; }
       $('calc-res-t').textContent = r.t;
       $('calc-grande').textContent = r.grande;
@@ -858,6 +985,9 @@ function gtag() { dataLayer.push(arguments); }
       $('calc-filas').innerHTML = (r.filas || []).map(function (f) { return '<li>' + f + '</li>'; }).join('');
       $('calc-piso').textContent = r.piso || '';
       $('calc-piso').hidden = !r.piso;
+      $('calc-viz').innerHTML = r.viz ? dibujar(r.viz) : '';
+      $('calc-viz').hidden = !r.viz;
+      if (ejemplo) return;
       espera = setTimeout(function () {
         $('calc-sr').textContent = r.t + ' ' + r.grande + (r.unidad ? ' ' + r.unidad : '') + '.';
         if (!medido) {
@@ -867,14 +997,25 @@ function gtag() { dataLayer.push(arguments); }
       }, 1200);
     }
     inputs.forEach(function (i) {
+      // Con el ejemplo cargado, al tocar un campo se selecciona el número: lo que escribas lo reemplaza.
+      i.addEventListener('focus', function () { if (ejemplo) setTimeout(function () { try { i.select(); } catch (e) {} }, 0); });
       i.addEventListener('input', function () {
+        propios();
         if (i.dataset.tipo === 'pesos') miles(i);
         else if (i.dataset.tipo === 'pct') i.value = i.value.replace(/[^\d,]/g, '');
         else i.value = i.value.replace(/\D/g, '');
         calcular();
       });
     });
-    [].slice.call(caja.querySelectorAll('input[name="calc-iva"]')).forEach(function (r) { r.addEventListener('change', calcular); });
+    [].slice.call(caja.querySelectorAll('input[name="calc-iva"]')).forEach(function (r) { r.addEventListener('change', function () { propios(); calcular(); }); });
+    if ($('calc-limpiar')) $('calc-limpiar').addEventListener('click', function () {
+      inputs.forEach(function (i) { i.value = i.dataset.def || ''; });
+      var mono = caja.querySelector('input[name="calc-iva"][value="mono"]');
+      if (mono) mono.checked = true;
+      propios();
+      calcular();
+      inputs[0].focus();
+    });
     [].slice.call(caja.querySelectorAll('.calc-caja')).forEach(function (c) { c.addEventListener('click', function () { c.querySelector('input').focus(); }); });
     caja.querySelector('form').addEventListener('submit', function (e) { e.preventDefault(); });
     // En celular el resultado queda debajo de los campos: la primera vez que aparece, al salir de un

@@ -422,6 +422,65 @@ CSS = TOKENS + """
   .calc-cta { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid rgba(12,102,228,0.18); }
   .calc-cta p { font-size: var(--fs-sm); }
   .calc-cta .calc-cta-t { font-size: var(--fs-lead); font-weight: 600; line-height: 1.35; color: var(--navy); margin-bottom: 4px; }
+  /* Preguntas frecuentes desplegables: una fila por pregunta, flecha a la derecha que gira al abrir */
+  .faq { border-top: 1px solid var(--borde); margin-top: var(--s-3); }
+  .faq details { border-bottom: 1px solid var(--borde); }
+  .faq summary { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); min-height: 56px; padding: var(--s-3) 0; cursor: pointer; list-style: none; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary h3 { margin: 0; font-size: var(--fs-base); line-height: 1.4; transition: color var(--t-instante); }
+  .faq summary:hover h3 { color: var(--marca); }
+  .faq summary:focus-visible { outline: 2px solid var(--marca); outline-offset: 2px; border-radius: 4px; }
+  .faq .chevron { width: 20px; height: 20px; flex-shrink: 0; color: var(--tinta-3); transition: transform 200ms ease; }
+  .faq details[open] .chevron { transform: rotate(180deg); color: var(--marca); }
+  .faq-r { padding: 0 var(--s-6) var(--s-4) 0; }
+  .faq-r p:last-child { margin-bottom: 0; }
+  @media (prefers-reduced-motion: reduce) { .faq .chevron { transition: none; } }
+  /* Ejemplo precargado: aviso gris arriba de los campos y chip en el resultado */
+  .calc-ej { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--s-3); margin: calc(-1 * var(--s-3)) 0 var(--s-4); padding: 4px var(--s-3); background: var(--lienzo); border-radius: var(--r); font-size: var(--fs-sm); color: var(--tinta-2); }
+  .calc-ej[hidden], .calc-chip[hidden] { display: none; }
+  .calc-ej strong { color: var(--tinta); }
+  .calc-ej-btn { min-height: 36px; padding: 0; border: 0; background: none; font: inherit; font-weight: 600; color: var(--marca); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .calc-res .calc-chip { display: inline-block; margin-bottom: var(--s-2); padding: 2px 10px; border-radius: 999px; background: var(--w); font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--marca); }
+  /* Dibujos del resultado, sobre tarjeta blanca. Costo en gris, lo que queda en azul marca, pérdida en rojo. */
+  .calc-viz { margin: 0 0 var(--s-4); padding: var(--s-3) var(--s-4); background: var(--w); border-radius: var(--r); }
+  .calc-res .vz-titulo { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tinta-3); margin-bottom: var(--s-2); }
+  .vz-barra { display: flex; height: 14px; border-radius: 999px; overflow: hidden; background: var(--lienzo-2); }
+  .vz-barra i { display: block; height: 100%; }
+  .c-costo { background: var(--secondary-dark); }
+  .c-queda { background: var(--marca); }
+  .c-base { background: var(--navy); }
+  .c-suma { background: #7DB1F4; }
+  .c-neg { background: var(--riesgo); }
+  .vz-refpista { position: relative; height: 6px; margin-top: 3px; }
+  .vz-ref { position: absolute; top: 0; height: 4px; border-radius: 2px; background: var(--navy); }
+  .calc-res ul.vz-ley { list-style: none; padding: 0; margin: var(--s-2) 0 0; display: flex; flex-wrap: wrap; gap: 2px var(--s-4); }
+  .calc-res .vz-ley li { display: flex; align-items: center; gap: 6px; margin: 0; font-size: var(--fs-sm); color: var(--tinta-2); }
+  .vz-ley li i { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+  .vz-ley li i.vz-guion { height: 0; border-radius: 0; border-top: 2px dashed var(--tinta-3); }
+  .vz-ley strong { color: var(--navy); font-variant-numeric: tabular-nums; }
+  .calc-res .vz-nota { font-size: var(--fs-meta); color: var(--tinta-3); margin-top: 4px; }
+  .vz-cas { display: grid; gap: var(--s-2); }
+  .vz-f { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--s-3); row-gap: 3px; align-items: baseline; }
+  .vz-t { font-size: var(--fs-sm); color: var(--tinta-2); line-height: 1.3; }
+  .vz-n { font-size: var(--fs-sm); font-weight: 600; color: var(--navy); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .vz-pista { grid-column: 1 / -1; position: relative; height: 10px; border-radius: 3px; background: var(--lienzo-2); }
+  .vz-pista i { position: absolute; top: 0; bottom: 0; border-radius: 3px; }
+  .vz-cero { position: absolute; top: -3px; bottom: -3px; width: 2px; margin-left: -1px; background: var(--tinta-2); }
+  .vz-tot { padding-top: var(--s-2); border-top: 1px solid var(--borde); }
+  .vz-tot .vz-t { font-weight: 600; color: var(--navy); }
+  .vz-rojo .vz-n, .vz-rojo .vz-t { color: var(--riesgo); }
+  .vz-pe { display: block; width: 100%; height: auto; font-family: 'Inter', system-ui, sans-serif; overflow: visible; }
+  .vz-pe line { fill: none; }
+  .vz-pe .l-eje { stroke: var(--tinta-3); stroke-width: 1; }
+  .vz-pe .l-fijos { stroke: var(--tinta-3); stroke-width: 1.5; stroke-dasharray: 4 4; }
+  .vz-pe .l-cost { stroke: var(--navy); stroke-width: 2.5; }
+  .vz-pe .l-ing { stroke: var(--marca); stroke-width: 2.5; }
+  .vz-pe .l-guia { stroke: var(--marca); stroke-width: 1; stroke-dasharray: 2 3; }
+  .vz-pe .p-pe { fill: var(--marca); stroke: var(--w); stroke-width: 2; }
+  .vz-pe text { font-size: 11px; fill: var(--tinta-2); }
+  .vz-pe .t-pe { font-size: 12px; font-weight: 600; fill: var(--navy); }
+  .vz-pe .t-ing { font-weight: 600; fill: var(--marca); }
+  .vz-pe .t-cost { font-weight: 600; fill: var(--navy); }
   .calc-cta .btn { margin-top: var(--s-3); }
   /* Desde tablet, campos a la izquierda y resultado a la derecha (21/09/2026, Manu no encontraba
      el resultado): el número cambia a la vista mientras se escribe. */
@@ -463,6 +522,8 @@ ICONOS = {
     'Flujo de caja': '<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>',
     'Indicadores de gestión': '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
 }
+CHEVRON = ('<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" '
+           'stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>')
 CIRCULOS = ('<svg class="circulos" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">'
             '<circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="66"/><circle cx="100" cy="100" r="36"/></svg>')
 
@@ -684,6 +745,7 @@ CALCULADORAS = {
       var filas = [h.B(h.P(mes)) + ' por mes'];
       if (v.ticket > 0) filas.push('unos ' + h.B(h.N(Math.ceil(dia / v.ticket))) + ' clientes por día');
       return { estado: 'lleno', t: 'Para no perder plata tenés que vender', grande: h.P(dia), unidad: 'por día', filas: filas,
+               viz: { tipo: 'pe', F: v.fijos, cv: v.var / 100, etiqueta: h.P(mes) + ' por mes' },
                cta: { t: '¿Hoy vendés ' + h.P(dia) + ' por día?', p: 'Si no estás seguro, el problema suele estar en los costos o en los precios. El diagnóstico te muestra cuál de los dos es.', tag: 'pe' },
                piso: 'Es el piso, no la meta: vendiendo eso no ganás nada. Tu ganancia y los impuestos, como Ingresos Brutos, van arriba de este número.' };
     }""",
@@ -706,6 +768,7 @@ CALCULADORAS = {
       // Costo real por kilo = precio por kilo / rendimiento; costo = costo real por kilo / 1.000 × gramos
       var real = v.kilo / (v.rinde / 100), costo = real / 1000 * v.gramos, compra = v.gramos / (v.rinde / 100);
       return { estado: 'lleno', t: 'Ese ingrediente te cuesta', grande: h.P(costo), unidad: 'por plato',
+               viz: { tipo: 'barra', titulo: 'De cada kilo que comprás', u: 'g', partes: [{ t: 'Lo que usás', v: v.rinde, c: 'queda' }, { t: 'Lo que se pierde al limpiar', v: 100 - v.rinde, c: 'costo' }] },
                cta: { t: '¿Tenés el costo de todos tus platos al día?', p: 'Con la inflación, un plato que ayer dejaba plata hoy puede hacerte perder. El diagnóstico te muestra si tus costos y tus precios están al día.', tag: 'costo' },
                filas: [h.B(h.P(real)) + ' el kilo limpio', 'Tenés que comprar ' + h.B(h.N(Math.round(compra)) + ' g') + ' por plato'],
                piso: 'Hacé la misma cuenta con cada ingrediente del plato y sumalos: ese es el costo del plato.' };
@@ -733,7 +796,8 @@ CALCULADORAS = {
         ? { t: 'Ese plato se lleva ' + h.pct(fc) + ' en mercadería: está arriba de lo habitual.', p: 'Casi siempre son aumentos de proveedores que no pasaste al precio. El diagnóstico te muestra si pasa lo mismo en el resto del negocio.', tag: 'fc-alto' }
         : { t: 'Ese plato está en ' + h.pct(fc) + '. ¿Y el resto de la carta?', p: 'Que un plato esté bien no quiere decir que el negocio gane. El diagnóstico revisa los cuatro eslabones de tu negocio.', tag: 'fc-ok' };
       return { estado: 'lleno', t: 'El food cost de ese plato es', grande: h.pct(fc), filas: filas, cta: cta,
-               piso: 'En gastronomía se toma como referencia entre 25 % y 35 %. Te sirve más fijar tu objetivo y mirar cómo se mueve mes a mes.' };
+               viz: { tipo: 'barra', titulo: 'De cada $100 que cobrás por el plato, sin IVA', ref: [25, 35], partes: [{ t: 'Mercadería', v: fc, c: 'costo' }, { t: 'Te queda', v: 100 - fc, c: 'queda' }] },
+               piso: 'Más que la referencia, te sirve fijar tu objetivo y mirar cómo se mueve mes a mes.' };
     }""",
     },
     'precio': {
@@ -756,6 +820,7 @@ CALCULADORAS = {
       var filas = ['Te deja ' + h.B(h.P(sin - v.costo)) + ' por venta para pagar los gastos fijos'];
       if (ri) filas.push('Sin IVA: ' + h.B(h.P(sin)));
       return { estado: 'lleno', t: 'Con ese costo, el precio de carta es', grande: h.P(carta), filas: filas,
+               viz: { tipo: 'barra', titulo: 'De cada $100 del precio, sin IVA', ref: [25, 35], partes: [{ t: 'Costo', v: v.fc, c: 'costo' }, { t: 'Te deja', v: 100 - v.fc, c: 'queda' }] },
                cta: { t: '¿Hoy cobrás ' + h.P(carta) + ' o menos?', p: 'Si cobrás menos, cada venta te deja menos de lo que pensás. El diagnóstico te muestra si tus precios cubren tus costos.', tag: 'precio' },
                piso: 'Es el punto de partida, no el precio final: comparalo con lo que cobra tu competencia y con cómo querés que te vean.' };
     }""",
@@ -777,6 +842,7 @@ CALCULADORAS = {
       var sin = ri ? v.precio / 1.21 : v.precio, gan = sin - v.costo;
       if (gan <= 0) return { estado: 'error', error: 'Lo vendés a lo mismo o a menos de lo que te cuesta: en cada venta perdés ' + h.P(-gan) + '. Revisá el precio.' };
       return { estado: 'lleno', t: 'Tu margen es', grande: h.pct(gan / sin * 100),
+               viz: { tipo: 'barra', titulo: 'De cada $100 que cobrás, sin IVA', partes: [{ t: 'Costo', v: v.costo / sin * 100, c: 'costo' }, { t: 'Te queda', v: gan / sin * 100, c: 'queda' }] },
                cta: { t: 'Te quedan ' + h.P(gan) + ' por venta. ¿Te alcanza para pagar el mes?', p: 'El margen de un producto no te dice si el negocio gana. El diagnóstico te muestra por dónde se te escapa la plata.', tag: 'margen' },
                filas: ['Te quedan ' + h.B(h.P(gan)) + ' por venta', 'Markup: ' + h.B(h.pct(gan / v.costo * 100)) + ' (lo que le sumás al costo)'],
                piso: 'Hacé esta cuenta con los 10 productos que más vendés.' };
@@ -800,12 +866,15 @@ CALCULADORAS = {
       var netas = v.ventas - (v.com || 0);
       if (!(netas > 0)) return { estado: 'error', error: 'Las comisiones no pueden ser más que lo que vendiste: revisá los números.' };
       var bruta = netas - v.cmv, res = bruta - v.gastos, cada = h.d1(Math.abs(res) / netas * 100);
-      var filas = [(res >= 0 ? 'De cada $100 que vendiste te quedaron ' : 'De cada $100 que vendiste perdiste ') + h.B('$' + cada),
-                   'Después de pagar la mercadería: ' + h.B(h.P(bruta))];
+      var filas = [(res >= 0 ? 'De cada $100 que vendiste te quedaron ' : 'De cada $100 que vendiste perdiste ') + h.B('$' + cada)];
       var cta = res < 0
         ? { t: '¿Sabés por dónde se te fue?', p: 'El diagnóstico te muestra dónde está la pérdida: en los costos, en los precios, en la caja o en cómo se decide.', tag: 'eerr-perdida' }
         : { t: 'El mes te dejó ' + h.P(res) + '. ¿Es lo que esperabas?', p: 'Si sentís que vendés bien pero no te queda plata, el diagnóstico te muestra por dónde se escapa.', tag: 'eerr-ganancia' };
+      var pasos = [{ t: 'Vendiste', v: v.ventas, tipo: 'base' }];
+      if (v.com > 0) pasos.push({ t: 'Comisiones', v: -v.com });
+      pasos.push({ t: 'Mercadería', v: -v.cmv }, { t: 'Sueldos, alquiler y gastos', v: -v.gastos }, { t: res >= 0 ? 'Te quedó' : 'Perdiste', tipo: 'total' });
       return { estado: 'lleno', t: res >= 0 ? 'El mes te dejó' : 'El mes te hizo perder', grande: h.P(Math.abs(res)), filas: filas, cta: cta,
+               viz: { tipo: 'cascada', pasos: pasos },
                piso: 'Todavía faltan los intereses de préstamos y los impuestos, como Ingresos Brutos.' };
     }""",
     },
@@ -829,6 +898,7 @@ CALCULADORAS = {
         filas.push('Recuperás la inversión en unos ' + h.B(h.N(Math.round(v.inv / v.res))) + ' meses');
       }
       return { estado: 'lleno', t: 'Tu rentabilidad sobre ventas es', grande: h.pct(rs), filas: filas,
+               viz: rs > 0 && rs < 100 ? { tipo: 'barra', titulo: 'De cada $100 que vendés', partes: [{ t: 'Gastos', v: 100 - rs, c: 'costo' }, { t: 'Te queda', v: rs, c: 'queda' }] } : null,
                cta: { t: 'De cada $100 que vendés te quedan $' + h.d1(rs) + '. ¿Te alcanza?', p: 'El diagnóstico te muestra cuál de los cuatro eslabones de tu negocio es el que más te frena la ganancia.', tag: 'rentabilidad' },
                piso: 'La prueba simple: el negocio tiene que rendir bastante más que esa plata en un plazo fijo, porque tiene más riesgo y más trabajo.' };
     }""",
@@ -849,10 +919,11 @@ CALCULADORAS = {
       if (isNaN(v.saldo) || isNaN(v.ent) || isNaN(v.sal)) return { estado: 'vacio' };
       // Saldo final = saldo inicial + entradas − salidas
       var fin = v.saldo + v.ent - v.sal, filas = ['Entran ' + h.B(h.P(v.ent)) + ' y salen ' + h.B(h.P(v.sal))];
-      if (fin >= 0) return { estado: 'lleno', t: 'Terminás la semana con', grande: h.P(fin), filas: filas,
+      var viz = { tipo: 'cascada', pasos: [{ t: 'Tenés hoy', v: v.saldo, tipo: 'base' }, { t: 'Entra', v: v.ent }, { t: 'Sale', v: -v.sal }, { t: fin >= 0 ? 'Terminás la semana con' : 'Te faltan', tipo: 'total' }] };
+      if (fin >= 0) return { estado: 'lleno', t: 'Terminás la semana con', grande: h.P(fin), filas: filas, viz: viz,
                cta: { t: 'Esta semana llegás. ¿Y el mes que viene?', p: 'El diagnóstico te muestra si tu caja está ordenada o si vivís apagando incendios.', tag: 'caja-ok' },
                piso: 'Hacé la misma cuenta para las próximas semanas: así ves venir la semana corta antes de que llegue.' };
-      return { estado: 'lleno', t: 'Esta semana te faltan', grande: h.P(-fin), filas: filas,
+      return { estado: 'lleno', t: 'Esta semana te faltan', grande: h.P(-fin), filas: filas, viz: viz,
                cta: { t: '¿Te pasa seguido?', p: 'Si la plata no te alcanza semana por medio, no es mala suerte: algo en la caja está mal armado. El diagnóstico te muestra qué es.', tag: 'caja-falta' },
                piso: 'Resolvelo ahora, no el día del pago: adelantá un cobro o hablá con el proveedor para correr un pago.' };
     }""",
@@ -880,7 +951,12 @@ CALCULADORAS = {
       var cta = ct < 0
         ? { t: 'Te faltan ' + h.P(-ct) + ' para cubrir lo que debés.', p: 'Anda mientras se vende bien. El diagnóstico te muestra qué tan expuesto está tu negocio si las ventas bajan.', tag: 'capital-negativo' }
         : { t: 'Tenés ' + h.P(ct) + ' a favor. ¿Sabés cuánto te dura?', p: 'El diagnóstico te muestra si tu caja está ordenada o si esa plata ya tiene dueño.', tag: 'capital-ok' };
+      var pasos = [{ t: 'Plata que tenés', v: v.caja, tipo: 'base' }];
+      if (v.cobrar > 0) pasos.push({ t: 'Te tienen que pagar', v: v.cobrar });
+      if (stock > 0) pasos.push({ t: 'Mercadería en stock', v: stock });
+      pasos.push({ t: 'Lo que debés', v: -v.deudas }, { t: 'Capital de trabajo', tipo: 'total' });
       return { estado: 'lleno', t: ct >= 0 ? 'Tu capital de trabajo es' : 'Tu capital de trabajo es negativo', grande: h.P(ct), filas: filas, cta: cta,
+               viz: { tipo: 'cascada', pasos: pasos },
                piso: ct >= 0 ? 'Antes de retirar o invertir, restá lo que vence en los próximos 30 días.'
                              : 'En gastronomía es común: se cobra rápido y a los proveedores se les paga a 30 días. Anda mientras se vende bien; si las ventas caen, no aparece la plata para pagar.' };
     }""",
@@ -888,9 +964,30 @@ CALCULADORAS = {
 }
 
 
+# Ejemplo precargado (21/09/2026): la calculadora arranca con el caso de la guía, así el resultado se ve
+# desde el primer segundo. Mientras sean los números del ejemplo, el llamado queda genérico y no se mide.
+EJEMPLOS = {
+    'punto-de-equilibrio': ('una panadería', {'fijos': '6000000', 'var': '60', 'dias': '25'}, None),
+    'costo-ingrediente': ('la nalga de una milanesa', {'kilo': '12000', 'rinde': '80', 'gramos': '200'}, None),
+    'food-cost': ('una milanesa con puré', {'costo': '4145', 'precio': '16800'}, 'ri'),
+    'precio': ('una milanesa con puré', {'costo': '4145', 'fc': '30'}, 'ri'),
+    'margen': ('un producto que revendés', {'precio': '17500', 'costo': '10500'}, None),
+    'eerr': ('un restaurante', {'ventas': '31500000', 'com': '1500000', 'cmv': '9700000', 'gastos': '14300000'}, None),
+    'rentabilidad': ('un restaurante', {'ventas': '30000000', 'res': '4547500', 'inv': '120000000'}, None),
+    'flujo': ('una semana de un restaurante', {'saldo': '3500000', 'ent': '9000000', 'sal': '14000000'}, None),
+    'capital': ('un restaurante', {'caja': '1300000', 'cobrar': '2000000', 'stock': '700000', 'deudas': '7200000'}, None),
+}
+
+
+def valor_ej(tipo, x):
+    return f'{int(x):,}'.replace(',', '.') if tipo == 'pesos' else x
+
+
 def calc_html_de(clave, slug):
     c = CALCULADORAS[clave]
     e = html.escape
+    ej_t, ej, ej_iva = EJEMPLOS[clave]
+    assert set(ej) <= {f['id'] for f in c['campos']}, f'{clave}: el ejemplo tiene campos que no existen'
     campos = ''
     for f in c['campos']:
         fid = f"calc-{f['id']}"
@@ -898,7 +995,9 @@ def calc_html_de(clave, slug):
         suf = f'<span aria-hidden="true">{e(f["sufijo"])}</span>' if f.get('sufijo') else ''
         modo = 'decimal' if f['tipo'] == 'pct' else 'numeric'
         largo = {'pct': 5, 'num': 4}.get(f['tipo'])
-        attrs = (f' placeholder="{e(f["ph"])}"' if f.get('ph') else '') + (f' value="{e(f["valor"])}"' if f.get('valor') else '') \
+        valor = valor_ej(f['tipo'], ej[f['id']]) if f['id'] in ej else f.get('valor', '')
+        attrs = (f' placeholder="{e(f["ph"])}"' if f.get('ph') else '') + (f' value="{e(valor)}"' if valor else '') \
+            + (f' data-def="{e(f["valor"])}"' if f.get('valor') else '') \
             + (f' maxlength="{largo}"' if largo else '') + (f' aria-describedby="{fid}-a"' if f.get('ayuda') else '') \
             + (' data-req' if f.get('req') else '')
         opc = ' <span class="calc-opc">(opcional)</span>' if f.get('opc') else ''
@@ -913,16 +1012,17 @@ def calc_html_de(clave, slug):
         campos += f"""            <fieldset class="calc-campo calc-ancho">
               <legend>¿Cómo facturás?</legend>
               <div class="calc-seg">
-                <label><input type="radio" name="calc-iva" value="mono" checked><span>Monotributo</span></label>
-                <label><input type="radio" name="calc-iva" value="ri"><span>Responsable inscripto</span></label>
+                <label><input type="radio" name="calc-iva" value="mono"{'' if ej_iva == 'ri' else ' checked'}><span>Monotributo</span></label>
+                <label><input type="radio" name="calc-iva" value="ri"{' checked' if ej_iva == 'ri' else ''}><span>Responsable inscripto</span></label>
               </div>
-              <p class="calc-ayuda" id="calc-iva-a" hidden>{e(c['iva'])}</p>
+              <p class="calc-ayuda" id="calc-iva-a"{'' if ej_iva == 'ri' else ' hidden'}>{e(c['iva'])}</p>
             </fieldset>
 """
     return f"""      <section class="calc" id="calculadora" aria-labelledby="calc-t" data-calc="{e(clave)}">
         <div class="calc-in">
           <h2 class="calc-t" id="calc-t">{e(c['titulo'])}</h2>
           <p class="calc-sub">{e(c.get('sub', SUB_CALC))}</p>
+          <div class="calc-ej" id="calc-ej"><span>Estos son los números de ejemplo de <strong>{e(ej_t)}</strong>.</span><button type="button" class="calc-ej-btn" id="calc-limpiar">Poner los míos</button></div>
           <form class="calc-campos" novalidate>
 {campos}          </form>
         </div>
@@ -930,9 +1030,11 @@ def calc_html_de(clave, slug):
           <p class="calc-vacio" id="calc-vacio">{e(c['vacio'])}</p>
           <p class="calc-error" id="calc-error" hidden></p>
           <div id="calc-lleno" hidden>
+            <p class="calc-chip" id="calc-chip">Ejemplo</p>
             <p class="calc-res-t" id="calc-res-t"></p>
             <p class="calc-grande"><span id="calc-grande"></span> <span class="calc-u" id="calc-u"></span></p>
             <ul class="calc-filas" id="calc-filas"></ul>
+            <div class="calc-viz" id="calc-viz" hidden></div>
             <p class="calc-piso" id="calc-piso"></p>
           </div>
           <p class="ec-sr" id="calc-sr" aria-live="polite"></p>
@@ -965,6 +1067,53 @@ CALC_JS = r"""  <script>
       B: function (s) { return '<strong>' + s + '</strong>'; }
     };
     var calculo = /*CALCULO*/;
+    // Dibujos del resultado: barra de cada $100, cascada (vendiste − costos = te quedó) y el cruce del punto de equilibrio.
+    function dibujar(z) {
+      if (z.tipo === 'barra') {
+        var val = function (p) { return z.u === 'g' ? h.N(Math.round(p.v * 10)) + ' g' : '$' + h.d1(p.v); };
+        var ref = z.ref ? '<div class="vz-refpista"><i class="vz-ref" style="left:' + z.ref[0] + '%;width:' + (z.ref[1] - z.ref[0]) + '%"></i></div>' : '';
+        return '<p class="vz-titulo">' + z.titulo + '</p><div class="vz-barra">'
+          + z.partes.map(function (p) { return '<i class="c-' + p.c + '" style="width:' + Math.max(0, Math.min(100, p.v)).toFixed(2) + '%"></i>'; }).join('')
+          + '</div>' + ref + '<ul class="vz-ley">'
+          + z.partes.map(function (p) { return '<li><i class="c-' + p.c + '"></i>' + p.t + ' <strong>' + val(p) + '</strong></li>'; }).join('') + '</ul>'
+          + (z.ref ? '<p class="vz-nota">La rayita es la referencia de gastronomía: $' + z.ref[0] + ' a $' + z.ref[1] + ' de cada $100.</p>' : '');
+      }
+      if (z.tipo === 'cascada') {
+        var run = 0, lo = 0, hi = 0;
+        z.pasos.forEach(function (p) {
+          var a, b;
+          if (p.tipo === 'base') { a = 0; b = p.v; run = p.v; }
+          else if (p.tipo === 'total') { a = 0; b = run; p.v = run; }
+          else { a = run; b = run + p.v; run = b; }
+          p.a = Math.min(a, b); p.b = Math.max(a, b);
+          lo = Math.min(lo, p.a); hi = Math.max(hi, p.b);
+        });
+        var span = hi - lo || 1, pos = function (x) { return ((x - lo) / span * 100).toFixed(2); };
+        return '<div class="vz-cas">' + z.pasos.map(function (p) {
+          var tot = p.tipo === 'total', neg = p.v < 0;
+          var c = p.tipo === 'base' ? 'base' : tot ? (neg ? 'neg' : 'queda') : (neg ? 'costo' : 'suma');
+          var n = tot || p.tipo === 'base' ? h.P(p.v) : (neg ? '−' : '+') + h.P(Math.abs(p.v));
+          return '<div class="vz-f' + (tot ? ' vz-tot' : '') + (tot && neg ? ' vz-rojo' : '') + '"><span class="vz-t">' + p.t + '</span><span class="vz-n">' + n + '</span>'
+            + '<span class="vz-pista"><i class="c-' + c + '" style="left:' + pos(p.a) + '%;width:' + Math.max(0.8, (p.b - p.a) / span * 100).toFixed(2) + '%"></i>'
+            + (lo < 0 ? '<b class="vz-cero" style="left:' + pos(0) + '%"></b>' : '') + '</span></div>';
+        }).join('') + '</div>';
+      }
+      if (z.tipo === 'pe') {
+        var x0 = 6, y0 = 142, w = 308, hh = 128, pe = z.F / (1 - z.cv), max = 2 * pe;
+        var X = function (s) { return +(x0 + s / max * w).toFixed(1); }, Y = function (s) { return +(y0 - s / max * hh).toFixed(1); };
+        var L = function (cl, a, b, c, d) { return '<line class="' + cl + '" x1="' + a + '" y1="' + b + '" x2="' + c + '" y2="' + d + '"/>'; };
+        var T = function (cl, x, y, s, an) { return '<text class="' + cl + '" x="' + x + '" y="' + y + '"' + (an ? ' text-anchor="' + an + '"' : '') + '>' + s + '</text>'; };
+        return '<p class="vz-titulo">Dónde se cruzan lo que vendés y lo que gastás en el mes</p>'
+          + '<svg class="vz-pe" viewBox="0 0 320 166" role="img" aria-label="Gráfico: la línea de lo que vendés cruza la de tus costos en ' + z.etiqueta + '">'
+          + L('l-eje', x0, y0, x0 + w, y0) + L('l-fijos', X(0), Y(z.F), X(max), Y(z.F))
+          + L('l-cost', X(0), Y(z.F), X(max), Y(z.F + z.cv * max)) + L('l-ing', X(0), Y(0), X(max), Y(max))
+          + L('l-guia', X(pe), Y(pe), X(pe), y0) + '<circle class="p-pe" cx="' + X(pe) + '" cy="' + Y(pe) + '" r="5"/>'
+          + T('t-pe', X(pe) + 10, Y(pe) + 20, z.etiqueta)
+          + T('t-zona', X(pe) - 8, y0 + 16, '← perdés', 'end') + T('t-zona', X(pe) + 8, y0 + 16, 'ganás →') + '</svg>'
+          + '<ul class="vz-ley"><li><i class="c-queda"></i>Lo que vendés</li><li><i class="c-base"></i>Tus costos</li><li><i class="vz-guion"></i>Gastos fijos</li></ul>';
+      }
+      return '';
+    }
     var inputs = [].slice.call(caja.querySelectorAll('input[data-tipo]'));
     function num(v) {
       var d = String(v || '').replace(/\./g, '').replace(',', '.').replace(/[^\d.]/g, '');
@@ -996,6 +1145,13 @@ CALC_JS = r"""  <script>
       ctaP.textContent = c ? c.p + ' Son 3 minutos y 12 preguntas, gratis.' : ctaBase;
       btn.href = '/?origen=' + btn.dataset.base + (c ? '-' + c.tag : '') + '#diagnostico';
     }
+    // Mientras estén los números del ejemplo: chip "Ejemplo", llamado genérico y sin medir el uso.
+    var ejemplo = !!$('calc-ej');
+    function propios() {
+      if (!ejemplo) return;
+      ejemplo = false;
+      $('calc-ej').hidden = true;
+    }
     var medido = false, espera;
     function calcular() {
       var iva = caja.querySelector('input[name="calc-iva"]:checked'), ri = !!iva && iva.value === 'ri';
@@ -1006,7 +1162,8 @@ CALC_JS = r"""  <script>
       $('calc-lleno').hidden = r.estado !== 'lleno';
       $('calc-error').hidden = r.estado !== 'error';
       if (r.estado === 'error') $('calc-error').textContent = r.error;
-      ctaDe(r.estado === 'lleno' ? r.cta : null);
+      ctaDe(r.estado === 'lleno' && !ejemplo ? r.cta : null);
+      $('calc-chip').hidden = !ejemplo;
       if (r.estado !== 'lleno') { $('calc-sr').textContent = r.estado === 'error' ? r.error : ''; return; }
       $('calc-res-t').textContent = r.t;
       $('calc-grande').textContent = r.grande;
@@ -1014,6 +1171,9 @@ CALC_JS = r"""  <script>
       $('calc-filas').innerHTML = (r.filas || []).map(function (f) { return '<li>' + f + '</li>'; }).join('');
       $('calc-piso').textContent = r.piso || '';
       $('calc-piso').hidden = !r.piso;
+      $('calc-viz').innerHTML = r.viz ? dibujar(r.viz) : '';
+      $('calc-viz').hidden = !r.viz;
+      if (ejemplo) return;
       espera = setTimeout(function () {
         $('calc-sr').textContent = r.t + ' ' + r.grande + (r.unidad ? ' ' + r.unidad : '') + '.';
         if (!medido) {
@@ -1023,14 +1183,25 @@ CALC_JS = r"""  <script>
       }, 1200);
     }
     inputs.forEach(function (i) {
+      // Con el ejemplo cargado, al tocar un campo se selecciona el número: lo que escribas lo reemplaza.
+      i.addEventListener('focus', function () { if (ejemplo) setTimeout(function () { try { i.select(); } catch (e) {} }, 0); });
       i.addEventListener('input', function () {
+        propios();
         if (i.dataset.tipo === 'pesos') miles(i);
         else if (i.dataset.tipo === 'pct') i.value = i.value.replace(/[^\d,]/g, '');
         else i.value = i.value.replace(/\D/g, '');
         calcular();
       });
     });
-    [].slice.call(caja.querySelectorAll('input[name="calc-iva"]')).forEach(function (r) { r.addEventListener('change', calcular); });
+    [].slice.call(caja.querySelectorAll('input[name="calc-iva"]')).forEach(function (r) { r.addEventListener('change', function () { propios(); calcular(); }); });
+    if ($('calc-limpiar')) $('calc-limpiar').addEventListener('click', function () {
+      inputs.forEach(function (i) { i.value = i.dataset.def || ''; });
+      var mono = caja.querySelector('input[name="calc-iva"][value="mono"]');
+      if (mono) mono.checked = true;
+      propios();
+      calcular();
+      inputs[0].focus();
+    });
     [].slice.call(caja.querySelectorAll('.calc-caja')).forEach(function (c) { c.addEventListener('click', function () { c.querySelector('input').focus(); }); });
     caja.querySelector('form').addEventListener('submit', function (e) { e.preventDefault(); });
     // En celular el resultado queda debajo de los campos: la primera vez que aparece, al salir de un
@@ -1628,9 +1799,12 @@ def main():
         faq_html = ''
         if faq:
             # "formula" opcional: se dibuja debajo de la respuesta; el JSON-LD usa solo el texto.
-            faq_html = '\n    <h2>Preguntas frecuentes</h2>\n' + ''.join(
-                f'    <h3>{html.escape(x["q"])}</h3>\n    <p>{html.escape(x["a"])}</p>\n'
-                + (f'    {formula_html(x["formula"])}\n' if x.get('formula') else '') for x in faq)
+            # Desplegables (21/09/2026, pedido de Manu): la pregunta con una flecha y la respuesta
+            # adentro. Google lee igual la respuesta cerrada, y el FAQPage del JSON-LD no cambia.
+            faq_html = '\n    <h2>Preguntas frecuentes</h2>\n    <div class="faq">\n' + ''.join(
+                f'    <details><summary><h3>{html.escape(x["q"])}</h3>{CHEVRON}</summary><div class="faq-r">\n'
+                f'    <p>{html.escape(x["a"])}</p>\n'
+                + (f'    {formula_html(x["formula"])}\n' if x.get('formula') else '') + '    </div></details>\n' for x in faq) + '    </div>\n'
         cuerpo_guia, descarga_js = con_descarga(g)
         # La banda del diagnóstico va antes de las preguntas frecuentes (o al final del artículo si no hay).
         banda = '\n' + cta_final('guia-' + g['slug'], g.get('cta_general', False)).replace('\n  ', '\n    ')

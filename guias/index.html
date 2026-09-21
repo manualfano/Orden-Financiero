@@ -466,6 +466,65 @@ function gtag() { dataLayer.push(arguments); }
   .calc-cta { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid rgba(12,102,228,0.18); }
   .calc-cta p { font-size: var(--fs-sm); }
   .calc-cta .calc-cta-t { font-size: var(--fs-lead); font-weight: 600; line-height: 1.35; color: var(--navy); margin-bottom: 4px; }
+  /* Preguntas frecuentes desplegables: una fila por pregunta, flecha a la derecha que gira al abrir */
+  .faq { border-top: 1px solid var(--borde); margin-top: var(--s-3); }
+  .faq details { border-bottom: 1px solid var(--borde); }
+  .faq summary { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); min-height: 56px; padding: var(--s-3) 0; cursor: pointer; list-style: none; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary h3 { margin: 0; font-size: var(--fs-base); line-height: 1.4; transition: color var(--t-instante); }
+  .faq summary:hover h3 { color: var(--marca); }
+  .faq summary:focus-visible { outline: 2px solid var(--marca); outline-offset: 2px; border-radius: 4px; }
+  .faq .chevron { width: 20px; height: 20px; flex-shrink: 0; color: var(--tinta-3); transition: transform 200ms ease; }
+  .faq details[open] .chevron { transform: rotate(180deg); color: var(--marca); }
+  .faq-r { padding: 0 var(--s-6) var(--s-4) 0; }
+  .faq-r p:last-child { margin-bottom: 0; }
+  @media (prefers-reduced-motion: reduce) { .faq .chevron { transition: none; } }
+  /* Ejemplo precargado: aviso gris arriba de los campos y chip en el resultado */
+  .calc-ej { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--s-3); margin: calc(-1 * var(--s-3)) 0 var(--s-4); padding: 4px var(--s-3); background: var(--lienzo); border-radius: var(--r); font-size: var(--fs-sm); color: var(--tinta-2); }
+  .calc-ej[hidden], .calc-chip[hidden] { display: none; }
+  .calc-ej strong { color: var(--tinta); }
+  .calc-ej-btn { min-height: 36px; padding: 0; border: 0; background: none; font: inherit; font-weight: 600; color: var(--marca); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .calc-res .calc-chip { display: inline-block; margin-bottom: var(--s-2); padding: 2px 10px; border-radius: 999px; background: var(--w); font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--marca); }
+  /* Dibujos del resultado, sobre tarjeta blanca. Costo en gris, lo que queda en azul marca, pérdida en rojo. */
+  .calc-viz { margin: 0 0 var(--s-4); padding: var(--s-3) var(--s-4); background: var(--w); border-radius: var(--r); }
+  .calc-res .vz-titulo { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tinta-3); margin-bottom: var(--s-2); }
+  .vz-barra { display: flex; height: 14px; border-radius: 999px; overflow: hidden; background: var(--lienzo-2); }
+  .vz-barra i { display: block; height: 100%; }
+  .c-costo { background: var(--secondary-dark); }
+  .c-queda { background: var(--marca); }
+  .c-base { background: var(--navy); }
+  .c-suma { background: #7DB1F4; }
+  .c-neg { background: var(--riesgo); }
+  .vz-refpista { position: relative; height: 6px; margin-top: 3px; }
+  .vz-ref { position: absolute; top: 0; height: 4px; border-radius: 2px; background: var(--navy); }
+  .calc-res ul.vz-ley { list-style: none; padding: 0; margin: var(--s-2) 0 0; display: flex; flex-wrap: wrap; gap: 2px var(--s-4); }
+  .calc-res .vz-ley li { display: flex; align-items: center; gap: 6px; margin: 0; font-size: var(--fs-sm); color: var(--tinta-2); }
+  .vz-ley li i { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+  .vz-ley li i.vz-guion { height: 0; border-radius: 0; border-top: 2px dashed var(--tinta-3); }
+  .vz-ley strong { color: var(--navy); font-variant-numeric: tabular-nums; }
+  .calc-res .vz-nota { font-size: var(--fs-meta); color: var(--tinta-3); margin-top: 4px; }
+  .vz-cas { display: grid; gap: var(--s-2); }
+  .vz-f { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--s-3); row-gap: 3px; align-items: baseline; }
+  .vz-t { font-size: var(--fs-sm); color: var(--tinta-2); line-height: 1.3; }
+  .vz-n { font-size: var(--fs-sm); font-weight: 600; color: var(--navy); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .vz-pista { grid-column: 1 / -1; position: relative; height: 10px; border-radius: 3px; background: var(--lienzo-2); }
+  .vz-pista i { position: absolute; top: 0; bottom: 0; border-radius: 3px; }
+  .vz-cero { position: absolute; top: -3px; bottom: -3px; width: 2px; margin-left: -1px; background: var(--tinta-2); }
+  .vz-tot { padding-top: var(--s-2); border-top: 1px solid var(--borde); }
+  .vz-tot .vz-t { font-weight: 600; color: var(--navy); }
+  .vz-rojo .vz-n, .vz-rojo .vz-t { color: var(--riesgo); }
+  .vz-pe { display: block; width: 100%; height: auto; font-family: 'Inter', system-ui, sans-serif; overflow: visible; }
+  .vz-pe line { fill: none; }
+  .vz-pe .l-eje { stroke: var(--tinta-3); stroke-width: 1; }
+  .vz-pe .l-fijos { stroke: var(--tinta-3); stroke-width: 1.5; stroke-dasharray: 4 4; }
+  .vz-pe .l-cost { stroke: var(--navy); stroke-width: 2.5; }
+  .vz-pe .l-ing { stroke: var(--marca); stroke-width: 2.5; }
+  .vz-pe .l-guia { stroke: var(--marca); stroke-width: 1; stroke-dasharray: 2 3; }
+  .vz-pe .p-pe { fill: var(--marca); stroke: var(--w); stroke-width: 2; }
+  .vz-pe text { font-size: 11px; fill: var(--tinta-2); }
+  .vz-pe .t-pe { font-size: 12px; font-weight: 600; fill: var(--navy); }
+  .vz-pe .t-ing { font-weight: 600; fill: var(--marca); }
+  .vz-pe .t-cost { font-weight: 600; fill: var(--navy); }
   .calc-cta .btn { margin-top: var(--s-3); }
   /* Desde tablet, campos a la izquierda y resultado a la derecha (21/09/2026, Manu no encontraba
      el resultado): el número cambia a la vista mientras se escribe. */
