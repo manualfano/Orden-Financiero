@@ -719,7 +719,7 @@ def con_manana(cuerpo):
 #            v = valores (NaN si está vacío); ri = responsable inscripto; h = ayudantes de formato.
 CTA_CALC = ('¿No estás seguro de alguno de estos números? El diagnóstico te muestra en 3 minutos '
             'cuáles tenés claros y cuáles no. Son 12 preguntas, gratis.')
-SUB_CALC = 'Con los números de tu último mes. No se guarda ni se envía nada.'
+SUB_CALC = 'Con los números de tu último mes. Tus números no se guardan ni se envían.'
 
 CALCULADORAS = {
     'punto-de-equilibrio': {
@@ -752,7 +752,7 @@ CALCULADORAS = {
     },
     'costo-ingrediente': {
         'titulo': 'Calculá cuánto te cuesta un ingrediente en el plato',
-        'sub': 'Con el precio que pagás hoy. No se guarda ni se envía nada.',
+        'sub': 'Con el precio que pagás hoy. Tus números no se guardan ni se envían.',
         'campos': [
             {'id': 'kilo', 'label': 'Precio por kilo del ingrediente', 'tipo': 'pesos', 'ph': '12.000', 'req': True,
              'ayuda': 'Lo que pagás hoy. Sin IVA si sos responsable inscripto.'},
@@ -776,7 +776,7 @@ CALCULADORAS = {
     },
     'food-cost': {
         'titulo': 'Calculá el food cost de un plato',
-        'sub': 'Con lo que te cuesta hoy. No se guarda ni se envía nada.',
+        'sub': 'Con lo que te cuesta hoy. Tus números no se guardan ni se envían.',
         'campos': [
             {'id': 'costo', 'label': '¿Cuánto te cuesta hacer el plato?', 'tipo': 'pesos', 'ph': '4.200', 'req': True,
              'ayuda': 'Si no lo sabés, sacalo con la guía de <a href="/guias/costo-de-un-plato">costo de un plato</a>.'},
@@ -802,7 +802,7 @@ CALCULADORAS = {
     },
     'precio': {
         'titulo': 'Calculá el precio de un plato o un producto',
-        'sub': 'Con lo que te cuesta hoy. No se guarda ni se envía nada.',
+        'sub': 'Con lo que te cuesta hoy. Tus números no se guardan ni se envían.',
         'campos': [
             {'id': 'costo', 'label': '¿Cuánto te cuesta el plato o el producto?', 'tipo': 'pesos', 'ph': '4.200', 'req': True,
              'ayuda': 'Si no lo sabés, sacalo con la guía de <a href="/guias/costo-de-un-plato">costo de un plato</a>.'},
@@ -827,7 +827,7 @@ CALCULADORAS = {
     },
     'margen': {
         'titulo': 'Calculá el margen de un producto',
-        'sub': 'Con lo que te cuesta hoy. No se guarda ni se envía nada.',
+        'sub': 'Con lo que te cuesta hoy. Tus números no se guardan ni se envían.',
         'campos': [
             {'id': 'precio', 'label': '¿A cuánto lo vendés?', 'tipo': 'pesos', 'ph': '17.500', 'req': True,
              'ayuda': 'El precio que cobrás.'},
@@ -905,7 +905,7 @@ CALCULADORAS = {
     },
     'flujo': {
         'titulo': 'Calculá si esta semana te alcanza la plata',
-        'sub': 'Con lo que tenés hoy. No se guarda ni se envía nada.',
+        'sub': 'Con lo que tenés hoy. Tus números no se guardan ni se envían.',
         'campos': [
             {'id': 'saldo', 'label': 'Plata que tenés hoy', 'tipo': 'pesos', 'ph': '3.500.000', 'req': True,
              'ayuda': 'Banco, Mercado Pago y efectivo.'},
@@ -930,7 +930,7 @@ CALCULADORAS = {
     },
     'capital': {
         'titulo': 'Calculá tu capital de trabajo',
-        'sub': 'Con lo que tenés hoy. No se guarda ni se envía nada.',
+        'sub': 'Con lo que tenés hoy. Tus números no se guardan ni se envían.',
         'campos': [
             {'id': 'caja', 'label': 'Plata que tenés hoy', 'tipo': 'pesos', 'ph': '1.300.000', 'req': True,
              'ayuda': 'Banco, Mercado Pago y efectivo.'},
