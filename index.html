@@ -4901,10 +4901,27 @@ nav.scrolled { background: var(--navy-2); }
           <div class="eslabones-grid" id="eslabones-grid"></div>
         </div>
 
-        <!-- Compuerta: un solo campo, después del resultado parcial -->
+        <!-- Compuerta, después del resultado parcial. 05/10/2026: nombre, negocio e
+             Instagram obligatorios (pedido del dueño: saber con quién habla y mirar
+             el negocio antes de la llamada) -->
         <form class="gate" id="result-gate" novalidate onsubmit="return submitLead(event)">
           <h3 class="gate-title" id="gate-title">Qué hacer primero con este resultado</h3>
-          <p class="gate-desc">Con tu WhatsApp destrabás el análisis completo de tu negocio y el primer paso concreto para ordenarlo. Es el número al que Manuel te puede escribir para revisar el resultado con vos.</p>
+          <p class="gate-desc">Con estos datos destrabás el análisis completo de tu negocio y el primer paso concreto para ordenarlo. Manuel los usa para revisar el resultado con vos.</p>
+          <div class="form-group">
+            <label class="form-label" for="lead-nombre">Tu nombre</label>
+            <input class="form-input" type="text" id="lead-nombre" name="nombre" autocomplete="name" maxlength="120" placeholder="Nombre y apellido" required aria-describedby="err-nombre" oninput="limpiarErrorCampo('nombre')" />
+            <p class="form-error" id="err-nombre" role="alert"></p>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="lead-negocio">Nombre del negocio</label>
+            <input class="form-input" type="text" id="lead-negocio" name="negocio" autocomplete="organization" maxlength="200" placeholder="Ej. Panadería San Martín" required aria-describedby="err-negocio" oninput="limpiarErrorCampo('negocio')" />
+            <p class="form-error" id="err-negocio" role="alert"></p>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="lead-ig">Instagram del negocio</label>
+            <input class="form-input" type="text" id="lead-ig" name="instagram" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="@tunegocio" required aria-describedby="err-ig" oninput="limpiarErrorCampo('ig')" />
+            <p class="form-error" id="err-ig" role="alert"></p>
+          </div>
           <div class="form-group">
             <label class="form-label" for="lead-wa">Tu WhatsApp</label>
             <input class="form-input" type="tel" id="lead-wa" name="tel" autocomplete="tel" inputmode="tel" placeholder="221 555 0000" required aria-describedby="wa-hint err-wa" oninput="previewWhatsApp()" />
@@ -5879,6 +5896,11 @@ function resetGate() {
   form.hidden = false;
   const input = document.getElementById('lead-wa');
   input.value = ''; input.classList.remove('invalid'); input.disabled = false;
+  ['nombre', 'negocio', 'ig'].forEach(c => {
+    const el = document.getElementById('lead-' + c);
+    if (el) { el.value = ''; el.disabled = false; }
+    limpiarErrorCampo(c);
+  });
   document.getElementById('wa-hint').textContent = 'Código de área y número, sin el 0 ni el 15.';
   const err = document.getElementById('err-wa'); err.textContent = ''; err.classList.remove('visible');
   const st = document.getElementById('gate-status'); st.className = 'gate-status'; st.innerHTML = '';
@@ -5938,11 +5960,48 @@ function metaAgendarClick() {
   } catch (e) { /* la medicion nunca rompe la pagina */ }
 }
 
+// Instagram: acepta @usuario, usuario o el link del perfil; devuelve "@usuario" o ''
+function parseInstagram(v) {
+  let t = String(v || '').trim();
+  const m = t.match(/instagram\.com\/([^/?#\s]+)/i);
+  if (m) t = m[1];
+  t = t.replace(/^@+/, '').replace(/\/+$/, '');
+  return /^[A-Za-z0-9._]{1,30}$/.test(t) ? '@' + t : '';
+}
+
+function limpiarErrorCampo(c) {
+  const input = document.getElementById('lead-' + c);
+  const err = document.getElementById('err-' + c);
+  if (input) input.classList.remove('invalid');
+  if (err) { err.classList.remove('visible'); err.textContent = ''; }
+}
+
+function marcarErrorCampo(c, msg) {
+  const input = document.getElementById('lead-' + c);
+  const err = document.getElementById('err-' + c);
+  input.classList.add('invalid');
+  err.textContent = msg;
+  err.classList.add('visible');
+}
+
 function submitLead(e) {
   if (e && e.preventDefault) e.preventDefault();
   const input = document.getElementById('lead-wa');
   const err = document.getElementById('err-wa');
   const p = parseWhatsApp(input.value);
+  const nombre = document.getElementById('lead-nombre').value.trim();
+  const negocio = document.getElementById('lead-negocio').value.trim();
+  const igCrudo = document.getElementById('lead-ig').value.trim();
+  const instagram = parseInstagram(igCrudo);
+
+  // Se marcan todos los errores juntos; el foco va al primero
+  const errores = [];
+  if (nombre.length < 2) { marcarErrorCampo('nombre', 'Necesitamos tu nombre para saber con quién hablamos.'); errores.push('nombre'); }
+  if (negocio.length < 2) { marcarErrorCampo('negocio', 'Escribí el nombre de tu negocio.'); errores.push('negocio'); }
+  if (!instagram) {
+    marcarErrorCampo('ig', igCrudo ? 'Escribí solo el usuario, por ejemplo @tunegocio.' : 'Necesitamos el Instagram de tu negocio, por ejemplo @tunegocio.');
+    errores.push('ig');
+  }
 
   if (!p.ok) {
     const msgs = {
@@ -5954,7 +6013,10 @@ function submitLead(e) {
     input.classList.add('invalid');
     err.textContent = msgs[p.motivo] || msgs.largo;
     err.classList.add('visible');
-    input.focus();
+    errores.push('wa');
+  }
+  if (errores.length) {
+    document.getElementById('lead-' + errores[0]).focus();
     return false;
   }
 
@@ -5962,10 +6024,11 @@ function submitLead(e) {
   if (!state.leadId || !state.leadData || state.leadData.wa !== p.digits) {
     state.leadId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
   }
-  state.leadData = { wa: p.digits, waDisplay: p.display };
+  state.leadData = { wa: p.digits, waDisplay: p.display, nombre, negocio, instagram };
   const btn = document.getElementById('btn-lead');
   const status = document.getElementById('gate-status');
   btn.disabled = true; input.disabled = true;
+  ['nombre', 'negocio', 'ig'].forEach(c => { document.getElementById('lead-' + c).disabled = true; });
   btn.textContent = 'Guardando…';
   status.className = 'gate-status'; status.innerHTML = '';
 
@@ -5998,7 +6061,9 @@ function mensajeRespaldo() {
   const nombresEslabon = ['Costos y precios','Resultado económico','Flujo de caja','Indicadores de gestión'];
   const { eslabonDebilIndex, total, todosSolidos } = getDiagnosticoData();
   const letras = state.answers.map((idx, q) => PREGUNTAS[q].opciones[idx].letra).join('');
-  return `Hola Manu, hice el diagnóstico en la web y no se guardó mi número. Puntaje: ${total}/36. Eslabón más ${todosSolidos ? 'bajo' : 'débil'}: ${nombresEslabon[eslabonDebilIndex]}. Respuestas: ${letras}.`;
+  const ld = state.leadData || {};
+  const quien = ld.nombre ? `Soy ${ld.nombre}${ld.negocio ? ' de ' + ld.negocio : ''}${ld.instagram ? ' (' + ld.instagram + ')' : ''}. ` : '';
+  return `Hola Manu, hice el diagnóstico en la web y no se guardó mi número. ${quien}Puntaje: ${total}/36. Eslabón más ${todosSolidos ? 'bajo' : 'débil'}: ${nombresEslabon[eslabonDebilIndex]}. Respuestas: ${letras}.`;
 }
 
 // Icono del boton de respaldo (el resultado ya no tiene WhatsApp: el CTA es la llamada)
@@ -6058,9 +6123,10 @@ function armarPayload() {
     gravedad: nivelGravedad,
     eslabonDebil: nombresEslabon[eslabonDebilIndex],
     letras: letras,
-    // Compatibilidad con las columnas que el Apps Script ya espera:
-    // no se piden mas datos personales; estos campos viajan vacios.
-    nombre: '', negocio: '', sistema: '', instagram: '',
+    // 05/10/2026: nombre, negocio e Instagram vuelven a ser obligatorios.
+    // El Apps Script ya los recibe (columnas Nombre y Empresa, mail y presentacion).
+    nombre: state.leadData.nombre || '', negocio: state.leadData.negocio || '',
+    instagram: state.leadData.instagram || '', sistema: '',
     eslabones: eslabones,
     respuestas: respuestas,
     diagnostico: diagnosticoTexto,
