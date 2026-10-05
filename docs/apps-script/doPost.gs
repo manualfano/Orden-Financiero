@@ -4,6 +4,16 @@
 // anterior. Va junto con Deck.gs (misma carpeta), que también se reemplaza.
 // ═══════════════════════════════════════════════════════════════
 //
+// CAMBIO 05/10/2026 (versión 2026-10-05-instagram)
+// La web vuelve a pedir nombre, negocio e Instagram (obligatorios). Este
+// cambio suma la columna "Instagram" al final de Leads (se crea sola con el
+// primer lead) y, en Deck.gs, el radar solo se usa si encontró la fila de
+// ESTE lead: si hay dos negocios con el mismo nombre, van las barras.
+//
+// PARA PUBLICAR ESTE CAMBIO: igual que el de abajo, pero pegando los DOS
+// archivos (Código.gs y Deck.gs). La URL /exec tiene que decir
+// "version":"2026-10-05-instagram".
+//
 // CAMBIO 15/09/2026 (versión 2026-09-15-descargas)
 // Las descargas de Excel desde las guías llegan con tipo "descarga" y van a
 // una pestaña propia, "Descarga de Excel" (se crea sola con la primera
@@ -56,7 +66,7 @@
 //     versión anterior. Nada se borra.
 // ═══════════════════════════════════════════════════════════════
 
-const VERSION_SCRIPT = '2026-09-15-descargas';
+const VERSION_SCRIPT = '2026-10-05-instagram';
 
 // Descargas de material desde las guías (15/09/2026): van a su propia pestaña,
 // con un mail corto y SIN presentación. La web las marca con tipo "descarga".
@@ -83,7 +93,9 @@ const LEADS_HEADERS = [
   // nuevas (11/09/2026)
   'Letras', 'Gravedad (total)', 'Gravedad eslabón más débil',
   'Origen', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'Referrer',
-  'Presentación'
+  'Presentación',
+  // nueva (05/10/2026)
+  'Instagram'
 ];
 const COL_PRESENTACION = LEADS_HEADERS.indexOf('Presentación') + 1;
 const DETALLE_HEADERS = ['Lead ID', 'Fecha', 'Nombre', 'Eslabón', 'Pregunta', 'Letra elegida', 'Respuesta elegida', 'Puntaje (1-3)'];
@@ -493,7 +505,8 @@ function writeLead(ss, data) {
     data.sistema || '',
     data.letras, data.gravedad, data.gravedadEslabon,
     data.origen, data.utm_source, data.utm_medium, data.utm_campaign, data.utm_content, data.referrer,
-    ''
+    '',
+    data.instagram || ''
   ]);
 
   const fila = sheet.getLastRow();

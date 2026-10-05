@@ -5966,6 +5966,8 @@ function parseInstagram(v) {
   const m = t.match(/instagram\.com\/([^/?#\s]+)/i);
   if (m) t = m[1];
   t = t.replace(/^@+/, '').replace(/\/+$/, '');
+  // Links de una publicacion (p, reel, stories...) o el dominio solo no son una cuenta
+  if (/^(p|reel|reels|tv|stories|explore|accounts)$/i.test(t) || /instagram\.com/i.test(t)) return '';
   return /^[A-Za-z0-9._]{1,30}$/.test(t) ? '@' + t : '';
 }
 
@@ -5999,7 +6001,7 @@ function submitLead(e) {
   if (nombre.length < 2) { marcarErrorCampo('nombre', 'Necesitamos tu nombre para saber con quién hablamos.'); errores.push('nombre'); }
   if (negocio.length < 2) { marcarErrorCampo('negocio', 'Escribí el nombre de tu negocio.'); errores.push('negocio'); }
   if (!instagram) {
-    marcarErrorCampo('ig', igCrudo ? 'Escribí solo el usuario, por ejemplo @tunegocio.' : 'Necesitamos el Instagram de tu negocio, por ejemplo @tunegocio.');
+    marcarErrorCampo('ig', igCrudo ? 'Escribí el usuario de la cuenta del negocio (no el link de una publicación), por ejemplo @tunegocio.' :'Necesitamos el Instagram de tu negocio, por ejemplo @tunegocio.');
     errores.push('ig');
   }
 
@@ -6125,8 +6127,11 @@ function armarPayload() {
     letras: letras,
     // 05/10/2026: nombre, negocio e Instagram vuelven a ser obligatorios.
     // El Apps Script ya los recibe (columnas Nombre y Empresa, mail y presentacion).
+    // Instagram viaja como link del perfil: se abre con un clic desde el mail, y un
+    // texto que empieza con "@" el script lo guardaria con un apostrofo adelante.
     nombre: state.leadData.nombre || '', negocio: state.leadData.negocio || '',
-    instagram: state.leadData.instagram || '', sistema: '',
+    instagram: state.leadData.instagram ? 'https://www.instagram.com/' + state.leadData.instagram.slice(1) : '',
+    sistema: '',
     eslabones: eslabones,
     respuestas: respuestas,
     diagnostico: diagnosticoTexto,

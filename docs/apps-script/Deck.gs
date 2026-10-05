@@ -5,6 +5,8 @@
 // portada y el cierre tienen un reemplazo cuando vienen vacíos; el radar
 // (que busca por negocio) pasa a las barras cuando no hay negocio; y el
 // eslabón más débil desempata igual que la web.
+// 05/10/2026: la web vuelve a mandar el negocio. El radar busca la PRIMERA
+// fila con ese nombre: solo se usa si esa fila es la de este lead.
 // ═══════════════════════════════════════════════════════════════
 
 // Carpeta de Drive donde se guardan las presentaciones (decision del dueño,
@@ -371,6 +373,9 @@ function imagenRadar(ctx) {
     hoja.getRange('B1').setValue(ctx.data.negocio);
     SpreadsheetApp.flush();
     Utilities.sleep(2000);
+    // 05/10: con dos negocios del mismo nombre (o alguien que repite el test)
+    // el radar mostraría los puntajes de otra fila: en ese caso, barras.
+    if (String(hoja.getRange('B3').getValue()) !== String(ctx.data.leadId)) return null;
 
     const charts = hoja.getCharts();
     if (!charts.length) return null;
