@@ -324,9 +324,22 @@ CSS = TOKENS + """
   .descarga-form input[type="tel"] { width: 100%; min-height: 50px; padding: 0 var(--s-3); border: 1px solid rgba(11,18,14,0.28); border-radius: var(--r); font: inherit; font-size: 17px; color: var(--tinta); background: var(--w); }
   .descarga-form input[type="tel"]:focus-visible { outline: 2px solid var(--marca); outline-offset: 1px; border-color: var(--marca); }
   .descarga-form input[aria-invalid="true"] { border-color: var(--riesgo); }
+  /* WhatsApp con país (14/10/2026), igual que el diagnóstico: selector corto "AR +54" + número.
+     El select real ocupa la caja, invisible: teclado, lector de pantalla y lista nativa del celular. */
+  .descarga-form .wa-campo { display: flex; gap: var(--s-2); }
+  .descarga-form .wa-campo input[type="tel"] { flex: 1; min-width: 0; }
+  .descarga-form .wa-pais { position: relative; flex: none; display: flex; align-items: center; gap: 4px; min-height: 50px; padding: 0 6px 0 10px; border: 1px solid rgba(11,18,14,0.28); border-radius: var(--r); background: var(--w); color: var(--tinta); font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .descarga-form .wa-pais svg { width: 14px; height: 14px; color: var(--tinta-2); }
+  .descarga-form .wa-pais select { position: absolute; inset: 0; width: 100%; opacity: 0; cursor: pointer; font-size: 16px; }
+  .descarga-form .wa-pais:hover { border-color: var(--tinta-2); }
+  .descarga-form .wa-pais:focus-within { outline: 2px solid var(--marca); outline-offset: 1px; border-color: var(--marca); }
+  /* Celular angosto (360-420 px): un poco menos de margen para que el número entre entero */
+  @media (max-width: 420px) { .descarga, .descarga-form { padding: var(--s-4); } }
   article .descarga-hint { font-size: var(--fs-meta); color: var(--tinta-2); margin: 6px 0 0; }
   article .descarga-error { font-size: var(--fs-sm); color: var(--riesgo); font-weight: 600; margin: 6px 0 0; }
   article .descarga-error:empty { display: none; }
+  /* Con error, un solo mensaje debajo del campo: el error */
+  .descarga-campos:has(.descarga-error:not(:empty)) .descarga-hint { display: none; }
   .campo-extra { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
   .descarga-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2); width: 100%; min-height: 52px; margin-top: var(--s-4); padding: 0 var(--s-5); border: 0; border-radius: var(--r); background: var(--marca); color: var(--w); font: inherit; font-size: var(--fs-base); font-weight: 600; white-space: nowrap; text-decoration: none; cursor: pointer; transition: background var(--t-instante); }
   .descarga-btn:hover { background: var(--marca-hover); }
@@ -1354,32 +1367,28 @@ DESCARGAS = {
 # Mismo endpoint y validación de WhatsApp que el diagnóstico de index.html. El payload va
 # marcado con tipo "descarga": el Apps Script (versión 2026-09-15-descargas) lo guarda en la
 # pestaña "Descarga de Excel", manda un mail corto y no arma presentación.
-DESCARGA_JS = r"""  <script>
+# 14/10/2026: WhatsApp con país, con el mismo módulo que la home (/js/whatsapp.js). Las
+# reglas de números de cada país bajan cuando la caja se acerca a la pantalla.
+DESCARGA_JS = r"""  <script src="/js/whatsapp.js"></script>
+  <script>
   (function () {
     var WEBHOOK = 'https://script.google.com/macros/s/AKfycbw_4OP8ve0fKfP9M3VtCvRvmDG395PVzHUNOYqAH55FmVxaD93VNg8QfjDayOK-xVr_Ng/exec';
     var TIMEOUT_MS = 6000;
-    var HINT = 'Código de área y número, sin el 0 ni el 15.';
-    var MSGS = {
-      vacio: 'Escribí tu WhatsApp para descargar la calculadora.',
-      cero: 'Sacá el 0 del código de área: por ejemplo 221 555 0000.',
-      quince: 'Sacá el 15 del número: por ejemplo 221 555 0000.',
-      largo: 'Revisá el número: código de área y número, 10 dígitos en total (ej. 221 555 0000).'
-    };
+    var VACIO = 'Escribí tu WhatsApp para descargar la calculadora.';
     function track(ev, props) { try { if (typeof gtag === 'function') gtag('event', ev, props || {}); } catch (e) {} }
-    // Igual que parseWhatsApp de index.html
-    function parseWhatsApp(raw) {
-      var d = String(raw || '').replace(/\D/g, '');
-      if (!d) return { ok: false, motivo: 'vacio' };
-      if (d.indexOf('54') === 0) d = d.slice(2);
-      if (d.length === 11 && d.charAt(0) === '9') d = d.slice(1);
-      if (d.charAt(0) === '0') return { ok: false, motivo: 'cero' };
-      if (d.length === 12 && d.slice(2, 4) === '15') return { ok: false, motivo: 'quince' };
-      if (d.length === 12 && d.slice(3, 5) === '15') return { ok: false, motivo: 'quince' };
-      if (d.length !== 10) return { ok: false, motivo: 'largo' };
-      var area = d.indexOf('11') === 0 ? d.slice(0, 2) : d.slice(0, 3);
-      var resto = d.slice(area.length);
-      return { ok: true, digits: '549' + d, display: '+54 9 ' + area + ' ' + resto.slice(0, resto.length - 4) + '-' + resto.slice(-4) };
-    }
+    // Igual que en index.html: si /js/whatsapp.js no cargara, la descarga sigue andando
+    // (número argentino de 10 dígitos o cualquiera con +código, sin revisar el país)
+    var WA = window.OFWhatsApp || {
+      montar: function () {}, cargar: function () {},
+      revisar: function (input) {
+        var v = String(input.value || '').trim(), d = v.replace(/\D/g, '');
+        if (!d) return { ok: false, motivo: 'vacio' };
+        if (!/^\+/.test(v)) d = d.length === 10 ? '549' + d : '';
+        return (d.length >= 8 && d.length <= 15) ? { ok: true, digits: d, display: '+' + d, pais: '', verificado: 'sin_chequear' } : { ok: false, motivo: 'largo' };
+      },
+      mensaje: function (r, vacio) { return r.motivo === 'vacio' ? vacio : 'Revisá el número: código de área y número, 10 dígitos en total (ej. 221 555 0000).'; },
+      pista: function () { return 'Código de área y número, sin el 0 ni el 15.'; }
+    };
     // Misma atribución que la home (clave of_atrib_v1 por pestaña)
     function atribucion() {
       var KEY = 'of_atrib_v1';
@@ -1393,13 +1402,14 @@ DESCARGA_JS = r"""  <script>
       try { sessionStorage.setItem(KEY, JSON.stringify(b)); } catch (e) {}
       return b;
     }
-    function armarPayload(wa, origen, archivo, trampa) {
+    function armarPayload(p, origen, archivo, trampa) {
       var at = atribucion();
       return {
         tipo: 'descarga',
         leadId: Date.now() + '-' + Math.random().toString(36).slice(2, 8),
         timestamp: new Date().toISOString(),
-        whatsapp: wa, origen: origen, archivo: archivo,
+        whatsapp: p.digits, origen: origen, archivo: archivo,
+        whatsappPais: p.pais || '', whatsappDisplay: p.display || '', whatsappVerificado: p.verificado || 'sin_chequear',
         campo_extra: trampa,
         utm_source: at.utm_source, utm_medium: at.utm_medium, utm_campaign: at.utm_campaign,
         utm_content: at.utm_content, referrer: at.referrer
@@ -1434,6 +1444,7 @@ DESCARGA_JS = r"""  <script>
       var clave = 'of_descarga_' + caja.dataset.descarga;
       var form = caja.querySelector('.descarga-campos');
       var input = caja.querySelector('input[type="tel"]');
+      var pais = caja.querySelector('.wa-pais select');
       var hint = caja.querySelector('.descarga-hint');
       var err = caja.querySelector('.descarga-error');
       var btn = caja.querySelector('.descarga-btn');
@@ -1460,30 +1471,54 @@ DESCARGA_JS = r"""  <script>
 
       if (recordada(clave)) { mostrarListo(true); return; }
 
+      WA.montar(pais, input);
+      hint.textContent = WA.pista(input);
+      // Las reglas de cada país bajan cuando la caja se acerca a la pantalla
+      if ('IntersectionObserver' in window) {
+        var obs = new IntersectionObserver(function (es) {
+          if (es.some(function (x) { return x.isIntersecting; })) { WA.cargar(); obs.disconnect(); }
+        }, { rootMargin: '600px 0px' });
+        obs.observe(caja);
+      } else { WA.cargar(); }
+
+      var btnTexto = btn.innerHTML;
+      function marcarError(p) {
+        input.setAttribute('aria-invalid', 'true');
+        err.textContent = WA.mensaje(p, VACIO);
+        // Número "dudoso": el botón dice lo que va a pasar si la persona sigue igual
+        if (p.motivo === 'dudoso') btn.innerHTML = 'Mi número está bien <span aria-hidden="true">↓</span>';
+      }
       input.addEventListener('input', function () {
-        var p = parseWhatsApp(input.value);
         input.removeAttribute('aria-invalid');
         err.textContent = '';
-        hint.textContent = p.ok ? 'Se guarda como ' + p.display : HINT;
+        hint.textContent = WA.pista(input);
+        if (!btn.disabled) btn.innerHTML = btnTexto;
+      });
+      // Al salir del campo se avisa lo que seguro está mal; "no parece de tu país" espera al botón
+      input.addEventListener('blur', function () {
+        if (!input.value.trim() || input.disabled) return;
+        var p = WA.revisar(input, false);
+        if (!p.ok && p.motivo !== 'dudoso') marcarError(p);
       });
 
       form.addEventListener('submit', function (e) {
         e.preventDefault();
-        var p = parseWhatsApp(input.value);
+        // true: si el número "no parece" del país, el segundo toque al botón lo confirma
+        var p = WA.revisar(input, true);
         if (!p.ok) {
-          input.setAttribute('aria-invalid', 'true');
-          err.textContent = MSGS[p.motivo] || MSGS.largo;
+          marcarError(p);
+          if (p.motivo === 'dudoso') track('descarga_wa_dudoso', { descarga: caja.dataset.descarga, pais: p.pais || '' });
           input.focus();
           return;
         }
         var trampa = (form.querySelector('.campo-extra') || {}).value || '';
-        btn.disabled = true; input.disabled = true;
+        btn.disabled = true; input.disabled = true; if (pais) pais.disabled = true;
         btn.textContent = 'Preparando la descarga…';
-        enviar(armarPayload(p.digits, caja.dataset.origen, caja.dataset.nombre, trampa)).then(function (res) {
+        enviar(armarPayload(p, caja.dataset.origen, caja.dataset.nombre, trampa)).then(function (res) {
           // Si el lead no se guardó, igual se descarga: se mide el error, no se castiga al usuario
           if (!res.ok) track('descarga_lead_error', { descarga: caja.dataset.descarga, tipo: res.tipo });
           bajar(caja.dataset.archivo, caja.dataset.nombre);
-          track(caja.dataset.evento, { descarga: caja.dataset.descarga, modo: 'nueva', lead: res.ok ? 'guardado' : 'error' });
+          track(caja.dataset.evento, { descarga: caja.dataset.descarga, modo: 'nueva', lead: res.ok ? 'guardado' : 'error', wa_pais: p.pais || '', wa_verificado: p.verificado || '' });
           recordar(clave);
           mostrarListo(false);
         });
@@ -1525,7 +1560,14 @@ def bloque_descarga(clave, slug):
           <p class="form-t">Bajala ahora</p>
           <p class="form-sub">Dejanos tu WhatsApp y se descarga al instante.</p>
           <label for="{uid}-wa">Tu WhatsApp</label>
-          <input type="tel" id="{uid}-wa" name="tel" autocomplete="tel" inputmode="tel" placeholder="221 555 0000" required aria-describedby="{uid}-hint {uid}-err">
+          <div class="wa-campo">
+            <div class="wa-pais">
+              <select id="{uid}-pais" aria-label="País de tu WhatsApp"></select>
+              <span class="wa-pais-v" aria-hidden="true">AR +54</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <input type="tel" id="{uid}-wa" name="tel" autocomplete="tel" inputmode="tel" enterkeyhint="send" placeholder="221 555 0000" required aria-describedby="{uid}-hint {uid}-err">
+          </div>
           <p class="descarga-hint" id="{uid}-hint">Código de área y número, sin el 0 ni el 15.</p>
           <p class="descarga-error" id="{uid}-err" role="alert"></p>
           <input class="campo-extra" type="text" name="campo_extra" tabindex="-1" autocomplete="off" aria-hidden="true">
