@@ -4,6 +4,39 @@
 // anterior. Va junto con Deck.gs (misma carpeta), que también se reemplaza.
 // ═══════════════════════════════════════════════════════════════
 //
+// CAMBIO 14/10/2026 (versión 2026-10-14-whatsapp) — incluye el del 05/10
+// La web pide el WhatsApp con país (Argentina u otro) y revisa cada número
+// con las reglas de su país. Este cambio:
+//   · acepta números de cualquier país (antes, solo 549 + 10 dígitos);
+//   · los links de wa.me y el formato del número sirven para cualquier país;
+//   · en el mail dice el país y avisa si el número parece mal escrito o
+//     inventado ("número dudoso": la persona lo confirmó igual), también en
+//     el asunto, para verlo sin abrirlo;
+//   · el Origen del mail dice qué botón tocó la persona, en palabras
+//     ("mirror" → el botón debajo de las frases "Facturo un montón…");
+//   · suma la columna "Control del WhatsApp" al final de Leads y de
+//     "Descarga de Excel" (se crean solas con el primer contacto).
+//
+// PARA PUBLICAR ESTE CAMBIO (ANTES que la web; la web vieja sigue andando):
+//  1. Extensiones → Apps Script. "Código.gs": Ctrl+A, pegar este archivo.
+//     "Deck.gs": Ctrl+A, pegar docs/apps-script/Deck.gs. Guardar (disquete).
+//  2. Implementar → Gestionar implementaciones → la implementación "Fase 1"
+//     (ID AKfycbw_4OP8…) → lápiz (editar) → Versión: "Nueva versión" →
+//     Implementar. La URL no cambia.
+//  3. Abrir la URL /exec en el navegador: tiene que decir
+//     "version":"2026-10-14-whatsapp".
+//  4. Para volver atrás: mismo lugar → elegir la versión anterior.
+//
+// CAMBIO 05/10/2026 (versión 2026-10-05-instagram)
+// La web vuelve a pedir nombre, negocio e Instagram (obligatorios). Este
+// cambio suma la columna "Instagram" al final de Leads (se crea sola con el
+// primer lead) y, en Deck.gs, el radar solo se usa si encontró la fila de
+// ESTE lead: si hay dos negocios con el mismo nombre, van las barras.
+//
+// PARA PUBLICAR ESTE CAMBIO: igual que el de abajo, pero pegando los DOS
+// archivos (Código.gs y Deck.gs). La URL /exec tiene que decir
+// "version":"2026-10-05-instagram".
+//
 // CAMBIO 15/09/2026 (versión 2026-09-15-descargas)
 // Las descargas de Excel desde las guías llegan con tipo "descarga" y van a
 // una pestaña propia, "Descarga de Excel" (se crea sola con la primera
@@ -56,13 +89,15 @@
 //     versión anterior. Nada se borra.
 // ═══════════════════════════════════════════════════════════════
 
-const VERSION_SCRIPT = '2026-09-15-descargas';
+const VERSION_SCRIPT = '2026-10-14-whatsapp';
 
 // Descargas de material desde las guías (15/09/2026): van a su propia pestaña,
 // con un mail corto y SIN presentación. La web las marca con tipo "descarga".
 const HOJA_DESCARGAS = 'Descarga de Excel';
 const DESCARGAS_HEADERS = ['Lead ID', 'Fecha', 'WhatsApp', 'Archivo', 'Origen',
-  'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'Referrer'];
+  'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'Referrer',
+  // nueva (14/10/2026)
+  'Control del WhatsApp'];
 
 // ── COLORES DE MARCA ──────────────────────────────────────────
 const NAVY = '#1B3A6B';
@@ -83,7 +118,11 @@ const LEADS_HEADERS = [
   // nuevas (11/09/2026)
   'Letras', 'Gravedad (total)', 'Gravedad eslabón más débil',
   'Origen', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'Referrer',
-  'Presentación'
+  'Presentación',
+  // nueva (05/10/2026)
+  'Instagram',
+  // nueva (14/10/2026): país y si el número pasó la revisión de la web
+  'Control del WhatsApp'
 ];
 const COL_PRESENTACION = LEADS_HEADERS.indexOf('Presentación') + 1;
 const DETALLE_HEADERS = ['Lead ID', 'Fecha', 'Nombre', 'Eslabón', 'Pregunta', 'Letra elegida', 'Respuesta elegida', 'Puntaje (1-3)'];
@@ -124,7 +163,7 @@ function doPost(e) {
   }
 
   if (!/^[A-Za-z0-9_-]{6,64}$/.test(leadId)) return responder({ ok: false, error: 'lead_id_invalido' });
-  if (!/^549\d{10}$/.test(String(data.whatsapp || ''))) {
+  if (!whatsappValido(data.whatsapp)) {
     return responder({ ok: false, leadId: leadId, error: 'whatsapp_invalido' });
   }
 
@@ -190,6 +229,9 @@ function guardarDescarga(data, leadId) {
     leadId: leadId,
     timestamp: (function () { const f = new Date(data.timestamp); return isNaN(f.getTime()) ? new Date() : f; })(),
     whatsapp: String(data.whatsapp),
+    whatsappPais: paisWhatsApp(data.whatsappPais),
+    whatsappDisplay: displayWhatsApp(data.whatsappDisplay),
+    whatsappVerificado: verificadoWhatsApp(data.whatsappVerificado),
     archivo: textoSeguro(data.archivo, 120),
     origen: textoSeguro(data.origen, 100),
     utm_source: textoSeguro(data.utm_source, 100),
@@ -216,8 +258,9 @@ function guardarDescarga(data, leadId) {
     const tel = normalizeArgWhatsApp(d.whatsapp);
     sheet.appendRow([
       d.leadId, d.timestamp,
-      tel ? `=HYPERLINK("https://wa.me/${tel}","${formatearWhatsApp(d.whatsapp)}")` : '',
-      d.archivo, d.origen, d.utm_source, d.utm_medium, d.utm_campaign, d.utm_content, d.referrer
+      tel ? `=HYPERLINK("https://wa.me/${tel}","${formatearWhatsApp(d.whatsapp, d.whatsappDisplay)}")` : '',
+      d.archivo, d.origen, d.utm_source, d.utm_medium, d.utm_campaign, d.utm_content, d.referrer,
+      controlWhatsApp(d)
     ]);
     sheet.getRange(sheet.getLastRow(), 2).setNumberFormat('dd/mm/yyyy hh:mm');
     marcarProcesado(leadId);
@@ -231,12 +274,14 @@ function guardarDescarga(data, leadId) {
   try {
     const tel = normalizeArgWhatsApp(d.whatsapp);
     const prueba = leadId.indexOf('PRUEBA-') === 0 ? '[PRUEBA] ' : '';
+    const dudoso = d.whatsappVerificado === 'no' ? ' · número dudoso' : '';
     MailApp.sendEmail(MAIL_DESTINO,
-      `${prueba}Descargó el Excel: ${formatearWhatsApp(d.whatsapp)} — ${d.archivo || 'ficha'}`,
+      `${prueba}Descargó el Excel: ${formatearWhatsApp(d.whatsapp, d.whatsappDisplay)} — ${d.archivo || 'ficha'}${dudoso}`,
       [
-        `WhatsApp: ${formatearWhatsApp(d.whatsapp)}${tel ? '  →  https://wa.me/' + tel : ''}`,
+        `WhatsApp: ${formatearWhatsApp(d.whatsapp, d.whatsappDisplay)}${tel ? '  →  https://wa.me/' + tel : ''}`,
+        ...(lineaControlWhatsApp(d) ? [lineaControlWhatsApp(d)] : []),
         `Archivo: ${d.archivo || '-'}`,
-        `Origen: ${d.origen || '-'}`,
+        `Origen: ${origenEnPalabras(d.origen)}`,
         `UTM (source / medium / campaign / content): ${[d.utm_source, d.utm_medium, d.utm_campaign, d.utm_content].map(v => v || '-').join(' / ')}`,
         `Llegó desde: ${d.referrer || '-'}`,
         '',
@@ -258,7 +303,16 @@ function hojaDescargas(ss) {
       .setHorizontalAlignment('center').setVerticalAlignment('middle').setFontSize(10);
     sheet.setFrozenRows(1);
     sheet.setRowHeight(1, 32);
-    [110, 130, 170, 230, 200, 110, 110, 130, 110, 220].forEach((w, i) => sheet.setColumnWidth(i + 1, w));
+    [110, 130, 170, 230, 200, 110, 110, 130, 110, 220, 220].forEach((w, i) => sheet.setColumnWidth(i + 1, w));
+  } else {
+    // Hoja de antes del 14/10: suma el encabezado nuevo sin tocar los demás
+    const celda = sheet.getRange(1, DESCARGAS_HEADERS.length);
+    if (String(celda.getValue()).trim() === '') {
+      celda.setValue(DESCARGAS_HEADERS[DESCARGAS_HEADERS.length - 1])
+        .setFontWeight('bold').setFontColor('#FFFFFF').setBackground(NAVY)
+        .setHorizontalAlignment('center').setVerticalAlignment('middle').setFontSize(10);
+      sheet.setColumnWidth(DESCARGAS_HEADERS.length, 220);
+    }
   }
   return sheet;
 }
@@ -326,6 +380,9 @@ function normalizarLead(data) {
     leadId: String(data.leadId),
     timestamp: isNaN(fecha.getTime()) ? new Date().toISOString() : fecha.toISOString(),
     whatsapp: String(data.whatsapp),
+    whatsappPais: paisWhatsApp(data.whatsappPais),
+    whatsappDisplay: displayWhatsApp(data.whatsappDisplay),
+    whatsappVerificado: verificadoWhatsApp(data.whatsappVerificado),
     nombre: textoSeguro(data.nombre, 120),
     apellido: textoSeguro(data.apellido, 120),
     email: textoSeguro(data.email, 200),
@@ -364,14 +421,60 @@ function marcarProcesado(leadId) {
   CacheService.getScriptCache().put('lead:' + leadId, '1', CACHE_SEGUNDOS);
 }
 
-// ── TELÉFONO: normalización para links de WhatsApp (wa.me) ────
-// wa.me exige: código de país (54) + 9 (celular AR) + código de área + número,
-// todo en dígitos, sin 0 de larga distancia ni 15 de celular.
+// ── TELÉFONO: validación y links de WhatsApp (wa.me) ──────────
+// Desde el 14/10/2026 la web manda el número completo de cualquier país, en
+// dígitos: Argentina como siempre (549 + 10 dígitos) y el resto con su código
+// de país (ej. 56987654321), ya revisado con las reglas de ese país.
+function whatsappValido(wa) {
+  const d = String(wa || '');
+  if (d.indexOf('54') === 0) return /^549\d{10}$/.test(d);
+  return /^[1-9]\d{7,14}$/.test(d);
+}
+
+// Lo que manda la web sobre el número: solo se acepta lo esperado
+function paisWhatsApp(v) { const s = String(v || '').toUpperCase(); return /^[A-Z]{2}$/.test(s) ? s : ''; }
+function displayWhatsApp(v) { const s = String(v || '').trim(); return /^\+[\d\s()-]{6,24}$/.test(s) ? s : ''; }
+function verificadoWhatsApp(v) { const s = String(v || ''); return ['si', 'no', 'sin_chequear'].indexOf(s) > -1 ? s : ''; }
+
+// Nombre del país en castellano (los de la región a mano; el resto, el código)
+const PAISES_WHATSAPP = {
+  AR: 'Argentina', UY: 'Uruguay', CL: 'Chile', PY: 'Paraguay', BO: 'Bolivia', PE: 'Perú',
+  EC: 'Ecuador', CO: 'Colombia', VE: 'Venezuela', MX: 'México', PA: 'Panamá',
+  CR: 'Costa Rica', GT: 'Guatemala', SV: 'El Salvador', HN: 'Honduras', NI: 'Nicaragua',
+  DO: 'República Dominicana', PR: 'Puerto Rico', CU: 'Cuba', BR: 'Brasil', ES: 'España',
+  US: 'Estados Unidos', IT: 'Italia'
+};
+function nombrePaisWhatsApp(iso, wa) {
+  if (!iso) iso = String(wa || '').indexOf('549') === 0 ? 'AR' : '';
+  return iso ? (PAISES_WHATSAPP[iso] || iso) : '';
+}
+
+// Columna "Control del WhatsApp": "Argentina · revisado", "Chile · DUDOSO"…
+function controlWhatsApp(d) {
+  const pais = nombrePaisWhatsApp(d.whatsappPais, d.whatsapp);
+  const estado = { si: 'revisado', no: 'DUDOSO (no parece válido; lo confirmó igual)', sin_chequear: 'sin revisar' }[d.whatsappVerificado] || '';
+  return [pais, estado].filter(String).join(' · ');
+}
+
+// Línea del mail debajo del número
+function lineaControlWhatsApp(d) {
+  const pais = nombrePaisWhatsApp(d.whatsappPais, d.whatsapp);
+  if (d.whatsappVerificado === 'no') {
+    return `⚠ Número dudoso: no parece un número válido de ${pais || 'su país'} y la persona lo confirmó igual. Puede estar mal escrito o ser inventado.`;
+  }
+  if (d.whatsappVerificado === 'si') return `País: ${pais} (número revisado: es válido)`;
+  return pais ? `País: ${pais}` : '';
+}
+
+// wa.me exige: código de país + número, todo en dígitos. Argentina además
+// lleva el 9 (celular), sin 0 de larga distancia ni 15.
 function normalizeArgWhatsApp(raw) {
   let digits = (raw || '').replace(/\D/g, '');
   if (!digits) return '';
 
   if (digits.startsWith('00')) digits = digits.slice(2); // prefijo internacional
+  // Otro país (ya viene completo y revisado desde la web): tal cual
+  if (!digits.startsWith('54') && whatsappValido(digits)) return digits;
 
   const hasCountry = digits.startsWith('54');
   let rest = hasCountry ? digits.slice(2) : digits;
@@ -392,10 +495,12 @@ function normalizeArgWhatsApp(raw) {
   return '54' + rest;
 }
 
-// 5492216809170 → +54 9 221 680-9170 (mismo formato que muestra la web)
-function formatearWhatsApp(wa) {
+// 5492216809170 → +54 9 221 680-9170 (mismo formato que muestra la web).
+// Si la web mandó el número ya formateado para su país, se usa ese.
+function formatearWhatsApp(wa, display) {
+  if (display) return display;
   const d = String(wa || '').replace(/\D/g, '');
-  if (!/^549\d{10}$/.test(d)) return d;
+  if (!/^549\d{10}$/.test(d)) return d ? '+' + d : '';
   const local = d.slice(3);
   const area = local.startsWith('11') ? local.slice(0, 2) : local.slice(0, 3);
   const resto = local.slice(area.length);
@@ -493,7 +598,9 @@ function writeLead(ss, data) {
     data.sistema || '',
     data.letras, data.gravedad, data.gravedadEslabon,
     data.origen, data.utm_source, data.utm_medium, data.utm_campaign, data.utm_content, data.referrer,
-    ''
+    '',
+    data.instagram || '',
+    controlWhatsApp(data)
   ]);
 
   const fila = sheet.getLastRow();
@@ -501,14 +608,50 @@ function writeLead(ss, data) {
   [9, 11, 13, 15, 17].forEach(col => sheet.getRange(fila, col).setNumberFormat('0.0'));
 }
 
+// ── ORIGEN EN PALABRAS (14/10/2026) ───────────────────────────
+// El mail decía "Origen: mirror" y no se entendía qué botón tocó la persona.
+// Se deja el código entre paréntesis para buscarlo en el Sheet y en Analytics.
+const ORIGENES = {
+  'hero': 'el botón principal, arriba de todo de la página',
+  'nav': 'el botón del menú de arriba',
+  'sticky': 'la barra fija de abajo (celular)',
+  'mirror': 'el botón debajo de las frases "Facturo un montón y no veo un peso"',
+  'ejemplo': 'el botón de la sección "En 3 minutos sabés por dónde se le escapa la plata"',
+  'ejemplo-mock': 'el ejemplo de resultado del principio de la página',
+  'pillar-01': 'la tarjeta "Costos y precios" de los cuatro eslabones',
+  'pillar-02': 'la tarjeta "Resultado económico" de los cuatro eslabones',
+  'pillar-03': 'la tarjeta "Flujo de caja" de los cuatro eslabones',
+  'pillar-04': 'la tarjeta "Indicadores de gestión" de los cuatro eslabones',
+  'manuel': 'el botón de la sección sobre Manuel',
+  'cta-final': 'el botón del final de la página',
+  'link': 'un link directo al diagnóstico (ordenfinanciero.com/#diagnostico)',
+  'historial': 'el botón "atrás" del navegador (volvió al diagnóstico)',
+  'guias': 'el botón del índice de guías'
+};
+function origenEnPalabras(origen) {
+  const o = String(origen || '').replace(/^'/, '');
+  if (!o || o === 'desconocido') return '-';
+  if (ORIGENES[o]) return `${ORIGENES[o]} (${o})`;
+  // guia-<slug>[-barra|-calculadora[-<caso>]|-excel]: el caso es lo que le dio la calculadora
+  const g = o.match(/^guia-(.+?)(?:-(barra|calculadora|excel)(?:-(.+))?)?$/);
+  if (g) {
+    const guia = g[1].replace(/-/g, ' ');
+    const donde = { barra: 'la barra fija de la guía', calculadora: 'la calculadora de la guía', excel: 'la descarga del Excel de la guía' }[g[2]] || 'un link de la guía';
+    const caso = g[3] ? ` — resultado de la calculadora: ${g[3].replace(/-/g, ' ')}` : '';
+    return `${donde} "${guia}"${caso} (${o})`;
+  }
+  return o;
+}
+
 // ── MAIL AUTOMÁTICO A MANUEL ───────────────────────────────────
 function sendLeadEmail(data) {
   const telLimpio = normalizeArgWhatsApp(data.whatsapp);
   const waUrl = telLimpio ? `https://wa.me/${telLimpio}` : '';
-  const quien = data.nombre || formatearWhatsApp(data.whatsapp);
+  const quien = data.nombre || formatearWhatsApp(data.whatsapp, data.whatsappDisplay);
   const prueba = data.leadId.indexOf('PRUEBA-') === 0 ? '[PRUEBA] ' : '';
+  const dudoso = data.whatsappVerificado === 'no' ? ' · número dudoso' : '';
 
-  const subject = `${prueba}Nuevo diagnóstico: ${quien} — ${data.score}/${data.maxScore} (${data.eslabonDebil})`;
+  const subject = `${prueba}Nuevo diagnóstico: ${quien} — ${data.score}/${data.maxScore} (${data.eslabonDebil})${dudoso}`;
 
   const filasEslabones = data.eslabones
     .map(es => `${es.nombre}: ${es.score}/9 (${es.estado})`)
@@ -529,7 +672,8 @@ function sendLeadEmail(data) {
 
   const bodyPlain = [
     `Nombre: ${data.nombre || '-'}`,
-    `WhatsApp: ${formatearWhatsApp(data.whatsapp) || '-'}${waUrl ? '  →  ' + waUrl : ''}`,
+    `WhatsApp: ${formatearWhatsApp(data.whatsapp, data.whatsappDisplay) || '-'}${waUrl ? '  →  ' + waUrl : ''}`,
+    ...(lineaControlWhatsApp(data) ? [lineaControlWhatsApp(data)] : []),
     `Instagram: ${data.instagram || '-'}`,
     `Negocio: ${data.negocio || '-'}`,
     `Rubro: ${data.rubro || '-'}`,
@@ -541,7 +685,7 @@ function sendLeadEmail(data) {
     '',
     filasEslabones,
     '',
-    `Origen: ${data.origen || '-'}`,
+    `Origen: ${origenEnPalabras(data.origen)}`,
     `UTM (source / medium / campaign / content): ${utm}`,
     `Llegó desde: ${data.referrer || '-'}`,
     '',
@@ -650,7 +794,7 @@ function styleLeadsSheet(sheet) {
   sheet.setRowHeight(1, 40);
 
   const widths = [110, 130, 110, 110, 110, 170, 150, 110, 110, 160, 100, 150, 100, 160, 100, 120, 100, 170, 150,
-    120, 120, 150, 110, 110, 110, 130, 110, 200, 200];
+    120, 120, 150, 110, 110, 110, 130, 110, 200, 200, 200, 220];
   widths.forEach((w, i) => sheet.setColumnWidth(i + 1, w));
 
   applyEstadoFormatting(sheet, [12, 14, 16, 18]);

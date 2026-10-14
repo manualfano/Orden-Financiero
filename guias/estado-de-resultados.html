@@ -368,9 +368,22 @@ function gtag() { dataLayer.push(arguments); }
   .descarga-form input[type="tel"] { width: 100%; min-height: 50px; padding: 0 var(--s-3); border: 1px solid rgba(11,18,14,0.28); border-radius: var(--r); font: inherit; font-size: 17px; color: var(--tinta); background: var(--w); }
   .descarga-form input[type="tel"]:focus-visible { outline: 2px solid var(--marca); outline-offset: 1px; border-color: var(--marca); }
   .descarga-form input[aria-invalid="true"] { border-color: var(--riesgo); }
+  /* WhatsApp con país (14/10/2026), igual que el diagnóstico: selector corto "AR +54" + número.
+     El select real ocupa la caja, invisible: teclado, lector de pantalla y lista nativa del celular. */
+  .descarga-form .wa-campo { display: flex; gap: var(--s-2); }
+  .descarga-form .wa-campo input[type="tel"] { flex: 1; min-width: 0; }
+  .descarga-form .wa-pais { position: relative; flex: none; display: flex; align-items: center; gap: 4px; min-height: 50px; padding: 0 6px 0 10px; border: 1px solid rgba(11,18,14,0.28); border-radius: var(--r); background: var(--w); color: var(--tinta); font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .descarga-form .wa-pais svg { width: 14px; height: 14px; color: var(--tinta-2); }
+  .descarga-form .wa-pais select { position: absolute; inset: 0; width: 100%; opacity: 0; cursor: pointer; font-size: 16px; }
+  .descarga-form .wa-pais:hover { border-color: var(--tinta-2); }
+  .descarga-form .wa-pais:focus-within { outline: 2px solid var(--marca); outline-offset: 1px; border-color: var(--marca); }
+  /* Celular angosto (360-420 px): un poco menos de margen para que el número entre entero */
+  @media (max-width: 420px) { .descarga, .descarga-form { padding: var(--s-4); } }
   article .descarga-hint { font-size: var(--fs-meta); color: var(--tinta-2); margin: 6px 0 0; }
   article .descarga-error { font-size: var(--fs-sm); color: var(--riesgo); font-weight: 600; margin: 6px 0 0; }
   article .descarga-error:empty { display: none; }
+  /* Con error, un solo mensaje debajo del campo: el error */
+  .descarga-campos:has(.descarga-error:not(:empty)) .descarga-hint { display: none; }
   .campo-extra { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
   .descarga-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2); width: 100%; min-height: 52px; margin-top: var(--s-4); padding: 0 var(--s-5); border: 0; border-radius: var(--r); background: var(--marca); color: var(--w); font: inherit; font-size: var(--fs-base); font-weight: 600; white-space: nowrap; text-decoration: none; cursor: pointer; transition: background var(--t-instante); }
   .descarga-btn:hover { background: var(--marca-hover); }
