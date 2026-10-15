@@ -756,7 +756,7 @@ function gtag() { dataLayer.push(arguments); }
       <li><strong>Anotá lo que se tira</strong> cada día en Control de desperdicio: insumo, cantidad y motivo. La planilla lo pasa a pesos.</li>
     </ol>
 
-    <aside class="descarga" id="descarga-ficha-costo-plato" aria-labelledby="descarga-ficha-costo-plato-t" data-descarga="ficha-costo-plato" data-archivo="/descargas/calculadora-de-costos-y-margenes.xlsx" data-nombre="Calculadora-de-costos-y-margenes-Orden-Financiero.xlsx" data-origen="guia-planilla-de-costos-excel" data-evento="calculadora_excel_descarga">
+    <aside class="descarga" id="descarga-ficha-costo-plato" aria-labelledby="descarga-ficha-costo-plato-t" data-descarga="ficha-costo-plato" data-archivo="/descargas/calculadora-de-costos-y-margenes.xlsx" data-nombre="Calculadora-de-costos-y-margenes-Orden-Financiero.xlsx" data-origen="guia-planilla-de-costos-excel" data-evento="calculadora_excel_descarga" data-cosa="la calculadora">
       <div class="descarga-arriba">
         <p class="descarga-tipo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>Excel gratis · 6 hojas</p>
         <h3 class="descarga-t" id="descarga-ficha-costo-plato-t">Descargá la calculadora de costos en Excel</h3>
@@ -863,7 +863,6 @@ function gtag() { dataLayer.push(arguments); }
   (function () {
     var WEBHOOK = 'https://script.google.com/macros/s/AKfycbw_4OP8ve0fKfP9M3VtCvRvmDG395PVzHUNOYqAH55FmVxaD93VNg8QfjDayOK-xVr_Ng/exec';
     var TIMEOUT_MS = 6000;
-    var VACIO = 'Escribí tu WhatsApp para descargar la calculadora.';
     function track(ev, props) { try { if (typeof gtag === 'function') gtag('event', ev, props || {}); } catch (e) {} }
     // Igual que en index.html: si /js/whatsapp.js no cargara, la descarga sigue andando
     // (número argentino de 10 dígitos o cualquiera con +código, sin revisar el país)
@@ -945,7 +944,7 @@ function gtag() { dataLayer.push(arguments); }
         var t = document.createElement('strong');
         var p = document.createElement('p');
         if (repetida) {
-          t.textContent = 'Ya descargaste la calculadora en esta computadora.';
+          t.textContent = 'Ya descargaste ' + caja.dataset.cosa + ' en esta computadora.';
           var b = link(caja, 'Descargar de nuevo', 'descarga-btn');
           b.addEventListener('click', function () { track(caja.dataset.evento, { descarga: caja.dataset.descarga, modo: 'repetida' }); });
           listo.appendChild(t); listo.appendChild(b);
@@ -973,7 +972,7 @@ function gtag() { dataLayer.push(arguments); }
       var btnTexto = btn.innerHTML;
       function marcarError(p) {
         input.setAttribute('aria-invalid', 'true');
-        err.textContent = WA.mensaje(p, VACIO);
+        err.textContent = WA.mensaje(p, 'Escribí tu WhatsApp para descargar ' + caja.dataset.cosa + '.');
         // Número "dudoso": el botón dice lo que va a pasar si la persona sigue igual
         if (p.motivo === 'dudoso') btn.innerHTML = 'Mi número está bien <span aria-hidden="true">↓</span>';
       }

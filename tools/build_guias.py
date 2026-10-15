@@ -552,7 +552,7 @@ PROBLEMAS = [
      'slugs': ['precio-de-venta', 'margen-de-ganancia']},
     {'id': 'vendo-bien-pero-no-me-queda-plata', 'titulo': 'Vendo bien pero no me queda plata', 'atajo': 'No me queda plata',
      'corto': 'Ganancia', 'linea': 'Mirá cuánto ganó de verdad el negocio y cuánto tenés que vender para no perder.',
-     'slugs': ['estado-de-resultados', 'punto-de-equilibrio', 'rentabilidad-de-un-negocio']},
+     'slugs': ['estado-de-resultados', 'punto-de-equilibrio', 'rentabilidad-de-un-negocio', 'formulas-financieras']},
     {'id': 'nunca-llego-con-la-plata', 'titulo': 'Nunca llego con la plata para pagar', 'atajo': 'No llego a pagar',
      'corto': 'Caja', 'linea': 'Sabé cuánta plata necesitás para pagar todo a tiempo mientras esperás cobrar.',
      'slugs': ['flujo-de-caja', 'capital-de-trabajo']},
@@ -1351,6 +1351,7 @@ DESCARGAS = {
         'archivo': '/descargas/calculadora-de-costos-y-margenes.xlsx',
         'nombre': 'Calculadora-de-costos-y-margenes-Orden-Financiero.xlsx',
         'evento': 'calculadora_excel_descarga',
+        'cosa': 'la calculadora',
         'tipo': 'Excel gratis · 6 hojas',
         # Mermas reales de la hoja "Mermas por producto" (papa 15 %, lomo 20 %, salmón entero 50 %)
         'hoja': {'cab': ('Insumo', 'Merma', 'Para 200 g'),
@@ -1361,6 +1362,25 @@ DESCARGAS = {
                  'Recetas con costo por porción: la merma se suma sola.',
                  'Márgenes por producto sin IVA, si sos responsable inscripto o monotributista.',
                  'Control de desperdicio en pesos e instrucciones paso a paso.'],
+    },
+    # 14/10/2026: lead de la guía de fórmulas financieras (post de Instagram de las 10 fórmulas).
+    # El archivo sale de tools/excel_formulas.py; los resultados de la vista previa son los del ejemplo.
+    'formulas-financieras': {
+        'titulo': 'Descargá las 10 fórmulas en Excel',
+        'linea': 'Cargás tus números una vez y te calcula las 10, con una frase que te dice cómo leer cada resultado.',
+        'archivo': '/descargas/10-formulas-financieras-restaurante.xlsx',
+        'nombre': '10-formulas-financieras-Orden-Financiero.xlsx',
+        'evento': 'formulas_excel_descarga',
+        'cosa': 'la planilla',
+        'tipo': 'Excel gratis · 2 hojas',
+        'hoja': {'cab': ('Fórmula', 'Da', 'Lectura'),
+                 'filas': [('Margen bruto', '70 %', 'Bien'), ('Prueba ácida', '1,2', 'Cubierto'), ('TIR', '34,9 %', 'Conviene')],
+                 'total': ('Y 7 más', '', ''),
+                 'pestanas': ['Las 10 fórmulas', 'Tus números']},
+        'trae': ['Las 10 fórmulas ya armadas: no tenés que escribir ninguna.',
+                 'Una frase al lado de cada resultado que te dice si está bien o hay que mirarlo.',
+                 'VPN y TIR para decidir una inversión antes de hacerla.',
+                 'Viene con un restaurante de ejemplo cargado: cambiás las celdas celestes por las tuyas.'],
     },
 }
 
@@ -1374,7 +1394,6 @@ DESCARGA_JS = r"""  <script src="/js/whatsapp.js"></script>
   (function () {
     var WEBHOOK = 'https://script.google.com/macros/s/AKfycbw_4OP8ve0fKfP9M3VtCvRvmDG395PVzHUNOYqAH55FmVxaD93VNg8QfjDayOK-xVr_Ng/exec';
     var TIMEOUT_MS = 6000;
-    var VACIO = 'Escribí tu WhatsApp para descargar la calculadora.';
     function track(ev, props) { try { if (typeof gtag === 'function') gtag('event', ev, props || {}); } catch (e) {} }
     // Igual que en index.html: si /js/whatsapp.js no cargara, la descarga sigue andando
     // (número argentino de 10 dígitos o cualquiera con +código, sin revisar el país)
@@ -1456,7 +1475,7 @@ DESCARGA_JS = r"""  <script src="/js/whatsapp.js"></script>
         var t = document.createElement('strong');
         var p = document.createElement('p');
         if (repetida) {
-          t.textContent = 'Ya descargaste la calculadora en esta computadora.';
+          t.textContent = 'Ya descargaste ' + caja.dataset.cosa + ' en esta computadora.';
           var b = link(caja, 'Descargar de nuevo', 'descarga-btn');
           b.addEventListener('click', function () { track(caja.dataset.evento, { descarga: caja.dataset.descarga, modo: 'repetida' }); });
           listo.appendChild(t); listo.appendChild(b);
@@ -1484,7 +1503,7 @@ DESCARGA_JS = r"""  <script src="/js/whatsapp.js"></script>
       var btnTexto = btn.innerHTML;
       function marcarError(p) {
         input.setAttribute('aria-invalid', 'true');
-        err.textContent = WA.mensaje(p, VACIO);
+        err.textContent = WA.mensaje(p, 'Escribí tu WhatsApp para descargar ' + caja.dataset.cosa + '.');
         // Número "dudoso": el botón dice lo que va a pasar si la persona sigue igual
         if (p.motivo === 'dudoso') btn.innerHTML = 'Mi número está bien <span aria-hidden="true">↓</span>';
       }
@@ -1545,7 +1564,7 @@ def bloque_descarga(clave, slug):
     icono = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" '
              'stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>'
              '<polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>')
-    return f"""<aside class="descarga" id="{uid}" aria-labelledby="{uid}-t" data-descarga="{e(clave)}" data-archivo="{e(d['archivo'])}" data-nombre="{e(d['nombre'])}" data-origen="guia-{e(slug)}-excel" data-evento="{e(d['evento'])}">
+    return f"""<aside class="descarga" id="{uid}" aria-labelledby="{uid}-t" data-descarga="{e(clave)}" data-archivo="{e(d['archivo'])}" data-nombre="{e(d['nombre'])}" data-origen="guia-{e(slug)}-excel" data-evento="{e(d['evento'])}" data-cosa="{e(d['cosa'])}">
       <div class="descarga-arriba">
         <p class="descarga-tipo">{icono}{e(d['tipo'])}</p>
         <h3 class="descarga-t" id="{uid}-t">{e(d['titulo'])}</h3>
