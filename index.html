@@ -181,8 +181,8 @@ function gtag() { dataLayer.push(arguments); }
   /* tipografia: 8 tokens */
   --fs-meta:  12px;
   --fs-sm: 14px;
-  --fs-base: 15px;
-  --fs-lead: 17px;
+  --fs-base: 16px;
+  --fs-lead: 18px;
   --fs-h3: 21px;
   --fs-h2: clamp(28px, 3.4vw, 42px);
   --fs-h1: clamp(32px, 4.2vw, 56px);
@@ -4145,8 +4145,9 @@ nav.scrolled { background: var(--navy-2); }
 @media (min-width: 1400px) {
   :root {
     --container: 1200px;
-    --fs-base: 15.5px;
-    --fs-lead: 17.5px;
+    --fs-sm: 14.5px;
+    --fs-base: 16.5px;
+    --fs-lead: 18.5px;
     --fs-h3: 22px;
     --fs-h2: clamp(42px, 3.4vw, 45px);
   }
@@ -4163,9 +4164,9 @@ nav.scrolled { background: var(--navy-2); }
   :root {
     --container: 1320px;
     --fs-sm: 15px;
-    --fs-base: 16px;
-    --fs-lead: 18px;
-    --fs-h3: 23px;
+    --fs-base: 17px;
+    --fs-lead: 19px;
+    --fs-h3: 24px;
     --fs-h2: clamp(45px, 3.2vw, 48px);
   }
   .hero-title { font-size: 80px; }
@@ -4176,8 +4177,10 @@ nav.scrolled { background: var(--navy-2); }
 @media (min-width: 1800px) {
   :root {
     --container: 1440px;
-    --fs-base: 16.5px;
-    --fs-lead: 18.5px;
+    --fs-sm: 15.5px;
+    --fs-base: 17.5px;
+    --fs-lead: 19.5px;
+    --fs-h3: 25px;
     --fs-h2: clamp(48px, 3vw, 52px);
   }
   .hero-title { font-size: 84px; }
@@ -4188,9 +4191,10 @@ nav.scrolled { background: var(--navy-2); }
 @media (min-width: 2000px) {
   :root {
     --container: 1520px;
-    --fs-base: 17px;
-    --fs-lead: 19px;
-    --fs-h3: 24px;
+    --fs-sm: 16px;
+    --fs-base: 18px;
+    --fs-lead: 20px;
+    --fs-h3: 26px;
     --fs-h2: clamp(52px, 2.9vw, 56px);
   }
   .hero-title { font-size: 88px; }
@@ -4199,6 +4203,26 @@ nav.scrolled { background: var(--navy-2); }
      linea por linea: la mas larga termina a 124 px de la figura. */
   .hero-photo { max-width: 600px; }
   .hero-photo img { max-width: 560px; }
+}
+
+/* Monitores grandes (14/10/2026, Manu en 2560 px: "lo veo chico"): un escalon mas,
+   igual que en las guias. */
+@media (min-width: 2400px) {
+  :root {
+    --container: 1800px;
+    --fs-meta: 13.5px;
+    --fs-sm: 17px;
+    --fs-base: 19.5px;
+    --fs-lead: 21.5px;
+    --fs-h3: 28px;
+    --fs-h2: clamp(60px, 2.6vw, 66px);
+  }
+  .hero-title { font-size: 104px; }
+  .hero-subtitle { font-size: 26px; }
+  .hero-proof-avatars img { width: 40px; height: 40px; }
+  .hero-proof-text { max-width: 420px; }
+  .hero-photo { max-width: 700px; }
+  .hero-photo img { max-width: 660px; }
 }
 /* Detalles lima (14/09/2026, pedido del dueño: "todo como está, lima solo en
    algunos detalles pequeños"). Solo sobre el azul oscuro del hero, donde la lima
