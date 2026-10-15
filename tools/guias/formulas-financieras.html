@@ -24,7 +24,7 @@
     },
     {
       "q": "¿Qué es el EBITDA de un restaurante, en simple?",
-      "a": "Es lo que genera la operación del local antes de pagar intereses, impuestos y amortizaciones. Sirve para comparar meses o locales sin que se mezclen los préstamos. No es plata en el bolsillo: todavía faltan los intereses, los impuestos y lo que vas a tener que gastar para reponer equipos."
+      "a": "Es lo que gana el local con lo que hace todos los días, antes de pagar los intereses de los préstamos, los impuestos y el desgaste de los equipos. Sirve para comparar un mes con otro. No es plata en el bolsillo: todavía faltan los intereses, los impuestos y la plata para cambiar los equipos."
     },
     {
       "q": "¿Por qué el ciclo de caja de un restaurante da negativo?",
@@ -32,17 +32,17 @@
     },
     {
       "q": "¿Cómo se calculan el VPN y la TIR en Excel?",
-      "a": "Poné la inversión en una celda en negativo (año 0) y abajo lo que te deja cada año. VPN: =VNA(tasa; flujos del año 1 en adelante) + la inversión en negativo. TIR: poné los flujos uno abajo del otro, con el año 0 arriba (por ejemplo en A1:A5), y escribí =TIR(A1:A5). Si el VPN da más que 0, o la TIR da más que lo que te cuesta la plata, la inversión conviene."
+      "a": "Poné en A1 lo que ponés, en negativo, y abajo lo que te deja cada año (A2 a A5). VPN: =VNA(tasa;A2:A5)+A1. TIR: =TIR(A1:A5). Si el VPN da más que 0, o la TIR da más que lo que te cuesta la plata, la inversión conviene."
     }
   ],
   "resumen": [
-    "Margen bruto, margen de contribución, EBITDA y punto de equilibrio: si ganás plata.",
-    "Prueba ácida y ciclo de caja: si llegás a pagar.",
-    "ROI, ROE, VPN y TIR: si vale la pena lo que pusiste o vas a poner."
+    "Las fórmulas 1 a 4 te dicen si tu restaurante gana plata.",
+    "La 5 y la 6, si llegás a pagar lo que debés.",
+    "De la 7 a la 10, si vale la pena lo que pusiste o lo que vas a poner."
   ]
 } -->
-    <p>Subir un precio, pedir un préstamo, abrir otro local. Cada una de esas decisiones se toma mejor con números. Acá tenés las <strong>10 fórmulas financieras</strong> que todo dueño de restaurante debería tener a mano, con la cuenta y un ejemplo de cada una.</p>
-    <p>No hace falta saberlas todas de memoria. Empezá por las cuatro primeras: te dicen si tu restaurante gana plata.</p>
+    <p>Subir un precio, pedir un préstamo, abrir otro local: con números se decide mejor. Acá tenés las <strong>10 fórmulas financieras</strong> que todo dueño de restaurante debería tener a mano. Cada una responde una pregunta simple, con la cuenta y un ejemplo.</p>
+    <p>No hace falta saberlas de memoria. Empezá por las cuatro primeras: te dicen si tu restaurante gana plata.</p>
 
     <h2>Las 10 fórmulas de un vistazo</h2>
     <div class="tabla">
@@ -50,140 +50,133 @@
         <thead><tr><th>Fórmula</th><th>Te responde</th><th>Cada cuánto</th></tr></thead>
         <tbody>
           <tr><td>1. Margen bruto</td><td>¿Cuánto me queda después de la mercadería?</td><td>Todos los meses</td></tr>
-          <tr><td>2. Margen de contribución</td><td>¿Cuánto deja cada plato?</td><td>Cuando cambian costos o precios</td></tr>
-          <tr><td>3. EBITDA</td><td>¿Cuánto gana el local con su trabajo de cada día?</td><td>Todos los meses</td></tr>
+          <tr><td>2. Margen de contribución</td><td>¿Cuánto me deja cada plato?</td><td>Cuando cambian costos o precios</td></tr>
+          <tr><td>3. EBITDA</td><td>¿Cuánto gana el local con su trabajo?</td><td>Todos los meses</td></tr>
           <tr><td>4. Punto de equilibrio</td><td>¿Cuánto tengo que vender para no perder?</td><td>Todos los meses</td></tr>
-          <tr><td>5. Prueba ácida</td><td>¿Llego a pagar lo que vence?</td><td>Cada tres meses</td></tr>
-          <tr><td>6. Ciclo de caja</td><td>¿Cuántos días tarda la plata en volver?</td><td>Cada tres meses</td></tr>
-          <tr><td>7. ROI</td><td>¿Cuánto rinde lo que puse en el negocio?</td><td>Una vez por año</td></tr>
-          <tr><td>8. ROE</td><td>¿Cuánto rinde mi plata?</td><td>Una vez por año</td></tr>
-          <tr><td>9. VPN</td><td>¿Conviene esta inversión?</td><td>Antes de invertir</td></tr>
-          <tr><td>10. TIR</td><td>¿Cuánto rinde esta inversión?</td><td>Antes de invertir</td></tr>
+          <tr><td>5. Prueba ácida</td><td>¿Me alcanza para pagar lo que debo?</td><td>Cada tres meses</td></tr>
+          <tr><td>6. Ciclo de caja</td><td>¿En cuántos días vuelve la plata a la caja?</td><td>Cada tres meses</td></tr>
+          <tr><td>7. ROI</td><td>¿Cuánto rinde lo que se puso en el negocio?</td><td>Una vez por año</td></tr>
+          <tr><td>8. ROE</td><td>¿Cuánto rinde la plata que puse yo?</td><td>Una vez por año</td></tr>
+          <tr><td>9. VPN</td><td>¿Me conviene esta inversión?</td><td>Antes de invertir</td></tr>
+          <tr><td>10. TIR</td><td>¿Cuánto me rinde por año esta inversión?</td><td>Antes de invertir</td></tr>
         </tbody>
       </table>
     </div>
     <p>Todas las cuentas van <strong>sin IVA</strong>. Si sos monotributista, usá lo que cobrás.</p>
 
     <h2>Bajate las 10 fórmulas en Excel</h2>
-    <p>Guardalas para cuando tengas que decidir con números. La planilla trae las 10 ya armadas: cargás tus números en una hoja y en la otra ves cada resultado, con una frase que te dice cómo leerlo.</p>
+    <p>Guardalas para cuando tengas que decidir. La planilla trae las 10 armadas: cargás tus números y al lado de cada resultado te dice si está bien o hay que mirarlo.</p>
 
-    <h2>Para saber si ganás plata</h2>
+    <h2>¿Tu restaurante gana plata?</h2>
 
-    <h3>1. Margen bruto</h3>
-    <p>Lo que te queda de cada peso vendido después de pagar la mercadería que vendiste. La mercadería es el <strong>CMV</strong> (costo de la mercadería vendida): la comida y la bebida que salieron en el mes. Si vendés por apps o con tarjeta, a las ventas restales antes las comisiones.</p>
+    <h3>1. ¿Cuánto te queda después de la mercadería? (margen bruto)</h3>
+    <p>De cada $100 que vendés, cuánto te queda después de pagar la comida y la bebida que vendiste. Si vendés por apps o con tarjeta, a las ventas restales antes las comisiones.</p>
     <formula>
-    Margen bruto % = (Ventas − CMV) / Ventas × 100
-    > Ventas de $40.000.000 sin IVA y $12.000.000 de mercadería
+    Margen bruto % = (Ventas − Mercadería) / Ventas × 100
+    > Vendiste $40.000.000 y la mercadería te costó $12.000.000
     Margen bruto % = ($40.000.000 − $12.000.000) / $40.000.000 × 100 = 70 %
     </formula>
-    <p><strong>Cómo leerlo:</strong> de cada $100 que vendés, te quedan $70 para pagar todo lo demás. Los otros $30 se van en mercadería: es tu <a href="/guias/food-cost">food cost</a>. Si el margen bruto baja de un mes a otro, subió la mercadería y no la pasaste a precio, o se está perdiendo en la cocina.</p>
+    <p><strong>Qué te dice:</strong> de cada $100 que vendés, te quedan $70 para pagar todo lo demás. Si de un mes a otro baja, subió la mercadería y no subiste los precios, o se está tirando comida en la cocina. A la mercadería vendida tu contador le dice CMV; a lo que se lleva de cada $100, <a href="/guias/food-cost">food cost</a>.</p>
 
-    <h3>2. Margen de contribución</h3>
-    <p>Lo que deja <strong>cada producto</strong> para pagar los costos fijos y generar ganancia. Al precio le restás el costo variable: lo que gastás solo si vendés ese plato (ingredientes, envase y la comisión de la app o de la tarjeta).</p>
+    <h3>2. ¿Cuánto te deja cada plato? (margen de contribución)</h3>
+    <p>Lo mismo, pero plato por plato: del precio, cuánto te queda después de pagar lo que te cuesta hacerlo (ingredientes, envase y comisión de la app o de la tarjeta).</p>
     <formula>
-    Margen de contribución % = (Precio − Costo variable) / Precio × 100
-    > Una hamburguesa a $14.000 sin IVA, con $4.200 de costo variable
+    Margen de contribución % = (Precio − Lo que te cuesta hacerlo) / Precio × 100
+    > Una hamburguesa a $14.000 sin IVA que te cuesta $4.200 hacer
     Margen de contribución % = ($14.000 − $4.200) / $14.000 × 100 = 70 %
     </formula>
-    <p><strong>Cómo leerlo:</strong> cada hamburguesa deja $9.800 para el alquiler, los sueldos y tu ganancia. Hacé la cuenta con tus 10 platos más vendidos: vas a ver cuáles empujan y cuáles casi no dejan nada. Para el costo de cada plato, seguí la guía de <a href="/guias/costo-de-un-plato">costo de un plato</a>.</p>
+    <p><strong>Qué te dice:</strong> cada hamburguesa te deja $9.800 para el alquiler, los sueldos y tu ganancia. Hacé la cuenta con tus 10 platos más vendidos y vas a ver cuáles te dejan plata y cuáles casi nada. Para saber lo que te cuesta cada plato, mirá la guía de <a href="/guias/costo-de-un-plato">costo de un plato</a>.</p>
 
-    <h3>3. EBITDA</h3>
-    <p>Lo que gana el local con su trabajo de todos los días, <strong>antes de pagar intereses de préstamos, impuestos y el desgaste de los equipos</strong>. Se arma con dos números:</p>
-    <ul>
-      <li><strong>Utilidad operativa:</strong> lo que queda de las ventas después de pagar la mercadería y todos los gastos del local, amortizaciones incluidas. Más detalle en la guía de <a href="/guias/estado-de-resultados">estado de resultados</a>.</li>
-      <li><strong>Amortizaciones:</strong> el desgaste por mes de lo que compraste para usar varios años. Un horno de $12.000.000 que dura 10 años se gasta $100.000 por mes.</li>
-    </ul>
+    <h3>3. ¿Cuánto gana el local con su trabajo? (EBITDA)</h3>
+    <p>Lo que gana el local con lo que hace todos los días, antes de pagar los intereses de los préstamos, los impuestos y el desgaste de los equipos.</p>
     <formula>
-    EBITDA = Utilidad operativa + Amortizaciones
+    EBITDA = Ganancia del local + Desgaste de los equipos
     EBITDA = $9.000.000 + $1.000.000 = $10.000.000
     </formula>
-    <p>¿Por qué se suman? Porque la utilidad operativa ya tiene restadas las amortizaciones: el desgaste de los equipos es uno de los gastos del local. Al sumarlas de vuelta, te queda lo que ganó el local antes de ese desgaste.</p>
-    <p><strong>Cómo leerlo:</strong> con ventas de $40.000.000, ese EBITDA es el <strong>25 % de las ventas</strong>. Sirve para comparar un mes con otro, o un local con otro, sin que se mezclen los préstamos. Ojo: no es plata en el bolsillo. Todavía faltan los intereses, los impuestos y la plata para cambiar los equipos cuando se rompan.</p>
+    <p>La <strong>ganancia del local</strong> es lo que te queda de las ventas después de pagar la mercadería y todos los gastos del local. Entre esos gastos ya está el <strong>desgaste de los equipos</strong>: un horno de $12.000.000 que dura 10 años se gasta $100.000 por mes. Por eso se suma de vuelta. Tu contador les dice utilidad operativa y amortizaciones.</p>
+    <p><strong>Qué te dice:</strong> acá el local genera $10.000.000, el 25 % de lo que vende. Sirve para comparar un mes con otro, o un local con otro. Ojo: no es plata en el bolsillo. Todavía faltan los intereses, los impuestos y la plata para cambiar los equipos cuando se rompan.</p>
 
-    <h3>4. Punto de equilibrio</h3>
-    <p>Cuánto tenés que vender en el mes para no ganar ni perder. Es el piso de tu operación. Los costos fijos son los que pagás aunque vendas poco: alquiler, sueldos, servicios, contador y tu propio sueldo.</p>
+    <h3>4. ¿Cuánto tenés que vender para no perder? (punto de equilibrio)</h3>
+    <p>Lo que tenés que vender en el mes para no ganar ni perder. Los gastos fijos son los que pagás aunque vendas poco: alquiler, sueldos, servicios, contador y tu propio sueldo.</p>
     <formula>
-    Punto de equilibrio = Costos fijos / Margen de contribución %
+    Punto de equilibrio = Gastos fijos / Margen de todo el local
     Punto de equilibrio = $16.800.000 / 0,70 = $24.000.000 de ventas por mes
     </formula>
-    <p>Usá el margen de <strong>todo el local</strong>, no el de un plato. En el ejemplo es 70 % y en la cuenta se escribe 0,70. Si además pagás envases, restalos también.</p>
-    <p><strong>Cómo leerlo:</strong> si vendés menos de $24.000.000, el mes da pérdida. Ojo: Ingresos Brutos se lleva un porcentaje de cada venta, así que el piso real es un poco más alto. Y es el piso, no la meta: tu ganancia va arriba. Pasalo a ventas por día y pegalo al lado de la caja. En la guía de <a href="/guias/punto-de-equilibrio">punto de equilibrio</a> lo calculás con tus números.</p>
+    <p>El margen es el 70 % de la fórmula 1, pero en la cuenta se escribe 0,70. Si además pagás envases o comisiones, restalos también.</p>
+    <p><strong>Qué te dice:</strong> si vendés menos de $24.000.000, el mes da pérdida. Es el piso, no la meta: Ingresos Brutos se lleva un porcentaje de cada venta y tu ganancia va arriba. Pasalo a ventas por día y pegalo al lado de la caja. En la guía de <a href="/guias/punto-de-equilibrio">punto de equilibrio</a> lo calculás con tus números.</p>
     <manana>
-    Buscá las ventas del mes pasado sin IVA y lo que gastaste en mercadería.
-    Calculá tu margen bruto (fórmula 1). Si te da menos de 65 % (la mercadería se lleva más de $35 de cada $100), revisá primero los precios de tus 5 platos más vendidos.
+    Buscá cuánto vendiste el mes pasado sin IVA y cuánto gastaste en mercadería.
+    Hacé la cuenta de la fórmula 1. Si te da menos de 65 % (la mercadería se lleva más de $35 de cada $100), revisá los precios de tus 5 platos más vendidos.
     </manana>
 
-    <h2>Para saber si llegás a pagar</h2>
+    <h2>¿Llegás a pagar?</h2>
 
-    <h3>5. Prueba ácida</h3>
-    <p>Si podés pagar lo que vence en el próximo año <strong>con la plata que tenés, sin contar la mercadería del depósito</strong>. Tu contador lo saca del balance con estos nombres:</p>
-    <ul>
-      <li><strong>Activo corriente (lo que tenés):</strong> lo que tenés o vas a cobrar en menos de un año: caja, banco, lo que te deben y la mercadería.</li>
-      <li><strong>Inventario:</strong> la mercadería. Se resta porque para convertirla en plata primero la tenés que vender.</li>
-      <li><strong>Pasivo corriente (lo que debés):</strong> lo que tenés que pagar en menos de un año: proveedores, sueldos, impuestos y cuotas.</li>
-    </ul>
+    <h3>5. ¿Te alcanza para pagar lo que debés? (prueba ácida)</h3>
+    <p>Si con la plata que tenés y la que te deben pagás todo lo que vence este año, <strong>sin contar la mercadería</strong>. La mercadería no cuenta porque primero la tenés que vender.</p>
     <formula>
-    Prueba ácida = (Activo corriente − Inventario) / Pasivo corriente
-    Prueba ácida = ($12.000.000 − $3.000.000) / $7.500.000 = 1,2
+    Prueba ácida = (Plata en caja y banco + Lo que te deben) / Lo que tenés que pagar este año
+    > Tenés $6.000.000, te deben $3.000.000 y tenés que pagar $7.500.000
+    Prueba ácida = ($6.000.000 + $3.000.000) / $7.500.000 = 1,2
     </formula>
-    <p><strong>Cómo leerlo:</strong> mayor a 1, estás cubierto: por cada $1 que debés, tenés $1,20. Menor a 1, sin vender la mercadería no te alcanza para pagar todo lo que vence. Más detalle en la guía de <a href="/guias/capital-de-trabajo">capital de trabajo</a>.</p>
+    <p>Lo que tenés que pagar este año: proveedores, sueldos, impuestos y cuotas de préstamos.</p>
+    <p><strong>Qué te dice:</strong> si da más de 1, estás cubierto: por cada $1 que debés, tenés $1,20. Si da menos de 1, hoy no te alcanza para pagar todo. Más en la guía de <a href="/guias/capital-de-trabajo">capital de trabajo</a>.</p>
 
-    <h3>6. Ciclo de caja (ciclo de conversión de efectivo)</h3>
-    <p>Cuántos días tarda en volver a tu caja la plata que ponés para comprar mercadería.</p>
+    <h3>6. ¿En cuántos días vuelve la plata a la caja? (ciclo de caja)</h3>
+    <p>Cuántos días pasan desde que ponés plata en mercadería hasta que esa plata vuelve a tu caja.</p>
     <formula>
-    Ciclo de caja = Días de inventario + Días de cobro − Días de pago
+    Ciclo de caja = Días que dura la mercadería + Días que tardás en cobrar − Días que tardás en pagar
+    > La mercadería dura 5 días, cobrás en 2 y les pagás a los proveedores a 30
     Ciclo de caja = 5 + 2 − 30 = −23 días
     </formula>
-    <p>Los días de inventario son lo que dura la mercadería en la cámara. Los de cobro, lo que tardás en cobrar (efectivo es 0; la tarjeta de crédito y las apps, más). Los de pago, lo que tardás en pagarles a tus proveedores.</p>
-    <p><strong>Cómo leerlo:</strong> en gastronomía suele dar negativo. Cobrás en el día y pagás a 30, así que <strong>tus proveedores te financian</strong>. Está bien, pero esa plata no es tuya. Si la usás para otra cosa, a fin de mes no llegás a pagarles. Mirá cómo armar tu <a href="/guias/flujo-de-caja">flujo de caja</a> para que no te pase.</p>
+    <p><strong>Qué te dice:</strong> en gastronomía suele dar negativo. Cobrás en el día y pagás a 30, así que <strong>tus proveedores te están prestando plata</strong>. Está bien, pero esa plata no es tuya: si la gastás en otra cosa, a fin de mes no llegás a pagarles. Mirá cómo armar tu <a href="/guias/flujo-de-caja">flujo de caja</a> para que no te pase.</p>
     <manana>
-    Separá en otra cuenta, o anotá aparte, lo que les debés a tus proveedores este mes.
-    Antes de usar plata de la caja para otra cosa, restá esa deuda: lo que queda es lo tuyo.
+    Anotá aparte, o separá en otra cuenta, lo que les debés a tus proveedores este mes.
+    Antes de sacar plata de la caja para otra cosa, restá esa deuda: lo que queda es lo tuyo.
     </manana>
 
-    <h2>Para saber si vale la pena lo que pusiste</h2>
+    <h2>¿Vale la pena lo que pusiste?</h2>
 
-    <h3>7. ROI (retorno sobre la inversión)</h3>
-    <p>Cuánto rinde cada peso que se puso en el negocio: lo tuyo y lo que pediste prestado. La inversión total es todo lo que se puso para armarlo: obra, equipos, mercadería y caja. La utilidad neta es la ganancia del año después de pagar todo: costos, intereses e impuestos.</p>
+    <h3>7. ¿Cuánto rinde lo que se puso en el negocio? (ROI)</h3>
+    <p>Cuánto te devuelve por año todo lo que se puso para armar el negocio (obra, equipos, mercadería y caja), lo tuyo y lo prestado. La ganancia del año es lo que quedó después de pagar todo, intereses e impuestos incluidos.</p>
     <formula>
-    ROI % = Utilidad neta anual / Inversión total × 100
+    ROI % = Ganancia del año / Todo lo que se puso × 100
     ROI % = $24.000.000 / $80.000.000 × 100 = 30 % por año
     </formula>
-    <p><strong>Cómo leerlo:</strong> con 30 % por año, recuperás la inversión en unos 3 años y 4 meses, a grandes rasgos. Comparalo con lo que te daría esa plata en otro lado. Si te da menos que un plazo fijo, trabajás mucho para ganar poco. Más en la guía de <a href="/guias/rentabilidad-de-un-negocio">rentabilidad de un negocio</a>.</p>
+    <p><strong>Qué te dice:</strong> con 30 % por año, recuperás lo que pusiste en unos 3 años y 4 meses. Comparalo con lo que te daría esa plata en un plazo fijo: si da parecido, trabajás mucho para ganar poco. Más en la guía de <a href="/guias/rentabilidad-de-un-negocio">rentabilidad de un negocio</a>.</p>
 
-    <h3>8. ROE (retorno sobre el patrimonio)</h3>
-    <p>Cuánto rinde <strong>la plata que es tuya</strong>, sin contar lo que pediste prestado. El patrimonio neto es la inversión total menos lo que debés.</p>
+    <h3>8. ¿Cuánto rinde la plata que pusiste vos? (ROE)</h3>
+    <p>Lo mismo, pero contando solo tu plata, sin lo que pediste prestado.</p>
     <formula>
-    ROE % = Utilidad neta anual / Patrimonio neto × 100
+    ROE % = Ganancia del año / Lo que pusiste vos × 100
+    > De los $80.000.000, $60.000.000 son tuyos y $20.000.000 prestados
     ROE % = $24.000.000 / $60.000.000 × 100 = 40 % por año
     </formula>
-    <p><strong>Cómo leerlo:</strong> de los $80.000.000, $20.000.000 eran prestados y $60.000.000 tuyos. Tu plata rinde 40 % por año. Si tenés deudas y el negocio gana, el ROE da más que el ROI, porque dividís la misma ganancia por menos plata. Lo que importa es compararlo con lo que te daría tu plata en otro lado: si un plazo fijo te da parecido, el negocio no te está pagando el trabajo y el riesgo.</p>
+    <p><strong>Qué te dice:</strong> tu plata rinde 40 % por año. Si tenés deudas y ganás plata, da más que el ROI, porque la misma ganancia se divide por menos plata. Lo que importa es compararlo con lo que ganarías con tu plata en otro lado.</p>
 
-    <h2>Para decidir una inversión</h2>
-    <p>Las dos últimas sirven antes de invertir: una terraza, una cocina nueva, otro local. Usamos el mismo caso para las dos.</p>
-    <p>Un restaurante piensa armar una terraza. La obra cuesta <strong>$20.000.000</strong> y espera que le deje <strong>$10.000.000 más por año</strong> durante 4 años (lo que vende de más, menos lo que le cuesta). La plata le cuesta <strong>30 % por año</strong>: es la tasa del préstamo que tomaría (si la pusiera de su bolsillo, sería lo que ganaría con esa plata en otro lado). A lo que te deja cada año se le dice <strong>flujo</strong>.</p>
+    <h2>¿Te conviene invertir?</h2>
+    <p>Las dos últimas sirven antes de gastar en algo grande: una terraza, una cocina nueva, otro local. Usamos el mismo ejemplo para las dos.</p>
+    <p>Un restaurante piensa armar una terraza. La obra cuesta <strong>$20.000.000</strong> y espera que le deje <strong>$10.000.000 más por año</strong> durante 4 años. La plata le cuesta <strong>30 % por año</strong>: es la tasa del préstamo que tomaría.</p>
 
-    <h3>9. VPN (valor presente neto)</h3>
-    <p>Cuánto vale hoy lo que una inversión te va a dar en el futuro. $10.000.000 dentro de un año valen menos que $10.000.000 hoy, porque esa plata hoy podría estar rindiendo. Por eso lo que te deja cada año se pasa a plata de hoy con la tasa.</p>
-    <p>En el ejemplo, los $10.000.000 del primer año valen hoy $7.692.000; los del cuarto año, $3.501.000. Los cuatro años juntos valen hoy $21.662.000.</p>
+    <h3>9. ¿Te conviene esta inversión? (VPN)</h3>
+    <p>$10.000.000 dentro de un año valen menos que $10.000.000 hoy, porque la plata de hoy puede estar rindiendo. El VPN pasa lo que te va a dejar la inversión a plata de hoy y le resta lo que ponés.</p>
     <formula>
-    VPN = Lo que te deja, en plata de hoy − Inversión
+    VPN = Lo que te deja, en plata de hoy − Lo que ponés
     VPN = $21.662.000 − $20.000.000 = $1.662.000
     </formula>
-    <p>En Excel: <code>=VNA(tasa; flujos)-inversión</code>. Con el ejemplo: <code>=VNA(30%;10000000;10000000;10000000;10000000)-20000000</code>.</p>
-    <p><strong>Cómo leerlo:</strong> si da más que 0, la inversión conviene. Acá da $1.662.000: la terraza paga la obra, paga el 30 % de la plata y sobra. Ojo: si dejara $8.000.000 por año, el VPN daría −$2.670.000. Recuperarías la obra ($32.000.000 en 4 años), pero rendiría menos que lo que te cuesta la plata.</p>
+    <p>Los $40.000.000 que deja la terraza en 4 años, pasados a plata de hoy con el 30 %, valen $21.662.000. Esa cuenta la hace Excel: <code>=VNA(30%;10000000;10000000;10000000;10000000)-20000000</code>.</p>
+    <p><strong>Qué te dice:</strong> si da más que 0, conviene. Acá la terraza paga la obra, paga el préstamo y sobra. Si dejara $8.000.000 por año, daría −$2.670.000: recuperarías la obra, pero ganarías menos de lo que te cobra el banco.</p>
 
-    <h3>10. TIR (tasa interna de retorno)</h3>
-    <p>Cuánto rinde una inversión, en porcentaje por año. Pensala como la tasa de un plazo fijo, pero de tu inversión: cuánto te rinde por año lo que ponés.</p>
-    <p>No se saca a mano. En Excel poné los flujos uno abajo del otro, con la inversión en negativo arriba: −20.000.000 en A1 y 10.000.000 de A2 a A5. Después escribí <code>=TIR(A1:A5)</code>. Con el ejemplo da <strong>34,9 % por año</strong>.</p>
-    <p><strong>Cómo leerlo:</strong> si es mayor que lo que te cuesta la plata (la tasa del préstamo, o lo que ganarías en otro lado), conviene. Acá 34,9 % es más que 30 %: conviene. Con $8.000.000 por año daría 21,9 %, menos que 30 %: no conviene.</p>
-    <p>Hacé las cuentas en una sola moneda: si los flujos están en pesos, la tasa también. Si están en dólares, usá una tasa en dólares.</p>
+    <h3>10. ¿Cuánto te rinde por año esta inversión? (TIR)</h3>
+    <p>Como la tasa de un plazo fijo, pero de tu inversión: cuánto te rinde por año lo que ponés.</p>
+    <p>No se saca a mano. En Excel poné −20000000 en A1 (lo que ponés, en negativo) y 10000000 de A2 a A5 (lo que te deja cada año). Después escribí <code>=TIR(A1:A5)</code>. Da <strong>34,9 % por año</strong>.</p>
+    <p><strong>Qué te dice:</strong> si rinde más de lo que te cuesta la plata, conviene. Acá 34,9 % es más que el 30 % del préstamo: conviene. Con $8.000.000 por año daría 21,9 %: no conviene.</p>
+    <p>Hacé todo en la misma moneda: si lo que te deja está en pesos, la tasa también.</p>
 
     <h2>Errores comunes</h2>
     <ul>
-      <li><strong>Usar ventas con IVA si sos responsable inscripto:</strong> todos los márgenes te dan más altos de lo real.</li>
-      <li><strong>Confundir margen bruto con ganancia:</strong> un 70 % de margen bruto no es un 70 % de ganancia. Todavía faltan los sueldos, el alquiler y los impuestos.</li>
-      <li><strong>Olvidar tu sueldo en los costos fijos:</strong> el punto de equilibrio te da más bajo y el negocio parece ganar más de lo que gana.</li>
-      <li><strong>Gastar la plata de los proveedores:</strong> el ciclo de caja negativo es una ayuda, no una ganancia.</li>
-      <li><strong>Decidir una inversión solo por cuánto tardás en recuperarla:</strong> mirá también el VPN o la TIR contra lo que te cuesta la plata.</li>
+      <li><strong>Usar ventas con IVA si sos responsable inscripto:</strong> todo te da mejor de lo que es.</li>
+      <li><strong>Creer que el margen es la ganancia:</strong> un 70 % de margen no es un 70 % de ganancia. Todavía faltan los sueldos, el alquiler y los impuestos.</li>
+      <li><strong>Olvidar tu sueldo en los gastos fijos:</strong> el punto de equilibrio te da más bajo y el negocio parece ganar más de lo que gana.</li>
+      <li><strong>Gastar la plata de los proveedores:</strong> que te paguen antes de pagarles es una ayuda, no una ganancia.</li>
+      <li><strong>Invertir solo porque "se recupera":</strong> mirá también si rinde más que lo que te cuesta la plata.</li>
     </ul>
