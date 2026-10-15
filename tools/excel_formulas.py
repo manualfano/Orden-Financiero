@@ -186,7 +186,7 @@ FORMULAS = [
      f'=IF(F12="","Cargá ganancia e inversión.","Recuperás la inversión en unos "&ROUND(1/F12,1)&" años. Comparalo con la tasa de la hoja ""Tus números"" ("&TEXT({R["tasa"]},"0%")&").")'),
     ('ROE (retorno sobre el patrimonio)', 'Cuánto rinde la plata que es tuya.',
      'Ganancia neta anual ÷ Patrimonio neto × 100', f"=IFERROR({R['neta']}/{R['patrimonio']},\"\")", PCT,
-     '=IF(F13="","Cargá ganancia y patrimonio.",IF(F13>F12,"Más alto que el ROI: lo prestado te está sumando.","Igual o más bajo que el ROI: revisá lo que te cuestan los préstamos."))'),
+     f'=IF(F13="","Cargá ganancia y patrimonio.",IF(F13>{R["tasa"]},"Tu plata rinde más que la tasa de la hoja ""Tus números"" ("&TEXT({R["tasa"]},"0%")&").","Tu plata rinde igual o menos que la tasa de la hoja ""Tus números"" ("&TEXT({R["tasa"]},"0%")&"): en otro lado ganarías parecido."))'),
     ('VPN (valor presente neto)', 'Cuánto vale hoy lo que una inversión te va a dar.',
      'Flujos futuros descontados − Inversión inicial', f"=IFERROR(NPV({R['tasa']},{R['flujos']})+{R['f0']},\"\")", PESOS,
      '=IF(F14="","Cargá la tasa y los flujos.",IF(F14>0,"Más que 0: la inversión conviene.","Menos que 0: con esa tasa, no conviene."))'),
