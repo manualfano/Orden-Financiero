@@ -169,7 +169,7 @@ FORMULAS = [
     ('Margen de contribución (un producto)', 'Lo que deja ese producto para pagar los costos fijos y ganar.',
      '(Precio − Lo que te cuesta hacerlo) ÷ Precio × 100', f"=IFERROR(({R['precio']}-{R['cvu']})/{R['precio']},\"\")", PCT,
      f'=IF(F7="","Cargá precio y costo.","De cada $100 que cobrás por ese producto, te quedan $"&TEXT(F7*100,"0")&" para los fijos y la ganancia.")'),
-    ('EBITDA', '¿Cuánto gana el local con su trabajo, antes de intereses, impuestos y desgaste de equipos?',
+    ('Lo que genera tu local (EBITDA)', '¿Cuánto genera el local con su trabajo, antes de intereses, impuestos y desgaste de equipos?',
      'Ganancia del local + Desgaste de los equipos', f"={uo}+{R['amort']}", PESOS,
      f'=IFERROR(IF(F8<=0,"Negativo: la operación no se paga sola.","Es el "&TEXT(F8/{R["ventas"]},"0%")&" de las ventas."),"")'),
     ('Punto de equilibrio', 'Cuánto tenés que vender por mes para no ganar ni perder.',
