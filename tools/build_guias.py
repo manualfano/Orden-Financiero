@@ -558,7 +558,7 @@ PROBLEMAS = [
      'slugs': ['costo-de-un-plato', 'planilla-de-costos', 'food-cost', 'costos-fijos-y-variables']},
     {'id': 'no-se-que-precio-poner', 'titulo': 'No sé qué precio poner', 'atajo': 'No sé qué precio poner',
      'corto': 'Precios', 'linea': 'Poné precios que cubran todos tus costos y te dejen ganancia.',
-     'slugs': ['precio-de-venta', 'margen-de-ganancia']},
+     'slugs': ['precio-de-venta', 'margen-de-ganancia', 'actualizar-precios-por-inflacion']},
     {'id': 'vendo-bien-pero-no-me-queda-plata', 'titulo': 'Vendo bien pero no me queda plata', 'atajo': 'No me queda plata',
      'corto': 'Ganancia', 'linea': 'Mirá cuánto ganó de verdad el negocio y cuánto tenés que vender para no perder.',
      'slugs': ['estado-de-resultados', 'punto-de-equilibrio', 'rentabilidad-de-un-negocio', 'formulas-financieras']},
@@ -847,6 +847,37 @@ CALCULADORAS = {
                piso: 'Es el punto de partida, no el precio final: comparalo con lo que cobra tu competencia y con cómo querés que te vean.' };
     }""",
     },
+    'actualizar': {
+        'titulo': 'Calculá cuánto subir un precio',
+        'sub': 'Con lo que te cuesta hoy. Tus números no se guardan ni se envían.',
+        'campos': [
+            {'id': 'c0', 'label': '¿Cuánto te costaba antes del aumento?', 'tipo': 'pesos', 'ph': '4.145', 'req': True,
+             'ayuda': 'El costo del plato o el producto, de tu <a href="/guias/costo-de-un-plato">ficha de costo</a>.'},
+            {'id': 'c1', 'label': '¿Cuánto te cuesta hoy?', 'tipo': 'pesos', 'ph': '4.445', 'req': True,
+             'ayuda': 'Con los precios nuevos de tus proveedores: lo que te sale volver a comprarlo hoy.'},
+            {'id': 'precio', 'label': '¿A cuánto lo vendés hoy?', 'tipo': 'pesos', 'ph': '16.800', 'req': True,
+             'ayuda': 'El precio que cobrás, como lo ve el cliente.'},
+        ],
+        'iva': 'Poné los costos sin IVA y el precio con IVA, como lo cobrás.',
+        'vacio': 'Completá los dos costos y tu precio de hoy, y acá aparece el precio nuevo.',
+        'calculo': """function (v, ri, h) {
+      if (!(v.c0 > 0) || !(v.c1 > 0) || !(v.precio > 0)) return { estado: 'vacio' };
+      var sin = ri ? v.precio / 1.21 : v.precio;
+      if (v.c0 >= sin) return { estado: 'error', error: 'Con ese precio ya perdías plata antes del aumento: el costo es igual o mayor que lo que cobrás sin IVA. Revisá los números.' };
+      // Precio nuevo = precio actual × costo de hoy / costo anterior, redondeado para arriba a los $100
+      var nuevo = Math.ceil(v.precio * v.c1 / v.c0 / 100) * 100, sinN = ri ? nuevo / 1.21 : nuevo;
+      var fcN = v.c1 / sinN * 100;
+      var filas = [(nuevo >= v.precio ? 'Subís ' : 'Bajás ') + h.B(h.pct(Math.abs(nuevo / v.precio - 1) * 100)) + ' (redondeado para arriba a los $100)'];
+      if (v.c1 > v.c0) {
+        filas.push('Si no subís, cada venta te deja ' + h.B(h.P(v.c1 - v.c0)) + ' menos');
+        filas.push('Y el costo pasa a ser el ' + h.B(h.pct(v.c1 / sin * 100)) + ' del precio sin IVA, en vez del ' + h.pct(v.c0 / sin * 100));
+      }
+      return { estado: 'lleno', t: 'Para que te siga dejando lo mismo de cada $100, cobrá', grande: h.P(nuevo), filas: filas,
+               viz: { tipo: 'barra', titulo: 'De cada $100 del precio nuevo, sin IVA', ref: [25, 35], partes: [{ t: 'Costo', v: fcN, c: 'costo' }, { t: 'Te deja', v: 100 - fcN, c: 'queda' }] },
+               cta: { t: '¿Y el resto de tu carta está al día?', p: 'Si un precio estaba atrasado, seguro hay más. El diagnóstico te muestra si tus precios cubren tus costos.', tag: 'actualizar' },
+               piso: 'Es tu piso con los costos de hoy: comparalo con lo que cobra tu competencia antes de cambiar la carta.' };
+    }""",
+    },
     'margen': {
         'titulo': 'Calculá el margen de un producto',
         'sub': 'Con lo que te cuesta hoy. Tus números no se guardan ni se envían.',
@@ -993,6 +1024,7 @@ EJEMPLOS = {
     'costo-ingrediente': ('la nalga de una milanesa', {'kilo': '12000', 'rinde': '80', 'gramos': '200'}, None),
     'food-cost': ('una milanesa con puré', {'costo': '4145', 'precio': '16800'}, 'ri'),
     'precio': ('una milanesa con puré', {'costo': '4145', 'fc': '30'}, 'ri'),
+    'actualizar': ('una milanesa con puré', {'c0': '4145', 'c1': '4445', 'precio': '16800'}, 'ri'),
     'margen': ('un producto que revendés', {'precio': '17500', 'costo': '10500'}, None),
     'eerr': ('un restaurante', {'ventas': '31500000', 'com': '1500000', 'cmv': '9700000', 'gastos': '14300000'}, None),
     'rentabilidad': ('un restaurante', {'ventas': '30000000', 'res': '4547500', 'inv': '120000000'}, None),
