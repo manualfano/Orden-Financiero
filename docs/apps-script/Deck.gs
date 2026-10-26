@@ -119,7 +119,8 @@ function crearDeck(data) {
   slidePrograma(pres, ctx);                                 // 09
   slidePrueba(pres, ctx);                                   // 10, solo si está confirmada
   slideTresMeses(pres, ctx);                                // 10 u 11
-  slideCierre(pres, ctx);                                   // 12
+  slideInversion(pres, ctx);                                // 11 o 12
+  slideCierre(pres, ctx);                                   // 12 o 13
 
   pres.saveAndClose();
   return 'https://docs.google.com/presentation/d/' + pres.getId() + '/edit';
@@ -894,6 +895,65 @@ function slideTresMeses(pres, ctx) {
     MG, yCupo, 1136, 24, { size: 16, color: C.secdark, lh: 120 });
   tramo(cupo, 0, 32, 500, C.lima);
   if (yCupo + 24 > 660) console.warn('Tres meses: el cupo pisa el pie');
+
+  pie(s, true, true);
+}
+
+// La inversión (26/10, pedido de Manu): base USD 1.900 y el mismo recargo que
+// tenía su presentación de Canva (USD 1.500 → 2 pagos +10 %, 3 pagos +20 %).
+// Va antes del cierre, donde está la garantía. El pago único lleva el foco
+// ("Mejor precio" y el ahorro contra 3 pagos): informa, no adorna.
+const PRECIO_BASE = 1900;
+const OPCIONES_PAGO = [
+  { pagos: 1, recargo: 0,    nombre: 'Un pago' },
+  { pagos: 2, recargo: 0.10, nombre: 'Dos pagos' },
+  { pagos: 3, recargo: 0.20, nombre: 'Tres pagos' }
+];
+function usd(v) { return 'USD ' + String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+
+// Píldora lima con texto navy (dos círculos + rectángulo, como pildora())
+function pildoraLima(slide, str, x, y) {
+  const h = 26, w = anchoTexto(str, 12) + 24;
+  circulo(slide, x + h / 2, y + h / 2, h, C.lima);
+  circulo(slide, x + w - h / 2, y + h / 2, h, C.lima);
+  rect(slide, x + h / 2, y, w - h, h, C.lima);
+  texto(slide, str, x, y, w, h, { size: 12, peso: 500, color: C.navy, lh: 100, alin: 'centro', medio: true });
+  return w;
+}
+
+function slideInversion(pres, ctx) {
+  const s = nuevaSlide(pres, 'navy');
+  circulosDeco(s, true);
+  etiqueta(s, 'La inversión', MG, 72, C.soft, null, C.lima);
+  regla(s, MG, titulo(s, 'Ordená los números de tu negocio en 90 días',
+    { oscura: true, lima: '90 días' }), C.lima);
+
+  const W = (1136 - 64) / 3, top = 236, alto = 280;
+  const totalMax = PRECIO_BASE * (1 + OPCIONES_PAGO[OPCIONES_PAGO.length - 1].recargo);
+  OPCIONES_PAGO.forEach((op, i) => {
+    const x = MG + i * (W + 32);
+    const total = PRECIO_BASE * (1 + op.recargo);
+    const cuota = total / op.pagos;
+    const foco = i === 0;
+    rect(s, x, top, W, alto, C.navy2);
+    rect(s, x, top, W, foco ? 4 : 3, foco ? C.lima : C.blanco, foco ? 1 : 0.16);
+    texto(s, op.nombre, x + 32, top + 36, W - 64, 24, { size: 20, peso: 500, color: C.blanco, lh: 100 });
+    if (foco) pildoraLima(s, 'Mejor precio', x + W - 32 - (anchoTexto('Mejor precio', 12) + 24), top + 33);
+    texto(s, usd(cuota), x + 32, top + 84, W - 64, 52,
+      { size: 44, peso: 500, color: C.lima, lh: 100 });
+    texto(s, foco ? `Ahorrás ${usd(totalMax - total)} contra ${OPCIONES_PAGO.length} pagos` : 'cada uno',
+      x + 32, top + 146, W - 64, 20, { size: 16, color: foco ? C.blanco : C.secdark, lh: 100 });
+    lineaRecta(s, x + 32, top + 196, x + W - 32, top + 196, C.blanco, 1, 0.16);
+    const final = texto(s, `Precio final ${usd(total)}`, x + 32, top + 220, W - 64, 20,
+      { size: 17, color: C.secdark, lh: 100 });
+    tramo(final, 13, 13 + usd(total).length, 500, C.blanco);
+  });
+
+  // Lo que se lleva el dueño, pegado al precio; la garantía en la slide que sigue
+  texto(s, 'Tres meses de acompañamiento 1 a 1 para saber cuánto ganás, a dónde va cada peso y qué precio poner.',
+    MG, 552, 1136, 24, { size: 17, color: C.blanco, lh: 120 });
+  const gar = texto(s, 'Con garantía: la ves en la página que sigue.', MG, 584, 1136, 24, { size: 17, color: C.secdark, lh: 120 });
+  tramo(gar, 0, 12, 500, C.lima);
 
   pie(s, true, true);
 }
