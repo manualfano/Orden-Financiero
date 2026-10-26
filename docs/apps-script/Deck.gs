@@ -119,7 +119,8 @@ function crearDeck(data) {
   slidePrograma(pres, ctx);                                 // 09
   slidePrueba(pres, ctx);                                   // 10, solo si está confirmada
   slideTresMeses(pres, ctx);                                // 10 u 11
-  slideCierre(pres, ctx);                                   // 12
+  slideInversion(pres, ctx);                                // 11 o 12
+  slideCierre(pres, ctx);                                   // 12 o 13
 
   pres.saveAndClose();
   return 'https://docs.google.com/presentation/d/' + pres.getId() + '/edit';
@@ -894,6 +895,49 @@ function slideTresMeses(pres, ctx) {
     MG, yCupo, 1136, 24, { size: 16, color: C.secdark, lh: 120 });
   tramo(cupo, 0, 32, 500, C.lima);
   if (yCupo + 24 > 660) console.warn('Tres meses: el cupo pisa el pie');
+
+  pie(s, true, true);
+}
+
+// La inversión (26/10, pedido de Manu): base USD 1.900 y el mismo recargo que
+// tenía su presentación de Canva (USD 1.500 → 2 pagos +10 %, 3 pagos +20 %).
+// Va antes del cierre, donde está la garantía.
+const PRECIO_BASE = 1900;
+const OPCIONES_PAGO = [
+  { pagos: 1, recargo: 0 },
+  { pagos: 2, recargo: 0.10 },
+  { pagos: 3, recargo: 0.20 }
+];
+function usd(v) { return 'USD ' + String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+
+function slideInversion(pres, ctx) {
+  const s = nuevaSlide(pres, 'navy');
+  circulosDeco(s, true);
+  etiqueta(s, 'La inversión', MG, 72, C.soft, null, C.lima);
+  regla(s, MG, titulo(s, 'Ordená los números de tu negocio en 90 días',
+    { oscura: true, lima: '90 días' }), C.lima);
+
+  const W = (1136 - 64) / 3, top = 236, alto = 280;
+  OPCIONES_PAGO.forEach((op, i) => {
+    const x = MG + i * (W + 32);
+    const total = PRECIO_BASE * (1 + op.recargo);
+    const cuota = total / op.pagos;
+    rect(s, x, top, W, alto, C.navy2);
+    rect(s, x, top, W, 3, i === 0 ? C.lima : C.blanco, i === 0 ? 1 : 0.16);
+    texto(s, `Opción ${i + 1}`.toUpperCase(), x + 32, top + 36, W - 64, 14,
+      { size: 12, peso: 500, color: C.soft, lh: 100 });
+    texto(s, op.pagos === 1 ? '1 pago de' : `${op.pagos} pagos de`, x + 32, top + 76, W - 64, 24,
+      { size: 20, color: C.blanco, lh: 100 });
+    texto(s, usd(cuota), x + 32, top + 112, W - 64, 52,
+      { size: 44, peso: 500, color: C.lima, lh: 100 });
+    lineaRecta(s, x + 32, top + 196, x + W - 32, top + 196, C.blanco, 1, 0.16);
+    const final = texto(s, `Precio final ${usd(total)}`, x + 32, top + 220, W - 64, 20,
+      { size: 17, color: C.secdark, lh: 100 });
+    tramo(final, 13, 13 + usd(total).length, 500, C.blanco);
+  });
+
+  texto(s, 'Programa de tres meses con acompañamiento 1 a 1. La garantía, en la página que sigue.',
+    MG, 560, 1136, 24, { size: 16, color: C.secdark, lh: 120 });
 
   pie(s, true, true);
 }
