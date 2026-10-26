@@ -17,8 +17,8 @@
   "faq": [
     {
       "q": "¿Cómo actualizar los precios por inflación?",
-      "a": "Con tus costos, no con el índice de inflación: dividí el costo de hoy por el costo anterior y multiplicá tu precio por ese número. Una milanesa que costaba $4.145, ahora cuesta $4.445 y se vende a $16.800 pasa a $18.016. Redondeado, $18.100.",
-      "formula": "Precio nuevo = Precio actual × Costo de hoy / Costo anterior"
+      "a": "Con tus costos, no con el índice de inflación: fijate cuánto subió el costo en porcentaje y subí tu precio lo mismo. Una milanesa que costaba $4.145 ahora cuesta $4.445: subió 7,2 %. Si la vendías a $16.800, pasa a $18.010. Redondeado, $18.100.",
+      "formula": "Precio nuevo = Precio actual + Precio actual × Suba del costo"
     },
     {
       "q": "¿Cuánto tengo que aumentar mis precios?",
@@ -41,13 +41,17 @@
       "a": "Mirá cuánto cobra tu competencia, empezá por los productos más atrasados, cuidá los que la gente usa para comparar y no achiques porciones a escondidas. Después mirá cuántas unidades vendés en las semanas siguientes."
     },
     {
+      "q": "¿El precio va con IVA o sin IVA?",
+      "a": "Da igual: si el precio con IVA sube 7,2 %, el precio sin IVA también sube 7,2 %. Usá el precio que cobrás, como lo ve el cliente."
+    },
+    {
       "q": "¿Cómo aumento una lista de precios en Excel?",
       "a": "Poné en una columna el costo anterior, en otra el costo de hoy y en otra el precio actual. El precio nuevo es =D2*C2/B2. Para redondearlo para arriba a los $100, usá =REDONDEAR.MAS(E2;-2)."
     }
   ],
   "resumen": [
     "Subí según lo que aumentaron tus costos, no según el índice de inflación.",
-    "Precio nuevo = precio actual × costo de hoy ÷ costo anterior: así, de cada $100 que cobrás, se te va lo mismo en ingredientes.",
+    "Si el costo subió 7 %, el precio sube 7 %: así, de cada $100 que cobrás, se te va lo mismo en ingredientes.",
     "La fórmula te da el piso. Antes de cambiar la carta, mirá a la competencia y empezá por los productos más atrasados."
   ]
 } -->
@@ -58,42 +62,42 @@
     <p>La pregunta es cuánto subir. No uses el índice de inflación (el IPC, el número que publica el INDEC cada mes): es un promedio de lo que compran las familias, no de lo que compra tu negocio. Subí según lo que aumentó <strong>lo que vos comprás</strong>. Si la carne subió más que el índice, con el índice te quedás corto. Si tus insumos casi no se movieron, te podés quedar más caro que la competencia.</p>
 
     <h2>La fórmula para actualizar un precio</h2>
-    <p>Para que de cada $100 que cobrás se te vaya lo mismo en ingredientes (el mismo <a href="/guias/food-cost">food cost</a>), el precio tiene que subir en la misma proporción que el costo:</p>
+    <p>Para que de cada $100 que cobrás se te vaya lo mismo en ingredientes (el mismo <a href="/guias/food-cost">food cost</a>), el precio tiene que subir <strong>el mismo porcentaje que subió el costo</strong>:</p>
     <formula>
-    Aumento del costo = Costo de hoy / Costo anterior
-    Precio nuevo = Precio actual × Aumento del costo
+    Suba del costo = Lo que aumentó el costo / Costo anterior
+    Precio nuevo = Precio actual + Precio actual × Suba del costo
     </formula>
     <ul>
-      <li><strong>Costo de hoy:</strong> el <strong>costo de reposición</strong> (lo que te cobraría hoy el proveedor por volver a comprar), no lo que pagaste por la mercadería que ya tenés.</li>
-      <li><strong>Precio actual:</strong> el que cobrás. Puede ir con IVA: el IVA sube en la misma proporción.</li>
+      <li><strong>Costo de hoy:</strong> lo que te cobraría hoy el proveedor por volver a comprar, no lo que pagaste por la mercadería que ya tenés.</li>
+      <li><strong>Precio actual:</strong> el que cobrás, como lo ve el cliente.</li>
     </ul>
-    <p>La fórmula mantiene el porcentaje, no los pesos. En el ejemplo ves por qué.</p>
+    <p>Ojo: se sube el mismo porcentaje, no solo los mismos pesos. En el ejemplo ves por qué.</p>
 
     <h2>Ejemplo: le aumentaron la carne a un restaurante</h2>
     <p>Un restaurante vende la milanesa con puré a <strong>$16.800</strong> con IVA. En ingredientes le cuesta $4.145 (sale de la <a href="/guias/costo-de-un-plato">ficha de costo del plato</a>). De cada $100 que cobra sin IVA, $29,9 se van en ingredientes.</p>
-    <p>El carnicero sube la nalga de $12.000 a $13.200 el kilo: 10 %. Los 200 g de la porción pasan de $3.000 a $3.300, y el plato, de $4.145 a <strong>$4.445</strong>.</p>
+    <p>El carnicero sube la nalga de $12.000 a $13.200 el kilo: 10 %. Los 200 g de la porción pasan de $3.000 a $3.300, y el plato, de $4.145 a <strong>$4.445</strong>: aumentó $300.</p>
     <formula>
-    Aumento del costo = $4.445 / $4.145 = 1,0724
-    Precio nuevo = $16.800 × 1,0724 = $18.016
+    Suba del costo = $300 / $4.145 = 7,2 %
+    Precio nuevo = $16.800 + $16.800 × 7,2 % = $18.010
     </formula>
     <p>Redondeado para la carta, para arriba: <strong>$18.100</strong>. El costo del plato subió 7,2 % (la carne es solo una parte del plato) y el precio, con el redondeo, 7,7 %.</p>
 
     <h3>Qué pasa con cada opción</h3>
     <div class="tabla">
       <table>
-        <thead><tr><th>Milanesa con puré</th><th class="n">No subís</th><th class="n">Sumás los $300</th><th class="n">Mismo porcentaje</th></tr></thead>
+        <thead><tr><th>Milanesa con puré</th><th class="n">Antes del aumento</th><th class="n">No subís</th><th class="n">Sumás los $300</th><th class="n">Mismo porcentaje</th></tr></thead>
         <tbody>
-          <tr><td>Precio de carta con IVA</td><td class="n">$16.800</td><td class="n">$17.200</td><td class="n">$18.100</td></tr>
-          <tr><td>Food cost</td><td class="n">32,0 %</td><td class="n">31,3 %</td><td class="n">29,7 %</td></tr>
-          <tr class="total"><td>Te deja por plato (sin IVA, después de pagar los ingredientes)</td><td class="n">$9.439</td><td class="n">$9.770</td><td class="n">$10.514</td></tr>
+          <tr><td>Precio de carta con IVA</td><td class="n">$16.800</td><td class="n">$16.800</td><td class="n">$17.200</td><td class="n">$18.100</td></tr>
+          <tr><td>De cada $100 sin IVA, se va en ingredientes</td><td class="n">$29,9</td><td class="n">$32,0</td><td class="n">$31,3</td><td class="n">$29,7</td></tr>
+          <tr class="total"><td>Te deja por plato (sin IVA, después de pagar los ingredientes)</td><td class="n">$9.739</td><td class="n">$9.439</td><td class="n">$9.770</td><td class="n">$10.514</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="nota">Números de ejemplo. Antes del aumento, el plato dejaba $9.739.</p>
+    <p class="nota">Números de ejemplo.</p>
     <ul>
       <li><strong>No subís:</strong> cada milanesa te deja $300 menos. Si vendés 1.000 por mes, son $300.000 menos por mes, sin que nada te avise.</li>
       <li><strong>Sumás solo los $300:</strong> el plato te deja casi los mismos pesos que antes. Pero con inflación también suben los sueldos, el alquiler y la luz, y esos pesos alcanzan para menos.</li>
-      <li><strong>Mismo porcentaje:</strong> de cada $100 se te va lo mismo que antes en ingredientes, y los pesos que te deja cada plato suben en la misma proporción. Eso te ayuda a cubrir la suba de tus otros gastos.</li>
+      <li><strong>Mismo porcentaje:</strong> de cada $100 se te va lo mismo que antes en ingredientes, y lo que te deja cada plato también sube (de $9.739 a $10.514). Eso te ayuda a cubrir la suba de tus otros gastos.</li>
     </ul>
     <p>El precio de la fórmula es tu piso. Antes de cambiar la carta, mirá a la competencia (más abajo).</p>
     <manana>
@@ -111,7 +115,7 @@
     <p>Subir poco y seguido suele notarse menos que un salto grande cada seis meses. Y mientras esperás, cada venta te deja menos.</p>
 
     <h2>Cómo subir los precios sin perder clientes</h2>
-    <p>La fórmula te dice cuánto necesitás. Cuánto subís de verdad es una decisión, como cualquier <a href="/guias/precio-de-venta">precio de venta</a>: tus costos te dan el piso, la competencia la referencia y tu posicionamiento (cómo querés que te vean) decide dónde te ubicás.</p>
+    <p>La fórmula te dice cuánto necesitás. Cuánto subís de verdad es una decisión, como cualquier <a href="/guias/precio-de-venta">precio de venta</a>: tus costos te dan el piso, la competencia te da la referencia y cómo querés que te vean tus clientes decide dónde te ubicás.</p>
     <ol>
       <li><strong>Mirá a la competencia.</strong> Si tu precio nuevo queda en línea con los lugares con los que te comparan, subilo. Si queda muy por arriba, revisá primero el costo: proveedor, porción y merma (lo que se tira).</li>
       <li><strong>Empezá por los más atrasados:</strong> los productos cuyo costo más subió, no todos igual.</li>

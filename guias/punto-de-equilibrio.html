@@ -399,39 +399,42 @@ function gtag() { dataLayer.push(arguments); }
   /* Escala para pantallas grandes (14/09/2026, Manu: "se ve un poco estrecho").
      Mismos cuatro escalones que la home: crecen a la vez el ancho de header,
      contenido y footer, y la letra. La columna de lectura de cada guia crece
-     menos, para que las lineas no pasen de ~75 caracteres. */
+     menos, para que las lineas no pasen de ~75 caracteres.
+     26/10/2026 (Manu: "se ve un poco angosta"): desde 1400 px la columna de lectura
+     llena el ancho hasta el indice (antes quedaban ~320 px vacios en el medio) y la
+     letra sube con ella, para que los renglones queden en ~100 caracteres. */
   :root { --ancho: 1080px; --lectura: 720px; --fs-base: 16px; --fs-lead: 18px; }
   @media (min-width: 1400px) {
-    :root { --ancho: 1200px; --lectura: 760px; --fs-sm: 14.5px; --fs-base: 16.5px; --fs-lead: 18.5px; --fs-h3: 22.5px; --fs-h2: clamp(42px, 3.4vw, 45px); }
+    :root { --ancho: 1200px; --lectura: 820px; --fs-sm: 14.5px; --fs-base: 16.5px; --fs-lead: 18.5px; --fs-h3: 22.5px; --fs-h2: clamp(42px, 3.4vw, 45px); }
     .portada h1, .guia-cab h1 { max-width: 860px; }
     .portada .bajada, .guia-cab .bajada { max-width: 760px; }
     .guia-cuerpo { grid-template-columns: minmax(0, 1fr) 270px; }
   }
   @media (min-width: 1600px) {
-    :root { --ancho: 1320px; --lectura: 800px; --fs-sm: 15px; --fs-base: 17px; --fs-lead: 19px; --fs-h3: 24px; --fs-h2: clamp(45px, 3.2vw, 48px); }
+    :root { --ancho: 1320px; --lectura: 900px; --fs-sm: 15.5px; --fs-base: 17.5px; --fs-lead: 19.5px; --fs-h3: 24px; --fs-h2: clamp(45px, 3.2vw, 48px); }
     .portada h1, .guia-cab h1 { max-width: 940px; }
     .portada .bajada, .guia-cab .bajada { max-width: 800px; }
     .buscador { max-width: 640px; }
-    .guia-cuerpo { grid-template-columns: minmax(0, 1fr) 290px; }
-  }
-  @media (min-width: 1800px) {
-    :root { --ancho: 1440px; --lectura: 840px; --fs-sm: 15.5px; --fs-base: 17.5px; --fs-lead: 19.5px; --fs-h3: 25px; --fs-h2: clamp(48px, 3vw, 52px); }
-    .portada h1, .guia-cab h1 { max-width: 1000px; }
     .guia-cuerpo { grid-template-columns: minmax(0, 1fr) 300px; }
   }
+  @media (min-width: 1800px) {
+    :root { --ancho: 1440px; --lectura: 980px; --fs-sm: 16.5px; --fs-base: 19px; --fs-lead: 21px; --fs-h3: 25px; --fs-h2: clamp(48px, 3vw, 52px); }
+    .portada h1, .guia-cab h1 { max-width: 1000px; }
+    .guia-cuerpo { grid-template-columns: minmax(0, 1fr) 330px; }
+  }
   @media (min-width: 2000px) {
-    :root { --ancho: 1560px; --lectura: 880px; --fs-sm: 16px; --fs-base: 18px; --fs-lead: 20px; --fs-h3: 26px; --fs-h2: clamp(52px, 2.8vw, 58px); }
+    :root { --ancho: 1560px; --lectura: 1080px; --fs-sm: 17.5px; --fs-base: 20.5px; --fs-lead: 22.5px; --fs-h3: 26px; --fs-h2: clamp(52px, 2.8vw, 58px); }
     .portada .bajada, .guia-cab .bajada { max-width: 880px; }
     .buscador { max-width: 700px; }
-    .guia-cuerpo { grid-template-columns: minmax(0, 1fr) 310px; }
+    .guia-cuerpo { grid-template-columns: minmax(0, 1fr) 360px; }
   }
   /* Monitores grandes (14/10/2026, Manu en 2560 px: "lo veo chico"): letra y columna crecen otro escalón. */
   @media (min-width: 2400px) {
-    :root { --ancho: 1800px; --lectura: 960px; --fs-meta: 13.5px; --fs-sm: 17px; --fs-base: 19.5px; --fs-lead: 21.5px; --fs-h3: 28px; --fs-h2: clamp(60px, 2.6vw, 66px); }
+    :root { --ancho: 1800px; --lectura: 1180px; --fs-meta: 14px; --fs-sm: 18.5px; --fs-base: 22px; --fs-lead: 24px; --fs-h3: 28px; --fs-h2: clamp(60px, 2.6vw, 66px); }
     .portada h1, .guia-cab h1 { max-width: 1200px; }
     .portada .bajada, .guia-cab .bajada { max-width: 960px; }
     .buscador { max-width: 780px; }
-    .guia-cuerpo { grid-template-columns: minmax(0, 1fr) 340px; }
+    .guia-cuerpo { grid-template-columns: minmax(0, 1fr) 420px; }
   }
   /* Guías más accionables (21/09/2026, Manu: "tiene que scrollear mucho para llegar al CTA").
      Cabecera más chica: en celular ocupaba casi toda la primera pantalla. Los minutos van en la
