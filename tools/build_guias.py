@@ -564,7 +564,7 @@ PROBLEMAS = [
      'slugs': ['precio-de-venta', 'margen-de-ganancia', 'actualizar-precios-por-inflacion']},
     {'id': 'vendo-bien-pero-no-me-queda-plata', 'titulo': 'Vendo bien pero no me queda plata', 'atajo': 'No me queda plata',
      'corto': 'Ganancia', 'linea': 'Mirá cuánto ganó de verdad el negocio y cuánto tenés que vender para no perder.',
-     'slugs': ['estado-de-resultados', 'punto-de-equilibrio', 'rentabilidad-de-un-negocio', 'formulas-financieras']},
+     'slugs': ['estado-de-resultados', 'cuanto-gana-un-restaurante', 'punto-de-equilibrio', 'rentabilidad-de-un-negocio', 'formulas-financieras']},
     {'id': 'nunca-llego-con-la-plata', 'titulo': 'Nunca llego con la plata para pagar', 'atajo': 'No llego a pagar',
      'corto': 'Caja', 'linea': 'Sabé cuánta plata necesitás para pagar todo a tiempo mientras esperás cobrar.',
      'slugs': ['flujo-de-caja', 'capital-de-trabajo']},
@@ -934,6 +934,42 @@ CALCULADORAS = {
                piso: 'Todavía faltan los intereses de préstamos y los impuestos, como Ingresos Brutos.' };
     }""",
     },
+    'cuanto-gana': {
+        'titulo': 'Calculá cuánto te queda de lo que vendés',
+        'campos': [
+            {'id': 'ventas', 'label': 'Lo que vendiste en el mes', 'tipo': 'pesos', 'ph': '30.000.000', 'req': True,
+             'ayuda': 'Sin IVA y sin las comisiones de tarjetas y apps.'},
+            {'id': 'merc', 'label': 'Mercadería que usaste', 'tipo': 'pesos', 'ph': '9.700.000', 'req': True,
+             'ayuda': 'Si no lo sabés, en la guía de <a href="/guias/food-cost">CMV</a> ves cómo sacarlo.'},
+            {'id': 'sueldos', 'label': 'Sueldos y cargas, con el tuyo', 'tipo': 'pesos', 'ph': '9.500.000', 'req': True,
+             'ayuda': 'Si trabajás en el negocio, sumá lo que le pagarías a un encargado.'},
+            {'id': 'alq', 'label': 'Alquiler', 'tipo': 'pesos', 'ph': '2.500.000', 'req': True, 'ancho': False},
+            {'id': 'otros', 'label': 'Servicios y otros gastos', 'tipo': 'pesos', 'ph': '2.650.000', 'req': True, 'ancho': False,
+             'ayuda': 'Luz, gas, contador, sistemas e intereses.'},
+            {'id': 'imp', 'label': 'Impuestos del mes', 'tipo': 'pesos', 'ph': '1.102.500', 'opc': True,
+             'ayuda': 'Ingresos Brutos y lo que pagues según tu categoría. Sin IVA.'},
+        ],
+        'vacio': 'Completá lo que vendiste y tus gastos del mes, y acá aparece cuánto te quedó.',
+        'calculo': """function (v, ri, h) {
+      if (!(v.ventas > 0) || isNaN(v.merc) || isNaN(v.sueldos) || isNaN(v.alq) || isNaN(v.otros)) return { estado: 'vacio' };
+      // Lo que te queda = ventas netas − mercadería − sueldos − alquiler − otros − impuestos
+      var imp = v.imp || 0, res = v.ventas - v.merc - v.sueldos - v.alq - v.otros - imp;
+      var cada = function (x) { return '$' + h.d1(x / v.ventas * 100); };
+      var mp = (v.merc + v.sueldos) / v.ventas * 100;
+      var filas = [(res >= 0 ? 'De cada $100 que vendiste te quedaron ' : 'De cada $100 que vendiste perdiste ') + h.B(cada(Math.abs(res))),
+                   'Mercadería y sueldos se llevan ' + h.B(cada(v.merc + v.sueldos)) + (mp > 65 ? ': más que la referencia de $60 a $65' : ' (referencia: hasta $60 a $65)'),
+                   'El alquiler se lleva ' + h.B(cada(v.alq))];
+      var pasos = [{ t: 'Vendiste', v: v.ventas, tipo: 'base' }, { t: 'Mercadería', v: -v.merc }, { t: 'Sueldos', v: -v.sueldos }, { t: 'Alquiler', v: -v.alq }, { t: 'Servicios y otros', v: -v.otros }];
+      if (imp > 0) pasos.push({ t: 'Impuestos', v: -imp });
+      pasos.push({ t: res >= 0 ? 'Te quedó' : 'Perdiste', tipo: 'total' });
+      var cta = res < 0
+        ? { t: 'El mes te hizo perder ' + h.P(-res) + '.', p: 'El diagnóstico te muestra dónde está la pérdida: en los costos, en los precios, en la caja o en cómo se decide.', tag: 'gana-perdida' }
+        : { t: 'De cada $100 que vendés te quedan ' + cada(res) + '. ¿Es lo que esperabas?', p: 'Si sentís que trabajás mucho para lo que te queda, el diagnóstico te muestra por dónde se escapa la plata.', tag: 'gana-ok' };
+      return { estado: 'lleno', t: res >= 0 ? 'El mes te dejó' : 'El mes te hizo perder', grande: h.P(Math.abs(res)), filas: filas, cta: cta,
+               viz: { tipo: 'cascada', pasos: pasos },
+               piso: 'Mirá tres meses seguidos: un mes solo, bueno o malo, no dice mucho.' };
+    }""",
+    },
     'rentabilidad': {
         'titulo': 'Calculá la rentabilidad de tu negocio',
         'campos': [
@@ -1031,6 +1067,7 @@ EJEMPLOS = {
     'margen': ('un producto que revendés', {'precio': '17500', 'costo': '10500'}, None),
     'eerr': ('un restaurante', {'ventas': '31500000', 'com': '1500000', 'cmv': '9700000', 'gastos': '14300000'}, None),
     'rentabilidad': ('un restaurante', {'ventas': '30000000', 'res': '4547500', 'inv': '120000000'}, None),
+    'cuanto-gana': ('un restaurante', {'ventas': '30000000', 'merc': '9700000', 'sueldos': '9500000', 'alq': '2500000', 'otros': '2650000', 'imp': '1102500'}, None),
     'flujo': ('una semana de un restaurante', {'saldo': '3500000', 'ent': '9000000', 'sal': '14000000'}, None),
     'capital': ('un restaurante', {'caja': '1300000', 'cobrar': '2000000', 'stock': '700000', 'deudas': '7200000'}, None),
 }
