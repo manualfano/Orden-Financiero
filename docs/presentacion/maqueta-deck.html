@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Maqueta · Presentación del diagnóstico</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Tokens de la web y el portal (src/styles/global.css). Solo lo que Google Slides puede reproducir:
+     color sólido (con opacidad), líneas, rectángulos, círculos, texto Inter 300/400/500. */
+  :root{
+    --navy:#0D2B6B; --navy2:#143C8C; --marca:#0C66E4; --soft:#93C5FD; --secdark:#A3ADC2;
+    --tinta:#292A2E; --t2:#505258; --t3:#6B6E76; --lienzo:#F8F8F8; --lienzo2:#F0F1F2;
+    --borde:rgba(13,43,107,.12); --bordeD:rgba(255,255,255,.14); --azulclaro:#C2DBFB;
+    --pos:#4C6B1F; --posbg:#EFFFD6; --ale:#9E4C00; --alebg:#FFF5DB; --rie:#AE2E24; --riebg:#FFECEB;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#DADCE0;font-family:Inter,Arial,sans-serif;color:var(--tinta);padding:40px 0 80px}
+  .cap{width:1280px;margin:0 auto 10px;font:500 13px Inter;color:#3b3d42}
+  .s{position:relative;width:1280px;height:720px;margin:0 auto 48px;background:#fff;overflow:hidden}
+  .s.d{background:var(--navy);color:#fff}
+  .a{position:absolute}
+  .lbl{font:500 12px/1 Inter;text-transform:uppercase;color:var(--marca);display:flex;align-items:center;gap:10px}
+  .lbl:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+  .d .lbl{color:var(--soft)}
+  .ttl{font:500 34px/1.15 Inter;color:var(--navy);letter-spacing:-.01em}
+  .d .ttl{color:#fff}
+  .sub{font:400 18px/1.45 Inter;color:var(--t2)}
+  .rule{width:40px;height:2px;background:var(--navy)}
+  .d .rule{background:var(--soft)}
+  .foot{left:72px;top:676px;font:400 11px/1 Inter;text-transform:uppercase;color:var(--t3)}
+  .pnum{right:72px;top:676px;font:400 11px/1 Inter;color:var(--t3)}
+  .src{left:72px;top:640px;font:400 12px/1 Inter;color:var(--t3)}
+  .circ{border:1px solid rgba(13,43,107,.10);border-radius:50%}
+  .d .circ{border-color:rgba(255,255,255,.16)}
+  .num{font-variant-numeric:tabular-nums}
+  .loz{display:inline-block;font:500 12px/1 Inter;padding:6px 10px;border-radius:999px}
+  .loz.pos{background:var(--posbg);color:var(--pos)} .loz.ale{background:var(--alebg);color:var(--ale)} .loz.rie{background:var(--riebg);color:var(--rie)}
+  .card{border:1px solid var(--borde);border-radius:12px}
+  .dot{display:inline-block;width:10px;height:10px;border-radius:50%;border:1.5px solid var(--marca);margin-right:4px;vertical-align:middle}
+  .dot.on{background:var(--marca)}
+  .var{outline:1px dashed rgba(12,102,228,.0)} /* poner .35 para ver qué textos cambian por lead */
+  svg text{font-family:Inter,Arial,sans-serif}
+  /* Fondo de marca de la web (global.css .canvas-marca). En Slides va como imagen de fondo. */
+  .s.m{background-color:var(--navy);background-image:
+    radial-gradient(70% 90% at 85% 15%, color-mix(in srgb, var(--marca) 62%, transparent) 0%, transparent 62%),
+    radial-gradient(55% 70% at 10% 95%, var(--navy2) 0%, transparent 65%),
+    radial-gradient(35% 45% at 62% 72%, color-mix(in srgb, var(--soft) 16%, transparent) 0%, transparent 60%)}
+  .nueva{color:var(--marca)}
+  /* Vistas del programa (mismas maquetas que la web; en Slides van como imágenes) */
+  .mock{background:#fff;border:1px solid var(--borde);border-radius:12px;padding:18px 20px;font-size:12.5px;color:var(--tinta);height:410px}
+  .mock .eb{font:500 10px/1.3 Inter;text-transform:uppercase;color:var(--t3)}
+  .mock .nm{font:500 15px Inter;color:var(--navy);margin-top:4px}
+  .mock .hd{border-bottom:1px solid var(--borde);padding-bottom:10px}
+  .mcap{font:500 12px/1 Inter;text-transform:uppercase;color:var(--marca);margin-top:14px;display:flex;gap:8px;align-items:center}
+  .mcap:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+</style>
+</head>
+<body>
+
+<!-- 01 PORTADA -->
+<p class="cap">01 · Portada</p>
+<section class="s d m">
+  <div class="a circ" style="width:440px;height:440px;left:1000px;top:420px"></div>
+  <div class="a circ" style="width:320px;height:320px;left:1060px;top:480px"></div>
+  <div class="a circ" style="width:200px;height:200px;left:1120px;top:540px"></div>
+  <!-- Logo como el de la web (Wordmark.astro): isotipo sobre azul de marca + "ordenfinanciero." en Inter 600.
+       En Slides: el isotipo es la imagen pública ordenfinanciero.com/apple-touch-icon.png y el texto va vivo. -->
+  <div class="a" style="right:72px;top:60px;display:flex;align-items:center;gap:12px">
+    <span style="width:36px;height:36px;border-radius:8px;background:var(--marca);display:grid;place-items:center"><svg viewBox="0 0 24 24" width="20" height="20" fill="none"><circle cx="12" cy="12" r="7" stroke="#7DB1F4" stroke-width="4"/><circle cx="12" cy="12" r="7" stroke="#fff" stroke-width="4" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/></svg></span>
+    <span style="font:600 22px Inter;letter-spacing:-.01em;color:#fff">ordenfinanciero<span style="color:#7DB1F4">.</span></span>
+  </div>
+  <p class="a lbl" style="left:72px;top:72px">Diagnóstico de gestión · <span class="var">Gastronomía</span></p>
+  <div class="a rule" style="left:72px;top:250px"></div>
+  <h1 class="a" style="left:72px;top:276px;font:500 60px/1.05 Inter;letter-spacing:-.02em;width:800px">Diagnóstico de<br>salud financiera</h1>
+  <p class="a" style="left:72px;top:428px;font:400 20px/1.4 Inter;color:var(--secdark)">Los cuatro eslabones que ordenan los números de un negocio</p>
+  <!-- cadena de eslabones, como en la web -->
+  <div class="a" style="left:72px;top:520px;width:760px;height:1px;background:var(--bordeD)"></div>
+  <div class="a" style="left:72px;top:540px;display:flex;gap:0;width:800px">
+    <div style="width:200px"><p class="num" style="font:500 13px Inter;color:var(--soft)">01</p><p style="font:400 15px/1.3 Inter;margin-top:6px">Costos y precios</p></div>
+    <div style="width:200px"><p class="num" style="font:500 13px Inter;color:var(--soft)">02</p><p style="font:400 15px/1.3 Inter;margin-top:6px">Resultado económico</p></div>
+    <div style="width:200px"><p class="num" style="font:500 13px Inter;color:var(--soft)">03</p><p style="font:400 15px/1.3 Inter;margin-top:6px">Flujo de caja</p></div>
+    <div style="width:200px"><p class="num" style="font:500 13px Inter;color:var(--soft)">04</p><p style="font:400 15px/1.3 Inter;margin-top:6px">Indicadores de gestión</p></div>
+  </div>
+  <p class="a" style="left:72px;top:660px;font:400 12px/1 Inter;text-transform:uppercase;color:var(--secdark)">Manuel Alfano · Orden Financiero &nbsp;·&nbsp; Confidencial &nbsp;·&nbsp; <span class="var">Septiembre 2026</span></p>
+</section>
+
+<!-- 02 ALCANCE -->
+<p class="cap">02 · Alcance</p>
+<section class="s">
+  <p class="a lbl" style="left:72px;top:72px">Alcance</p>
+  <h2 class="a ttl" style="left:72px;top:100px;width:900px">Esto mide cómo se gestiona el negocio, no cuánto gana</h2>
+  <div class="a rule" style="left:72px;top:160px"></div>
+  <div class="a" style="left:72px;top:210px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;width:1136px">
+    <div style="padding:20px 0 0;border-top:2px solid var(--navy);height:190px"><p class="num" style="font:500 15px Inter;color:var(--marca)">01</p><p style="font:500 20px/1.25 Inter;color:var(--navy);margin-top:40px">Costos y precios</p><p style="font:400 15px/1.5 Inter;color:var(--t2);margin-top:10px">Si los costos están calculados</p></div>
+    <div style="padding:20px 0 0;border-top:2px solid var(--navy);height:190px"><p class="num" style="font:500 15px Inter;color:var(--marca)">02</p><p style="font:500 20px/1.25 Inter;color:var(--navy);margin-top:40px">Resultado económico</p><p style="font:400 15px/1.5 Inter;color:var(--t2);margin-top:10px">Si hay cierre mensual</p></div>
+    <div style="padding:20px 0 0;border-top:2px solid var(--navy);height:190px"><p class="num" style="font:500 15px Inter;color:var(--marca)">03</p><p style="font:500 20px/1.25 Inter;color:var(--navy);margin-top:40px">Flujo de caja</p><p style="font:400 15px/1.5 Inter;color:var(--t2);margin-top:10px">Si la caja se proyecta</p></div>
+    <div style="padding:20px 0 0;border-top:2px solid var(--navy);height:190px"><p class="num" style="font:500 15px Inter;color:var(--marca)">04</p><p style="font:500 20px/1.25 Inter;color:var(--navy);margin-top:40px">Indicadores de gestión</p><p style="font:400 15px/1.5 Inter;color:var(--t2);margin-top:10px">Si hay indicadores que se sigan</p></div>
+  </div>
+  <div class="a" style="left:72px;top:470px;width:1136px;background:var(--lienzo);border-radius:12px;padding:24px 28px;display:flex;justify-content:space-between;gap:40px">
+    <p style="font:400 17px/1.5 Inter;color:var(--navy);max-width:560px">El número dice dónde mirar, no por qué. De acá en adelante vamos respuesta por respuesta.</p>
+    <div style="text-align:right"><p class="lbl" style="justify-content:flex-end;color:var(--t3)">Fuente</p><p style="font:400 15px/1.5 Inter;color:var(--t2);margin-top:8px">12 respuestas del dueño · <span class="var">14/09/2026</span><br>Sin verificación documental</p></div>
+  </div>
+  <p class="a foot">Orden Financiero · Consultoría de gestión</p><p class="a pnum">02</p>
+</section>
+
+<!-- 03 OBJETIVO -->
+<p class="cap">03 · El negocio ordenado</p>
+<section class="s">
+  <p class="a lbl" style="left:72px;top:72px">A los 90 días</p>
+  <h2 class="a ttl" style="left:72px;top:100px;width:500px">Ordená los números de tu negocio en 90 días</h2>
+  <div class="a rule" style="left:72px;top:204px"></div>
+  <p class="a sub" style="left:72px;top:232px;width:460px">Al terminar el programa, estos cinco procesos quedan funcionando en el negocio.</p>
+  <div class="a" style="left:72px;top:340px;width:460px">
+    <div style="display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid var(--borde)"><span style="font:400 16px Inter;color:var(--navy)">Costos precisos</span><span class="num" style="font:400 15px Inter;color:var(--t3)">5 de 5</span></div>
+    <div style="display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid var(--borde)"><span style="font:400 16px Inter;color:var(--navy)">Flujo de fondos claro</span><span class="num" style="font:400 15px Inter;color:var(--t3)">5 de 5</span></div>
+    <div style="display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid var(--borde)"><span style="font:400 16px Inter;color:var(--navy)">Conozco mi rentabilidad</span><span class="num" style="font:400 15px Inter;color:var(--t3)">5 de 5</span></div>
+    <div style="display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid var(--borde)"><span style="font:400 16px Inter;color:var(--navy)">Costos operativos definidos</span><span class="num" style="font:400 15px Inter;color:var(--t3)">5 de 5</span></div>
+    <div style="display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid var(--borde);border-bottom:1px solid var(--borde)"><span style="font:400 16px Inter;color:var(--navy)">Gestiono con datos</span><span class="num" style="font:400 15px Inter;color:var(--t3)">5 de 5</span></div>
+  </div>
+  <svg class="a" id="r5" style="left:560px;top:110px" width="700" height="540"></svg>
+  <p class="a foot">Orden Financiero · Consultoría de gestión</p><p class="a pnum">03</p>
+</section>
+
+<!-- 04 RUEDA DEL LEAD -->
+<p class="cap">04 · Resultado del test</p>
+<section class="s">
+  <p class="a lbl" style="left:72px;top:72px">Resultado del test</p>
+  <h2 class="a ttl" style="left:72px;top:100px;width:1000px"><span class="var">Indicadores de gestión</span> es el eslabón más flojo, con <span class="var">5,6</span> de 10</h2>
+  <div class="a rule" style="left:72px;top:160px"></div>
+  <svg class="a" id="r4" style="left:0px;top:180px" width="720" height="450"></svg>
+  <!-- panel derecho -->
+  <div class="a" style="left:730px;top:196px;width:478px">
+    <div style="display:flex;align-items:flex-end;gap:14px;padding-bottom:20px;border-bottom:1px solid var(--borde)">
+      <p class="num var" style="font:300 64px/0.9 Inter;color:var(--navy);letter-spacing:-.02em">6,7</p>
+      <p style="font:400 16px/1.3 Inter;color:var(--t2);padding-bottom:4px">de 10 · puntaje total<br><span class="var num">24 de 36</span> puntos</p>
+    </div>
+    <div id="filas4"></div>
+    <p class="var" style="font:400 14px/1.5 Inter;color:var(--t3);margin-top:14px">Empata en 5,6 con Resultado económico. Queda como el más flojo porque tiene más respuestas en el mínimo: 2 contra 1.</p>
+  </div>
+  <p class="a src">Autodiagnóstico Orden Financiero · <span class="var">14/09/2026</span> · Respuestas del dueño, sin verificación documental · Escala 0 a 10</p>
+  <p class="a foot">Orden Financiero · Consultoría de gestión</p><p class="a pnum">04</p>
+</section>
+
+<!-- DIVISOR 1 (nuevo) -->
+<p class="cap" hidden>Separador (descartado por Manu 14/09)</p>
+<section class="s d" hidden>
+  <div class="a circ" style="width:440px;height:440px;left:1000px;top:420px"></div>
+  <div class="a circ" style="width:320px;height:320px;left:1060px;top:480px"></div>
+  <div class="a circ" style="width:200px;height:200px;left:1120px;top:540px"></div>
+  <p class="a num" style="left:72px;top:236px;font:300 88px/1 Inter;color:var(--secdark);letter-spacing:-.02em">01</p>
+  <div class="a rule" style="left:72px;top:352px"></div>
+  <h2 class="a" style="left:72px;top:378px;font:500 48px/1.1 Inter;letter-spacing:-.02em;width:1000px">Lo que encontramos</h2>
+  <p class="a" style="left:72px;top:448px;font:400 20px/1.4 Inter;color:var(--secdark)">Respuesta por respuesta, del eslabón más flojo al más sólido</p>
+</section>
+
+<!-- 05 HALLAZGO 1 -->
+<p class="cap">05 · Hallazgo 1</p>
+<section class="s" id="h1"></section>
+
+<!-- 06 HALLAZGO 2 -->
+<p class="cap">06 · Hallazgo 2</p>
+<section class="s" id="h2"></section>
+
+<!-- 07 HALLAZGO 3 -->
+<p class="cap">07 · Hallazgo 3</p>
+<section class="s" id="h3"></section>
+
+<!-- 08 HALLAZGO 4 -->
+<p class="cap">08 · Hallazgo 4</p>
+<section class="s" id="h4"></section>
+
+<!-- DIVISOR 2 (nuevo) -->
+<p class="cap" hidden>Separador (descartado por Manu 14/09)</p>
+<section class="s d" hidden>
+  <div class="a circ" style="width:440px;height:440px;left:1000px;top:420px"></div>
+  <div class="a circ" style="width:320px;height:320px;left:1060px;top:480px"></div>
+  <div class="a circ" style="width:200px;height:200px;left:1120px;top:540px"></div>
+  <p class="a num" style="left:72px;top:236px;font:300 88px/1 Inter;color:var(--secdark);letter-spacing:-.02em">02</p>
+  <div class="a rule" style="left:72px;top:352px"></div>
+  <h2 class="a" style="left:72px;top:378px;font:500 48px/1.1 Inter;letter-spacing:-.02em;width:1000px">Cómo se ordena</h2>
+  <p class="a" style="left:72px;top:448px;font:400 20px/1.4 Inter;color:var(--secdark)">El orden de trabajo y lo que queda funcionando en el negocio</p>
+</section>
+
+<!-- 08 PRIORIDADES -->
+<p class="cap">09 · Prioridades</p>
+<section class="s">
+  <p class="a lbl" style="left:72px;top:72px">Prioridades</p>
+  <h2 class="a ttl" style="left:72px;top:100px;width:1000px">El orden lo define la cadena, no la urgencia</h2>
+  <div class="a rule" style="left:72px;top:160px"></div>
+  <!-- Los cuatro eslabones en el orden de la cadena y en el mes del programa que los trabaja (igual que la web). -->
+  <div class="a" style="left:72px;top:269px;width:1136px;height:1px;background:var(--borde)"></div>
+  <div class="a" style="left:72px;top:264px;width:11px;height:11px;border-radius:50%;border:2px solid var(--marca);background:#fff"></div>
+  <div class="a" style="left:362px;top:264px;width:11px;height:11px;border-radius:50%;border:2px solid var(--marca);background:#fff"></div>
+  <div class="a" style="left:652px;top:264px;width:11px;height:11px;border-radius:50%;border:2px solid var(--marca);background:#fff"></div>
+  <div class="a" style="left:942px;top:264px;width:11px;height:11px;border-radius:50%;background:var(--marca)"></div>
+  <div class="a" id="prio" style="left:72px;top:200px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;width:1136px"></div>
+  <div class="a" style="left:72px;top:516px;width:1136px;background:var(--lienzo);border-radius:12px;padding:20px 28px">
+    <p class="var" style="font:400 17px/1.5 Inter;color:var(--navy)">Indicadores de gestión es el más flojo y es a donde apunta el programa. <span style="color:var(--t2)">Un indicador sale del cierre mensual: primero se arman los costos y el cierre, y en el mes 3 ya se mide con números ciertos.</span></p>
+  </div>
+  <p class="a src">Puntajes: autodiagnóstico Orden Financiero · <span class="var">14/09/2026</span> · Respuestas del dueño, sin verificación documental</p>
+  <p class="a foot">Orden Financiero · Consultoría de gestión</p><p class="a pnum">09</p>
+</section>
+
+<!-- 09 EL PROGRAMA -->
+<p class="cap">10 · El programa</p>
+<section class="s">
+  <p class="a lbl" style="left:72px;top:72px">El programa</p>
+  <h2 class="a ttl" style="left:72px;top:100px;width:1000px">Tres meses trabajando sobre los números del negocio</h2>
+  <div class="a rule" style="left:72px;top:160px"></div>
+  <div class="a" style="left:72px;top:216px;width:340px">
+    <p class="num" style="font:300 120px/0.9 Inter;color:var(--navy);letter-spacing:-.03em">3</p>
+    <p style="font:400 22px/1.3 Inter;color:var(--navy);margin-top:14px">meses de duración</p>
+    <p style="font:400 16px/1.5 Inter;color:var(--t2);margin-top:14px;max-width:280px">Con acompañamiento todas las semanas, sobre los datos reales del negocio.</p>
+  </div>
+  <div class="a" style="left:480px;top:216px;width:728px">
+    <div style="display:grid;grid-template-columns:56px 1fr;padding:22px 0;border-top:1px solid var(--borde)"><span class="num" style="font:500 15px Inter;color:var(--marca)">01</span><span style="font:400 20px/1.35 Inter;color:var(--navy)">Disponible 24/7 para consultas y dudas: lo que necesites se ve en el día</span></div>
+    <div style="display:grid;grid-template-columns:56px 1fr;padding:22px 0;border-top:1px solid var(--borde)"><span class="num" style="font:500 15px Inter;color:var(--marca)">02</span><span style="font:400 20px/1.35 Inter;color:var(--navy)">Una reunión por semana durante los tres meses</span></div>
+    <div style="display:grid;grid-template-columns:56px 1fr;padding:22px 0;border-top:1px solid var(--borde)"><span class="num" style="font:500 15px Inter;color:var(--marca)">03</span><span style="font:400 20px/1.35 Inter;color:var(--navy)">Una sesión de cierre por mes para revisar el resultado del negocio</span></div>
+    <div style="display:grid;grid-template-columns:56px 1fr;padding:22px 0;border-top:1px solid var(--borde);border-bottom:1px solid var(--borde)"><span class="num" style="font:500 15px Inter;color:var(--marca)">04</span><span style="font:400 20px/1.35 Inter;color:var(--navy)">Diseño y puesta en marcha del sistema de registro con tablero de control</span></div>
+  </div>
+  <div class="a circ" style="width:360px;height:360px;left:1060px;top:540px"></div>
+  <div class="a circ" style="width:240px;height:240px;left:1120px;top:600px"></div>
+  <p class="a foot">Orden Financiero · Consultoría de gestión</p><p class="a pnum">10</p>
+</section>
+
+<!-- 10 LOS TRES MESES -->
+<p class="cap">11 · Los tres meses</p>
+<section class="s">
+  <p class="a lbl" style="left:72px;top:56px">El programa</p>
+  <h2 class="a ttl" style="left:72px;top:82px;width:1000px;font-size:30px">Del diagnóstico al negocio ordenado, en tres meses</h2>
+  <div class="a" id="meses" style="left:72px;top:156px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;width:1136px"></div>
+  <div class="a" style="left:72px;top:548px;width:1136px;background:var(--lienzo);border-radius:12px;padding:18px 24px;display:grid;grid-template-columns:1fr 1fr;gap:40px">
+    <div><p style="font:500 16px Inter;color:var(--navy)">Garantía simple</p><p style="font:400 14px/1.5 Inter;color:var(--t2);margin-top:6px">Si en 90 días no sabés exactamente a dónde va a parar cada peso que factura tu negocio, seguimos trabajando sin costo hasta que lo sepas.</p></div>
+    <div><p style="font:500 16px Inter;color:var(--navy)">Máximo 3 negocios nuevos por mes</p><p style="font:400 14px/1.5 Inter;color:var(--t2);margin-top:6px">No es una cifra de marketing: es lo que permite sostener el acompañamiento 1 a 1: consultas por WhatsApp 24/7, una reunión por semana y la sesión mensual de cierre de cada cliente.</p></div>
+  </div>
+  <p class="a foot">Orden Financiero · Consultoría de gestión</p><p class="a pnum">11</p>
+</section>
+
+<!-- LO QUE TE LLEVÁS (nueva): mismas maquetas y datos de ejemplo que la web (src/components/mockups, src/data/ejemplo.js) -->
+<p class="cap" hidden>Lo que te llevás (en pausa por Manu 14/09)</p>
+<section class="s" style="background:var(--lienzo)" hidden>
+  <p class="a lbl" style="left:72px;top:72px">Lo que te llevás</p>
+  <h2 class="a ttl" style="left:72px;top:100px;width:1100px">Al terminar, los números del negocio se ven así todos los meses</h2>
+  <div class="a rule" style="left:72px;top:160px"></div>
+  <div class="a" style="left:72px;top:184px;display:grid;grid-template-columns:452px 330px 306px;gap:24px;width:1136px;align-items:start">
+    <!-- Estado de resultados -->
+    <div>
+      <div class="mock">
+        <div class="hd"><p class="eb">Estado de resultados · Agosto 2026 · Datos de ejemplo</p><p class="nm">Parrilla La Esquina</p></div>
+        <div id="eerrRows" style="margin-top:4px"></div>
+      </div>
+      <p class="mcap">Mes 1 · Resultado del mes</p>
+    </div>
+    <!-- Flujo de caja -->
+    <div>
+      <div class="mock">
+        <div class="hd"><p class="eb">Flujo de caja · Datos de ejemplo</p><p class="nm">Semana del 17 al 23</p></div>
+        <div id="cajaBody"></div>
+      </div>
+      <p class="mcap">Mes 2 · La caja anticipada</p>
+    </div>
+    <!-- Tablero -->
+    <div>
+      <div class="mock">
+        <div class="hd"><p class="eb">Tablero · Datos de ejemplo</p><p class="nm">Agosto contra julio</p></div>
+        <div id="tbBody"></div>
+      </div>
+      <p class="mcap">Mes 3 · Decidir con datos</p>
+    </div>
+  </div>
+  <p class="a src">Datos de ejemplo de un negocio gastronómico ficticio. Las mismas vistas que se arman con los números reales del negocio.</p>
+  <p class="a foot">Orden Financiero · Consultoría de gestión</p><p class="a pnum">14</p>
+</section>
+
+<!-- 11 CIERRE -->
+<p class="cap">12 · Próximos pasos</p>
+<section class="s d m">
+  <div class="a circ" style="width:440px;height:440px;left:1000px;top:420px"></div>
+  <div class="a circ" style="width:320px;height:320px;left:1060px;top:480px"></div>
+  <div class="a circ" style="width:200px;height:200px;left:1120px;top:540px"></div>
+  <p class="a lbl" style="left:72px;top:72px">Próximos pasos</p>
+  <div class="a rule" style="left:72px;top:100px"></div>
+  <h2 class="a" style="left:72px;top:128px;font:500 44px/1.1 Inter;letter-spacing:-.02em;width:1136px">Cerrar <span class="var">septiembre</span> con un número de ganancia</h2>
+  <div class="a" style="left:72px;top:270px;width:900px">
+    <div style="display:grid;grid-template-columns:64px 1fr 160px 180px;align-items:center;padding:20px 0;border-top:1px solid var(--bordeD)">
+      <span style="width:36px;height:36px;border:1.5px solid var(--soft);border-radius:50%;display:grid;place-items:center;font:500 15px Inter;color:var(--soft)">1</span>
+      <span style="font:400 19px/1.35 Inter">Abrir la cuenta del negocio separada de la personal</span><span style="font:400 15px Inter;color:var(--secdark)">Dueño</span><span style="font:400 15px Inter;text-align:right">Esta semana</span></div>
+    <div style="display:grid;grid-template-columns:64px 1fr 160px 180px;align-items:center;padding:20px 0;border-top:1px solid var(--bordeD)">
+      <span style="width:36px;height:36px;border:1.5px solid var(--soft);border-radius:50%;display:grid;place-items:center;font:500 15px Inter;color:var(--soft)">2</span>
+      <span style="font:400 19px/1.35 Inter">Juntar facturación y gastos del mes</span><span style="font:400 15px Inter;color:var(--secdark)">Dueño</span><span class="var" style="font:400 15px Inter;text-align:right">25 de septiembre</span></div>
+    <div style="display:grid;grid-template-columns:64px 1fr 160px 180px;align-items:center;padding:20px 0;border-top:1px solid var(--bordeD);border-bottom:1px solid var(--bordeD)">
+      <span style="width:36px;height:36px;border:1.5px solid var(--soft);border-radius:50%;display:grid;place-items:center;font:500 15px Inter;color:var(--soft)">3</span>
+      <span style="font:400 19px/1.35 Inter">Primer cierre mensual armado y revisado juntos</span><span style="font:400 15px Inter;color:var(--secdark)">Manuel</span><span class="var" style="font:400 15px Inter;text-align:right">2 de octubre</span></div>
+  </div>
+  <p class="a" style="left:72px;top:660px;font:400 12px/1 Inter;text-transform:uppercase;color:var(--secdark)">Manuel Alfano · manuel@ordenfinanciero.com · ordenfinanciero.com</p>
+</section>
+
+<script>
+const C = getComputedStyle(document.documentElement);
+const v = n => C.getPropertyValue(n).trim();
+const NS = 'http://www.w3.org/2000/svg';
+function el(svg, tag, attrs, text){ const e=document.createElementNS(NS,tag); for(const k in attrs) e.setAttribute(k,attrs[k]); if(text!=null) e.textContent=text; svg.appendChild(e); return e; }
+
+// Radar: solo líneas, puntos y texto (lo que Slides puede dibujar)
+function radar(id, cx, cy, r, ejes, valores, max, escala, opts){
+  const svg=document.getElementById(id), n=ejes.length;
+  const p=(i,rad)=>{const a=(-90+i*360/n)*Math.PI/180;return [cx+rad*Math.cos(a), cy+rad*Math.sin(a)]};
+  for(let k=1;k<=5;k++) for(let i=0;i<n;i++){const a=p(i,r*k/5),b=p(i+1,r*k/5); el(svg,'line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:'rgba(13,43,107,.12)','stroke-width':1});}
+  for(let i=0;i<n;i++){const a=p(i,r); el(svg,'line',{x1:cx,y1:cy,x2:a[0],y2:a[1],stroke:'rgba(13,43,107,.12)','stroke-width':1});}
+  escala.forEach((s,k)=>el(svg,'text',{x:cx-8,y:cy-r*(k+1)/5+4,'text-anchor':'end','font-size':11,fill:v('--t3')},s));
+  const pts=valores.map((val,i)=>p(i,r*val/max));
+  for(let i=0;i<n;i++){const a=pts[i],b=pts[(i+1)%n]; el(svg,'line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:opts.color,'stroke-width':2.5});}
+  pts.forEach(q=>el(svg,'circle',{cx:q[0],cy:q[1],r:5,fill:opts.color}));
+  ejes.forEach((t,i)=>{const [x,y]=p(i,r); let anchor='middle',dx=0,dy=0;
+    if(Math.abs(x-cx)<1){dy=y<cy?-18:30} else {anchor=x>cx?'start':'end'; dx=x>cx?16:-16; dy=y>cy+1?22:5}
+    el(svg,'text',{x:x+dx,y:y+dy,'text-anchor':anchor,'font-size':15,'font-weight':i===opts.destacado?500:400,fill:i===opts.destacado?v('--marca'):v('--navy')},t);
+    if(opts.sub) el(svg,'text',{x:x+dx,y:y+dy+20,'text-anchor':anchor,'font-size':14,fill:i===opts.destacado?v('--marca'):v('--t3'),class:'num'},opts.sub[i]);
+  });
+}
+radar('r5',360,285,170,['Costos precisos','Flujo de fondos claro','Conozco mi rentabilidad','Costos operativos definidos','Gestiono con datos'],[5,5,5,5,5],5,['1','2','3','4','5'],{color:v('--marca')});
+radar('r4',390,235,125,['Costos y precios','Resultado económico','Flujo de caja','Indicadores de gestión'],[8.9,5.6,6.7,5.6],10,['2','4','6','8','10'],{color:v('--navy'),destacado:3});
+
+// Filas del resultado (de mayor a menor)
+const esl=[['Costos y precios',8.9,'Sólido','pos'],['Flujo de caja',6.7,'A mejorar','ale'],['Resultado económico',5.6,'A mejorar','ale'],['Indicadores de gestión',5.6,'A mejorar','ale',true]];
+document.getElementById('filas4').innerHTML=esl.map(e=>`
+  <div style="display:grid;grid-template-columns:196px 1fr 36px 86px;align-items:center;gap:12px;padding:17px 0;border-bottom:1px solid var(--borde)">
+    <span style="font:${e[4]?500:400} 16px Inter;color:${e[4]?'var(--marca)':'var(--navy)'}">${e[0]}</span>
+    <span style="height:8px;background:var(--lienzo2);position:relative"><span style="position:absolute;left:0;top:0;bottom:0;width:${e[1]*10}%;background:${e[4]?'var(--marca)':'var(--azulclaro)'}"></span></span>
+    <span class="num" style="font:400 16px Inter;color:var(--navy);text-align:right">${String(e[1]).replace('.',',')}</span>
+    <span style="text-align:right"><span class="loz ${e[3]}">${e[2]}</span></span>
+  </div>`).join('');
+
+// Hallazgos
+const puntos=s=>[1,2,3].map(i=>`<span class="dot ${i<=s?'on':''}"></span>`).join('')+`<span class="num" style="font:400 14px Inter;color:var(--t2);margin-left:6px">${s} de 3</span>`;
+const fila=(r,size)=>`<div style="display:grid;grid-template-columns:1fr 300px 124px;gap:28px;padding:${size>=17?18:10}px 0;border-top:1px solid var(--borde);align-items:start">
+  <p style="font:400 ${size}px/1.45 Inter;color:var(--navy)">${r[0]}</p>
+  <p style="font:400 ${size-1}px/1.45 Inter;color:var(--t2);font-style:italic">“${r[1]}”</p>
+  <p style="text-align:right;padding-top:3px;white-space:nowrap">${puntos(r[2])}</p></div>`;
+const cab=`<div style="display:grid;grid-template-columns:1fr 300px 124px;gap:28px;padding-bottom:10px"><p class="lbl" style="color:var(--t3)">Pregunta</p><p class="lbl" style="color:var(--t3)">Respuesta del dueño</p><p class="lbl" style="color:var(--t3);justify-content:flex-end">Puntaje</p></div>`;
+const pie=n=>`<p class="a src">Autodiagnóstico Orden Financiero · 14/09/2026 · Respuestas del dueño, sin verificación documental</p><p class="a foot">Orden Financiero · Consultoría de gestión</p><p class="a pnum">${n}</p>`;
+
+function hallazgo(id,n,esl,nota,estado,cls,titulo,resp,extra){
+  document.getElementById(id).innerHTML=`
+  <p class="a lbl" style="left:72px;top:72px">Hallazgo ${n} · ${esl}</p>
+  <h2 class="a ttl" style="left:72px;top:100px;width:1100px">${titulo}</h2>
+  <div class="a rule" style="left:72px;top:160px"></div>
+  <!-- 14/09: el puntaje queda centrado en el alto de la tabla (en Slides: top = mitad de la tabla - mitad del bloque) -->
+  <div class="a" style="left:72px;top:212px;width:1136px;display:grid;grid-template-columns:250px 836px;column-gap:50px;align-items:center">
+  <div>
+    <p class="num" style="font:300 88px/0.9 Inter;color:var(--navy);letter-spacing:-.03em">${nota}</p>
+    <p style="font:400 16px Inter;color:var(--t2);margin-top:12px">de 10 en ${esl}</p>
+    <p style="margin-top:18px"><span class="loz ${cls}">${estado}</span></p>
+    ${extra?`<p style="font:400 15px/1.5 Inter;color:var(--marca);margin-top:22px">${extra}</p>`:''}
+  </div>
+  <div>${cab}${resp.map(r=>fila(r,17)).join('')}<div style="border-top:1px solid var(--borde)"></div></div>
+  </div>
+  ${pie(String(n+4).padStart(2,'0'))}`;
+}
+hallazgo('h1',1,'Indicadores de gestión','5,6','A mejorar','ale','2 de las 3 preguntas de Indicadores de gestión dieron el mínimo',[
+  ['¿Revisás los números de tu negocio al menos una vez por mes?','Sí, lo hago todos los meses',3],
+  ['¿Tenés algún indicador que seguís regularmente (crecimiento de ventas, contribución marginal, punto de equilibrio)?','No, no tengo ninguno definido',1],
+  ['¿Tomás decisiones de inversión o contratación con datos concretos?','No, decido a ojo',1]],'Es el eslabón más flojo del negocio.');
+hallazgo('h2',2,'Resultado económico','5,6','A mejorar','ale','Resultado económico quedó en 5,6 de 10',[
+  ['¿Sabés exactamente cuánto ganó tu negocio el mes pasado?','A veces, pero no de manera consistente',2],
+  ['¿Separás las finanzas del negocio de tus gastos personales?','No, están mezcladas',1],
+  ['¿Tenés un cierre mensual que te muestre ventas, costos, estructura, impuestos y ganancia neta?','A veces, pero no de manera consistente',2]]);
+
+// Hallazgos 3 y 4: un eslabón por slide, mismo formato que 1 y 2
+hallazgo('h3',3,'Flujo de caja','6,7','A mejorar','ale','Flujo de caja quedó en 6,7 de 10',[
+  ['¿Llegás a fin de mes con plata disponible para pagar sueldos y proveedores sin apurarte?','A veces llego justo',2],
+  ['¿Sabés con anticipación cuándo van a ser tus próximos gastos fuertes?','Sí, los tengo mapeados',3],
+  ['¿Tus cobros y pagos están equilibrados o siempre pagás antes de cobrar?','Siempre pago antes de cobrar',1]]);
+hallazgo('h4',4,'Costos y precios','8,9','Sólido','pos','Costos y precios es lo más sólido del negocio, con 8,9 de 10',[
+  ['¿Sabés cuánto te cuesta realmente producir o dar cada servicio?','Sí, lo tengo calculado y lo actualizo seguido',3],
+  ['¿Tu precio de venta está calculado sobre tus costos reales o lo fijás mirando a la competencia?','Sí, lo calculo sobre mis costos reales',3],
+  ['¿Actualizás tus precios cuando suben tus costos?','A veces, pero no siempre',2]],'Es el eslabón más sólido del negocio.');
+
+// Los tres meses
+const M=[
+ ['Mes 1 · Diagnóstico y base','Poner los números arriba de la mesa','ventas, compras y costos de cada producto.',['Relevamiento completo del negocio','Armado de los costos del negocio, producto por producto','Identificación de por dónde se escapa la rentabilidad','Primer tablero con los números del mes'],'Registro · Resultado · Costeo · Tablero · Bitácora'],
+ ['Mes 2 · Orden y sistema','Que la plata del negocio se vea y se anticipe','pagos, cobranzas, sueldos y lo que sale para la casa.',['Flujo de caja en marcha','Separación de las finanzas personales y las del negocio','Precio correcto de cada producto','Rutina semanal de gestión financiera'],'Agenda · Insumos · Costeo'],
+ ['Mes 3 · Control y autonomía','El dueño maneja sus propios números','el tablero completo del mes, comparado contra los meses anteriores.',['El dueño maneja sus propios números','Decisiones basadas en datos reales','Planificación de la rentabilidad futura','Independencia total del sistema'],'Hoja de ruta']];
+document.getElementById('meses').innerHTML=M.map((m,i)=>`
+  <div style="padding:20px 0 0;border-top:2px solid var(--navy);height:376px;position:relative">
+    <p class="lbl" style="color:var(--marca)">${m[0]}</p>
+    <p style="font:500 19px/1.25 Inter;color:var(--navy);margin-top:10px">${m[1]}</p>
+    <p style="font:400 14px/1.45 Inter;color:var(--t2);margin-top:10px"><span style="color:var(--navy);font-weight:500">Datos con los que se trabaja:</span> ${m[2]}</p>
+    <div style="margin-top:10px">${m[3].map(t=>`<p style="font:400 14px/1.4 Inter;color:var(--tinta);padding:5px 0 5px 16px;position:relative"><span style="position:absolute;left:0;color:var(--marca)">–</span>${t}</p>`).join('')}</div>
+    <p style="position:absolute;left:0;right:0;bottom:12px;font:400 14px/1.4 Inter;color:var(--t2);border-top:1px solid var(--borde);padding-top:10px">Módulos que quedan: ${m[4]}</p>
+  </div>`).join('');
+
+// Prioridades: los cuatro eslabones, estado del lead y plan
+const P4=[
+ ['01','Mes 1','Costos y precios','8,9','Sólido','pos','Estructura de costos real por producto y una política de actualización de precios que no dependa de la memoria.'],
+ ['02','Mes 1','Resultado económico','5,6','A mejorar','ale','Separar las finanzas del negocio de las personales y armar el primer cierre mensual completo.'],
+ ['03','Mes 2','Flujo de caja','6,7','A mejorar','ale','Proyección de ingresos y egresos, con los gastos fuertes anticipados en vez de descubiertos.'],
+ ['04','Mes 3','Indicadores de gestión','5,6','A mejorar','ale','Cuatro métricas calculadas sobre el cierre y revisadas una vez por mes.',true]];
+document.getElementById('prio').innerHTML=P4.map(p=>`<div>
+  <p class="num" style="font:300 40px/1 Inter;color:var(--marca)">${p[0]}</p>
+  <p class="lbl" style="color:var(--t3);margin-top:56px">${p[1]}</p>
+  <p class="var" style="font:500 21px/1.2 Inter;color:${p[7]?'var(--marca)':'var(--navy)'};margin-top:10px">${p[2]}</p>
+  <p style="margin-top:10px;display:flex;align-items:center;gap:10px"><span class="num var" style="font:400 15px Inter;color:var(--t2)">${p[3]} de 10</span><span class="loz ${p[5]} var">${p[4]}</span></p>
+  <p style="font:400 15px/1.55 Inter;color:var(--t2);margin-top:12px">${p[6]}</p></div>`).join('');
+
+// Filas del estado de resultados de ejemplo (valores de src/data/ejemplo.js, formato de formato.js)
+// 14/09: estructura completa de EERR, con los insumos de la web (src/data/ejemplo.js).
+// Las comisiones de apps y tarjetas se restan de la venta bruta (pedido de Manu): la venta neta es la base
+// de los porcentajes. "Otros gastos" ($ 415.000) se abre en otros $ 125.000 + costos financieros $ 290.000.
+// Todo se CALCULA acá; nada escrito a mano. Tipos: v venta neta · b venta bruta · k comisiones · c CMV ·
+// s subtotal · e estructura (total) · i ítem de la estructura · g línea bajo el operativo · r neto
+// 14/09: insumos ajustados a pedido de Manu para que el margen neto dé 22 % sobre ventas netas.
+const IN={bruta:18450000, comisiones:1106000, cmv:5550000, estructura:[['Sueldos y cargas',4300000],['Alquiler',1450000],['Servicios',690000],['Otros gastos',110000]], financieros:250000, impuestos:1180000};
+const neta=IN.bruta-IN.comisiones, ub=neta-IN.cmv, est=IN.estructura.reduce((s,x)=>s+x[1],0), ro=ub-est, rai=ro-IN.financieros, rn=rai-IN.impuestos;
+const $f=n=>'$ '+Math.round(n).toLocaleString('es-AR'), pc=n=>(n/neta*100).toLocaleString('es-AR',{minimumFractionDigits:1,maximumFractionDigits:1})+' %';
+window.__EERR={neta,ub,est,ro,rai,rn,fc:pc(IN.cmv),mn:pc(rn)};
+const ER=[
+ ['Ventas brutas',$f(IN.bruta),'',0,'b'],
+ ['Comisiones de apps y tarjetas',$f(IN.comisiones),'',0,'k'],
+ ['Ventas netas',$f(neta),pc(neta),100,'v'],
+ ['Costo de mercadería (CMV)',$f(IN.cmv),pc(IN.cmv),IN.cmv/neta*100,'c'],
+ ['Utilidad bruta',$f(ub),pc(ub),ub/neta*100,'s'],
+ ['Estructura operativa',$f(est),pc(est),est/neta*100,'e'],
+ ...IN.estructura.map(x=>[x[0],$f(x[1]),pc(x[1]),0,'i']),
+ ['Resultado operativo',$f(ro),pc(ro),ro/neta*100,'s'],
+ ['Costos financieros',$f(IN.financieros),pc(IN.financieros),IN.financieros/neta*100,'g'],
+ ['Resultado antes de impuestos',$f(rai),pc(rai),rai/neta*100,'s'],
+ ['Impuestos',$f(IN.impuestos),pc(IN.impuestos),IN.impuestos/neta*100,'g'],
+ ['Resultado neto',$f(rn),pc(rn),rn/neta*100,'r']];
+document.getElementById('eerrRows').innerHTML=ER.map(f=>{if(f[4]==='b'||f[4]==='k'){const b=f[4]==='b';
+  return `<div style="display:grid;grid-template-columns:196px 1fr 92px 46px;gap:8px;align-items:center;padding:${b?3:1.5}px 0;border-bottom:1px solid rgba(11,18,14,.06)">
+  <span style="font:400 ${b?12.5:11.5}px Inter;color:${b?'var(--t2)':'var(--t3)'};padding-left:${b?0:14}px;white-space:nowrap">${b?'':'− '}${f[0]}</span><span></span>
+  <span class="num" style="font:400 ${b?12.5:11.5}px Inter;color:var(--t2);text-align:right;white-space:nowrap">${f[1]}</span><span></span></div>`;}const t=f[4], fuerte=['v','s','r'].includes(t), item=t==='i';
+  const col=t==='v'?'var(--marca)':t==='r'?'var(--pos)':t==='s'?'var(--navy)':t==='c'?'var(--navy2)':'var(--secdark)';
+  const linea=['s','r'].includes(t)?'border-top:1px solid rgba(11,18,14,.18);':'';
+  return `<div style="display:grid;grid-template-columns:196px 1fr 92px 46px;gap:8px;align-items:center;padding:${item?1.5:3}px 0;border-bottom:1px solid rgba(11,18,14,.06);${linea}">
+  <span style="font:${fuerte?500:400} ${item?11.5:12.5}px Inter;color:${fuerte?'var(--navy)':item?'var(--t3)':'var(--t2)'};padding-left:${item?14:0}px;white-space:nowrap">${f[0]}</span>
+  ${item?'<span></span>':`<span style="height:6px;border-radius:3px;background:var(--lienzo2);overflow:hidden"><span style="display:block;height:100%;width:${Math.max(2,f[3])}%;background:${col};border-radius:3px"></span></span>`}
+  <span class="num" style="font:${fuerte?500:400} ${item?11.5:12.5}px Inter;color:${fuerte?'var(--navy)':item?'var(--t2)':'var(--tinta)'};text-align:right;white-space:nowrap">${f[1]}</span>
+  <span class="num" style="font:${t==='r'?500:400} ${item?11:12}px Inter;color:${t==='r'?'var(--pos)':'var(--t3)'};text-align:right;white-space:nowrap">${f[2]}</span></div>`}).join('');
+
+// 14/09: Flujo de caja con días, movimientos y la lectura del mínimo (antes era una línea sin contexto).
+{
+  const CJ={ini:2140000, mov:[['Lunes','Cobro tarjetas',1480000],['Martes','Proveedor de carnes',-1620000],['Miércoles','Servicios',-310000],['Jueves','Cobro tarjetas',1390000],['Viernes','Quincena',-2560000],['Sábado','Cobro contado y apps',1450000],['Domingo','Verdulería y bebidas',-1250000]]};
+  let s=CJ.ini; const ser=CJ.mov.map(m=>(s+=m[2])); const pts=[CJ.ini,...ser];
+  const mx=Math.max(...pts), mn=Math.min(...pts), iMin=pts.indexOf(mn), fin=ser[ser.length-1];
+  const cob=CJ.mov.filter(m=>m[2]>0).reduce((a,m)=>a+m[2],0), pag=-CJ.mov.filter(m=>m[2]<0).reduce((a,m)=>a+m[2],0);
+  const W=290,H=78,p=14, X=i=>p+i*(W-2*p)/7, Y=v=>H-p-(v-mn)/(mx-mn)*(H-2*p);
+  const $c=n=>(n<0?'− ':'')+'$ '+Math.abs(Math.round(n)).toLocaleString('es-AR');
+  const svg=`<svg viewBox="0 0 ${W} ${H+16}" width="100%" style="display:block;margin-top:10px">
+    <line x1="${p}" y1="${Y(CJ.ini)}" x2="${W-p}" y2="${Y(CJ.ini)}" stroke="rgba(11,18,14,.14)" stroke-dasharray="3 4"/>
+    <polyline points="${pts.map((v,i)=>X(i).toFixed(1)+','+Y(v).toFixed(1)).join(' ')}" fill="none" stroke="#0C66E4" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="${X(iMin)}" cy="${Y(mn)}" r="4.5" fill="#AE2E24"/><circle cx="${X(7)}" cy="${Y(fin)}" r="4" fill="#0C66E4"/>
+    ${CJ.mov.map((m,i)=>`<text x="${X(i+1)}" y="${H+13}" text-anchor="middle" font-size="9" fill="${i+1===iMin?'#AE2E24':'#6B6E76'}">${m[0].slice(0,3)}</text>`).join('')}</svg>`;
+  const filas=CJ.mov.map((m,i)=>{const esMin=i+1===iMin;
+    return `<div style="display:grid;grid-template-columns:64px 1fr 92px;gap:6px;padding:3px 0;border-bottom:1px solid rgba(11,18,14,.06);${esMin?'background:var(--riebg);margin:0 -6px;padding:3px 6px;border-radius:4px;':''}">
+      <span style="font:400 11.5px Inter;color:${esMin?'var(--rie)':'var(--t3)'}">${m[0]}</span><span style="font:${esMin?500:400} 11.5px Inter;color:${esMin?'var(--rie)':'var(--t2)'};white-space:nowrap">${m[1]}</span>
+      <span class="num" style="font:${esMin?500:400} 11.5px Inter;text-align:right;color:${m[2]>0?'var(--pos)':esMin?'var(--rie)':'var(--tinta)'}">${m[2]>0?'+ ':''}${$c(m[2])}</span></div>`}).join('');
+  const dia=CJ.mov[iMin-1];
+  document.getElementById('cajaBody').innerHTML=svg+`<div style="margin-top:8px">${filas}</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px">
+      <div><p class="eb">Cobros</p><p class="num" style="font:500 12.5px Inter;color:var(--pos);margin-top:3px">${$c(cob)}</p></div>
+      <div><p class="eb">Pagos</p><p class="num" style="font:500 12.5px Inter;color:var(--navy);margin-top:3px">${$c(pag)}</p></div>
+      <div><p class="eb">Cierre</p><p class="num" style="font:500 12.5px Inter;color:var(--navy);margin-top:3px">${$c(fin)}</p></div></div>
+    <p style="font:400 12px/1.45 Inter;color:var(--navy);margin-top:10px">El ${dia[0].toLowerCase()}, la ${dia[1].toLowerCase()} deja la caja en <span style="color:var(--rie);font-weight:500">${$c(mn)}</span>. Se ve con días de anticipación.</p>`;
+}
+
+// 14/09: Tablero con comparación contra el mes anterior (signo + flecha + color; no todo mejora).
+{
+  const E=window.__EERR, fmtP=n=>n.toLocaleString('es-AR',{minimumFractionDigits:1,maximumFractionDigits:1});
+  const TB=[
+    ['Food cost', IN.cmv/E.neta*100, 34.1, 'pct', false, 'CMV sobre ventas netas'],
+    ['Margen neto', E.rn/E.neta*100, 19.6, 'pct', true, 'resultado neto sobre ventas netas'],
+    ['Ticket promedio', IN.bruta/3075, 6150, '$', true, 'ventas brutas por cubierto (3.075)'],
+    ['Resultado neto', E.rn, 3180000, '$', true, 'del mes']];
+  document.getElementById('tbBody').innerHTML=TB.map(k=>{
+    const [nom,act,ant,tipo,subeBien,nota]=k;
+    const val=tipo==='pct'?fmtP(act)+' %':'$ '+Math.round(act).toLocaleString('es-AR');
+    const antTxt=tipo==='pct'?fmtP(ant)+' %':'$ '+Math.round(ant).toLocaleString('es-AR');
+    const d=tipo==='pct'?act-ant:(act/ant-1)*100, bien=(d>0)===subeBien;
+    const dTxt=(d>0?'▲ ':'▼ ')+fmtP(Math.abs(d))+(tipo==='pct'?' pp':' %');
+    return `<div style="padding:11px 0;border-bottom:1px solid rgba(11,18,14,.08)">
+      <p class="eb">${nom}</p>
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-top:3px">
+        <span class="num" style="font:500 20px Inter;color:var(--navy)">${val}</span>
+        <span class="num" style="font:500 12px Inter;color:${bien?'var(--pos)':'var(--rie)'};white-space:nowrap">${dTxt}</span></div>
+      <p style="font:400 11px Inter;color:var(--t3);margin-top:2px">Julio ${antTxt} · ${nota}</p></div>`}).join('');
+}
+
+// Control de desbordes (solo para revisar la maqueta)
+document.fonts.ready.then(()=>{ const out=[];
+  document.querySelectorAll('section.s').forEach((s,i)=>{ const R=s.getBoundingClientRect();
+    s.querySelectorAll('*').forEach(e=>{ if(e.closest('.circ')||e.classList.contains('circ')) return; const r=e.getBoundingClientRect(); if(!r.width) return;
+      if(r.right>R.right+1||r.bottom>R.bottom+1) out.push(`slide ${i+1}: "${(e.textContent||'').trim().slice(0,30)}" sale ${Math.round(r.bottom-R.bottom)} abajo / ${Math.round(r.right-R.right)} der`); });
+    s.querySelectorAll('.card,.mock').forEach(c=>{ if(c.scrollHeight>c.clientHeight+1) out.push(`slide ${i+1}: tarjeta desborda ${c.scrollHeight-c.clientHeight}px`); });
+    const lim=(s.querySelector('.src')||s.querySelector('.foot'));
+    if(lim){ const top=lim.getBoundingClientRect().top; s.querySelectorAll('.a').forEach(a=>{ if(['src','foot','pnum','circ'].some(c=>a.classList.contains(c))) return; const b=a.getBoundingClientRect(); if(b.bottom>top-6) out.push(`slide ${i+1}: bloque "${a.textContent.trim().slice(0,25)}" llega a ${Math.round(b.bottom-top)}px del pie`); }); }
+  });
+  const pre=document.createElement('pre'); pre.id='chk'; pre.textContent='CHK:'+JSON.stringify(out); pre.style.display='none'; document.body.appendChild(pre); });
+</script>
+</body>
+</html>
